@@ -22,6 +22,9 @@
 @elseif ($op=='addmaestros')
 @livewire('maestros-components')
 
+@elseif ($op=='addmaestros11')
+@livewire('maestros-components')
+
 @elseif($op==0)
 @include('contenido')
 
