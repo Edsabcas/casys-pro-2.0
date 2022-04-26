@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 class Materiascontrolador extends Controller
 {
     public function Materias(){
-        $op=7;
+        $op='addmaterias';
         return view('home',compact('op',));
     }
 }
