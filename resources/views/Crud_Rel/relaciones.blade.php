@@ -54,7 +54,7 @@ Agregado correctamente
           <option selected>Seleccione la materia</option>
           @isset($materias)
           @foreach ($materias as $materia)
-              <option value="{{$materia->ID_MATERIA}}">{{$materia->NOMBRE_MATERIA}}</option>
+              <option value="{{$materia->id_materia}}">{{$materia->nombre_materia}}</option>
           @endforeach
           @endisset
         </select>
@@ -68,15 +68,15 @@ Agregado correctamente
 
       <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label"> Maestros</label>
-                <select class="form-select form-select-sm" aria-label=".form-select-sm example" wire:model='id_maestros'>
+                <select class="form-select form-select-sm" aria-label=".form-select-sm example" wire:model='id_docente'>
           <option selected>Seleccione al maestro</option>
           @isset($maestros)
           @foreach ($maestros as $maestro)
-              <option value="{{$maestro->ID_MAESTROS}}">{{$maestro->NOMBRE_MAESTROS}}</option>
+              <option value="{{$maestro->id_docente}}">{{$maestro->nombre_docente}}</option>
           @endforeach
           @endisset
         </select>
-        @error('id_maestros') 
+        @error('id_docente') 
         <div class="alert alert-danger d-flex align-items-center" role="alert">
           <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
           <span>Pendiente el seleccionar un Maestro</span>
@@ -90,11 +90,11 @@ Agregado correctamente
           <option selected>Seleccione al Grado</option>
           @isset($grados)
           @foreach ($grados as $grado)
-              <option value="{{$grado->ID_GRADOS}}">{{$grado->NOMBRE_GRADO}}</option>
+              <option value="{{$grado->id_gr}}">{{$grado->grado}}</option>
           @endforeach
           @endisset
         </select>
-        @error('id_grados') 
+        @error('id_gr') 
         <div class="alert alert-danger d-flex align-items-center" role="alert">
           <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
           <span>Pendiente el seleccionar un Grado</span>
@@ -103,16 +103,16 @@ Agregado correctamente
       </div>
 
       <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label"> Secciones</label>
-                <select class="form-select form-select-sm" aria-label=".form-select-sm example" wire:model='id_secciones'>
+        <label for="exampleInputEmail1" class="form-label"> secciones</label>
+                <select class="form-select form-select-sm" aria-label=".form-select-sm example" wire:model='id_sc'>
           <option selected>Seleccione al Grado</option>
           @isset($secciones)
           @foreach ($secciones as $seccion)
-              <option value="{{$seccion->ID_SECCIONES}}">{{$seccion->SECCION}}</option>
+              <option value="{{$seccion->id_sc}}">{{$seccion->seccion}}</option>
           @endforeach
           @endisset
         </select>
-        @error('id_secciones') 
+        @error('id_sc') 
         <div class="alert alert-danger d-flex align-items-center" role="alert">
           <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
           <span>Pendiente el ingresar una Materia</span>

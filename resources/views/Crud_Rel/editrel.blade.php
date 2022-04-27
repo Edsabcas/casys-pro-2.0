@@ -48,7 +48,7 @@ Agregado correctamente
 
 <form wire:submit.prevent=''>
     @csrf 
-    <input type="hidden" value='{{$ID_REL}}' name='id_rel'>
+    <input type="hidden" value='{{$id_rel}}' name='id_rel'>
 
       <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label"> Materia</label>
@@ -56,7 +56,7 @@ Agregado correctamente
           <option selected>Seleccione la materia</option>
           @isset($materias)
           @foreach ($materias as $materia)
-              <option value="{{$materia->ID_MATERIA}}">{{$materia->NOMBRE_MATERIA}}</option>
+              <option value="{{$materia->id_materia}}">{{$materia->nombre_materia}}</option>
           @endforeach
           @endisset
         </select>
@@ -64,35 +64,35 @@ Agregado correctamente
 
       <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label"> Maestros</label>
-                <select class="form-select form-select-sm" aria-label=".form-select-sm example" wire:model='id_maestros'>
+                <select class="form-select form-select-sm" aria-label=".form-select-sm example" wire:model='id_docente'>
           <option selected>Seleccione al maestro</option>
           @isset($maestros)
           @foreach ($maestros as $maestro)
-              <option value="{{$maestro->ID_MAESTROS}}">{{$maestro->NOMBRE_MAESTROS}}</option>
+              <option value="{{$maestro->id_docente}}">{{$maestro->nombre_docente}}</option>
           @endforeach
           @endisset
         </select>
       </div>
 
       <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label"> Grados</label>
-                <select class="form-select form-select-sm" aria-label=".form-select-sm example" wire:model='id_grados'>
-          <option selected>Seleccione al Grado</option>
+        <label for="exampleInputEmail1" class="form-label"> grados</label>
+                <select class="form-select form-select-sm" aria-label=".form-select-sm example" wire:model='id_gr'>
+          <option selected>Seleccione al grado</option>
           @isset($grados)
           @foreach ($grados as $grado)
-              <option value="{{$grado->ID_GRADOS}}">{{$grado->NOMBRE_GRADO}}</option>
+              <option value="{{$grado->id_gr}}">{{$grado->grado}}</option>
           @endforeach
           @endisset
         </select>
       </div>
 
       <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label"> Secciones</label>
-                <select class="form-select form-select-sm" aria-label=".form-select-sm example" wire:model='id_secciones'>
-          <option selected>Seleccione al Grado</option>
+        <label for="exampleInputEmail1" class="form-label"> secciones</label>
+                <select class="form-select form-select-sm" aria-label=".form-select-sm example" wire:model='id_sc'>
+          <option selected>Seleccione al grado</option>
           @isset($secciones)
           @foreach ($secciones as $seccion)
-              <option value="{{$seccion->ID_SECCIONES}}">{{$seccion->SECCION}}</option>
+              <option value="{{$seccion->id_sc}}">{{$seccion->seccion}}</option>
           @endforeach
           @endisset
         </select>
