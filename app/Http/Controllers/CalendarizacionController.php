@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class CalendarizacionController extends Controller
 {
     public function Calendarizacion(){
-        $op=40;
+        $op="addCalendarizacion";
         return view('home',compact('op'));
     }
 }

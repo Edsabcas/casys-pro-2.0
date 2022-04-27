@@ -8,36 +8,36 @@ use App\Http\Livewire\Request;
 
 class Relacionescomponent extends Component
 {
-    public $id_rel,$id_materias, $id_docente,$id_gr,$id_sc,$edit;
+    public $ID_REL,$ID_MATERIA, $ID_DOCENTE,$ID_GR,$ID_SC,$edit;
 
     public  $op, $mensaje, $mensaje1,  $mensaje3, $mensaje4, $mensaje_eliminar, $mensaje_eliminar2;
     
     public function render()
     {
         $relaciones=DB::table('tb_rel')
-        ->join('tb_materias','tb_rel.id_materia','=','tb_materias.id_materia')
-        ->join('tb_docentes', 'tb_rel.id_docente', '=', 'tb_docentes.id_docente')
-        ->join('tb_grados', 'tb_rel.id_gr', '=', 'tb_grados.id_gr')
-        ->join('tb_seccions', 'tb_rel.id_sc', '=', 'tb_seccions.id_sc')
-        ->select('tb_rel.id_rel', 'tb_materias.nombre_materia', 'tb_docentes.nombre_docente', 'tb_grados.grado', 'tb_seccions.seccion')
+        ->join('tb_materias','tb_rel.ID_MATERIA','=','tb_materias.ID_MATERIA')
+        ->join('tb_docentes', 'tb_rel.ID_DOCENTE', '=', 'tb_docentes.ID_DOCENTE')
+        ->join('tb_grados', 'tb_rel.ID_GR', '=', 'tb_grados.ID_GR')
+        ->join('tb_seccions', 'tb_rel.ID_SC', '=', 'tb_seccions.ID_SC')
+        ->select('tb_rel.ID_REL', 'tb_materias.NOMBRE_MATERIA', 'tb_docentes.NOMBRE_DOCENTE', 'tb_grados.GRADO', 'tb_seccions.SECCION','tb_materias.ID_MATERIA')
         ->get();
-        $sql= 'SELECT id_materia , nombre_materia FROM tb_materias';
+        $sql= 'SELECT ID_MATERIA , NOMBRE_MATERIA FROM tb_materias';
         $materias=DB::select($sql);
-        $sql= 'SELECT id_docente , nombre_docente FROM tb_docentes';
+        $sql= 'SELECT ID_DOCENTE , NOMBRE_DOCENTE FROM tb_docentes';
         $maestros=DB::select($sql);
-        $sql= 'SELECT id_gr , grado FROM tb_grados';
+        $sql= 'SELECT ID_GR , GRADO FROM tb_grados';
         $grados=DB::select($sql);
-        $sql= 'SELECT id_sc , seccion FROM tb_seccions';
+        $sql= 'SELECT ID_SC , SECCION FROM tb_seccions';
         $secciones=DB::select($sql);
         return view('livewire.relacionescomponent',compact('relaciones', 'materias','maestros','maestros','grados','secciones'));
     }
 
     public function guardar_rel(){
         if($this->validate([
-            'id_materias' => 'required',
-            'id_docente' => 'required',
-            'id_gr' => 'required',
-            'id_sc' => 'required',
+            'ID_MATERIA' => 'required',
+            'ID_DOCENTE' => 'required',
+            'ID_GR' => 'required',
+            'ID_SC' => 'required',
 
         ])==false){
             $error="no encontrado";
@@ -46,18 +46,18 @@ class Relacionescomponent extends Component
         }
 
         else{
-           $id_materias=$this->id_materias;
-        $id_docente=$this->id_docente;
-        $id_gr=$this->id_gr;
-        $id_sc=$this->id_sc;
+           $ID_MATERIA=$this->ID_MATERIA;
+        $ID_DOCENTE=$this->ID_DOCENTE;
+        $ID_GR=$this->ID_GR;
+        $ID_SC=$this->ID_SC;
 
 
         $secciones=DB::table('tb_rel')->insert(
             [
-                'id_materia'=>$id_materias,
-                'id_docente'=>$id_docente,
-                'id_gr'=>$id_gr,
-                'id_sc'=>$id_sc,
+                'ID_MATERIA'=>$ID_MATERIA,
+                'ID_DOCENTE'=>$ID_DOCENTE,
+                'ID_GR'=>$ID_GR,
+                'ID_SC'=>$ID_SC,
 
             ]);
         if($secciones){
@@ -94,9 +94,9 @@ class Relacionescomponent extends Component
      }
 
      Public function edit($id){
-        $id_rel=$id;
-        $sql='SELECT * FROM tb_rel WHERE id_rel=?';
-        $relaciones=DB:: select($sql, array($id_rel));
+        $ID_REL=$id;
+        $sql='SELECT * FROM tb_rel WHERE ID_REL=?';
+        $relaciones=DB:: select($sql, array($ID_REL));
         $sql= 'SELECT * FROM tb_materias';
         $materias=DB::select($sql);
         $sql= 'SELECT * FROM tb_docentes';
@@ -109,11 +109,11 @@ class Relacionescomponent extends Component
         if($relaciones !=null){
             foreach($relaciones as $rel)
             {
-                $this->id_rel=$rel->id_rel;
-                $this->id_materias=$rel->id_materia;
-                $this->id_docente=$rel->id_docente;
-                $this->id_gr=$rel->id_gr;
-                $this->id_sc=$rel->id_sc;
+                $this->ID_REL=$rel->ID_REL;
+                $this->ID_MATERIA=$rel->ID_MATERIA;
+                $this->ID_DOCENTE=$rel->ID_DOCENTE;
+                $this->ID_GR=$rel->ID_GR;
+                $this->ID_SC=$rel->ID_SC;
 
             }
         }
@@ -123,20 +123,33 @@ class Relacionescomponent extends Component
     }
     
     public function update_rel(){
-        $id_rel=$this->id_rel;
-        $id_materias=$this->id_materias;
-        $id_docente=$this->id_docente;
-        $id_gr=$this->id_gr;
-        $id_sc=$this->id_sc;
+        if($this->validate([
+            'ID_MATERIA' => 'required',
+            'ID_DOCENTE' => 'required',
+            'ID_GR' => 'required',
+            'ID_SC' => 'required',
+
+        ])==false){
+            $error="no encontrado";
+            session(['message'=>'no encontrado']);
+            return back()->withErrors(['error' => 'Validar el input vacio']);
+        }
+
+        else{
+        $ID_REL=$this->ID_REL;
+        $ID_MATERIA=$this->ID_MATERIA;
+        $ID_DOCENTE=$this->ID_DOCENTE;
+        $ID_GR=$this->ID_GR;
+        $ID_SC=$this->ID_SC;
 
         $rel=DB::table('tb_rel')
-        ->where('id_rel', $id_rel)
+        ->where('ID_REL', $ID_REL)
         ->update( 
             [
-                'id_materia'=>$id_materias,
-                'id_docente'=>$id_docente,
-                'id_gr'=>$id_gr,
-                'id_sc'=>$id_sc,
+                'ID_MATERIA'=>$ID_MATERIA,
+                'ID_DOCENTE'=>$ID_DOCENTE,
+                'ID_GR'=>$ID_GR,
+                'ID_SC'=>$ID_SC,
             ]
             );
 
@@ -163,19 +176,20 @@ class Relacionescomponent extends Component
                 $this->op=26;
                 $this->mensaje4='No fue posible editarlo Correctamente';
             }
+        }
     }
 
 
     Public function delete($id){
-        $id_rel=$id;
-        $rel=DB::table('tb_rel')->where('id_rel','=', $id_rel)->delete();
+        $ID_REL=$id;
+        $rel=DB::table('tb_rel')->where('ID_REL','=', $ID_REL)->delete();
 
         if($rel){
             unset($this->mensaje);
             unset($this->mensaje3);
             unset($this->mensaje_eliminar);
-            $sql='SELECT * FROM tb_rel WHERE id_rel=?';
-            $relaciones=DB:: select($sql, array($id_rel));
+            $sql='SELECT * FROM tb_rel WHERE ID_REL=?';
+            $relaciones=DB:: select($sql, array($ID_REL));
             $sql= 'SELECT * FROM tb_materias';
             $materias=DB::select($sql);
             $sql= 'SELECT * FROM tb_docentes';

@@ -14,18 +14,18 @@
           @foreach ($relaciones as $relacion)
               <tr>
 
-                <th>{{$relacion->id_rel}}</th>
-                <th>{{$relacion->nombre_materia}}</th>
-                <th>{{$relacion->nombre_docente}}</th>
-                <th>{{$relacion->grado}}</th>
-                <th>{{$relacion->seccion}}</th>
+                <th>{{$relacion->ID_REL}}</th>
+                <th>{{$relacion->NOMBRE_MATERIA}}</th>
+                <th>{{$relacion->NOMBRE_DOCENTE}}</th>
+                <th>{{$relacion->GRADO}}</th>
+                <th>{{$relacion->SECCION}}</th>
                     <span>
                           
                         <td>
-                            <button class="btn btn-success" wire:click='edit({{$relacion->id_rel}})'> EDITAR </button>
+                            <button class="btn btn-success" wire:click='edit({{$relacion->ID_REL}})'> EDITAR </button>
 
                               @include('Crud_Rel.modaleliminar_rel')
-                              <button class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#staticBackdrop{{$relacion->id_rel}}"> ELIMINAR </button>
+                              <button class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#staticBackdrop{{$relacion->ID_REL}}"> ELIMINAR </button>
                           </td>
                      
                     </span>

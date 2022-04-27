@@ -50,15 +50,15 @@ Agregado correctamente
     @csrf 
       <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label"> Materia</label>
-                <select class="form-select form-select-sm" aria-label=".form-select-sm example" wire:model='id_materias'>
+                <select class="form-select form-select-sm" aria-label=".form-select-sm example" wire:model='ID_MATERIA'>
           <option selected>Seleccione la materia</option>
           @isset($materias)
           @foreach ($materias as $materia)
-              <option value="{{$materia->id_materia}}">{{$materia->nombre_materia}}</option>
+              <option value="{{$materia->ID_MATERIA}}">{{$materia->NOMBRE_MATERIA}}</option>
           @endforeach
           @endisset
         </select>
-        @error('id_materias') 
+        @error('ID_MATERIA') 
         <div class="alert alert-danger d-flex align-items-center" role="alert">
           <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
           <span>Pendiente el seleccionar una Materia</span>
@@ -68,15 +68,15 @@ Agregado correctamente
 
       <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label"> Maestros</label>
-                <select class="form-select form-select-sm" aria-label=".form-select-sm example" wire:model='id_docente'>
+                <select class="form-select form-select-sm" aria-label=".form-select-sm example" wire:model='ID_DOCENTE'>
           <option selected>Seleccione al maestro</option>
           @isset($maestros)
           @foreach ($maestros as $maestro)
-              <option value="{{$maestro->id_docente}}">{{$maestro->nombre_docente}}</option>
+              <option value="{{$maestro->ID_DOCENTE}}">{{$maestro->NOMBRE_DOCENTE}}</option>
           @endforeach
           @endisset
         </select>
-        @error('id_docente') 
+        @error('ID_DOCENTE') 
         <div class="alert alert-danger d-flex align-items-center" role="alert">
           <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
           <span>Pendiente el seleccionar un Maestro</span>
@@ -86,15 +86,15 @@ Agregado correctamente
 
       <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label"> Grados</label>
-                <select class="form-select form-select-sm" aria-label=".form-select-sm example" wire:model='id_grados'>
+                <select class="form-select form-select-sm" aria-label=".form-select-sm example" wire:model='ID_GR'>
           <option selected>Seleccione al Grado</option>
           @isset($grados)
           @foreach ($grados as $grado)
-              <option value="{{$grado->id_gr}}">{{$grado->grado}}</option>
+              <option value="{{$grado->ID_GR}}">{{$grado->GRADO}}</option>
           @endforeach
           @endisset
         </select>
-        @error('id_gr') 
+        @error('ID_GR') 
         <div class="alert alert-danger d-flex align-items-center" role="alert">
           <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
           <span>Pendiente el seleccionar un Grado</span>
@@ -104,15 +104,15 @@ Agregado correctamente
 
       <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label"> secciones</label>
-                <select class="form-select form-select-sm" aria-label=".form-select-sm example" wire:model='id_sc'>
+                <select class="form-select form-select-sm" aria-label=".form-select-sm example" wire:model='ID_SC'>
           <option selected>Seleccione al Grado</option>
           @isset($secciones)
           @foreach ($secciones as $seccion)
-              <option value="{{$seccion->id_sc}}">{{$seccion->seccion}}</option>
+              <option value="{{$seccion->ID_SC}}">{{$seccion->SECCION}}</option>
           @endforeach
           @endisset
         </select>
-        @error('id_sc') 
+        @error('ID_SC') 
         <div class="alert alert-danger d-flex align-items-center" role="alert">
           <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
           <span>Pendiente el ingresar una Materia</span>

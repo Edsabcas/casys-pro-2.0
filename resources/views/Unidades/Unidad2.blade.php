@@ -2,7 +2,7 @@
   <h6>Unidad2</h6>
       <div class="card-body  ">
         <h5 class="card-title">Materia:{{$NOMBRE_MATERIA}}</h5>
-        <p class="card-text">Maestro: {{$id_maestros}}</p>
+        <p class="card-text">Maestro: {{$ID_DOCENTE}}</p>
         <td>
           <button class="btn btn-success" wire:click=''> Temas </button>
   

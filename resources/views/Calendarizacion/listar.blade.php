@@ -15,8 +15,8 @@
                   
                   <th>{{$calen->ID_CALENDARIZACION}}</th>
                   @foreach($unidades as $unidad)
-                  @if($calen->ID_UNIDADES==$unidad->ID_UNIDADES)
-                  <th>{{$unidad->NOMNBRE_UNIDAD}}</th>
+                  @if($calen->ID_UNIDADES_FIJAS==$unidad->ID_UNIDADES_FIJAS)
+                  <th>{{$unidad->NOMBRE_DE_UNIDAD}}</th>
                   @endif
                   @endforeach
                   <th>{{$calen->FECHA_INICIO}}</th>

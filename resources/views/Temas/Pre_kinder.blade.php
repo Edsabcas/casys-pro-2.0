@@ -18,7 +18,7 @@
       <span>
         @foreach($materias as $materia)
         @if($union->ID_MATERIA==$materia->ID_MATERIA)
-        <a wire:click='mostrar_u("{{$materia->ID_MATERIA}}","{{$materia->NOMBRE_MATERIA}}","{{$union->NOMBRE_MAESTROS}}","2")' class="btn btn-success">Temas
+        <a wire:click='mostrar_u("{{$materia->ID_MATERIA}}","{{$materia->NOMBRE_MATERIA}}","{{$union->NOMBRE_DOCENTE}}","2")' class="btn btn-success">Temas
           @endif
           @endforeach
         </a>

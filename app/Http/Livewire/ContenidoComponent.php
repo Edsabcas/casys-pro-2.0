@@ -9,7 +9,7 @@ use App\Http\Livewire\Request;
 class ContenidoComponent extends Component
 {
 
-   public $grado,$mat, $nombre_g, $nombre_s, $unidad1, $nombre_materia, $ID_DOCENTE,$op2;
+   public $grado,$mat, $nombre_g, $nombre_s, $unidad1, $NOMBRE_MATERIA, $ID_DOCENTE,$op2;
 
    public $texto_anuncio, $archivo_anuncio, $calidad_anuncio;
    public $option1,$option2,$option3,$option4,$vista;
@@ -24,7 +24,7 @@ class ContenidoComponent extends Component
         ->join('tb_docentes', 'tb_rel.ID_DOCENTE', '=', 'tb_docentes.ID_DOCENTE')
         ->join('tb_grados', 'tb_rel.ID_GR', '=', 'tb_grados.ID_GR')
         ->join('tb_seccions', 'tb_rel.ID_SC', '=', 'tb_seccions.ID_SC')
-        ->select('tb_rel.ID_REL', 'tb_materias.nombre_materia', 'tb_docentes.nombre_docente', 'tb_grados.GRADO', 'tb_seccions.SECCION','tb_materias.ID_MATERIA')
+        ->select('tb_rel.ID_REL', 'tb_materias.NOMBRE_MATERIA', 'tb_docentes.NOMBRE_DOCENTE', 'tb_grados.GRADO', 'tb_seccions.SECCION','tb_materias.ID_MATERIA')
         ->where('tb_rel.ID_GR','=',$this->grado)
         ->get();
         }
@@ -66,7 +66,7 @@ class ContenidoComponent extends Component
     {
         unset($this->unidad1);
         $this->unidad1=$id;
-        $this->nombre_materia=$nombm;
+        $this->NOMBRE_MATERIA=$nombm;
         $this->ID_DOCENTE=$nombrem;
         $this->op2=$num;
        

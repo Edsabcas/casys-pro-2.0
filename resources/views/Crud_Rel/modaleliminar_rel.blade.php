@@ -1,5 +1,5 @@
 
-  <div class="modal fade" id="staticBackdrop{{$relacion->id_rel}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal fade" id="staticBackdrop{{$relacion->ID_REL}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -11,7 +11,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-primary" wire:click='delete({{$relacion->id_rel}})' data-bs-dismiss="modal">Eliminar</button>
+          <button type="button" class="btn btn-primary" wire:click='delete({{$relacion->ID_REL}})' data-bs-dismiss="modal">Eliminar</button>
         </div>
       </div>
     </div>

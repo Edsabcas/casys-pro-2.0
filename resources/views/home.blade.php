@@ -46,6 +46,9 @@
 @elseif ($op=='addConsultar')
 @livewire('consultarcomponent')
 
+@elseif ($op=='addCalendarizacion')
+@livewire('calendarizacion-component')
+
 
 
 @endif

@@ -54,7 +54,7 @@ Agregado correctamente
           <option selected>Seleccione la unidad</option>
           @isset($unidades)
           @foreach ($unidades as $unidad)
-              <option value="{{$unidad->ID_UNIDADES}}">{{$unidad->NOMNBRE_UNIDAD}}</option>
+              <option value="{{$unidad->ID_UNIDADES_FIJAS}}">{{$unidad->NOMBRE_DE_UNIDAD}}</option>
           @endforeach
           @endisset
         </select>
