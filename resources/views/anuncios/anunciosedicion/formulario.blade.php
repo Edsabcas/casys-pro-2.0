@@ -1,19 +1,3 @@
-@isset($mensaje)
-@if($mensaje!=null)
-
-<div class="alert alert-success" role="alert">
-    Agregado Correctamente!
-  </div>
-@endif
-@endisset
-@isset($mensaje1)
-  @if($mensaje1!=null)
-  <div class="alert alert-success" role="alert">
-    No fue agregado Correctamente!
-  </div>
-  @endif
-@endisset
-
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
     <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
@@ -26,13 +10,13 @@
   </symbol>
 </svg>
 
-<br>
+
 <br>
 <div class="card" style="border:6px solid rgb(4, 190, 4);">
   <div class="container-sm">
     <br>
     <br>
-    <h1 class="form-label" style="font-size:60px">Crear Anuncio</h1>
+    <h1 class="form-label" style="font-size:50px">Crear Anuncio</h1>
     <form wire:submit.prevent='' enctype="multipart/form-data">
       @csrf
       <div>
@@ -46,7 +30,7 @@
       </div>
       @if($tanuncio == 1)
       <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label" style="font-size:30px">Coloque el público para el anuncio</label>
+        <label for="exampleInputPassword1" class="form-label" style="font-size:20px">Coloque el público para el anuncio</label>
         <select class="form-select" aria-label="Default select example" wire:model="publico_anuncio">
           <option selected >Elige el público para que vea el anuncio</option>
           <option value="1">Alumnos y Padres</option>
@@ -55,7 +39,7 @@
       </div>
       @if($publico_anuncio==1)
       <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label" style="font-size:30px">Coloque el grado para el anuncio</label>
+        <label for="exampleInputPassword1" class="form-label" style="font-size:20px">Coloque el grado para el anuncio</label>
         <select class="form-select" aria-label="Default select example" wire:model="grado_anuncio">
           <option selected >Elige el grado para que vea el anuncio</option>
           <option value="1">Pre-Kinder</option>
@@ -78,7 +62,7 @@
       @endif
        @if($publico_anuncio==2)
        <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label" style="font-size:30px">Desea escojer un idioma en especifíco de maestros?</label>
+        <label for="exampleInputPassword1" class="form-label" style="font-size:20px">Desea escojer un idioma en especifíco de maestros?</label>
         <select class="form-select" aria-label="Default select example" wire:model="idioma_maestro">
           <option selected>Desea escojer un idioma en especifíco de maestros?</option>
           <option value="1">Todos</option>
@@ -87,7 +71,7 @@
         </select>
       </div>
        
-      <label for="exampleInputPassword1" class="form-label" style="font-size:30px">Coloque el grado para el anuncio</label>
+      <label for="exampleInputPassword1" class="form-label" style="font-size:20px">Coloque el grado para el anuncio</label>
         <select class="form-select" aria-label="Default select example" wire:model="grado_anuncio">
           <option selected >Elige el grado para que vea el anuncio</option>
           <option value="0">Todos</option>
@@ -116,7 +100,7 @@
       @endif
         
         <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label" style="font-size:30px">Inserte una descripción para el anuncio</label>
+            <label for="exampleInputEmail1" class="form-label" style="font-size:20px">Inserte una descripción para el anuncio</label>
             
             
           </div>
@@ -152,7 +136,7 @@
                     } );
             </script>
           
-          <label for="exampleInputPassword1" class="form-label" style="font-size:30px">Inserte un archivo para el anuncio</label>
+          <label for="exampleInputPassword1" class="form-label" style="font-size:20px">Inserte un archivo para el anuncio</label>
           <div class="mb-3">
             
             <input type="file" id="archivo"  wire:model="archivo_anuncio">
@@ -173,14 +157,14 @@
             </video>
             @endif
             @if($tipo==3)
-            <h3 class="form-label text-white">Visualización de PDF</h3>
+            <h3 class="form-label">Visualización de PDF</h3>
               <iframe width="400" height="400" src="/imagen/temporalpdf/{{$img}}" frameborder="0"></iframe>
             @endif
           </div>
           
           
           <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label" style="font-size:30px">Coloque una calidad para el anuncio</label>
+            <label for="exampleInputPassword1" class="form-label" style="font-size:20px">Coloque una calidad para el anuncio</label>
             <select class="form-select" aria-label="Default select example" wire:model="calidad_anuncio" required>
               <option selected >Elige la calidad del anuncio</option>
               <option value="1">Informativo</option>
@@ -207,6 +191,21 @@
           <br>
           <br>
     </form>
+    @isset($mensaje)
+@if($mensaje!=null)
+
+<div class="alert alert-success" role="alert">
+    Agregado Correctamente!
+  </div>
+@endif
+@endisset
+@isset($mensaje1)
+  @if($mensaje1!=null)
+  <div class="alert alert-success" role="alert">
+    No fue agregado Correctamente!
+  </div>
+  @endif
+@endisset
 
 </div>
 </div>

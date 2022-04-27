@@ -95,7 +95,7 @@ class AnunciosComponents extends Component
         
         
 
-        $anuncio=DB::table('TB_ANUNCIOS')->insert(
+        $anuncio=DB::table('tb_anuncios')->insert(
             [
                 'TEXTO_PUBLICACION'=>$textoanuncio,
                 'MULTIMEDIA'=>$this->img,

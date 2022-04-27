@@ -13,16 +13,16 @@ class GradoComponents extends Component
     public $estado_sec,$nombre_sec;
     public function render()
     {
-        $grad= DB::table('TB_GRADOS')
+        $grad= DB::table('tb_grados')
 
-                ->join('TB_SECCIONS', 'TB_GRADOS.ID_SC', '=', 'TB_SECCIONS.ID_SC')
+                ->join('tb_seccions', 'tb_grados.ID_SC', '=', 'tb_seccions.ID_SC')
 
-                ->select('TB_GRADOS.GRADO','TB_SECCIONS.SECCION')
+                ->select('tb_grados.GRADO','tb_seccions.SECCION')
 
                 ->get();
-        $sql="SELECT * FROM TB_GRADOS";
+        $sql="SELECT * FROM tb_grados";
         $grados=DB::select($sql);
-        $sql="SELECT * FROM TB_SECCIONS";
+        $sql="SELECT * FROM tb_seccions";
         $secciones=DB::select($sql);
         return view('livewire.grado-components', compact('grados','secciones','grad'));
     }
@@ -55,7 +55,7 @@ class GradoComponents extends Component
         $academico_gr=$this->academico_gr; 
         $jornada_gr=$this->jornada_gr;
         $estado_gr=$this->estado_gr;
-        $grados=DB::table('TB_GRADOS')->insert(
+        $grados=DB::table('tb_grados')->insert(
             [
                 'GRADO'=> $nombre_gr,
                 'ID_SC'=> $seccion_gr,
@@ -81,14 +81,14 @@ class GradoComponents extends Component
         }
     }
     public function listar_gr(){ 
-        $sql="SELECT * FROM TB_GRADOS";
+        $sql="SELECT * FROM tb_grados";
         $grados=DB::select($sql);
         $op=6;
         return view('home', compact('grados', 'op'));
     }
     public function edit($id){
         $id_gr=$id;
-        $sql='SELECT * FROM TB_GRADOS WHERE ID_GR=?';
+        $sql='SELECT * FROM tb_grados WHERE ID_GR=?';
         $grado=DB::select($sql,array($id_gr));
 
         if($grado!=null){
@@ -108,7 +108,7 @@ class GradoComponents extends Component
         $nombre_gr=$this->nombre_gr;
         $estado_gr=$this->estado_gr;
 
-        $grado=DB::table('TB_GRADOS')
+        $grado=DB::table('tb_grados')
         ->where('ID_GR',$id_gr)
         ->update(
             [
@@ -128,7 +128,7 @@ class GradoComponents extends Component
     }
     public function delete($id){
         $id_gr=$id;
-        $grado=DB::table('TB_GRADOS')->where('ID_GR','=', $id_gr)->delete();
+        $grado=DB::table('tb_grados')->where('ID_GR','=', $id_gr)->delete();
 
         if($grado){
             $this->op=4;
@@ -143,7 +143,7 @@ class GradoComponents extends Component
 
         $nombre_sec=$this->nombre_sec;
         $estado_sec=$this->estado_sec;
-        $grados=DB::table('TB_SECCIONS')->insert(
+        $grados=DB::table('tb_seccions')->insert(
             [
                 'SECCION'=> $nombre_sec,
                 'ESTADO'=> $estado_sec,

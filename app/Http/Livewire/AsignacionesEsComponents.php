@@ -11,24 +11,24 @@ class AsignacionesEsComponents extends Component
     public $nombres_e,$apellidos_e,$grado_e,$seccion_e,$estado_e,$op,$mensaje,$mensaje1,$id_e,$mensaje2,$mensaje3,$mensajeeliminar,$mensajeeliminar1,$edit;
     public function render()
     {
-        $estudiante= DB::table('TB_ASIGNACIONES_E')
+        $estudiante= DB::table('tb_asignaciones_e')
 
-                ->join('TB_ESTUDIANTES', 'TB_ASIGNACIONES_E.ID_ESTUDIANTE', '=', 'TB_ESTUDIANTES.ID_ESTUDIANTE')
+                ->join('tb_estudiantes', 'tb_asignaciones_e.ID_ESTUDIANTE', '=', 'tb_estudiantes.ID_ESTUDIANTE')
 
-                ->join('TB_GRADOS', 'TB_ASIGNACIONES_E.ID_GR', '=', 'TB_GRADOS.ID_GR')
+                ->join('tb_grados', 'tb_asignaciones_e.ID_GR', '=', 'tb_grados.ID_GR')
 
-                ->join('TB_SECCIONS', 'TB_ASIGNACIONES_E.ID_SC', '=', 'TB_SECCIONS.ID_SC')
+                ->join('TB_SECCIONS', 'tb_asignaciones_e.ID_SC', '=', 'TB_SECCIONS.ID_SC')
 
-                ->select('TB_ASIGNACIONES_E.ID_E','TB_ASIGNACIONES_E.ID_SC','TB_ASIGNACIONES_E.ID_GR','TB_ASIGNACIONES_E.ID_ESTUDIANTE',
-                'TB_ESTUDIANTES.NOMBRE_ESTUDIANTE','TB_ESTUDIANTES.APELLIDOS_ESTUDIANTE','TB_GRADOS.GRADO','TB_SECCIONS.SECCION','TB_ASIGNACIONES_E.ESTADO','TB_ASIGNACIONES_E.FECHA_ASIGNACION')
+                ->select('tb_asignaciones_e.ID_E','tb_asignaciones_e.ID_SC','tb_asignaciones_e.ID_GR','tb_asignaciones_e.ID_ESTUDIANTE',
+                'tb_estudiantes.NOMBRE_ESTUDIANTE','tb_estudiantes.APELLIDOS_ESTUDIANTE','TB_GRADOS.GRADO','TB_SECCIONS.SECCION','tb_asignaciones_e.ESTADO','tb_asignaciones_e.FECHA_ASIGNACION')
 
                 ->get();
 
-        $sql="SELECT * FROM TB_GRADOS";
+        $sql="SELECT * FROM tb_grados";
         $grados=DB::select($sql);
-        $sql="SELECT * FROM TB_SECCIONS";
+        $sql="SELECT * FROM tb_seccions";
         $secciones=DB::select($sql);
-        $sql="SELECT * FROM TB_ESTUDIANTES";
+        $sql="SELECT * FROM tb_estudiantes";
         $estudiantes=DB::select($sql);
         return view('livewire.asignaciones-es-components', compact('estudiante','grados','secciones','estudiantes'));
     }
@@ -54,7 +54,7 @@ class AsignacionesEsComponents extends Component
         $grado_e=$this->grado_e;
         $seccion_e=$this->seccion_e;
         $estado_e=$this->estado_e;
-        $estudiante=DB::table('TB_ASIGNACIONES_E')->insert(
+        $estudiante=DB::table('tb_asignaciones_e')->insert(
             [
                 'ID_ESTUDIANTE'=> $nombres_e,
                 'ID_ESTUDIANTE'=> $apellidos_e,
@@ -78,14 +78,14 @@ class AsignacionesEsComponents extends Component
         }
     }
     public function listar_e(){ 
-        $sql="SELECT * FROM TB_ASIGNACIONES_E";
+        $sql="SELECT * FROM tb_asignaciones_e";
         $estudiantes=DB::select($sql);
         $op=6;
         return view('home', compact('estudiantes', 'op'));
     }  
     public function edit($id){
         $id_e=$id;
-        $sql='SELECT * FROM TB_ASIGNACIONES_E WHERE ID_E=?';
+        $sql='SELECT * FROM tb_asignaciones_e WHERE ID_E=?';
         $estudiante=DB::select($sql,array($id_e));
 
         if($estudiante!=null){
@@ -109,7 +109,7 @@ class AsignacionesEsComponents extends Component
         $seccion_e=$this->seccion_e;
         $estado_e=$this->estado_e;
 
-        $est=DB::table('TB_ASIGNACIONES_E')
+        $est=DB::table('tb_asignaciones_e')
         ->where('ID_E',$id_e)
         ->update(
             [
@@ -132,7 +132,7 @@ class AsignacionesEsComponents extends Component
     }
     public function delete($id){
         $id_e=$id;
-        $est=DB::table('TB_ASIGNACIONES_E')->where('ID_E','=', $id_e)->delete();
+        $est=DB::table('tb_asignaciones_e')->where('ID_E','=', $id_e)->delete();
 
         if ($est){
             $this->reset();
