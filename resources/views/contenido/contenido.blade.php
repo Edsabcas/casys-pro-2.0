@@ -20,8 +20,8 @@
     
     @foreach($grados as $grado)
     @foreach($secciones as $seccion)
-    @if($grado->ID_SECCIONES==$seccion->ID_SECCIONES)
-    <a wire:click='mostrar_m("{{$grado->ID_GRADOS}}","{{$grado->NOMBRE_GRADO}}","{{$seccion->SECCION}}","1")' class="btn btn-success">{{$grado->NOMBRE_GRADO}} {{$seccion->SECCION}}
+    @if($grado->ID_SC==$seccion->ID_SC)
+    <a wire:click='mostrar_m("{{$grado->ID_GR}}","{{$grado->GRADO}}","{{$seccion->SECCION}}","1")' class="btn btn-success">{{$grado->GRADO}} {{$seccion->SECCION}}
     @endif
     @endforeach
     </a>

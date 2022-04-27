@@ -136,22 +136,6 @@ Route::get('/Maestros', [MaestrosComponent::class, 'index'])
 Route::get('/Estudiantes', [EstudiantesComponent::class, 'index'])
 ->middleware('auth')->name('Estudiantes.index');
 
-<<<<<<< HEAD
-=======
-//contenidos
-Route::get('/Consultar_Contenido', [ConsultarContenidoComponent::class, 'index'])
-->middleware('auth')->name('Consultar_Contenido.index');
-
-Route::get('/Materias', [MateriasComponent::class, 'index'])
-->middleware('auth')->name('Materias.index');
-
-Route::get('/Unidades', [UnidadesComponent::class, 'index'])
-->middleware('auth')->name('Unidades.index');
-
-Route::get('/Secciones', [Secciones3Component::class, 'index'])
-->middleware('auth')->name('Secciones.index');
-
->>>>>>> a4c9e12d9127f171a881b9ddabfab96c83d46195
 //Academico
 Route::get('/Ingreso_de_calificaciones', [IngresoDeCalificacionesComponent::class, 'index'])
 ->middleware('auth')->name('Ingreso_de_calificaciones.index');
