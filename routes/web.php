@@ -15,7 +15,6 @@ use App\Http\Controllers\MaestrosController;
 use App\Http\Controllers\AsignacionController;
 use App\Http\Controllers\AsignacionesEsController;
 use App\Http\Controllers\ContenidosController;
-use App\Http\Controllers\GradosControlador;
 use App\Http\Controllers\Materiascontrolador;
 use App\Http\Controllers\BotonesController;
 use App\Http\Controllers\UnidadesControlador;
@@ -318,3 +317,60 @@ Route::get('/agregar_e', [AsignacionesEsController::class, 'agregar_e']);
 
 
 //Grupo #3
+Route::get('/contenidos',[ContenidosController::class,'contenidos']);
+
+Route::get('/Unidades',[BotonesController::class,'Pre_Kinder']);
+
+Route::get('/Unidad3',[UnidadesControlador::class,'Unidad3']);
+
+Route::get('/Unidad4',[UnidadesControlador::class,'Unidad4']);
+
+Route::get('/Recuperacion',[UnidadesControlador::class,'Recuperacion']);
+
+Route::get('/Materias',[Materiascontrolador::class,'Materias']);
+
+Route::post('/guardar_materia',[Materiascontrolador::class,'guardar_mat']);
+
+Route::post('/list_materia',[Materiascontrolador::class,'list_mat']);
+
+Route::post('/update_mat',[Materiascontrolador::class, 'update_mat']);
+
+Route::post('/list_botones',[BotonesController::class,'list_botones']);
+
+//Route::get('/Unidades',[UnidadesController::class,'Unidades']);
+
+Route::post('/guardar_unidad',[UnidadesController::class,'guardar_unidad']);
+
+Route::post('/list_u',[UnidadesController::class,'list_u']);
+
+Route::post('/update_uni',[UnidadesController::class, 'update_uni']);
+
+Route::get('/relaciones',[Relaciones::class,'relaciones']);
+
+Route::post('/guardar_relaciones',[Relaciones::class,'guardar_rel']);
+
+Route::post('/list_relaciones',[Relaciones::class,'list_rel']);
+
+Route::post('/update_relaciones',[Relaciones::class, 'update_rel']);
+
+Route::get('/Union',[UnionController::class,'Union']);
+
+Route::post('/guardar_union',[UnionController::class,'guardar_union']);
+
+Route::post('/list_union',[UnionController::class,'list_union']);
+
+Route::post('/update_union',[UnionController::class,'update_union']);
+
+Route::get('/Consultar',[Conusltarcontroller::class,'Consultar']);
+
+Route::post('/list_g',[Conusltarcontroller::class,'list_g']);
+
+Route::get('/Calendarizacion',[CalendarizacionController::class,'Calendarizacion']);
+
+Route::post('/guardar_calendarizacion',[CalendarizacionController::class,'guardar_calendarizacion']);
+
+Route::post('/list_calendarizacion',[CalendarizacionController::class,'list_calendarizacion']);
+
+Route::post('/update_calendarizacion',[CalendarizacionController::class, 'update_calendarizacion']);
+
+Route::get('/Primer_Unidad',[UnidadesControlador::class,'Primer_Unidad']);

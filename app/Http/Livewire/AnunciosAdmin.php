@@ -15,17 +15,17 @@ class AnunciosAdmin extends Component
     {
         $this->ver_ocultos1 = 0;
         $this->ocultarc = 1;
-        $sql="SELECT * FROM TB_ANUNCIOS ORDER BY FECHA_HORA DESC";
+        $sql="SELECT * FROM tb_anuncios ORDER BY FECHA_HORA DESC";
         $this->anuncios=DB::select($sql);
-        $sql="SELECT SUM(CONTENIDO_LIKE) FROM TB_MEGUSTA WHERE ID_PUBLICACION=32";
+        $sql="SELECT SUM(CONTENIDO_LIKE) FROM tb_megusta WHERE ID_PUBLICACION=32";
         $likes=DB::select($sql);
-        $sql="SELECT * FROM TB_MEGUSTA";
+        $sql="SELECT * FROM tb_megusta";
         $me_gusta=DB::select($sql);
-        $sql="SELECT * FROM TB_OCULTO";
+        $sql="SELECT * FROM tb_oculto";
         $ocultos=DB::select($sql);
-        $sql="SELECT * FROM TB_GUARDADOS";
+        $sql="SELECT * FROM tb_guardados";
         $guardar=DB::select($sql);
-        $sql="SELECT * FROM TB_VISTAS";
+        $sql="SELECT * FROM tb_vistas";
         $vistoss=DB::select($sql);
        
         $this->vistas_totales_id=5;
@@ -36,12 +36,12 @@ class AnunciosAdmin extends Component
         //en el where id_usuario después del signo igual va el id del usuario logeado en ese momento y en el inserte de id_usuario.
 
         foreach($this->anuncios as $anuncio){
-            $sql="SELECT * FROM TB_VISTAS WHERE ID_USUARIO=7 AND ID_ANUNCIO = ".$anuncio->ID_ANUNCIOS;
+            $sql="SELECT * FROM tb_vistas WHERE ID_USUARIO=7 AND ID_ANUNCIO = ".$anuncio->ID_ANUNCIOS;
             $vistos=DB::select($sql);
                 if($vistos!=null){
                 }
                 else{
-                    $vistas=DB::table('TB_VISTAS')->insert(
+                    $vistas=DB::table('tb_vistas')->insert(
                         [
                             'ID_USUARIO'=>7,
                             'VALOR_VISTA'=>1,
@@ -70,7 +70,7 @@ class AnunciosAdmin extends Component
     public function comentario($id){
         $this->id_com = $id;
         
-        $sql="SELECT * FROM TB_COMENTARIOS WHERE ID_ANUNCIOS=$id ORDER BY FECHA_COMENTARIO DESC";
+        $sql="SELECT * FROM tb_comentarios WHERE ID_ANUNCIOS=$id ORDER BY FECHA_COMENTARIO DESC";
         $comentarios=DB::select($sql);
         //$this->guardarcomentario();
         session(['comentarios' => $comentarios]);
@@ -92,7 +92,7 @@ class AnunciosAdmin extends Component
         $fechacomentario =  date("Y-m-d H:i:s");
         
 
-        $comentario2=DB::table('TB_COMENTARIOS')->insert(
+        $comentario2=DB::table('tb_comentarios')->insert(
             [
                 'TEXTO_COMENTARIO'=>$textocomentario,
                 'FECHA_COMENTARIO'=>$fechacomentario,
@@ -103,7 +103,7 @@ class AnunciosAdmin extends Component
         if($comentario2){
 
            
-            $sql="SELECT * FROM TB_COMENTARIOS WHERE ID_ANUNCIOS=? ORDER BY FECHA_COMENTARIO DESC";
+            $sql="SELECT * FROM tb_comentarios WHERE ID_ANUNCIOS=? ORDER BY FECHA_COMENTARIO DESC";
             $comentarios=DB::select($sql, array($id_a));
             session(['comentarios' => $comentarios]);
             //$this->reset();
@@ -132,7 +132,7 @@ class AnunciosAdmin extends Component
         
         //return view('livewire.anuncios-admin', compact('guardados'));
 
-        $anunciosguardados=DB::table('TB_GUARDADOS')->insert(
+        $anunciosguardados=DB::table('tb_guardados')->insert(
 
             [
 
@@ -166,7 +166,7 @@ class AnunciosAdmin extends Component
         
 
         if($this->valorlike==1){
-            $megusta=DB::table('TB_MEGUSTA')->insert(
+            $megusta=DB::table('tb_megusta')->insert(
                 [
                     'CONTENIDO_LIKE'=>$this->valorlike,
                     'ID_PUBLICACION'=>$this->id_megusta,
@@ -187,7 +187,7 @@ class AnunciosAdmin extends Component
         }
         elseif($this->valorlike==2){
             $this->valorlike=0;
-            $loslikes=DB::table('TB_MEGUSTA')
+            $loslikes=DB::table('tb_megusta')
 
                ->where('ID_USUARIO', $this->idusuario) 
                ->where('ID_PUBLICACION', $this->id_megusta)
@@ -218,7 +218,7 @@ class AnunciosAdmin extends Component
         $id_usuario_com = 2;
 
 
-        $com_oculto=DB::table('TB_COMENTARIOS')
+        $com_oculto=DB::table('tb_comentarios')
 
                ->where('ID_COMENTARIOS', $this->id_oculto)
 

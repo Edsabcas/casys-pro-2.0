@@ -14,7 +14,7 @@ class Materiacomponent extends Component
 
     public function render()
     {
-        $sql= 'SELECT * FROM TB_MATERIAS';
+        $sql= 'SELECT * FROM tb_materias';
         $materias=DB::select($sql);
         return view('livewire.materiacomponent',compact('materias'));
     }
@@ -35,7 +35,7 @@ class Materiacomponent extends Component
             $tipo_materia=$this->tipo_materia;
             $estado_materia=$this->estado_materia;
      
-            $materias=DB::table('TB_MATERIAS')->insert([
+            $materias=DB::table('tb_materias')->insert([
                 'NOMBRE_MATERIA'=>$nombre_mat,
                 'TIPO_DE_MATERIA'=>$tipo_materia,
                 'ESTADO'=>$estado_materia,
@@ -65,7 +65,7 @@ class Materiacomponent extends Component
     }
 
     public function list_mat(){
-        $sql= 'SELECT * FROM TB_MATERIAS';
+        $sql= 'SELECT * FROM tb_materias';
         $materias=DB::select($sql);
         $op=8;
         return view('home', compact('materias','op'));
@@ -73,7 +73,7 @@ class Materiacomponent extends Component
 
      Public function edit($id){
         $id_materias=$id;
-        $sql='SELECT * FROM TB_MATERIAS WHERE ID_MATERIA=?';
+        $sql='SELECT * FROM tb_materias WHERE ID_MATERIA=?';
         $materias=DB:: select($sql, array($id_materias));
 
         if($materias !=null){
@@ -106,7 +106,7 @@ class Materiacomponent extends Component
             $tipo_materia=$this->tipo_materia;
             $estado_materia=$this->estado_materia;
 
-            $mate=DB::table('TB_MATERIAS')
+            $mate=DB::table('tb_materias')
             ->where('ID_MATERIA', $id_materias)
             ->update( 
                 [
@@ -124,7 +124,7 @@ class Materiacomponent extends Component
                     unset($this->mensaje4);
                     unset($this->mensaje_eliminar2);
                     $this->reset();
-                    $sql= 'SELECT * FROM TB_MATERIAS';
+                    $sql= 'SELECT * FROM tb_materias';
                     $materias=DB::select($sql);
                     $this->op=7;
                     $this->mensaje3='Editado Correctamente';
@@ -145,7 +145,7 @@ class Materiacomponent extends Component
 
     Public function delete($id){
         $id_materias=$id;
-        $mate=DB::table('TB_MATERIAS')->where('ID_MATERIA','=', $id_materias)->delete();
+        $mate=DB::table('tb_materias')->where('ID_MATERIA','=', $id_materias)->delete();
 
         if($mate){
             unset($this->mensaje);
@@ -154,7 +154,7 @@ class Materiacomponent extends Component
             unset($this->mensaje1);
             unset($this->mensaje4);
             unset($this->mensaje_eliminar2);
-            $sql='SELECT * FROM TB_MATERIAS WHERE ID_MATERIA=?';
+            $sql='SELECT * FROM tb_materias WHERE ID_MATERIA=?';
             $materias=DB:: select($sql, array($id_materias));
             $this->op=7;
             $this->mensaje_eliminar='Eliminado Correctamente';

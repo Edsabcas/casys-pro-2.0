@@ -22,11 +22,11 @@
 @elseif ($op=='addmaestros')
 @livewire('maestros-components')
 
-@elseif ($op=='addmaestros11')
-@livewire('maestros-components')
+@elseif ($op=='addmaterias')
+@livewire('materiacomponent')  
 
-@elseif ($op=='addmaestros122')
-@livewire('maestros-components')
+@elseif ($op=='botones')
+@livewire('botones-component')      
 
 @elseif($op==0)
 @include('contenido')
