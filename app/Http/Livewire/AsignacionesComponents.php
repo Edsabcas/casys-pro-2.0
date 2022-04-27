@@ -11,24 +11,24 @@ class AsignacionesComponents extends Component
     public $grado_a,$seccion_a,$maestro_a,$op,$mensaje,$mensaje1,$id_a,$mensaje2,$mensaje3,$mensajeeliminar,$mensajeeliminar1,$edit,$estado_a;
     public function render()
     {
-        $asignacion= DB::table('TB_ASIGNACIONES')
+        $asignacion= DB::table('tb_asignaciones')
 
-                ->join('TB_DOCENTES', 'TB_ASIGNACIONES.ID_DOCENTE', '=', 'TB_DOCENTES.ID_DOCENTE')
+                ->join('tb_docentes', 'tb_asignaciones.ID_DOCENTE', '=', 'tb_docentes.ID_DOCENTE')
 
-                ->join('TB_GRADOS', 'TB_ASIGNACIONES.ID_GR', '=', 'TB_GRADOS.ID_GR')
+                ->join('tb_grados', 'tb_asignaciones.ID_GR', '=', 'tb_grados.ID_GR')
 
-                ->join('TB_SECCIONS', 'TB_ASIGNACIONES.ID_SC', '=', 'TB_SECCIONS.ID_SC')
+                ->join('tb_seccions', 'tb_asignaciones.ID_SC', '=', 'tb_seccions.ID_SC')
 
-                ->select('TB_ASIGNACIONES.ID_A','TB_ASIGNACIONES.ID_SC','TB_ASIGNACIONES.ID_GR','TB_ASIGNACIONES.ID_DOCENTE',
-                'TB_DOCENTES.NOMBRE_DOCENTE','TB_GRADOS.GRADO','TB_SECCIONS.SECCION','TB_ASIGNACIONES.ESTADO','TB_ASIGNACIONES.FECHA_ASIGNACION')
+                ->select('tb_asignaciones.ID_A','tb_asignaciones.ID_SC','tb_asignaciones.ID_GR','tb_asignaciones.ID_DOCENTE',
+                'tb_docentes.NOMBRE_DOCENTE','tb_grados.GRADO','tb_seccions.SECCION','tb_asignaciones.ESTADO','tb_asignaciones.FECHA_ASIGNACION')
 
                 ->get();
 
-        $sql="SELECT * FROM TB_GRADOS";
+        $sql="SELECT * FROM tb_grados";
         $grados=DB::select($sql);
-        $sql="SELECT * FROM TB_SECCIONS";
+        $sql="SELECT * FROM tb_seccions";
         $secciones=DB::select($sql);
-        $sql="SELECT * FROM TB_DOCENTES";
+        $sql="SELECT * FROM tb_docentes";
         $maestros=DB::select($sql);
         return view('livewire.asignaciones-components', compact('asignacion','grados','secciones','maestros'));
     }
@@ -53,7 +53,7 @@ class AsignacionesComponents extends Component
         $seccion_a=$this->seccion_a;
         $maestro_a=$this->maestro_a;
         $estado_a=$this->estado_a;
-        $asignacion=DB::table('TB_ASIGNACIONES')->insert(
+        $asignacion=DB::table('tb_asignaciones')->insert(
             [
                 'ID_GR'=> $grado_a,
                 'ID_SC'=> $seccion_a,
@@ -76,14 +76,14 @@ class AsignacionesComponents extends Component
         }
     }
     public function listar_a(){ 
-        $sql="SELECT * FROM TB_ASIGNACIONES";
+        $sql="SELECT * FROM tb_asignaciones";
         $asignacion=DB::select($sql);
         $op=5;
         return view('home', compact('asignacion', 'op'));
     }  
     public function edit($id){
         $id_a=$id;
-        $sql='SELECT * FROM TB_ASIGNACIONES WHERE ID_A=?';
+        $sql='SELECT * FROM tb_asignaciones WHERE ID_A=?';
         $asignacion=DB::select($sql,array($id_a));
 
         if($asignacion!=null){
@@ -107,7 +107,7 @@ class AsignacionesComponents extends Component
         $maestro_a=$this->maestro_a;
         $estado_a=$this->estado_a;
 
-        $asi=DB::table('TB_ASIGNACIONES')
+        $asi=DB::table('tb_asignaciones')
         ->where('ID_A',$id_a)
         ->update(
             [
@@ -130,7 +130,7 @@ class AsignacionesComponents extends Component
     }
     public function delete($id){
         $id_a=$id;
-        $asi=DB::table('TB_ASIGNACIONES')->where('ID_A','=', $id_a)->delete();
+        $asi=DB::table('tb_asignaciones')->where('ID_A','=', $id_a)->delete();
 
         if ($asi){
             $this->reset();
