@@ -19,13 +19,13 @@ class ContenidoComponent extends Component
     {
         $uniones="";
         if($this->grado!=null){
-            $uniones=DB::table('TB_REL')
-        ->join('TB_MATERIAS','TB_REL.ID_MATERIA','=','TB_MATERIAS.ID_MATERIA')
-        ->join('TB_MAESTROS', 'TB_REL.ID_MAESTROS', '=', 'TB_MAESTROS.ID_MAESTROS')
-        ->join('TB_GRADOS', 'TB_REL.ID_GRADOS', '=', 'TB_GRADOS.ID_GRADOS')
-        ->join('TB_SECCIONES', 'TB_REL.ID_SECCIONES', '=', 'TB_SECCIONES.ID_SECCIONES')
-        ->select('TB_REL.ID_REL', 'TB_MATERIAS.NOMBRE_MATERIA', 'TB_MAESTROS.NOMBRE_MAESTROS', 'TB_GRADOS.NOMBRE_GRADO', 'TB_SECCIONES.SECCION','TB_MATERIAS.ID_MATERIA')
-        ->where('TB_REL.ID_GRADOS','=',$this->grado)
+            $uniones=DB::table('tb_rel')
+        ->join('tb_materias','tb_rel.ID_MATERIA','=','tb_materias.ID_MATERIA')
+        ->join('tb_docentes', 'tb_rel.ID_MAESTROS', '=', 'tb_docentes.ID_MAESTROS')
+        ->join('tb_grados', 'tb_rel.ID_GRADOS', '=', 'tb_grados.ID_GR')
+        ->join('tb_seccions', 'tb_rel.ID_SECCIONES', '=', 'tb_seccions.ID_SECCIONES')
+        ->select('tb_rel.ID_REL', 'tb_materias.NOMBRE_MATERIA', 'tb_docentes.NOMBRE_DOCENTE', 'tb_grados.GRADO', 'tb_seccions.SECCION','tb_materias.ID_MATERIA')
+        ->where('tb_rel.ID_GRADOS','=',$this->grado)
         ->get();
         }
 
@@ -33,20 +33,20 @@ class ContenidoComponent extends Component
 
         $unidades="";
         if($this->unidad1!=null){
-            $unidades=DB::table('TB_UNIDADES')
-            ->join('TB_MATERIAS','TB_UNIDADES.ID_MATERIA','=','TB_MATERIAS.ID_MATERIA')
-            ->select('TB_UNIDADES.ID_UNIDADES', 'TB_MATERIAS.ID_MATERIA', 'TB_UNIDADES.ESTADO','TB_UNIDADES.NOMNBRE_UNIDAD')
-            ->where('TB_UNIDADES.ID_MATERIA','=',$this->unidad1)
+            $unidades=DB::table('tb_unidades')
+            ->join('tb_materias','tb_unidades.ID_MATERIA','=','tb_materias.ID_MATERIA')
+            ->select('tb_unidades.ID_UNIDADES', 'tb_materias.ID_MATERIA', 'tb_unidades.ESTADO','tb_unidades.NOMNBRE_UNIDAD')
+            ->where('tb_unidades.ID_MATERIA','=',$this->unidad1)
             ->get();
         }
         
-        $sql= 'SELECT * FROM TB_MATERIAS';
+        $sql= 'SELECT * FROM tb_materias';
         $materias=DB::select($sql);
-        $sql= 'SELECT * FROM TB_GRADOS';
+        $sql= 'SELECT * FROM tb_grados';
         $grados=DB::select($sql);
-        $sql= 'SELECT * FROM TB_SECCIONES';
+        $sql= 'SELECT * FROM tb_seccions';
         $secciones=DB::select($sql);
-        $sql= 'SELECT * FROM TB_MAESTROS';
+        $sql= 'SELECT * FROM tb_docentes';
         $maestros=DB::select($sql);
   
         return view('livewire.contenido-component',compact('materias','grados','secciones','uniones','unidades','maestros'));
