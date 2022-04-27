@@ -11,7 +11,7 @@ class SeccionComponents extends Component
     public $nombre_sec,$estado_sec,$op,$mensaje2,$mensaje3,$mensaje4,$mensaje5,$edit,$mensajeeliminar,$mensajeeliminar1;
     public function render()
     {
-        $sql="SELECT * FROM TB_SECCIONS";
+        $sql="SELECT * FROM tb_seccions";
         $secciones=DB::select($sql);
         return view('livewire.seccion-components', compact('secciones'));
     }
@@ -32,7 +32,7 @@ class SeccionComponents extends Component
         {
         $nombre_sec=$this->nombre_sec;
         $estado_sec=$this->estado_sec;
-        $secciones=DB::table('TB_SECCIONS')->insert(
+        $secciones=DB::table('tb_seccions')->insert(
             [
                 'SECCION'=> $nombre_sec,
                 'ESTADO'=> $estado_sec,
@@ -51,14 +51,14 @@ class SeccionComponents extends Component
         }
     }
     public function listar_sec(){ 
-        $sql="SELECT * FROM TB_SECCIONS";
+        $sql="SELECT * FROM tb_seccions";
         $secciones=DB::select($sql);
         $op=5;
         return view('home', compact('secciones', 'op'));
     }
     public function edit($id){
         $id_sec=$id;
-        $sql='SELECT * FROM TB_SECCIONS WHERE ID_SC=?';
+        $sql='SELECT * FROM tb_seccions WHERE ID_SC=?';
         $secciones=DB::select($sql,array($id_sec));
 
         if($secciones!=null){
@@ -78,7 +78,7 @@ class SeccionComponents extends Component
         $nombre_sec=$this->nombre_sec;
         $estado_sec=$this->estado_sec;
 
-        $seccion=DB::table('TB_SECCIONS')
+        $seccion=DB::table('tb_seccions')
         ->where('ID_SC',$id_sec)
         ->update(
             [
@@ -99,7 +99,7 @@ class SeccionComponents extends Component
     }
     public function delete($id){
         $id_sc=$id;
-        $seccion=DB::table('TB_SECCIONS')->where('ID_SC','=', $id_sc)->delete();
+        $seccion=DB::table('tb_seccions')->where('ID_SC','=', $id_sc)->delete();
 
         if($seccion){
             $this->op=4;

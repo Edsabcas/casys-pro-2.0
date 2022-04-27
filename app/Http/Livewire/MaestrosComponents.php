@@ -19,7 +19,7 @@ class MaestrosComponents extends Component{
     public $usuario,$correoed,$pass,$id_usuario,$id_usucorreo;
     
     public function render(){
-        $sql="SELECT * FROM TB_DOCENTES";
+        $sql="SELECT * FROM tb_docentes";
         $maestros=DB::select($sql);
         return view('livewire.maestros-components', compact('maestros'));
     }
@@ -53,14 +53,14 @@ class MaestrosComponents extends Component{
         $correoed=$this->correoed;
         $pass=$this->pass;
 
-        $usuarios=DB::table('TB_USUARIOS')->insert(
+        $usuarios=DB::table('tb_usuarios')->insert(
             [
                 'USUARIO'=>$usuario,
                 'CORREO'=>$correoed,
                 'CONTRASEÑA'=>$pass,              
             ]);
 
-        $maestro=DB::table('TB_DOCENTES')->insert(
+        $maestro=DB::table('tb_docentes')->insert(
             [
                 'NOMBRE_DOCENTE'=>$num_docente,
                 'APELLIDO_DOCENTE'=>$ape_docente,
@@ -71,7 +71,7 @@ class MaestrosComponents extends Component{
                 'DIRECCION'=>$direccion,
                 'ESTADO'=>$estado,
             ]);
-            $sql='SELECT * FROM TB_DOCENTES WHERE DPI=?';
+            $sql='SELECT * FROM tb_docentes WHERE DPI=?';
             $userdocente=DB::select($sql,array($dpi));
 
             $id_apellidos=0;
@@ -81,7 +81,7 @@ class MaestrosComponents extends Component{
 
             }
 
-            $sql='SELECT * FROM TB_USUARIOS WHERE CORREO=?';
+            $sql='SELECT * FROM tb_usuarios WHERE CORREO=?';
             $docenteuser=DB::select($sql,array($correoed));
 
             $id_docenteusuario=0;
@@ -111,7 +111,7 @@ class MaestrosComponents extends Component{
     }
 
     public function listar_docentes(){
-        $sql="SELECT * FROM TB_DOCENTES";
+        $sql="SELECT * FROM tb_docentes";
         $maestros=DB::select($sql);
         $op=4;
         return view('home', compact('maestros', 'op'));
@@ -130,7 +130,7 @@ class MaestrosComponents extends Component{
         }
 
         $id_=$id;
-        $sql='SELECT * FROM TB_USUARIOS WHERE ID_USUARIO=?';
+        $sql='SELECT * FROM tb_usuarios WHERE ID_USUARIO=?';
         $correousu=DB::select($sql,array($this->id_usucorreo));
 
         $this->id_usucorreo=0;
@@ -144,7 +144,7 @@ class MaestrosComponents extends Component{
 
 
         $id_docente=$id;
-        $sql='SELECT * FROM TB_DOCENTES WHERE ID_DOCENTE=?';
+        $sql='SELECT * FROM tb_docentes WHERE ID_DOCENTE=?';
         $maestro=DB::select($sql,array($id_docente));
         if($maestro !=null){
             foreach($maestro as $mae)
@@ -177,7 +177,7 @@ class MaestrosComponents extends Component{
 
 
         
-        $mae=DB::table('TB_DOCENTES')
+        $mae=DB::table('tb_docentes')
         ->where('ID_DOCENTE',$id_docente)
         ->update(
             [
@@ -204,7 +204,7 @@ class MaestrosComponents extends Component{
     }   
     public function delete($id){
         $id_docente=$id;
-        $mae=DB::table('TB_DOCENTES')->where('ID_DOCENTE','=', $id_docente)->delete();
+        $mae=DB::table('tb_docentes')->where('ID_DOCENTE','=', $id_docente)->delete();
 
         if ($mae){
             $this->op=4;
@@ -228,7 +228,7 @@ class MaestrosComponents extends Component{
         $this->pass='Cole123';
     }
     public function listar_usuario(){
-        $sql="SELECT * FROM TB_USUARIOS";
+        $sql="SELECT * FROM tb_usuarios";
         $usuarios=DB::select($sql);
         $op=4;  
         return view('home', compact('usuarios', 'op'));
@@ -236,7 +236,7 @@ class MaestrosComponents extends Component{
     }
     public function editar($id){
         $id_usuario=$id;
-        $sql='SELECT * FROM TB_USUARIOS WHERE ID_USUARIO=?';
+        $sql='SELECT * FROM tb_usuarios WHERE ID_USUARIO=?';
         $usuarios=DB::select($sql,array($id_usuario));
         if($usuarios !=null){
             foreach($usuarios as $usuario)
@@ -252,7 +252,7 @@ class MaestrosComponents extends Component{
         $id_usucorreo=$this->id_usucorreo;   
         $pass=$this->pass;
         
-        $act=DB::table('TB_USUARIOS')
+        $act=DB::table('tb_usuarios')
         ->where('ID_USUARIO',$this->id_usucorreo)
         ->update(
             [
