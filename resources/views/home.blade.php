@@ -28,6 +28,15 @@
 @elseif ($op=='botones')
 @livewire('botones-component')      
 
+@elseif ($op=='addrelaciones')
+@livewire('relacionescomponent')   
+
+@elseif ($op=='addunidades')
+@livewire('unidades-component')   
+
+@elseif ($op=='addcontenidos')
+@livewire('contenido-component')   
+
 @elseif($op==0)
 @include('contenido')
 

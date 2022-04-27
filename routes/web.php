@@ -149,9 +149,6 @@ Route::get('/Unidades', [UnidadesComponent::class, 'index'])
 Route::get('/Secciones', [Secciones3Component::class, 'index'])
 ->middleware('auth')->name('Secciones.index');
 
-Route::get('/Relacion', [RelacionComponent::class, 'index'])
-->middleware('auth')->name('Relacion.index');
-
 //Academico
 Route::get('/Ingreso_de_calificaciones', [IngresoDeCalificacionesComponent::class, 'index'])
 ->middleware('auth')->name('Ingreso_de_calificaciones.index');
@@ -317,9 +314,9 @@ Route::get('/agregar_e', [AsignacionesEsController::class, 'agregar_e']);
 
 
 //Grupo #3
-Route::get('/contenidos',[ContenidosController::class,'contenidos']);
+Route::get('/Contenidos',[ContenidosController::class,'contenidos']);
 
-Route::get('/Unidades',[BotonesController::class,'Pre_Kinder']);
+Route::get('/Pre_Kinder',[BotonesController::class,'Pre_Kinder']);
 
 Route::get('/Unidad3',[UnidadesControlador::class,'Unidad3']);
 
@@ -337,7 +334,7 @@ Route::post('/update_mat',[Materiascontrolador::class, 'update_mat']);
 
 Route::post('/list_botones',[BotonesController::class,'list_botones']);
 
-//Route::get('/Unidades',[UnidadesController::class,'Unidades']);
+Route::get('/Unidades',[UnidadesController::class,'Unidades']);
 
 Route::post('/guardar_unidad',[UnidadesController::class,'guardar_unidad']);
 
@@ -345,7 +342,7 @@ Route::post('/list_u',[UnidadesController::class,'list_u']);
 
 Route::post('/update_uni',[UnidadesController::class, 'update_uni']);
 
-Route::get('/relaciones',[Relaciones::class,'relaciones']);
+Route::get('/Relacion',[Relaciones::class,'relaciones']);
 
 Route::post('/guardar_relaciones',[Relaciones::class,'guardar_rel']);
 
