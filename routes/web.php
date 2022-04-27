@@ -370,4 +370,4 @@ Route::post('/list_calendarizacion',[CalendarizacionController::class,'list_cale
 
 Route::post('/update_calendarizacion',[CalendarizacionController::class, 'update_calendarizacion']);
 
-Route::get('/a',[UnidadesControlador::class,'Primer_Unidad']);
+Route::get('/Primer_Unidad',[UnidadesControlador::class,'Primer_Unidad']);
