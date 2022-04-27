@@ -118,9 +118,9 @@
          
          <div class="mb-3">
           <label for="floatingInput">Ingresar el No. Resolución:</label>
-          <input type="text" class="form-control" id="floatingInput"  wire:model="resolucion_gr" required>
+          <input type="number" class="form-control" id="floatingInput"  wire:model="resolucion_gr" required>
         </div>
-        @error('precio_gr') 
+        @error('resolucion_gr') 
         <div class="alert alert-danger d-flex align-items-center" role="alert">
           <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">

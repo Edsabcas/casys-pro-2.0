@@ -31,6 +31,12 @@
 @elseif($op==0)
 @include('contenido')
 
+@elseif ($op=='addContenidos')
+@livewire('contenido-component')
+
+@elseif ($op=='addConsultar')
+@livewire('consultarcomponent')
+
 
 
 @endif
