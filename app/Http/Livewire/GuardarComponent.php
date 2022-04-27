@@ -13,13 +13,13 @@ class GuardarComponent extends Component
     public $idusuario, $mensaje7, $mensaje8, $ver_ocultos1, $ocultarc, $admin_rol, $usuario_id, $vistas_totales_id;
     public function render()
     {
-        $sql="SELECT * FROM TB_ANUNCIOS ORDER BY FECHA_HORA DESC";
+        $sql="SELECT * FROM tb_anuncios ORDER BY FECHA_HORA DESC";
         $this->anuncios=DB::select($sql);
-        $sql="SELECT * FROM TB_GUARDADOS";
+        $sql="SELECT * FROM tb_guardados";
         $guardados=DB::select($sql);
-        $sql="SELECT * FROM TB_MEGUSTA";
+        $sql="SELECT * FROM tb_megusta";
         $me_gusta=DB::select($sql);
-        $sql="SELECT * FROM TB_VISTAS";
+        $sql="SELECT * FROM tb_vistas";
         $vistoss=DB::select($sql);
         $this->usuario_id=5;
         $this->vistas_totales_id=5;
@@ -28,7 +28,7 @@ class GuardarComponent extends Component
     public function comentario($id){
         $this->id_com = $id;
         
-        $sql="SELECT * FROM TB_COMENTARIOS WHERE ID_ANUNCIOS=$id ORDER BY FECHA_COMENTARIO DESC";
+        $sql="SELECT * FROM tb_comentarios WHERE ID_ANUNCIOS=$id ORDER BY FECHA_COMENTARIO DESC";
         $comentarios=DB::select($sql);
         //$this->guardarcomentario();
         session(['comentarios' => $comentarios]);
@@ -50,7 +50,7 @@ class GuardarComponent extends Component
         $fechacomentario =  date("Y-m-d H:i:s");
         
 
-        $comentario2=DB::table('TB_COMENTARIOS')->insert(
+        $comentario2=DB::table('tb_comentarios')->insert(
             [
                 'TEXTO_COMENTARIO'=>$textocomentario,
                 'FECHA_COMENTARIO'=>$fechacomentario,
@@ -61,7 +61,7 @@ class GuardarComponent extends Component
         if($comentario2){
 
            
-            $sql="SELECT * FROM TB_COMENTARIOS WHERE ID_ANUNCIOS=? ORDER BY FECHA_COMENTARIO DESC";
+            $sql="SELECT * FROM tb_comentarios WHERE ID_ANUNCIOS=? ORDER BY FECHA_COMENTARIO DESC";
             $comentarios=DB::select($sql, array($id_a));
             session(['comentarios' => $comentarios]);
             //$this->reset();
@@ -87,7 +87,7 @@ class GuardarComponent extends Component
         $this->idusuario = 5;
         $this->idcomparacion = 5;
 
-        $megusta=DB::table('TB_MEGUSTA')->insert(
+        $megusta=DB::table('tb_megusta')->insert(
             [
                 'CONTENIDO_LIKE'=>$this->valorlike,
                 'ID_PUBLICACION'=>$this->id_megusta,

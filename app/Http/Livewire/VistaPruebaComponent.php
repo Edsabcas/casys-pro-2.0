@@ -13,11 +13,11 @@ class VistaPruebaComponent extends Component
     public $admin_rol, $ocultarc;
     public function render()
     {
-        $sql="SELECT * FROM TB_ANUNCIOS ORDER BY FECHA_HORA DESC";
+        $sql="SELECT * FROM tb_anuncios ORDER BY FECHA_HORA DESC";
         $this->anuncios=DB::select($sql);
-        $sql="SELECT SUM(CONTENIDO_LIKE) FROM TB_MEGUSTA WHERE ID_PUBLICACION=32";
+        $sql="SELECT SUM(CONTENIDO_LIKE) FROM tb_megusta WHERE ID_PUBLICACION=32";
         $likes=DB::select($sql);
-        $sql="SELECT * FROM TB_MEGUSTA";
+        $sql="SELECT * FROM tb_megusta";
         $me_gusta=DB::select($sql);
 
         $this->receptor_anuncio = 2;
@@ -34,7 +34,7 @@ class VistaPruebaComponent extends Component
     public function comentario($id){
         $this->id_com = $id;
         
-        $sql="SELECT * FROM TB_COMENTARIOS WHERE ID_ANUNCIOS=$id ORDER BY FECHA_COMENTARIO DESC";
+        $sql="SELECT * FROM tb_comentarios WHERE ID_ANUNCIOS=$id ORDER BY FECHA_COMENTARIO DESC";
         $comentarios=DB::select($sql);
         $this->guardarcomentario();
         session(['comentarios' => $comentarios]);
@@ -47,7 +47,7 @@ class VistaPruebaComponent extends Component
         $fechacomentario =  date("Y-m-d H:i:s");
         
 
-        $comentario2=DB::table('TB_COMENTARIOS')->insert(
+        $comentario2=DB::table('tb_comentarios')->insert(
             [
                 'TEXTO_COMENTARIO'=>$textocomentario,
                 'FECHA_COMENTARIO'=>$fechacomentario,
@@ -58,7 +58,7 @@ class VistaPruebaComponent extends Component
         if($comentario2){
 
            
-            $sql="SELECT * FROM TB_COMENTARIOS WHERE ID_ANUNCIOS=? ORDER BY FECHA_COMENTARIO DESC";
+            $sql="SELECT * FROM tb_comentarios WHERE ID_ANUNCIOS=? ORDER BY FECHA_COMENTARIO DESC";
             $comentarios=DB::select($sql, array($id_a));
             session(['comentarios' => $comentarios]);
             //$this->reset();
@@ -81,11 +81,11 @@ class VistaPruebaComponent extends Component
         $id_usuario = 5;
         $fecha_guardado = date("Y-m-d H:i:s");
         $estadoguardado = 1;
-        $sql="SELECT * FROM TB_ANUNCIOS WHERE ID_ANUNCIOS=$id_p ORDER BY FECHA_HORA DESC";
+        $sql="SELECT * FROM tb_anuncios WHERE ID_ANUNCIOS=$id_p ORDER BY FECHA_HORA DESC";
         $guardados=DB::select($sql);
         return view('livewire.vista-prueba-component', compact('guardados'));
 
-        $anunciosguardados=DB::table('TB_GUARDADOS')->insert([
+        $anunciosguardados=DB::table('tb_guardados')->insert([
             'ID_ANUNCIO'=>$this->id_publicacion,
             'ID_USUARIO'=>$id_usuario,
             'FECHA_GUARDADO'=>$fecha_guardado,
@@ -111,7 +111,7 @@ class VistaPruebaComponent extends Component
         $this->idusuario = 5;
         $this->idcomparacion = 5;
 
-        $megusta=DB::table('TB_MEGUSTA')->insert(
+        $megusta=DB::table('tb_megusta')->insert(
             [
                 'CONTENIDO_LIKE'=>$this->valorlike,
                 'ID_PUBLICACION'=>$this->id_megusta,
