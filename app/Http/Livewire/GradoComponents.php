@@ -32,7 +32,6 @@ class GradoComponents extends Component
         if($this->validate([
             'nombre_gr' => 'required',
             'seccion_gr' => 'required',
-            'precio_gr' => 'required',
             'ministerial_gr' => 'required',
             'resolucion_gr' => 'required',
             'academico_gr' => 'required',
@@ -59,7 +58,7 @@ class GradoComponents extends Component
             [
                 'GRADO'=> $nombre_gr,
                 'ID_SC'=> $seccion_gr,
-                'PRECIO_GRADO'=> $precio_gr,
+                'PRECIO_GRADO'=> $precio_gr=0,
                 'MINISTERIAL'=> $ministerial_gr,
                 'RESOLUCION'=> $resolucion_gr,
                 'NIVEL_ACADEMICO'=> $academico_gr,
@@ -128,7 +127,7 @@ class GradoComponents extends Component
     }
     public function delete($id){
         $id_gr=$id;
-        $grado=DB::table('tb_grados')->where('ID_GR','=', $id_gr)->delete();
+        $grado=DB::table('tb_grados ')->where('ID_GR','=', $id_gr)->delete();
 
         if($grado){
             $this->op=4;

@@ -30,7 +30,7 @@
        @enderror
        <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Sección:</label>
-        <select class="form-select" aria-label="Default select example" wire:model="seccion_gr">
+        <select class="form-select input-group mb-3" aria-label="Default select example" wire:model="seccion_gr">
           <option selected>Seleccionar:</option>
           @isset($secciones)
             @foreach ($secciones as $seccion)
@@ -118,9 +118,9 @@
          
          <div class="mb-3">
           <label for="floatingInput">Ingresar el No. Resolución:</label>
-          <input type="text" class="form-control" id="floatingInput"  wire:model="resolucion_gr" required>
+          <input type="number" class="form-control" id="floatingInput"  wire:model="resolucion_gr" required>
         </div>
-        @error('precio_gr') 
+        @error('resolucion_gr') 
         <div class="alert alert-danger d-flex align-items-center" role="alert">
           <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
@@ -131,9 +131,15 @@
            @enderror
            <div class="mb-3">
             <label for="floatingInput">Ingresar Nivel Académico:</label>
-            <input type="text" class="form-control" id="floatingInput"  wire:model="academico_gr" required>
+            <select class="form-select" aria-label="Default select example" wire:model="academico_gr">
+              <option selected>Seleccionar:</option>
+                <option value="1">Preprimaria</option>
+                <option value="2">Primaria</option>
+                <option value="3">Básicos</option>
+                <option value="4">Diversificado</option>
+            </select>
           </div> 
-          @error('ministerial_gr') 
+          @error('academico_gr') 
         <div class="alert alert-danger d-flex align-items-center" role="alert">
           <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
@@ -151,7 +157,7 @@
           <option value="2">Vespertina</option>
         </select>
     </div>
-    @error('estado_gr') 
+    @error('jornada_gr') 
     <div class="alert alert-danger d-flex align-items-center" role="alert">
       <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
