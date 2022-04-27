@@ -8,26 +8,26 @@ use App\Http\Livewire\Request;
 
 class Relacionescomponent extends Component
 {
-    public $id_rel,$id_materias, $id_maestros,$id_grados,$id_secciones,$edit;
+    public $id_rel,$id_materias, $id_docente,$id_gr,$id_sc,$edit;
 
     public  $op, $mensaje, $mensaje1,  $mensaje3, $mensaje4, $mensaje_eliminar, $mensaje_eliminar2;
     
     public function render()
     {
-        $relaciones=DB::table('TB_REL')
-        ->join('TB_MATERIAS','TB_REL.ID_MATERIA','=','TB_MATERIAS.ID_MATERIA')
-        ->join('TB_MAESTROS', 'TB_REL.ID_MAESTROS', '=', 'TB_MAESTROS.ID_MAESTROS')
-        ->join('TB_GRADOS', 'TB_REL.ID_GRADOS', '=', 'TB_GRADOS.ID_GRADOS')
-        ->join('TB_SECCIONES', 'TB_REL.ID_SECCIONES', '=', 'TB_SECCIONES.ID_SECCIONES')
-        ->select('TB_REL.ID_REL', 'TB_MATERIAS.NOMBRE_MATERIA', 'TB_MAESTROS.NOMBRE_MAESTROS', 'TB_GRADOS.NOMBRE_GRADO', 'TB_SECCIONES.SECCION')
+        $relaciones=DB::table('tb_rel')
+        ->join('tb_materias','tb_rel.id_materia','=','tb_materias.id_materia')
+        ->join('tb_docentes', 'tb_rel.id_docente', '=', 'tb_docentes.id_docente')
+        ->join('tb_grados', 'tb_rel.id_gr', '=', 'tb_grados.id_gr')
+        ->join('tb_seccions', 'tb_rel.id_sc', '=', 'tb_seccions.id_sc')
+        ->select('tb_rel.id_rel', 'tb_materias.nombre_materia', 'tb_docentes.nombre_docente', 'tb_grados.grado', 'tb_seccions.seccion')
         ->get();
-        $sql= 'SELECT ID_MATERIA , NOMBRE_MATERIA FROM TB_MATERIAS';
+        $sql= 'SELECT id_materia , nombre_materia FROM tb_materias';
         $materias=DB::select($sql);
-        $sql= 'SELECT ID_MAESTROS , NOMBRE_MAESTROS FROM TB_MAESTROS';
+        $sql= 'SELECT id_docente , nombre_docente FROM tb_docentes';
         $maestros=DB::select($sql);
-        $sql= 'SELECT ID_GRADOS , NOMBRE_GRADO FROM TB_GRADOS';
+        $sql= 'SELECT id_gr , grado FROM tb_grados';
         $grados=DB::select($sql);
-        $sql= 'SELECT ID_SECCIONES , SECCION FROM TB_SECCIONES';
+        $sql= 'SELECT id_sc , seccion FROM tb_seccions';
         $secciones=DB::select($sql);
         return view('livewire.relacionescomponent',compact('relaciones', 'materias','maestros','maestros','grados','secciones'));
     }
@@ -35,9 +35,9 @@ class Relacionescomponent extends Component
     public function guardar_rel(){
         if($this->validate([
             'id_materias' => 'required',
-            'id_maestros' => 'required',
-            'id_grados' => 'required',
-            'id_secciones' => 'required',
+            'id_docente' => 'required',
+            'id_gr' => 'required',
+            'id_sc' => 'required',
 
         ])==false){
             $error="no encontrado";
@@ -47,17 +47,17 @@ class Relacionescomponent extends Component
 
         else{
            $id_materias=$this->id_materias;
-        $id_maestros=$this->id_maestros;
-        $id_grados=$this->id_grados;
-        $id_secciones=$this->id_secciones;
+        $id_docente=$this->id_docente;
+        $id_gr=$this->id_gr;
+        $id_sc=$this->id_sc;
 
 
-        $secciones=DB::table('TB_REL')->insert(
+        $secciones=DB::table('tb_rel')->insert(
             [
-                'ID_MATERIA'=>$id_materias,
-                'ID_MAESTROS'=>$id_maestros,
-                'ID_GRADOS'=>$id_grados,
-                'ID_SECCIONES'=>$id_secciones,
+                'id_materia'=>$id_materias,
+                'id_docente'=>$id_docente,
+                'id_gr'=>$id_gr,
+                'id_sc'=>$id_sc,
 
             ]);
         if($secciones){
@@ -81,13 +81,13 @@ class Relacionescomponent extends Component
     }
 
     public function list_rel(){
-        $sql= 'SELECT * FROM TB_MATERIAS';
+        $sql= 'SELECT * FROM tb_materias';
         $materias=DB::select($sql);
-        $sql= 'SELECT * FROM TB_MAESTROS';
+        $sql= 'SELECT * FROM tb_docentes';
         $maestros=DB::select($sql);
-        $sql= 'SELECT * FROM TB_GRADOS';
+        $sql= 'SELECT * FROM tb_grados';
         $grados=DB::select($sql);
-        $sql= 'SELECT * FROM TB_SECCIONES';
+        $sql= 'SELECT * FROM tb_seccions';
         $secciones=DB::select($sql);
         $op=28;
         return view('home', compact('materias','maestros','grados','secciones','op'));
@@ -95,25 +95,25 @@ class Relacionescomponent extends Component
 
      Public function edit($id){
         $id_rel=$id;
-        $sql='SELECT * FROM TB_REL WHERE ID_REL=?';
+        $sql='SELECT * FROM tb_rel WHERE id_rel=?';
         $relaciones=DB:: select($sql, array($id_rel));
-        $sql= 'SELECT * FROM TB_MATERIAS';
+        $sql= 'SELECT * FROM tb_materias';
         $materias=DB::select($sql);
-        $sql= 'SELECT * FROM TB_MAESTROS';
+        $sql= 'SELECT * FROM tb_docentes';
         $maestros=DB::select($sql);
-        $sql= 'SELECT * FROM TB_GRADOS';
+        $sql= 'SELECT * FROM tb_grados';
         $grados=DB::select($sql);
-        $sql= 'SELECT * FROM TB_SECCIONES';
+        $sql= 'SELECT * FROM tb_seccions';
         $secciones=DB::select($sql);
 
         if($relaciones !=null){
             foreach($relaciones as $rel)
             {
-                $this->id_rel=$rel->ID_REL;
-                $this->id_materias=$rel->ID_MATERIA;
-                $this->id_maestros=$rel->ID_MAESTROS;
-                $this->id_grados=$rel->ID_GRADOS;
-                $this->id_secciones=$rel->ID_SECCIONES;
+                $this->id_rel=$rel->id_rel;
+                $this->id_materias=$rel->id_materia;
+                $this->id_docente=$rel->id_docente;
+                $this->id_gr=$rel->id_gr;
+                $this->id_sc=$rel->id_sc;
 
             }
         }
@@ -125,18 +125,18 @@ class Relacionescomponent extends Component
     public function update_rel(){
         $id_rel=$this->id_rel;
         $id_materias=$this->id_materias;
-        $id_maestros=$this->id_maestros;
-        $id_grados=$this->id_grados;
-        $id_secciones=$this->id_secciones;
+        $id_docente=$this->id_docente;
+        $id_gr=$this->id_gr;
+        $id_sc=$this->id_sc;
 
-        $rel=DB::table('TB_REL')
-        ->where('ID_REL', $id_rel)
+        $rel=DB::table('tb_rel')
+        ->where('id_rel', $id_rel)
         ->update( 
             [
-                'ID_MATERIA'=>$id_materias,
-                'ID_MAESTROS'=>$id_maestros,
-                'ID_GRADOS'=>$id_grados,
-                'ID_SECCIONES'=>$id_secciones,
+                'id_materia'=>$id_materias,
+                'id_docente'=>$id_docente,
+                'id_gr'=>$id_gr,
+                'id_sc'=>$id_sc,
             ]
             );
 
@@ -145,13 +145,13 @@ class Relacionescomponent extends Component
                 unset($this->mensaje3);
                 unset($this->mensaje_eliminar);
                 $this->reset();
-                $sql= 'SELECT * FROM TB_MATERIAS';
+                $sql= 'SELECT * FROM tb_materias';
                 $materias=DB::select($sql);
-                $sql= 'SELECT * FROM TB_MAESTROS';
+                $sql= 'SELECT * FROM tb_docentes';
                 $maestros=DB::select($sql);
-                $sql= 'SELECT * FROM TB_GRADOS';
+                $sql= 'SELECT * FROM tb_grados';
                 $grados=DB::select($sql);
-                $sql= 'SELECT * FROM TB_SECCIONES';
+                $sql= 'SELECT * FROM tb_seccions';
                 $secciones=DB::select($sql);
                 $this->op=26;
                 $this->mensaje3='Editado Correctamente';
@@ -168,21 +168,21 @@ class Relacionescomponent extends Component
 
     Public function delete($id){
         $id_rel=$id;
-        $rel=DB::table('TB_REL')->where('ID_REL','=', $id_rel)->delete();
+        $rel=DB::table('tb_rel')->where('id_rel','=', $id_rel)->delete();
 
         if($rel){
             unset($this->mensaje);
             unset($this->mensaje3);
             unset($this->mensaje_eliminar);
-            $sql='SELECT * FROM TB_REL WHERE ID_REL=?';
+            $sql='SELECT * FROM tb_rel WHERE id_rel=?';
             $relaciones=DB:: select($sql, array($id_rel));
-            $sql= 'SELECT * FROM TB_MATERIAS';
+            $sql= 'SELECT * FROM tb_materias';
             $materias=DB::select($sql);
-            $sql= 'SELECT * FROM TB_MAESTROS';
+            $sql= 'SELECT * FROM tb_docentes';
             $maestros=DB::select($sql);
-            $sql= 'SELECT * FROM TB_GRADOS';
+            $sql= 'SELECT * FROM tb_grados';
             $grados=DB::select($sql);
-            $sql= 'SELECT * FROM TB_SECCIONES';
+            $sql= 'SELECT * FROM tb_seccions';
             $secciones=DB::select($sql);
             $this->op=26;
             $this->mensaje_eliminar='Eliminado Correctamente';

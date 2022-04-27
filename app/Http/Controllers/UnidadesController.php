@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class UnidadesController extends Controller
 {
     public function Unidades(){
-        $op=16;
+        $op='addunidades';
         return view('home',compact('op',));
     }
 }

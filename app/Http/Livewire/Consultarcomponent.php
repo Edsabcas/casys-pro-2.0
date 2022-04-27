@@ -17,35 +17,28 @@ public $vista2, $vista3;
 
     public function render()
     {
-        $relaciones=DB::table('TB_REL')
-        ->join('TB_MATERIAS','TB_REL.ID_MATERIA','=','TB_MATERIAS.ID_MATERIA')
-        ->join('TB_MAESTROS', 'TB_REL.ID_MAESTROS', '=', 'TB_MAESTROS.ID_MAESTROS')
-        ->join('TB_GRADOS', 'TB_REL.ID_GRADOS', '=', 'TB_GRADOS.ID_GRADOS')
-        ->join('TB_SECCIONES', 'TB_REL.ID_SECCIONES', '=', 'TB_SECCIONES.ID_SECCIONES')
-        ->select('TB_REL.ID_REL', 'TB_MATERIAS.NOMBRE_MATERIA', 'TB_MATERIAS.TIPO_DE_MATERIA', 'TB_MAESTROS.NOMBRE_MAESTROS', 'TB_GRADOS.NOMBRE_GRADO', 'TB_SECCIONES.SECCION')
-        ->get();
-
-        $relainfo=DB::table('TB_INFO_MAESTRO')
-        ->join('TB_MATERIAS','TB_INFO_MAESTRO.ID_MATERIA','=','TB_MATERIAS.ID_MATERIA')
-        ->join('TB_MAESTROS', 'TB_INFO_MAESTRO.ID_MAESTROS', '=', 'TB_MAESTROS.ID_MAESTROS')
-        ->join('TB_GRADOS', 'TB_INFO_MAESTRO.ID_GRADOS', '=', 'TB_GRADOS.ID_GRADOS')
-        ->select('TB_INFO_MAESTRO.ID_I_MAESTRO', 'TB_MATERIAS.NOMBRE_MATERIA', 'TB_MATERIAS.TIPO_DE_MATERIA', 'TB_MAESTROS.NOMBRE_MAESTROS', 'TB_GRADOS.NOMBRE_GRADO','TB_INFO_MAESTRO.DPI')
+        $relaciones=DB::table('tb_rel')
+        ->join('tb_materias','tb_rel.ID_MATERIA','=','tb_materias.ID_MATERIA')
+        ->join('tb_docentes', 'tb_rel.ID_DOCENTE', '=', 'tb_docentes.ID_DOCENTE')
+        ->join('tb_grados', 'tb_rel.ID_GR', '=', 'tb_grados.ID_GR')
+        ->join('tb_seccions', 'tb_rel.ID_SC', '=', 'tb_seccions.ID_SC')
+        ->select('tb_rel.ID_REL', 'tb_materias.NOMBRE_MATERIA', 'tb_materias.TIPO_DE_MATERIA', 'tb_docentes.NOMBRE_DOCENTE', 'tb_grados.GRADO', 'tb_seccions.SECCION')
         ->get();
 
         
+
         
-        $sql= 'SELECT ID_MATERIA , NOMBRE_MATERIA FROM TB_MATERIAS';
+        
+        $sql= 'SELECT ID_MATERIA , NOMBRE_MATERIA FROM tb_materias';
         $materias=DB::select($sql);
-        $sql= 'SELECT ID_MAESTROS , NOMBRE_MAESTROS FROM TB_MAESTROS';
-        $maestros=DB::select($sql);
-        $sql= 'SELECT ID_GRADOS , NOMBRE_GRADO FROM TB_GRADOS';
+        $sql= 'SELECT ID_GR , GRADO FROM tb_grados';
         $grados=DB::select($sql);
-        $sql= 'SELECT ID_SECCIONES , SECCION FROM TB_SECCIONES';
+        $sql= 'SELECT ID_SC , SECCION FROM tb_seccions';
         $secciones=DB::select($sql);
-        $sql= 'SELECT ID_I_MAESTRO, DPI FROM TB_INFO_MAESTRO';
+        $sql= 'SELECT * FROM tb_docentes';
         $info=DB::select($sql);
         
-        return view('livewire.consultarcomponent',compact('relaciones', 'materias','maestros','grados','secciones','info','relainfo'));
+        return view('livewire.consultarcomponent',compact('relaciones', 'materias','grados','secciones','info'));
     }
 
     public function buscar($var){
@@ -157,22 +150,22 @@ public $vista2, $vista3;
  }
 
  public function list_Maestros(){
-    $sql= 'SELECT * FROM TB_MATERIAS';
+    $sql= 'SELECT * FROM tb_materias';
     $materias=DB::select($sql);
-    $sql= 'SELECT * FROM TB_MAESTROS';
-    $maestros=DB::select($sql);
-    $sql= 'SELECT * FROM TB_GRADOS';
+    $sql= 'SELECT * FROM tb_docentes';
+    $info=DB::select($sql);
+    $sql= 'SELECT * FROM tb_grados';
     $grados=DB::select($sql);
-    $sql= 'SELECT * FROM TB_SECCIONES';
+    $sql= 'SELECT * FROM tb_seccions';
     $secciones=DB::select($sql);
     $op=38;
-    return view('home', compact('materias','maestros','grados','secciones','op'));
+    return view('home', compact('materias','info','grados','secciones','op'));
  }
 
  public function list_g(){
-    $sql= 'SELECT * FROM TB_GRADOS';
+    $sql= 'SELECT * FROM tb_grados';
     $grados=DB::select($sql);
-    $sql= 'SELECT * FROM TB_SECCIONES';
+    $sql= 'SELECT * FROM tb_seccions';
     $secciones=DB::select($sql);
     $op=39;
     return view('home', compact('grados','op','secciones'));

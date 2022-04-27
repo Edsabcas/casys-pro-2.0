@@ -14,9 +14,9 @@ class UnidadesComponent extends Component
 
     public function render()
     {
-        $sql= 'SELECT * FROM TB_UNIDADES';
+        $sql= 'SELECT * FROM tb_unidades';
         $unidades=DB::select($sql);
-        $sql= 'SELECT * FROM TB_MATERIAS';
+        $sql= 'SELECT * FROM tb_materias';
         $materias=DB::select($sql);
         return view('livewire.unidades-component',compact('unidades','materias'));
     }
@@ -38,7 +38,7 @@ class UnidadesComponent extends Component
             $estado_uni=$this->estado_uni;
     
     
-            $unidades=DB::table('TB_UNIDADES')->insert(
+            $unidades=DB::table('tb_unidades')->insert(
                 [
                     'ID_MATERIA'=>$id_mat,
                     'NOMNBRE_UNIDAD'=>$nombre_uni,
@@ -65,9 +65,9 @@ class UnidadesComponent extends Component
     }
 
     public function list_u(){
-        $sql= 'SELECT * FROM TB_UNIDADES';
+        $sql= 'SELECT * FROM tb_unidades';
         $unidades=DB::select($sql);
-        $sql= 'SELECT * FROM TB_MATERIAS';
+        $sql= 'SELECT * FROM tb_materias';
         $materias=DB::select($sql);
         $op=18;
         return view('home', compact('unidades','op','materias'));
@@ -75,9 +75,9 @@ class UnidadesComponent extends Component
 
      Public function edit($id){
         $id_uni=$id;
-        $sql='SELECT * FROM TB_UNIDADES WHERE ID_UNIDADES=?';
+        $sql='SELECT * FROM tb_unidades WHERE ID_UNIDADES=?';
         $unidades=DB:: select($sql, array($id_uni));
-        $sql= 'SELECT * FROM TB_MATERIAS';
+        $sql= 'SELECT * FROM tb_materias';
         $materias=DB::select($sql);
 
         if($unidades !=null){
@@ -101,7 +101,7 @@ class UnidadesComponent extends Component
         $nombre_uni=$this->nombre_uni;
         $estado_uni=$this->estado_uni;
 
-        $uni=DB::table('TB_UNIDADES')
+        $uni=DB::table('tb_unidades')
         ->where('ID_UNIDADES', $id_uni)
         ->update( 
             [
@@ -116,9 +116,9 @@ class UnidadesComponent extends Component
                 unset($this->mensaje3);
                 unset($this->mensaje_eliminar);
                 $this->reset();
-                $sql='SELECT*FROM TB_UNIDADES';
+                $sql='SELECT*FROM tb_unidades';
                 $unidades=DB::select($sql);
-                $sql= 'SELECT * FROM TB_MATERIAS';
+                $sql= 'SELECT * FROM tb_materias';
                 $materias=DB::select($sql);
                 $this->op=16;
                 $this->mensaje3='Editado Correctamente';
@@ -134,15 +134,15 @@ class UnidadesComponent extends Component
 
     Public function delete($id){
         $id_uni=$id;
-        $uni=DB::table('TB_UNIDADES')->where('ID_UNIDADES','=', $id_uni)->delete();
+        $uni=DB::table('tb_unidades')->where('ID_UNIDADES','=', $id_uni)->delete();
 
         if($uni){
             unset($this->mensaje);
             unset($this->mensaje3);
             unset($this->mensaje_eliminar);
-            $sql="SELECT * FROM TB_UNIDADES";
+            $sql="SELECT * FROM tb_unidades";
             $unidades=DB::select($sql);
-            $sql= 'SELECT * FROM TB_MATERIAS';
+            $sql= 'SELECT * FROM tb_materias';
             $materias=DB::select($sql);
             $this->op=16;
             $this->mensaje_eliminar='Eliminado Correctamente';

@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class Conusltarcontroller extends Controller
 {
     public function Consultar(){
-        $op=37;
+        $op="addConsultar";
         return view('home',compact('op',));
     }
 }
