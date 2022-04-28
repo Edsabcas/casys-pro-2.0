@@ -13,7 +13,7 @@
               <tr>
 
                 <th>{{$relacion->ID_REL}}</th>
-                <th>{{$relacion->NOMBRE_GRADO}}</th>
+                <th>{{$relacion->GRADO}}</th>
                 <th>{{$relacion->SECCION}}</th>
                   
 

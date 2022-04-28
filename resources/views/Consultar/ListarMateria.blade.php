@@ -8,30 +8,36 @@
       <tbody>
           @foreach ($relaciones as $relacion)
               <tr>
-                <th><div class="accordion accordion-flush" id="accordionFlushExample">
-                    <div class="accordion-item">
-                      <h2 class="accordion-header" id="flush-headingOne">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                            {{$relacion->NOMBRE_MATERIA}}
-                        </button>
-                      </h2>
-                      <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                        <div class="accordion-body">
-                          <strong>Tipo de materia:@if($relacion->TIPO_DE_MATERIA==1)
-                            Practica   
-                            @else
-                                Teorica
-                            @endif</strong>
-                          <br>
-                          <strong>Nombre por Mineduc:</strong>
-                          <br>
-                          <strong>Codigo:</strong></div>
+                <th>
+                  <li class="nav-item">
+                      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities{{$relacion->ID_REL}}"
+                          aria-expanded="true" aria-controls="collapseUtilities{{$relacion->ID_MATERIA}}">
+                          
+                          <span>{{$relacion->NOMBRE_MATERIA}}</span>
+                      </a>
+                   
+                      <div id="collapseUtilities{{$relacion->ID_MATERIA}}" class="collapse" aria-labelledby="headingUtilities"
+                          data-parent="#accordionSidebar">
+                          <div class="bg-white py-2 collapse-inner rounded">
+                              <strong>Tipo de materia:@if($relacion->TIPO_DE_MATERIA==1)
+                                Practica   
+                                @else
+                                    Teorica
+                                @endif</strong>
+                                <br>
+                                <strong>Nombre Ministerial:</strong>
+                                <br>
+                                <strong>Codigo:</strong>
+                          </div>
                       </div>
-                    </div>
-                  </div></th>
+                  </li>
+                  
+              </th>
               </tr>
           @endforeach
       </tbody>
     </table>
   </div>
    
+
+
