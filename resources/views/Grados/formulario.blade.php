@@ -17,7 +17,7 @@
     @csrf
     <div class="container">
       <div class="row">
-      <div class="mb-3 col-md-4 ">
+      <div class="mb-3">
           <label for="floatingInput">Ingresar Grado:</label>
           <input type="text" class="form-control" id="floatingInput"  wire:model="nombre_gr" required>
         </div>
@@ -33,7 +33,7 @@
         </div> 
     @enderror
       <div class="container">
-        <div class="input-group col-md-4 offset-md-4">
+        <div class="input-group">
           <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" type="button"><img src="https://img.icons8.com/material-two-tone/24/000000/add.png"/></button>
           <select class="form-select" id="inputGroupSelect03" aria-label="Example select with button addon" wire:model="seccion_gr">
             <option selected>Elegir Sección:</option>
@@ -103,11 +103,12 @@
         </div>
       </div>
       <br>
-      
-         <div class="mb-3 col-auto">
+      <div class="container">
+         <div class="mb-3">
           <label for="floatingInput">Ingresar Nombre Ministerial:</label>
           <input type="text" class="form-control" id="floatingInput"  wire:model="ministerial_gr" required>
         </div> 
+      </div>
         @error('ministerial_gr') 
       <div class="alert alert-danger d-flex align-items-center" role="alert">
         <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
@@ -117,11 +118,12 @@
           <span>Pendiente de asignar el nombre Ministerial</span>
          </div> 
          @enderror
-         
+         <div class="container">
          <div class="mb-3">
           <label for="floatingInput">Ingresar el No. Resolución:</label>
           <input type="number" class="form-control" id="floatingInput"  wire:model="resolucion_gr" required>
         </div>
+         </div>
         @error('resolucion_gr') 
         <div class="alert alert-danger d-flex align-items-center" role="alert">
           <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
@@ -131,7 +133,8 @@
             <span>Pendiente el ingresar el numero de resolución</span>
            </div> 
            @enderror
-           <div class="mb-3 col-auto">
+           <div class="container">
+           <div class="mb-3">
             <label for="floatingInput">Ingresar Nivel Académico:</label>
             <select class="form-select" aria-label="Default select example" wire:model="academico_gr">
               <option selected>Seleccionar:</option>
@@ -140,7 +143,8 @@
                 <option value="3">Básicos</option>
                 <option value="4">Diversificado</option>
             </select>
-          </div> 
+          </div>
+           </div> 
           @error('academico_gr') 
         <div class="alert alert-danger d-flex align-items-center" role="alert">
           <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
@@ -150,7 +154,7 @@
             <span>Pendiente de asignar el nivel academico</span>
            </div> 
            @enderror
-     
+           <div class="container">
       <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Tipo de Jornada:</label>
         <select class="form-select" aria-label="Default select example" wire:model="jornada_gr">
@@ -159,6 +163,7 @@
           <option value="2">Vespertina</option>
         </select>
     </div>
+           </div>
     @error('jornada_gr') 
     <div class="alert alert-danger d-flex align-items-center" role="alert">
       <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
@@ -168,7 +173,7 @@
         <span>Pendiente la seleccion del tipo de jornada</span>
        </div> 
        @enderror
-      
+       <div class="container">
     <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Estado:</label>
         <select class="form-select" aria-label="Default select example" wire:model="estado_gr">
@@ -177,6 +182,7 @@
           <option value="2">Inactivo</option>
         </select>
     </div>
+       </div>
     @error('estado_gr') 
     <div class="alert alert-danger d-flex align-items-center" role="alert">
       <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
