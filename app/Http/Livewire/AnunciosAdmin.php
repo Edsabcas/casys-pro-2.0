@@ -10,7 +10,7 @@ class AnunciosAdmin extends Component
     public $id_com, $op, $comentarios, $texto_comentario, $op2, $mensaje, $mensaje1, $anuncios, $id_publicacion;
     public $op3, $id_megusta, $mensaje3, $mensaje4, $valorlike, $idcomparacion, $likes3, $mensaje5, $mensaje6;
     public $idusuario, $mensaje7, $mensaje8, $ver_ocultos1, $ocultarc, $admin_rol, $guar, $usuario_id;
-    public $vistas_totales_id, $contadorlikes;
+    public $vistas_totales_id, $contadorlikes, $cambiolike, $can;
     public function render()
     {
         $this->ver_ocultos1 = 0;
@@ -33,17 +33,18 @@ class AnunciosAdmin extends Component
         $this->admin_rol = 1;
         $fecha_vista=date("Y-m-d H:i:s");
         $estado_vista=1;
+        $usuario_activo = auth()->user()->id;
         //en el where id_usuario después del signo igual va el id del usuario logeado en ese momento y en el inserte de id_usuario.
 
         foreach($this->anuncios as $anuncio){
-            $sql="SELECT * FROM tb_vistas WHERE ID_USUARIO=7 AND ID_ANUNCIO = ".$anuncio->ID_ANUNCIOS;
+            $sql="SELECT * FROM tb_vistas WHERE ID_USUARIO=$usuario_activo AND ID_ANUNCIO = ".$anuncio->ID_ANUNCIOS;
             $vistos=DB::select($sql);
                 if($vistos!=null){
                 }
                 else{
                     $vistas=DB::table('tb_vistas')->insert(
                         [
-                            'ID_USUARIO'=>7,
+                            'ID_USUARIO'=>auth()->user()->id,
                             'VALOR_VISTA'=>1,
                             'ID_ANUNCIO'=>$anuncio->ID_ANUNCIOS,
                             'FECHA_VISTA'=>$fecha_vista,
@@ -155,7 +156,7 @@ class AnunciosAdmin extends Component
         }
     }
 
-    public function megusta($id_like){
+    public function eliminarmegusta($id_like){
         $this->id_megusta=$id_like;
         $this->valorlike+=1;
         $estadolike = 1;
@@ -163,48 +164,13 @@ class AnunciosAdmin extends Component
         $this->idusuario = auth()->user()->id;
         $this->idcomparacion = 5;
         $this->contadorlikes+=1;
+        $this->cambiolike+=1;
         
-
-        if($this->valorlike==1){
-            $megusta=DB::table('tb_megusta')->insert(
-                [
-                    'CONTENIDO_LIKE'=>$this->valorlike,
-                    'ID_PUBLICACION'=>$this->id_megusta,
-                    'ID_USUARIO'=>$this->idusuario,
-                    'FECHA_LIKE'=>$fechamegusta,
-                    'ESTADO'=>$estadolike,
-                ]
-            );
-            if($megusta){
-            
-                $this->mensaje3="Insertado correctamente";
-                return view('livewire.anuncios-admin');
-    
-            }
-            else{
-                $this->mensaje4="Insertado correctamente";
-            }
-        }
-        elseif($this->valorlike==2){
-            $this->valorlike=0;
             $loslikes=DB::table('tb_megusta')
 
                ->where('ID_USUARIO', $this->idusuario) 
                ->where('ID_PUBLICACION', $this->id_megusta)
-
-               ->update(
-
-                   [
-
-                    'CONTENIDO_LIKE' => $this->valorlike,
-
-                    'FECHA_LIKE' =>date('Y-m-d H:i:s'),
-
-                   ]);
-        }
-        else{
-
-        } 
+               ->delete();
 
         
     }
@@ -246,6 +212,36 @@ class AnunciosAdmin extends Component
         
         
     }
-   
+
+    public function insertar_like($id_like){
+        $this->id_megusta=$id_like;
+        $this->valorlike+=1;
+        $estadolike = 1;
+        $fechamegusta = date("Y-m-d H:i:s");
+        $this->idusuario = auth()->user()->id;
+
+    
+            $megusta=DB::table('tb_megusta')->insert(
+                [
+                    'CONTENIDO_LIKE'=>$this->valorlike,
+                    'ID_PUBLICACION'=>$this->id_megusta,
+                    'ID_USUARIO'=>$this->idusuario,
+                    'FECHA_LIKE'=>$fechamegusta,
+                    'ESTADO'=>$estadolike,
+                ]
+            );
+            if($megusta){
+            
+                $this->can = 0;
+                $this->mensaje3="Insertado correctamente";
+                return view('livewire.anuncios-admin');
+    
+            }
+            else{
+                $this->mensaje4="Insertado correctamente";
+            }
+        
+
+    }   
 
 }
