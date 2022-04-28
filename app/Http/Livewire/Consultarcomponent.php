@@ -22,7 +22,7 @@ public $vista2, $vista3;
         ->join('tb_docentes', 'tb_rel.ID_DOCENTE', '=', 'tb_docentes.ID_DOCENTE')
         ->join('tb_grados', 'tb_rel.ID_GR', '=', 'tb_grados.ID_GR')
         ->join('tb_seccions', 'tb_rel.ID_SC', '=', 'tb_seccions.ID_SC')
-        ->select('tb_rel.ID_REL', 'tb_materias.NOMBRE_MATERIA', 'tb_materias.TIPO_DE_MATERIA', 'tb_docentes.NOMBRE_DOCENTE', 'tb_grados.GRADO', 'tb_seccions.SECCION')
+        ->select('tb_rel.ID_REL', 'tb_materias.NOMBRE_MATERIA', 'tb_materias.TIPO_DE_MATERIA', 'tb_materias.ID_MATERIA' , 'tb_docentes.NOMBRE_DOCENTE', 'tb_grados.GRADO', 'tb_seccions.SECCION','tb_docentes.DPI','tb_docentes.TELEFONO','tb_docentes.CORREO')
         ->get();
 
         
@@ -35,7 +35,7 @@ public $vista2, $vista3;
         $grados=DB::select($sql);
         $sql= 'SELECT ID_SC , SECCION FROM tb_seccions';
         $secciones=DB::select($sql);
-        $sql= 'SELECT * FROM tb_docentes';
+        $sql= 'SELECT ID_DOCENTE , NOMBRE_DOCENTE , DPI , TELEFONO , CORREO FROM tb_docentes';
         $info=DB::select($sql);
         
         return view('livewire.consultarcomponent',compact('relaciones', 'materias','grados','secciones','info'));
