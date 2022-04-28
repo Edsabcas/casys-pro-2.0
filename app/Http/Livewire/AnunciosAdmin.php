@@ -156,7 +156,7 @@ class AnunciosAdmin extends Component
         }
     }
 
-    public function megusta($id_like){
+    public function eliminarmegusta($id_like){
         $this->id_megusta=$id_like;
         $this->valorlike+=1;
         $estadolike = 1;
@@ -166,41 +166,11 @@ class AnunciosAdmin extends Component
         $this->contadorlikes+=1;
         $this->cambiolike+=1;
         
-        
-
-        if($this->valorlike==1){
-            $megusta=DB::table('tb_megusta')->insert(
-                [
-                    'CONTENIDO_LIKE'=>$this->valorlike,
-                    'ID_PUBLICACION'=>$this->id_megusta,
-                    'ID_USUARIO'=>$this->idusuario,
-                    'FECHA_LIKE'=>$fechamegusta,
-                    'ESTADO'=>$estadolike,
-                ]
-            );
-            if($megusta){
-            
-                $this->can = 0;
-                $this->mensaje3="Insertado correctamente";
-                return view('livewire.anuncios-admin');
-    
-            }
-            else{
-                $this->mensaje4="Insertado correctamente";
-            }
-        }
-        elseif($this->valorlike==2){
-            $this->valorlike=0;
-            $this->cambiolike=0;
             $loslikes=DB::table('tb_megusta')
 
                ->where('ID_USUARIO', $this->idusuario) 
                ->where('ID_PUBLICACION', $this->id_megusta)
                ->delete();
-        }
-        else{
-
-        } 
 
         
     }
@@ -242,6 +212,36 @@ class AnunciosAdmin extends Component
         
         
     }
-   
+
+    public function insertar_like($id_like){
+        $this->id_megusta=$id_like;
+        $this->valorlike+=1;
+        $estadolike = 1;
+        $fechamegusta = date("Y-m-d H:i:s");
+        $this->idusuario = auth()->user()->id;
+
+    
+            $megusta=DB::table('tb_megusta')->insert(
+                [
+                    'CONTENIDO_LIKE'=>$this->valorlike,
+                    'ID_PUBLICACION'=>$this->id_megusta,
+                    'ID_USUARIO'=>$this->idusuario,
+                    'FECHA_LIKE'=>$fechamegusta,
+                    'ESTADO'=>$estadolike,
+                ]
+            );
+            if($megusta){
+            
+                $this->can = 0;
+                $this->mensaje3="Insertado correctamente";
+                return view('livewire.anuncios-admin');
+    
+            }
+            else{
+                $this->mensaje4="Insertado correctamente";
+            }
+        
+
+    }   
 
 }
