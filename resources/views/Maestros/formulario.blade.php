@@ -49,129 +49,170 @@
 
 <form wire:submit.prevent="">
   @csrf
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Nombre del Maestro:</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" wire:model="nombre_docente">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Nombre:</label>
+          <input type="text" class="form-control" id="exampleInputEmail1" wire:model="nombre_docente">
+        </div>
+      </div>
+        @error('nombre_docente') 
+          <div class="alert alert-danger d-flex align-items-center" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
+              <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+            </svg>
+              <span>Pendiente el ingreso de los nombres del maestro!</span>
+          </div> 
+        @enderror
+
+      <div class="col">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Apellido:</label>
+          <input type="text" class="form-control" id="exampleInputEmail1" wire:model="apellido_docente">
+        </div>
+      </div>
+    
+        @error('apellido_docente') 
+          <div class="alert alert-danger d-flex align-items-center" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
+              <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+            </svg>
+              <span>Pendiente el ingreso de los apellidos del maestro!</span>
+          </div> 
+        @enderror
+
+      <div class="col">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">DPI:</label>
+          <input type="number" class="form-control" id="exampleInputEmail1" wire:model="dpi">
+        </div>
+      </div>
+    </div>
   </div>
-  @error('nombre_docente') 
-    <div class="alert alert-danger d-flex align-items-center" role="alert">
-      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
-        <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-      </svg>
-        <span>Pendiente el ingreso de los nombres del maestro!</span>
-    </div> 
-  @enderror
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Apellido del Maestro:</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" wire:model="apellido_docente">
+        @error('dpi') 
+          <div class="alert alert-danger d-flex align-items-center" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
+              <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+            </svg>
+              <span>Pendiente de ingresar el DPI del maestro!</span>
+          </div> 
+        @enderror
+
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Teléfono:</label>
+          <input type="tel" class="form-control" id="exampleInputEmail1" wire:model="telefono">
+        </div>
+      </div>
+
+        @error('telefono') 
+          <div class="alert alert-danger d-flex align-items-center" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
+              <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+            </svg>
+              <span>Pendiente de ingresar el número de telefono!</span>
+          </div> 
+        @enderror
+
+      <div class="col"> 
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Correo electrónico:</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" wire:model="correo">
+        </div>
+      </div>
+    
+
+        @error('correo') 
+          <div class="alert alert-danger d-flex align-items-center" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
+              <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+            </svg>
+              <span>Pendiente de ingresar el correo del maestro!</span>
+          </div> 
+        @enderror
+
+      <div class="col"> 
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Estado Civil:</label>
+          <select class="form-select" aria-label="Default select example" wire:model="estado_civil">
+            <option selected>Seleccionar</option>
+            <option value="1">Casado</option>
+            <option value="2">Soltero</option>
+            <option value="2">Viudo(a)</option>
+        </select>
+        </div>
+      </div>
+    </div>
   </div>
-  @error('apellido_docente') 
-    <div class="alert alert-danger d-flex align-items-center" role="alert">
-      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
-        <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-      </svg>
-        <span>Pendiente el ingreso de los apellidos del maestro!</span>
-    </div> 
-  @enderror
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">DPI del Maestro:</label>
-    <input type="number" class="form-control" id="exampleInputEmail1" wire:model="dpi">
+
+        @error('estado_civil') 
+          <div class="alert alert-danger d-flex align-items-center" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
+              <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+            </svg>
+              <span>Pendiente de seleccionar el estado civil del maestro!</span>
+          </div> 
+        @enderror
+        
+  <div class="container">
+    <div class="row">
+      <div class="col">  
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Dirección:</label>
+          <input type="text" class="form-control" id="exampleInputEmail1" wire:model="direccion">
+        </div>
+      </div>
+
+        @error('direccion') 
+          <div class="alert alert-danger d-flex align-items-center" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
+              <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+            </svg>
+              <span>Pendiente de ingresar la dirección del maestro!</span>
+          </div> 
+        @enderror
+
+      <div class="col">   
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Estado:</label>
+            <select class="form-select" aria-label="Default select example" wire:model="estado">
+                <option selected>Seleccionar</option>
+                <option value="1">Activo</option>
+                <option value="2">Inactivo</option>
+            </select>
+        </div>
+      </div>
+    </div>
   </div>
-  @error('dpi') 
-    <div class="alert alert-danger d-flex align-items-center" role="alert">
-      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
-        <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-      </svg>
-        <span>Pendiente de ingresar el DPI del maestro!</span>
-    </div> 
-  @enderror
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Teléfono del Maestro:</label>
-    <input type="tel" class="form-control" id="exampleInputEmail1" wire:model="telefono">
-  </div>
-  @error('telefono') 
-    <div class="alert alert-danger d-flex align-items-center" role="alert">
-      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
-        <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-      </svg>
-        <span>Pendiente de ingresar el número de telefono!</span>
-    </div> 
-  @enderror
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Correo electrónico del Maestro:</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" wire:model="correo">
-  </div>
-  @error('correo') 
-    <div class="alert alert-danger d-flex align-items-center" role="alert">
-      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
-        <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-      </svg>
-        <span>Pendiente de ingresar el correo del maestro!</span>
-    </div> 
-  @enderror
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Estado Civil del Maestro:</label>
-    <select class="form-select" aria-label="Default select example" wire:model="estado_civil">
-      <option selected>Seleccionar</option>
-      <option value="1">Casado</option>
-      <option value="2">Soltero</option>
-      <option value="2">Viudo(a)</option>
-  </select>
-  </div>
-  @error('estado_civil') 
-    <div class="alert alert-danger d-flex align-items-center" role="alert">
-      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
-        <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-      </svg>
-        <span>Pendiente de seleccionar el estado civil del maestro!</span>
-    </div> 
-  @enderror
-  
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Dirección:</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" wire:model="direccion">
-  </div>
-  @error('direccion') 
-    <div class="alert alert-danger d-flex align-items-center" role="alert">
-      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
-        <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-      </svg>
-        <span>Pendiente de ingresar la dirección del maestro!</span>
-    </div> 
-  @enderror
-  <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Estado:</label>
-      <select class="form-select" aria-label="Default select example" wire:model="estado">
-          <option selected>Seleccionar</option>
-          <option value="1">Activo</option>
-          <option value="2">Inactivo</option>
-      </select>
-  </div>
-  @error('estado') 
-  <div class="alert alert-danger d-flex align-items-center" role="alert">
-    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
-      <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-    </svg>
-      <span>Pendiente de seleccionar el estado</span>
-  </div> 
-@enderror
-  @if ($edit !=null)
-    <button class="btn btn-info" wire:click="update_docentes()">Editar</button>
-  
-  @else
-        <!-- Button trigger modal -->
-    <button type="button" wire:click='generar_use()' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-      Siguiente
-    </button>
-    @endif
+        
+      @error('estado') 
+        <div class="alert alert-danger d-flex align-items-center" role="alert">
+          <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
+            <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+          </svg>
+            <span>Pendiente de seleccionar el estado</span>
+        </div> 
+      @enderror
+
+      @if ($edit !=null)
+        <button class="btn btn-info" wire:click="update_docentes()">Editar</button>
+      
+      @else
+        <button type="button" wire:click='generar_use()' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+          Siguiente
+        </button>
+      @endif
     <!-- Modal -->
     <div wire:ignore.self class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">

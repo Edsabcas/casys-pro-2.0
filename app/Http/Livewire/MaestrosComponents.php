@@ -89,7 +89,7 @@ class MaestrosComponents extends Component{
 
                 $id_docenteusuario=$docen->ID_USUARIO;
             }
-            $maestro=DB::table('TB_USER_MAESTROS')->insert(
+            $maestro=DB::table('tb_user_maestros')->insert(
                 [
                     'ID_DOCENTE'=>$id_apellidos,
                     'ID_USUARIO'=>$id_docenteusuario,  
@@ -119,7 +119,7 @@ class MaestrosComponents extends Component{
 
     public function edit($id){
         $id_usu=$id;
-        $sql='SELECT * FROM TB_USER_MAESTROS WHERE ID_DOCENTE=?';
+        $sql='SELECT * FROM tb_user_maestros WHERE ID_DOCENTE=?';
         $correousu=DB::select($sql,array($id_usu));
 
         $this->id_usucorreo=0;

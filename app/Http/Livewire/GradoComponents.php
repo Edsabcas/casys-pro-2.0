@@ -95,6 +95,11 @@ class GradoComponents extends Component
             {
                 $this->id_gr=$gra->ID_GR;
                 $this->nombre_gr=$gra->GRADO;
+                $this->seccion_gr=$gra->ID_SC;
+                $this->ministerial_gr=$gra->MINISTERIAL;
+                $this->resolucion_gr=$gra->RESOLUCION;
+                $this->academico_gr=$gra->NIVEL_ACADEMICO;
+                $this->jornada_gr=$gra->JORNADA;
                 $this->estado_gr=$gra->ESTADO;
             }
         }
@@ -105,6 +110,11 @@ class GradoComponents extends Component
     public function update_gr_p(){
         $id_gr=$this->id_gr;
         $nombre_gr=$this->nombre_gr;
+        $seccion_gr=$this->seccion_gr;
+        $ministerial_gr=$this->ministerial_gr;
+        $resolucion_gr=$this->resolucion_gr;
+        $academico_gr=$this->academico_gr; 
+        $jornada_gr=$this->jornada_gr;
         $estado_gr=$this->estado_gr;
 
         $grado=DB::table('tb_grados')
@@ -112,6 +122,12 @@ class GradoComponents extends Component
         ->update(
             [
                 'GRADO'=>$nombre_gr,
+                'ID_SC'=> $seccion_gr,
+                'PRECIO_GRADO'=> $precio_gr=0,
+                'MINISTERIAL'=> $ministerial_gr,
+                'RESOLUCION'=> $resolucion_gr,
+                'NIVEL_ACADEMICO'=> $academico_gr,
+                'JORNADA'=> $jornada_gr,
                 'ESTADO'=>$estado_gr,
             ]
             );
@@ -127,7 +143,7 @@ class GradoComponents extends Component
     }
     public function delete($id){
         $id_gr=$id;
-        $grado=DB::table('tb_grados ')->where('ID_GR','=', $id_gr)->delete();
+        $grado=DB::table('tb_grados')->where('ID_GR','=', $id_gr)->delete();
 
         if($grado){
             $this->op=4;
