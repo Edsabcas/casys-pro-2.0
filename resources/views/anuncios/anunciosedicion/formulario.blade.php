@@ -101,40 +101,10 @@
         
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label" style="font-size:20px">Inserte una descripción para el anuncio</label>
-            
-            
           </div>
-          <script>
-          $('#summernote').summernote({
-            toolbar: [
-              // [groupName, [list of button]]
-              ['style', ['bold', 'italic', 'underline']],
-              ['fontsize', ['fontsize']],
-              ['color', ['color']],
-              ['para', ['ul', 'ol', 'paragraph']]
-
-              
-            ]
-
-            fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Merriweather'],
-            fontNamesIgnoreCheck: ['Merriweather']
-          });
-          </script>
-
-          <!-- tutorial del hindu-->
-    <script src="{{ asset('/ckeditor/ckeditor.js') }}"></script>
-          
+        <div class="mb-3">
           <textarea class="form-control" id="summary-ckeditor" name="summary-ckeditor" rows="4" wire:model="texto_anuncio"></textarea>
-          <script>
-            ClassicEditor
-                    .create( document.querySelector( '#editor' ) )
-                    .then( editor => {
-                            console.log( editor );
-                    } )
-                    .catch( error => {
-                            console.error( error );
-                    } );
-            </script>
+        </div>
           
           <label for="exampleInputPassword1" class="form-label" style="font-size:20px">Inserte un archivo para el anuncio</label>
           <div class="mb-3">
