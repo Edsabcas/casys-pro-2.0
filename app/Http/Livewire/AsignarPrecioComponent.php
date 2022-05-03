@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 class AsignarPrecioComponent extends Component
 {
-    public $id_grado,$id_pro,$monto;
+    public $id_grado,$id_pro,$monto,$mensaje,$mensaje1;
     public function render()
     {
         $sql= 'SELECT * FROM tb_grados where ESTADO=1';
@@ -28,7 +28,6 @@ class AsignarPrecioComponent extends Component
     public function validar(){
         if($this->validate([
             'id_grado' => 'required',
-            'id_nivel' => 'required',
             'id_pro' => 'required',
             'monto' => 'required',
         ])==false){
@@ -39,8 +38,28 @@ class AsignarPrecioComponent extends Component
         }
         else{
 
-            
 
+            DB::beginTransaction();
+            if( DB::table('TB_PRECIOS_GRADOS_INS')->insert(
+                ['ID_GRADO' => $this->id_grado,
+                 'ID_PRO_PAGO' => $this->id_pro,
+                 'MONTO'=> $this->monto,
+                 'FECHA_REGISTRO'=> date('Y-m-d H:i:s'),
+                 'FECHA_ACTULIZACION'=>date('Y-m-d H:i:s'),
+                 
+              ]))
+              {
+                DB::commit();
+                $this->reset();
+                unset($this->mensaje1);
+                $this->mensaje=1;
+              }
+            else{
+                DB::rollback();
+                session(['error' => 'validar']);
+                unset($this->mensaje);
+                $this->mensaje1=1;
+            }
         }
     }
 }

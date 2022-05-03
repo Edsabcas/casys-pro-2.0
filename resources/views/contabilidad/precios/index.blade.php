@@ -42,6 +42,17 @@
             </div>
                 <button class="btn btn-success" wire:click="validar()">Guardar</button>
           </form>
+
+          @if($mensaje!=null and $mensaje==1)
+          <div class="alert alert-success" role="alert">
+           Insertado Correctamente.
+          </div>
+          @endif
+          @if($mensaje1!=null and $mensaje1==1)
+          <div class="alert alert-danger" role="alert">
+           No fue posible insertar.
+          </div>
+          @endif
     </div>
     <br>
     <hr>
@@ -85,9 +96,9 @@
                   </tr>
                 </thead>
                 <tbody>
-                    @foreach($tb_precios_g as $tb_precios)
+                    @foreach($tb_precios_ins as $tb_precios_in)
                   <tr>
-                    <th scope="row">{{$tb_precios->ID_GRADO}}</th>
+                    <th scope="row">{{$tb_precios_in->ID_GRADO}}</th>
                     <td>Mark</td>
                     <td>Otto</td>
                     <td>@mdo</td>
@@ -115,9 +126,9 @@
                   </tr>
                 </thead>
                 <tbody>
-                    @foreach($tb_precios_g as $tb_precios)
+                    @foreach($tb_precios_rec as $tb_precios_re)
                   <tr>
-                    <th scope="row">{{$tb_precios->ID_GRADO}}</th>
+                    <th scope="row">{{$tb_precios_re->ID_GRADO}}</th>
                     <td>Mark</td>
                     <td>Otto</td>
                     <td>@mdo</td>
