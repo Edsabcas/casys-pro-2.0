@@ -17,8 +17,7 @@ class ContenidoComponent extends Component
    public $option1,$option2,$option3,$option4,$vista;
    public $prueba, $op, $mensaje, $mensaje1, $file, $date, $dia2, $message, $file2, $img, $vid, $pdf, $tipo;
 
-   public $titulo, $punteo, $fecha_e, $descripcion, $archivo, $act;
-   public $tema, $unidad, $descripciont;
+   public $titulo, $punteo, $fecha_e, $fecha_ext, $descripcion, $archivo, $act,$tema_a;
 
 
     public function render()
@@ -49,13 +48,13 @@ class ContenidoComponent extends Component
 
         $actividades="";
         if($this->act!=null){
-            $actividades=DB::table('tb_actividades')
-        ->join('tb_materias','tb_actividades.ID_MATERIA','=','tb_materias.ID_MATERIA')
-        ->join('tb_docentes', 'tb_actividades.ID_DOCENTE', '=', 'tb_docentes.ID_DOCENTE')
-        ->join('tb_grados', 'tb_actividades.ID_GR', '=', 'tb_grados.ID_GR')
-        ->join('tb_seccions', 'tb_actividades.ID_SC', '=', 'tb_seccions.ID_SC')
-        ->select('tb_actividades.ID_ACTIVIDADES', 'tb_materias.NOMBRE_MATERIA', 'tb_docentes.NOMBRE_DOCENTE', 'tb_grados.NOMBRE_GRADO', 'tb_seccions.SECCION','tb_materias.ID_MATERIA')
-        ->where('tb_actividades.ID_GR','=',$this->act)
+            $actividades=DB::table('tb_Actividades')
+        ->join('tb_materias','tb_Actividades.ID_MATERIA','=','tb_materias.ID_MATERIA')
+        ->join('tb_docentes', 'tb_Actividades.ID_DOCENTE', '=', 'tb_docentes.ID_DOCENTE')
+        ->join('tb_grados', 'tb_Actividades.ID_GR', '=', 'tb_grados.ID_GR')
+        ->join('tb_seccions', 'tb_Actividades.ID_SC', '=', 'tb_seccions.ID_SC')
+        ->select('tb_Actividades.ID_ACTIVIDADES', 'tb_materias.NOMBRE_MATERIA', 'tb_docentes.NOMBRE_DOCENTE', 'tb_grados.NOMBRE_GRADO', 'tb_seccions.SECCION','tb_materias.ID_MATERIA')
+        ->where('tb_Actividades.ID_GR','=',$this->act)
         ->get();
         }
 
@@ -67,12 +66,8 @@ class ContenidoComponent extends Component
         $secciones=DB::select($sql);
         $sql= 'SELECT * FROM tb_docentes';
         $maestros=DB::select($sql);
-        $sql= 'SELECT * FROM tb_unidades_fijas';
-        $unidadesf=DB::select($sql);
-        
-        
   
-        return view('livewire.contenido-component',compact('materias','grados','secciones','uniones','unidades','maestros','unidadesf'));
+        return view('livewire.contenido-component',compact('materias','grados','secciones','uniones','unidades','maestros'));
     }
     
     public function mostrar_m($id,$nomb,$secc,$num)
@@ -154,43 +149,35 @@ class ContenidoComponent extends Component
         $fecha_e=$this->fecha_e;
         $descripcion=$this->descripcion;
         $archivo=$this->archivo;
+        $fecha_ext=$this->fecha_ext;
 
 
         $actividades=DB::table('tb_actividades')->insert(
             [
                 'NOMBRE_ACTIVIDAD'=>$titulo,
-                'Tnstrucciones'=>$descripcion,
+                'descripcion'=>$descripcion,
                 'archivos'=>$archivo,
                 'punteo'=>$punteo,
                 'fecha_entr'=>$fecha_e,
+                'fecha_extr'=>$fecha_ext,
             ]);
-    }
 
-    public function Subir_Tema(){
-        if($this->validate([
-            'tema' => 'required',
-            'unidad' => 'required',
-            'descripciont' => 'required',
-
-        ])==false){
-            $error="no encontrado";
-            session(['message'=>'no encontrado']);
-            return back()->withErrors(['error' => 'Validar el input vacio']);
-        }
-
-        else{
-        $tema=$this->tema;
-        $unidad=$this->unidad;
-        $descripciont=$this->descripciont;
-
-        $temas=DB::table('tb_temas')->insert(
-            [
-                'NOMBRE_TEMA'=>$tema,
-                'ID_UNIDADES_FIJAS'=>$unidad,
-                'DESCRIPCION'=>$descripciont,
-            ]);
+            if($actividades){
+                unset($this->mensaje);;
+                unset($this->mensaje1);
+                $this->op='addcontenidos';
+                $this->mensaje='Insertado correctamente';
+                }
+                else {
+                unset($this->mensaje);;
+                unset($this->mensaje1);
+                $this->op='addcontenidos';
+                $this->mensaje1='Datos no  insertados correctamente';
+                }
     }
 
 
+
 }
-}
+
+

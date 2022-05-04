@@ -58,6 +58,12 @@
 @elseif($op=='asigprecios')
 @livewire('asignar-precio-component')
 
+@elseif($op=='aconfigperfil')
+@livewire('perfil-component')
+
+@elseif($op=='aconfigusuarios')
+@livewire('lista-de-estudiantes-component')
+
 @endif
 @endif
 @endsection
