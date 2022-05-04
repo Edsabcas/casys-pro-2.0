@@ -25,6 +25,12 @@ use App\Http\Controllers\Conusltarcontroller;
 use App\Http\Controllers\CalendarizacionController;
 use App\Http\Controllers\AsignarPrecioController;
 
+use App\Http\Livewire\PerfilComponent;
+use App\Http\Controllers\PerfilController;
+use App\Http\Livewire\ListaDeEstudiantesComponent;
+use App\Http\Controllers\ListaDeEstudiantesController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -101,8 +107,24 @@ Route::get('/Usuarios', [UsuariosComponent::class, 'index'])
 Route::get('/Informe_sobre_plataforma', [InformeSobrePlataformaComponent::class, 'index'])
 ->middleware('auth')->name('Informe_sobre_plataforma.index');
 
+//cambiar contra de usuario
+Route::get('/c_perfiles', [PerfilComponent::class, 'index'])
+->name('c_perfiles.index');
+
+Route::get('/configperfil', [PerfilController::class, 'configperfil'])
+->name('configperfil.configperfil');
+
+Route::get('/c_pass', [PerfilComponent::class, 'c_pass'])
+->name('c_pass.c_pass');
+
+Route::post('/c_pass', [PerfilComponent::class, 'c_pass'])
+->name('c_pass.c_pass');
+
 
 //Estudiantes
+Route::get('/Lista_de_estudiantes', [ListaDeEstudiantesController::class, 'listarusers'])
+->middleware('auth')->name('Lista_de_estudiantes.listarusers');
+
 Route::get('/Modificar_Estudiantes', [ModificarEstudiantesComponent::class, 'index'])
 ->middleware('auth')->name('Modificar_Estudiantes.index');
 
@@ -111,9 +133,6 @@ Route::get('/Inscribir_estudiantes', [InscribirEstudiantesComponent::class, 'ind
 
 Route::get('/Admisiones', [AdmisionesComponent::class, 'index'])
 ->middleware('auth')->name('Admisiones.index');
-
-Route::get('/Lista_de_estudiantes', [ListaDeEstudiantesComponent::class, 'index'])
-->middleware('auth')->name('Lista_de_estudiantes.index');
 
 Route::get('/Estudiantes_Retirados', [EstudiantesRetiradosComponent::class, 'index'])
 ->middleware('auth')->name('Estudiantes_Retirados.index');
