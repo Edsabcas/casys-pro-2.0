@@ -49,7 +49,8 @@
 @elseif ($op=='addCalendarizacion')
 @livewire('calendarizacion-component')
 
-
+@elseif($op=='asigprecios')
+@livewire('asignar-precio-component')
 
 @endif
 @endif

@@ -23,6 +23,8 @@ use App\Http\Controllers\Relaciones;
 use App\Http\Controllers\UnionController;
 use App\Http\Controllers\Conusltarcontroller;
 use App\Http\Controllers\CalendarizacionController;
+use App\Http\Controllers\AsignarPrecioController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -358,3 +360,8 @@ Route::post('/list_calendarizacion',[CalendarizacionController::class,'list_cale
 Route::post('/update_calendarizacion',[CalendarizacionController::class, 'update_calendarizacion']);
 
 Route::get('/Primer_Unidad',[UnidadesControlador::class,'Primer_Unidad']);
+
+
+
+//Rutas Pre-Inscribir_estudiantes
+Route::get('/Precios', [AsignarPrecioController::class, 'precios'])->middleware('auth');
