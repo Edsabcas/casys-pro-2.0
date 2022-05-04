@@ -146,7 +146,7 @@
             <option selected>Seleccionar</option>
             <option value="1">Casado</option>
             <option value="2">Soltero</option>
-            <option value="2">Viudo(a)</option>
+            <option value="3">Viudo(a)</option>
         </select>
         </div>
       </div>

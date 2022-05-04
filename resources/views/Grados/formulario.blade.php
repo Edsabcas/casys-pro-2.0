@@ -67,6 +67,20 @@
             <div class="modal-header">
               <h5 class="modal-title" id="staticBackdropLabel">Creación de Sección</h5>
             </div>
+            @isset($mensaje5)
+  @if ($mensaje5!=null)
+    <div class="alert alert-success" role="alert">
+      Agregado Correctamente!
+    </div>
+  @endif
+@endisset
+@isset($mensaje6)
+  @if($mensaje6!=null)
+    <div class="alert alert-danger" role="alert">
+       No se logro insetar sección
+    </div>
+  @endif
+@endisset
             <div class="modal-body">
                 <div class="mb-3">
                     <label for="floatingInput">Ingresar Sección:</label>
