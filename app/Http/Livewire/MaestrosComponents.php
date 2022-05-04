@@ -53,19 +53,31 @@ class MaestrosComponents extends Component{
         $correoed=$this->correoed;
         $pass=bcrypt($this->pass);
 
-        $usuarios=DB::table('tb_usuarios')->insert(
+        $id=0;
+        $sql='SELECT ISNULL(MAX(id),0)+1 FROM users';
+            $valor=DB::select($sql);
+
+            foreach($volor as $val){
+
+                $id=$val->id;
+            }  
+
+
+        $usuarios=DB::table('users')->insert(
             [
-                'USUARIO'=>$usuario,
-                'CORREO'=>$correoed,
-                'CONTRASEÑA'=>$pass,              
+                'id'=>$id,
+                'name'=>$usuario,
+                'usuario'=>$usuario,
+                'email'=>$correoed,
+                'password'=>$pass,              
             ]);
-            $sql='SELECT * FROM tb_usuarios WHERE CORREO=?';
+            $sql='SELECT * FROM users WHERE email=?';
             $docenteuser=DB::select($sql,array($correoed));
 
             $id_docenteusuario=0;
             foreach($docenteuser as $docen){
 
-                $id_docenteusuario=$docen->ID_USUARIO;
+                $id_docenteusuario=$docen->id;
             }
 
 
@@ -79,18 +91,19 @@ class MaestrosComponents extends Component{
                 'ESTADO_CIVIL'=>$estado_c,
                 'DIRECCION'=>$direccion,
                 'ESTADO'=>$estado,
-
+                'ID_USER'=>$docenteuser,
             ]);
 
 
-       
-            $maestro=DB::table('tb_user_maestros')->insert(
+            $id_rol=3;
+
+            $rolusuario=DB::table('rol')->insert(
                 [
-                    'ID_DOCENTE'=>$id_apellidos,
-                    'ID_USUARIO'=>$id_docenteusuario,  
+                    'ID_ROL'=>$id_rol,
+                    'ID_USER'=>$docenteuser,  
                 ]);
 
-            if($maestro && $usuario){
+            if($maestro && $usuario && $rolusuario){
                 $this->reset();
                 unset($this->mensaje1);
                 $op=4;
@@ -124,7 +137,7 @@ class MaestrosComponents extends Component{
 
         }
 
-        $id_=$id;
+        $ID_USER=$ID_USER ;
         $sql='SELECT * FROM tb_usuarios WHERE ID_USUARIO=?';
         $correousu=DB::select($sql,array($this->id_usucorreo));
 
@@ -138,7 +151,7 @@ class MaestrosComponents extends Component{
         }
 
 
-        $id_docente=$id;
+        $id_docente=$ID_USER;
         $sql='SELECT * FROM tb_docentes WHERE ID_DOCENTE=?';
         $maestro=DB::select($sql,array($id_docente));
         if($maestro !=null){

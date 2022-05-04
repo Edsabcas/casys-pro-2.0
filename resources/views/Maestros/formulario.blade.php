@@ -167,8 +167,8 @@
     <div class="row">
       <div class="col">  
         <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Dirección:</label>
-          <input type="text" class="form-control" id="exampleInputEmail1" wire:model="direccion">
+          <label for="exampleInputEmail45" class="form-label">Dirección:</label>
+          <input type="text" class="form-control" id="exampleInputEmail45" wire:model="direccion">
         </div>
       </div>
 
@@ -204,6 +204,8 @@
             <span>Pendiente de seleccionar el estado</span>
         </div> 
       @enderror
+
+      
 
       @if ($edit !=null)
         <button class="btn btn-info" wire:click="update_docentes()">Editar</button>
