@@ -154,7 +154,7 @@ Route::get('/Anuncios_Guardados', [AnunciosGuardadosComponent::class, 'index'])
 Route::get('/Maestros', [MaestrosComponent::class, 'index'])
 ->middleware('auth')->name('Maestros.index');
 
-Route::get('/Estudiantes', [EstudiantesComponent::class, 'index'])
+Route::get('/Estudiantes', [AsignacionesEsController::class, 'index'])
 ->middleware('auth')->name('Estudiantes.index');
 
 //Academico
