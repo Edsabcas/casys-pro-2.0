@@ -18,6 +18,7 @@ class ContenidoComponent extends Component
    public $prueba, $op, $mensaje, $mensaje1, $file, $date, $dia2, $message, $file2, $img, $vid, $pdf, $tipo;
 
    public $titulo, $punteo, $fecha_e, $descripcion, $archivo, $act;
+   public $tema, $unidad, $descripciont;
 
 
     public function render()
@@ -66,8 +67,10 @@ class ContenidoComponent extends Component
         $secciones=DB::select($sql);
         $sql= 'SELECT * FROM tb_docentes';
         $maestros=DB::select($sql);
+        $sql= 'SELECT * FROM tb_unidades_fijas';
+        $unidadesf=DB::select($sql);
   
-        return view('livewire.contenido-component',compact('materias','grados','secciones','uniones','unidades','maestros'));
+        return view('livewire.contenido-component',compact('materias','grados','secciones','uniones','unidades','maestros','unidadesf'));
     }
     
     public function mostrar_m($id,$nomb,$secc,$num)
@@ -161,6 +164,31 @@ class ContenidoComponent extends Component
             ]);
     }
 
+    public function Subir_Tema(){
+        if($this->validate([
+            'tema' => 'required',
+            'unidad' => 'required',
+            'descripciont' => 'required',
+
+        ])==false){
+            $error="no encontrado";
+            session(['message'=>'no encontrado']);
+            return back()->withErrors(['error' => 'Validar el input vacio']);
+        }
+
+        else{
+        $tema=$this->tema;
+        $unidad=$this->unidad;
+        $descripciont=$this->descripciont;
+
+        $temas=DB::table('tb_temas')->insert(
+            [
+                'NOMBRE_TEMA'=>$tema,
+                'ID_UNIDADES_FIJAS'=>$unidad,
+                'DESCRIPCION'=>$descripciont,
+            ]);
+    }
 
 
+}
 }

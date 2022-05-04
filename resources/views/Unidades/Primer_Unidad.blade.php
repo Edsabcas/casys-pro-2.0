@@ -4,7 +4,8 @@
           <h5 class="card-title">Materia:{{$NOMBRE_MATERIA}}</h5>
           <p class="card-text">Maestro: {{$ID_DOCENTE}}</p>
           <td>
-            <button class="btn btn-success" wire:click=''> Temas </button>
+            @include('Unidades.modaltemas')
+            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id=tema> Temas </button>
     
               @include('Unidades.modal_actividades')
               <button class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#staticBackdrop"> Actividades </button>
