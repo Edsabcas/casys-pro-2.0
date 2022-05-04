@@ -8,7 +8,7 @@ use App\Http\Livewire\Request;
 
 class GradoComponents extends Component
 {
-    public $nombre_gr,$estado_gr,$op,$mensaje,$mensaje1,$edit,$mensaje3,$mensaje4,$mensajeeliminar,$mensajeeliminar1;
+    public $nombre_gr,$estado_gr,$op,$mensaje,$mensaje1,$edit,$mensaje3,$mensaje4,$mensaje5,$mensaje6,$mensajeeliminar,$mensajeeliminar1;
     public $seccion_gr,$precio_gr,$ministerial_gr,$resolucion_gr,$jornada_gr,$academico_gr;
     public $estado_sec,$nombre_sec;
     public function render()
@@ -156,6 +156,18 @@ class GradoComponents extends Component
     }
     public function guardar_seccion(){
 
+        if($this->validate([
+            'nombre_sec' => 'required',
+            'estado_sec' => 'required',
+
+        ])==false)
+        {
+            $mensaje="no encontrado";
+            session(['message' => 'no encontrado']);
+            return back()->withErrors(['mensaje' =>'Validar el input vacio']);
+        }
+        else
+        {
         $nombre_sec=$this->nombre_sec;
         $estado_sec=$this->estado_sec;
         $grados=DB::table('tb_seccions')->insert(
@@ -167,10 +179,13 @@ class GradoComponents extends Component
             if($grados){
                 $this->reset();
                 unset($this->mensaje);
+                $this->mensaje5='Insertado correctamente';
             }
             else{
                 unset($this->mensaje1);
+                $this->mensaje6='No se logro insertar correctamente';
             }
+        }
         }
 }
 
