@@ -48,13 +48,13 @@ class ContenidoComponent extends Component
 
         $actividades="";
         if($this->act!=null){
-            $actividades=DB::table('tb_Actividades')
-        ->join('tb_materias','tb_Actividades.ID_MATERIA','=','tb_materias.ID_MATERIA')
-        ->join('tb_docentes', 'tb_Actividades.ID_DOCENTE', '=', 'tb_docentes.ID_DOCENTE')
-        ->join('tb_grados', 'tb_Actividades.ID_GR', '=', 'tb_grados.ID_GR')
-        ->join('tb_seccions', 'tb_Actividades.ID_SC', '=', 'tb_seccions.ID_SC')
-        ->select('tb_Actividades.ID_ACTIVIDADES', 'tb_materias.NOMBRE_MATERIA', 'tb_docentes.NOMBRE_DOCENTE', 'tb_grados.NOMBRE_GRADO', 'tb_seccions.SECCION','tb_materias.ID_MATERIA')
-        ->where('tb_Actividades.ID_GR','=',$this->act)
+            $actividades=DB::table('tb_actividades')
+        ->join('tb_materias','tb_actividades.ID_MATERIA','=','tb_materias.ID_MATERIA')
+        ->join('tb_docentes', 'tb_actividades.ID_DOCENTE', '=', 'tb_docentes.ID_DOCENTE')
+        ->join('tb_grados', 'tb_actividades.ID_GR', '=', 'tb_grados.ID_GR')
+        ->join('tb_seccions', 'tb_actividades.ID_SC', '=', 'tb_seccions.ID_SC')
+        ->select('tb_actividades.ID_ACTIVIDADES', 'tb_materias.NOMBRE_MATERIA', 'tb_docentes.NOMBRE_DOCENTE', 'tb_grados.NOMBRE_GRADO', 'tb_seccions.SECCION','tb_materias.ID_MATERIA')
+        ->where('tb_actividades.ID_GR','=',$this->act)
         ->get();
         }
 
