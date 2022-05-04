@@ -12,10 +12,8 @@
         @foreach($uniones as $union)
         <tr>
           <th>{{$union->NOMBRE_MATERIA}}</th> 
-      <th>
-      
-      </th>
-</tr>
+          <th></th>
+        </tr>
 @endforeach
       </tbody>
     </table>
