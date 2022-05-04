@@ -51,7 +51,7 @@ class MaestrosComponents extends Component{
 
         $usuario=$this->usuario;
         $correoed=$this->correoed;
-        $pass=$this->pass;
+        $pass=bcrypt($this->pass);
 
         $usuarios=DB::table('tb_usuarios')->insert(
             [
@@ -59,6 +59,15 @@ class MaestrosComponents extends Component{
                 'CORREO'=>$correoed,
                 'CONTRASEÑA'=>$pass,              
             ]);
+            $sql='SELECT * FROM tb_usuarios WHERE CORREO=?';
+            $docenteuser=DB::select($sql,array($correoed));
+
+            $id_docenteusuario=0;
+            foreach($docenteuser as $docen){
+
+                $id_docenteusuario=$docen->ID_USUARIO;
+            }
+
 
         $maestro=DB::table('tb_docentes')->insert(
             [
@@ -70,25 +79,11 @@ class MaestrosComponents extends Component{
                 'ESTADO_CIVIL'=>$estado_c,
                 'DIRECCION'=>$direccion,
                 'ESTADO'=>$estado,
+
             ]);
-            $sql='SELECT * FROM tb_docentes WHERE DPI=?';
-            $userdocente=DB::select($sql,array($dpi));
 
-            $id_apellidos=0;
-            foreach($userdocente as $userd){
 
-                $id_apellidos=$userd->ID_DOCENTE;
-
-            }
-
-            $sql='SELECT * FROM tb_usuarios WHERE CORREO=?';
-            $docenteuser=DB::select($sql,array($correoed));
-
-            $id_docenteusuario=0;
-            foreach($docenteuser as $docen){
-
-                $id_docenteusuario=$docen->ID_USUARIO;
-            }
+       
             $maestro=DB::table('tb_user_maestros')->insert(
                 [
                     'ID_DOCENTE'=>$id_apellidos,
@@ -191,6 +186,8 @@ class MaestrosComponents extends Component{
                 'ESTADO'=>$estado,
             ]
         );
+
+
         
         if($mae){
             $this->op=4;
@@ -235,7 +232,7 @@ class MaestrosComponents extends Component{
         
     }
     public function editar($id){
-        $id_usuario=$id;
+        $id_usuario=$id; 
         $sql='SELECT * FROM tb_usuarios WHERE ID_USUARIO=?';
         $usuarios=DB::select($sql,array($id_usuario));
         if($usuarios !=null){
