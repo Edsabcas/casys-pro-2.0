@@ -67,7 +67,7 @@ class ContenidoComponent extends Component
         $sql= 'SELECT * FROM tb_docentes';
         $maestros=DB::select($sql);
   
-        return view('livewire.contenido-component',compact('materias','grados','secciones','uniones','unidades','maestros'));
+        return view('livewire.contenido-component',compact('materias','grados','secciones','uniones','unidades','maestros','actividades'));
     }
     
     public function mostrar_m($id,$nomb,$secc,$num)
