@@ -264,10 +264,11 @@ class MaestrosComponents extends Component{
             $this->op=4;
             $this->mensaje3='Editado Correctamente';
         }
-        else{
+        else{ 
             $this->op=4;
             $this->mensaje4='No fue posible editar correctamente';
         }
     }
     
 }
+ 

@@ -22,6 +22,12 @@
 @elseif ($op=='addmaestros')
 @livewire('maestros-components')
 
+@elseif ($op=='asignacion')
+@livewire('asignaciones-components')   
+
+@elseif ($op=='asigestudiantes')
+@livewire('asignacioneses-components')
+
 @elseif ($op=='addmaterias')
 @livewire('materiacomponent')  
 
