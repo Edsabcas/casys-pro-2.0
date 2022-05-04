@@ -1,5 +1,5 @@
 
-  <div wire:ignore.self class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="5" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div wire:ignore.self class="modal fade" id="tema" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="5" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header">
@@ -31,7 +31,7 @@
     
                 <div class="row g-3">
                   <div class="col-sm-3">
-                    <label for="exampleInputEmail1" class="form-label " style="font-size:20px">Titulo del tema</label>
+                    <label for="exampleInputEmail1" class="form-label " style="font-size:20px">Titulo del Tema</label>
                     <input type="text" class="form-control" wire:model='tema'  style="border:2px solid rgba(86, 95, 76, 0.466);" placeholder="Titulo de la actividad" aria-label="Titulo de la actividad">
                     @error('tema') 
                     <div class="alert alert-danger d-flex align-items-center" role="alert">
