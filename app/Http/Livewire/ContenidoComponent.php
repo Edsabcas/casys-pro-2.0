@@ -18,6 +18,7 @@ class ContenidoComponent extends Component
    public $prueba, $op, $mensaje, $mensaje1, $file, $date, $dia2, $message, $file2, $img, $vid, $pdf, $tipo;
 
    public $titulo, $punteo, $fecha_e, $descripcion, $archivo, $act;
+   public $tema, $unidad, $descripciont;
 
 
     public function render()
@@ -48,13 +49,13 @@ class ContenidoComponent extends Component
 
         $actividades="";
         if($this->act!=null){
-            $actividades=DB::table('tb_Actividades')
-        ->join('tb_materias','tb_Actividades.ID_MATERIA','=','tb_materias.ID_MATERIA')
-        ->join('tb_docentes', 'tb_Actividades.ID_DOCENTE', '=', 'tb_docentes.ID_DOCENTE')
-        ->join('tb_grados', 'tb_Actividades.ID_GR', '=', 'tb_grados.ID_GR')
-        ->join('tb_seccions', 'tb_Actividades.ID_SC', '=', 'tb_seccions.ID_SC')
-        ->select('tb_Actividades.ID_ACTIVIDADES', 'tb_materias.NOMBRE_MATERIA', 'tb_docentes.NOMBRE_DOCENTE', 'tb_grados.NOMBRE_GRADO', 'tb_seccions.SECCION','tb_materias.ID_MATERIA')
-        ->where('tb_Actividades.ID_GR','=',$this->act)
+            $actividades=DB::table('tb_actividades')
+        ->join('tb_materias','tb_actividades.ID_MATERIA','=','tb_materias.ID_MATERIA')
+        ->join('tb_docentes', 'tb_actividades.ID_DOCENTE', '=', 'tb_docentes.ID_DOCENTE')
+        ->join('tb_grados', 'tb_actividades.ID_GR', '=', 'tb_grados.ID_GR')
+        ->join('tb_seccions', 'tb_actividades.ID_SC', '=', 'tb_seccions.ID_SC')
+        ->select('tb_actividades.ID_ACTIVIDADES', 'tb_materias.NOMBRE_MATERIA', 'tb_docentes.NOMBRE_DOCENTE', 'tb_grados.NOMBRE_GRADO', 'tb_seccions.SECCION','tb_materias.ID_MATERIA')
+        ->where('tb_actividades.ID_GR','=',$this->act)
         ->get();
         }
 
@@ -66,8 +67,12 @@ class ContenidoComponent extends Component
         $secciones=DB::select($sql);
         $sql= 'SELECT * FROM tb_docentes';
         $maestros=DB::select($sql);
+        $sql= 'SELECT * FROM tb_unidades_fijas';
+        $unidadesf=DB::select($sql);
+        
+        
   
-        return view('livewire.contenido-component',compact('materias','grados','secciones','uniones','unidades','maestros'));
+        return view('livewire.contenido-component',compact('materias','grados','secciones','uniones','unidades','maestros','unidadesf'));
     }
     
     public function mostrar_m($id,$nomb,$secc,$num)
@@ -161,6 +166,31 @@ class ContenidoComponent extends Component
             ]);
     }
 
+    public function Subir_Tema(){
+        if($this->validate([
+            'tema' => 'required',
+            'unidad' => 'required',
+            'descripciont' => 'required',
+
+        ])==false){
+            $error="no encontrado";
+            session(['message'=>'no encontrado']);
+            return back()->withErrors(['error' => 'Validar el input vacio']);
+        }
+
+        else{
+        $tema=$this->tema;
+        $unidad=$this->unidad;
+        $descripciont=$this->descripciont;
+
+        $temas=DB::table('tb_temas')->insert(
+            [
+                'NOMBRE_TEMA'=>$tema,
+                'ID_UNIDADES_FIJAS'=>$unidad,
+                'DESCRIPCION'=>$descripciont,
+            ]);
+    }
 
 
+}
 }
