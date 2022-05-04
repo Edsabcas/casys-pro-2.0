@@ -1,5 +1,5 @@
 <div class="card ">
-  <h6>Unidad1</h6>
+  <h6>Unidad 1</h6>
       <div class="card-body  ">
         <h5 class="card-title">Materia:{{$NOMBRE_MATERIA}}</h5>
         <p class="card-text">Maestro: {{$ID_DOCENTE}}</p>
