@@ -32,15 +32,15 @@
                 <div class="row g-3">
                   <div class="col-sm-3">
                     <label for="exampleInputEmail1" class="form-label " style="font-size:20px">Titulo de la actividad</label>
-                    <input type="text" class="form-control"  style="border:2px solid rgba(86, 95, 76, 0.466);" placeholder="Titulo de la actividad" aria-label="Titulo de la actividad">
+                    <input type="text" class="form-control" wire:model="titulo"  style="border:2px solid rgba(86, 95, 76, 0.466);" placeholder="Titulo de la actividad" aria-label="Titulo de la actividad">
                   </div>
                   <div class="col-sm-3">
                     <label for="exampleInputEmail1" class="form-label " style="font-size:20px">Punteo de la actividad</label>
-                    <input type="text" class="form-control"  style="border:2px solid rgba(86, 95, 76, 0.466);" placeholder="Punteo de la actividad" aria-label="Punteo de la actividad">
+                    <input type="text" class="form-control" wire:model="punteo"  style="border:2px solid rgba(86, 95, 76, 0.466);" placeholder="Punteo de la actividad" aria-label="Punteo de la actividad">
                   </div>
                   <div class="col-sm-4">
                     <label for="exampleInputEmail1" class="form-label " style="font-size:20px">Fecha de entrega</label>
-                    <input type="date" class="form-control" style="border:2px solid rgba(86, 95, 76, 0.466);" placeholder="Punteo de la actividad" aria-label="Fecha de entrega">
+                    <input type="date" class="form-control" wire:model="fecha_e"  style="border:2px solid rgba(86, 95, 76, 0.466);" placeholder="Punteo de la actividad" aria-label="Fecha de entrega">
                   </div>
     
                 </div>
@@ -56,26 +56,12 @@
     
                     <div class="col-sm-10">
                       <label for="exampleFormControlTextarea1" class="form-label" style="font-size:20px">Descripcion Actividad</label>
-                      <textarea class="form-control" style="border:2px solid rgba(86, 95, 76, 0.466);" id="exampleFormControlTextarea1" rows="3"></textarea>
+                      <textarea class="form-control" wire:model="descripcion"  style="border:2px solid rgba(128, 156, 96, 0.466);" id="exampleFormControlTextarea1" rows="3"></textarea>
                     </div>
                     <div class="col-sm-10">
                       <label for="exampleInputPassword1" class="form-label " style="font-size:20px">Adjunte un archivo</label>
-                      <input type="file" class="form-control " style="border:2px solid rgba(86, 95, 76, 0.466);" id="exampleInputPassword1" wire:model="archivo_actividad">
-                      
-                      @if($tipo==1)
-                      <h3 class="form-label text-white">Visualización de Imagen</h3>
-                      <img src="{{$archivo_actividad->temporaryURL()}}" height="200" weight="200"  alt="...">
-                      @endif
-                      @if($tipo==2)
-                      <h3 class="form-label text-white">Visualización de Video</h3>
-                      <video height="500" weight="500" class="card-img-top" alt="..." controls>
-                        <source src="{{$archivo_actividad->temporaryURL()}}"  type="video/mp4">
-                      </video>
-                      @endif
-                      @if($tipo==3)
-                      <h3 class="form-label text-white">Visualización de PDF</h3>
-                        <iframe width="400" height="400" src="/imagen/temporalpdf/{{$img}}" frameborder="0"></iframe>
-                      @endif
+                      <input type="file" class="form-control " wire:model="archivo"  style="border:2px solid rgba(86, 95, 76, 0.466);" id="exampleInputPassword1" wire:model="archivo">
+            
                     </div>
                     <br>
           </form>
@@ -85,7 +71,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          <button type="submit" class="btn btn-primary" wire:click="()">Publicar</button>
+          <button type="submit" class="btn btn-primary" wire:click="Subir_Act()" data-bs-dismiss="modal">Publicar</button>
           @isset($mensaje)
           @if($mensaje!=null)
           <a href="/" class="btn btn-primary ">Ver Publicación</a>
