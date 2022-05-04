@@ -33,34 +33,36 @@
         <label for="exampleInputPassword1" class="form-label" style="font-size:20px">Coloque el público para el anuncio</label>
         <select class="form-select" aria-label="Default select example" wire:model="publico_anuncio">
           <option selected >Elige el público para que vea el anuncio</option>
-          <option value="1">Alumnos y Padres</option>
-          <option value="2">Maestros</option>
+          @isset($rol)
+          @foreach($rol as $role)
+          
+          @if($role->ID_ROL==3)
+          <option value="{{$role->ID_ROL}}">{{$role->DESCRIPCION}}</option>
+          @elseif($role->ID_ROL==4)
+          <option value="{{$role->ID_ROL}}">{{$role->DESCRIPCION}}</option>
+          @elseif($role->ID_ROL==5)
+          <option value="{{$role->ID_ROL}}">{{$role->DESCRIPCION}}</option>
+          @endif
+          @endforeach
+          @endisset
         </select>
       </div>
-      @if($publico_anuncio==1)
+      @if($publico_anuncio==4 or $publico_anuncio==5)
       <div class="mb-3">
         <label for="exampleInputPassword1" class="form-label" style="font-size:20px">Coloque el grado para el anuncio</label>
         <select class="form-select" aria-label="Default select example" wire:model="grado_anuncio">
           <option selected >Elige el grado para que vea el anuncio</option>
-          <option value="1">Pre-Kinder</option>
-          <option value="2">Kinder</option>
-          <option value="3">Preparatoria</option>
-          <option value="4">Primero</option>
-          <option value="5">Segunda</option>
-          <option value="6">Tercero</option>
-          <option value="7">Cuarto</option>
-          <option value="8">Quinto</option>
-          <option value="9">Sexto</option>
-          <option value="10">Séptimo</option>
-          <option value="11">Octavo</option>
-          <option value="12">Noveno</option>
-          <option value="13">Décimo</option>
-          <option value="14">Onceavo</option>
+          <option value="0">Todos</option>
+          @isset($grado_objetivo)
+          @foreach($grado_objetivo as $g_objetivo)
+          <option value="{{$g_objetivo->ID_GR}}">{{$g_objetivo->GRADO}}</option>
+          @endforeach
+          @endisset
 
         </select>
       </div>
       @endif
-       @if($publico_anuncio==2)
+       @if($publico_anuncio==3)
        <div class="mb-3">
         <label for="exampleInputPassword1" class="form-label" style="font-size:20px">Desea escojer un idioma en especifíco de maestros?</label>
         <select class="form-select" aria-label="Default select example" wire:model="idioma_maestro">
@@ -75,20 +77,11 @@
         <select class="form-select" aria-label="Default select example" wire:model="grado_anuncio">
           <option selected >Elige el grado para que vea el anuncio</option>
           <option value="0">Todos</option>
-          <option value="1">Pre-Kinder</option>
-          <option value="2">Kinder</option>
-          <option value="3">Preparatoria</option>
-          <option value="4">Primero</option>
-          <option value="5">Segunda</option>
-          <option value="6">Tercero</option>
-          <option value="7">Cuarto</option>
-          <option value="8">Quinto</option>
-          <option value="9">Sexto</option>
-          <option value="10">Séptimo</option>
-          <option value="11">Octavo</option>
-          <option value="12">Noveno</option>
-          <option value="13">Décimo</option>
-          <option value="14">Onceavo</option>
+          @isset($grado_objetivo)
+          @foreach($grado_objetivo as $g_objetivo)
+          <option value="{{$g_objetivo->ID_GR}}">{{$g_objetivo->GRADO}}</option>
+          @endforeach
+          @endisset
 
         </select>
       

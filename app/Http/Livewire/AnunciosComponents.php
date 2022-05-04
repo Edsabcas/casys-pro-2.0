@@ -13,8 +13,8 @@ class AnunciosComponents extends Component
     
     public $texto_anuncio, $archivo_anuncio, $calidad_anuncio;
     public $prueba, $op, $mensaje, $mensaje1, $file, $date, $dia2, $message, $file2, $img, $vid, $pdf, $tipo;
-    public $tanuncio, $publico_anuncio, $op_grado, $grado_anuncio, $idioma_maestro, $tipoanuncio;
-
+    public $tanuncio, $publico_anuncio, $op_grado, $grado_anuncio, $idioma_maestro, $tipoanuncio, $grado_objetivo;
+    public $rol;
     
 
     public function render()
@@ -37,6 +37,10 @@ class AnunciosComponents extends Component
 
         }
         //$this->tipoanuncio = 0; no poner variable seteada en 0 acá.
+        $sql="SELECT * FROM tb_grados";
+        $this->grado_objetivo=DB::select($sql);
+        $sql="SELECT * FROM rol";
+        $this->rol=DB::select($sql);
         
         return view('livewire.anuncios-components');
     }
