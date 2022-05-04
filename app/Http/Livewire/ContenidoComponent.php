@@ -151,7 +151,7 @@ class ContenidoComponent extends Component
         $archivo=$this->archivo;
 
 
-        $actividades=DB::table('TB_ACTIVIDADES')->insert(
+        $actividades=DB::table('tb_actividades')->insert(
             [
                 'NOMBRE_ACTIVIDAD'=>$titulo,
                 'Tnstrucciones'=>$descripcion,
