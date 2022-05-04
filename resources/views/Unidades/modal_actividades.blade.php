@@ -52,7 +52,11 @@
                   <label for="exampleInputEmail1" class="form-label" style="font-size:20px">seleccione un tema</label>
                   <select class="form-select form-select-sm" aria-label=".form-select-sm example"  style="border:2px solid rgba(86, 95, 76, 0.466);">
                     <option selected>seleccione un tema</option>
-
+                    @isset($unidadesf)
+                    @foreach ($unidadesf as $unidad)
+                        <option value="{{$unidad->ID_UNIDADES_FIJAS}}">{{$unidad->NOMBRE_DE_UNIDAD}}</option>
+                    @endforeach
+                    @endisset
                   </select>
                 </div>
                 <br>
