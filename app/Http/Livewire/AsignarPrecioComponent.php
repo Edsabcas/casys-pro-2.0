@@ -106,16 +106,10 @@ class AsignarPrecioComponent extends Component
 
         }
         else{
-            $sql= 'SELECT * FROM TB_PRECIOS_GRADOS_INS where ID_GRADO=? and ID_PRO_PAGO=?';
-            $valprp=DB::select($sql,array($this->id_grado,$this->id_pro));
-    
-            if($valprp!=null){
-                $this->mensaje=4;
-            }
-            else{
+
                 DB::beginTransaction();
                 if(DB::table('TB_PRECIOS_GRADOS_INS')
-                ->where('ID_PRO_PAGO', $this->id_pre_gra)
+                ->where('ID_PRE_GRA_INS', $this->id_pre_gra)
                 ->update(
                     [
                         'ID_GRADO' => $this->id_grado,
@@ -138,7 +132,6 @@ class AsignarPrecioComponent extends Component
                     $this->mensaje1=3;
                 }
 
-            }
         }
     }
 }
