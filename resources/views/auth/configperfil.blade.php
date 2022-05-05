@@ -21,7 +21,7 @@
                         </td>
                         <td>
                           <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#perfilmodal">
-                            Editar
+                            Contraseña
                           </button>   
                         </td>
                     </tr>  
@@ -33,7 +33,7 @@
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="perfilmodalLabel">Realizar cambios en el usuario</h5>
+                      <h5 class="modal-title" id="perfilmodalLabel">Cambio de contraseña</h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">

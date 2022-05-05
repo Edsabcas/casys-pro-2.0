@@ -280,47 +280,44 @@ class MaestrosComponents extends Component{
             $this->mensaje4='No fue posible editar correctamente';
         }
     }
-    public function maestros_pass(){
 
+public function c_pass(){
+    
         if($this->validate([
-        'current_password' => 'required',
-        'new_password' => 'required',
-        'new_password_confirmation' => 'required',
-        
+            'current_password' => 'required',
+            'new_password' => 'required',
+            'new_password_confirmation' => 'required',
         ])==false){
-        return back()->withErrors(['advertencia'=>'validar el input vacío']);
-        
-        
-        
-        
+            return back()->withErrors(['advertencia'=>'validar el input vacío']);
         }
         else{
-        if(Hash::check($this->current_password, auth()->user()->pass)){
-        if($this->new_password == $this->new_password_confirmation){
-        $perfilmaestro=DB::table('users')
-        ->where('id',auth()->user()->id)
-        ->update(
-        [
-        'password'=>bcrypt($this->new_password),
-        ]
+            if(Hash::check($this->current_password, auth()->user()->password)){ 
+                if($this->new_password == $this->new_password_confirmation){
+                    $perfil=DB::table('users')
+                    ->where('id',auth()->user()->id)
+                     ->update(
+            [
+                'password'=>bcrypt($this->new_password),
+            ]
         );
-        if ($perfilmaestro){
-        $this->mensaje0='Se cambio correctamente';
+        if ($perfil){
+            $this->mensaje0='se cambio de manera correcta';
         }
         else {
-        $this->mensaje4='no se pudo cambiar correctamente';
+            $this->mensaje4='no se cambio de manera correcta';
         }
+                }
+                else{
+                    $this->mensaje='no coinsiden las contraseñas favor validar';
+                }       
+            }
+            else{
+                $this->mensaje1='la contraseña ingresada actual no es la correcta';
+            }
         }
-        else{
-        $this->mensaje='no coinciden las contraseñas, volver a validar';
-        }
-        }
-        else{
-        $this->mensaje1='la contraseña ingresada recientemente no es la correcta';
-        }
-        }
-        
-        }
+    }
+
+
     
 }
  
