@@ -21,7 +21,7 @@
           <option selected>Seleccionar:</option>
           @isset($estudiantes)
             @foreach ($estudiantes as $estudiante)
-              <option value="{{$estudiante->ID_ESTUDIANTE}}">{{$estudiante->NOMBRE_ESTUDIANTE}}  {{$estudiante->APELLIDOS_ESTUDIANTE}} </option>
+              <option value="{{$estudiante->id}}">{{$estudiante->TB_INFO_NOMBRE}}  {{$estudiante->TB_INFO_APELLIDO}} </option>
             @endforeach              
           @endisset
         </select>

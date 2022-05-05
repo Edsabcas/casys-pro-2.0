@@ -28,8 +28,8 @@
 @elseif ($op=='asignacion')
 @livewire('asignaciones-components')   
 
-@elseif ($op=='asigestudiantes')
-@livewire('asignacioneses-components')
+@elseif ($op=='asignacionestudiantes')
+@livewire('asignaciones-es-components')
 
 @elseif ($op=='addmaterias')
 @livewire('materiacomponent')  
@@ -66,6 +66,9 @@
 
 @elseif($op=='aconfigusuarios')
 @livewire('lista-de-estudiantes-component')
+
+@elseif($op=='addanunciomaestro')
+@livewire('maestroform-component')
 
 @endif
 @endif
