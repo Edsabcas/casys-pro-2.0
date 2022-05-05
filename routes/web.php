@@ -125,6 +125,9 @@ Route::post('/c_pass', [PerfilComponent::class, 'c_pass'])
 Route::get('/Lista_de_estudiantes', [ListaDeEstudiantesController::class, 'listarusers'])
 ->middleware('auth')->name('Lista_de_estudiantes.listarusers');
 
+Route::get('/e_perfiles', [ListaDeEstudiantesComponent::class, 'e_perfiles'])
+->middleware('auth')->name('e_perfiles.e_perfiles');
+
 Route::get('/Modificar_Estudiantes', [ModificarEstudiantesComponent::class, 'index'])
 ->middleware('auth')->name('Modificar_Estudiantes.index');
 
