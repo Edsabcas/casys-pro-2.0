@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class MaestrosComponents extends Component{
 
@@ -53,33 +54,31 @@ class MaestrosComponents extends Component{
         $correoed=$this->correoed;
         $pass=bcrypt($this->pass);
 
+
         $id=0;
-        $sql='SELECT ISNULL(MAX(id),0)+1 FROM users';
-            $valor=DB::select($sql);
-
-            foreach($volor as $val){
-
-                $id=$val->id;
-            }  
 
 
-        $usuarios=DB::table('users')->insert(
+        
+
+
+        $sql='SELECT MAX(id+1) AS id FROM users;';
+        $valor=DB::select($sql);
+
+        foreach($valor as $val){
+
+            $id=$val->id;
+        }  
+        DB::beginTransaction();
+
+
+        $usuario=DB::table('users')->insert(
             [
                 'id'=>$id,
                 'name'=>$usuario,
+                'email'=>$correoed,  
                 'usuario'=>$usuario,
-                'email'=>$correoed,
-                'password'=>$pass,              
+                'password'=>$pass,  
             ]);
-            $sql='SELECT * FROM users WHERE email=?';
-            $docenteuser=DB::select($sql,array($correoed));
-
-            $id_docenteusuario=0;
-            foreach($docenteuser as $docen){
-
-                $id_docenteusuario=$docen->id;
-            }
-
 
         $maestro=DB::table('tb_docentes')->insert(
             [
@@ -91,25 +90,27 @@ class MaestrosComponents extends Component{
                 'ESTADO_CIVIL'=>$estado_c,
                 'DIRECCION'=>$direccion,
                 'ESTADO'=>$estado,
-                'ID_USER'=>$docenteuser,
+                'ID_USER'=>$id,
             ]);
 
 
             $id_rol=3;
 
-            $rolusuario=DB::table('rol')->insert(
+            $rolusuario=DB::table('rol_usuario')->insert(
                 [
                     'ID_ROL'=>$id_rol,
-                    'ID_USER'=>$docenteuser,  
+                    'ID_USUARIO'=>$id,  
                 ]);
 
-            if($maestro && $usuario && $rolusuario){
+            if($usuario && $maestro && $rolusuario){
+                DB::commit();
                 $this->reset();
                 unset($this->mensaje1);
                 $op=4;
                 $this->mensaje1='Insertado correctamente';
             }
             else{
+                DB::rollback();
                 unset($this->mensaje2);
                 $op=4;
                 $this->mensaje2='No fue posible insertar correctamente';
