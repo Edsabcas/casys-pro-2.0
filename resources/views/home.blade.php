@@ -12,7 +12,7 @@
 @elseif($op=='guardaranun')
 @livewire('guardar-component');
 
-@elseif($op="addanunciomaestro")
+@elseif($op=="addanunciomaestro")
 @livewire('form-maestros-components');
 
 

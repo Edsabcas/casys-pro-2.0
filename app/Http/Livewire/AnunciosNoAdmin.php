@@ -10,9 +10,10 @@ class AnunciosNoAdmin extends Component
     public $id_com, $op, $comentarios, $texto_comentario, $op2, $mensaje, $mensaje1;
     public $id_megusta, $valorlike, $idusuario, $idcomparacion, $mensaje3, $mensaje4;
     public $ver_ocultos1, $ocultarc, $ver_oculto, $admin_rol, $id_publicacion, $mensaje5, $mensaje6, $usuario_id;
-    public $vistas_totales_id, $rol_activo;
+    public $vistas_totales_id, $rol_activo, $grado_activo_estudiante;
     public function render()
     {
+        $usuario_activo = auth()->user()->id;
         $this->ver_ocultos1=0;
         $this->ocultarc = 0;
         $this->ver_oculto =1;
@@ -30,13 +31,15 @@ class AnunciosNoAdmin extends Component
         $this->rol_activo=DB::select($sql);
         $sql="SELECT ID_GR FROM tb_asignaciones WHERE ID_DOCENTE=$usuario_activo";
         $this->grado_activo=DB::select($sql);
+        $sql="SELECT ID_TB_INFO_GRADO_INGRESO FROM tb_estudiantes WHERE id=$usuario_activo";
+        $this->grado_activo_estudiante=DB::select($sql);
         
         $this->admin_rol = 2;
         $fecha_vista=date("Y-m-d H:i:s");
         $estado_vista=1;
         $this->usuario_id = 5;
         $this->vistas_totales_id=5;
-        $usuario_activo = auth()->user()->id;
+        
         //en el where id_usuario después del signo igual va el id del usuario logeado en ese momento y en el inserte de id_usuario.
         
         foreach($anuncios as $anuncio){
