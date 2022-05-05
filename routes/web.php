@@ -24,6 +24,7 @@ use App\Http\Controllers\UnionController;
 use App\Http\Controllers\Conusltarcontroller;
 use App\Http\Controllers\CalendarizacionController;
 use App\Http\Controllers\AsignarPrecioController;
+use App\Http\Controllers\MaestrosFormController;
 
 /*
 |--------------------------------------------------------------------------
@@ -285,6 +286,7 @@ Route::get('/CREAR_PUBLICACION', [EdicionAnuncioController::class, 'edicion'])->
 
 Route::get('/VISTA_PUBLICACION', [AnunciosAdController::class, 'vistaadmin'])->middleware('auth');
 Route::get('/PUBLICACIONES_GUARDADAS', [GuardarController::class, 'guardar'])->middleware('auth');
+Route::get('/Nueva', [MaestrosFormController::class, 'edicionmaestro'])->middleware('auth');
 
 
 
