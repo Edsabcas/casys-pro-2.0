@@ -13,14 +13,14 @@ class AsignacionesEsComponents extends Component
     {
         $estudiante= DB::table('tb_asignaciones_e')
 
-                ->join('tb_estudiantes', 'tb_asignaciones_e.ID_ESTUDIANTE', '=', 'tb_estudiantes.ID_ESTUDIANTE')
+                ->join('tb_estudiantes', 'tb_asignaciones_e.id', '=', 'tb_estudiantes.id')
 
                 ->join('tb_grados', 'tb_asignaciones_e.ID_GR', '=', 'tb_grados.ID_GR')
 
-                ->join('TB_SECCIONS', 'tb_asignaciones_e.ID_SC', '=', 'TB_SECCIONS.ID_SC')
+                ->join('tb_seccions', 'tb_asignaciones_e.ID_SC', '=', 'tb_seccions.ID_SC')
 
-                ->select('tb_asignaciones_e.ID_E','tb_asignaciones_e.ID_SC','tb_asignaciones_e.ID_GR','tb_asignaciones_e.ID_ESTUDIANTE',
-                'tb_estudiantes.NOMBRE_ESTUDIANTE','tb_estudiantes.APELLIDOS_ESTUDIANTE','TB_GRADOS.GRADO','TB_SECCIONS.SECCION','tb_asignaciones_e.ESTADO','tb_asignaciones_e.FECHA_ASIGNACION')
+                ->select('tb_asignaciones_e.ID_E','tb_asignaciones_e.ID_SC','tb_asignaciones_e.ID_GR','tb_asignaciones_e.id',
+                'tb_estudiantes.TB_INFO_NOMBRE','tb_estudiantes.TB_INFO_APELLIDO','tb_grados.GRADO','tb_seccions.SECCION','tb_asignaciones_e.ESTADO','tb_asignaciones_e.FECHA_ASIGNACION')
 
                 ->get();
 
