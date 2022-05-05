@@ -12,7 +12,7 @@ class ContenidoComponent extends Component
 {
     use WithFileUploads;
 
-   public $grado,$mat, $nombre_g, $nombre_s, $unidad1, $NOMBRE_MATERIA, $ID_DOCENTE,$op2;
+   public $grado,$mat, $nombre_g, $nombre_s, $unidad1, $NOMBRE_MATERIA, $ID_DOCENTE,$op2,$asig;
    public $texto_anuncio, $archivo_anuncio, $calidad_anuncio;
    public $option1,$option2,$option3,$option4,$vista;
    public $prueba, $op, $mensaje, $mensaje1, $file, $date, $dia2, $message, $file2, $img, $vid, $pdf, $tipo;
@@ -29,14 +29,21 @@ class ContenidoComponent extends Component
         ->join('tb_docentes', 'tb_rel.ID_DOCENTE', '=', 'tb_docentes.ID_DOCENTE')
         ->join('tb_grados', 'tb_rel.ID_GR', '=', 'tb_grados.ID_GR')
         ->join('tb_seccions', 'tb_rel.ID_SC', '=', 'tb_seccions.ID_SC')
-        ->join('tb_asignaciones_e', 'tb_rel.ID_GR', '=', 'tb_asignaciones_e.ID_GR')
-        ->join('tb_asignaciones_e', 'tb_rel.ID_SC', '=', 'tb_asignaciones_e.ID_SC')
-        ->select('tb_rel.ID_REL', 'tb_materias.NOMBRE_MATERIA', 'tb_docentes.NOMBRE_DOCENTE', 'tb_grados.GRADO', 'tb_seccions.SECCION','tb_materias.ID_MATERIA','tb_rel_est.NOMBRE_ESTUDIANTE')
+        ->select('tb_rel.ID_REL', 'tb_materias.NOMBRE_MATERIA', 'tb_docentes.NOMBRE_DOCENTE', 'tb_grados.GRADO', 'tb_seccions.SECCION','tb_materias.ID_MATERIA')
         ->where('tb_rel.ID_GR','=',$this->grado)
         ->get();
         }
 
-        
+        $asignaciones="";
+        if($this->asig!=null){
+            $asignaciones=DB::table('tb_asignaciones_e')
+        ->join('tb_grados', 'tb_asignaciones_e.ID_GR', '=', 'tb_grados.ID_GR')
+        ->join('tb_seccions', 'tb_asignaciones_e.ID_SC', '=', 'tb_seccions.ID_SC')
+        ->join('tb_estudiantes', 'tb_asignaciones_e.id', '=', 'tb_seccions.id')
+        ->select('tb_asignaciones_e.ID_E', 'tb_grados.GRADO', 'tb_seccions.SECCION','tb_estudiantes.TB_INFO_NOMBRE')
+        ->where('tb_asignaciones_e.ID_GR','=',$this->grado)
+        ->get();
+        }
 
         $unidades="";
         if($this->unidad1!=null){
@@ -69,7 +76,7 @@ class ContenidoComponent extends Component
         $sql= 'SELECT * FROM tb_docentes';
         $maestros=DB::select($sql);
   
-        return view('livewire.contenido-component',compact('materias','grados','secciones','uniones','unidades','maestros','actividades'));
+        return view('livewire.contenido-component',compact('materias','grados','secciones','uniones','unidades','maestros','actividades','asignaciones'));
     }
     
     public function mostrar_m($id,$nomb,$secc,$num)
