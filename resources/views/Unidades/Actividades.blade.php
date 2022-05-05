@@ -9,10 +9,10 @@
           </tr>
       </thead>
       <tbody>
-        @foreach($uniones as $union)
+        @foreach($asignaciones as $asignacion)
         <tr>
-          <th>{{$union->NOMBRE_ESTUDIANTE}}</th> 
-          <th><input type="text" class="form-control" id="exampleForm{{$union->ID_E}}" placeholder="MateriaEjemplo" wire:click='nota'></th>
+          <th>{{$asignacion->TB_INFO_NOMBRE}}</th> 
+          <th><input type="text" class="form-control" id="exampleForm{{$asignacion->ID_E}}" placeholder="MateriaEjemplo" wire:click='nota'></th>
         </tr>
 @endforeach
       </tbody>
