@@ -17,7 +17,7 @@ class ContenidoComponent extends Component
    public $option1,$option2,$option3,$option4,$vista;
    public $prueba, $op, $mensaje, $mensaje1, $file, $date, $dia2, $message, $file2, $img, $vid, $pdf, $tipo;
 
-   public $titulo, $punteo, $fecha_e, $fecha_ext, $descripcion, $archivo, $act,$tema_a,$descripciont,$tema,$unidad;
+   public $titulo, $punteo, $fecha_e, $fecha_ext, $descripcion, $archivo, $act,$tema_a,$descripciont,$tema,$unidad, $temas1 ;
 
 
     public function render()
@@ -84,7 +84,7 @@ class ContenidoComponent extends Component
         $sql= 'SELECT * FROM tb_temas';
         $temas=DB::select($sql);
   
-        return view('livewire.contenido-component',compact('materias','grados','secciones','uniones','unidades','maestros','actividades','asignaciones','estu','actividad','unidadesf'));
+        return view('livewire.contenido-component',compact('materias','grados','secciones','uniones','unidades','maestros','actividades','asignaciones','estu','actividad','unidadesf','temas'));
     }
     
     public function mostrar_m($id,$nomb,$secc,$num)
@@ -167,6 +167,7 @@ class ContenidoComponent extends Component
         $descripcion=$this->descripcion;
         $archivo=$this->archivo;
         $fecha_ext=$this->fecha_ext;
+        $temas1=$this->temas1;
 
 
         $actividades=DB::table('tb_actividades')->insert(
@@ -177,6 +178,7 @@ class ContenidoComponent extends Component
                 'punteo'=>$punteo,
                 'fecha_entr'=>$fecha_e,
                 'fecha_extr'=>$fecha_ext,
+                'ID_TEMA'->$temas1,
             ]);
 
             if($actividades){

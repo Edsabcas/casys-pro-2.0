@@ -72,7 +72,7 @@
                     @enderror
                     </div>
                     <br>
-                    <button type="submit" class="btn btn-primary" wire:click="Subir_Tema()" data-bs-dismiss="modal">Publicar</button>
+                    <button type="submit" class="btn btn-primary" wire:click="Subir_Tema()" >Publicar</button>
           </form>
            
             
