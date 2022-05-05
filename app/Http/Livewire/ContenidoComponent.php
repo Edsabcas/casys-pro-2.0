@@ -77,8 +77,14 @@ class ContenidoComponent extends Component
         $maestros=DB::select($sql);
         $sql= 'SELECT  TB_INFO_NOMBRE  FROM tb_estudiantes';
         $estu=DB::select($sql);
+        $sql= 'SELECT  ID_ACTIVIDADES  FROM tb_actividades';
+        $actividad=DB::select($sql);
+        $sql= 'SELECT * FROM tb_unidades_fijas';
+        $unidadesf=DB::select($sql);
+        $sql= 'SELECT * FROM tb_temas';
+        $temas=DB::select($sql);
   
-        return view('livewire.contenido-component',compact('materias','grados','secciones','uniones','unidades','maestros','actividades','asignaciones','estu'));
+        return view('livewire.contenido-component',compact('materias','grados','secciones','uniones','unidades','maestros','actividades','asignaciones','estu','actividad','unidadesf'));
     }
     
     public function mostrar_m($id,$nomb,$secc,$num)
