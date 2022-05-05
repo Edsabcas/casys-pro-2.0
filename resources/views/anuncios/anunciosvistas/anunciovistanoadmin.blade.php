@@ -31,6 +31,7 @@ $('#exampleModal1').modal('show');
 
 </script>
 
+<!-- Maestros-->
 
 @foreach($anuncios as $anuncio)
 @if($anuncio->TIPO_ANUNCIO == 0 or  $anuncio->TIPO_ANUNCIO == 1  or $idiomademaestro == $anuncio->IDIOMA_MAESTRO or $idiomademaestro1 == $anuncio->IDIOMA_MAESTRO or $rol_activo == $anuncio->PUBLICO_ANUNCIO && $grado_activo == $anuncio->GRADO_ANUNCIO)
@@ -162,6 +163,7 @@ $('#exampleModal1').modal('show');
       </div>
 </div>
 @endif
+<!-- Estudiantes-->
 @if($anuncio->TIPO_ANUNCIO == 0 or  $anuncio->TIPO_ANUNCIO == 1  or $rol_activo == $anuncio->PUBLICO_ANUNCIO && $grado_activo == $anuncio->GRADO_ANUNCIO)
 
 <div class="offset-3 col-10">
@@ -291,6 +293,7 @@ $('#exampleModal1').modal('show');
       </div>
 </div>
 @endif
+<!-- Padres-->
 @if($anuncio->TIPO_ANUNCIO == 0 or  $anuncio->TIPO_ANUNCIO == 1  or $rol_activo == $anuncio->PUBLICO_ANUNCIO && $grado_activo == $anuncio->GRADO_ANUNCIO)
 
 <div class="offset-3 col-10">

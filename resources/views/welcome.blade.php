@@ -279,8 +279,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
-     <!-- tutorial del hindu-->
-     <script src="{{ asset('/ckeditor/ckeditor.js') }}"></script>
+ 
      <!-- tutorial de jalar-->
      <script src="{{ asset('js/app.js') }}"></script>
      <script>

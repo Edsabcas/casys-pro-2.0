@@ -305,7 +305,8 @@ Route::get('/CREAR_PUBLICACION', [EdicionAnuncioController::class, 'edicion'])->
 
 Route::get('/VISTA_PUBLICACION', [AnunciosAdController::class, 'vistaadmin'])->middleware('auth');
 Route::get('/PUBLICACIONES_GUARDADAS', [GuardarController::class, 'guardar'])->middleware('auth');
-Route::get('/Nueva', [FormMaestrosController::class, 'edicionmaestro'])->middleware('auth');
+Route::get('/Anuncio_Nuevo', [FormMaestrosController::class, 'edicionmaestro'])->middleware('auth');
+Route::get('/Publicaciones', [AnunciosNoAdController::class, 'vistanoadmin'])->middleware('auth');
 
 
 
