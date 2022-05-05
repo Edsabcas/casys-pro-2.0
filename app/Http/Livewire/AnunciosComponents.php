@@ -14,7 +14,7 @@ class AnunciosComponents extends Component
     public $texto_anuncio, $archivo_anuncio, $calidad_anuncio;
     public $prueba, $op, $mensaje, $mensaje1, $file, $date, $dia2, $message, $file2, $img, $vid, $pdf, $tipo;
     public $tanuncio, $publico_anuncio, $op_grado, $grado_anuncio, $idioma_maestro, $tipoanuncio, $grado_objetivo;
-    public $rol;
+    public $rol, $idiomas;
     
 
     public function render()
@@ -41,6 +41,8 @@ class AnunciosComponents extends Component
         $this->grado_objetivo=DB::select($sql);
         $sql="SELECT * FROM rol";
         $this->rol=DB::select($sql);
+        $sql="SELECT * FROM idiomasmaestros";
+        $this->idiomas=DB::select($sql);
         
         return view('livewire.anuncios-components');
     }
@@ -62,6 +64,8 @@ class AnunciosComponents extends Component
         $idiomamaestro = $this->idioma_maestro;
         $opgrado=$this->op_grado;
         $this->prueba=$calidadanuncio;
+        $estadoanuncio =1;
+
 
         $archivo_anuncio="";
             if($this->archivo_anuncio!=null){
@@ -109,6 +113,7 @@ class AnunciosComponents extends Component
                 'PUBLICO_ANUNCIO'=>$publicoanuncio,
                 'IDIOMA_MAESTRO'=>$idiomamaestro,
                 'GRADO_ANUNCIO'=>$gradoanuncio,
+                'ESTADO_ANUNCIO'=>$estadoanuncio,
 
             ]
             );

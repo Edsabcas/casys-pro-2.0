@@ -13,6 +13,8 @@
 @livewire('guardar-component');
 
 
+
+
 @elseif ($op=='addgrado')
 @livewire('grado-components') 
 
