@@ -10,6 +10,9 @@
             @include('Unidades.modal_actividades')
             <button class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#staticBackdrop"> Actividades </button>
         </td>
+        <br>
+        <br>
+        <br>
         @include('Unidades.Actividades')
       </div>
     </div>
