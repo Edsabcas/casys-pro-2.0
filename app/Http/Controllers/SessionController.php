@@ -35,6 +35,8 @@ class SessionController extends Controller
         return view('inicio');
     }
 
+    
+
     public function register(){
         return view('auth.register');
     }

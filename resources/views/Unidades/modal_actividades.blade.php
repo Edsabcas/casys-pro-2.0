@@ -38,22 +38,51 @@
                     <label for="exampleInputEmail1" class="form-label " style="font-size:20px">Punteo de la actividad</label>
                     <input type="text" class="form-control" wire:model='punteo'  style="border:2px solid rgba(86, 95, 76, 0.466);" placeholder="Punteo de la actividad" aria-label="Punteo de la actividad">
                   </div>
-                  <div class="col-sm-4">
+                  <div class="col-sm-3">
                     <label for="exampleInputEmail1" class="form-label " style="font-size:20px">Fecha de entrega</label>
-                    <input type="date" class="form-control" wire:model='fecha_e'  style="border:2px solid rgba(86, 95, 76, 0.466);" placeholder="Punteo de la actividad" aria-label="Fecha de entrega">
+                    <input type="date" class="form-control" wire:model='fecha_e'  style="border:2px solid rgba(86, 95, 76, 0.466);" placeholder="Fecha de entrega" aria-label="Fecha de entrega">
                   </div>
-    
+                  <div class="col-sm-3">
+                    <label for="exampleInputEmail1" class="form-label " style="font-size:20px">Fecha extraordinaria</label>
+                    <input type="date" class="form-control" wire:model='fecha_ext'  style="border:2px solid rgba(86, 95, 76, 0.466);" placeholder="Fecha de extraordinaria" aria-label="Fecha extraordinaria">
+                  </div>    
                 </div>
-                <div class="form-check form-switch">
-                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
-                  <label class="form-check-label" for="flexSwitchCheckChecked">Solicitar como tarea</label> 
-                  </div>
-    
-                <div class="form-check form-switch">
-                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                 <label class="form-check-label" for="flexSwitchCheckDefault">Enviar notificacion</label>  
-                 </div>  
-    
+
+                <div>
+                  <label for="exampleInputEmail1" class="form-label" style="font-size:20px">seleccione un tema</label>
+                  <select class="form-select form-select-sm" aria-label=".form-select-sm example"  style="border:2px solid rgba(86, 95, 76, 0.466);">
+                    <option selected>seleccione un tema</option>
+                    @isset($temas)
+                    @foreach ($temas as $tema)
+                        <option value="{{$tema->ID_TEMA}}">{{$tema->NOMBRE_TEMA}}</option>
+                    @endforeach
+                    @endisset
+                  </select>
+                </div>
+                <br>
+
+                <div >
+                  <div class="form-check form-switch form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="solicitud" checked>
+                    <label class="form-check-label" for="flexSwitchCheckChecked">Solicitar como tarea</label> 
+                    </div>
+      
+                  <div class="form-check form-switch form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="notificacion">
+                   <label class="form-check-label" for="flexSwitchCheckDefault">Enviar notificacion</label>  
+                   </div>  
+  
+                   <div class="form-check form-switch form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="mejoramiento">
+                   <label class="form-check-label" for="flexSwitchCheckDefault">Mejoramiento</label>  
+                   </div>  
+  
+                   <div class="form-check form-switch form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="sancion">
+                   <label class="form-check-label" for="flexSwitchCheckDefault">sancion automatica</label>  
+                   </div>  
+                </div>
+                
                     <div class="col-sm-10">
                       <label for="exampleFormControlTextarea1" class="form-label" style="font-size:20px">Descripcion Actividad</label>
                       <textarea class="form-control" wire:model='descripcion'  style="border:2px solid rgba(128, 156, 96, 0.466);" id="exampleFormControlTextarea1" rows="3"></textarea>
@@ -64,7 +93,7 @@
             
                     </div>
                     <br>
-                    <button type="submit" class="btn btn-primary" wire:click="Subir_Act()" data-bs-dismiss="modal">Publicar</button>
+                    <button type="submit" class="btn btn-primary" wire:click="Subir_Act()" >Publicar</button>
           </form>
            
             
@@ -75,7 +104,7 @@
           
           @isset($mensaje)
           @if($mensaje!=null)
-          <a href="/" class="btn btn-primary ">Ver Publicación</a>
+          <a href="/" class="btn btn-primary ">Ver actividad</a>
           @endif
           @endisset        </div>
       </div>

@@ -30,7 +30,6 @@ $('#exampleModal1').modal('show');
 </script>
 
 <br>
-<br>
 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
     <a href="/CREAR_PUBLICACION" class="btn btn-primary ">Crear Publicación</a>
 </div>
@@ -41,7 +40,7 @@ $('#exampleModal1').modal('show');
 <div class="offset-3 col-10">
   <div  class="row">
     <br>
-      <div class="card" style="border:6px solid rgb(4, 190, 4); width: 50rem">
+      <div class="card" style="border:6px solid rgb(2, 52, 162); width: 50rem">
         <br>
           <p style="font-size:10px" class="d-grid gap-2 d-md-flex justify-content-md-end">Publicado el {{$anuncio->FECHA_HORA}}</p>
           <br>
@@ -69,9 +68,32 @@ $('#exampleModal1').modal('show');
           <iframe style="width: 49rem; text-align:center" width="400" height="400" src="/imagen/pdfs/{{$anuncio->MULTIMEDIA}}" frameborder="0"></iframe>
             @endif
           <div class="card-body">
+            @foreach($usuario_publicacion as $usu_publicacion)
+            
+            @endforeach
             
             <h5 class="card-title">Nombre del editor</h5>
-            <p class="card-text" style="font-size:12px">Rol del Autor</p>
+            @foreach($rol_publicado as $rol_publi)
+            @if($anuncio->ID_USUARIO == $rol_publi->ID_USUARIO)
+            @if($rol_publi->ID_ROL==1)
+            <p class="card-text" style="font-size:12px">Superusuario</p>
+            @elseif($rol_publi->ID_ROL==2)
+            <p class="card-text" style="font-size:12px">Administrador</p>
+            @elseif($rol_publi->ID_ROL==3)
+            <p class="card-text" style="font-size:12px">Maestro(a)</p>
+            @elseif($rol_publi->ID_ROL==4)
+            <p class="card-text" style="font-size:12px">Alumno(a)</p>
+            @elseif($rol_publi->ID_ROL==5)
+            <p class="card-text" style="font-size:12px">Padre de Familia</p>
+            @elseif($rol_publi->ID_ROL==6)
+            <p class="card-text" style="font-size:12px">Secretaria</p>
+            @elseif($rol_publi->ID_ROL==7)
+            <p class="card-text" style="font-size:12px">Coordinador</p>
+            @elseif($rol_publi->ID_ROL==8)
+            <p class="card-text" style="font-size:12px">Contabilidad</p>
+            @endif
+            @endif
+            @endforeach
             <p class="card-text">{{$anuncio->TEXTO_PUBLICACION}}</p>
             @if($anuncio->CALIDAD_ANUNCIO==1)
             <div class="alert alert-success d-flex align-items-center rounded-pill" role="alert">

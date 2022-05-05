@@ -10,7 +10,7 @@ class AnunciosAdmin extends Component
     public $id_com, $op, $comentarios, $texto_comentario, $op2, $mensaje, $mensaje1, $anuncios, $id_publicacion;
     public $op3, $id_megusta, $mensaje3, $mensaje4, $valorlike, $idcomparacion, $likes3, $mensaje5, $mensaje6;
     public $idusuario, $mensaje7, $mensaje8, $ver_ocultos1, $ocultarc, $admin_rol, $guar, $usuario_id;
-    public $vistas_totales_id, $contadorlikes, $cambiolike, $can;
+    public $vistas_totales_id, $contadorlikes, $cambiolike, $can, $usuario_publicacion, $rol_publicado;
     public function render()
     {
         $this->ver_ocultos1 = 0;
@@ -27,6 +27,10 @@ class AnunciosAdmin extends Component
         $guardar=DB::select($sql);
         $sql="SELECT * FROM tb_vistas";
         $vistoss=DB::select($sql);
+        $sql="SELECT * FROM users";
+        $this->usuario_publicacion=DB::select($sql);
+        $sql="SELECT * FROM rol_usuario";
+        $this->rol_publicado=DB::select($sql);
        
         $this->vistas_totales_id=5;
         $this->usuario_id = 5;

@@ -50,7 +50,7 @@
     @foreach ($estudiante as $est)
       <tr>
         <td>{{$est->ID_E}}</td>
-        <td>{{$est->NOMBRE_ESTUDIANTE}}  {{$est->APELLIDOS_ESTUDIANTE}}</td>
+        <td>{{$est->TB_INFO_NOMBRE}}  {{$est->TB_INFO_APELLIDO}}</td>
         <td>{{$est->GRADO}}</td>
         <td>{{$est->SECCION}}</td>
         <td>{{$est->FECHA_ASIGNACION}}</td>

@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class MaestrosComponents extends Component{
 
@@ -53,21 +54,31 @@ class MaestrosComponents extends Component{
         $correoed=$this->correoed;
         $pass=bcrypt($this->pass);
 
-        $usuarios=DB::table('tb_usuarios')->insert(
+
+        $id=0;
+
+
+        
+
+
+        $sql='SELECT MAX(id+1) AS id FROM users;';
+        $valor=DB::select($sql);
+
+        foreach($valor as $val){
+
+            $id=$val->id;
+        }  
+        DB::beginTransaction();
+
+
+        $usuario=DB::table('users')->insert(
             [
-                'USUARIO'=>$usuario,
-                'CORREO'=>$correoed,
-                'CONTRASEÑA'=>$pass,              
+                'id'=>$id,
+                'name'=>$usuario,
+                'email'=>$correoed,  
+                'usuario'=>$usuario,
+                'password'=>$pass,  
             ]);
-            $sql='SELECT * FROM tb_usuarios WHERE CORREO=?';
-            $docenteuser=DB::select($sql,array($correoed));
-
-            $id_docenteusuario=0;
-            foreach($docenteuser as $docen){
-
-                $id_docenteusuario=$docen->ID_USUARIO;
-            }
-
 
         $maestro=DB::table('tb_docentes')->insert(
             [
@@ -79,24 +90,27 @@ class MaestrosComponents extends Component{
                 'ESTADO_CIVIL'=>$estado_c,
                 'DIRECCION'=>$direccion,
                 'ESTADO'=>$estado,
-
+                'ID_USER'=>$id,
             ]);
 
 
-       
-            $maestro=DB::table('tb_user_maestros')->insert(
+            $id_rol=3;
+
+            $rolusuario=DB::table('rol_usuario')->insert(
                 [
-                    'ID_DOCENTE'=>$id_apellidos,
-                    'ID_USUARIO'=>$id_docenteusuario,  
+                    'ID_ROL'=>$id_rol,
+                    'ID_USUARIO'=>$id,  
                 ]);
 
-            if($maestro && $usuario){
+            if($usuario && $maestro && $rolusuario){
+                DB::commit();
                 $this->reset();
                 unset($this->mensaje1);
                 $op=4;
                 $this->mensaje1='Insertado correctamente';
             }
             else{
+                DB::rollback();
                 unset($this->mensaje2);
                 $op=4;
                 $this->mensaje2='No fue posible insertar correctamente';
@@ -124,7 +138,7 @@ class MaestrosComponents extends Component{
 
         }
 
-        $id_=$id;
+        $ID_USER=$ID_USER ;
         $sql='SELECT * FROM tb_usuarios WHERE ID_USUARIO=?';
         $correousu=DB::select($sql,array($this->id_usucorreo));
 
@@ -138,7 +152,7 @@ class MaestrosComponents extends Component{
         }
 
 
-        $id_docente=$id;
+        $id_docente=$ID_USER;
         $sql='SELECT * FROM tb_docentes WHERE ID_DOCENTE=?';
         $maestro=DB::select($sql,array($id_docente));
         if($maestro !=null){

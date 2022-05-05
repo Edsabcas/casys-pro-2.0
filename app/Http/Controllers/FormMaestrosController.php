@@ -4,11 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-
-class AsignacionesEsController extends Controller
+class FormMaestrosController extends Controller
 {
-    public function agregar_e(){
-        $op='asignacionestudiantes';
+    public function edicionmaestro(){
+        $op="addanunciomaestro";
         return view('home', compact('op'));
     }
 }

@@ -6,16 +6,16 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\DB;
 
-class AnunciosComponents extends Component
+class FormMaestrosComponents extends Component
 {
+
     use WithFileUploads;
 
-    
+
     public $texto_anuncio, $archivo_anuncio, $calidad_anuncio;
     public $prueba, $op, $mensaje, $mensaje1, $file, $date, $dia2, $message, $file2, $img, $vid, $pdf, $tipo;
     public $tanuncio, $publico_anuncio, $op_grado, $grado_anuncio, $idioma_maestro, $tipoanuncio, $grado_objetivo;
     public $rol, $idiomas;
-    
 
     public function render()
     {
@@ -36,17 +36,17 @@ class AnunciosComponents extends Component
             }
 
         }
-        //$this->tipoanuncio = 0; no poner variable seteada en 0 acá.
-        $sql="SELECT * FROM tb_grados";
-        $this->grado_objetivo=DB::select($sql);
-        $sql="SELECT * FROM rol";
-        $this->rol=DB::select($sql);
-        $sql="SELECT * FROM idiomasmaestros";
-        $this->idiomas=DB::select($sql);
-        
-        
-        return view('livewire.anuncios-components');
+         //$this->tipoanuncio = 0; no poner variable seteada en 0 acá.
+         $sql="SELECT * FROM tb_grados";
+         $this->grado_objetivo=DB::select($sql);
+         $sql="SELECT * FROM rol";
+         $this->rol=DB::select($sql);
+         $sql="SELECT * FROM idiomasmaestros";
+         $this->idiomas=DB::select($sql);
+
+        return view('livewire.form-maestros-components');
     }
+
     public function guardaranuncio(){
         if($this->validate([
             'calidad_anuncio' => 'required',
@@ -115,7 +115,6 @@ class AnunciosComponents extends Component
                 'IDIOMA_MAESTRO'=>$idiomamaestro,
                 'GRADO_ANUNCIO'=>$gradoanuncio,
                 'ESTADO_ANUNCIO'=>$estadoanuncio,
-                'ID_USUARIO'=>auth()->user()->id,
 
             ]
             );
@@ -154,5 +153,4 @@ class AnunciosComponents extends Component
             $this->tanuncio = 0;
         }
     }
-    
 }

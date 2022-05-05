@@ -12,7 +12,7 @@
 
 
 <br>
-<div class="card" style="border:6px solid rgb(4, 190, 4);">
+<div class="card" style="border:6px solid rgb(2, 52, 162);">
   <div class="container-sm">
     <br>
     <br>
@@ -67,9 +67,11 @@
         <label for="exampleInputPassword1" class="form-label" style="font-size:20px">Desea escojer un idioma en especifíco de maestros?</label>
         <select class="form-select" aria-label="Default select example" wire:model="idioma_maestro">
           <option selected>Desea escojer un idioma en especifíco de maestros?</option>
-          <option value="1">Todos</option>
-          <option value="2">Español</option>
-          <option value="3">Ingles</option>
+          @isset($idiomas)
+          @foreach($idiomas as $idioma)
+          <option value="{{$idioma->ID_IDIOMA}}">{{$idioma->DESCRIPCION_IDIOMA}}</option>
+          @endforeach
+          @endisset
         </select>
       </div>
        
