@@ -5,15 +5,20 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 use App\Http\Livewire\Request;
+use Livewire\WithFileUploads;
+
 
 class ContenidoComponent extends Component
 {
+    use WithFileUploads;
 
    public $grado,$mat, $nombre_g, $nombre_s, $unidad1, $NOMBRE_MATERIA, $ID_DOCENTE,$op2;
-
    public $texto_anuncio, $archivo_anuncio, $calidad_anuncio;
    public $option1,$option2,$option3,$option4,$vista;
    public $prueba, $op, $mensaje, $mensaje1, $file, $date, $dia2, $message, $file2, $img, $vid, $pdf, $tipo;
+
+   public $titulo, $punteo, $fecha_e, $fecha_ext, $descripcion, $archivo, $act,$tema_a,$descripciont,$tema,$unidad;
+
 
     public function render()
     {
@@ -24,7 +29,9 @@ class ContenidoComponent extends Component
         ->join('tb_docentes', 'tb_rel.ID_DOCENTE', '=', 'tb_docentes.ID_DOCENTE')
         ->join('tb_grados', 'tb_rel.ID_GR', '=', 'tb_grados.ID_GR')
         ->join('tb_seccions', 'tb_rel.ID_SC', '=', 'tb_seccions.ID_SC')
-        ->select('tb_rel.ID_REL', 'tb_materias.NOMBRE_MATERIA', 'tb_docentes.NOMBRE_DOCENTE', 'tb_grados.GRADO', 'tb_seccions.SECCION','tb_materias.ID_MATERIA')
+        ->join('tb_asignaciones_e', 'tb_rel.ID_GR', '=', 'tb_asignaciones_e.ID_GR')
+        ->join('tb_asignaciones_e', 'tb_rel.ID_SC', '=', 'tb_asignaciones_e.ID_SC')
+        ->select('tb_rel.ID_REL', 'tb_materias.NOMBRE_MATERIA', 'tb_docentes.NOMBRE_DOCENTE', 'tb_grados.GRADO', 'tb_seccions.SECCION','tb_materias.ID_MATERIA','tb_rel_est.NOMBRE_ESTUDIANTE')
         ->where('tb_rel.ID_GR','=',$this->grado)
         ->get();
         }
@@ -40,6 +47,19 @@ class ContenidoComponent extends Component
             ->get();
         }
         
+
+        $actividades="";
+        if($this->act!=null){
+            $actividades=DB::table('tb_actividades')
+        ->join('tb_materias','tb_actividades.ID_MATERIA','=','tb_materias.ID_MATERIA')
+        ->join('tb_docentes', 'tb_actividades.ID_DOCENTE', '=', 'tb_docentes.ID_DOCENTE')
+        ->join('tb_grados', 'tb_actividades.ID_GR', '=', 'tb_grados.ID_GR')
+        ->join('tb_seccions', 'tb_actividades.ID_SC', '=', 'tb_seccions.ID_SC')
+        ->select('tb_actividades.ID_ACTIVIDADES', 'tb_materias.NOMBRE_MATERIA', 'tb_docentes.NOMBRE_DOCENTE', 'tb_grados.NOMBRE_GRADO', 'tb_seccions.SECCION','tb_materias.ID_MATERIA')
+        ->where('tb_actividades.ID_GR','=',$this->act)
+        ->get();
+        }
+
         $sql= 'SELECT * FROM tb_materias';
         $materias=DB::select($sql);
         $sql= 'SELECT * FROM tb_grados';
@@ -49,7 +69,7 @@ class ContenidoComponent extends Component
         $sql= 'SELECT * FROM tb_docentes';
         $maestros=DB::select($sql);
   
-        return view('livewire.contenido-component',compact('materias','grados','secciones','uniones','unidades','maestros'));
+        return view('livewire.contenido-component',compact('materias','grados','secciones','uniones','unidades','maestros','actividades'));
     }
     
     public function mostrar_m($id,$nomb,$secc,$num)
@@ -125,6 +145,81 @@ class ContenidoComponent extends Component
         }
     }
 
+    public function Subir_Act(){
+        $titulo=$this->titulo;
+        $punteo=$this->punteo;
+        $fecha_e=$this->fecha_e;
+        $descripcion=$this->descripcion;
+        $archivo=$this->archivo;
+        $fecha_ext=$this->fecha_ext;
+
+
+        $actividades=DB::table('tb_actividades')->insert(
+            [
+                'NOMBRE_ACTIVIDAD'=>$titulo,
+                'descripcion'=>$descripcion,
+                'archivos'=>$archivo,
+                'punteo'=>$punteo,
+                'fecha_entr'=>$fecha_e,
+                'fecha_extr'=>$fecha_ext,
+            ]);
+
+            if($actividades){
+                unset($this->mensaje);;
+                unset($this->mensaje1);
+                $this->op='addcontenidos';
+                $this->mensaje='Insertado correctamente';
+                }
+                else {
+                unset($this->mensaje);;
+                unset($this->mensaje1);
+                $this->op='addcontenidos';
+                $this->mensaje1='Datos no  insertados correctamente';
+                }
+    }
+
+    public function Subir_Tema(){
+        if($this->validate([
+            'tema' => 'required',
+            'unidad' => 'required',
+            'descripciont' => 'required',
+
+        ])==false){
+            $error="no encontrado";
+            session(['message'=>'no encontrado']);
+            return back()->withErrors(['error' => 'Validar el input vacio']);
+        }
+
+        else{
+        $tema=$this->tema;
+        $unidad=$this->unidad;
+        $descripciont=$this->descripciont;
+        
+
+        $temas=DB::table('tb_temas')->insert(
+            [
+                'NOMBRE_TEMA'=>$tema,
+                'ID_UNIDADES_FIJAS'=>$unidad,
+                'DESCRIPCION'=>$descripciont,
+            ]);
+
+            if($temas){
+                unset($this->mensaje);;
+                unset($this->mensaje1);
+                $this->op='addcontenidos';
+                $this->mensaje='Insertado correctamente';
+                }
+                else {
+                unset($this->mensaje);;
+                unset($this->mensaje1);
+                $this->op='addcontenidos';
+                $this->mensaje1='Datos no  insertados correctamente';
+                }
+    }
+
+
+
+}
 
 
 }
