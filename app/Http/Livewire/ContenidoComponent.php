@@ -13,15 +13,32 @@ class ContenidoComponent extends Component
     use WithFileUploads;
 
    public $grado,$mat, $nombre_g, $nombre_s, $unidad1, $NOMBRE_MATERIA, $ID_DOCENTE,$op2,$asig;
-   public $texto_anuncio, $archivo_anuncio, $calidad_anuncio;
    public $option1,$option2,$option3,$option4,$vista;
-   public $prueba, $op, $mensaje, $mensaje1, $file, $date, $dia2, $message, $file2, $img, $vid, $pdf, $tipo;
+   public $prueba, $op, $mensaje, $mensaje1, $file, $date, $dia2, $message, $file2, $arch, $vid, $pdf, $formato;
 
-   public $titulo, $punteo, $fecha_e, $fecha_ext, $descripcion, $archivo, $act,$tema_a,$descripciont,$tema,$unidad, $temasb ;
+   public $titulo, $punteo, $fecha_e, $fecha_ext, $descripcion, $act,$tema_a,$descripciont,$tema,$unidad, $temasb, $archivo ;
 
 
     public function render()
     {
+        if($this->archivo!=null){
+            if($this->archivo->getClientOriginalExtension()=="pdf"){
+                $archivo = "pdf".time().".".$this->archivo->getClientOriginalExtension();
+                $this->arch=$archivo;
+                $this->archivo->storeAS('imagen/temporalpdf/', $this->arch,'public_up');
+            }
+            if($this->archivo->getClientOriginalExtension()=="jpg" or $this->archivo->getClientOriginalExtension()=="png" or $this->archivo->getClientOriginalExtension()=="jpeg"){
+                $this->formato=1;
+            }
+            elseif($this->archivo->getClientOriginalExtension()=="mp4" or $this->archivo->getClientOriginalExtension()=="mpeg"){
+                $this->formato=2;
+            }
+            elseif($this->archivo->getClientOriginalExtension()=="pdf"){
+                $this->formato=3;
+            }
+
+        }
+
         $uniones="";
         if($this->grado!=null){
             $uniones=DB::table('tb_rel')
@@ -165,16 +182,37 @@ class ContenidoComponent extends Component
         $punteo=$this->punteo;
         $fecha_e=$this->fecha_e;
         $descripcion=$this->descripcion;
-        $archivo=$this->archivo;
         $fecha_ext=$this->fecha_ext;
         $temasb=$this->temasb;
+
+        $archivo="";
+        if($this->archivo!=null){
+            if($this->archivo->getClientOriginalExtension()=="jpg" or $this->archivo->getClientOriginalExtension()=="png" or $this->archivo->getClientOriginalExtension()=="jpeg"){
+                $archivo = "img".time().".".$this->archivo->getClientOriginalExtension();
+                $this->arch=$archivo;
+                $this->archivo->storeAS('imagen/actividades/', $this->arch,'public_up');
+                $this->formato=1;
+            }
+            elseif($this->archivo->getClientOriginalExtension()=="mp4" or $this->archivo->getClientOriginalExtension()=="mpeg"){
+                $archivo = "vid".time().".".$this->archivo->getClientOriginalExtension();
+                $this->arch=$archivo;
+                $this->archivo->storeAS('imagen/videos_act/', $this->arch,'public_up');
+                $this->formato=2;
+            }
+            elseif($this->archivo->getClientOriginalExtension()=="pdf"){
+                $archivo = "pdf".time().".".$this->archivo->getClientOriginalExtension();
+                $this->arch=$archivo;
+                $this->archivo->storeAS('imagen/pdf_act/', $this->arch,'public_up');
+                $this->formato=3;
+            }
+        }
 
 
         $actividades=DB::table('tb_actividades')->insert(
             [
                 'NOMBRE_ACTIVIDAD'=>$titulo,
                 'descripcion'=>$descripcion,
-                'archivos'=>$archivo,
+                'archivos'=>$this->arch,
                 'punteo'=>$punteo,
                 'fecha_entr'=>$fecha_e,
                 'fecha_extr'=>$fecha_ext,
