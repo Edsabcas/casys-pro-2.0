@@ -12,10 +12,9 @@ class ContenidoComponent extends Component
 {
     use WithFileUploads;
 
-   public $grado,$mat, $nombre_g, $nombre_s, $unidad1, $NOMBRE_MATERIA, $ID_DOCENTE,$op2,$asig;
+   public $grado,$mat, $nombre_g, $nombre_s, $unidad1, $NOMBRE_MATERIA, $ID_DOCENTE,$op2,$asig, $usuario;
    public $option1,$option2,$option3,$option4,$vista;
    public $prueba, $op, $mensaje, $mensaje1, $file, $date, $dia2, $message, $file2, $arch, $vid, $pdf, $formato;
-
    public $titulo, $punteo, $fecha_e, $fecha_ext, $descripcion, $act,$tema_a,$descripciont,$tema,$unidad, $temasb, $archivo ;
 
 
@@ -79,6 +78,7 @@ class ContenidoComponent extends Component
         ->join('tb_docentes', 'tb_actividades.ID_DOCENTE', '=', 'tb_docentes.ID_DOCENTE')
         ->join('tb_grados', 'tb_actividades.ID_GR', '=', 'tb_grados.ID_GR')
         ->join('tb_seccions', 'tb_actividades.ID_SC', '=', 'tb_seccions.ID_SC')
+        ->join('users', 'tb_actividades.ID', '=', 'users.ID')
         ->select('tb_actividades.ID_ACTIVIDADES', 'tb_materias.NOMBRE_MATERIA', 'tb_docentes.NOMBRE_DOCENTE', 'tb_grados.NOMBRE_GRADO', 'tb_seccions.SECCION','tb_materias.ID_MATERIA','tb_actividades.NOMBRE_ACTIVIDAD')
         ->where('tb_actividades.ID_GR','=',$this->act)
         ->get();
@@ -100,8 +100,10 @@ class ContenidoComponent extends Component
         $unidadesf=DB::select($sql);
         $sql= 'SELECT * FROM tb_temas';
         $temas=DB::select($sql);
+        $sql= 'SELECT * FROM users';
+        $Usuarios=DB::select($sql);
   
-        return view('livewire.contenido-component',compact('materias','grados','secciones','uniones','unidades','maestros','actividades','asignaciones','estu','actividad','unidadesf','temas'));
+        return view('livewire.contenido-component',compact('materias','grados','secciones','uniones','unidades','maestros','actividades','asignaciones','estu','actividad','unidadesf','temas','Usuarios'));
     }
     
     public function mostrar_m($id,$nomb,$secc,$num)
@@ -111,7 +113,6 @@ class ContenidoComponent extends Component
         $this->nombre_g=$nomb;
         $this->nombre_s=$secc;
         $this->op2=$num;
-    
     }
 
     public function mostrar_u($id,$nombm,$nombrem,$num)
@@ -121,10 +122,7 @@ class ContenidoComponent extends Component
         $this->NOMBRE_MATERIA=$nombm;
         $this->ID_DOCENTE=$nombrem;
         $this->op2=$num;
-       
-
         
-    
     }
 
     public function paginacion($num)
