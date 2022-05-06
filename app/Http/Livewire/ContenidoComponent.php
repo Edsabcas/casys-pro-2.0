@@ -17,7 +17,7 @@ class ContenidoComponent extends Component
    public $option1,$option2,$option3,$option4,$vista;
    public $prueba, $op, $mensaje, $mensaje1, $file, $date, $dia2, $message, $file2, $img, $vid, $pdf, $tipo;
 
-   public $titulo, $punteo, $fecha_e, $fecha_ext, $descripcion, $archivo, $act,$tema_a,$descripciont,$tema,$unidad, $temas1 ;
+   public $titulo, $punteo, $fecha_e, $fecha_ext, $descripcion, $archivo, $act,$tema_a,$descripciont,$tema,$unidad, $temasb ;
 
 
     public function render()
@@ -167,7 +167,7 @@ class ContenidoComponent extends Component
         $descripcion=$this->descripcion;
         $archivo=$this->archivo;
         $fecha_ext=$this->fecha_ext;
-        $temas1=$this->temas1;
+        $temasb=$this->temasb;
 
 
         $actividades=DB::table('tb_actividades')->insert(
@@ -178,7 +178,7 @@ class ContenidoComponent extends Component
                 'punteo'=>$punteo,
                 'fecha_entr'=>$fecha_e,
                 'fecha_extr'=>$fecha_ext,
-                'ID_TEMA'->$temas1,
+                'ID_TEMA'=>$temasb,
             ]);
 
             if($actividades){
