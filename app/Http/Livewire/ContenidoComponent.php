@@ -178,6 +178,19 @@ class ContenidoComponent extends Component
     }
 
     public function Subir_Act(){
+        if($this->validate([
+            'titulo' => 'required',
+            'punteo' => 'required',
+            'fecha_e' => 'required',
+            'descripcion' => 'required',
+            'temasb' => 'required',
+        ])==false){
+            $error="no encontrado";
+            session(['message'=>'no encontrado']);
+            return back()->withErrors(['error' => 'Validar el input vacio']);
+        }
+
+        else{
         $titulo=$this->titulo;
         $punteo=$this->punteo;
         $fecha_e=$this->fecha_e;
@@ -230,7 +243,10 @@ class ContenidoComponent extends Component
                 unset($this->mensaje1);
                 $this->op='addcontenidos';
                 $this->mensaje1='Datos no  insertados correctamente';
-                }
+                }        
+        }
+
+
     }
 
     public function Subir_Tema(){
