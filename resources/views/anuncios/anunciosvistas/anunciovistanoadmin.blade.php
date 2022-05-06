@@ -34,7 +34,7 @@ $('#exampleModal1').modal('show');
 <!-- Maestros-->
 
 @foreach($anuncios as $anuncio)
-@if($anuncio->TIPO_ANUNCIO == 0 or  $anuncio->TIPO_ANUNCIO == 1  or $idiomademaestro == $anuncio->IDIOMA_MAESTRO or $idiomademaestro1 == $anuncio->IDIOMA_MAESTRO or $rol_activo == $anuncio->PUBLICO_ANUNCIO && $grado_activo == $anuncio->GRADO_ANUNCIO)
+@if($anuncio->TIPO_ANUNCIO == 0 or  $anuncio->TIPO_ANUNCIO == 1  or $rol_activo == $anuncio->PUBLICO_ANUNCIO && $grado_activo == $anuncio->GRADO_ANUNCIO)
 
 <div class="offset-3 col-10">
   <br>
@@ -70,8 +70,33 @@ $('#exampleModal1').modal('show');
             @endif
             
             <div class="card-body">
-              <h5 class="card-title">Autor</h5>
-              <p class="card-text" style="font-size:12px">Rol del Autor</p>
+              @foreach($usuario_publicacion as $usu_publicacion)
+            @if($anuncio->ID_USUARIO == $usu_publicacion->id)
+            <h5 class="card-title">{{$usu_publicacion->usuario}}</h5>
+            @endif
+            @endforeach
+            
+            @foreach($rol_publicado as $rol_publi)
+            @if($anuncio->ID_USUARIO == $rol_publi->ID_USUARIO)
+            @if($rol_publi->ID_ROL==1)
+            <p class="card-text" style="font-size:12px">Superusuario</p>
+            @elseif($rol_publi->ID_ROL==2)
+            <p class="card-text" style="font-size:12px">Administrador</p>
+            @elseif($rol_publi->ID_ROL==3)
+            <p class="card-text" style="font-size:12px">Maestro(a)</p>
+            @elseif($rol_publi->ID_ROL==4)
+            <p class="card-text" style="font-size:12px">Alumno(a)</p>
+            @elseif($rol_publi->ID_ROL==5)
+            <p class="card-text" style="font-size:12px">Padre de Familia</p>
+            @elseif($rol_publi->ID_ROL==6)
+            <p class="card-text" style="font-size:12px">Secretaria</p>
+            @elseif($rol_publi->ID_ROL==7)
+            <p class="card-text" style="font-size:12px">Coordinador</p>
+            @elseif($rol_publi->ID_ROL==8)
+            <p class="card-text" style="font-size:12px">Contabilidad</p>
+            @endif
+            @endif
+            @endforeach
               <p class="card-text">{{$anuncio->TEXTO_PUBLICACION}}</p>
               
               @if($anuncio->CALIDAD_ANUNCIO==1)
@@ -200,8 +225,33 @@ $('#exampleModal1').modal('show');
             @endif
             
             <div class="card-body">
-              <h5 class="card-title">Autor</h5>
-              <p class="card-text" style="font-size:12px">Rol del Autor</p>
+              @foreach($usuario_publicacion as $usu_publicacion)
+              @if($anuncio->ID_USUARIO == $usu_publicacion->id)
+              <h5 class="card-title">{{$usu_publicacion->usuario}}</h5>
+              @endif
+              @endforeach
+              
+              @foreach($rol_publicado as $rol_publi)
+              @if($anuncio->ID_USUARIO == $rol_publi->ID_USUARIO)
+              @if($rol_publi->ID_ROL==1)
+              <p class="card-text" style="font-size:12px">Superusuario</p>
+              @elseif($rol_publi->ID_ROL==2)
+              <p class="card-text" style="font-size:12px">Administrador</p>
+              @elseif($rol_publi->ID_ROL==3)
+              <p class="card-text" style="font-size:12px">Maestro(a)</p>
+              @elseif($rol_publi->ID_ROL==4)
+              <p class="card-text" style="font-size:12px">Alumno(a)</p>
+              @elseif($rol_publi->ID_ROL==5)
+              <p class="card-text" style="font-size:12px">Padre de Familia</p>
+              @elseif($rol_publi->ID_ROL==6)
+              <p class="card-text" style="font-size:12px">Secretaria</p>
+              @elseif($rol_publi->ID_ROL==7)
+              <p class="card-text" style="font-size:12px">Coordinador</p>
+              @elseif($rol_publi->ID_ROL==8)
+              <p class="card-text" style="font-size:12px">Contabilidad</p>
+              @endif
+              @endif
+              @endforeach
               <p class="card-text">{{$anuncio->TEXTO_PUBLICACION}}</p>
               
               @if($anuncio->CALIDAD_ANUNCIO==1)
@@ -253,13 +303,29 @@ $('#exampleModal1').modal('show');
                 <div class="row">
                   <div class="input-group mb-3">
                     @php
-                $can=0;
-                @endphp
+                    $can=0;
+                    
+                    @endphp
 
-                
-                <button style="border:0px" type="button" class="btn btn-outline-primary" wire:click="megusta({{$anuncio->ID_ANUNCIOS}})" style="margin: 10px"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hand-thumbs-up-fill" viewBox="0 0 16 16">
-                  <path d="M6.956 1.745C7.021.81 7.908.087 8.864.325l.261.066c.463.116.874.456 1.012.965.22.816.533 2.511.062 4.51a9.84 9.84 0 0 1 .443-.051c.713-.065 1.669-.072 2.516.21.518.173.994.681 1.2 1.273.184.532.16 1.162-.234 1.733.058.119.103.242.138.363.077.27.113.567.113.856 0 .289-.036.586-.113.856-.039.135-.09.273-.16.404.169.387.107.819-.003 1.148a3.163 3.163 0 0 1-.488.901c.054.152.076.312.076.465 0 .305-.089.625-.253.912C13.1 15.522 12.437 16 11.5 16H8c-.605 0-1.07-.081-1.466-.218a4.82 4.82 0 0 1-.97-.484l-.048-.03c-.504-.307-.999-.609-2.068-.722C2.682 14.464 2 13.846 2 13V9c0-.85.685-1.432 1.357-1.615.849-.232 1.574-.787 2.132-1.41.56-.627.914-1.28 1.039-1.639.199-.575.356-1.539.428-2.59z"/>
-                </svg> Me gusta</button>
+
+                    @foreach($me_gusta as $gustaa)
+                    @if($anuncio->ID_ANUNCIOS == $gustaa->ID_PUBLICACION && $gustaa->ID_USUARIO == auth()->user()->id)
+                    @php
+                    $can = 1;
+                    @endphp
+                    
+                    @endif
+                    @endforeach
+                    
+                    @if($can == 1)
+                    <button style="border:0px" type="button" class="btn btn-primary" wire:click="eliminarmegusta({{$anuncio->ID_ANUNCIOS}})" style="margin: 10px"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hand-thumbs-up-fill" viewBox="0 0 16 16">
+                      <path d="M6.956 1.745C7.021.81 7.908.087 8.864.325l.261.066c.463.116.874.456 1.012.965.22.816.533 2.511.062 4.51a9.84 9.84 0 0 1 .443-.051c.713-.065 1.669-.072 2.516.21.518.173.994.681 1.2 1.273.184.532.16 1.162-.234 1.733.058.119.103.242.138.363.077.27.113.567.113.856 0 .289-.036.586-.113.856-.039.135-.09.273-.16.404.169.387.107.819-.003 1.148a3.163 3.163 0 0 1-.488.901c.054.152.076.312.076.465 0 .305-.089.625-.253.912C13.1 15.522 12.437 16 11.5 16H8c-.605 0-1.07-.081-1.466-.218a4.82 4.82 0 0 1-.97-.484l-.048-.03c-.504-.307-.999-.609-2.068-.722C2.682 14.464 2 13.846 2 13V9c0-.85.685-1.432 1.357-1.615.849-.232 1.574-.787 2.132-1.41.56-.627.914-1.28 1.039-1.639.199-.575.356-1.539.428-2.59z"/>
+                    </svg> Me gusta </button>
+                    @else
+                    <button style="border:0px" type="button" class="btn btn-outline-primary" wire:click="insertar_like({{$anuncio->ID_ANUNCIOS}})" style="margin: 10px"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hand-thumbs-up-fill" viewBox="0 0 16 16">
+                      <path d="M6.956 1.745C7.021.81 7.908.087 8.864.325l.261.066c.463.116.874.456 1.012.965.22.816.533 2.511.062 4.51a9.84 9.84 0 0 1 .443-.051c.713-.065 1.669-.072 2.516.21.518.173.994.681 1.2 1.273.184.532.16 1.162-.234 1.733.058.119.103.242.138.363.077.27.113.567.113.856 0 .289-.036.586-.113.856-.039.135-.09.273-.16.404.169.387.107.819-.003 1.148a3.163 3.163 0 0 1-.488.901c.054.152.076.312.076.465 0 .305-.089.625-.253.912C13.1 15.522 12.437 16 11.5 16H8c-.605 0-1.07-.081-1.466-.218a4.82 4.82 0 0 1-.97-.484l-.048-.03c-.504-.307-.999-.609-2.068-.722C2.682 14.464 2 13.846 2 13V9c0-.85.685-1.432 1.357-1.615.849-.232 1.574-.787 2.132-1.41.56-.627.914-1.28 1.039-1.639.199-.575.356-1.539.428-2.59z"/>
+                    </svg> Me gusta </button>
+                    @endif
                 
                 <button style="border:0px" type="button" class="btn btn-outline-secondary" wire:click='comentario({{$anuncio->ID_ANUNCIOS}})' style="margin: 10px" id="Crear"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hand-thumbs-up-fill" viewBox="0 0 16 16">
                     <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793V2zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z"/>

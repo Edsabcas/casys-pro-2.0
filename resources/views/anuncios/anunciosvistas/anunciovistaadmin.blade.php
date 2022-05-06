@@ -69,10 +69,11 @@ $('#exampleModal1').modal('show');
             @endif
           <div class="card-body">
             @foreach($usuario_publicacion as $usu_publicacion)
-            
+            @if($anuncio->ID_USUARIO == $usu_publicacion->id)
+            <h5 class="card-title">{{$usu_publicacion->usuario}}</h5>
+            @endif
             @endforeach
             
-            <h5 class="card-title">Nombre del editor</h5>
             @foreach($rol_publicado as $rol_publi)
             @if($anuncio->ID_USUARIO == $rol_publi->ID_USUARIO)
             @if($rol_publi->ID_ROL==1)

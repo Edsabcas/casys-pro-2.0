@@ -102,7 +102,7 @@ class AnunciosComponents extends Component
         
         $fechaanuncio = $this->dia2 = date("Y-m-d H:i:s");
         
-        
+        DB::beginTransaction();
 
         $anuncio=DB::table('tb_anuncios')->insert(
             [
@@ -122,7 +122,7 @@ class AnunciosComponents extends Component
             if($anuncio){
                 $this->reset();
                 
-                
+                DB::commit();
                 $this->op=2;
                 $this->mensaje='insertado correctamente';
                
