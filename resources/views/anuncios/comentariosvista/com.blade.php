@@ -52,8 +52,33 @@
                     <br>
                     <div class="alert alert-dark" role="alert">
                         <p style="font-size:10px" class="d-grid gap-2 d-md-flex justify-content-md-end">Publicado el {{$comentario->FECHA_COMENTARIO}}</p>
-                        <h5 class="card-title">Nombre del editor</h5>
-                        <p class="card-text" style="font-size:12px">Rol del Autor</p>
+                        @foreach($usuario_publicacion as $usu_publicacion)
+                        @if($comentario->ID_USUARIO == $usu_publicacion->id)
+                        <h5 class="card-title">{{$usu_publicacion->usuario}}</h5>
+                        @endif
+                        @endforeach
+                        
+                        @foreach($rol_publicado as $rol_publi)
+                        @if($comentario->ID_USUARIO == $rol_publi->ID_USUARIO)
+                        @if($rol_publi->ID_ROL==1)
+                        <p class="card-text" style="font-size:12px">Superusuario</p>
+                        @elseif($rol_publi->ID_ROL==2)
+                        <p class="card-text" style="font-size:12px">Administrador</p>
+                        @elseif($rol_publi->ID_ROL==3)
+                        <p class="card-text" style="font-size:12px">Maestro(a)</p>
+                        @elseif($rol_publi->ID_ROL==4)
+                        <p class="card-text" style="font-size:12px">Alumno(a)</p>
+                        @elseif($rol_publi->ID_ROL==5)
+                        <p class="card-text" style="font-size:12px">Padre de Familia</p>
+                        @elseif($rol_publi->ID_ROL==6)
+                        <p class="card-text" style="font-size:12px">Secretaria</p>
+                        @elseif($rol_publi->ID_ROL==7)
+                        <p class="card-text" style="font-size:12px">Coordinador</p>
+                        @elseif($rol_publi->ID_ROL==8)
+                        <p class="card-text" style="font-size:12px">Contabilidad</p>
+                        @endif
+                        @endif
+                        @endforeach
                         <p class="card-text">{{$comentario->TEXTO_COMENTARIO}}</p>
                         
                       </div>
@@ -64,8 +89,33 @@
                       <br>
                       <div class="alert alert-dark" role="alert">
                           <p style="font-size:10px" class="d-grid gap-2 d-md-flex justify-content-md-end">Publicado el {{$comentario->FECHA_COMENTARIO}}</p>
-                          <h5 class="card-title">Nombre del editor</h5>
-                          <p class="card-text" style="font-size:12px">Rol del Autor</p>
+                          @foreach($usuario_publicacion as $usu_publicacion)
+                          @if($comentario->ID_USUARIO == $usu_publicacion->id)
+                          <h5 class="card-title">{{$usu_publicacion->usuario}}</h5>
+                          @endif
+                          @endforeach
+                          
+                          @foreach($rol_publicado as $rol_publi)
+                          @if($comentario->ID_USUARIO == $rol_publi->ID_USUARIO)
+                          @if($rol_publi->ID_ROL==1)
+                          <p class="card-text" style="font-size:12px">Superusuario</p>
+                          @elseif($rol_publi->ID_ROL==2)
+                          <p class="card-text" style="font-size:12px">Administrador</p>
+                          @elseif($rol_publi->ID_ROL==3)
+                          <p class="card-text" style="font-size:12px">Maestro(a)</p>
+                          @elseif($rol_publi->ID_ROL==4)
+                          <p class="card-text" style="font-size:12px">Alumno(a)</p>
+                          @elseif($rol_publi->ID_ROL==5)
+                          <p class="card-text" style="font-size:12px">Padre de Familia</p>
+                          @elseif($rol_publi->ID_ROL==6)
+                          <p class="card-text" style="font-size:12px">Secretaria</p>
+                          @elseif($rol_publi->ID_ROL==7)
+                          <p class="card-text" style="font-size:12px">Coordinador</p>
+                          @elseif($rol_publi->ID_ROL==8)
+                          <p class="card-text" style="font-size:12px">Contabilidad</p>
+                          @endif
+                          @endif
+                          @endforeach
                           <p class="card-text">{{$comentario->TEXTO_COMENTARIO}}</p>
                           
                         </div>

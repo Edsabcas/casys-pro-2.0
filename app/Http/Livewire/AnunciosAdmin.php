@@ -56,12 +56,13 @@ class AnunciosAdmin extends Component
                         ]
                     );
                     if($vistas){
-            
+                        DB::commit();
                         $this->mensaje3="Insertado correctamente";
                         
             
                     }
                     else{
+                        DB::rollback();
                         $this->mensaje4="Insertado correctamente";
                     }
                 }
@@ -96,18 +97,19 @@ class AnunciosAdmin extends Component
         $id_a = $this->id_com;
         $fechacomentario =  date("Y-m-d H:i:s");
         
-
+        DB::beginTransaction();
         $comentario2=DB::table('tb_comentarios')->insert(
             [
                 'TEXTO_COMENTARIO'=>$textocomentario,
                 'FECHA_COMENTARIO'=>$fechacomentario,
                 'ID_ANUNCIOS'=>$id_a,
+                'ID_USUARIO'=>auth()->user()->id,
             ]
         );
 
         if($comentario2){
 
-           
+            DB::commit();
             $sql="SELECT * FROM tb_comentarios WHERE ID_ANUNCIOS=? ORDER BY FECHA_COMENTARIO DESC";
             $comentarios=DB::select($sql, array($id_a));
             session(['comentarios' => $comentarios]);
@@ -118,6 +120,7 @@ class AnunciosAdmin extends Component
         }
         else{
             //$this->reset();
+            DB::rollback();
             $this->op2=1;
             $this->op=2;
             $this->mensaje1="No fue insertado correctamente";
@@ -137,6 +140,7 @@ class AnunciosAdmin extends Component
         
         //return view('livewire.anuncios-admin', compact('guardados'));
 
+        DB::beginTransaction();
         $anunciosguardados=DB::table('tb_guardados')->insert(
 
             [
@@ -151,11 +155,13 @@ class AnunciosAdmin extends Component
 
             ]);
         if($anunciosguardados){
+            DB::commit();
             $this->mensaje5="Guardado correctamente";
             return redirect ('/PUBLICACIONES_GUARDADAS');
 
         }
         else{
+            DB::rollback();
             $this->mensaje6="No se guardó correctamente";
         }
     }
@@ -187,7 +193,7 @@ class AnunciosAdmin extends Component
         $estado_oculto = 1;
         $id_usuario_com = 2;
 
-
+        DB::beginTransaction();
         $com_oculto=DB::table('tb_comentarios')
 
                ->where('ID_COMENTARIOS', $this->id_oculto)
@@ -203,11 +209,13 @@ class AnunciosAdmin extends Component
                    ]);
 
         if($com_oculto){
+            DB::commit();
             unset($this->mensaje7);
             $this->mensaje7="Insertado correctamente";
 
         }
         else{
+            DB::rollback();
             unset($this->mensaje8);
             $this->mensaje8="Insertado correctamente";
         }
@@ -224,7 +232,7 @@ class AnunciosAdmin extends Component
         $fechamegusta = date("Y-m-d H:i:s");
         $this->idusuario = auth()->user()->id;
 
-    
+        DB::beginTransaction();
             $megusta=DB::table('tb_megusta')->insert(
                 [
                     'CONTENIDO_LIKE'=>$this->valorlike,
@@ -235,13 +243,15 @@ class AnunciosAdmin extends Component
                 ]
             );
             if($megusta){
-            
+        
+                DB::commit();
                 $this->can = 0;
                 $this->mensaje3="Insertado correctamente";
                 return view('livewire.anuncios-admin');
     
             }
             else{
+                DB::rollback();
                 $this->mensaje4="Insertado correctamente";
             }
         
