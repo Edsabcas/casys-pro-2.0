@@ -94,6 +94,7 @@ class FormMaestrosComponents extends Component
             }
              
             else{
+                
                 $this->message = "error al subir";
             }
 
@@ -102,7 +103,7 @@ class FormMaestrosComponents extends Component
         
         $fechaanuncio = $this->dia2 = date("Y-m-d H:i:s");
         
-        
+        DB::beginTransaction();
 
         $anuncio=DB::table('tb_anuncios')->insert(
             [
@@ -121,14 +122,14 @@ class FormMaestrosComponents extends Component
             if($anuncio){
                 $this->reset();
                 
-                
+                DB::commit();
                 $this->op=2;
                 $this->mensaje='insertado correctamente';
                
 
             }
             else{
-                
+                DB::rollback();
                 $this->op=2;
                 $this->mensaje1='No fue insertado correctamente';
             }
