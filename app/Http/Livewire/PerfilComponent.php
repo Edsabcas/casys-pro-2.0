@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 
 class PerfilComponent extends Component
 {
-    public $id_u, $name, $usuario, $email, $password, $op, $mensaje0, $mensaje4, $mensaje, $mensaje1, $us, $pass, $state,$updater;
+    public $id_u, $name, $usuario, $email, $password, $op, $mensaje0, $mensaje4, $mensaje12, $mensaje, $mensaje1, $us, $pass, $state,$updater;
     public $current_password, $new_password, $new_password_confirmation;
 
 
@@ -45,8 +45,6 @@ class PerfilComponent extends Component
         ])==false){
             return back()->withErrors(['advertencia'=>'validar el input vacío']);
 
-
-
             
         }
         else{
@@ -59,6 +57,8 @@ class PerfilComponent extends Component
                 'password'=>bcrypt($this->new_password),
             ]
         );
+        $this->mensaje12='Se actualizo la contraseña de manera correcta';
+        
         if ($perfil){
             $this->mensaje0='se cambio de manera correcta';
         }
@@ -73,6 +73,7 @@ class PerfilComponent extends Component
             else{
                 $this->mensaje1='la contraseña ingresada actual no es la correcta';
             }
+
         }
             
     }
