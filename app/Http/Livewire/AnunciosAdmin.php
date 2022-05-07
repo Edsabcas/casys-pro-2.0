@@ -9,7 +9,7 @@ class AnunciosAdmin extends Component
 {
     public $id_com, $op, $comentarios, $texto_comentario, $op2, $mensaje, $mensaje1, $anuncios, $id_publicacion;
     public $op3, $id_megusta, $mensaje3, $mensaje4, $valorlike, $idcomparacion, $likes3, $mensaje5, $mensaje6;
-    public $idusuario, $mensaje7, $mensaje8, $ver_ocultos1, $ocultarc, $admin_rol, $guar, $usuario_id;
+    public $idusuario, $mensaje7, $mensaje8, $mensaje9, $mensaje10, $ver_ocultos1, $ocultarc, $admin_rol, $guar, $usuario_id;
     public $vistas_totales_id, $contadorlikes, $cambiolike, $can, $usuario_publicacion, $rol_publicado;
     public function render()
     {
@@ -181,6 +181,18 @@ class AnunciosAdmin extends Component
                ->where('ID_USUARIO', $this->idusuario) 
                ->where('ID_PUBLICACION', $this->id_megusta)
                ->delete();
+
+        if($loslikes){
+                DB::commit();
+                unset($this->mensaje9);
+                $this->mensaje9="Insertado correctamente";
+    
+        }
+        else{
+                DB::rollback();
+                unset($this->mensaje10);
+                $this->mensaje10="Insertado correctamente";
+        }
 
         
     }
