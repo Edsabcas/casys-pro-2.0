@@ -9,14 +9,12 @@
       <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
     </symbol>
   </svg>
-  
-  
   <br>
   <div class="card" style="border:6px solid rgb(2, 52, 162);">
     <div class="container-sm">
       <br>
       <br>
-      <h1 class="form-label" style="font-size:50px">Crear Anuncio</h1>
+      <h1 class="form-label" style="font-size:50px">Crear Anuncio M</h1>
       <form wire:submit.prevent='' enctype="multipart/form-data">
         @csrf
 
@@ -115,6 +113,4 @@
   
   </div>
   </div>
-  
-  
   

@@ -12,16 +12,34 @@ class ContenidoComponent extends Component
 {
     use WithFileUploads;
 
-   public $grado,$mat, $nombre_g, $nombre_s, $unidad1, $NOMBRE_MATERIA, $ID_DOCENTE,$op2,$asig;
-   public $texto_anuncio, $archivo_anuncio, $calidad_anuncio;
+   public $grado,$mat, $nombre_g, $nombre_s, $unidad1, $NOMBRE_MATERIA, $ID_DOCENTE,$op2,$asig, $usuario;
    public $option1,$option2,$option3,$option4,$vista;
-   public $prueba, $op, $mensaje, $mensaje1, $file, $date, $dia2, $message, $file2, $img, $vid, $pdf, $tipo;
 
-   public $titulo, $punteo, $fecha_e, $fecha_ext, $descripcion, $archivo, $act,$tema_a,$descripciont,$tema,$unidad, $nota, $ID_ACTIVIDADES;
+   public $prueba, $op, $mensaje, $mensaje1, $file, $date, $dia2, $message, $file2, $arch, $vid, $pdf, $formato, $tipo;
+   public $titulo, $punteo, $fecha_e, $fecha_ext, $descripcion, $act,$tema_a,$descripciont,$tema,$unidad, $temasb, $archivo, $nota, $ID_ACTIVIDADES ;
+
 
 
     public function render()
     {
+        if($this->archivo!=null){
+            if($this->archivo->getClientOriginalExtension()=="pdf"){
+                $archivo = "pdf".time().".".$this->archivo->getClientOriginalExtension();
+                $this->arch=$archivo;
+                $this->archivo->storeAS('imagen/temporalpdf/', $this->arch,'public_up');
+            }
+            if($this->archivo->getClientOriginalExtension()=="jpg" or $this->archivo->getClientOriginalExtension()=="png" or $this->archivo->getClientOriginalExtension()=="jpeg"){
+                $this->formato=1;
+            }
+            elseif($this->archivo->getClientOriginalExtension()=="mp4" or $this->archivo->getClientOriginalExtension()=="mpeg"){
+                $this->formato=2;
+            }
+            elseif($this->archivo->getClientOriginalExtension()=="pdf"){
+                $this->formato=3;
+            }
+
+        }
+
         $uniones="";
         if($this->grado!=null){
             $uniones=DB::table('tb_rel')
@@ -62,6 +80,7 @@ class ContenidoComponent extends Component
         ->join('tb_docentes', 'tb_actividades.ID_DOCENTE', '=', 'tb_docentes.ID_DOCENTE')
         ->join('tb_grados', 'tb_actividades.ID_GR', '=', 'tb_grados.ID_GR')
         ->join('tb_seccions', 'tb_actividades.ID_SC', '=', 'tb_seccions.ID_SC')
+        ->join('users', 'tb_actividades.ID', '=', 'users.ID')
         ->select('tb_actividades.ID_ACTIVIDADES', 'tb_materias.NOMBRE_MATERIA', 'tb_docentes.NOMBRE_DOCENTE', 'tb_grados.NOMBRE_GRADO', 'tb_seccions.SECCION','tb_materias.ID_MATERIA','tb_actividades.NOMBRE_ACTIVIDAD')
         ->where('tb_actividades.ID_GR','=',$this->act)
         ->get();
@@ -83,8 +102,10 @@ class ContenidoComponent extends Component
         $unidadesf=DB::select($sql);
         $sql= 'SELECT * FROM tb_temas';
         $temas=DB::select($sql);
-  
-        return view('livewire.contenido-component',compact('materias','grados','secciones','uniones','unidades','maestros','actividades','asignaciones','estu','actividad','unidadesf','temas'));
+        $sql= 'SELECT * FROM users';
+        $Usuarios=DB::select($sql);
+        return view('livewire.contenido-component',compact('materias','grados','secciones','uniones','unidades','maestros','actividades','asignaciones','estu','actividad','unidadesf','temas','Usuarios'));
+
     }
     
     public function mostrar_m($id,$nomb,$secc,$num)
@@ -94,7 +115,6 @@ class ContenidoComponent extends Component
         $this->nombre_g=$nomb;
         $this->nombre_s=$secc;
         $this->op2=$num;
-    
     }
 
     public function mostrar_u($id,$nombm,$nombrem,$num)
@@ -104,10 +124,7 @@ class ContenidoComponent extends Component
         $this->NOMBRE_MATERIA=$nombm;
         $this->ID_DOCENTE=$nombrem;
         $this->op2=$num;
-       
-
         
-    
     }
 
     public function paginacion($num)
@@ -161,22 +178,58 @@ class ContenidoComponent extends Component
     }
 
     public function Subir_Act(){
+        if($this->validate([
+            'titulo' => 'required',
+            'punteo' => 'required',
+            'fecha_e' => 'required',
+            'descripcion' => 'required',
+            'temasb' => 'required',
+        ])==false){
+            $error="no encontrado";
+            session(['message'=>'no encontrado']);
+            return back()->withErrors(['error' => 'Validar el input vacio']);
+        }
+
+        else{
         $titulo=$this->titulo;
         $punteo=$this->punteo;
         $fecha_e=$this->fecha_e;
         $descripcion=$this->descripcion;
-        $archivo=$this->archivo;
         $fecha_ext=$this->fecha_ext;
+        $temasb=$this->temasb;
+
+        $archivo="";
+        if($this->archivo!=null){
+            if($this->archivo->getClientOriginalExtension()=="jpg" or $this->archivo->getClientOriginalExtension()=="png" or $this->archivo->getClientOriginalExtension()=="jpeg"){
+                $archivo = "img".time().".".$this->archivo->getClientOriginalExtension();
+                $this->arch=$archivo;
+                $this->archivo->storeAS('imagen/actividades/', $this->arch,'public_up');
+                $this->formato=1;
+            }
+            elseif($this->archivo->getClientOriginalExtension()=="mp4" or $this->archivo->getClientOriginalExtension()=="mpeg"){
+                $archivo = "vid".time().".".$this->archivo->getClientOriginalExtension();
+                $this->arch=$archivo;
+                $this->archivo->storeAS('imagen/videos_act/', $this->arch,'public_up');
+                $this->formato=2;
+            }
+            elseif($this->archivo->getClientOriginalExtension()=="pdf"){
+                $archivo = "pdf".time().".".$this->archivo->getClientOriginalExtension();
+                $this->arch=$archivo;
+                $this->archivo->storeAS('imagen/pdf_act/', $this->arch,'public_up');
+                $this->formato=3;
+            }
+        }
 
 
         $actividades=DB::table('tb_actividades')->insert(
             [
                 'NOMBRE_ACTIVIDAD'=>$titulo,
                 'descripcion'=>$descripcion,
-                'archivos'=>$archivo,
+                'archivos'=>$this->arch,
                 'punteo'=>$punteo,
                 'fecha_entr'=>$fecha_e,
                 'fecha_extr'=>$fecha_ext,
+                'ID_TEMA'=>$temasb,
             ]);
 
             if($actividades){
@@ -190,7 +243,10 @@ class ContenidoComponent extends Component
                 unset($this->mensaje1);
                 $this->op='addcontenidos';
                 $this->mensaje1='Datos no  insertados correctamente';
-                }
+                }        
+        }
+
+
     }
 
     public function Subir_Tema(){

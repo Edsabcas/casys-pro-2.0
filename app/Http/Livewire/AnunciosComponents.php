@@ -44,6 +44,7 @@ class AnunciosComponents extends Component
         $sql="SELECT * FROM idiomasmaestros";
         $this->idiomas=DB::select($sql);
         
+        
         return view('livewire.anuncios-components');
     }
     public function guardaranuncio(){
@@ -101,7 +102,7 @@ class AnunciosComponents extends Component
         
         $fechaanuncio = $this->dia2 = date("Y-m-d H:i:s");
         
-        
+        DB::beginTransaction();
 
         $anuncio=DB::table('tb_anuncios')->insert(
             [
@@ -114,13 +115,14 @@ class AnunciosComponents extends Component
                 'IDIOMA_MAESTRO'=>$idiomamaestro,
                 'GRADO_ANUNCIO'=>$gradoanuncio,
                 'ESTADO_ANUNCIO'=>$estadoanuncio,
+                'ID_USUARIO'=>auth()->user()->id,
 
             ]
             );
             if($anuncio){
                 $this->reset();
                 
-                
+                DB::commit();
                 $this->op=2;
                 $this->mensaje='insertado correctamente';
                

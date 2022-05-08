@@ -8,17 +8,88 @@ use App\Models\User;
 
 class ListaDeEstudiantesComponent extends Component
 {
+    public $password, $id_p, $name, $email, $usuario, $mensaje5, $mensaje6, $mensaje7, $mensaje10, $mensaje11, $n_name, $n_email, $n_user, $n_password;
 
     public function render()
     {
-        $sql='SELECT * FROM users WHERE id=?';
+        $sql='SELECT * FROM users';
         $listadousers=DB::select($sql);
         
-        $password = $this->password;
+        
 
         $this->op=1;
-        $this->edit1=1;
+        $this->edit2=1;
         return view('livewire.lista-de-estudiantes-component', compact('listadousers'));
+    }
+
+    public function cargar_datos($id_p, $name, $email, $usuario){
+
+        $this->id_p = $id_p;
+        $this->name = $name;
+        $this->email = $email;
+        $this->usuario = $usuario;
+        
+    }
+
+    public function e_perfiles(){
+
+        if($this->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'usuario' => 'required',
+
+
+        ])==false){
+            return back()->withErrors(['advertencia'=>'validar el input vacío']);
+
+
+            
+        }
+        else{
+            if($this->n_password != null ){ 
+                    $usuarios=DB::table('users')
+                    ->where('id', $this->id_p)
+                     ->update(
+                         [
+                             'password'=>bcrypt($this->n_password),
+                             'name'=>($this->name),
+                             'email'=>($this->email),
+                             'usuario'=>($this->usuario),
+                        ]
+                    );
+                    if ($usuarios){
+                        $this->mensaje5='se cambio de manera correcta';
+                    }
+                    else {
+                        $this->mensaje6='no se cambio de manera correcta';
+                    }
+
+                $this->mensaje10='Se actualizo de manera correcta';
+                
+                }
+                else{
+                    $usuarios=DB::table('users')
+                    ->where('id', $this->id_p)
+                     ->update(
+                         [
+
+                             'name'=>($this->name),
+                             'email'=>($this->email),
+                             'usuario'=>($this->usuario),
+                        ]
+                    );
+                    if ($usuarios){
+                        $this->mensaje5='se cambio de manera correcta';
+                    }
+                    else {
+                        $this->mensaje6='no se cambio de manera correcta';
+                    }
+
+                $this->mensaje11='Se actualizo de manera correcta';
+                }       
+
+        }
+
     }
 
 

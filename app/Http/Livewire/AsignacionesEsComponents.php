@@ -13,14 +13,14 @@ class AsignacionesEsComponents extends Component
     {
         $estudiante= DB::table('tb_asignaciones_e')
 
-                ->join('tb_estudiantes', 'tb_asignaciones_e.ID_ESTUDIANTE', '=', 'tb_estudiantes.ID_ESTUDIANTE')
+                ->join('tb_estudiantes', 'tb_asignaciones_e.id', '=', 'tb_estudiantes.id')
 
                 ->join('tb_grados', 'tb_asignaciones_e.ID_GR', '=', 'tb_grados.ID_GR')
 
-                ->join('TB_SECCIONS', 'tb_asignaciones_e.ID_SC', '=', 'TB_SECCIONS.ID_SC')
+                ->join('tb_seccions', 'tb_asignaciones_e.ID_SC', '=', 'tb_seccions.ID_SC')
 
-                ->select('tb_asignaciones_e.ID_E','tb_asignaciones_e.ID_SC','tb_asignaciones_e.ID_GR','tb_asignaciones_e.ID_ESTUDIANTE',
-                'tb_estudiantes.NOMBRE_ESTUDIANTE','tb_estudiantes.APELLIDOS_ESTUDIANTE','TB_GRADOS.GRADO','TB_SECCIONS.SECCION','tb_asignaciones_e.ESTADO','tb_asignaciones_e.FECHA_ASIGNACION')
+                ->select('tb_asignaciones_e.ID_E','tb_asignaciones_e.ID_SC','tb_asignaciones_e.ID_GR','tb_asignaciones_e.id',
+                'tb_estudiantes.TB_INFO_NOMBRE','tb_estudiantes.TB_INFO_APELLIDO','tb_grados.GRADO','tb_seccions.SECCION','tb_asignaciones_e.ESTADO','tb_asignaciones_e.FECHA_ASIGNACION')
 
                 ->get();
 
@@ -36,7 +36,6 @@ class AsignacionesEsComponents extends Component
 
         if($this->validate([
             'nombres_e' => 'required',
-            'apellidos_e' => 'required',
             'grado_e' => 'required',
             'seccion_e' => 'required',
             'estado_e' => 'required',
@@ -56,8 +55,7 @@ class AsignacionesEsComponents extends Component
         $estado_e=$this->estado_e;
         $estudiante=DB::table('tb_asignaciones_e')->insert(
             [
-                'ID_ESTUDIANTE'=> $nombres_e,
-                'ID_ESTUDIANTE'=> $apellidos_e,
+                'id'=> $nombres_e,
                 'ID_GR'=> $grado_e,
                 'ID_SC'=> $seccion_e,
                 'FECHA_ASIGNACION'=> date('y-m-d:h:m:s'),
@@ -92,7 +90,7 @@ class AsignacionesEsComponents extends Component
             foreach($estudiante as $est)
             {
                 $this->id_e=$est->ID_E;
-                $this->nombres_e=$est->ID_ESTUDIANTE;
+                $this->nombres_e=$est->id;
                 $this->grado_e=$est->ID_GR;
                 $this->seccion_e=$est->ID_SC;
                 $this->estado_e=$est->ESTADO;
@@ -113,7 +111,7 @@ class AsignacionesEsComponents extends Component
         ->where('ID_E',$id_e)
         ->update(
             [
-                'ID_ESTUDIANTE'=> $nombres_e,
+                'id'=> $nombres_e,
                 'ID_GR'=> $grado_e,
                 'ID_SC'=> $seccion_e,
                 'ESTADO'=> $estado_e,

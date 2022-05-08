@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 
 class PerfilComponent extends Component
 {
-    public $id_u, $name, $usuario, $email, $password, $op, $mensaje, $mensaje1, $us, $pass, $state,$updater;
+    public $id_u, $name, $usuario, $email, $password, $op, $mensaje0, $mensaje4, $mensaje12, $mensaje, $mensaje1, $us, $pass, $state,$updater;
     public $current_password, $new_password, $new_password_confirmation;
 
 
@@ -33,12 +33,6 @@ class PerfilComponent extends Component
         $id_u=auth()->user()->id;
   
     }
-
-
-    public function  c_passForm()
-       {
-         return view('auth.editar');
-       }
        
 
     public function c_pass(){
@@ -51,15 +45,26 @@ class PerfilComponent extends Component
         ])==false){
             return back()->withErrors(['advertencia'=>'validar el input vacío']);
 
-
-
+            
         }
         else{
             if(Hash::check($this->current_password, auth()->user()->password)){ 
                 if($this->new_password == $this->new_password_confirmation){
-                    $this->current_password = User::find(auth()->user()->id);
-                    $this->new_password->password ="contraseña nueva";
-                    $this->new_password->save();
+                    $perfil=DB::table('users')
+                    ->where('id',auth()->user()->id)
+                     ->update(
+            [
+                'password'=>bcrypt($this->new_password),
+            ]
+        );
+        $this->mensaje12='Se actualizo la contraseña de manera correcta';
+        
+        if ($perfil){
+            $this->mensaje0='se cambio de manera correcta';
+        }
+        else {
+            $this->mensaje4='no se cambio de manera correcta';
+        }
                 }
                 else{
                     $this->mensaje='no coinsiden las contraseñas favor validar';
@@ -68,6 +73,7 @@ class PerfilComponent extends Component
             else{
                 $this->mensaje1='la contraseña ingresada actual no es la correcta';
             }
+
         }
             
     }

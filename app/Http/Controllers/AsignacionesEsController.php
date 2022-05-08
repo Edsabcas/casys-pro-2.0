@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+
 
 class AsignacionesEsController extends Controller
 {
     public function agregar_e(){
-        $op='asigestudiantes';
+        $op='asignacionestudiantes';
         return view('home', compact('op'));
     }
 }

@@ -10,9 +10,10 @@ class AnunciosNoAdmin extends Component
     public $id_com, $op, $comentarios, $texto_comentario, $op2, $mensaje, $mensaje1;
     public $id_megusta, $valorlike, $idusuario, $idcomparacion, $mensaje3, $mensaje4;
     public $ver_ocultos1, $ocultarc, $ver_oculto, $admin_rol, $id_publicacion, $mensaje5, $mensaje6, $usuario_id;
-    public $vistas_totales_id, $rol_activo;
+    public $vistas_totales_id, $rol_activo, $grado_activo_estudiante, $mensaje9, $mensaje10;
     public function render()
     {
+        $usuario_activo = auth()->user()->id;
         $this->ver_ocultos1=0;
         $this->ocultarc = 0;
         $this->ver_oculto =1;
@@ -30,13 +31,15 @@ class AnunciosNoAdmin extends Component
         $this->rol_activo=DB::select($sql);
         $sql="SELECT ID_GR FROM tb_asignaciones WHERE ID_DOCENTE=$usuario_activo";
         $this->grado_activo=DB::select($sql);
+        $sql="SELECT ID_TB_INFO_GRADO_INGRESO FROM tb_estudiantes WHERE id=$usuario_activo";
+        $this->grado_activo_estudiante=DB::select($sql);
         
         $this->admin_rol = 2;
         $fecha_vista=date("Y-m-d H:i:s");
         $estado_vista=1;
         $this->usuario_id = 5;
         $this->vistas_totales_id=5;
-        $usuario_activo = auth()->user()->id;
+        
         //en el where id_usuario después del signo igual va el id del usuario logeado en ese momento y en el inserte de id_usuario.
         
         foreach($anuncios as $anuncio){
@@ -45,6 +48,7 @@ class AnunciosNoAdmin extends Component
                 if($vistos!=null){
                 }
                 else{
+                    DB::beginTransaction();
                     $vistas=DB::table('tb_vistas')->insert(
                         [
                             'ID_USUARIO'=>auth()->user()->id,
@@ -55,12 +59,13 @@ class AnunciosNoAdmin extends Component
                         ]
                     );
                     if($vistas){
-            
+                        DB::commit();
                         $this->mensaje3="Insertado correctamente";
                         
             
                     }
                     else{
+                        DB::rollback();
                         $this->mensaje4="Insertado correctamente";
                     }
                 }
@@ -81,22 +86,35 @@ class AnunciosNoAdmin extends Component
     }
 
     public function guardarcomentario(){
-        $textocomentario = $this->texto_comentario;
-        $fechacomentario =  date("Y-m-d H:i:s");
+        if($this->validate([
+            'texto_comentario' => 'required',
+        ])==false){
+            $advertencia="no encontrado";
+            session(['message'=>'no encontrado']);
+            return back()->withErrors(['advertencia'=>'validar el input vacío']);
 
+        }
+        else{
+            $textocomentario = $this->texto_comentario;
+        $id_a = $this->id_com;
+        $fechacomentario =  date("Y-m-d H:i:s");
+        
+
+        DB::beginTransaction();
         $comentario2=DB::table('tb_comentarios')->insert(
             [
                 'TEXTO_COMENTARIO'=>$textocomentario,
                 'FECHA_COMENTARIO'=>$fechacomentario,
-                'ID_ANUNCIOS'=>$this->id_com,
+                'ID_ANUNCIOS'=>$id_a,
+                'ID_USUARIO'=>auth()->user()->id,
             ]
         );
 
         if($comentario2){
 
-            $id_a = $this->id_com;
-            $sql="SELECT * FROM tb_comentarios WHERE ID_ANUNCIOS= $id_a ORDER BY FECHA_COMENTARIO DESC";
-            $comentarios=DB::select($sql);
+            DB::commit();
+            $sql="SELECT * FROM tb_comentarios WHERE ID_ANUNCIOS=? ORDER BY FECHA_COMENTARIO DESC";
+            $comentarios=DB::select($sql, array($id_a));
             session(['comentarios' => $comentarios]);
             //$this->reset();
             //$this->op2=1;
@@ -105,10 +123,13 @@ class AnunciosNoAdmin extends Component
         }
         else{
             //$this->reset();
+            DB::rollback();
             $this->op2=1;
             $this->op=2;
             $this->mensaje1="No fue insertado correctamente";
         }
+        }
+        
 
     }
 
@@ -116,15 +137,15 @@ class AnunciosNoAdmin extends Component
         session()->forget('comentarios'); 
     }
 
-    public function megusta($id_like){
+    
+    public function insertar_like($id_like){
         $this->id_megusta=$id_like;
         $this->valorlike+=1;
         $estadolike = 1;
         $fechamegusta = date("Y-m-d H:i:s");
-        $this->idusuario = 5;
-        $this->idcomparacion = 5;
+        $this->idusuario = auth()->user()->id;
 
-        if($this->valorlike==1){
+        DB::beginTransaction();
             $megusta=DB::table('tb_megusta')->insert(
                 [
                     'CONTENIDO_LIKE'=>$this->valorlike,
@@ -135,35 +156,47 @@ class AnunciosNoAdmin extends Component
                 ]
             );
             if($megusta){
-            
+        
+                DB::commit();
+                $this->can = 0;
                 $this->mensaje3="Insertado correctamente";
                 return view('livewire.anuncios-admin');
     
             }
             else{
+                DB::rollback();
                 $this->mensaje4="Insertado correctamente";
             }
+        
+
+    }   
+
+    public function eliminarmegusta(){
+        $this->id_megusta=$id_like;
+        $this->valorlike+=1;
+        $estadolike = 1;
+        $fechamegusta = date("Y-m-d H:i:s");
+        $this->idusuario = 5;
+        $this->idcomparacion = 5;
+
+        $loslikes=DB::table('tb_megusta')
+
+        ->where('ID_USUARIO', $this->idusuario) 
+        ->where('ID_PUBLICACION', $this->id_megusta)
+        ->delete();
+
+        if($loslikes){
+            DB::commit();
+            unset($this->mensaje9);
+            $this->mensaje9="Insertado correctamente";
+
         }
-        elseif($this->valorlike==2){
-            $this->valorlike=0;
-            $loslikes=DB::table('tb_megusta')
-
-               ->where('ID_USUARIO', $this->idusuario) 
-               ->where('ID_PUBLICACION', $this->id_megusta)
-
-               ->update(
-
-                   [
-
-                    'CONTENIDO_LIKE' => $this->valorlike,
-
-                    'FECHA_LIKE' =>date('Y-m-d H:i:s'),
-
-                   ]);
+         else{
+            DB::rollback();
+            unset($this->mensaje10);
+            $this->mensaje10="Insertado correctamente";
         }
-        else{
 
-        } 
     }
 
     public function fechamora(){
@@ -180,7 +213,7 @@ class AnunciosNoAdmin extends Component
         
         
         //return view('livewire.anuncios-admin', compact('guardados'));
-
+        DB::beginTransaction();
         $anunciosguardados=DB::table('tb_guardados')->insert(
 
             [
@@ -195,11 +228,13 @@ class AnunciosNoAdmin extends Component
 
             ]);
         if($anunciosguardados){
+            DB::commit();
             $this->mensaje5="Guardado correctamente";
             return redirect ('/guardar');
 
         }
         else{
+            DB::rollback();
             $this->mensaje6="No se guardó correctamente";
         }
 

@@ -24,7 +24,7 @@ use App\Http\Controllers\UnionController;
 use App\Http\Controllers\Conusltarcontroller;
 use App\Http\Controllers\CalendarizacionController;
 use App\Http\Controllers\AsignarPrecioController;
-use App\Http\Controllers\MaestrosFormController;
+use App\Http\Controllers\FormMaestrosController;
 
 use App\Http\Livewire\PerfilComponent;
 use App\Http\Controllers\PerfilController;
@@ -126,6 +126,9 @@ Route::post('/c_pass', [PerfilComponent::class, 'c_pass'])
 Route::get('/Lista_de_estudiantes', [ListaDeEstudiantesController::class, 'listarusers'])
 ->middleware('auth')->name('Lista_de_estudiantes.listarusers');
 
+Route::get('/e_perfiles', [ListaDeEstudiantesComponent::class, 'e_perfiles'])
+->middleware('auth')->name('e_perfiles.e_perfiles');
+
 Route::get('/Modificar_Estudiantes', [ModificarEstudiantesComponent::class, 'index'])
 ->middleware('auth')->name('Modificar_Estudiantes.index');
 
@@ -155,8 +158,8 @@ Route::get('/Anuncios_Guardados', [AnunciosGuardadosComponent::class, 'index'])
 Route::get('/Maestros', [MaestrosComponent::class, 'index'])
 ->middleware('auth')->name('Maestros.index');
 
-Route::get('/Estudiantes', [AsignacionesEsController::class, 'index'])
-->middleware('auth')->name('Estudiantes.index');
+Route::get('/Estudiantes', [AsignacionesEsController::class, 'agregar_e'])
+->middleware('auth')->name('Estudiantes.agregar_e');
 
 //Academico
 Route::get('/Ingreso_de_calificaciones', [IngresoDeCalificacionesComponent::class, 'index'])
@@ -305,7 +308,8 @@ Route::get('/CREAR_PUBLICACION', [EdicionAnuncioController::class, 'edicion'])->
 
 Route::get('/VISTA_PUBLICACION', [AnunciosAdController::class, 'vistaadmin'])->middleware('auth');
 Route::get('/PUBLICACIONES_GUARDADAS', [GuardarController::class, 'guardar'])->middleware('auth');
-Route::get('/Nueva', [MaestrosFormController::class, 'edicionmaestro'])->middleware('auth');
+Route::get('/Anuncio_Nuevo', [FormMaestrosController::class, 'edicionmaestro'])->middleware('auth');
+Route::get('/Publicaciones', [AnunciosNoAdController::class, 'vistanoadmin'])->middleware('auth');
 
 
 
