@@ -17,7 +17,7 @@ class ContenidoComponent extends Component
    public $option1,$option2,$option3,$option4,$vista;
    public $prueba, $op, $mensaje, $mensaje1, $file, $date, $dia2, $message, $file2, $img, $vid, $pdf, $tipo;
 
-   public $titulo, $punteo, $fecha_e, $fecha_ext, $descripcion, $archivo, $act,$tema_a,$descripciont,$tema,$unidad;
+   public $titulo, $punteo, $fecha_e, $fecha_ext, $descripcion, $archivo, $act,$tema_a,$descripciont,$tema,$unidad, $nota, $ID_ACTIVIDADES;
 
 
     public function render()
@@ -84,7 +84,7 @@ class ContenidoComponent extends Component
         $sql= 'SELECT * FROM tb_temas';
         $temas=DB::select($sql);
   
-        return view('livewire.contenido-component',compact('materias','grados','secciones','uniones','unidades','maestros','actividades','asignaciones','estu','actividad','unidadesf'));
+        return view('livewire.contenido-component',compact('materias','grados','secciones','uniones','unidades','maestros','actividades','asignaciones','estu','actividad','unidadesf','temas'));
     }
     
     public function mostrar_m($id,$nomb,$secc,$num)
@@ -232,9 +232,22 @@ class ContenidoComponent extends Component
                 }
     }
 
+    
+
 
 
 }
+public function nota($nota,$ida){
+    $nota=$this->nota;
+    $this->ID_ACTIVIDADES=$ida;
 
 
+    $notas=DB::table('tb_notas')->insert(
+        [
+            'NOTA'=>$nota,
+            'ID_ACTIVIDADES'=>$ida,
+        ]);
+
+
+}
 }

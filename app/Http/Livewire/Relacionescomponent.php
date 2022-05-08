@@ -51,6 +51,8 @@ class Relacionescomponent extends Component
         $ID_GR=$this->ID_GR;
         $ID_SC=$this->ID_SC;
 
+        DB::begintransaction();
+
 
         $secciones=DB::table('tb_rel')->insert(
             [
@@ -61,6 +63,7 @@ class Relacionescomponent extends Component
 
             ]);
         if($secciones){
+            DB::commit();
             unset($this->mensaje);
             unset($this->mensaje3);
             unset($this->mensaje_eliminar);
@@ -69,6 +72,7 @@ class Relacionescomponent extends Component
             $this->mensaje='Insertado correctamente';
         }
         else {
+            DB::rollback();
             unset($this->mensaje1);
             unset($this->mensaje4);
             unset($this->mensaje_eliminar2);
@@ -142,6 +146,9 @@ class Relacionescomponent extends Component
         $ID_GR=$this->ID_GR;
         $ID_SC=$this->ID_SC;
 
+        DB::begintransaction();
+
+
         $rel=DB::table('tb_rel')
         ->where('ID_REL', $ID_REL)
         ->update( 
@@ -154,6 +161,7 @@ class Relacionescomponent extends Component
             );
 
             if($rel){
+                DB::commit();
                 unset($this->mensaje);
                 unset($this->mensaje3);
                 unset($this->mensaje_eliminar);
@@ -170,6 +178,7 @@ class Relacionescomponent extends Component
                 $this->mensaje3='Editado Correctamente';
             }
             else{
+                DB::rollback();
                 unset($this->mensaje1);
                 unset($this->mensaje4);
                 unset($this->mensaje_eliminar2);
@@ -182,9 +191,13 @@ class Relacionescomponent extends Component
 
     Public function delete($id){
         $ID_REL=$id;
+
+        DB::begintransaction();
+
         $rel=DB::table('tb_rel')->where('ID_REL','=', $ID_REL)->delete();
 
         if($rel){
+            DB::commit();
             unset($this->mensaje);
             unset($this->mensaje3);
             unset($this->mensaje_eliminar);
@@ -202,6 +215,7 @@ class Relacionescomponent extends Component
             $this->mensaje_eliminar='Eliminado Correctamente';
         }
         else{
+            DB::rollback();
             unset($this->mensaje1);
             unset($this->mensaje4);
             unset($this->mensaje_eliminar2);

@@ -36,7 +36,8 @@ class UnidadesComponent extends Component
             $id_mat=$this->id_mat;
             $nombre_uni=$this->nombre_uni;
             $estado_uni=$this->estado_uni;
-    
+
+            DB::begintransaction();
     
             $unidades=DB::table('tb_unidades')->insert(
                 [
@@ -45,6 +46,7 @@ class UnidadesComponent extends Component
                     'ESTADO'=>$estado_uni,
                 ]);
             if($unidades){
+                DB::commit();
                 unset($this->mensaje);
                 unset($this->mensaje3);
                 unset($this->mensaje_eliminar);
@@ -53,6 +55,7 @@ class UnidadesComponent extends Component
                 $this->mensaje='Insertado correctamente';
             }
             else {
+                DB::rollback();
                 unset($this->mensaje1);
                 unset($this->mensaje4);
                 unset($this->mensaje_eliminar2);
@@ -101,6 +104,8 @@ class UnidadesComponent extends Component
         $nombre_uni=$this->nombre_uni;
         $estado_uni=$this->estado_uni;
 
+        DB::begintransaction();
+
         $uni=DB::table('tb_unidades')
         ->where('ID_UNIDADES', $id_uni)
         ->update( 
@@ -112,6 +117,7 @@ class UnidadesComponent extends Component
             );
 
             if($uni){
+                DB::commit();
                 unset($this->mensaje);
                 unset($this->mensaje3);
                 unset($this->mensaje_eliminar);
@@ -124,6 +130,7 @@ class UnidadesComponent extends Component
                 $this->mensaje3='Editado Correctamente';
             }
             else{
+                DB::rollback();
                 unset($this->mensaje1);
                 unset($this->mensaje4);
                 unset($this->mensaje_eliminar2);
@@ -134,9 +141,12 @@ class UnidadesComponent extends Component
 
     Public function delete($id){
         $id_uni=$id;
+        DB::begintransaction();
+
         $uni=DB::table('tb_unidades')->where('ID_UNIDADES','=', $id_uni)->delete();
 
         if($uni){
+            DB::commit();
             unset($this->mensaje);
             unset($this->mensaje3);
             unset($this->mensaje_eliminar);
@@ -148,6 +158,7 @@ class UnidadesComponent extends Component
             $this->mensaje_eliminar='Eliminado Correctamente';
         }
         else{
+            DB::rollback();
             unset($this->mensaje1);
             unset($this->mensaje4);
             unset($this->mensaje_eliminar2);
