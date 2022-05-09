@@ -46,7 +46,8 @@ class ListaDeEstudiantesComponent extends Component
             
         }
         else{
-            if($this->n_password != null ){ 
+            if($this->n_password != null ){
+                DB::beginTransaction(); 
                     $usuarios=DB::table('users')
                     ->where('id', $this->id_p)
                      ->update(
@@ -58,16 +59,19 @@ class ListaDeEstudiantesComponent extends Component
                         ]
                     );
                     if ($usuarios){
+                        DB::commit();
                         $this->mensaje5='se cambio de manera correcta';
                     }
                     else {
+                        DB::rollback();
                         $this->mensaje6='no se cambio de manera correcta';
                     }
-
+                    DB::commit();
                 $this->mensaje10='Se actualizo de manera correcta';
                 
                 }
                 else{
+                    DB::beginTransaction();
                     $usuarios=DB::table('users')
                     ->where('id', $this->id_p)
                      ->update(
@@ -79,12 +83,14 @@ class ListaDeEstudiantesComponent extends Component
                         ]
                     );
                     if ($usuarios){
+                        DB::commit();
                         $this->mensaje5='se cambio de manera correcta';
                     }
                     else {
+                        DB::rollback();
                         $this->mensaje6='no se cambio de manera correcta';
                     }
-
+                    DB::rollback();
                 $this->mensaje11='Se actualizo de manera correcta';
                 }       
 
