@@ -10,7 +10,7 @@ class AnunciosNoAdmin extends Component
     public $id_com, $op, $comentarios, $texto_comentario, $op2, $mensaje, $mensaje1;
     public $id_megusta, $valorlike, $idusuario, $idcomparacion, $mensaje3, $mensaje4;
     public $ver_ocultos1, $ocultarc, $ver_oculto, $admin_rol, $id_publicacion, $mensaje5, $mensaje6, $usuario_id;
-    public $vistas_totales_id, $rol_activo, $grado_activo_estudiante;
+    public $vistas_totales_id, $rol_activo, $grado_activo_estudiante, $mensaje9, $mensaje10;
     public function render()
     {
         $usuario_activo = auth()->user()->id;
@@ -184,6 +184,18 @@ class AnunciosNoAdmin extends Component
         ->where('ID_USUARIO', $this->idusuario) 
         ->where('ID_PUBLICACION', $this->id_megusta)
         ->delete();
+
+        if($loslikes){
+            DB::commit();
+            unset($this->mensaje9);
+            $this->mensaje9="Insertado correctamente";
+
+        }
+         else{
+            DB::rollback();
+            unset($this->mensaje10);
+            $this->mensaje10="Insertado correctamente";
+        }
 
     }
 

@@ -14,8 +14,10 @@ class ContenidoComponent extends Component
 
    public $grado,$mat, $nombre_g, $nombre_s, $unidad1, $NOMBRE_MATERIA, $ID_DOCENTE,$op2,$asig, $usuario;
    public $option1,$option2,$option3,$option4,$vista;
-   public $prueba, $op, $mensaje, $mensaje1, $file, $date, $dia2, $message, $file2, $arch, $vid, $pdf, $formato;
-   public $titulo, $punteo, $fecha_e, $fecha_ext, $descripcion, $act,$tema_a,$descripciont,$tema,$unidad, $temasb, $archivo ;
+
+   public $prueba, $op, $mensaje, $mensaje1, $file, $date, $dia2, $message, $file2, $arch, $vid, $pdf, $formato, $tipo;
+   public $titulo, $punteo, $fecha_e, $fecha_ext, $descripcion, $act,$tema_a,$descripciont,$tema,$unidad, $temasb, $archivo, $nota, $ID_ACTIVIDADES ;
+
 
 
     public function render()
@@ -102,8 +104,8 @@ class ContenidoComponent extends Component
         $temas=DB::select($sql);
         $sql= 'SELECT * FROM users';
         $Usuarios=DB::select($sql);
-  
         return view('livewire.contenido-component',compact('materias','grados','secciones','uniones','unidades','maestros','actividades','asignaciones','estu','actividad','unidadesf','temas','Usuarios'));
+
     }
     
     public function mostrar_m($id,$nomb,$secc,$num)
@@ -218,6 +220,8 @@ class ContenidoComponent extends Component
             }
         }
 
+        DB::begintransaction();
+
 
         $actividades=DB::table('tb_actividades')->insert(
             [
@@ -231,12 +235,14 @@ class ContenidoComponent extends Component
             ]);
 
             if($actividades){
+                DB::commit();
                 unset($this->mensaje);;
                 unset($this->mensaje1);
                 $this->op='addcontenidos';
                 $this->mensaje='Insertado correctamente';
                 }
                 else {
+                DB::rollback();
                 unset($this->mensaje);;
                 unset($this->mensaje1);
                 $this->op='addcontenidos';
@@ -263,6 +269,7 @@ class ContenidoComponent extends Component
         $tema=$this->tema;
         $unidad=$this->unidad;
         $descripciont=$this->descripciont;
+        DB::begintransaction();
         
 
         $temas=DB::table('tb_temas')->insert(
@@ -273,12 +280,14 @@ class ContenidoComponent extends Component
             ]);
 
             if($temas){
+                DB::commit();
                 unset($this->mensaje);;
                 unset($this->mensaje1);
                 $this->op='addcontenidos';
                 $this->mensaje='Insertado correctamente';
                 }
                 else {
+                DB::rollback();
                 unset($this->mensaje);;
                 unset($this->mensaje1);
                 $this->op='addcontenidos';
@@ -286,9 +295,24 @@ class ContenidoComponent extends Component
                 }
     }
 
+    
+
 
 
 }
+public function nota($nota,$ida){
+    $nota=$this->nota;
+    DB::begintransaction();
+
+    $this->ID_ACTIVIDADES=$ida;
 
 
+    $notas=DB::table('tb_notas')->insert(
+        [
+            'NOTA'=>$nota,
+            'ID_ACTIVIDADES'=>$ida,
+        ]);
+
+
+}
 }
