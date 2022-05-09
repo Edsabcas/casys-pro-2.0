@@ -53,6 +53,9 @@ class AsignacionesEsComponents extends Component
         $grado_e=$this->grado_e;
         $seccion_e=$this->seccion_e;
         $estado_e=$this->estado_e;
+
+        DB::beginTransaction();
+
         $estudiante=DB::table('tb_asignaciones_e')->insert(
             [
                 'id'=> $nombres_e,
@@ -62,13 +65,14 @@ class AsignacionesEsComponents extends Component
                 'ESTADO'=> $estado_e,
             ]);
             if($estudiante){
+                DB::commit();
                 $this->reset();
                 unset($this->mensaje);
                 $this->op=2;
                 $this->mensaje='Insertado correctamente';
             }
             else{
-
+                DB::rollback();
                 unset($this->mensaje1);
                 $this->op=2;
                 $this->mensaje1='No fue posible insertar correctamente';
@@ -107,6 +111,8 @@ class AsignacionesEsComponents extends Component
         $seccion_e=$this->seccion_e;
         $estado_e=$this->estado_e;
 
+        DB::beginTransaction();
+
         $est=DB::table('tb_asignaciones_e')
         ->where('ID_E',$id_e)
         ->update(
@@ -119,25 +125,32 @@ class AsignacionesEsComponents extends Component
             );
 
             if($est){
+                DB::commit();
                 $this->reset();
                 $this->op=3;
                 $this->mensaje2='Editado correctamente';
             }
             else{
+                DB::rollback();
                 $this->op=3;
                 $this->mensaje3='No fue posible editar correctamente';
             }
     }
     public function delete($id){
         $id_e=$id;
+
+        DB::beginTransaction();
+
         $est=DB::table('tb_asignaciones_e')->where('ID_E','=', $id_e)->delete();
 
         if ($est){
+            DB::commit();
             $this->reset();
             $this->op=4;
             $this->mensajeeliminar='Eliminado correctamente';
         }
         else{
+            DB::rollback();
             $this->op=4;
             $this->mensajeeliminar1='No fue posible eliminar correctamente';
         }

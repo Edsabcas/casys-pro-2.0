@@ -32,18 +32,23 @@ class SeccionComponents extends Component
         {
         $nombre_sec=$this->nombre_sec;
         $estado_sec=$this->estado_sec;
+
+        DB::beginTransaction();
+
         $secciones=DB::table('tb_seccions')->insert(
             [
                 'SECCION'=> $nombre_sec,
                 'ESTADO'=> $estado_sec,
             ]);
             if($secciones){
+                DB::commit();
                 $this->reset();
                 unset($this->mensaje2);
                 $this->op=2;
                 $this->mensaje2='Insertado correctamente';
             }
             else{
+                DB::rollback();
                 unset($this->mensaje3);
                 $this->op=2;
                 $this->mensaje3='No fue posible insertar correctamente';
@@ -78,6 +83,8 @@ class SeccionComponents extends Component
         $nombre_sec=$this->nombre_sec;
         $estado_sec=$this->estado_sec;
 
+        DB::beginTransaction();
+
         $seccion=DB::table('tb_seccions')
         ->where('ID_SC',$id_sec)
         ->update(
@@ -88,24 +95,30 @@ class SeccionComponents extends Component
             );
 
             if($seccion){
-               
+                DB::commit();
                 $this->op=3;
                 $this->mensaje4='Editado correctamente';
             }
             else{
+                DB::rollback();
                 $this->op=3;
                 $this->mensaje5='No fue posible editar correctamente';
             }
     }
     public function delete($id){
         $id_sc=$id;
+
+        DB::beginTransaction();
+
         $seccion=DB::table('tb_seccions')->where('ID_SC','=', $id_sc)->delete();
 
         if($seccion){
+            DB::commit();
             $this->op=4;
             $this->mensajeeliminar='Eliminado correctamente';
         }
         else{
+            DB::rollback();
             $this->op=4;
             $this->mensajeeliminar1='No fue posible eliminar correctamente';
         }
