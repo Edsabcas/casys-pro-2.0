@@ -53,6 +53,9 @@ class AsignacionesComponents extends Component
         $seccion_a=$this->seccion_a;
         $maestro_a=$this->maestro_a;
         $estado_a=$this->estado_a;
+
+        DB::beginTransaction();
+
         $asignacion=DB::table('tb_asignaciones')->insert(
             [
                 'ID_GR'=> $grado_a,
@@ -62,13 +65,14 @@ class AsignacionesComponents extends Component
                 'ESTADO'=> $estado_a,
             ]);
             if($asignacion){
+                DB::commit();
                 $this->reset();
                 unset($this->mensaje);
                 $this->op=2;
                 $this->mensaje='Insertado correctamente';
             }
             else{
-
+                DB::rollback();
                 unset($this->mensaje1);
                 $this->op=2;
                 $this->mensaje1='No fue posible insertar correctamente';
@@ -107,6 +111,9 @@ class AsignacionesComponents extends Component
         $maestro_a=$this->maestro_a;
         $estado_a=$this->estado_a;
 
+        DB::beginTransaction();
+
+
         $asi=DB::table('tb_asignaciones')
         ->where('ID_A',$id_a)
         ->update(
@@ -119,25 +126,32 @@ class AsignacionesComponents extends Component
             );
 
             if($asi){
+                DB::commit();
                 $this->reset();
                 $this->op=3;
                 $this->mensaje2='Editado correctamente';
             }
             else{
+                DB::rollback();
                 $this->op=3;
                 $this->mensaje3='No fue posible editar correctamente';
             }
     }
     public function delete($id){
         $id_a=$id;
+
+        DB::beginTransaction();
+
         $asi=DB::table('tb_asignaciones')->where('ID_A','=', $id_a)->delete();
 
         if ($asi){
+            DB::commit();
             $this->reset();
             $this->op=4;
             $this->mensajeeliminar='Eliminado correctamente';
         }
         else{
+            DB::rollback();
             $this->op=4;
             $this->mensajeeliminar1='No fue posible eliminar correctamente';
         }

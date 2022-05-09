@@ -139,7 +139,7 @@ class MaestrosComponents extends Component{
         }
 
         $ID_USER=$ID_USER ;
-        $sql='SELECT * FROM tb_usuarios WHERE ID_USUARIO=?';
+        $sql='SELECT * FROM users WHERE id=?';
         $correousu=DB::select($sql,array($this->id_usucorreo));
 
         $this->id_usucorreo=0;
@@ -184,7 +184,7 @@ class MaestrosComponents extends Component{
         $direccion=$this->direccion;
         $estado=$this->estado;
 
-
+        DB::beginTransaction();
         
         $mae=DB::table('tb_docentes')
         ->where('ID_DOCENTE',$id_docente)
@@ -204,10 +204,12 @@ class MaestrosComponents extends Component{
 
         
         if($mae){
+            DB::commit();
             $this->op=4;
             $this->mensaje3='Editado Correctamente';
         }
         else{
+            DB::rollback();
             $this->op=4;
             $this->mensaje4='No fue posible editar correctamente';
         }
@@ -215,13 +217,18 @@ class MaestrosComponents extends Component{
     }   
     public function delete($id){
         $id_docente=$id;
+
+        DB::beginTransaction();
+
         $mae=DB::table('tb_docentes')->where('ID_DOCENTE','=', $id_docente)->delete();
 
         if ($mae){
+            DB::commit();
             $this->op=4;
             $this->mensajeeliminar='Eliminado correctamente';
         }
         else{
+            DB::rollback();
             $this->op=4;
             $this->mensajeeliminar1='No fue posible eliminar correctamente';
         }
@@ -263,6 +270,8 @@ class MaestrosComponents extends Component{
         $id_usucorreo=$this->id_usucorreo;   
         $pass=$this->pass;
         
+        DB::beginTransaction();
+
         $act=DB::table('tb_usuarios')
         ->where('ID_USUARIO',$this->id_usucorreo)
         ->update(
@@ -272,16 +281,18 @@ class MaestrosComponents extends Component{
         );
         
         if($act){
+            DB::commit();
             $this->op=4;
             $this->mensaje3='Editado Correctamente';
         }
         else{ 
+            DB::rollback();
             $this->op=4;
             $this->mensaje4='No fue posible editar correctamente';
         }
     }
 
-public function c_pass(){
+  /*  public function c_pass(){
     
         if($this->validate([
             'current_password' => 'required',
@@ -316,6 +327,7 @@ public function c_pass(){
             }
         }
     }
+    */
 
 
     

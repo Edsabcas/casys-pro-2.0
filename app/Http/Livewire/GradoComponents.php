@@ -54,6 +54,9 @@ class GradoComponents extends Component
         $academico_gr=$this->academico_gr; 
         $jornada_gr=$this->jornada_gr;
         $estado_gr=$this->estado_gr;
+
+        DB::beginTransaction();
+
         $grados=DB::table('tb_grados')->insert(
             [
                 'GRADO'=> $nombre_gr,
@@ -67,12 +70,14 @@ class GradoComponents extends Component
 
             ]);
             if($grados){
+                DB::commit();
                 $this->reset();
                 unset($this->mensaje);
                 $this->op=2;
                 $this->mensaje='Insertado correctamente';
             }
             else{
+                DB::rollback();
                 unset($this->mensaje1);
                 $this->op=2;
                 $this->mensaje1='No fue posible insertar correctamente';
@@ -117,6 +122,8 @@ class GradoComponents extends Component
         $jornada_gr=$this->jornada_gr;
         $estado_gr=$this->estado_gr;
 
+        DB::beginTransaction();
+
         $grado=DB::table('tb_grados')
         ->where('ID_GR',$id_gr)
         ->update(
@@ -133,23 +140,30 @@ class GradoComponents extends Component
             );
 
             if($grado){
+                DB::commit();
                 $this->op=3;
                 $this->mensaje3='Editado correctamente';
             }
             else{
+                DB::rollback();
                 $this->op=3;
                 $this->mensaje4='No fue posible editar correctamente';
             }
     }
     public function delete($id){
         $id_gr=$id;
+
+        DB::beginTransaction();
+
         $grado=DB::table('tb_grados')->where('ID_GR','=', $id_gr)->delete();
 
         if($grado){
+            DB::commit();
             $this->op=4;
             $this->mensajeeliminar='Eliminado correctamente';
         }
         else{
+            DB::rollback();
             $this->op=4;
             $this->mensajeeliminar1='No fue posible eliminar correctamente';
         }
@@ -170,6 +184,9 @@ class GradoComponents extends Component
         {
         $nombre_sec=$this->nombre_sec;
         $estado_sec=$this->estado_sec;
+
+        DB::beginTransaction();
+
         $grados=DB::table('tb_seccions')->insert(
             [
                 'SECCION'=> $nombre_sec,
@@ -177,11 +194,13 @@ class GradoComponents extends Component
 
             ]);
             if($grados){
+                DB::commit();
                 $this->reset();
                 unset($this->mensaje);
                 $this->mensaje5='Insertado correctamente';
             }
             else{
+                DB::rollback();
                 unset($this->mensaje1);
                 $this->mensaje6='No se logro insertar correctamente';
             }
