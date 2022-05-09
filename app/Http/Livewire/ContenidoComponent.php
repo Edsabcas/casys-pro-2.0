@@ -220,6 +220,8 @@ class ContenidoComponent extends Component
             }
         }
 
+        DB::begintransaction();
+
 
         $actividades=DB::table('tb_actividades')->insert(
             [
@@ -233,12 +235,14 @@ class ContenidoComponent extends Component
             ]);
 
             if($actividades){
+                DB::commit();
                 unset($this->mensaje);;
                 unset($this->mensaje1);
                 $this->op='addcontenidos';
                 $this->mensaje='Insertado correctamente';
                 }
                 else {
+                DB::rollback();
                 unset($this->mensaje);;
                 unset($this->mensaje1);
                 $this->op='addcontenidos';
@@ -265,6 +269,7 @@ class ContenidoComponent extends Component
         $tema=$this->tema;
         $unidad=$this->unidad;
         $descripciont=$this->descripciont;
+        DB::begintransaction();
         
 
         $temas=DB::table('tb_temas')->insert(
@@ -275,12 +280,14 @@ class ContenidoComponent extends Component
             ]);
 
             if($temas){
+                DB::commit();
                 unset($this->mensaje);;
                 unset($this->mensaje1);
                 $this->op='addcontenidos';
                 $this->mensaje='Insertado correctamente';
                 }
                 else {
+                DB::rollback();
                 unset($this->mensaje);;
                 unset($this->mensaje1);
                 $this->op='addcontenidos';
@@ -295,6 +302,8 @@ class ContenidoComponent extends Component
 }
 public function nota($nota,$ida){
     $nota=$this->nota;
+    DB::begintransaction();
+
     $this->ID_ACTIVIDADES=$ida;
 
 

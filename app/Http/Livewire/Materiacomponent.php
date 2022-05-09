@@ -34,6 +34,9 @@ class Materiacomponent extends Component
             $nombre_mat=$this->nombre_mat;
             $tipo_materia=$this->tipo_materia;
             $estado_materia=$this->estado_materia;
+
+            DB::begintransaction();
+
      
             $materias=DB::table('tb_materias')->insert([
                 'NOMBRE_MATERIA'=>$nombre_mat,
@@ -41,6 +44,7 @@ class Materiacomponent extends Component
                 'ESTADO'=>$estado_materia,
             ]);
             if($materias){
+                DB::commit();
                 unset($this->mensaje);
                 unset($this->mensaje3);
                 unset($this->mensaje_eliminar);
@@ -52,6 +56,7 @@ class Materiacomponent extends Component
                 $this->mensaje='Insertado correctamente';
                 }
                 else {
+                DB::rollback();
                 unset($this->mensaje);
                 unset($this->mensaje3);
                 unset($this->mensaje_eliminar);
@@ -73,6 +78,8 @@ class Materiacomponent extends Component
 
      Public function edit($id){
         $id_materias=$id;
+        DB::begintransaction();
+
         $sql='SELECT * FROM tb_materias WHERE ID_MATERIA=?';
         $materias=DB:: select($sql, array($id_materias));
 
@@ -105,6 +112,8 @@ class Materiacomponent extends Component
             $nombre_mat=$this->nombre_mat;
             $tipo_materia=$this->tipo_materia;
             $estado_materia=$this->estado_materia;
+            DB::begintransaction();
+
 
             $mate=DB::table('tb_materias')
             ->where('ID_MATERIA', $id_materias)
@@ -117,6 +126,7 @@ class Materiacomponent extends Component
                 );
 
                 if($mate){
+                    DB::commit();
                     unset($this->mensaje);
                     unset($this->mensaje3);
                     unset($this->mensaje_eliminar);
@@ -130,6 +140,7 @@ class Materiacomponent extends Component
                     $this->mensaje3='Editado Correctamente';
                 }
                 else{
+                    DB::rollback();
                     unset($this->mensaje1);
                     unset($this->mensaje4);
                     unset($this->mensaje_eliminar2);
@@ -145,9 +156,12 @@ class Materiacomponent extends Component
 
     Public function delete($id){
         $id_materias=$id;
+        DB::begintransaction();
+
         $mate=DB::table('tb_materias')->where('ID_MATERIA','=', $id_materias)->delete();
 
         if($mate){
+            DB::commit();
             unset($this->mensaje);
             unset($this->mensaje3);
             unset($this->mensaje_eliminar);
@@ -160,6 +174,7 @@ class Materiacomponent extends Component
             $this->mensaje_eliminar='Eliminado Correctamente';
         }
         else{
+            DB::rollback();
             unset($this->mensaje);
             unset($this->mensaje3);
             unset($this->mensaje_eliminar);
