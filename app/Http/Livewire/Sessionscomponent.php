@@ -11,7 +11,7 @@ class Sessionscomponent extends Component
 //estos son los roles
 {
 
-    public $menu_rol, $submenu_rol, $users, $op;
+    public $menu_rol, $submenu_rol, $users, $op, $mensaje15;
 
     public function render()
     {
@@ -19,6 +19,13 @@ class Sessionscomponent extends Component
     }
     
     public function validar() {
+
+        /*if($this->validate){{}
+            'usuario' => 'usuario',
+            'password' => 'password',
+            
+        }*/
+
         $us=request('usuario');
         $pass=request("password");
 
@@ -29,9 +36,7 @@ class Sessionscomponent extends Component
 
         }
         else{
-        
-        
-
+            $this->mensaje20='Su usuario y/o contraseña es incorrecta';
         $id_rol="";
         $rol=DB::table('users')
         ->join('rol_usuario', function($join){

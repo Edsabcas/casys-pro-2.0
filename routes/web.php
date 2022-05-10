@@ -64,7 +64,7 @@ Route::post('/register', [SessionController::class, 'guardar'])
 
 //Formulario de ingreso de usuario
 Route::post('/ingresar', [Sessionscomponent::class, 'validar'])
-->name('login.validar');
+->name('ingresar.validar');
 
 Route::get('/logout', [SessionController::class, 'destroy'])
 ->middleware('auth')->name('login.logout');

@@ -42,6 +42,10 @@
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">Bienvenido</h1>
                                 </div>
+
+
+                                    
+
                                 <form class="mt-4" method="POST" action="/ingresar" >
                                     @csrf
                                     <div class="form-floating mb-3">
@@ -65,12 +69,22 @@
                                       <span>Pendiente de ingreso</span>
                                       </div>
                                       @enderror
-
                             </div>
                                 <hr>
+                                
                                 <button type="submit" class="btn btn-primary btn-user btn-block">
                                     Ingresar
                                 </button>
+                                @isset($mensaje20)
+                                @if($mensaje20 != null)
+                                <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                                  <div>{{$mensaje20}}
+                                  </div>
+                                </div>
+                                @endif
+                                @endisset
+
                                 </form>
                             </div>
                         </div>
