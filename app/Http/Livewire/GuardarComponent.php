@@ -26,7 +26,7 @@ class GuardarComponent extends Component
         $this->usuario_publicacion=DB::select($sql);
         $sql="SELECT * FROM rol_usuario";
         $this->rol_publicado=DB::select($sql);
-        $this->usuario_id=5;
+        $this->usuario_id=auth()->user()->id;
         $this->vistas_totales_id=5;
         return view('livewire.guardar-component', compact('guardados', 'me_gusta', 'vistoss'));
     }

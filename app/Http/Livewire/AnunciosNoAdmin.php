@@ -176,7 +176,7 @@ class AnunciosNoAdmin extends Component
         $this->valorlike+=1;
         $estadolike = 1;
         $fechamegusta = date("Y-m-d H:i:s");
-        $this->idusuario = 5;
+        $this->idusuario = auth()->user()->id;
         $this->idcomparacion = 5;
 
         $loslikes=DB::table('tb_megusta')
@@ -207,7 +207,7 @@ class AnunciosNoAdmin extends Component
     public function guardar($id_p){
         $this->id_publicacion = $id_p;
         
-        $id_usuario = 5;
+        $id_usuario = auth()->user()->id;
         $fecha_guardado = date("Y-m-d H:i:s");
         $estadoguardado = 1;
         
