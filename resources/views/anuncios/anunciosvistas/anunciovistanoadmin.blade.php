@@ -34,16 +34,17 @@ $('#exampleModal1').modal('show');
 <!-- Maestros-->
 
 @foreach($anuncios as $anuncio)
-@if($anuncio->TIPO_ANUNCIO == 0 or  $anuncio->TIPO_ANUNCIO == 1  or $rol_activo == $anuncio->PUBLICO_ANUNCIO && $grado_activo == $anuncio->GRADO_ANUNCIO)
-
+@if($rol_activo == $anuncio->PUBLICO_ANUNCIO or $anuncio->PUBLICO_ANUNCIO == 0)
+@if($anuncio->GRADO_ANUNCIO == 0 or $grado_activo == $anuncio->GRADO_ANUNCIO)
 <div class="offset-3 col-10">
   <br>
     <div  class="row">
       <br>
-        <div class="card" style="border:6px solid rgb(2, 52, 162); width: 50rem">
+        <div class="shadow-lg card" style="background-color: #f4f4f4; width: 50rem">
             <br>
             <p style="font-size:10px" class="d-grid gap-2 d-md-flex justify-content-md-end">Publicado el {{$anuncio->FECHA_HORA}}</p>
             <br>
+            
             @php
                 $foo = 0;
                 $vid = 0;
@@ -159,7 +160,7 @@ $('#exampleModal1').modal('show');
                 <button style="border:0px" type="button" class="btn btn-outline-secondary" wire:click='comentario({{$anuncio->ID_ANUNCIOS}})' style="margin: 10px" id="Crear"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hand-thumbs-up-fill" viewBox="0 0 16 16">
                     <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793V2zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z"/>
                     </svg> Comentarios</button>
-                @include('comentariosvista.com')
+                @include('anuncios.comentariosvista.com')
                 @php
                 $con=0;
                 @endphp
@@ -188,14 +189,17 @@ $('#exampleModal1').modal('show');
       </div>
 </div>
 @endif
-<!-- Estudiantes-->
-@if($anuncio->TIPO_ANUNCIO == 0 or  $anuncio->TIPO_ANUNCIO == 1  or $rol_activo == $anuncio->PUBLICO_ANUNCIO && $grado_activo_estudiante == $anuncio->GRADO_ANUNCIO)
 
+
+@endif
+<!-- Estudiantes-->
+@if($rol_activo == $anuncio->PUBLICO_ANUNCIO)
+@if($anuncio->GRADO_ANUNCIO == 0 or $grado_activo_estudiante == $anuncio->GRADO_ANUNCIO )
 <div class="offset-3 col-10">
   <br>
     <div  class="row">
       <br>
-        <div class="card" style="border:6px solid rgb(2, 52, 162); width: 50rem">
+        <div class="shadow-lg card" style="background-color: #ec1c1c; width: 50rem">
             <br>
             <p style="font-size:10px" class="d-grid gap-2 d-md-flex justify-content-md-end">Publicado el {{$anuncio->FECHA_HORA}}</p>
             <br>
@@ -253,6 +257,7 @@ $('#exampleModal1').modal('show');
               @endif
               @endforeach
               <p class="card-text">{{$anuncio->TEXTO_PUBLICACION}}</p>
+              
               
               @if($anuncio->CALIDAD_ANUNCIO==1)
               <div class="alert alert-success d-flex align-items-center rounded-pill" role="alert">
@@ -330,7 +335,7 @@ $('#exampleModal1').modal('show');
                 <button style="border:0px" type="button" class="btn btn-outline-secondary" wire:click='comentario({{$anuncio->ID_ANUNCIOS}})' style="margin: 10px" id="Crear"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hand-thumbs-up-fill" viewBox="0 0 16 16">
                     <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793V2zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z"/>
                     </svg> Comentarios</button>
-                @include('comentariosvista.com')
+                @include('anuncios.comentariosvista.com')
                 @php
                 $con=0;
                 @endphp
@@ -358,6 +363,9 @@ $('#exampleModal1').modal('show');
           </div>
       </div>
 </div>
+@endif
+
+
 @endif
 
 @endforeach
