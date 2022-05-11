@@ -13,7 +13,7 @@ class ContenidoComponent extends Component
     use WithFileUploads;
 
    public $grado,$mat, $nombre_g, $nombre_s, $unidad1, $NOMBRE_MATERIA, $ID_DOCENTE,$op2,$asig, $usuario;
-   public $option1,$option2,$option3,$option4,$vista;
+   public $option1,$option2,$option3,$option4,$vista,$vista2;
 
    public $prueba, $op, $mensaje, $mensaje1, $file, $date, $dia2, $message, $file2, $arch, $vid, $pdf, $formato, $tipo;
    public $titulo, $punteo, $fecha_e, $fecha_ext, $descripcion, $act,$tema_a,$descripciont,$tema,$unidad, $temasb, $archivo, $nota, $ID_ACTIVIDADES, $descripciona;
@@ -195,9 +195,18 @@ class ContenidoComponent extends Component
                 $this->vista=5;
             }
         }
+
+        if($option1==6){
+            if($this->vista!=null && $this->vista==6){
+                $this->vista=0;
+            }
+            else{
+                $this->vista=6;
+            }
+        }
     }
 
-    public function Subir_Act(){
+    public function Subir_Act($nomb,$nombm){
         if($this->validate([
             'titulo' => 'required',
             'punteo' => 'required',
@@ -217,6 +226,9 @@ class ContenidoComponent extends Component
         $descripcion=$this->descripcion;
         $fecha_ext=$this->fecha_ext;
         $temasb=$this->temasb;
+        $this->nombre_g=$nomb;
+        $this->ID_MATERIA=$nombm;
+
 
         $archivo="";
         if($this->archivo!=null){
@@ -252,6 +264,8 @@ class ContenidoComponent extends Component
                 'fecha_entr'=>$fecha_e,
                 'fecha_extr'=>$fecha_ext,
                 'ID_TEMA'=>$temasb,
+                'ID_MATERIA'=>$nombm,
+                'ID_GR'=>$nomb,
             ]);
 
             if($actividades){

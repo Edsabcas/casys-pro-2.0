@@ -138,8 +138,16 @@
                        </div>
                     </div>
                     <br>
-                    <button type="submit" class="btn btn-primary" wire:click="Subir_Act()" >Publicar</button>
-          </form>
+                    @foreach($grados as $grado)
+                    @foreach($secciones as $seccion)
+                    @foreach($materias as $materia)
+                    @foreach($unidad as $uni)
+                    <button type="submit" class="btn btn-primary" wire:click='Subir_Act("{{$grado->ID_GR}}","{{$seccion->ID_SC}}","{{$materia->ID_MATERIA}}")' >Publicar</button>
+                    @endforeach
+                    @endforeach
+                    @endforeach
+                    @endforeach
+                  </form>
            
             
             </div>        
