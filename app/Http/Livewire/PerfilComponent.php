@@ -50,6 +50,7 @@ class PerfilComponent extends Component
         else{
             if(Hash::check($this->current_password, auth()->user()->password)){ 
                 if($this->new_password == $this->new_password_confirmation){
+                    DB::beginTransaction();
                     $perfil=DB::table('users')
                     ->where('id',auth()->user()->id)
                      ->update(
@@ -57,20 +58,25 @@ class PerfilComponent extends Component
                 'password'=>bcrypt($this->new_password),
             ]
         );
+        DB::commit();
         $this->mensaje12='Se actualizo la contraseña de manera correcta';
         
         if ($perfil){
+            DB::commit();
             $this->mensaje0='se cambio de manera correcta';
         }
         else {
+            DB::rollback();
             $this->mensaje4='no se cambio de manera correcta';
         }
                 }
                 else{
+                    DB::rollback();
                     $this->mensaje='no coinsiden las contraseñas favor validar';
                 }       
             }
             else{
+                DB::rollback();
                 $this->mensaje1='la contraseña ingresada actual no es la correcta';
             }
 

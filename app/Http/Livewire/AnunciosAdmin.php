@@ -133,7 +133,7 @@ class AnunciosAdmin extends Component
     public function guardar($id_p){
         $this->id_publicacion = $id_p;
         $this->guar= 1;
-        $id_usuario = 5;
+        $id_usuario = auth()->user()->id;
         $fecha_guardado = date("Y-m-d H:i:s");
         $estadoguardado = 1;
         

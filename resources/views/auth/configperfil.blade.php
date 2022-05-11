@@ -1,33 +1,21 @@
-          <table class="table table-bordered">
-                <div class="form-group row">
-                  <thead>
-                    <tr>
-                        <th>NOMBRE</th>
-                        <th>EMAIL</th>
-                        <th>USUARIO</th>
-                        <th>FOTO DE PERFIL</th>
-                        <th>EDITAR</th>
-                    </tr>
-                </thead>
-                <tbody>
-                  @foreach ($perfiles as $perfil)
-                    <tr>
-                        <td>{{$perfil->name}}</td>
-                        <td>{{$perfil->email}}</td>
-                        <td>{{$perfil->usuario}}</td>
-                        <td>
-                          <img class="rounded-circle" src="img/undraw_profile_1.svg" width="60" height="60" 
-                                                alt="...">
-                        </td>
-                        <td>
-                          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#perfilmodal">
-                            Contraseña
-                          </button>   
-                        </td>
-                    </tr>  
-                </div>
-          @endforeach
-              </table>
+<div class="card"><div class="card-body">
+<TABLE BORDER width="600" height="300" class="table-striped">
+  @foreach ($perfiles as $perfil)
+	<TR ALIGN=CENTER><TH>Nombre</TH>
+		<TD>{{$perfil->name}}</TD></TR>
+	<TR ALIGN=CENTER><TH>EMAIL</TH>
+		<TD>{{$perfil->email}}</TD></TR>
+	<TR ALIGN=CENTER><TH>USUARIO</TH>
+		<TD>{{$perfil->usuario}}</TD></TR>
+  <TR ALIGN=CENTER><TH>FOTO DE PERFIL</TH>
+    <TD><img class="rounded-circle" src="img/undraw_profile_1.svg" width="60" height="60" alt="..."></TD></TR>
+  <TR ALIGN=CENTER><TH>CONTRASEÑA</TH>
+    <TD><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#perfilmodal"> Editar
+    </button>   </TD></TR>
+    @endforeach
+</TABLE>
+</div></div>
+          
 
               <div wire:ignore.self class="modal fade" id="perfilmodal" tabindex="-1" aria-labelledby="perfilmodalLabel" aria-hidden="true">
                 <div class="modal-dialog">

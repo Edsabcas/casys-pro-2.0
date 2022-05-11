@@ -211,7 +211,7 @@
         <button class="btn btn-info" wire:click="update_docentes()">Editar</button>
       
       @else
-        <button type="button" wire:click='generar_use()' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        <button type="button" wire:click='generar_use()' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
           Siguiente
         </button>
       @endif
@@ -247,4 +247,33 @@
       </div>
     </div>
 
+    <div wire:ignore.self class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Título del modal</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">Usuario:</label>
+                <input type="text" class="form-control" wire:model='usuario' id="recipient-name">
+              </div>
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">Correo:</label>
+                <input type="text" class="form-control" wire:model='correoed' id="recipient-name">
+              </div>
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">Contraseña:</label>
+                <input type="password" class="form-control" wire:model='pass' id="recipient-name">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" data-bs-dismiss="modal" wire:click="guardar_docentes()">Guardar y salir</button>
+          </div>
+        </div>
+      </div>
+    </div>
 </form>

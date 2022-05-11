@@ -13,10 +13,10 @@ class ContenidoComponent extends Component
     use WithFileUploads;
 
    public $grado,$mat, $nombre_g, $nombre_s, $unidad1, $NOMBRE_MATERIA, $ID_DOCENTE,$op2,$asig, $usuario;
-   public $option1,$option2,$option3,$option4,$vista;
+   public $option1,$option2,$option3,$option4,$vista,$vista2;
 
    public $prueba, $op, $mensaje, $mensaje1, $file, $date, $dia2, $message, $file2, $arch, $vid, $pdf, $formato, $tipo;
-   public $titulo, $punteo, $fecha_e, $fecha_ext, $descripcion, $act,$tema_a,$descripciont,$tema,$unidad, $temasb, $archivo, $nota, $ID_ACTIVIDADES ;
+   public $titulo, $punteo, $fecha_e, $fecha_ext, $descripcion, $act,$tema_a,$descripciont,$tema,$unidad, $temasb, $archivo, $nota, $ID_ACTIVIDADES, $descripciona;
 
 
 
@@ -86,6 +86,17 @@ class ContenidoComponent extends Component
         ->get();
         }
 
+        $PlanUnion="";
+        if($this->grado!=null){
+            $PlanUnion=DB::table('tb_planificacionanual')
+        ->join('tb_materias','tb_planificacionanual.ID_MATERIA','=','tb_materias.ID_MATERIA')
+        ->join('tb_grados', 'tb_planificacionanual.ID_GR', '=', 'tb_grados.ID_GR')
+        ->join('tb_seccions', 'tb_planificacionanual.ID_SC', '=', 'tb_seccions.ID_SC')
+        ->select('tb_planificacionanual.ID_PLAN', 'tb_planificacionanual.DESCRIPCION', 'tb_materias.NOMBRE_MATERIA', 'tb_grados.GRADO', 'tb_seccions.SECCION','tb_materias.ID_MATERIA')
+        ->where('tb_planificacionanual.ID_GR','=',$this->grado)
+        ->get();
+        }
+
         $sql= 'SELECT * FROM tb_materias';
         $materias=DB::select($sql);
         $sql= 'SELECT * FROM tb_grados';
@@ -104,7 +115,7 @@ class ContenidoComponent extends Component
         $temas=DB::select($sql);
         $sql= 'SELECT * FROM users';
         $Usuarios=DB::select($sql);
-        return view('livewire.contenido-component',compact('materias','grados','secciones','uniones','unidades','maestros','actividades','asignaciones','estu','actividad','unidadesf','temas','Usuarios'));
+        return view('livewire.contenido-component',compact('materias','grados','secciones','uniones','unidades','maestros','actividades','asignaciones','estu','actividad','unidadesf','temas','Usuarios','PlanUnion'));
 
     }
     
@@ -175,9 +186,27 @@ class ContenidoComponent extends Component
                 $this->vista=4;
             }
         }
+
+        if($option1==5){
+            if($this->vista!=null && $this->vista==5){
+                $this->vista=0;
+            }
+            else{
+                $this->vista=5;
+            }
+        }
+
+        if($option1==6){
+            if($this->vista!=null && $this->vista==6){
+                $this->vista=0;
+            }
+            else{
+                $this->vista=6;
+            }
+        }
     }
 
-    public function Subir_Act(){
+    public function Subir_Act($nomb,$nombm){
         if($this->validate([
             'titulo' => 'required',
             'punteo' => 'required',
@@ -197,6 +226,9 @@ class ContenidoComponent extends Component
         $descripcion=$this->descripcion;
         $fecha_ext=$this->fecha_ext;
         $temasb=$this->temasb;
+        $this->nombre_g=$nomb;
+        $this->ID_MATERIA=$nombm;
+
 
         $archivo="";
         if($this->archivo!=null){
@@ -232,6 +264,8 @@ class ContenidoComponent extends Component
                 'fecha_entr'=>$fecha_e,
                 'fecha_extr'=>$fecha_ext,
                 'ID_TEMA'=>$temasb,
+                'ID_MATERIA'=>$nombm,
+                'ID_GR'=>$nomb,
             ]);
 
             if($actividades){
@@ -315,4 +349,50 @@ public function nota($nota,$ida){
 
 
 }
+
+public function Subir_Plan($nomb,$secc,$nombm){
+    if($this->validate([
+        'descripciona' => 'required',
+
+    ])==false){
+        $error="no encontrado";
+        session(['message'=>'no encontrado']);
+        return back()->withErrors(['error' => 'Validar el input vacio']);
+    }
+
+    else{
+    $descripciona=$this->descripciona;
+    $this->nombre_g=$nomb;
+    $this->nombre_s=$secc;
+    $this->ID_MATERIA=$nombm;
+    
+    DB::begintransaction();
+    
+
+    $planificacion=DB::table('tb_planificacionanual')->insert(
+        [
+            'DESCRIPCION'=>$descripciona,
+            'ID_MATERIA'=>$nombm,
+            'ID_GR'=>$nomb,
+            'ID_SC'=>$secc,
+        ]);
+
+        if($planificacion){
+            DB::commit();
+            unset($this->mensaje);;
+            unset($this->mensaje1);
+            $this->op='addcontenidos';
+            $this->mensaje='Insertado correctamente';
+            }
+            else {
+            DB::rollback();
+            unset($this->mensaje);;
+            unset($this->mensaje1);
+            $this->op='addcontenidos';
+            $this->mensaje1='Datos no  insertados correctamente';
+            }
+}
+
+}
+
 }

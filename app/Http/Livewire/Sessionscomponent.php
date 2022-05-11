@@ -11,7 +11,7 @@ class Sessionscomponent extends Component
 //estos son los roles
 {
 
-    public $menu_rol, $submenu_rol, $users, $op;
+    public $menu_rol, $submenu_rol, $users, $op, $mensaje20, $mensaje;
 
     public function render()
     {
@@ -19,19 +19,18 @@ class Sessionscomponent extends Component
     }
     
     public function validar() {
+
         $us=request('usuario');
         $pass=request("password");
 
 
         if(auth()->attempt(['usuario'=>$us,'password'=>$pass])==false){
             session(['mensaje'=>'no logro ingresar, valida us/pass']);
-            return back()->withErrors(['Mensaje'=> 'no logro ingresar']);
+
+            return back()->withErrors(['mensaje20'=> 'no logro ingresar']);
 
         }
         else{
-        
-        
-
         $id_rol="";
         $rol=DB::table('users')
         ->join('rol_usuario', function($join){
