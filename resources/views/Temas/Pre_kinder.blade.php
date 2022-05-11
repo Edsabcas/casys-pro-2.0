@@ -1,6 +1,6 @@
 
 @if($op2!=null && $op2==1)
-<h3>CURSOS DE {{$nombre_g}} {{$nombre_s}} JORNADA MATUTINA</h3>
+<h3>Cursos de {{$nombre_g}} {{$nombre_s}} jornada matutina</h3>
 <H6>Seleccione un curso para ver el material de apoyo compartido por el maestro o maestra</H6>
 <div class="table-responsive">
     <table class="table table-info  table-striped table-hover table-bordered">
