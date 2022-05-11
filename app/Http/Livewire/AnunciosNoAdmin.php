@@ -31,13 +31,17 @@ class AnunciosNoAdmin extends Component
         $this->rol_activo=DB::select($sql);
         $sql="SELECT ID_GR FROM tb_asignaciones WHERE ID_DOCENTE=$usuario_activo";
         $this->grado_activo=DB::select($sql);
-        $sql="SELECT ID_TB_INFO_GRADO_INGRESO FROM tb_estudiantes WHERE id=$usuario_activo";
+        $sql="SELECT ID_GR FROM tb_asignaciones_e WHERE id=$usuario_activo";
         $this->grado_activo_estudiante=DB::select($sql);
+        $sql="SELECT * FROM users";
+        $this->usuario_publicacion=DB::select($sql);
+        $sql="SELECT * FROM rol_usuario";
+        $this->rol_publicado=DB::select($sql);
         
         $this->admin_rol = 2;
         $fecha_vista=date("Y-m-d H:i:s");
         $estado_vista=1;
-        $this->usuario_id = 5;
+        $this->usuario_id = auth()->user()->id;
         $this->vistas_totales_id=5;
         
         //en el where id_usuario después del signo igual va el id del usuario logeado en ese momento y en el inserte de id_usuario.

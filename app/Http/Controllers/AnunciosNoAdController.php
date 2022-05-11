@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class AnunciosNoAdController extends Controller
 {
     public function vistanoadmin(){
-        $op=2;
+        $op='vistanoadanuncios';
         return view('home', compact('op'));
     }
 }

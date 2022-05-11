@@ -33,7 +33,7 @@
 <br>
 <div class="offset-3 col-10">
   <div class="row">
-    <div class="card" style="border:6px solid rgb(2, 52, 162); width: 50rem">
+    <div class="shadow-lg card" style="background-color: #f4f4f4; width: 50rem">
       <div class="card-body">
         <h1>¡Bienvenido a Guardados!</h1>
       </div>
@@ -50,7 +50,7 @@
     <br>
       <div  class="row">
         <br>
-          <div class="card" style="border:6px solid rgb(2, 52, 162); width: 50rem">
+          <div class="shadow-lg card" style="background-color: #f4f4f4; width: 50rem">
               <br>
               <p style="font-size:10px" class="d-grid gap-2 d-md-flex justify-content-md-end">Publicado el {{$anuncio->FECHA_HORA}}</p>
               <br>

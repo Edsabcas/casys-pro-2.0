@@ -225,14 +225,16 @@
             </div>
            
           
-             
+             <div class="container">
+                 @yield('inicio')
+             </div>
             <!-- End of Main Content -->
 
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright made by Stephany, Darlin y Sebas &copy;</span>
+                        <span>Copyright made by Stephany, Darlin, Sebas, Diego y su Dios Rony &copy;</span>
                     </div>
                 </div>
             </footer>

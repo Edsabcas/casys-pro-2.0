@@ -1,4 +1,5 @@
 @extends('welcome')
+@section('inicio')
 @section('content')
 @if(isset($op)==true)
 
@@ -7,6 +8,9 @@
 
 @elseif($op=='vistaadanuncios')
 @livewire('anuncios-admin');
+
+@elseif($op='vistanoadanuncios')
+@livewire('anuncios-no-admin');
 
 
 @elseif($op=='guardaranun')

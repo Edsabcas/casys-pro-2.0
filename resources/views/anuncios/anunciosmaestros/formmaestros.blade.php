@@ -10,7 +10,7 @@
     </symbol>
   </svg>
   <br>
-  <div class="card" style="border:6px solid rgb(2, 52, 162);">
+  <div class="shadow-lg card" style="background-color: #f4f4f4;">
     <div class="container-sm">
       <br>
       <br>
