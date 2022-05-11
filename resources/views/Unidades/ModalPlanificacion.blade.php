@@ -1,5 +1,5 @@
 
-  <div wire:ignore.self class="modal fade" id="tema" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="5" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div wire:ignore.self class="modal fade" id="plan" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="5" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header">
@@ -42,7 +42,13 @@
                     @enderror
                     </div>
                     <br>
-                    <button type="submit" class="btn btn-primary" wire:click="Subir_Plan()" >Publicar</button>
+                    @foreach($grados as $grado)
+                    @foreach($secciones as $seccion)
+                    @foreach($materias as $materia)
+                    <button type="submit" class="btn btn-primary" wire:click='Subir_Plan("{{$grado->ID_GR}}","{{$seccion->ID_SC}}","{{$materia->ID_MATERIA}}")' >Publicar</button>
+                    @endforeach
+                    @endforeach
+                    @endforeach
           </form>
            
             
