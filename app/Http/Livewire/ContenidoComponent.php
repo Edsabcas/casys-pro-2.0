@@ -175,6 +175,15 @@ class ContenidoComponent extends Component
                 $this->vista=4;
             }
         }
+
+        if($option1==5){
+            if($this->vista!=null && $this->vista==5){
+                $this->vista=0;
+            }
+            else{
+                $this->vista=5;
+            }
+        }
     }
 
     public function Subir_Act(){
@@ -315,4 +324,46 @@ public function nota($nota,$ida){
 
 
 }
+
+public function Subir_Plan(){
+    if($this->validate([
+        'descripciona' => 'required',
+
+    ])==false){
+        $error="no encontrado";
+        session(['message'=>'no encontrado']);
+        return back()->withErrors(['error' => 'Validar el input vacio']);
+    }
+
+    else{
+    $descripciona=$this->descripciona;
+    
+    DB::begintransaction();
+    
+
+    $temas=DB::table('tb_temas')->insert(
+        [
+            'NOMBRE_TEMA'=>$tema,
+            'ID_UNIDADES_FIJAS'=>$unidad,
+            'DESCRIPCION'=>$descripciont,
+        ]);
+
+        if($temas){
+            DB::commit();
+            unset($this->mensaje);;
+            unset($this->mensaje1);
+            $this->op='addcontenidos';
+            $this->mensaje='Insertado correctamente';
+            }
+            else {
+            DB::rollback();
+            unset($this->mensaje);;
+            unset($this->mensaje1);
+            $this->op='addcontenidos';
+            $this->mensaje1='Datos no  insertados correctamente';
+            }
+}
+
+}
+
 }
