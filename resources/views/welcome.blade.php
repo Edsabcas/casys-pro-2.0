@@ -220,10 +220,9 @@
             </nav>
                 <!-- End of Topbar -->
 
-  
+    
                 @yield('content')
             </div>
-           
           
              <div class="container">
                  @yield('inicio')
