@@ -304,11 +304,11 @@ Route::get('/Registrar', [RevistrarComponent::class, 'index'])
 
 //Grupo #2
 
-Route::get('/CREAR_PUBLICACION', [EdicionAnuncioController::class, 'edicion'])->middleware('auth');
+Route::get('/Crear_Pblicacion', [EdicionAnuncioController::class, 'edicion'])->middleware('auth');
 
-Route::get('/VISTA_PUBLICACION', [AnunciosAdController::class, 'vistaadmin'])->middleware('auth');
-Route::get('/PUBLICACIONES_GUARDADAS', [GuardarController::class, 'guardar'])->middleware('auth');
-Route::get('/Anuncio_Nuevo', [FormMaestrosController::class, 'edicionmaestro'])->middleware('auth');
+Route::get('/Vista_Publicacion', [AnunciosAdController::class, 'vistaadmin'])->middleware('auth');
+Route::get('/Publicaciones_guardadas', [GuardarController::class, 'guardar'])->middleware('auth');
+Route::get('/Anuncios_Nuevos', [FormMaestrosController::class, 'edicionmaestro'])->middleware('auth');
 Route::get('/Publicaciones', [AnunciosNoAdController::class, 'vistanoadmin'])->middleware('auth');
 
 
