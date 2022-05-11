@@ -31,6 +31,9 @@ use App\Http\Controllers\PerfilController;
 use App\Http\Livewire\ListaDeEstudiantesComponent;
 use App\Http\Controllers\ListaDeEstudiantesController;
 
+use App\Http\Livewire\ListadeusuariosComponent;
+use App\Http\Controllers\ListadeusuariosController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -123,10 +126,10 @@ Route::post('/c_pass', [PerfilComponent::class, 'c_pass'])
 
 
 //Estudiantes
-Route::get('/Lista_de_estudiantes', [ListaDeEstudiantesController::class, 'listarusers'])
-->middleware('auth')->name('Lista_de_estudiantes.listarusers');
+Route::get('/Lista_de_usuarios', [ListadeusuariosController::class, 'listarusers'])
+->middleware('auth')->name('Lista_de_usuarios.listarusers');
 
-Route::get('/e_perfiles', [ListaDeEstudiantesComponent::class, 'e_perfiles'])
+Route::get('/e_perfiles', [ListadeusuariosComponent::class, 'e_perfiles'])
 ->middleware('auth')->name('e_perfiles.e_perfiles');
 
 Route::get('/Modificar_Estudiantes', [ModificarEstudiantesComponent::class, 'index'])
@@ -304,10 +307,10 @@ Route::get('/Registrar', [RevistrarComponent::class, 'index'])
 
 //Grupo #2
 
-Route::get('/CREAR_PUBLICACION', [EdicionAnuncioController::class, 'edicion'])->middleware('auth');
+Route::get('/Crear_pblicacion', [EdicionAnuncioController::class, 'edicion'])->middleware('auth');
 
-Route::get('/VISTA_PUBLICACION', [AnunciosAdController::class, 'vistaadmin'])->middleware('auth');
-Route::get('/PUBLICACIONES_GUARDADAS', [GuardarController::class, 'guardar'])->middleware('auth');
+Route::get('/Vista_publicacion', [AnunciosAdController::class, 'vistaadmin'])->middleware('auth');
+Route::get('/Publicaciones_guardadas', [GuardarController::class, 'guardar'])->middleware('auth');
 Route::get('/Anuncio_Nuevo', [FormMaestrosController::class, 'edicionmaestro'])->middleware('auth');
 Route::get('/Publicaciones', [AnunciosNoAdController::class, 'vistanoadmin'])->middleware('auth');
 
@@ -315,7 +318,7 @@ Route::get('/Publicaciones', [AnunciosNoAdController::class, 'vistanoadmin'])->m
 
 //Grupo #4
 
-Route::get('/Grado', [GradosController::class, 'agregar_gr']);
+Route::get('/Grados', [GradosController::class, 'agregar_gr']);
 
 Route::get('/Secciones', [SeccionController::class, 'agregar_sec']);
 
@@ -328,7 +331,7 @@ Route::get('/agregar_e', [AsignacionesEsController::class, 'agregar_e']);
 
 
 //Grupo #3
-Route::get('/Contenidos',[ContenidosController::class,'contenidos']);
+Route::get('/Planificacion_unidades',[ContenidosController::class,'contenidos']);
 
 Route::get('/Pre_Kinder',[BotonesController::class,'Pre_Kinder']);
 

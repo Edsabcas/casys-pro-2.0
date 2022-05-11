@@ -65,7 +65,7 @@
 @livewire('perfil-component')
 
 @elseif($op=='aconfigusuarios')
-@livewire('lista-de-estudiantes-component')
+@livewire('listadeusuarios-component')
 
 @elseif($op=='addanunciomaestro')
 @livewire('maestroform-component')

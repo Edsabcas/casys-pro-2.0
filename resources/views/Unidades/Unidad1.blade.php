@@ -1,4 +1,5 @@
 <div class="btn-group btn-group-lg"  role="group" aria-label="Basic outlined example">
+  <a wire:click="validar_u('5')" class="btn btn-success" value="5">Planificación Anual</a>
   <a wire:click="validar_u('1')" class="btn btn-success" value="1">Unidad 1</a>
   <a wire:click="validar_u('2')" class="btn btn-success" value="2">Unidad 2</a>
   <a wire:click="validar_u('3')" class="btn btn-success" value="3">Unidad 3</a>
@@ -34,4 +35,10 @@
   
   @include('Unidades.Unidad4');
 
-@endif
+  @endif
+
+  @if($vista==5)
+  
+  @include('Unidades.PlanificacionA');
+
+  @endif
