@@ -12,8 +12,9 @@ class ContenidoComponent extends Component
 {
     use WithFileUploads;
 
-   public $grado,$mat, $nombre_g, $nombre_s, $unidad1, $NOMBRE_MATERIA, $ID_DOCENTE,$op2,$asig, $usuario;
-   public $option1,$option2,$option3,$option4,$vista,$vista2;
+   public $grado,$mat, $nombre_g, $nombre_s, $unidad1, $NOMBRE_MATERIA, $ID_DOCENTE,$op2,$asig, $usuario,$idsecc;
+   public $option1,$option2,$option3,$option4,$vista;
+
 
    public $prueba, $op, $mensaje, $mensaje1, $file, $date, $dia2, $message, $file2, $arch, $vid, $pdf, $formato, $tipo;
    public $titulo, $punteo, $fecha_e, $fecha_ext, $descripcion, $act,$tema_a,$descripciont,$tema,$unidad, $temasb, $archivo, $nota, $ID_ACTIVIDADES, $descripciona;
@@ -119,12 +120,13 @@ class ContenidoComponent extends Component
 
     }
     
-    public function mostrar_m($id,$nomb,$secc,$num)
+    public function mostrar_m($id,$nomb,$secc,$ids,$num)
     {
         unset($this->mat);
         $this->grado=$id;
         $this->nombre_g=$nomb;
         $this->nombre_s=$secc;
+        $this->idsecc=$ids;
         $this->op2=$num;
     }
 
@@ -350,49 +352,6 @@ public function nota($nota,$ida){
 
 }
 
-public function Subir_Plan($nomb,$secc,$nombm){
-    if($this->validate([
-        'descripciona' => 'required',
 
-    ])==false){
-        $error="no encontrado";
-        session(['message'=>'no encontrado']);
-        return back()->withErrors(['error' => 'Validar el input vacio']);
-    }
-
-    else{
-    $descripciona=$this->descripciona;
-    $this->nombre_g=$nomb;
-    $this->nombre_s=$secc;
-    $this->ID_MATERIA=$nombm;
-    
-    DB::begintransaction();
-    
-
-    $planificacion=DB::table('tb_planificacionanual')->insert(
-        [
-            'DESCRIPCION'=>$descripciona,
-            'ID_MATERIA'=>$nombm,
-            'ID_GR'=>$nomb,
-            'ID_SC'=>$secc,
-        ]);
-
-        if($planificacion){
-            DB::commit();
-            unset($this->mensaje);;
-            unset($this->mensaje1);
-            $this->op='addcontenidos';
-            $this->mensaje='Insertado correctamente';
-            }
-            else {
-            DB::rollback();
-            unset($this->mensaje);;
-            unset($this->mensaje1);
-            $this->op='addcontenidos';
-            $this->mensaje1='Datos no  insertados correctamente';
-            }
-}
-
-}
 
 }

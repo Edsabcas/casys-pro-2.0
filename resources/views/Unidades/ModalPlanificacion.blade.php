@@ -30,7 +30,6 @@
                 @csrf
     
                 
-    
                     <div class="col-sm-10">
                       <label for="exampleFormControlTextarea1" class="form-label" style="font-size:20px">Descripcion Anual</label>
                       <textarea type="text" class="form-control" wire:model='descripciona'  style="border:2px solid rgba(128, 156, 96, 0.466);" id="exampleFormControlTextarea1" rows="3"></textarea>
@@ -42,13 +41,9 @@
                     @enderror
                     </div>
                     <br>
-                    @foreach($grados as $grado)
-                    @foreach($secciones as $seccion)
-                    @foreach($materias as $materia)
-                    <button type="submit" class="btn btn-primary" wire:click='Subir_Plan("{{$grado->ID_GR}}","{{$seccion->ID_SC}}","{{$materia->ID_MATERIA}}")' >Publicar</button>
-                    @endforeach
-                    @endforeach
-                    @endforeach
+                    
+                    <button type="submit" class="btn btn-primary" wire:click="Subir_Plan()">Publicar</button>
+                    
           </form>
            
             
