@@ -25,7 +25,7 @@
         <!-- DPI DEL MAESTRO -->
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Contraseña:</label>
-          <input type="password" class="form-control" id="exampleInputEmail1" wire:model="pass">
+          <input type="password" class="form-control" id="exampleInputEmail1" value="{{$pass}}" name="pass">
         </div>
         </form>
       </div>

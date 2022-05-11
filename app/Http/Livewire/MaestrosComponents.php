@@ -17,7 +17,7 @@ class MaestrosComponents extends Component{
 
     public $op,$edit,$edit1;
 
-    public $usuario,$correoed,$pass,$id_usuario,$id_usucorreo;
+    public $usuario,$correoed,$pass,$id_usuario,$id_usucorreo,$nomb,$apelli;
     
     public function render(){
         $sql="SELECT * FROM tb_docentes";
@@ -135,19 +135,18 @@ class MaestrosComponents extends Component{
         foreach($correousu as $corre){
 
             $this->id_usucorreo=$corre->ID_USUARIO;
-
         }
 
-        $ID_USER=$ID_USER ;
+        $ID_USER=$ID_USER;
         $sql='SELECT * FROM users WHERE id=?';
         $correousu=DB::select($sql,array($this->id_usucorreo));
 
         $this->id_usucorreo=0;
         foreach($correousu as $corre){
 
-            $this->usuario=$corre->USUARIO;
-            $this->correoed=$corre->CORREO;
-            $this->pass=$corre->CONTRASEÑA;
+            $this->usuario=$corre->usuario;
+            $this->correoed=$corre->email;
+            $this->pass=$corre->password;
 
         }
 
@@ -234,7 +233,18 @@ class MaestrosComponents extends Component{
         }
     }  
     public function generar_use(){
-        $this->usuario=$this->nombre_docente;
+
+        
+        $this->nomb=$this->nombre_docente;
+        $this->apelli=$this->apellido_docente;
+
+        $primerNombre = explode(" ",$this->nomb);
+        $primerApellido = explode(" ", $this->apelli);
+
+        $this->usuario = substr($primerNombre[0],0,10) . '.' . $primerApellido[0];
+
+        $this->usuario = strtolower($this->usuario);
+
         $inicial=substr($this->nombre_docente,0,1);
         $iniciales=explode(" ", $this->nombre_docente);
         $inicial2=substr($iniciales[1],0,1);
@@ -243,10 +253,12 @@ class MaestrosComponents extends Component{
         $apellido2=substr($apellidos[1],0,1);
         
         $this->correoed=$inicial.$inicial2.$apellido.$apellido2.'@colegioelcastano.edu.gt';
+        $this->correoed=strtolower($this->correoed);
         $this->pass='Cole123';
+        
     }
     public function listar_usuario(){
-        $sql="SELECT * FROM tb_usuarios";
+        $sql="SELECT * FROM users";
         $usuarios=DB::select($sql);
         $op=4;  
         return view('home', compact('usuarios', 'op'));
@@ -290,46 +302,6 @@ class MaestrosComponents extends Component{
             $this->op=4;
             $this->mensaje4='No fue posible editar correctamente';
         }
-    }
-
-  /*  public function c_pass(){
-    
-        if($this->validate([
-            'current_password' => 'required',
-            'new_password' => 'required',
-            'new_password_confirmation' => 'required',
-        ])==false){
-            return back()->withErrors(['advertencia'=>'validar el input vacío']);
-        }
-        else{
-            if(Hash::check($this->current_password, auth()->user()->password)){ 
-                if($this->new_password == $this->new_password_confirmation){
-                    $perfil=DB::table('users')
-                    ->where('id',auth()->user()->id)
-                     ->update(
-            [
-                'password'=>bcrypt($this->new_password),
-            ]
-        );
-        if ($perfil){
-            $this->mensaje0='se cambio de manera correcta';
-        }
-        else {
-            $this->mensaje4='no se cambio de manera correcta';
-        }
-                }
-                else{
-                    $this->mensaje='no coinsiden las contraseñas favor validar';
-                }       
-            }
-            else{
-                $this->mensaje1='la contraseña ingresada actual no es la correcta';
-            }
-        }
-    }
-    */
-
-
-    
+    }  
 }
  
