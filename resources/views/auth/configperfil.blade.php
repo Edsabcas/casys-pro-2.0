@@ -9,8 +9,8 @@
 		<TD>{{$perfil->usuario}}</TD></TR>
   <TR ALIGN=CENTER><TH>FOTO DE PERFIL</TH>
     <TD><img class="rounded-circle" src="img/undraw_profile_1.svg" width="60" height="60" alt="..."></TD></TR>
-  <TR ALIGN=CENTER><TH>EDITAR</TH>
-    <TD><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#perfilmodal"> Contraseña
+  <TR ALIGN=CENTER><TH>CONTRASEÑA</TH>
+    <TD><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#perfilmodal"> Editar
     </button>   </TD></TR>
     @endforeach
 </TABLE>

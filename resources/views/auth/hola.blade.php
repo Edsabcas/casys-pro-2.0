@@ -24,6 +24,7 @@
 
 <body class="bg-gradient-primary">
 
+
     
 
     <div class="row justify-content-center">
@@ -52,13 +53,9 @@
                                         <input type="text" class="form-control" id="floatingInput" placeholder="Usuario" name="usuario">
                                         <label for="floatingInput">Usuario</label>
                                       </div>
-                                      @error('usuario')
-                                      <div class="alert alert-danger d-flex align-items-center" role="alert">
-                                      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
-                                      <span>Pendiente de ingreso</span>
-                                      </div>
-                                      @enderror
-
+                                      @if ($errors->has('usuario'))
+                                      <p>{{ $errors->first('usuario')}}</p>
+                                      @endif
                                       <div class="form-floating">
                                         <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
                                         <label for="floatingPassword">Contraseña</label>
@@ -69,22 +66,12 @@
                                       <span>Pendiente de ingreso</span>
                                       </div>
                                       @enderror
-                            </div>
-                                <hr>
-                                
-                                <button type="submit" class="btn btn-primary btn-user btn-block">
-                                    Ingresar
-                                </button>
-                                @isset($mensaje20)
-                                @if($mensaje20 != null)
-                                <div class="alert alert-danger d-flex align-items-center" role="alert">
-                                  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
-                                  <div>{{$mensaje20}}
-                                  </div>
-                                </div>
-                                @endif
-                                @endisset
-
+                                    </div>
+                                    
+                                    <hr>
+                                    <button type="submit" class="btn btn-primary btn-user btn-block">
+                                        Ingresar
+                                    </button>
                                 </form>
                             </div>
                         </div>
@@ -106,7 +93,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
-
+    
 </body>
 
 </html>
