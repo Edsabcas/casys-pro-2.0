@@ -10,7 +10,7 @@
     <meta name="author" content="">
 
     <title> CASYS </title>
-    <link rel="icon" href="{{ asset('img/lo.png')}}" />
+    <link rel="icon" href="{{ asset('img/logocastano.png')}}" />
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -29,15 +29,20 @@
     
 
     <div class="row justify-content-center">
+        <br>
 
         <div class="col-xl-10 col-lg-12 col-md-10">
+            <br>
+            <br>
+            <br>
+            <br>
     
             <div class="card o-hidden border-0 shadow-lg my-5">
                 <div class="card-body p-0">
                     <!-- Nested Row within Card Body -->
                     <div class="row">
                         <div class="col-lg-5 d-none d-lg-block">
-                            <img src="img/lo.png" class="rounded mx-auto d-block" width="450" height="445" alt="...">
+                            <img src="img/logocastano.png" class="rounded mx-auto d-block" width="450" height="445" alt="...">
                         </div>
                         <div class="col-lg-6">
                             <div class="p-5">
@@ -62,8 +67,9 @@
                                       @enderror
 
                                       <div class="form-floating">
-                                        <input type="password" style="border-color: #a4cb39" class="form-control rounded-pill" id="floatingPassword" name="password" placeholder="Contraseña"><i class="bi bi-key-fill" style="color: black"></i>
-                                      </div>
+                                        <input type="password" style="border-color: #a4cb39" class="form-control rounded-pill" id="floatingPassword" name="password" placeholder="Contraseña">  
+                                        
+                                    </div>
                                       @error('password')
                                       <div class="alert alert-danger d-flex align-items-center" role="alert">
                                       <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
