@@ -1,12 +1,13 @@
 <div class="btn-group btn-group-lg"  role="group" aria-label="Basic outlined example">
   <a wire:click="validar_u('5')" class="btn btn-success" value="5">Planificación Anual</a>
-  <a wire:click="validar_u('1')" class="btn btn-success" value="1">Unidad 1</a>
-  <a wire:click="validar_u('2')" class="btn btn-success" value="2">Unidad 2</a>
-  <a wire:click="validar_u('3')" class="btn btn-success" value="3">Unidad 3</a>
-  <a wire:click="validar_u('4')" class="btn btn-success" value="4">Unidad 4</a>
+
+  @foreach($unidadesf as $unidadf)
+  <a wire:click='validar_u()' class="btn btn-success">{{$unidadf->NOMBRE_DE_UNIDAD}}
+  </a>
+  @endforeach
 
     @foreach($unidades as $unidad)
-    <a wire:click='validar_u("6")' class="btn btn-success">{{$unidad->NOMNBRE_UNIDAD}}
+    <a wire:click='validar_u()' class="btn btn-success">{{$unidad->NOMNBRE_UNIDAD}}
     </a>
     @endforeach
     </div>
