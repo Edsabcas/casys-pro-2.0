@@ -95,6 +95,7 @@ class ContenidoComponent extends Component
         ->join('tb_seccions', 'tb_planificacionanual.ID_SC', '=', 'tb_seccions.ID_SC')
         ->select('tb_planificacionanual.ID_PLAN', 'tb_planificacionanual.DESCRIPCION', 'tb_materias.NOMBRE_MATERIA', 'tb_grados.GRADO', 'tb_seccions.SECCION','tb_materias.ID_MATERIA')
         ->where('tb_planificacionanual.ID_GR','=',$this->grado)
+        ->where('tb_planificacionanual.ID_MATERIA','=',$this->unidad1)
         ->get();
         }
 
@@ -351,6 +352,51 @@ public function nota($nota,$ida){
             'ID_ACTIVIDADES'=>$ida,
         ]);
 
+
+}
+
+public function Subir_Plan(){
+    if($this->validate([
+        'descripciona' => 'required',
+
+    ])==false){
+        $error="no encontrado";
+        session(['message'=>'no encontrado']);
+        return back()->withErrors(['error' => 'Validar el input vacio']);
+    }
+
+    else{
+    $descripciona=$this->descripciona;
+    $grado=$this->grado;
+    $idsecc=$this->idsecc;
+    $unidad1=$this->unidad1;
+    
+    DB::begintransaction();
+    
+
+    $planificacion=DB::table('tb_planificacionanual')->insert(
+        [
+            'DESCRIPCION'=>$descripciona,
+            'ID_MATERIA'=>$unidad1,
+            'ID_GR'=>$grado,
+            'ID_SC'=>$idsecc,
+        ]);
+
+        if($planificacion){
+            DB::commit();
+            unset($this->mensaje);;
+            unset($this->mensaje1);
+            $this->op='addcontenidos';
+            $this->mensaje='Insertado correctamente';
+            }
+            else {
+            DB::rollback();
+            unset($this->mensaje);;
+            unset($this->mensaje1);
+            $this->op='addcontenidos';
+            $this->mensaje1='Datos no  insertados correctamente';
+            }
+}
 
 }
 
