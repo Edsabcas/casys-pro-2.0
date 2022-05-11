@@ -26,6 +26,7 @@
 
 <body class="bg-gradient" style="background-color: #a4cb39; font-family: Century Gothic">
 
+
     
 
     <div class="row justify-content-center">
@@ -58,6 +59,7 @@
                                         <input type="text" style="border-color: #a4cb39" class="form-control rounded-pill" id="floatingInput" placeholder="Usuario" name="usuario">
                                         <span></span>
                                       </div>
+<<<<<<< HEAD
                                       <br>
                                       @error('usuario')
                                       <div class="alert alert-danger d-flex align-items-center" role="alert">
@@ -66,6 +68,11 @@
                                       </div>
                                       @enderror
 
+=======
+                                      @if ($errors->has('usuario'))
+                                      <p>{{ $errors->first('usuario')}}</p>
+                                      @endif
+>>>>>>> e2d4f84276d11a6376c25dadd470eee8879c5dc3
                                       <div class="form-floating">
                                         <input type="password" style="border-color: #a4cb39" class="form-control rounded-pill" id="floatingPassword" name="password" placeholder="Contraseña">  
                                         
@@ -76,6 +83,7 @@
                                       <span>Pendiente de ingreso</span>
                                       </div>
                                       @enderror
+<<<<<<< HEAD
                             </div>
                                 
                                 <button type="submit" class="btn btn-user btn-block text-light rounded-pill" style="background-color:#3a3e7b">
@@ -91,6 +99,14 @@
                                 @endif
                                 @endisset
 
+=======
+                                    </div>
+                                    
+                                    <hr>
+                                    <button type="submit" class="btn btn-primary btn-user btn-block">
+                                        Ingresar
+                                    </button>
+>>>>>>> e2d4f84276d11a6376c25dadd470eee8879c5dc3
                                 </form>
                             </div>
                         </div>
@@ -112,7 +128,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
-
+    
 </body>
 
 </html>
