@@ -59,20 +59,9 @@
                                         <input type="text" style="border-color: #a4cb39" class="form-control rounded-pill" id="floatingInput" placeholder="Usuario" name="usuario">
                                         <span></span>
                                       </div>
-<<<<<<< HEAD
-                                      <br>
-                                      @error('usuario')
-                                      <div class="alert alert-danger d-flex align-items-center" role="alert">
-                                      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
-                                      <span>Pendiente de ingreso</span>
-                                      </div>
-                                      @enderror
-
-=======
                                       @if ($errors->has('usuario'))
                                       <p>{{ $errors->first('usuario')}}</p>
                                       @endif
->>>>>>> e2d4f84276d11a6376c25dadd470eee8879c5dc3
                                       <div class="form-floating">
                                         <input type="password" style="border-color: #a4cb39" class="form-control rounded-pill" id="floatingPassword" name="password" placeholder="Contraseña">  
                                         
@@ -83,30 +72,12 @@
                                       <span>Pendiente de ingreso</span>
                                       </div>
                                       @enderror
-<<<<<<< HEAD
-                            </div>
-                                
-                                <button type="submit" class="btn btn-user btn-block text-light rounded-pill" style="background-color:#3a3e7b">
-                                    <b>Ingresar</b>
-                                </button>
-                                @isset($mensaje20)
-                                @if($mensaje20 != null)
-                                <div class="alert alert-danger d-flex align-items-center" role="alert">
-                                  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
-                                  <div>{{$mensaje20}}
-                                  </div>
-                                </div>
-                                @endif
-                                @endisset
-
-=======
                                     </div>
                                     
                                     <hr>
                                     <button type="submit" class="btn btn-primary btn-user btn-block">
                                         Ingresar
                                     </button>
->>>>>>> e2d4f84276d11a6376c25dadd470eee8879c5dc3
                                 </form>
                             </div>
                         </div>
