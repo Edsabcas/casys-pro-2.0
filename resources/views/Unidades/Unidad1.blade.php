@@ -6,7 +6,7 @@
   <a wire:click="validar_u('4')" class="btn btn-success" value="4">Unidad 4</a>
 
     @foreach($unidades as $unidad)
-    <a wire:click='mostrar_u("{{$unidad->ID_UNIDADES}}","{{$unidad->NOMNBRE_UNIDAD}}")' class="btn btn-success">{{$unidad->NOMNBRE_UNIDAD}}
+    <a wire:click='validar_u("6")' class="btn btn-success">{{$unidad->NOMNBRE_UNIDAD}}
     </a>
     @endforeach
     </div>
@@ -40,5 +40,11 @@
   @if($vista==5)
   
   @include('Unidades.PlanificacionA');
+
+  @endif
+
+  @if($vista==6)
+  
+  @include('Unidades.Unidades_n');
 
   @endif
