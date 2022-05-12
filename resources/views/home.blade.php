@@ -8,6 +8,9 @@
 @elseif($op=='vistaadanuncios')
 @livewire('anuncios-admin');
 
+@elseif($op=='vistanoadanuncios')
+@livewire('anuncios-no-admin');
+
 
 @elseif($op=='guardaranun')
 @livewire('guardar-component');
@@ -15,6 +18,8 @@
 @elseif($op=="addanunciomaestro")
 @livewire('form-maestros-components');
 
+@elseif($op=="validacionvista")
+@livewire('validacion-vista-component');
 
 @elseif ($op=='addgrado')
 @livewire('grado-components') 
@@ -47,7 +52,11 @@
 @livewire('contenido-component')   
 
 @elseif($op==0)
+@if($rol==1 or $rol==2)
 @include('contenido')
+@else
+@livewire('anuncios-no-admin');
+@endif
 
 @elseif ($op=='addContenidos')
 @livewire('contenido-component')
