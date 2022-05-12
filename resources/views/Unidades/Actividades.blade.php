@@ -6,7 +6,7 @@
         
           <tr>
               <th>Alumno</th>
-              @foreach ($actividad as $activi)
+              @foreach ($actividades as $activi)
               <th>Actividad {{$activi->ID_ACTIVIDADES}}</th>
               @endforeach
           </tr>
@@ -19,8 +19,8 @@
         <tr>
           
           <th>{{$est->TB_INFO_NOMBRE}}</th> 
-          @foreach($actividad as $activi)
-          <th><input type="text" class="form-control" id="exampleForm{{$est->TB_INFO_NOMBRE}}" placeholder="Nota" wire:click='nota("{{$activi->ID_ACTIVIDADES}}")'></th>
+          @foreach($actividades as $activi)
+          <th><input type="number" class="form-control" id="exampleForm{{$est->TB_INFO_NOMBRE}}" placeholder="Nota" wire:click='nota("{{$activi->ID_ACTIVIDADES}}")'></th>
           @endforeach
           
         </tr>

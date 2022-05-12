@@ -2,7 +2,7 @@
   <a wire:click="validar_u('5')" class="btn btn-success" value="5">Planificación Anual</a>
 
   @foreach($unidadesf as $unidadf)
-  <a wire:click="validar_u('1')" class="btn btn-success">{{$unidadf->NOMBRE_DE_UNIDAD}}
+  <a wire:click='validar_u("{{$unidadf->ID_UNIDADES_FIJAS}}")' class="btn btn-success">{{$unidadf->NOMBRE_DE_UNIDAD}}
   </a>
   @endforeach
 
@@ -44,8 +44,3 @@
 
   @endif
 
-  @if($vista==6)
-  
-  @include('Unidades.Unidades_n');
-
-  @endif

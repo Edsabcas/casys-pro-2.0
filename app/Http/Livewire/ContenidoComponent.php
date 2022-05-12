@@ -12,12 +12,12 @@ class ContenidoComponent extends Component
 {
     use WithFileUploads;
 
-   public $grado,$mat, $nombre_g, $nombre_s, $unidad1, $NOMBRE_MATERIA, $ID_DOCENTE,$op2,$asig, $usuario,$idsecc;
+   public $grado,$mat, $nombre_g, $nombre_s, $unidad1, $NOMBRE_MATERIA, $ID_DOCENTE,$op2,$asig, $usuario,$idsecc,$unidadfija;
    public $option1,$option2,$option3,$option4,$vista,$vista2;
 
 
    public $prueba, $op, $mensaje, $mensaje1, $file, $date, $dia2, $message, $file2, $arch, $vid, $pdf, $formato, $tipo;
-   public $titulo, $punteo, $fecha_e, $fecha_ext, $descripcion, $act,$tema_a,$descripciont,$tema,$unidad, $temasb, $archivo, $nota, $ID_ACTIVIDADES, $descripciona;
+   public $titulo, $punteo, $fecha_e, $fecha_ext, $descripcion, $act,$tema_a,$descripciont,$tema,$unidad, $temasb, $archivo, $nota, $descripciona;
 
 
 
@@ -75,16 +75,19 @@ class ContenidoComponent extends Component
         
 
         $actividades="";
-        if($this->act!=null){
+        if($this->unidadfija!=null){
             $actividades=DB::table('tb_actividades')
-        ->join('tb_materias','tb_actividades.ID_MATERIA','=','tb_materias.ID_MATERIA')
-        ->join('tb_docentes', 'tb_actividades.ID_DOCENTE', '=', 'tb_docentes.ID_DOCENTE')
-        ->join('tb_grados', 'tb_actividades.ID_GR', '=', 'tb_grados.ID_GR')
-        ->join('tb_seccions', 'tb_actividades.ID_SC', '=', 'tb_seccions.ID_SC')
-        ->join('users', 'tb_actividades.ID', '=', 'users.ID')
-        ->select('tb_actividades.ID_ACTIVIDADES', 'tb_materias.NOMBRE_MATERIA', 'tb_docentes.NOMBRE_DOCENTE', 'tb_grados.NOMBRE_GRADO', 'tb_seccions.SECCION','tb_materias.ID_MATERIA','tb_actividades.NOMBRE_ACTIVIDAD')
-        ->where('tb_actividades.ID_GR','=',$this->act)
-        ->get();
+            ->join('tb_materias','tb_actividades.ID_MATERIA','=','tb_materias.ID_MATERIA')
+            ->join('tb_grados', 'tb_actividades.ID_GR', '=', 'tb_grados.ID_GR')
+            ->join('tb_seccions', 'tb_actividades.ID_SC', '=', 'tb_seccions.ID_SC')
+            ->join('users', 'tb_actividades.ID', '=', 'users.id')
+            ->join('tb_unidades_fijas', 'tb_actividades.ID_UNIDADES_FIJAS', '=', 'tb_unidades_fijas.ID_UNIDADES_FIJAS')
+            ->select('tb_actividades.ID_ACTIVIDADES', 'tb_materias.NOMBRE_MATERIA', 'tb_grados.ID_GR', 'tb_seccions.ID_SC', 'tb_materias.ID_MATERIA', 'users.name', 'tb_actividades.NOMBRE_ACTIVIDAD', 'tb_unidades_fijas.ID_UNIDADES_FIJAS')
+            ->where('tb_actividades.ID_UNIDADES_FIJAS','=',$this->unidadfija)
+            ->where('tb_actividades.ID_GR','=',$this->grado)
+            ->where('tb_actividades.ID_SC','=',$this->idsecc)
+            ->where('tb_actividades.ID_MATERIA','=',$this->unidad1)
+            ->get();
         }
 
         $PlanUnion="";
@@ -109,15 +112,13 @@ class ContenidoComponent extends Component
         $maestros=DB::select($sql);
         $sql= 'SELECT  TB_INFO_NOMBRE  FROM tb_estudiantes';
         $estu=DB::select($sql);
-        $sql= 'SELECT  ID_ACTIVIDADES  FROM tb_actividades';
-        $actividad=DB::select($sql);
         $sql= 'SELECT * FROM tb_unidades_fijas';
         $unidadesf=DB::select($sql);
         $sql= 'SELECT * FROM tb_temas';
         $temas=DB::select($sql);
         $sql= 'SELECT * FROM users';
         $Usuarios=DB::select($sql);
-        return view('livewire.contenido-component',compact('materias','grados','secciones','uniones','unidades','maestros','actividades','asignaciones','estu','actividad','unidadesf','temas','Usuarios','PlanUnion'));
+        return view('livewire.contenido-component',compact('materias','grados','secciones','uniones','unidades','maestros','actividades','asignaciones','estu','unidadesf','temas','Usuarios','PlanUnion'));
 
     }
     
@@ -152,9 +153,10 @@ class ContenidoComponent extends Component
         }
 
     }
-    public function validar_u($option1){
+    public function validar_u($nunif){
+        $this->unidadfija=$nunif;
  
-        if($option1==1){
+        if($this->unidadfija==1){
             if($this->vista!=null && $this->vista==1){
                 $this->vista=0;
             }
@@ -163,7 +165,7 @@ class ContenidoComponent extends Component
             }
         }
 
-        if($option1==2){
+        if($this->unidadfija==2){
             if($this->vista!=null && $this->vista==2){
                 $this->vista=0;
             }
@@ -172,7 +174,7 @@ class ContenidoComponent extends Component
             }
         }
 
-        if($option1==3){
+        if($this->unidadfija==3){
             if($this->vista!=null && $this->vista==3){
                 $this->vista=0;
             }
@@ -181,7 +183,7 @@ class ContenidoComponent extends Component
             }
         }
 
-        if($option1==4){
+        if($this->unidadfija==4){
             if($this->vista!=null && $this->vista==4){
                 $this->vista=0;
             }
@@ -190,26 +192,10 @@ class ContenidoComponent extends Component
             }
         }
 
-        if($option1==5){
-            if($this->vista!=null && $this->vista==5){
-                $this->vista=0;
-            }
-            else{
-                $this->vista=5;
-            }
-        }
-
-        if($option1==6){
-            if($this->vista!=null && $this->vista==6){
-                $this->vista=0;
-            }
-            else{
-                $this->vista=6;
-            }
-        }
+        
     }
 
-    public function Subir_Act($nomb,$nombm,$secc){
+    public function Subir_Act(){
         if($this->validate([
             'titulo' => 'required',
             'punteo' => 'required',
@@ -228,10 +214,12 @@ class ContenidoComponent extends Component
         $fecha_e=$this->fecha_e;
         $descripcion=$this->descripcion;
         $fecha_ext=$this->fecha_ext;
-        $this->nombre_s=$secc;
         $temasb=$this->temasb;
-        $this->nombre_g=$nomb;
-        $this->ID_MATERIA=$nombm;
+        $grado=$this->grado;
+        $idsecc=$this->idsecc;
+        $unidad1=$this->unidad1;
+        $unidadfija=$this->unidadfija;
+        
 
 
         $archivo="";
@@ -268,9 +256,11 @@ class ContenidoComponent extends Component
                 'fecha_entr'=>$fecha_e,
                 'fecha_extr'=>$fecha_ext,
                 'ID_TEMA'=>$temasb,
-                'ID_MATERIA'=>$nombm,
-                'ID_GR'=>$nomb,
-                'ID_SC'=>$secc,
+                'ID_MATERIA'=>$unidad1,
+                'ID_GR'=>$grado,
+                'ID_SC'=>$idsecc,
+                'ID_UNIDADES_FIJAS'=>$unidadfija,
+
             ]);
 
             if($actividades){
