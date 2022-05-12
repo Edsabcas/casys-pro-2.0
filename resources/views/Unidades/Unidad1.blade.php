@@ -7,7 +7,7 @@
   @endforeach
 
     @foreach($unidades as $unidad)
-    <a wire:click="validar_u('6')"  class="btn btn-success">{{$unidad->NOMNBRE_UNIDAD}}
+    <a wire:click='validar_u("{{$unidad->ID_UNIDADES}}")' class="btn btn-success">{{$unidad->NOMNBRE_UNIDAD}}
     </a>
     @endforeach
     </div>
