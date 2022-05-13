@@ -9,6 +9,8 @@
   
             @include('Unidades.modal_actividades')
             <button class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#staticBackdrop"> Actividades </button>
+
+            <a wire:click='vista_a("3")' class="btn btn-success">Ver Actividades </a>
         </td>
         <br>
         <br>

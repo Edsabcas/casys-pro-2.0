@@ -1,4 +1,5 @@
-<div class="btn-group btn-group-lg"  role="group" aria-label="Basic outlined example">
+@if($op2!=null && $op2==2)
+ <div class="btn-group btn-group-lg"  role="group" aria-label="Basic outlined example">
   <a wire:click="validar_u('5')" class="btn btn-success" value="5">Planificación Anual</a>
 
   @foreach($unidadesf as $unidadf)
@@ -10,7 +11,9 @@
     <a wire:click='validar_u2("{{$uni->ID_UNIDADES}}","{{$uni->NOMNBRE_UNIDAD}}")' class="btn btn-success">{{$uni->NOMNBRE_UNIDAD}}
     </a>
     @endforeach
-    </div>
+   </div>
+    
+    
 
 
   
@@ -18,36 +21,38 @@
 
     @include('Unidades.Primer_Unidad');
   
-  @endif
+    @endif
   
-  @if($vista==2)
+   @if($vista==2)
   
     @include('Unidades.Unidad2');
   
-  @endif
+   @endif
   
-  @if($vista==3)
+   @if($vista==3)
   
     @include('Unidades.Unidad3');
   
-  @endif
+   @endif
 
-  @if($vista==4)
+   @if($vista==4)
   
-  @include('Unidades.Unidad4');
+   @include('Unidades.Unidad4');
 
-  @endif
+   @endif
 
-  @if($vista==5)
+   @if($vista==5)
   
-  @include('Unidades.PlanificacionA');
+   @include('Unidades.PlanificacionA');
 
-  @endif
+   @endif
 
   
-  @if($vista2==6)
+   @if($vista2==6)
   
-  @include('Unidades.Unidades_n');
+   @include('Unidades.Unidades_n');
 
-  @endif
+   @endif
 
+@endif
+  

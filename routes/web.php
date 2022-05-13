@@ -122,7 +122,7 @@ Route::get('/Estudiantes', [AsignacionesEsController::class, 'agregar_e']);
 
 
 //Grupo #3
-Route::get('/Planificacion_unidades',[ContenidosController::class,'contenidos']);
+Route::get('/Contenidos',[ContenidosController::class,'contenidos']);
 
 Route::get('/Pre_Kinder',[BotonesController::class,'Pre_Kinder']);
 
