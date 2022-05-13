@@ -9,7 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title> CASYS2.0 </title>
+    <title> CASYS 2.0 </title>
+    <link rel="icon" href="{{ asset('img/logocastano.png')}}" />
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -27,20 +28,20 @@
     @livewireStyles
 </head>
 
-<body id="page-top">
+<body id="page-top" style="font-family: Century Gothic">
     
     <!-- Page Wrapper -->
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav sidebar sidebar-dark accordion" style="background-color: #a4cb39" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/inicio">
                 <div class="sidebar-brand-icon">
                     <img src="https://th.bing.com/th/id/OIP.n9AjAKxolzre7itDRM9XHAHaHa?pid=ImgDet&rs=1" class="rounded mx-auto d-block" width="50" height="50" alt="...">
                 </div>
-                <div class="sidebar-brand-text mx-3">CASYS <sup></sup></div>
+                <div class="sidebar-brand-text mx-3 text-bold" style="font-size: 25px; color:#3a3e7b"> <strong>CASYS</strong> <sup></sup></div>
             </a>
 
             <!-- Divider -->
@@ -53,7 +54,7 @@
             <!-- Nav Item - Pages Collapse Menu -->
            
 
-            <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+            <ul class="navbar-nav sidebar sidebar-dark accordion" style="background-color: #a4cb39" id="accordionSidebar">
                 @if(Session::get('menu_rol')!=null)
                 @foreach (Session::get('menu_rol') as $menu_rol)
                 <li class="nav-item">
