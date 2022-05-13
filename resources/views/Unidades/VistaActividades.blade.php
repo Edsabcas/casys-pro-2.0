@@ -15,7 +15,31 @@
       </h2>
       <div id="flush-collapse{{$actividad->ID_ACTIVIDADES}}" class="accordion-collapse collapse" aria-labelledby="flush-heading{{$actividad->ID_ACTIVIDADES}}" data-bs-parent="#accordionFlush{{$actividad->ID_ACTIVIDADES}}">
         <div class="accordion-body">Descripcion:{{$actividad->descripcion}} <br> <br> Creado por:{{$actividad->name}}
-        <br> <br> {{$actividad->archivos}}</div>
+        <br> <br>
+        @php
+              $foo = 0;
+              $vid = 0;
+              $pdf = 0;
+               if (strpos($actividad->archivos, '.jpg' ) !== false || strpos($actividad->archivos, '.png' ) !== false || strpos($actividad->archivos, '.jpeg' ) !== false) 
+               { $foo=1; }
+               elseif(strpos($actividad->archivos, '.mp4' ) !== false || strpos($actividad->archivos, '.mpeg' ) !== false)
+               {$vid=1;}
+               elseif(strpos($actividad->archivos, '.pdf' ) !== false)
+               {$pdf=1;}
+        @endphp
+         @if($foo==1)
+         <img src="imagen/actividades/{{$actividad->archivos}}" height="500" weight="500" class="card-img-top" alt="...">
+         @endif
+         @if($vid==1)
+         <video height="500" weight="500" class="card-img-top" alt="..." controls>
+           <source src="imagen/videos/{{$actividad->archivos}}"  type="video/mp4">
+             <source src="imagen/videos/{{$actividad->archivos}}"  type="video/ogg">
+         </video>
+         @endif
+         @if($pdf==1)
+         <iframe style="width: 49rem; text-align:center" width="400" height="400" src="/imagen/pdf_act/{{$actividad->archivos}}" frameborder="0"></iframe>
+           @endif
+    </div>
       </div>
     </div>
   </div>
