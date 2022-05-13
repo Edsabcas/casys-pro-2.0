@@ -224,7 +224,18 @@ public     $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, 
                 $this->vista2=0;
                 $this->vista=4;
             }
-        }        
+        }
+        
+        if($this->unidadfija==5){
+            if($this->vista!=null && $this->vista==5){
+                $this->vista=0;
+                $this->unidadn=null;
+            }
+            else{
+                $this->vista2=0;
+                $this->vista=5;
+            }
+        }  
     }
 
     public function validar_u2($nun,$nomu){
