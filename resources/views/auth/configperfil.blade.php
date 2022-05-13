@@ -1,21 +1,53 @@
 <div class="card"><div class="card-body">
 <TABLE BORDER width="600" height="300" class="table-striped">
   @foreach ($perfiles as $perfil)
-	<TR ALIGN=CENTER><TH>Nombre</TH>
+	<TR ALIGN=CENTER><TH>NOMBRE</TH>
 		<TD>{{$perfil->name}}</TD></TR>
 	<TR ALIGN=CENTER><TH>EMAIL</TH>
 		<TD>{{$perfil->email}}</TD></TR>
 	<TR ALIGN=CENTER><TH>USUARIO</TH>
 		<TD>{{$perfil->usuario}}</TD></TR>
   <TR ALIGN=CENTER><TH>FOTO DE PERFIL</TH>
-    <TD><img class="rounded-circle" src="img/undraw_profile_1.svg" width="60" height="60" alt="..."></TD></TR>
-  <TR ALIGN=CENTER><TH>CONTRASEÑA</TH>
-    <TD><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#perfilmodal"> Editar
+    <TD><img class="rounded-circle" src="img/undraw_profile_1.svg" width="60" height="60" alt="...">
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#perfilmodal2">Cambiar</button> 
+    </TD>
+    
+  </TR>
+  <TR ALIGN=CENTER><TH>EDITAR</TH>
+    <TD><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#perfilmodal"> Contraseña
     </button>   </TD></TR>
     @endforeach
 </TABLE>
 </div></div>
           
+
+    <div wire:ignore.self class="modal fade" id="perfilmodal2" tabindex="-1" aria-labelledby="perfilmodal2Label" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="perfilmodal2Label">Cambio de foto de perfil</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form wire:submit.prevent='' class="form-horizontal">
+              <div class="form-group row">
+                <label for="exampleInputPassword1" class="form-label" style="font-size:20px">Elegir foto de perfil:</label>
+                <div class="mb-3">
+                  <input type="file" id="archivo"  wire:model="archivo_perfil">
+                </div> 
+            </div>
+            <div class="mb-3">
+              @if($tipo==1)
+              <h3 class="form-label">Visualización de Imagen</h3>
+              <img src="{{$archivo_perfil->temporaryURL()}}" height="200" weight="200"  alt="...">
+              @endif
+            </div>  
+            <button type="submit" class="btn btn-primary" wire:click="cambiofoto()">Publicar</button>
+          </form>
+          </div>
+        </div>
+      </div>
+    </div>
 
               <div wire:ignore.self class="modal fade" id="perfilmodal" tabindex="-1" aria-labelledby="perfilmodalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -82,7 +114,7 @@
                                 @enderror
                             </div>
                             <br>
-                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                          +  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                               <button wire:click='c_pass' class="btn btn-primary">Guardar</button>
                             </div>
