@@ -69,7 +69,7 @@ class Sessionscomponent extends Component
         ->where('menu_rol.ID_ROL', '=', intval($ro[0]));
             })
         ->join('menu', 'menu_rol.ID_MENU', '=', 'menu.ID_MENU')
-        ->select('menu.ID_MENU', 'menu.DESCRIPCION')
+        ->select('menu.ID_MENU', 'menu.DESCRIPCION', 'menu.ICONO')
         ->get();
 
         $submenu_rol=DB::table('menu_submenu')
