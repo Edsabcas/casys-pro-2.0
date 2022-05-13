@@ -9,7 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title> CASYS2.0 </title>
+    <title> CASYS 2.0 </title>
+    <link rel="icon" href="{{ asset('img/logocastano.png')}}" />
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -27,20 +28,20 @@
     @livewireStyles
 </head>
 
-<body id="page-top">
+<body id="page-top" style="font-family: Century Gothic">
     
     <!-- Page Wrapper -->
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav sidebar sidebar-dark accordion" style="background-color: #a4cb39" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/inicio">
                 <div class="sidebar-brand-icon">
                     <img src="https://th.bing.com/th/id/OIP.n9AjAKxolzre7itDRM9XHAHaHa?pid=ImgDet&rs=1" class="rounded mx-auto d-block" width="50" height="50" alt="...">
                 </div>
-                <div class="sidebar-brand-text mx-3">CASYS <sup></sup></div>
+                <div class="sidebar-brand-text mx-3" style="font-size: 25px; color:#3a3e7b"> CASYS <sup></sup></div>
             </a>
 
             <!-- Divider -->
@@ -53,15 +54,15 @@
             <!-- Nav Item - Pages Collapse Menu -->
            
 
-            <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+            <ul class="navbar-nav sidebar sidebar-dark accordion" style="background-color: #a4cb39" id="accordionSidebar">
                 @if(Session::get('menu_rol')!=null)
                 @foreach (Session::get('menu_rol') as $menu_rol)
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities{{$menu_rol->ID_MENU}}"
                         aria-expanded="true" aria-controls="collapseUtilities{{$menu_rol->ID_MENU}}">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
-                            <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
-                          </svg>
+                        @php
+                        echo $menu_rol->ICONO;
+                        @endphp
                         <span>{{$menu_rol->DESCRIPCION}}</span>
                     </a>
                  
