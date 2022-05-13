@@ -7,7 +7,7 @@
           <tr>
               <th>Alumno</th>
               @foreach ($actividades as $activi)
-              <th>Actividad {{$activi->ID_ACTIVIDADES}}</th>
+              <th>{{$activi->NOMBRE_ACTIVIDAD}}</th>
               @endforeach
           </tr>
         
