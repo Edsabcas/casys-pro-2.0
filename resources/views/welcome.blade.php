@@ -41,7 +41,7 @@
                 <div class="sidebar-brand-icon">
                     <img src="https://th.bing.com/th/id/OIP.n9AjAKxolzre7itDRM9XHAHaHa?pid=ImgDet&rs=1" class="rounded mx-auto d-block" width="50" height="50" alt="...">
                 </div>
-                <div class="sidebar-brand-text mx-3 text-bold" style="font-size: 25px; color:#3a3e7b"> <strong>CASYS</strong> <sup></sup></div>
+                <div class="sidebar-brand-text mx-3" style="font-size: 25px; color:#3a3e7b"> CASYS <sup></sup></div>
             </a>
 
             <!-- Divider -->

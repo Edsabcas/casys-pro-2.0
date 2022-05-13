@@ -2,7 +2,7 @@
                 <div class="container-fluid">
 
                     <div class="card text-white">
-                        <img src="img/banner-casys.png" class="rounded mx-auto d-block" width="1000" alt="...">
+                        <img src="img/banner-casys.png" class="img-fluid rounded" alt="banner">
                         <div class="card-img-overlay">
                           <h5 class="card-title"></h5>
                           <p class="card-text"></p>
