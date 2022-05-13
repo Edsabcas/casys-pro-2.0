@@ -7,7 +7,7 @@
                         <th>EMAIL</th>
                         <th>USUARIO</th>
                         <th>FOTO DE PERFIL</th>
-                        <th>EDITAR</th>
+                        <th>CONTRASEÑA</th>
                     </tr>
                 </thead>
                 <tbody>
