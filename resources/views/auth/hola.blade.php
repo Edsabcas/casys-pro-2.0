@@ -21,7 +21,7 @@
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
-    
+    @livewireStyles
 </head>
 
 <body class="bg-gradient" style="background-color: #a4cb39; font-family: Century Gothic">
@@ -100,6 +100,7 @@
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
     
+    @livewireScripts
 </body>
 
 </html>

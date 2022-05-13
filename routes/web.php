@@ -324,7 +324,7 @@ Route::get('/Secciones', [SeccionController::class, 'agregar_sec']);
 
 Route::get('/Maestros', [MaestrosController::class, 'agregar_docentes']);
 
-Route::get('/agregar_a', [AsignacionController::class, 'agregar_a']);
+Route::get('/Asignacion_maestro', [AsignacionController::class, 'agregar_a']);
 
 Route::get('/agregar_e', [AsignacionesEsController::class, 'agregar_e']);
 

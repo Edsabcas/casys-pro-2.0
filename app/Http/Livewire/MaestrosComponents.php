@@ -17,15 +17,38 @@ class MaestrosComponents extends Component{
 
     public $op,$edit,$edit1;
 
-    public $usuario,$correoed,$pass,$id_usuario,$id_usucorreo,$nomb,$apelli;
+    public $usuario,$correoed,$pass,$id_usuario,$id_usucorreo,$nomb,$apelli,$id_u;
     
     public function render(){
+
         $sql="SELECT * FROM tb_docentes";
         $maestros=DB::select($sql);
         return view('livewire.maestros-components', compact('maestros'));
     }
 
     public function guardar_docentes(){
+
+        $sql='SELECT * FROM users WHERE usuario=?';
+        $maes=DB::select($sql,array($this->usuario));
+
+        if($maes !=null){
+
+            $inicial=substr($this->nombre_docente,0,1);
+            $iniciales=explode(" ", $this->nombre_docente);
+            $inicial2=substr($iniciales[1],0,1);
+            $apellidos=explode(" ", $this->apellido_docente);
+            $apellido=$apellidos[0];
+            $apellido2=substr($apellidos[1],0,1);
+            
+
+            $this->usuario=$this->usuario.$inicial2;
+
+            $this->correoed=$inicial.$inicial2.$apellido.$apellido2.$inicial2.'@colegioelcastano.edu.gt';
+            $this->usuario = strtolower($this->usuario);
+            $this->correoed = strtolower($this->correoed);
+        }
+
+
         if($this->validate([
             'nombre_docente' => 'required',
             'apellido_docente' => 'required',
@@ -68,6 +91,7 @@ class MaestrosComponents extends Component{
 
             $id=$val->id;
         }  
+
         DB::beginTransaction();
 
 
@@ -128,18 +152,18 @@ class MaestrosComponents extends Component{
 
     public function edit($id){
         $id_usu=$id;
-        $sql='SELECT * FROM tb_user_maestros WHERE ID_DOCENTE=?';
+        $sql='SELECT * FROM users WHERE id=?';
         $correousu=DB::select($sql,array($id_usu));
 
         $this->id_usucorreo=0;
         foreach($correousu as $corre){
 
-            $this->id_usucorreo=$corre->ID_USUARIO;
+            $this->id_usucorreo=$corre->id;
         }
 
-        $ID_USER=$ID_USER;
-        $sql='SELECT * FROM users WHERE id=?';
-        $correousu=DB::select($sql,array($this->id_usucorreo));
+        $ID_USER=$this->id_usucorreo;
+        $sql='SELECT * FROM users WHERE ID_USER=?';
+        $correousu=DB::select($sql,array($ID_USER));
 
         $this->id_usucorreo=0;
         foreach($correousu as $corre){
