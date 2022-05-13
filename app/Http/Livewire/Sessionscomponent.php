@@ -91,11 +91,4 @@ class Sessionscomponent extends Component
         }
     }
 }
-
-public function mostrarcontra(){
-    if ($pass==1){
-        $pass='text';
-    }
-    
-}
 }

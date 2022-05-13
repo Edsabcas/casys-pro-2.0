@@ -21,15 +21,17 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>
 @livewireStyles 
 </head>
 
 <body class="bg-gradient" style="background-color: #a4cb39; font-family: Century Gothic">
 
-
-
-    
-
+   
     <div class="row justify-content-center">
         <br>
 
@@ -62,25 +64,42 @@
                                       </div>
                                       
                                       <div class="form-floating">
-                                        <input type="password" style="border-color: #a4cb39" class="form-control rounded-pill" id="floatingPassword" name="password" placeholder="Contraseña">  
+                                        <input type="password" style="border-color: #a4cb39" class="form-control rounded-pill" id="password" name="password" placeholder="Contraseña">  
                                         <div>
-                                            <input wire:click="mostrarcontra()" type="checkbox" id="floatingPassword"aria-describedby="passwordHelpBlock"> Mostrar contraseña
-                        
+                                            <div style="margin-top:15px;">
+                                                <input style="margin-left:20px;" type="checkbox" id="mostrar_contrasena" title="clic para mostrar contraseña"/>
+                                                &nbsp;&nbsp;Mostrar Contraseña</div>
+                                            </div>
+                      
                                             
                                     </div>
                                     
+
+                                   
+                    
+                                        
                                     @error('mensaje20')
                                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                         <strong>No se pudo ingresar</strong> Usuario y/o contraseña incorrecta.
                                       </div>
                                     @enderror
                                     </div>
-                                    
-                                    <hr>
+                            
                                     <button type="submit" class="btn btn-primary btn-user btn-block">
                                         Ingresar
                                     </button>
                                 </form>
+                                <script>
+                                    $(document).ready(function () {
+                                      $('#mostrar_contrasena').click(function () {
+                                        if ($('#mostrar_contrasena').is(':checked')) {
+                                          $('#password').attr('type', 'text');
+                                        } else {
+                                          $('#password').attr('type', 'password');
+                                        }
+                                      });
+                                    });
+                                    </script> 
                             </div>
                         </div>
                     </div>
@@ -90,6 +109,8 @@
         </div>
     
     </div>
+    
+
     
 
     <!-- Bootstrap core JavaScript-->
