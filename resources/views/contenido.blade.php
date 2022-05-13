@@ -1,8 +1,8 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <div class="card bg-dark text-white">
-                        <img src="https://scontent.fgua3-5.fna.fbcdn.net/v/t39.30808-6/252291516_997515794141044_5784446125529831203_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=730e14&_nc_ohc=VQErj9fstGgAX_ry_V8&tn=WHULCvlwjY63Gt7a&_nc_ht=scontent.fgua3-5.fna&oh=00_AT8dopulTvBYMyodQiBYGDOEaCz1bKpnnEqyuKmJj8gbUA&oe=6263CD76" class="rounded mx-auto d-block" width="850" height="450" alt="...">
+                    <div class="card text-white">
+                        <img src="img/banner-casys.png" class="rounded mx-auto d-block" width="1000" alt="...">
                         <div class="card-img-overlay">
                           <h5 class="card-title"></h5>
                           <p class="card-text"></p>
@@ -14,15 +14,17 @@
                     <div class="row">
                       
 
-                          <hr>
+                          <br>
+                          <div class="invisible"> ... </div>
+                          <br>
 
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card border-left-primary shadow h-100 py-2" style="border-left-color: #a4cb39">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="h5 mb-0 font-weight-bold text-primary text-uppercase mb-1">
+                                            <div class="h5 mb-0 font-weight-bold text-uppercase mb-1">
                                             <a target="_blank" rel="nofollow" href=#> Calendario </a>
                                             </div>
                                         </div>
