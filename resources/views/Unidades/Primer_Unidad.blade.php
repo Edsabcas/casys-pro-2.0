@@ -20,6 +20,4 @@
       </div>
     </div>
 
-    @if($op2!=null && $op2==3)
-    @include('Unidades.VistaActividades');
-    @endif
+

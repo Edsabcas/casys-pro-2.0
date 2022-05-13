@@ -172,6 +172,9 @@ public     $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, 
         elseif($num==2){
             $this->op2=2;
         }
+        elseif($num==3){
+            $this->op2=3;
+        }
 
     }
     public function validar_u($nunif){

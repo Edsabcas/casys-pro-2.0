@@ -9,6 +9,11 @@
     <li class="breadcrumb-item"><a href="/Contenidos">Grados</a></li>
     <li class="breadcrumb-item"><a href="#" wire:click='paginacion("1")'>Materias</a></li>
     <li class="breadcrumb-item"><a href="#" wire:click='paginacion("2")'>Unidades</a></li>
+    @elseif($op2==3)
+    <li class="breadcrumb-item"><a href="/Contenidos">Grados</a></li>
+    <li class="breadcrumb-item"><a href="#" wire:click='paginacion("1")'>Materias</a></li>
+    <li class="breadcrumb-item"><a href="#" wire:click='paginacion("2")'>Unidades</a></li>
+    <li class="breadcrumb-item"><a href="#" wire:click='paginacion("3")'>Actividades</a></li>
     @endif
   </ol>
 </nav>
@@ -31,6 +36,10 @@
 
    @elseif($op2!=null && $op2==2)
    @include('Unidades.Unidad1')
+   
+
+   @elseif($op2!=null && $op2==3)
+   @include('Unidades.VistaActividades');
    @endif
 
    

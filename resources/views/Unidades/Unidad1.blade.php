@@ -11,7 +11,9 @@
     <a wire:click='validar_u2("{{$uni->ID_UNIDADES}}","{{$uni->NOMNBRE_UNIDAD}}")' class="btn btn-success">{{$uni->NOMNBRE_UNIDAD}}
     </a>
     @endforeach
-    </div>
+   </div>
+    
+    
 
 
   
@@ -52,8 +54,7 @@
 
    @endif
 
-   @if($op2!=null && $op2==3)
-   @include('Unidades.VistaActividades');
-   @endif
-
+@elseif($op2!=null && $op2==3)
+ @include('Unidades.VistaActividades');
 @endif
+  
