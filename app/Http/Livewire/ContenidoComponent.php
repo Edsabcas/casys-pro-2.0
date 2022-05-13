@@ -80,7 +80,7 @@ public     $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, 
             ->join('tb_seccions', 'tb_actividades.ID_SC', '=', 'tb_seccions.ID_SC')
             ->join('users', 'tb_actividades.ID', '=', 'users.id')
             ->join('tb_unidades_fijas', 'tb_actividades.ID_UNIDADES_FIJAS', '=', 'tb_unidades_fijas.ID_UNIDADES_FIJAS')
-            ->select('tb_actividades.ID_ACTIVIDADES', 'tb_materias.NOMBRE_MATERIA', 'tb_grados.ID_GR', 'tb_seccions.ID_SC', 'tb_materias.ID_MATERIA', 'users.name', 'tb_actividades.NOMBRE_ACTIVIDAD', 'tb_unidades_fijas.ID_UNIDADES_FIJAS')
+            ->select('tb_actividades.ID_ACTIVIDADES', 'tb_materias.NOMBRE_MATERIA', 'tb_grados.ID_GR', 'tb_seccions.ID_SC', 'tb_materias.ID_MATERIA', 'users.name', 'tb_actividades.NOMBRE_ACTIVIDAD', 'tb_unidades_fijas.ID_UNIDADES_FIJAS','tb_actividades.fecha_cr','tb_actividades.fecha_entr','tb_actividades.descripcion','tb_actividades.archivos')
             ->where('tb_actividades.ID_UNIDADES_FIJAS','=',$this->unidadfija)
             ->where('tb_actividades.ID_GR','=',$this->grado)
             ->where('tb_actividades.ID_SC','=',$this->idsecc)
@@ -153,6 +153,12 @@ public     $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, 
         $this->unidad1=$id;
         $this->NOMBRE_MATERIA=$nombm;
         $this->ID_DOCENTE=$nombrem;
+        $this->op2=$num;
+        
+    }
+
+    public function vista_a($num)
+    {
         $this->op2=$num;
         
     }

@@ -1,3 +1,4 @@
+@if($op2!=null && $op2==2)
 <div class="btn-group btn-group-lg"  role="group" aria-label="Basic outlined example">
   <a wire:click="validar_u('5')" class="btn btn-success" value="5">Planificación Anual</a>
 
@@ -51,3 +52,6 @@
 
   @endif
 
+  @elseif($op2!=null && $op2==3)
+  @include('Unidades.VistaActividades')
+  @endif
