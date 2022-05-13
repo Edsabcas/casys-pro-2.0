@@ -12,7 +12,7 @@ class ContenidoComponent extends Component
 {
     use WithFileUploads;
 
-   public $grado,$mat, $nombre_g, $nombre_s, $unidad1, $NOMBRE_MATERIA, $ID_DOCENTE,$op2,$asig, $usuario,$idsecc,$unidadfija,$unidadn;
+   public $grado,$mat, $nombre_g, $nombre_s, $unidad1, $NOMBRE_MATERIA, $ID_DOCENTE,$op2,$asig, $usuario,$idsecc,$unidadfija,$unidadn, $tem;
    public $option1,$option2,$option3,$option4,$vista,$vista2;
    public $prueba, $op, $mensaje, $mensaje1, $file, $date, $dia2, $message, $file2, $arch, $vid, $pdf, $formato, $tipo;
    public $titulo, $punteo, $fecha_e, $fecha_ext, $descripcion, $act,$tema_a,$descripciont,$tema,$unidad, $temasb, $archivo, $nota, $descripciona;
@@ -115,6 +115,16 @@ public     $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, 
         ->where('tb_planificacionanual.ID_GR','=',$this->grado)
         ->where('tb_planificacionanual.ID_MATERIA','=',$this->unidad1)
         ->get();
+        }
+
+        $temasu="";
+        if($this->tem!=null){
+            $temasu=DB::table('tb_temas')
+            ->join('tb_unidades','tb_temas.ID_UNIDADES','=','tb_unidades.ID_UNIDADES')
+            ->join('tb_unidades_fijas','tb_temas.ID_UNIDADES_FIJAS','=','tb_unidades_fijas.ID_UNIDADES_FIJAS')
+            ->select('tb_temas.ID_UNIDADES', 'tb_unidades.ID_UNIDADES_FIJAS', 'tb_temas.ESTADO','tb_unidades.NOMNBRE_UNIDAD','tb_unidades_fijas.NOMNBRE_DE_UNIDAD')
+            ->where('tb_temas.ID_UNIDADES','=',$this->tem)
+            ->get();
         }
 
         $sql= 'SELECT * FROM tb_materias';
