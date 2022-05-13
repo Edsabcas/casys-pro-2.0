@@ -331,9 +331,9 @@ class ContenidoComponent extends Component
 }
 public function nota($nota,$ida){
     $nota=$this->nota;
+    $this->ID_ACTIVIDADES=$ida;
     DB::begintransaction();
 
-    $this->ID_ACTIVIDADES=$ida;
 
 
     $notas=DB::table('tb_notas')->insert(
