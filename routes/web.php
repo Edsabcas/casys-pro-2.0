@@ -113,11 +113,11 @@ Route::get('/Grados', [GradosController::class, 'agregar_gr']);
 
 Route::get('/Secciones', [SeccionController::class, 'agregar_sec']);
 
-Route::get('/Asignacion_maestro', [MaestrosController::class, 'agregar_docentes']);
+Route::get('/Maestros', [MaestrosController::class, 'agregar_docentes']);
 
 Route::get('/Asignacion_maestro', [AsignacionController::class, 'agregar_a']);
 
-Route::get('/agregar_e', [AsignacionesEsController::class, 'agregar_e']);
+Route::get('/Estudiantes', [AsignacionesEsController::class, 'agregar_e']);
 
 
 

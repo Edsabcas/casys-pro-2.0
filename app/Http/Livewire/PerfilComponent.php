@@ -100,7 +100,7 @@ class PerfilComponent extends Component
                     $this->tipo=1;
                 }
             }
-
+            DB::beginTransaction();
             $foto=DB::table('users')->update([
 
                 'img_users'=>$this->img
