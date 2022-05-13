@@ -6,13 +6,16 @@ use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-
+use Livewire\WithFileUploads;
 
 class PerfilComponent extends Component
 {
     public $id_u, $name, $usuario, $email, $password, $op, $mensaje0, $mensaje4, $mensaje12, $mensaje, $mensaje1, $us, $pass, $state,$updater;
     public $current_password, $new_password, $new_password_confirmation;
+    
+    use WithFileUploads;
 
+    public $img,$tipo,$archivo_perfil;
 
     public function render()
     {
@@ -84,6 +87,26 @@ class PerfilComponent extends Component
             
     }
 
+    public function cambiofoto(){
+
+        $archivo_perfil="";
+            if($this->archivo_perfil!=null){
+                if($this->archivo_perfil->getClientOriginalExtension()=="jpg" or $this->archivo_perfil->getClientOriginalExtension()=="png" or $this->archivo_perfil->getClientOriginalExtension()=="jpeg"){
+                    $archivo_perfil = "img".time().".".$this->archivo_perfil->getClientOriginalExtension();
+                    $this->img=$archivo_perfil;
+                    $this->archivo_perfil->storeAS('imagen/perfil/', $this->img,'public_up');
+                    $this->tipo=1;
+                }
+            }
+
+            $foto=DB::table('users')->update([
+
+                'img_users'=>$this->img
+
+            ]);
+        }
+
+
         /*protected function rules(){
         return [
             'current_password' => 'required',
@@ -103,4 +126,5 @@ class PerfilComponent extends Component
         $user = User::find(10);
         $user->username = "new user";
         $user->save();*/
+
 }

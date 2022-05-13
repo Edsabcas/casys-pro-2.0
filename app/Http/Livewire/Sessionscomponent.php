@@ -25,11 +25,12 @@ class Sessionscomponent extends Component
 
 
         if(auth()->attempt(['usuario'=>$us,'password'=>$pass])==false){
-            session(['mensaje'=>'no logro ingresar, valida us/pass']);
+            session(['mensaje20'=>'no logro ingresar, valida us/pass']);
 
             return back()->withErrors(['mensaje20'=> 'no logro ingresar']);
 
         }
+
         else{
         $id_rol="";
         $rol=DB::table('users')
@@ -89,5 +90,12 @@ class Sessionscomponent extends Component
         return view('home', compact('op','rol'));
         }
     }
+}
+
+public function mostrarcontra(){
+    if ($pass==1){
+        $pass='text';
+    }
+    
 }
 }

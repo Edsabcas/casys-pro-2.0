@@ -28,7 +28,7 @@
                     <td>Inactivo</td> 
                     @endif
                     <td>
-                        <button class="btn btn-warning" wire:click='edit({{$maestro->ID_DOCENTE}})'>Editar</button>
+                        <button class="btn btn-warning" wire:click='edit({{$maestro->ID_USER}})'>Editar</button>
                     </td>
                     
                     @include('Maestros.modalusuario')
