@@ -395,12 +395,13 @@
                     </div>
                 </div>
                 <!-- End of Main Content -->
-    
+
+
                 <!-- Footer -->
                 <footer class="sticky-footer bg-white">
                     <div class="container my-auto">
                         <div class="copyright text-center my-auto">
-                            <span>Copyright made by Stephany, Darlin y Sebas 2021 &copy;</span>
+                            <span>Copyright made by Stephany, Darlin, Sebas, Diego y su Dios Rony 2022 &copy;</span>
                         </div>
                     </div>
                 </footer>

@@ -21,7 +21,7 @@
     @foreach($grados as $grado)
     @foreach($secciones as $seccion)
     @if($grado->ID_SC==$seccion->ID_SC)
-    <a wire:click='mostrar_m("{{$grado->ID_GR}}","{{$grado->GRADO}}","{{$seccion->SECCION}}","{{$seccion->ID_SC}}"1")' class="btn btn-success">{{$grado->GRADO}} {{$seccion->SECCION}}
+    <a wire:click='mostrar_m("{{$grado->ID_GR}}","{{$grado->GRADO}}","{{$seccion->SECCION}}","{{$seccion->ID_SC}}","1")' class="btn btn-success">{{$grado->GRADO}} {{$seccion->SECCION}}
     @endif
     @endforeach
     </a>

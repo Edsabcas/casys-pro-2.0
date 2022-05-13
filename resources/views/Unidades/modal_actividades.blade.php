@@ -52,7 +52,7 @@
                   </div>
                   <div class="col-sm-3">
                     <label for="exampleInputEmail1" class="form-label " style="font-size:20px">Fecha de entrega</label>
-                    <input type="date" class="form-control" wire:model='fecha_e'  style="border:2px solid rgba(86, 95, 76, 0.466);" placeholder="Fecha de entrega" aria-label="Fecha de entrega">
+                    <input type="datetime-local" class="form-control" wire:model='fecha_e'  style="border:2px solid rgba(86, 95, 76, 0.466);" placeholder="Fecha de entrega" aria-label="Fecha de entrega">
                     @error('fecha_e') 
                     <div class="alert alert-danger d-flex align-items-center" role="alert">
                       <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
@@ -138,15 +138,10 @@
                        </div>
                     </div>
                     <br>
-                    @foreach($grados as $grado)
-                    @foreach($secciones as $seccion)
-                    @foreach($materias as $materia)
-                    @foreach($unidad as $uni)
-                    <button type="submit" class="btn btn-primary" wire:click='Subir_Act("{{$grado->ID_GR}}","{{$seccion->ID_SC}}")' >Publicar</button>
-                    @endforeach
-                    @endforeach
-                    @endforeach
-                    @endforeach
+                    
+                    
+                    <button type="submit" class="btn btn-primary" wire:click='Subir_Act()' >Publicar</button>
+                    
                   </form>
            
             

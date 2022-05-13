@@ -322,7 +322,7 @@ Route::get('/Grados', [GradosController::class, 'agregar_gr']);
 
 Route::get('/Secciones', [SeccionController::class, 'agregar_sec']);
 
-Route::get('/Maestros', [MaestrosController::class, 'agregar_docentes']);
+Route::get('/Asignacion_maestro', [MaestrosController::class, 'agregar_docentes']);
 
 Route::get('/Asignacion_maestro', [AsignacionController::class, 'agregar_a']);
 
@@ -359,7 +359,7 @@ Route::post('/list_u',[UnidadesController::class,'list_u']);
 
 Route::post('/update_uni',[UnidadesController::class, 'update_uni']);
 
-Route::get('/Relacion',[Relaciones::class,'relaciones']);
+Route::get('/Asignaciones_de_cursos',[Relaciones::class,'relaciones']);
 
 Route::post('/guardar_relaciones',[Relaciones::class,'guardar_rel']);
 

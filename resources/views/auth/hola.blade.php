@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
 
     <meta charset="utf-8">
@@ -21,10 +22,11 @@
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
-    @livewireStyles
+
 </head>
 
 <body class="bg-gradient" style="background-color: #a4cb39; font-family: Century Gothic">
+
 
 
     
@@ -59,19 +61,20 @@
                                         <input type="text" style="border-color: #a4cb39" class="form-control rounded-pill" id="floatingInput" placeholder="Usuario" name="usuario">
                                         <span></span>
                                       </div>
-                                      @if ($errors->has('usuario'))
-                                      <p>{{ $errors->first('usuario')}}</p>
-                                      @endif
+                                      
                                       <div class="form-floating">
                                         <input type="password" style="border-color: #a4cb39" class="form-control rounded-pill" id="floatingPassword" name="password" placeholder="Contraseña">  
-                                        
+                                        <div>
+                                            <input wire:click="mostrarcontra()" type="checkbox" id="floatingPassword"aria-describedby="passwordHelpBlock"> Mostrar contraseña
+                        
+                                            
                                     </div>
-                                      @error('password')
-                                      <div class="alert alert-danger d-flex align-items-center" role="alert">
-                                      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
-                                      <span>Pendiente de ingreso</span>
+                                    
+                                    @error('mensaje20')
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        <strong>No se pudo ingresar</strong> Usuario y/o contraseña incorrecta.
                                       </div>
-                                      @enderror
+                                    @enderror
                                     </div>
                                     
                                     <hr>
@@ -99,8 +102,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
-    
-    @livewireScripts
+ 
 </body>
 
 </html>

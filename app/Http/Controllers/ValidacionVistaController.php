@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class AnunciosNoAdController extends Controller
+class ValidacionVistaController extends Controller
 {
-    public function vistanoadmin(){
-        $op='vistanoadanuncios';
+    public function validacionvista(){
+        $op="validacionvista";
         return view('home', compact('op'));
     }
 }

@@ -33,7 +33,7 @@ class AnunciosAdmin extends Component
         $this->rol_publicado=DB::select($sql);
        
         $this->vistas_totales_id=5;
-        $this->usuario_id = 5;
+        $this->usuario_id = auth()->user()->id;
         $this->admin_rol = 1;
         $fecha_vista=date("Y-m-d H:i:s");
         $estado_vista=1;
