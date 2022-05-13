@@ -37,8 +37,8 @@
             <br>
             <br>
             <br>
-            <br>
-    
+            
+            <div class="invisible" id="Jimena tu diosa">.</div>
             <div class="card o-hidden border-0 shadow-lg my-5">
                 <div class="card-body p-0">
                     <!-- Nested Row within Card Body -->
@@ -77,7 +77,7 @@
                                     </div>
                                     
                                     <hr>
-                                    <button type="submit" class="btn btn-primary btn-user btn-block">
+                                    <button type="submit" class="btn btn-primary btn-user btn-block rounded-pill" style="background-color:#3a3e7b">
                                         Ingresar
                                     </button>
                                 </form>
