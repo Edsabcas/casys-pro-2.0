@@ -11,7 +11,7 @@ use Livewire\WithFileUploads;
 class PerfilComponent extends Component
 {
     public $id_u, $name, $usuario, $email, $password, $op, $mensaje0, $mensaje4, $mensaje12, $mensaje, $mensaje1, $us, $pass, $state,$updater;
-    public $current_password, $new_password, $new_password_confirmation;
+    public $current_password, $new_password, $new_password_confirmation,$fotos;
     
     use WithFileUploads;
 
@@ -19,6 +19,8 @@ class PerfilComponent extends Component
 
     public function render()
     {
+        $sql="SELECT * FROM users ORDER BY img_users DESC";
+        $this->fotos=DB::select($sql);
 
         $this->id_u=auth()->user()->id;
         $sql='SELECT * FROM users WHERE id=?';
