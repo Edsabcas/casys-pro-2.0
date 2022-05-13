@@ -11,7 +11,7 @@ class Sessionscomponent extends Component
 //estos son los roles
 {
 
-    public $menu_rol, $submenu_rol, $users, $op, $mensaje20, $mensaje;
+    public $menu_rol, $submenu_rol, $users, $op, $mensaje20, $mensaje, $rol_usuario_activo;
 
     public function render()
     {
@@ -86,8 +86,16 @@ class Sessionscomponent extends Component
         session(['users' => $users]);
 
         $op=0;
-        return view('home', compact('op'));
+        $rol=$ro[0];
+        return view('home', compact('op','rol'));
         }
     }
+}
+
+public function mostrarcontra(){
+    if ($pass==1){
+        $pass='text';
+    }
+    
 }
 }
