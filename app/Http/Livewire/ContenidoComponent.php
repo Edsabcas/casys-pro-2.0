@@ -12,12 +12,12 @@ class ContenidoComponent extends Component
 {
     use WithFileUploads;
 
-   public $grado,$mat, $nombre_g, $nombre_s, $unidad1, $NOMBRE_MATERIA, $ID_DOCENTE,$op2,$asig, $usuario,$idsecc,$unidadfija;
+   public $grado,$mat, $nombre_g, $nombre_s, $unidad1, $NOMBRE_MATERIA, $ID_DOCENTE,$op2,$asig, $usuario,$idsecc,$unidadfija,$unidadn;
    public $option1,$option2,$option3,$option4,$vista,$vista2;
    public $prueba, $op, $mensaje, $mensaje1, $file, $date, $dia2, $message, $file2, $arch, $vid, $pdf, $formato, $tipo;
    public $titulo, $punteo, $fecha_e, $fecha_ext, $descripcion, $act,$tema_a,$descripciont,$tema,$unidad, $temasb, $archivo, $nota, $descripciona;
 
-
+public     $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, $grado2, $idsecc2, $unidad12, $arch2,$tema2, $unidad2, $descripciont2, $nombreu;
 
     public function render()
     {
@@ -88,6 +88,23 @@ class ContenidoComponent extends Component
             ->get();
         }
 
+        
+        $actividades2="";
+        if($this->unidadn!=null){
+            $actividades2=DB::table('tb_actividades')
+            ->join('tb_materias','tb_actividades.ID_MATERIA','=','tb_materias.ID_MATERIA')
+            ->join('tb_grados', 'tb_actividades.ID_GR', '=', 'tb_grados.ID_GR')
+            ->join('tb_seccions', 'tb_actividades.ID_SC', '=', 'tb_seccions.ID_SC')
+            ->join('users', 'tb_actividades.ID', '=', 'users.id')
+            ->join('tb_unidades', 'tb_actividades.ID_UNIDADES', '=', 'tb_unidades.ID_UNIDADES')
+            ->select('tb_actividades.ID_ACTIVIDADES', 'tb_materias.NOMBRE_MATERIA', 'tb_grados.ID_GR', 'tb_seccions.ID_SC', 'tb_materias.ID_MATERIA', 'users.name', 'tb_actividades.NOMBRE_ACTIVIDAD', 'tb_unidades.ID_UNIDADES')
+            ->where('tb_actividades.ID_UNIDADES','=',$this->unidadn)
+            ->where('tb_actividades.ID_GR','=',$this->grado2)
+            ->where('tb_actividades.ID_SC','=',$this->idsecc2)
+            ->where('tb_actividades.ID_MATERIA','=',$this->unidad12)
+            ->get();
+        }
+
         $PlanUnion="";
         if($this->grado!=null){
             $PlanUnion=DB::table('tb_planificacionanual')
@@ -116,7 +133,7 @@ class ContenidoComponent extends Component
         $temas=DB::select($sql);
         $sql= 'SELECT * FROM users';
         $Usuarios=DB::select($sql);
-        return view('livewire.contenido-component',compact('materias','grados','secciones','uniones','unidades','maestros','actividades','asignaciones','estu','unidadesf','temas','Usuarios','PlanUnion'));
+        return view('livewire.contenido-component',compact('materias','grados','secciones','uniones','unidades','maestros','actividades','asignaciones','estu','unidadesf','temas','Usuarios','PlanUnion','actividades2'));
 
     }
     
@@ -156,27 +173,39 @@ class ContenidoComponent extends Component
  
         if($this->unidadfija==1){
             if($this->vista!=null && $this->vista==1){
+                unset($this->unidadn);
                 $this->vista=0;
+                $this->vista2=0;
+
             }
             else{
+                $this->vista2=0;
+
                 $this->vista=1;
             }
         }
 
         if($this->unidadfija==2){
             if($this->vista!=null && $this->vista==2){
+                unset($this->unidadn);
                 $this->vista=0;
+                $this->vista2=0;
+
             }
             else{
+                $this->vista2=0;
                 $this->vista=2;
             }
         }
 
         if($this->unidadfija==3){
             if($this->vista!=null && $this->vista==3){
+                unset($this->unidadn);
                 $this->vista=0;
+                $this->vista2=0;
             }
             else{
+                $this->vista2=0;
                 $this->vista=3;
             }
         }
@@ -184,13 +213,31 @@ class ContenidoComponent extends Component
         if($this->unidadfija==4){
             if($this->vista!=null && $this->vista==4){
                 $this->vista=0;
+                $this->unidadn=null;
             }
             else{
+                $this->vista2=0;
                 $this->vista=4;
+            }
+        }        
+    }
+
+    public function validar_u2($nun,$nomu){
+        unset($this->unidadn);
+        $this->unidadn=$nun;
+        $this->nombreu=$nomu;
+
+ 
+        if($this->unidadn==$this->unidadn){
+            if($this->vista2!=null && $this->vista2==$this->unidadn){
+                $this->vista=0;
+            }
+            else{
+                $this->vista=0;
+                $this->vista2=6;
             }
         }
 
-        
     }
 
     public function Subir_Act(){
@@ -263,14 +310,14 @@ class ContenidoComponent extends Component
 
             if($actividades){
                 DB::commit();
-                unset($this->mensaje);;
+                unset($this->mensaje);
                 unset($this->mensaje1);
                 $this->op='addcontenidos';
                 $this->mensaje='Insertado correctamente';
                 }
                 else {
                 DB::rollback();
-                unset($this->mensaje);;
+                unset($this->mensaje);
                 unset($this->mensaje1);
                 $this->op='addcontenidos';
                 $this->mensaje1='Datos no  insertados correctamente';
@@ -302,31 +349,70 @@ class ContenidoComponent extends Component
         $temas=DB::table('tb_temas')->insert(
             [
                 'NOMBRE_TEMA'=>$tema,
-                'ID_UNIDADES_FIJAS'=>$unidad,
+                'ID_UNIDADES'=>$unidad,
                 'DESCRIPCION'=>$descripciont,
             ]);
 
             if($temas){
                 DB::commit();
-                unset($this->mensaje);;
+                unset($this->mensaje);
                 unset($this->mensaje1);
                 $this->op='addcontenidos';
                 $this->mensaje='Insertado correctamente';
                 }
                 else {
                 DB::rollback();
-                unset($this->mensaje);;
+                unset($this->mensaje);
                 unset($this->mensaje1);
                 $this->op='addcontenidos';
                 $this->mensaje1='Datos no  insertados correctamente';
                 }
     }
-
-    
-
-
-
 }
+
+    public function Subir_Tema2(){
+        if($this->validate([
+            'tema2' => 'required',
+            'unidad2' => 'required',
+            'descripciont2' => 'required',
+
+        ])==false){
+            $error="no encontrado";
+            session(['message'=>'no encontrado']);
+            return back()->withErrors(['error' => 'Validar el input vacio']);
+        }
+
+        else{
+        $tema2=$this->tema2;
+        $unidad2=$this->unidad2;
+        $descripciont2=$this->descripciont2;
+        DB::begintransaction();
+        
+
+        $temas=DB::table('tb_temas')->insert(
+            [
+                'NOMBRE_TEMA'=>$tema2,
+                'ID_UNIDADES_FIJAS'=>$unidad2,
+                'DESCRIPCION'=>$descripciont2,
+            ]);
+
+            if($temas){
+                DB::commit();
+                unset($this->mensaje);
+                unset($this->mensaje1);
+                $this->op='addcontenidos';
+                $this->mensaje='Insertado correctamente';
+                }
+                else {
+                DB::rollback();
+                unset($this->mensaje);
+                unset($this->mensaje1);
+                $this->op='addcontenidos';
+                $this->mensaje1='Datos no  insertados correctamente';
+                }
+    }
+}
+
 public function nota($nota,$ida){
     $nota=$this->nota;
     DB::begintransaction();
@@ -388,6 +474,92 @@ public function Subir_Plan(){
 
 }
 
+public function Subir_Act2(){
+    if($this->validate([
+        'titulo2' => 'required',
+        'punteo2' => 'required',
+        'fecha_e2' => 'required',
+        'descripcion2' => 'required',
+        'temasb2' => 'required',
+    ])==false){
+        $error="no encontrado";
+        session(['message'=>'no encontrado']);
+        return back()->withErrors(['error' => 'Validar el input vacio']);
+    }
+
+    else{
+    $titulo2=$this->titulo2;
+    $punteo2=$this->punteo2;
+    $fecha_e2=$this->fecha_e2;
+    $descripcion2=$this->descripcion2;
+    $fecha_ext2=$this->fecha_ext2;
+    $temasb2=$this->temasb2;
+    $grado2=$this->grado2;
+    $idsecc2=$this->idsecc2;
+    $unidad12=$this->unidad12;
+    $unidadn2=$this->unidadn;
+    
+
+
+    $archivo="";
+    if($this->archivo!=null){
+        if($this->archivo->getClientOriginalExtension()=="jpg" or $this->archivo->getClientOriginalExtension()=="png" or $this->archivo->getClientOriginalExtension()=="jpeg"){
+            $archivo = "img".time().".".$this->archivo->getClientOriginalExtension();
+            $this->arch=$archivo;
+            $this->archivo->storeAS('imagen/actividades/', $this->arch,'public_up');
+            $this->formato=1;
+        }
+        elseif($this->archivo->getClientOriginalExtension()=="mp4" or $this->archivo->getClientOriginalExtension()=="mpeg"){
+            $archivo = "vid".time().".".$this->archivo->getClientOriginalExtension();
+            $this->arch=$archivo;
+            $this->archivo->storeAS('imagen/videos_act/', $this->arch,'public_up');
+            $this->formato=2;
+        }
+        elseif($this->archivo->getClientOriginalExtension()=="pdf"){
+            $archivo = "pdf".time().".".$this->archivo->getClientOriginalExtension();
+            $this->arch=$archivo;
+            $this->archivo->storeAS('imagen/pdf_act/', $this->arch,'public_up');
+            $this->formato=3;
+        }
+    }
+
+    DB::begintransaction();
+
+
+    $actividades=DB::table('tb_actividades')->insert(
+        [
+            'NOMBRE_ACTIVIDAD'=>$titulo2,
+            'descripcion'=>$descripcion2,
+            'archivos'=>$this->arch,
+            'punteo'=>$punteo2,
+            'fecha_entr'=>$fecha_e2,
+            'fecha_extr'=>$fecha_ext2,
+            'ID_TEMA'=>$temasb2,
+            'ID_MATERIA'=>$unidad12,
+            'ID_GR'=>$grado2,
+            'ID_SC'=>$idsecc2,
+            'ID_UNIDADES'=>$unidadn,
+
+        ]);
+
+        if($actividades){
+            DB::commit();
+            unset($this->mensaje);;
+            unset($this->mensaje1);
+            $this->op='addcontenidos';
+            $this->mensaje='Insertado correctamente';
+            }
+            else {
+            DB::rollback();
+            unset($this->mensaje);;
+            unset($this->mensaje1);
+            $this->op='addcontenidos';
+            $this->mensaje1='Datos no  insertados correctamente';
+            }        
+    }
+
+
+}
 
 
 }
