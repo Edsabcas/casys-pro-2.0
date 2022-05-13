@@ -12,12 +12,12 @@ class ContenidoComponent extends Component
 {
     use WithFileUploads;
 
-   public $grado,$mat, $nombre_g, $nombre_s, $unidad1, $NOMBRE_MATERIA, $ID_DOCENTE,$op2,$asig, $usuario,$idsecc,$unidadfija,$unidadn;
+   public $grado,$mat, $nombre_g, $nombre_s, $unidad1, $NOMBRE_MATERIA, $ID_DOCENTE,$op2,$asig, $usuario,$idsecc,$unidadfija,$unidadn,$idusuario;
    public $option1,$option2,$option3,$option4,$vista,$vista2;
    public $prueba, $op, $mensaje, $mensaje1, $file, $date, $dia2, $message, $file2, $arch, $vid, $pdf, $formato, $tipo;
    public $titulo, $punteo, $fecha_e, $fecha_ext, $descripcion, $act,$tema_a,$descripciont,$tema,$unidad, $temasb, $archivo, $nota, $descripciona;
 
-public     $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, $grado2, $idsecc2, $unidad12, $arch2,$tema2, $unidad2, $descripciont2, $nombreu;
+public     $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, $grado2, $idsecc2, $arch2,$tema2, $unidad2, $descripciont2, $nombreu;
 
     public function render()
     {
@@ -99,9 +99,9 @@ public     $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, 
             ->join('tb_unidades', 'tb_actividades.ID_UNIDADES', '=', 'tb_unidades.ID_UNIDADES')
             ->select('tb_actividades.ID_ACTIVIDADES', 'tb_materias.NOMBRE_MATERIA', 'tb_grados.ID_GR', 'tb_seccions.ID_SC', 'tb_materias.ID_MATERIA', 'users.name', 'tb_actividades.NOMBRE_ACTIVIDAD', 'tb_unidades.ID_UNIDADES')
             ->where('tb_actividades.ID_UNIDADES','=',$this->unidadn)
-            ->where('tb_actividades.ID_GR','=',$this->grado2)
-            ->where('tb_actividades.ID_SC','=',$this->idsecc2)
-            ->where('tb_actividades.ID_MATERIA','=',$this->unidad12)
+            ->where('tb_actividades.ID_GR','=',$this->grado)
+            ->where('tb_actividades.ID_SC','=',$this->idsecc)
+            ->where('tb_actividades.ID_MATERIA','=',$this->unidad1)
             ->get();
         }
 
@@ -263,6 +263,7 @@ public     $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, 
         $idsecc=$this->idsecc;
         $unidad1=$this->unidad1;
         $unidadfija=$this->unidadfija;
+        $this->idusuario=auth()->user()->id;
         
 
 
@@ -304,6 +305,7 @@ public     $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, 
                 'ID_GR'=>$grado,
                 'ID_SC'=>$idsecc,
                 'ID_UNIDADES_FIJAS'=>$unidadfija,
+                'ID'=>$this->idusuario,
 
             ]);
 
@@ -415,6 +417,7 @@ public     $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, 
 public function nota($nota,$ida){
     $nota=$this->nota;
     $this->ID_ACTIVIDADES=$ida;
+
     DB::begintransaction();
 
 
@@ -493,10 +496,11 @@ public function Subir_Act2(){
     $descripcion2=$this->descripcion2;
     $fecha_ext2=$this->fecha_ext2;
     $temasb2=$this->temasb2;
-    $grado2=$this->grado2;
-    $idsecc2=$this->idsecc2;
-    $unidad12=$this->unidad12;
-    $unidadn2=$this->unidadn;
+    $grado=$this->grado;
+    $idsecc=$this->idsecc;
+    $unidad1=$this->unidad1;
+    $unidadn=$this->unidadn;
+    $this->idusuario=auth()->user()->id;
     
 
 
@@ -525,7 +529,7 @@ public function Subir_Act2(){
     DB::begintransaction();
 
 
-    $actividades=DB::table('tb_actividades')->insert(
+    $actividades2=DB::table('tb_actividades')->insert(
         [
             'NOMBRE_ACTIVIDAD'=>$titulo2,
             'descripcion'=>$descripcion2,
@@ -534,14 +538,15 @@ public function Subir_Act2(){
             'fecha_entr'=>$fecha_e2,
             'fecha_extr'=>$fecha_ext2,
             'ID_TEMA'=>$temasb2,
-            'ID_MATERIA'=>$unidad12,
-            'ID_GR'=>$grado2,
-            'ID_SC'=>$idsecc2,
-            'ID_UNIDADES'=>$unidadn,
+            'ID_MATERIA'=>$unidad1,
+            'ID_GR'=>$grado,
+            'ID_SC'=>$idsecc,
+            'ID_UNIDADES'=>$this->unidadn,
+            'ID'=>$this->idusuario,
 
         ]);
 
-        if($actividades){
+        if($actividades2){
             DB::commit();
             unset($this->mensaje);;
             unset($this->mensaje1);
