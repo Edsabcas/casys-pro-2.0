@@ -417,6 +417,12 @@ public     $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, 
 public function nota($nota,$ida){
     $nota=$this->nota;
     $this->ID_ACTIVIDADES=$ida;
+    $grado=$this->grado;
+    $idsecc=$this->idsecc;
+    $unidad1=$this->unidad1;
+    $unidadfija=$this->unidadfija;
+    $unidadn=$this->unidadn;
+
 
     DB::begintransaction();
 
@@ -426,6 +432,12 @@ public function nota($nota,$ida){
         [
             'NOTA'=>$nota,
             'ID_ACTIVIDADES'=>$ida,
+            'ID_MATERIA'=>$unidad1,
+            'ID_GR'=>$grado,
+            'ID_SC'=>$idsecc,
+            'ID_UNIDADES_FIJAS'=>$unidadfija,
+            'ID_UNIDADES'=>$this->unidadn,
+
         ]);
 
 
