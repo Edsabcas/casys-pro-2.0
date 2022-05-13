@@ -1,3 +1,6 @@
+<h1>1245</h1>
+<div class="card">
+    <div class="card-body">
 @foreach ($actividades as $actividad)
 
 <div class="accordion accordion-flush" id="accordion{{$actividad->ID_ACTIVIDADES}}">
@@ -18,3 +21,5 @@
     </div>
   </div>
   @endforeach
+</div>
+</div>
