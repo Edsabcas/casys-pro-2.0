@@ -180,7 +180,6 @@ public     $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, 
             }
             else{
                 $this->vista2=0;
-
                 $this->vista=1;
             }
         }
