@@ -424,9 +424,9 @@ public     $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, 
 
 public function nota($nota,$ida){
     $nota=$this->nota;
+    $this->ID_ACTIVIDADES=$ida;
     DB::begintransaction();
 
-    $this->ID_ACTIVIDADES=$ida;
 
 
     $notas=DB::table('tb_notas')->insert(
