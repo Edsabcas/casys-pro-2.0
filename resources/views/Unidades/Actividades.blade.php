@@ -20,7 +20,7 @@
           
           <th>{{$est->TB_INFO_NOMBRE}}</th> 
           @foreach($actividades as $activi)
-          <th><input type="number" class="form-control" id="exampleForm{{$est->TB_INFO_NOMBRE}}" placeholder="Nota" wire:click='nota("{{$activi->ID_ACTIVIDADES}}")'></th>
+          <th><input type="number" class="form-control" id="exampleForm{{$est->TB_INFO_NOMBRE}}" wire:model='nota' placeholder="Nota" wire:click='nota("{{$activi->ID_ACTIVIDADES}}")'></th>
           @endforeach
           
         </tr>

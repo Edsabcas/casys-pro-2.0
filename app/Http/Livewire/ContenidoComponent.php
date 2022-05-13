@@ -14,7 +14,7 @@ class ContenidoComponent extends Component
 
    public $grado,$mat, $nombre_g, $nombre_s, $unidad1, $NOMBRE_MATERIA, $ID_DOCENTE,$op2,$asig, $usuario,$idsecc,$unidadfija,$unidadn,$idusuario;
    public $option1,$option2,$option3,$option4,$vista,$vista2;
-   public $prueba, $op, $mensaje, $mensaje1, $file, $date, $dia2, $message, $file2, $arch, $vid, $pdf, $formato, $tipo;
+   public $prueba, $op, $mensaje, $mensaje1, $file, $date, $dia2, $message, $file2, $arch, $vid, $pdf, $formato, $tipo, $id_act;
    public $titulo, $punteo, $fecha_e, $fecha_ext, $descripcion, $act,$tema_a,$descripciont,$tema,$unidad, $temasb, $archivo, $nota, $descripciona;
 
 public     $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, $grado2, $idsecc2, $arch2,$tema2, $unidad2, $descripciont2, $nombreu;
@@ -434,14 +434,16 @@ public     $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, 
     }
 }
 
-public function nota($nota,$ida){
+public function nota($ida){
     $nota=$this->nota;
-    $this->ID_ACTIVIDADES=$ida;
+    $this->id_act=$ida;
     $grado=$this->grado;
     $idsecc=$this->idsecc;
     $unidad1=$this->unidad1;
     $unidadfija=$this->unidadfija;
     $unidadn=$this->unidadn;
+    $this->idusuario=auth()->user()->id;
+    
 
 
     DB::begintransaction();
@@ -451,12 +453,13 @@ public function nota($nota,$ida){
     $notas=DB::table('tb_notas')->insert(
         [
             'NOTA'=>$nota,
-            'ID_ACTIVIDADES'=>$ida,
+            'ID_ACTIVIDADES'=>$this->id_act,
             'ID_MATERIA'=>$unidad1,
             'ID_GR'=>$grado,
             'ID_SC'=>$idsecc,
             'ID_UNIDADES_FIJAS'=>$unidadfija,
             'ID_UNIDADES'=>$this->unidadn,
+            'id_user'=>$this->idusuario,
 
         ]);
 
