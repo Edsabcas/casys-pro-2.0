@@ -57,6 +57,9 @@ class AnunciosComponents extends Component
 
         }
         else{
+            if($gradoanuncio==null){
+                $gradoanuncio=0;
+            }
             $textoanuncio = $this->texto_anuncio;
         
         $calidadanuncio = $this->calidad_anuncio;
