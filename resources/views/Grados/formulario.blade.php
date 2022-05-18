@@ -231,9 +231,9 @@
     @enderror
 
     @if ($edit!=null)
-      <button class="btn btn-info" wire:click="update_gr_p()">Editar</button>
+      <button class="btn btn-success" wire:click="update_gr_p()">Editar</button>
     @else
-      <button class="btn btn-info" wire:click="guardar_gr()">Agregar</button>    
+      <button class="btn btn-success" wire:click="guardar_gr()">Agregar</button>    
     @endif  
 
 </form> 

@@ -1,4 +1,5 @@
 <div class="table-responsive">
+    <br>
     <table class="table table-info  table-striped table-hover table-bordered">
       <thead>
           <tr>
@@ -31,7 +32,7 @@
                             <button class="btn btn-success" wire:click='edit({{$materia->ID_MATERIA}})'> EDITAR </button>
 
                               @include('Crud_mat.modaleliminar_mat')
-                              <button class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#staticBackdrop{{$materia->ID_MATERIA}}"> ELIMINAR </button>
+                              <button class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#staticBackdrop{{$materia->ID_MATERIA}}"> ELIMINAR </button>
                           </td>
                      
                     </span>

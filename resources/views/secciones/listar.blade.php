@@ -56,7 +56,7 @@
             @endif       
             <td>
                 <span>
-                <button class="btn btn-warning" wire:click='edit({{$seccion->ID_SC}})'>Editar</button>        
+                <button class="btn btn-success" wire:click='edit({{$seccion->ID_SC}})'>Editar</button>        
             </td>
             @include('Secciones.modaleliminar')
               <td>

@@ -57,7 +57,7 @@
             @endif 
            <span>
               <td>
-                <button class="btn btn-warning" wire:click='edit({{$grado->ID_GR}})'>Editar</button>        
+                <button class="btn btn-success" wire:click='edit({{$grado->ID_GR}})'>Editar</button>        
               </td>
               @include('Grados.modaleliminar')
               <td>
