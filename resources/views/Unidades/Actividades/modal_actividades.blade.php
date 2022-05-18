@@ -28,7 +28,7 @@
     
               <form wire:submit.prevent=''>
                 @csrf
-    
+                <input type="hidden" value='{{$editact}}' name='editact'>
                 <div class="row g-3">
                   <div class="col-sm-3">
                     <label for="exampleInputEmail1" class="form-label " style="font-size:20px">Titulo de la actividad</label>
@@ -139,7 +139,9 @@
                     </div>
                     <br>
                     
-                    
+                    @if($edita!=null)
+                    <button type='submit' class="btn btn-primary" wire:click="update_act()">Actualizar</button>
+                    @else
                     <button type="submit" class="btn btn-primary" wire:click='Subir_Act()' >Publicar</button>
                     
                   </form>

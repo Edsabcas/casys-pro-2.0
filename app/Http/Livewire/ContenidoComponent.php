@@ -374,13 +374,12 @@ public     $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, 
 
     Public function edita($id){
         $editact=$id;
-        $sql='SELECT * FROM tb_actividades WHERE ID_ACTIVIDADES=?';
         $actividadesedit=DB:: select($sql, array($editact));
     
-        if($temast !=null){
+        if($actividadesedit !=null){
             foreach($actividadesedit as $actu)
             {
-                $this->id_tem=$actu->ID_TEMA;
+                $this->editact=$actu->ID_ACTIVIDADES;
                 $this->titulo=$actu->NOMBRE_ACTIVIDAD;
                 $this->descripcion=$actu->descripcion;
                 $this->arch=$actu->archivos;
@@ -401,9 +400,11 @@ public     $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, 
 
     public function update_act(){
         if($this->validate([
-            'tema' => 'required',
-            'descripciont' => 'required',
-    
+            'titulo' => 'required',
+            'punteo' => 'required',
+            'fecha_e' => 'required',
+            'descripcion' => 'required',
+            'temasb' => 'required',
         ])==false){
             $error="no encontrado";
             session(['message'=>'no encontrado']);
@@ -411,40 +412,38 @@ public     $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, 
         }
     
         else{
-        $tema=$this->tema;
-        $descripciont=$this->descripciont;
-        $grado=$this->grado;
-        $idsecc=$this->idsecc;
-        $unidad1=$this->unidad1;
-        $unidadfija=$this->unidadfija;
-        $this->idusuario=auth()->user()->id;
+            $titulo=$this->titulo;
+            $punteo=$this->punteo;
+            $fecha_e=$this->fecha_e;
+            $descripcion=$this->descripcion;
+            $fecha_ext=$this->fecha_ext;
+            $temasb=$this->temasb;
+            $grado=$this->grado;
+            $idsecc=$this->idsecc;
+            $unidad1=$this->unidad1;
+            $unidadfija=$this->unidadfija;
+            $this->idusuario=auth()->user()->id;
         DB::begintransaction();
         
     
-        $temas=DB::table('tb_temas')->insert(
+        $temas=DB::table('')->insert(
             [
-                'NOMBRE_TEMA'=>$tema,
-                'DESCRIPCION'=>$descripciont,
-                'ID_MATERIA'=>$unidad1,
-                'ID_GR'=>$grado,
-                'ID_SC'=>$idsecc,
-                'ID_UNIDADES_FIJAS'=>$unidadfija,
-                'ID'=>$this->idusuario,
+
             ]);
     
-            if($temas){
+            if($s){
                 DB::commit();
                 unset($this->mensaje);
                 unset($this->mensaje1);
                 $this->op='addcontenidos';
-                $this->mensaje='Insertado correctamente';
+                $this->mensaje='Editado correctamente';
                 }
                 else {
                 DB::rollback();
                 unset($this->mensaje);
                 unset($this->mensaje1);
                 $this->op='addcontenidos';
-                $this->mensaje1='Datos no  insertados correctamente';
+                $this->mensaje1='Datos no editados correctamente';
                 }
     }
        
