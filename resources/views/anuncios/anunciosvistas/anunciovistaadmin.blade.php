@@ -68,11 +68,14 @@ $('#exampleModal1').modal('show');
           <iframe style="width: 49rem; text-align:center" width="400" height="400" src="/imagen/pdfs/{{$anuncio->MULTIMEDIA}}" frameborder="0"></iframe>
             @endif
           <div class="card-body">
-            @foreach($usuario_publicacion as $usu_publicacion)
-            @if($anuncio->ID_USUARIO == $usu_publicacion->id)
-            <h5 class="card-title">{{$usu_publicacion->usuario}}</h5>
-            @endif
-            @endforeach
+            <div class="input-group mb-3">
+              <img class="rounded-circle" src="img/undraw_profile_1.svg" width="50" height="50" alt="...">
+              @foreach($usuario_publicacion as $usu_publicacion)
+             @if($anuncio->ID_USUARIO == $usu_publicacion->id)
+             <h5 class="card-title">{{$usu_publicacion->usuario}}</h5>
+             @endif
+             @endforeach
+            </div>
             
             @foreach($rol_publicado as $rol_publi)
             @if($anuncio->ID_USUARIO == $rol_publi->ID_USUARIO)
