@@ -4,19 +4,22 @@
         <h5 class="card-title">Materia:{{$NOMBRE_MATERIA}}</h5>
         <p class="card-text">Maestro: {{$ID_DOCENTE}}</p>
         <td>
-          @include('Unidades.modaltemas')
-          <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#tema" id=tema> Temas </button>
+          @include('Unidades.Temas.modaltemas')
+          <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#tema" id=tema> Crea Temas </button>
   
-            @include('Unidades.modal_actividades')
+            @include('Unidades.Actividades.modal_actividades')
             <button class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#staticBackdrop"> Crear Actividades </button>
+            
+            @include('Unidades.Actividades.VistaActividades')
+            <button class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#staticBackdrop"> Ver Actividades </button>
 
-          
-            <a wire:click='vista_a("3")' class="btn btn-success">Ver Actividades </a>
+            @include('Unidades.Temas.VistaTemas')
+            <button class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#staticBackdrop"> Ver Temas </button>
         </td>
         <br>
         <br>
         <br>
-        @include('Unidades.Actividades')
+        @include('Unidades.Actividades.Actividades')
       </div>
     </div>
 
