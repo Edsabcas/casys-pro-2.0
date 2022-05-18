@@ -113,7 +113,9 @@
           <div class="mb-3">
             @if($tipo==1)
             <h3 class="form-label">Visualización de Imagen</h3>
-            <img src="{{$archivo_anuncio->temporaryURL()}}" height="200" weight="200"  alt="...">
+            <div class="offset-4 col-10">
+              <img src="{{$archivo_anuncio->temporaryURL()}}" height="350" weight="350" alt="...">
+            </div>
             @endif
             @if($tipo==2)
             <h3 class="form-label">Visualización de Video</h3>
@@ -123,7 +125,7 @@
             @endif
             @if($tipo==3)
             <h3 class="form-label">Visualización de PDF</h3>
-              <iframe width="400" height="400" src="/imagen/temporalpdf/{{$img}}" frameborder="0"></iframe>
+              <iframe width="1250" height="600" src="/imagen/temporalpdf/{{$img}}" frameborder="0"></iframe>
             @endif
           </div>
           
@@ -147,7 +149,7 @@
           @enderror
           
           <hr>
-          <button type="submit" class="btn btn-primary" wire:click="guardaranuncio()">Publicar</button>
+          <button type="submit" class="btn btn-success" wire:click="guardaranuncio()">Publicar</button>
           @isset($mensaje)
           @if($mensaje!=null)
           

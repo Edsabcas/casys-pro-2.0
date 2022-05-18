@@ -1,5 +1,5 @@
 @foreach ($actividades as $actividad)
-<div class="card border-primary mb-3" style="max-width: 55rem;" >
+<div class="card border-primary mb-3" style="max-width: 70rem;" >
     <div class="card-body">
 
  <div class="accordion accordion-flush" id="accordion{{$actividad->ID_ACTIVIDADES}}">
@@ -14,7 +14,9 @@
         </button>
       </h2>
       <div id="flush-collapse{{$actividad->ID_ACTIVIDADES}}" class="accordion-collapse collapse" aria-labelledby="flush-heading{{$actividad->ID_ACTIVIDADES}}" data-bs-parent="#accordionFlush{{$actividad->ID_ACTIVIDADES}}">
-        <div class="accordion-body">Descripcion:{{$actividad->descripcion}} <br> <br> Creado por:{{$actividad->name}}
+        <h6 class="accordion-body">Materia:{{$NOMBRE_MATERIA}}  <p class="card-text">Maestro: {{$ID_DOCENTE}}</p> </h6>
+        
+        <div class="accordion-body">Descripcion: {{$actividad->descripcion}} <br> <br> Creado por: {{$actividad->name}}
         <br> <br>
         @php
               $foo = 0;
@@ -43,7 +45,8 @@
       </div>
     </div>
   </div>
+  @include('Unidades.Actividades.modaledit_act')
+  <button class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#editact">  Editar </button></div>
+</div>
 
-</div>
-</div>
 @endforeach

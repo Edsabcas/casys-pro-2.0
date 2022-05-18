@@ -61,6 +61,9 @@
 @elseif ($op=='addContenidos')
 @livewire('contenido-component')
 
+@elseif ($op=='edittemas')
+@include('Unidades.Temas.edit')
+
 @elseif ($op=='addConsultar')
 @livewire('consultarcomponent')
 
