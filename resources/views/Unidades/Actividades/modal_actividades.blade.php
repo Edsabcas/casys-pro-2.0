@@ -23,12 +23,27 @@
               </div>
               @endif
             @endisset
+@isset($mensaje3)
+@if($mensaje3!=null)
+<div class="alert alert-success" role="alert">
+Datos actualizados  
+</div>
+@endif
+@endisset
+
+@isset($mensaje4)
+@if($mensaje4!=null)
+<div cclass="alert alert-danger" role="alert">
+    Datos no actualizados  
+</div>
+@endif
+@endisset
             <div class="container-sm">
               <h3 class="form-label text" style="font-size:40px">Crear Actividad</h3> 
     
               <form wire:submit.prevent=''>
                 @csrf
-                <input type="hidden" value='{{$editact}}' name='editact'>
+                <input type="hidden" value='{{$edita}}' name='edita'>
                 <div class="row g-3">
                   <div class="col-sm-3">
                     <label for="exampleInputEmail1" class="form-label " style="font-size:20px">Titulo de la actividad</label>
@@ -143,7 +158,7 @@
                     <button type='submit' class="btn btn-primary" wire:click="update_act()">Actualizar</button>
                     @else
                     <button type="submit" class="btn btn-primary" wire:click='Subir_Act()' >Publicar</button>
-                    
+                    @endif
                   </form>
            
             
@@ -152,11 +167,10 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
           
-          @isset($mensaje)
           @if($mensaje!=null)
           <a href="/" class="btn btn-primary ">Ver actividad</a>
           @endif
-          @endisset        </div>
+        </div>
       </div>
     </div>
   </div>
