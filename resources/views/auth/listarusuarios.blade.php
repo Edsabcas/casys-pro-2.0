@@ -25,6 +25,7 @@
           <td>{{$listadouser->name}}</td>
           <td>{{$listadouser->email}}</td>
           <td>{{$listadouser->usuario}}</td>
+
           <td>
             <img class="rounded-circle" src="img/undraw_profile_1.svg" width="60" height="60" 
                                   alt="...">
