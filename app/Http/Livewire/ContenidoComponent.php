@@ -288,94 +288,118 @@ class ContenidoComponent extends Component
 
     }
 
-    public function Subir_Act(){
-        if($this->validate([
-            'titulo' => 'required',
-            'punteo' => 'required',
-            'fecha_e' => 'required',
-            'descripcion' => 'required',
-            'temasb' => 'required',
-        ])==false){
-            $error="no encontrado";
-            session(['message'=>'no encontrado']);
-            return back()->withErrors(['error' => 'Validar el input vacio']);
-        }
-
-        else{
-        $titulo=$this->titulo;
-        $punteo=$this->punteo;
-        $fecha_e=$this->fecha_e;
-        $descripcion=$this->descripcion;
-        $fecha_ext=$this->fecha_ext;
-        $temasb=$this->temasb;
-        $grado=$this->grado;
-        $idsecc=$this->idsecc;
-        $unidad1=$this->unidad1;
-        $unidadfija=$this->unidadfija;
-        $this->idusuario=auth()->user()->id;
-        
-
-
-        $archivo="";
-        if($this->archivo!=null){
-            if($this->archivo->getClientOriginalExtension()=="jpg" or $this->archivo->getClientOriginalExtension()=="png" or $this->archivo->getClientOriginalExtension()=="jpeg"){
-                $archivo = "img".time().".".$this->archivo->getClientOriginalExtension();
-                $this->arch=$archivo;
-                $this->archivo->storeAS('imagen/actividades/', $this->arch,'public_up');
-                $this->formato=1;
-            }
-            elseif($this->archivo->getClientOriginalExtension()=="mp4" or $this->archivo->getClientOriginalExtension()=="mpeg"){
-                $archivo = "vid".time().".".$this->archivo->getClientOriginalExtension();
-                $this->arch=$archivo;
-                $this->archivo->storeAS('imagen/videos_act/', $this->arch,'public_up');
-                $this->formato=2;
-            }
-            elseif($this->archivo->getClientOriginalExtension()=="pdf"){
-                $archivo = "pdf".time().".".$this->archivo->getClientOriginalExtension();
-                $this->arch=$archivo;
-                $this->archivo->storeAS('imagen/pdf_act/', $this->arch,'public_up');
-                $this->formato=3;
-            }
-        }
-
-        DB::begintransaction();
-
-
-        $actividades=DB::table('tb_actividades')->insert(
-            [
-                'NOMBRE_ACTIVIDAD'=>$titulo,
-                'descripcion'=>$descripcion,
-                'archivos'=>$this->arch,
-                'punteo'=>$punteo,
-                'fecha_entr'=>$fecha_e,
-                'fecha_extr'=>$fecha_ext,
-                'ID_TEMA'=>$temasb,
-                'ID_MATERIA'=>$unidad1,
-                'ID_GR'=>$grado,
-                'ID_SC'=>$idsecc,
-                'ID_UNIDADES_FIJAS'=>$unidadfija,
-                'ID'=>$this->idusuario,
-
-            ]);
-
-            if($actividades){
-                DB::commit();
-                unset($this->mensaje);
-                unset($this->mensaje1);
-                $this->op='addcontenidos';
-                $this->mensaje='Insertado correctamente';
-                }
-                else {
-                DB::rollback();
-                unset($this->mensaje);
-                unset($this->mensaje1);
-                $this->op='addcontenidos';
-                $this->mensaje1='Datos no  insertados correctamente';
-                }        
-        }
-
-
+   //subida de actividades en las unidades fijas
+   public function Subir_Act(){
+    if($this->validate([
+        'titulo' => 'required',
+        'punteo' => 'required',
+        'fecha_e' => 'required',
+        'descripcion' => 'required',
+        'temasb' => 'required',
+    ])==false){
+        $error="no encontrado";
+        session(['message'=>'no encontrado']);
+        return back()->withErrors(['error' => 'Validar el input vacio']);
     }
+
+    else{
+    $titulo=$this->titulo;
+    $punteo=$this->punteo;
+    $fecha_e=$this->fecha_e;
+    $descripcion=$this->descripcion;
+    $fecha_ext=$this->fecha_ext;
+    $temasb=$this->temasb;
+    $grado=$this->grado;
+    $idsecc=$this->idsecc;
+    $unidad1=$this->unidad1;
+    $unidadfija=$this->unidadfija;
+    $this->idusuario=auth()->user()->id;
+    
+
+
+    $archivo="";
+    if($this->archivo!=null){
+        if($this->archivo->getClientOriginalExtension()=="jpg" or $this->archivo->getClientOriginalExtension()=="png" or $this->archivo->getClientOriginalExtension()=="jpeg"){
+            $archivo = "img".time().".".$this->archivo->getClientOriginalExtension();
+            $this->arch=$archivo;
+            $this->archivo->storeAS('imagen/actividades/', $this->arch,'public_up');
+            $this->formato=1;
+        }
+        elseif($this->archivo->getClientOriginalExtension()=="mp4" or $this->archivo->getClientOriginalExtension()=="mpeg"){
+            $archivo = "vid".time().".".$this->archivo->getClientOriginalExtension();
+            $this->arch=$archivo;
+            $this->archivo->storeAS('imagen/videos_act/', $this->arch,'public_up');
+            $this->formato=2;
+        }
+        elseif($this->archivo->getClientOriginalExtension()=="pdf"){
+            $archivo = "pdf".time().".".$this->archivo->getClientOriginalExtension();
+            $this->arch=$archivo;
+            $this->archivo->storeAS('imagen/pdf_act/', $this->arch,'public_up');
+            $this->formato=3;
+        }
+    }
+
+    DB::begintransaction();
+
+
+    $actividades=DB::table('tb_actividades')->insert(
+        [
+            'NOMBRE_ACTIVIDAD'=>$titulo,
+            'descripcion'=>$descripcion,
+            'archivos'=>$this->arch,
+            'punteo'=>$punteo,
+            'fecha_entr'=>$fecha_e,
+            'fecha_extr'=>$fecha_ext,
+            'ID_TEMA'=>$temasb,
+            'ID_MATERIA'=>$unidad1,
+            'ID_GR'=>$grado,
+            'ID_SC'=>$idsecc,
+            'ID_UNIDADES_FIJAS'=>$unidadfija,
+            'ID'=>$this->idusuario,
+
+        ]);
+
+        if($actividades){
+            DB::commit();
+            unset($this->mensaje);
+            unset($this->mensaje1);
+            unset($this->mensaje3);
+            unset($this->mensaje4);
+            $this->op='addcontenidos';
+            $this->mensaje='Insertado correctamente';
+            }
+            else {
+            DB::rollback();
+            unset($this->mensaje);
+            unset($this->mensaje1);
+            unset($this->mensaje4);
+            unset($this->mensaje3);
+            $this->op='addcontenidos';
+            $this->mensaje1='Datos no  insertados correctamente';
+            }        
+    }
+
+
+}
+
+public function limpiar_act(){
+    $this->edita="";
+    $this->titulo="";
+    $this->punteo="";
+    $this->fecha_e="";
+    $this->descripcion="";
+    $this->temasb="";
+    unset($this->mensaje);
+    unset($this->mensaje);
+    unset($this->mensaje3);
+    unset($this->mensaje1);
+    unset($this->mensaje4);
+    unset($this->mensaje1);
+    unset($this->mensaje4);
+    unset($this->mensaje);
+    unset($this->mensaje3);
+
+}
 
     Public function edita($id){
         $edita=$id;
