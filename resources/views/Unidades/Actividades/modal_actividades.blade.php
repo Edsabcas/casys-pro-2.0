@@ -143,7 +143,7 @@
                     <button type='submit' class="btn btn-primary" wire:click="update_act()">Actualizar</button>
                     @else
                     <button type="submit" class="btn btn-primary" wire:click='Subir_Act()' >Publicar</button>
-                    
+                    @endif
                   </form>
            
             
