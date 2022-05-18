@@ -194,11 +194,9 @@
                             
                             Bienvenido <b>{{ auth()->user()->name }} </b>
                             </span>
-                            @isset($fotos)
-                                @foreach ($fotos as $foto)
-                                        <img class="img-profile rounded-circle"  src="imagen/perfil/{{$foto->img_users}}">
-                                @endforeach 
-                            @endisset
+                            
+                            <img class="img-profile rounded-circle"  src="imagen/perfil/{{ auth()->user()->img_users}}" />
+
                             @endif
                         </a>
                         <!-- Dropdown - User Information -->
