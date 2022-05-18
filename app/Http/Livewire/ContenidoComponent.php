@@ -206,6 +206,7 @@ class ContenidoComponent extends Component
 
     }
     public function validar_u($nunif){
+        $this->limpiarplan();
         $this->unidadfija=$nunif;
  
         if($this->unidadfija==1){
@@ -884,6 +885,12 @@ public function limpiar(){
     $this->tema="";
     $this->descripciont="";
     $this->editt="";
+ 
+}
+
+public function limpiarplan(){
+
+    $this->descripciona="";
  
 }
 
