@@ -1,4 +1,4 @@
-<div class="table-responsive">
+<div class="table-responsive"> 
   <table class="table table-info  table-striped table-hover table-bordered">
     <thead>
         <tr>
@@ -8,14 +8,14 @@
     <tbody>
         @foreach ($relaciones as $relacion)
             <tr>
-              <th><div class="accordion accordion-flush" id="ID_MAESTROS">
+              <th><div class="accordion accordion-flush" id="accordion{{$relacion->ID_DOCENTE}}">
                 <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingOne">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-controls="collapseOne">
+                  <h2 class="accordion-header" id="flush-heading{{$relacion->ID_DOCENTE}}">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{$relacion->ID_DOCENTE}}" aria-expanded="false" aria-controls="flush-collapse{{$relacion->ID_DOCENTE}}">
                       {{$relacion->NOMBRE_DOCENTE}}
                     </button>
                   </h2>
-                  <div id="collapseOne" class="accordion-collapse " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                  <div id="flush-collapse{{$relacion->ID_DOCENTE}}" class="accordion-collapse collapse" aria-labelledby="flush-heading{{$relacion->ID_DOCENTE}}" data-bs-parent="#accordionFlush{{$relacion->ID_DOCENTE}}">
                     <div class="accordion-body">
                           <strong>DPI:{{$relacion->DPI}}</strong>
                           <br>

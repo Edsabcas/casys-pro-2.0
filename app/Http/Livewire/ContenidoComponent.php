@@ -17,7 +17,7 @@ class ContenidoComponent extends Component
    public $prueba, $op, $mensaje, $mensaje1, $file, $date, $dia2, $message, $file2, $arch, $vid, $pdf, $formato, $tipo, $id_act,$editt;
    public $titulo, $punteo, $fecha_e, $fecha_ext, $descripcion, $act,$tema_a,$descripciont,$tema,$unidad, $temasb, $archivo, $nota, $descripciona;
 
-public     $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, $grado2, $idsecc2, $arch2,$tema2, $unidad2, $descripciont2, $nombreu,$id_tem, $edita;
+public     $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, $grado2, $idsecc2, $arch2,$tema2, $unidad2, $descripciont2, $nombreu,$id_tem, $editact;
 
     public function render()
     {
@@ -468,7 +468,6 @@ public     $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, 
     }
        
     }
-
     public function Subir_Tema(){
         if($this->validate([
             'tema' => 'required',
@@ -521,19 +520,19 @@ public     $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, 
 
 Public function editt($id){
     $id_tem=$id;
+    $sql='SELECT * FROM tb_temas WHERE ID_TEMA=?';
     $temast=DB:: select($sql, array($id_tem));
-
     if($temast !=null){
-        foreach($temast as $tema)
+        foreach($temast as $temat)
         {
-            $this->id_tem=$tema->ID_TEMA;
-            $this->tema=$tema->NOMBRE_TEMA;
-            $this->descripciont=$tema->DESCRIPCION;
-            $this->grado=$tema->ID_GR;
-            $this->idsecc=$tema->ID_SC;
-            $this->unidad1=$tema->ID_MATERIA;
-            $this->unidadfija=$tema->ID_UNIDADES_FIJAS;
-            $this->idusuario=$tema->ID;
+            $this->id_tem=$temat->ID_TEMA;
+            $this->tema=$temat->NOMBRE_TEMA;
+            $this->descripciont=$temat->DESCRIPCION;
+            $this->grado=$temat->ID_GR;
+            $this->idsecc=$temat->ID_SC;
+            $this->unidad1=$temat->ID_MATERIA;
+            $this->unidadfija=$temat->ID_UNIDADES_FIJAS;
+            $this->idusuario=$temat->ID;
 
         }
     }
@@ -554,6 +553,7 @@ public function update_temas(){
     }
 
     else{
+    $id_tem=$this->id_tem;
     $tema=$this->tema;
     $descripciont=$this->descripciont;
     $grado=$this->grado;
@@ -564,7 +564,9 @@ public function update_temas(){
     DB::begintransaction();
     
 
-    $temas=DB::table('tb_temas')->update(
+    $temat=DB::table('tb_temas')
+    ->where('ID_TEMA', $id_tem)
+    ->update( 
         [
             'NOMBRE_TEMA'=>$tema,
             'DESCRIPCION'=>$descripciont,
@@ -575,7 +577,7 @@ public function update_temas(){
             'ID'=>$this->idusuario,
         ]);
 
-        if($temas){
+        if($temat){
             DB::commit();
             unset($this->mensaje);
             unset($this->mensaje1);

@@ -193,13 +193,13 @@
                             @if(auth()->check())
                             
                             Bienvenido <b>{{ auth()->user()->name }} </b>
-                            @endif
                             </span>
                             @isset($fotos)
                                 @foreach ($fotos as $foto)
                                         <img class="img-profile rounded-circle"  src="imagen/perfil/{{$foto->img_users}}">
                                 @endforeach 
                             @endisset
+                            @endif
                         </a>
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
