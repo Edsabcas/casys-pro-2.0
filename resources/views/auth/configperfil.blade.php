@@ -1,5 +1,10 @@
-<div class="card">
-  <div class="card-body">
+<<<<<<< HEAD
+<div class="card row">
+  <div class="card-body offset-2 col-10">
+=======
+<div class="card row container m-50 mx-500">
+  <div class="card-body" >
+>>>>>>> 288304826fb316066a294ae0949f989264738365
     <TABLE BORDER width="600" height="300" class="table-striped">
       @foreach ($perfiles as $perfil)
         <TR ALIGN=CENTER><TH>NOMBRE</TH>
@@ -14,15 +19,31 @@
         <TR ALIGN=CENTER><TH>FOTO DE PERFIL</TH>
           <TD>
             @foreach ($fotos as $foto)
+<<<<<<< HEAD
+            @php
+              $foo = 0;
+              if (strpos($foto->img_users, '.jpg' ) !== false || strpos($foto->img_users, '.png' ) !== false || strpos($foto->img_users, '.jpeg' ) !== false)
+              { $foo=1; }
+            @endphp
+                @if($foo==1)
+                @if($foto->id==auth()->user()->id)
+                <img src="imagen/perfil/{{$foto->img_users}}" height="200" weight="50" alt="...">
+                @endif
+                @endif
+          @endforeach       
+=======
               @php
                 $foo = 0;
                 if (strpos($foto->img_users, '.jpg' ) !== false || strpos($foto->img_users, '.png' ) !== false || strpos($foto->img_users, '.jpeg' ) !== false) 
                 { $foo=1; }
               @endphp
                   @if($foo==1)
-                  <img src="imagen/perfil/{{$foto->img_users}}" height="500" weight="250" class="card-img-top" alt="...">
+                  @if($foto->id==auth()->user()->id)
+                  <img src="imagen/perfil/{{$foto->img_users}}" height="300" weight="100" alt="...">
+                  @endif
                   @endif
             @endforeach      
+>>>>>>> 288304826fb316066a294ae0949f989264738365
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#perfilmodal2">Cambiar</button> 
           </TD>
         </TR>
