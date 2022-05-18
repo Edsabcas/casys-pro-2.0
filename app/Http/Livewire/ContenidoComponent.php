@@ -399,6 +399,57 @@ public     $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, 
        $this->editt=1;
     }
 
+    public function update_act(){
+        if($this->validate([
+            'tema' => 'required',
+            'descripciont' => 'required',
+    
+        ])==false){
+            $error="no encontrado";
+            session(['message'=>'no encontrado']);
+            return back()->withErrors(['error' => 'Validar el input vacio']);
+        }
+    
+        else{
+        $tema=$this->tema;
+        $descripciont=$this->descripciont;
+        $grado=$this->grado;
+        $idsecc=$this->idsecc;
+        $unidad1=$this->unidad1;
+        $unidadfija=$this->unidadfija;
+        $this->idusuario=auth()->user()->id;
+        DB::begintransaction();
+        
+    
+        $temas=DB::table('tb_temas')->insert(
+            [
+                'NOMBRE_TEMA'=>$tema,
+                'DESCRIPCION'=>$descripciont,
+                'ID_MATERIA'=>$unidad1,
+                'ID_GR'=>$grado,
+                'ID_SC'=>$idsecc,
+                'ID_UNIDADES_FIJAS'=>$unidadfija,
+                'ID'=>$this->idusuario,
+            ]);
+    
+            if($temas){
+                DB::commit();
+                unset($this->mensaje);
+                unset($this->mensaje1);
+                $this->op='addcontenidos';
+                $this->mensaje='Insertado correctamente';
+                }
+                else {
+                DB::rollback();
+                unset($this->mensaje);
+                unset($this->mensaje1);
+                $this->op='addcontenidos';
+                $this->mensaje1='Datos no  insertados correctamente';
+                }
+    }
+       
+    }
+
     public function Subir_Tema(){
         if($this->validate([
             'tema' => 'required',
@@ -451,7 +502,6 @@ public     $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, 
 
 Public function editt($id){
     $id_tem=$id;
-    $sql='SELECT * FROM tb_temas WHERE ID_TEMA=?';
     $temast=DB:: select($sql, array($id_tem));
 
     if($temast !=null){
@@ -495,7 +545,7 @@ public function update_temas(){
     DB::begintransaction();
     
 
-    $temas=DB::table('tb_temas')->insert(
+    $temas=DB::table('tb_temas')->update(
         [
             'NOMBRE_TEMA'=>$tema,
             'DESCRIPCION'=>$descripciont,
