@@ -8,7 +8,7 @@
     <tbody>
         @foreach ($relaciones as $relacion)
             <tr>
-              <th><div class="accordion" id="ID_MAESTROS">
+              <th><div class="accordion accordion-flush" id="ID_MAESTROS">
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="headingOne">
                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-controls="collapseOne">
