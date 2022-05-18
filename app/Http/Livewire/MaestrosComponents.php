@@ -257,26 +257,7 @@ class MaestrosComponents extends Component{
             $this->mensajeeliminar1='No fue posible eliminar correctamente';
         }
     }  
-
-    public function delete_maestros($id){
-        $id_docente=$id;
-
-        DB::beginTransaction();
-
-        $maestro=DB::table('tb_docentes')->where('ID_DOCENTE','=', $id_docente)->delete();
-
-        if($maestro){
-            DB::commit();
-            $this->op=4;
-            $this->mensaje26='Eliminado correctamente';
-        }
-        else{
-            DB::rollback();
-            $this->op=4;
-            $this->mensaje27='No fue posible eliminar correctamente';
-        }
-    }
-
+    
     public function generar_use(){
 
         

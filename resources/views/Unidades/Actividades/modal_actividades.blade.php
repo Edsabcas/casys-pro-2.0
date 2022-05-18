@@ -3,7 +3,11 @@
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header">
+          @if($edita!=null)
+          <h2 class="modal-title">Edicion de activdades</h2>
+          @else
           <h2 class="modal-title">Ingrese los datos para crear la actividad</h2>
+          @endif
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button >
         </div>
 
@@ -39,9 +43,12 @@ Datos actualizados
 @endif
 @endisset
             <div class="container-sm">
-              <h3 class="form-label text" style="font-size:40px">Crear Actividad</h3> 
-    
-              <form wire:submit.prevent=''>
+              @if($edita!=null)
+              <h3 class="form-label text" style="font-size:40px">Edicion Actividad</h3> 
+              @else
+             <h3 class="form-label text" style="font-size:40px">Crear Actividad</h3> 
+               @endif
+              <form  action="/update_act" method="POST" wire:submit.prevent=''>
                 @csrf
                 <input type="hidden" value='{{$edita}}' name='edita'>
                 <div class="row g-3">
@@ -65,6 +72,27 @@ Datos actualizados
                       </div> 
                     @enderror             
                   </div>
+                  @if($edita!=null)
+                  <div class="col-sm-3">
+                    <label for="exampleInputEmail1" class="form-label " style="font-size:20px">Fecha de entrega Anterior</label>
+                    <input type="text" class="form-control" wire:model='fecha_e'  style="border:2px solid rgba(86, 95, 76, 0.466);" placeholder="Fecha de entrega" aria-label="Fecha anterior">
+                    <label for="exampleInputEmail1" class="form-label " style="font-size:20px">Fecha de entrega</label>
+                    <input type="datetime-local" class="form-control" wire:model='fecha_e'  style="border:2px solid rgba(86, 95, 76, 0.466);" placeholder="Fecha de entrega" aria-label="Fecha de entrega">
+                    @error('fecha_e') 
+                    <div class="alert alert-danger d-flex align-items-center" role="alert">
+                      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                      <span>Pendiente de colocar una fecha de entrega</span>
+                      </div> 
+                    @enderror  
+                  </div>
+                  <div class="col-sm-3">
+                    <label for="exampleInputEmail1" class="form-label " style="font-size:20px">Fecha extraordinaria Anterior</label>
+                    <input type="text" class="form-control" wire:model='fecha_ext'  style="border:2px solid rgba(86, 95, 76, 0.466);" placeholder="Fecha de entrega" aria-label="Fecha anterior">
+
+                    <label for="exampleInputEmail1" class="form-label " style="font-size:20px">Fecha extraordinaria</label>
+                    <input type="datetime-local" class="form-control" wire:model='fecha_ext'  style="border:2px solid rgba(86, 95, 76, 0.466);" placeholder="Fecha de extraordinaria" aria-label="Fecha extraordinaria">
+                  </div> 
+                  @else
                   <div class="col-sm-3">
                     <label for="exampleInputEmail1" class="form-label " style="font-size:20px">Fecha de entrega</label>
                     <input type="datetime-local" class="form-control" wire:model='fecha_e'  style="border:2px solid rgba(86, 95, 76, 0.466);" placeholder="Fecha de entrega" aria-label="Fecha de entrega">
@@ -77,8 +105,10 @@ Datos actualizados
                   </div>
                   <div class="col-sm-3">
                     <label for="exampleInputEmail1" class="form-label " style="font-size:20px">Fecha extraordinaria</label>
-                    <input type="date" class="form-control" wire:model='fecha_ext'  style="border:2px solid rgba(86, 95, 76, 0.466);" placeholder="Fecha de extraordinaria" aria-label="Fecha extraordinaria">
-                  </div>    
+                    <input type="datetime-local" class="form-control" wire:model='fecha_ext'  style="border:2px solid rgba(86, 95, 76, 0.466);" placeholder="Fecha de extraordinaria" aria-label="Fecha extraordinaria">
+                  </div> 
+                  @endif
+   
                 </div>
 
                 <div>

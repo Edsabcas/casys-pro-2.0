@@ -27,8 +27,11 @@
           <td>{{$listadouser->usuario}}</td>
 
           <td>
-            <img class="rounded-circle" src="img/undraw_profile_1.svg" width="60" height="60" 
-                                  alt="...">
+            @if ($listadouser->img_users=="" or $listadouser->img_users==null)
+            <img class="rounded-circle" src="img/undraw_profile_1.svg" width="60" height="60" alt="...">      
+            @else
+            <img class="img-profile rounded-circle"  src="imagen/perfil/{{auth()->user()->img_users}}" />
+            @endif
           </td>
           <td> 
             <button type="button" wire:click="cargar_datos('{{$listadouser->id}}', '{{$listadouser->name}}', '{{$listadouser->email}}', '{{$listadouser->usuario}}')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">

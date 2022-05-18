@@ -30,16 +30,16 @@
 @endif
 @endisset
 
-@isset($mensaje26)
-@if ($mensaje26!==null)
+@isset($mensajeeliminar)
+@if ($mensajeeliminar!==null)
     <div class="alert alert-success" role="alert">
     ELIMINADO CORRECTAMENTE!
     </div>
     @endif
     @endisset
 
-    @isset($mensaje27)
-    @if($mensaje27!==null)
+    @isset($mensajeeliminar1)
+    @if($mensajeeliminar1!==null)
     <div class="alert alert-danger" role="alert">
     NO SE LOGRÓ ELIMINAR LOS DATOS :(
     </div>
