@@ -32,7 +32,7 @@ class SessionController extends Controller
 
         $user= User::create(request(['name','usuario','email','password']));
         auth()->login($user);   
-        return view('inicio');
+        return view('/');
     }
 
     

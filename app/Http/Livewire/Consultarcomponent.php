@@ -25,6 +25,18 @@ public $vista2, $vista3;
         ->select('tb_rel.ID_REL', 'tb_materias.NOMBRE_MATERIA', 'tb_materias.TIPO_DE_MATERIA', 'tb_materias.ID_MATERIA' , 'tb_docentes.NOMBRE_DOCENTE', 'tb_grados.GRADO', 'tb_seccions.SECCION','tb_docentes.DPI','tb_docentes.TELEFONO','tb_docentes.CORREO','tb_docentes.ID_DOCENTE')
         ->get();
 
+        $asignaciones="";
+        if($this->asig!=null){
+            $asignaciones=DB::table('tb_asignaciones_e')
+        ->join('tb_grados', 'tb_asignaciones_e.ID_GR', '=', 'tb_grados.ID_GR')
+        ->join('tb_seccions', 'tb_asignaciones_e.ID_SC', '=', 'tb_seccions.ID_SC')
+        ->join('tb_estudiantes', 'tb_asignaciones_e.id', '=', 'tb_seccions.id')
+        ->select('tb_asignaciones_e.ID_E', 'tb_grados.GRADO', 'tb_seccions.SECCION','tb_estudiantes.TB_INFO_NOMBRE')
+        ->where('tb_asignaciones_e.ID_GR','=',$this->grado)
+        ->where('tb_asignaciones_e.ID_SC','=',$this->idsecc)
+        ->get();
+        }
+
         
 
         
