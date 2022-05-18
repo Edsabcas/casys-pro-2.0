@@ -20,7 +20,9 @@
                 { $foo=1; }
               @endphp
                   @if($foo==1)
-                  <img src="imagen/perfil/{{$foto->img_users}}" height="500" weight="250" class="card-img-top" alt="...">
+                  @if($foto->id==auth()->user()->id)
+                  <img src="imagen/perfil/{{$foto->img_users}}" height="300" weight="100" class="card-img-top" alt="...">
+                  @endif
                   @endif
             @endforeach      
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#perfilmodal2">Cambiar</button> 
