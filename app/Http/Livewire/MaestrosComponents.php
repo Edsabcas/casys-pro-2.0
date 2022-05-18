@@ -162,7 +162,7 @@ class MaestrosComponents extends Component{
         }
 
         $ID_USER=$this->id_usucorreo;
-        $sql='SELECT * FROM users WHERE ID_USER=?';
+        $sql='SELECT * FROM users WHERE id=?';
         $correousu=DB::select($sql,array($ID_USER));
 
         $this->id_usucorreo=0;
@@ -173,6 +173,7 @@ class MaestrosComponents extends Component{
             $this->pass=$corre->password;
 
         }
+
 
 
         $id_docente=$ID_USER;
@@ -256,6 +257,26 @@ class MaestrosComponents extends Component{
             $this->mensajeeliminar1='No fue posible eliminar correctamente';
         }
     }  
+
+    public function delete_maestros($id){
+        $id_docente=$id;
+
+        DB::beginTransaction();
+
+        $maestro=DB::table('tb_docentes')->where('ID_DOCENTE','=', $id_docente)->delete();
+
+        if($maestro){
+            DB::commit();
+            $this->op=4;
+            $this->mensaje26='Eliminado correctamente';
+        }
+        else{
+            DB::rollback();
+            $this->op=4;
+            $this->mensaje27='No fue posible eliminar correctamente';
+        }
+    }
+
     public function generar_use(){
 
         
@@ -327,5 +348,6 @@ class MaestrosComponents extends Component{
             $this->mensaje4='No fue posible editar correctamente';
         }
     }  
+
 }
  

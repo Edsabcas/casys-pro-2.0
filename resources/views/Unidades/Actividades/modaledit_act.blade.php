@@ -1,9 +1,13 @@
 
-  <div wire:ignore.self class="modal fade" id="editact" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="5" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div wire:ignore.self class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="5" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header">
-          <h2 class="modal-title">Edite los datos que desee</h2>
+          @if($edita!=null)
+          <h2 class="modal-title">Edicion de activdades</h2>
+          @else
+          <h2 class="modal-title">Ingrese los datos para crear la actividad</h2>
+          @endif
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button >
         </div>
 
@@ -23,12 +27,30 @@
               </div>
               @endif
             @endisset
+@isset($mensaje3)
+@if($mensaje3!=null)
+<div class="alert alert-success" role="alert">
+Datos actualizados  
+</div>
+@endif
+@endisset
+
+@isset($mensaje4)
+@if($mensaje4!=null)
+<div cclass="alert alert-danger" role="alert">
+    Datos no actualizados  
+</div>
+@endif
+@endisset
             <div class="container-sm">
-              <h3 class="form-label text" style="font-size:40px">Crear Actividad</h3> 
-    
-              <form wire:submit.prevent=''>
+              @if($edita!=null)
+              <h3 class="form-label text" style="font-size:40px">Edicion Actividad</h3> 
+              @else
+             <h3 class="form-label text" style="font-size:40px">Crear Actividad</h3> 
+               @endif
+              <form action="/update_act" method="POST" wire:submit.prevent=''>
                 @csrf
-                <input type="hidden" value='{{$editact}}' name='editact'>
+                <input type="hidden" value='{{$edita}}' name='edita'>
                 <div class="row g-3">
                   <div class="col-sm-3">
                     <label for="exampleInputEmail1" class="form-label " style="font-size:20px">Titulo de la actividad</label>
@@ -62,7 +84,7 @@
                   </div>
                   <div class="col-sm-3">
                     <label for="exampleInputEmail1" class="form-label " style="font-size:20px">Fecha extraordinaria</label>
-                    <input type="date" class="form-control" wire:model='fecha_ext'  style="border:2px solid rgba(86, 95, 76, 0.466);" placeholder="Fecha de extraordinaria" aria-label="Fecha extraordinaria">
+                    <input type="datetime-local" class="form-control" wire:model='fecha_ext'  style="border:2px solid rgba(86, 95, 76, 0.466);" placeholder="Fecha de extraordinaria" aria-label="Fecha extraordinaria">
                   </div>    
                 </div>
 
@@ -139,22 +161,23 @@
                     </div>
                     <br>
                     
-                    
+                    @if($edita!=null)
+                    <button type='submit' class="btn btn-primary" wire:click="update_act()">Actualizar</button>
+                    @else
                     <button type="submit" class="btn btn-primary" wire:click='Subir_Act()' >Publicar</button>
-                    
+                    @endif
                   </form>
            
             
             </div>        
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" wire:click='edita()' >Cerrar</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
           
-          @isset($mensaje)
           @if($mensaje!=null)
           <a href="/" class="btn btn-primary ">Ver actividad</a>
           @endif
-          @endisset        </div>
+        </div>
       </div>
     </div>
   </div>

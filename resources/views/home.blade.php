@@ -64,8 +64,11 @@
 @elseif ($op=='edittemas')
 @include('Unidades.Temas.modaltemas')
 
+@elseif ($op=='editplan')
+@include('Unidades.modalplanificacion')
+
 @elseif ($op=='editact')
-@include('Unidades.Temas.modaltemas')
+@include('Unidades.Temas.modal_actividades')
 
 @elseif ($op=='addConsultar')
 @livewire('consultarcomponent')
