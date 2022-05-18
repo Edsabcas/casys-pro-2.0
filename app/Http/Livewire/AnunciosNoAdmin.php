@@ -11,6 +11,7 @@ class AnunciosNoAdmin extends Component
     public $id_megusta, $valorlike, $idusuario, $idcomparacion, $mensaje3, $mensaje4;
     public $ver_ocultos1, $ocultarc, $ver_oculto, $admin_rol, $id_publicacion, $mensaje5, $mensaje6, $usuario_id;
     public $vistas_totales_id, $rol_activo, $grado_activo_estudiante, $mensaje9, $mensaje10;
+    public $filtros, $filt, $cero;
     public function render()
     {
         $usuario_activo = auth()->user()->id;
@@ -37,7 +38,17 @@ class AnunciosNoAdmin extends Component
         $this->usuario_publicacion=DB::select($sql);
         $sql="SELECT * FROM rol_usuario";
         $this->rol_publicado=DB::select($sql);
+        $sql="SELECT tb_anuncios.ID_ANUNCIOS,tb_anuncios.TEXTO_PUBLICACION, tb_anuncios.MULTIMEDIA, tb_anuncios.FECHA_HORA, tb_anuncios.TIPO_ANUNCIO, tb_anuncios.PUBLICO_ANUNCIO, 
+        tb_anuncios.GRADO_ANUNCIO, tb_anuncios.IDIOMA_MAESTRO, tb_anuncios.CALIDAD_ANUNCIO, tb_anuncios.ESTADO_ANUNCIO, tb_anuncios.ID_USUARIO FROM tb_anuncios 
+        INNER JOIN rol_usuario on (tb_anuncios.PUBLICO_ANUNCIO=rol_usuario.ID_ROL AND rol_usuario.ID_USUARIO=37) OR (tb_anuncios.TIPO_ANUNCIO=0 AND rol_usuario.ID_USUARIO=37)
+        INNER JOIN tb_docentes on tb_docentes.ID_USER=37
+        INNER JOIN tb_rel on (tb_anuncios.GRADO_ANUNCIO=tb_rel.ID_GR OR tb_anuncios.GRADO_ANUNCIO=0) AND tb_docentes.ID_DOCENTE=tb_rel.ID_DOCENTE 
+        ORDER BY tb_anuncios.FECHA_HORA DESC;";
+        $this->filtros=DB::select($sql);
+
         
+
+        $this->cero=0;
         $this->admin_rol = 2;
         $fecha_vista=date("Y-m-d H:i:s");
         $estado_vista=1;

@@ -11,6 +11,7 @@ class AnunciosAdmin extends Component
     public $op3, $id_megusta, $mensaje3, $mensaje4, $valorlike, $idcomparacion, $likes3, $mensaje5, $mensaje6;
     public $idusuario, $mensaje7, $mensaje8, $mensaje9, $mensaje10, $ver_ocultos1, $ocultarc, $admin_rol, $guar, $usuario_id;
     public $vistas_totales_id, $contadorlikes, $cambiolike, $can, $usuario_publicacion, $rol_publicado;
+    
     public function render()
     {
         $this->ver_ocultos1 = 0;
@@ -31,7 +32,8 @@ class AnunciosAdmin extends Component
         $this->usuario_publicacion=DB::select($sql);
         $sql="SELECT * FROM rol_usuario";
         $this->rol_publicado=DB::select($sql);
-       
+
+        
         $this->vistas_totales_id=5;
         $this->usuario_id = auth()->user()->id;
         $this->admin_rol = 1;
