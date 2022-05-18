@@ -147,7 +147,7 @@
           @enderror
           
           <hr>
-          <button type="submit" class="btn btn-primary" wire:click="guardaranuncio()">Publicar</button>
+          <button type="submit" class="btn btn-success" wire:click="guardaranuncio()">Publicar</button>
           @isset($mensaje)
           @if($mensaje!=null)
           

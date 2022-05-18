@@ -92,5 +92,6 @@ Agregado correctamente
     <button type='submit' class="btn btn-primary" wire:click="update_mat()">Actualizar</button>
     @else
     <button  class="btn btn-success" wire:click="guardar_mat()">Agregar</button>
+    <br>
     @endif
   </form>

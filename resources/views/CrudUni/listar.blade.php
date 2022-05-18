@@ -1,4 +1,5 @@
 <div class="table-responsive">
+    <br>
     <table class="table table-info  table-striped table-hover table-bordered">
       <thead>
           <tr>
@@ -32,7 +33,7 @@
                             <button class="btn btn-success" wire:click='edit({{$unidad->ID_UNIDADES}})'> EDITAR </button>
 
                               @include('CrudUni.modaleliminar')
-                              <button class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#staticBackdrop{{$unidad->ID_UNIDADES}}"> ELIMINAR </button>
+                              <button class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#staticBackdrop{{$unidad->ID_UNIDADES}}"> ELIMINAR </button>
                           </td>
                      
                     </span>
