@@ -28,7 +28,7 @@
     
               <form wire:submit.prevent=''>
                 @csrf
-                <input type="hidden" value='{{$id_act}}' name='id_act'>
+                <input type="hidden" value='{{$editact}}' name='editact'>
                 <div class="row g-3">
                   <div class="col-sm-3">
                     <label for="exampleInputEmail1" class="form-label " style="font-size:20px">Titulo de la actividad</label>
@@ -148,7 +148,7 @@
             </div>        
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-secondary" wire:click='edita()' >Cerrar</button>
           
           @isset($mensaje)
           @if($mensaje!=null)
