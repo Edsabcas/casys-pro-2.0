@@ -14,16 +14,13 @@ class ContenidoComponent extends Component
 
    public $grado,$mat, $nombre_g, $nombre_s, $unidad1, $NOMBRE_MATERIA, $ID_DOCENTE,$op2,$asig, $usuario,$idsecc,$unidadfija,$unidadn,$idusuario;
    public $option1,$option2,$option3,$option4,$vista,$vista2;
-   public $prueba, $op, $mensaje, $mensaje1, $file, $date, $dia2, $message, $file2, $arch, $vid, $pdf, $formato, $tipo, $id_act,$editt;
+   public $prueba, $op, $mensaje, $mensaje1, $file, $date, $dia2, $message, $file2, $arch, $vid, $pdf, $formato, $tipo, $id_act,$editt,$editp;
    public $titulo, $punteo, $fecha_e, $fecha_ext, $descripcion, $act,$tema_a,$descripciont,$tema,$unidad, $temasb, $archivo, $nota, $descripciona;
 
-<<<<<<< HEAD
-    public $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, $grado2, $idsecc2, $arch2,$tema2, $unidad2, $descripciont2, $nombreu,$id_tem, $edita;
 
-    
-=======
-public     $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, $grado2, $idsecc2, $arch2,$tema2, $unidad2, $descripciont2, $nombreu,$id_tem, $editact;
->>>>>>> b5a19d27b789f3a93ef60ccfcead45da12183625
+    public $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, $grado2, $idsecc2, $arch2,$tema2, $unidad2, $descripciont2, $nombreu,$id_tem, $edita,$id_plan;
+
+
 
     public function render()
     {
@@ -119,6 +116,7 @@ public     $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, 
         ->join('tb_seccions', 'tb_planificacionanual.ID_SC', '=', 'tb_seccions.ID_SC')
         ->select('tb_planificacionanual.ID_PLAN', 'tb_planificacionanual.DESCRIPCION', 'tb_materias.NOMBRE_MATERIA', 'tb_grados.GRADO', 'tb_seccions.SECCION','tb_materias.ID_MATERIA')
         ->where('tb_planificacionanual.ID_GR','=',$this->grado)
+        ->where('tb_planificacionanual.ID_SC','=',$this->idsecc)
         ->where('tb_planificacionanual.ID_MATERIA','=',$this->unidad1)
         ->get();
         }
@@ -208,6 +206,7 @@ public     $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, 
 
     }
     public function validar_u($nunif){
+        $this->limpiarplan();
         $this->unidadfija=$nunif;
  
         if($this->unidadfija==1){
@@ -691,6 +690,7 @@ public function Subir_Plan(){
     $grado=$this->grado;
     $idsecc=$this->idsecc;
     $unidad1=$this->unidad1;
+    $this->idusuario=auth()->user()->id;
     
     DB::begintransaction();
     
@@ -701,6 +701,7 @@ public function Subir_Plan(){
             'ID_MATERIA'=>$unidad1,
             'ID_GR'=>$grado,
             'ID_SC'=>$idsecc,
+            'ID'=>$this->idusuario,
         ]);
 
         if($planificacion){
@@ -719,6 +720,76 @@ public function Subir_Plan(){
             }
 }
 
+}
+
+Public function editp($id){
+    $id_plan=$id;
+    $sql='SELECT * FROM tb_planificacionanual WHERE ID_PLAN=?';
+    $plane=DB:: select($sql, array($id_plan));
+    if($plane !=null){
+        foreach($plane as $plan)
+        {
+            $this->id_plan=$plan->ID_PLAN;
+            $this->descripciona=$plan->DESCRIPCION;
+            $this->grado=$plan->ID_GR;
+            $this->idsecc=$plan->ID_SC;
+            $this->unidad1=$plan->ID_MATERIA;
+            $this->idusuario=$plan->ID;
+
+        }
+    }
+
+    $this->op='editplan';
+   $this->editp=1;
+}
+
+public function update_plan(){
+    if($this->validate([
+        'descripciona' => 'required',
+
+    ])==false){
+        $error="no encontrado";
+        session(['message'=>'no encontrado']);
+        return back()->withErrors(['error' => 'Validar el input vacio']);
+    }
+
+    else{
+        $id_plan=$this->id_plan;
+        $descripciona=$this->descripciona;
+        $grado=$this->grado;
+        $idsecc=$this->idsecc;
+        $unidad1=$this->unidad1;
+        $this->idusuario=auth()->user()->id;
+    DB::begintransaction();
+    
+
+    $plan=DB::table('tb_planificacionanual')
+    ->where('ID_PLAN', $id_plan)
+    ->update( 
+        [
+            'DESCRIPCION'=>$descripciona,
+            'ID_MATERIA'=>$unidad1,
+            'ID_GR'=>$grado,
+            'ID_SC'=>$idsecc,
+            'ID'=>$this->idusuario,
+        ]);
+
+        if($plan){
+            DB::commit();
+            unset($this->mensaje);
+            unset($this->mensaje1);
+            $this->op='addcontenidos';
+            $this->mensaje='Insertado correctamente';
+            }
+            else {
+            DB::rollback();
+            unset($this->mensaje);
+            unset($this->mensaje1);
+            $this->op='addcontenidos';
+            $this->mensaje1='Datos no  insertados correctamente';
+            }
+}
+   
 }
 
 public function Subir_Act2(){
@@ -809,6 +880,20 @@ public function Subir_Act2(){
 
 
 }
+
+public function limpiar(){
+    $this->tema="";
+    $this->descripciont="";
+    $this->editt="";
+ 
+}
+
+public function limpiarplan(){
+
+    $this->descripciona="";
+ 
+}
+
 
 
 }

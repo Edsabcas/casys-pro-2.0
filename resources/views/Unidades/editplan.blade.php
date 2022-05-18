@@ -1,5 +1,5 @@
 
-  <div wire:ignore.self class="modal fade" id="plan" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="5" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div wire:ignore.self class="modal fade" id="plan2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="5" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header">
@@ -26,13 +26,14 @@
             <div class="container-sm">
               <h3 class="form-label text" style="font-size:40px">Crear Tema</h3> 
     
-              <form wire:submit.prevent=''>
+              <form action="/update_plan" method="POST">
                 @csrf
+                <input type="hidden" value='{{$id_plan}}' name='id_plan'>
     
                 
                     <div class="col-sm-10">
                       <label for="exampleFormControlTextarea1" class="form-label" style="font-size:20px">Descripcion Anual</label>
-                      <textarea type="text" class="form-control" wire:model='descripciona'  style="border:2px solid rgba(128, 156, 96, 0.466);" id="exampleFormControlTextarea1" rows="3"></textarea>
+                      <textarea type="text" class="form-control" name='descripciona'  style="border:2px solid rgba(128, 156, 96, 0.466);" id="exampleFormControlTextarea1" rows="3"></textarea>
                       @error('descripciona') 
                     <div class="alert alert-danger d-flex align-items-center" role="alert">
                       <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
@@ -41,12 +42,8 @@
                     @enderror
                     </div>
                     <br>
-                    @if($editp!=null)
-                    <button type='submit' class="btn btn-primary" wire:click="update_plan()">Actualizar</button>
-                    @else
-                    <button type="submit" class="btn btn-primary" wire:click="Subir_Plan()" >Publicar</button>
-                    @endif
                     
+                    <button type="submit" class="btn btn-primary" wire:click="update_plan()">actualizar</button>
                     
           </form>
            
