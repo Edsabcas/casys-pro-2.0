@@ -195,7 +195,7 @@
                             Bienvenido <b>{{ auth()->user()->name }} </b>
                             </span>
                             
-                            <img class="img-profile rounded-circle"  src="imagen/perfil/{{ auth()->user()->img_users}}" />
+                            <img class="img-profile rounded-circle"  src="imagen/perfil/{{auth()->user()->img_users}}" />
 
                             @endif
                         </a>
