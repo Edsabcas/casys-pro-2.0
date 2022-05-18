@@ -14,8 +14,9 @@
       </div>
     </div>
   </div>
+  
   <button class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#edittema" wire:click='editt({{$tema->ID_TEMA}})'> EDITAR </button>
 </div>
 </div>
-
+{{$op}}
 @endforeach
