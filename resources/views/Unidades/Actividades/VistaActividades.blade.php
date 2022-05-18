@@ -43,8 +43,8 @@
       </div>
     </div>
   </div>
+  <button class="btn btn-success" wire:click='edita({{$actividad->ID_ACTIVIDADES}})'> EDITAR </button>
+</div>
+</div>
 
-</div>
-</div>
 @endforeach
-<button class="btn btn-success" wire:click='edita({{$actividad->ID_ACTIVIDADES}})'> EDITAR </button>

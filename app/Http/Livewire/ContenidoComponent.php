@@ -177,6 +177,12 @@ public     $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, 
         
     }
 
+    public function vista_t($num)
+    {
+        $this->op2=$num;
+        
+    }
+
     public function paginacion($num)
     {
         if($num==1){
@@ -188,6 +194,10 @@ public     $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, 
         }
         elseif($num==3){
             $this->op2=3;
+        }
+
+        elseif($num==4){
+            $this->op2=4;
         }
 
     }
@@ -365,7 +375,6 @@ public     $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, 
     public function Subir_Tema(){
         if($this->validate([
             'tema' => 'required',
-            'unidad' => 'required',
             'descripciont' => 'required',
 
         ])==false){
@@ -378,14 +387,23 @@ public     $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, 
         $tema=$this->tema;
         $unidad=$this->unidad;
         $descripciont=$this->descripciont;
+        $grado=$this->grado;
+        $idsecc=$this->idsecc;
+        $unidad1=$this->unidad1;
+        $unidadfija=$this->unidadfija;
+        $this->idusuario=auth()->user()->id;
         DB::begintransaction();
         
 
         $temas=DB::table('tb_temas')->insert(
             [
                 'NOMBRE_TEMA'=>$tema,
-                'ID_UNIDADES'=>$unidad,
                 'DESCRIPCION'=>$descripciont,
+                'ID_MATERIA'=>$unidad1,
+                'ID_GR'=>$grado,
+                'ID_SC'=>$idsecc,
+                'ID_UNIDADES_FIJAS'=>$unidadfija,
+                'ID'=>$this->idusuario,
             ]);
 
             if($temas){
