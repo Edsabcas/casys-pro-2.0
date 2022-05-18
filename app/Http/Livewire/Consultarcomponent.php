@@ -12,6 +12,7 @@ class Consultarcomponent extends Component
 {
 
 public $option1,$option2,$option3, $vista,  $segunda,$tercera=1,$primera,$var2=null;
+public $grado, $idsecc;
 
 public $vista2, $vista3;
 
@@ -24,24 +25,21 @@ public $vista2, $vista3;
         ->join('tb_seccions', 'tb_rel.ID_SC', '=', 'tb_seccions.ID_SC')
         ->select('tb_rel.ID_REL', 'tb_materias.NOMBRE_MATERIA', 'tb_materias.TIPO_DE_MATERIA', 'tb_materias.ID_MATERIA' , 'tb_docentes.NOMBRE_DOCENTE', 'tb_grados.GRADO', 'tb_seccions.SECCION','tb_docentes.DPI','tb_docentes.TELEFONO','tb_docentes.CORREO','tb_docentes.ID_DOCENTE')
         ->get();
-
-        $asignaciones="";
-        if($this->asig!=null){
+        
             $asignaciones=DB::table('tb_asignaciones_e')
         ->join('tb_grados', 'tb_asignaciones_e.ID_GR', '=', 'tb_grados.ID_GR')
         ->join('tb_seccions', 'tb_asignaciones_e.ID_SC', '=', 'tb_seccions.ID_SC')
-        ->join('tb_estudiantes', 'tb_asignaciones_e.id', '=', 'tb_seccions.id')
-        ->select('tb_asignaciones_e.ID_E', 'tb_grados.GRADO', 'tb_seccions.SECCION','tb_estudiantes.TB_INFO_NOMBRE')
-        ->where('tb_asignaciones_e.ID_GR','=',$this->grado)
-        ->where('tb_asignaciones_e.ID_SC','=',$this->idsecc)
+        ->join('tb_estudiantes', 'tb_asignaciones_e.id', '=', 'tb_estudiantes.id')
+        ->select('tb_asignaciones_e.ID_E', 'tb_grados.GRADO', 'tb_seccions.SECCION','tb_estudiantes.TB_INFO_NOMBRE','tb_grados.ID_GR')
         ->get();
-        }
+        
+        
 
         
 
         
         
-        $sql= 'SELECT ID_MATERIA , NOMBRE_MATERIA FROM tb_materias';
+        $sql= 'SELECT ID_MATERIA ,TIPO_DE_MATERIA, NOMBRE_MATERIA FROM tb_materias';
         $materias=DB::select($sql);
         $sql= 'SELECT ID_GR , GRADO FROM tb_grados';
         $grados=DB::select($sql);
@@ -49,8 +47,12 @@ public $vista2, $vista3;
         $secciones=DB::select($sql);
         $sql= 'SELECT ID_DOCENTE , NOMBRE_DOCENTE , DPI , TELEFONO , CORREO FROM tb_docentes';
         $info=DB::select($sql);
+        $sql= 'SELECT * FROM tb_grados';
+        $gradoss=DB::select($sql);
+        $sql= 'SELECT * FROM tb_seccions';
+        $seccioness=DB::select($sql);
         
-        return view('livewire.consultarcomponent',compact('relaciones', 'materias','grados','secciones','info'));
+        return view('livewire.consultarcomponent',compact('relaciones', 'materias','grados','secciones','info', 'asignaciones','gradoss','seccioness'));
     }
 
     public function buscar($var){

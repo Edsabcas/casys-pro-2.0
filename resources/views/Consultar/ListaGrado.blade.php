@@ -2,23 +2,37 @@
     <table class="table table-info  table-striped table-hover table-bordered">
       <thead>
           <tr>
-              <th>ID</th>
+              <th>Grados consultados</th>
 
-              <th>Grados</th>
-              <th>Secciones</th>
+              
           </tr>
       </thead>
       <tbody>
-          @foreach ($relaciones as $relacion)
+        @foreach($asignaciones as $asignacion)
               <tr>
 
-                <th>{{$relacion->ID_REL}}</th>
-                <th>{{$relacion->GRADO}}</th>
-                <th>{{$relacion->SECCION}}</th>
-                  
+                <th>
+                  <div class="accordion accordion-flush" id="accordion{{$asignacion->ID_GR}}">
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="flush-heading{{$asignacion->ID_GR}}">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{$asignacion->ID_GR}}" aria-expanded="false" aria-controls="flush-collapse{{$asignacion->ID_GR}}">
+                          {{$asignacion->GRADO}} {{$asignacion->SECCION}}
+                        </button>
+                      </h2>
+                      <div id="flush-collapse{{$asignacion->ID_GR}}" class="accordion-collapse collapse" aria-labelledby="flush-heading{{$asignacion->ID_GR}}" data-bs-parent="#accordionFlush{{$asignacion->ID_GR}}">
+                        <div class="accordion-body">
+                          
+                         
+                          <strong>Alumnos: {{$asignacion->TB_INFO_NOMBRE}}</strong>
+                          @endforeach
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </th>
 
               </tr>
-          @endforeach
+              
       </tbody>
     </table>
   </div>
