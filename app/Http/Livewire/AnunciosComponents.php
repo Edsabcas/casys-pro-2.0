@@ -57,6 +57,7 @@ class AnunciosComponents extends Component
 
         }
         else{
+            
             $textoanuncio = $this->texto_anuncio;
         
         $calidadanuncio = $this->calidad_anuncio;
@@ -67,6 +68,10 @@ class AnunciosComponents extends Component
         $this->prueba=$calidadanuncio;
         $estadoanuncio =1;
 
+        if($this->tanuncio==null){
+            $gradoanuncio=0;
+            $this->tanuncio=0;
+        }
 
         $archivo_anuncio="";
             if($this->archivo_anuncio!=null){

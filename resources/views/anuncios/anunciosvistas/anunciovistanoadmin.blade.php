@@ -34,7 +34,7 @@ $('#exampleModal1').modal('show');
 <!-- Maestros-->
 
 @foreach($anuncios as $anuncio)
-@if($rol_activo == $anuncio->PUBLICO_ANUNCIO or $anuncio->PUBLICO_ANUNCIO == 0)
+@if($rol_activo == $anuncio->PUBLICO_ANUNCIO)
 @if($anuncio->GRADO_ANUNCIO == 0 or $grado_activo == $anuncio->GRADO_ANUNCIO)
 <div class="offset-3 col-10">
   <br>
@@ -374,7 +374,7 @@ $('#exampleModal1').modal('show');
   <br>
     <div  class="row">
       <br>
-        <div class="shadow-lg card" style="background-color: #ec1c1c; width: 50rem">
+        <div class="shadow-lg card" style="background-color: #c4c4c4; width: 50rem">
             <br>
             <p style="font-size:10px" class="d-grid gap-2 d-md-flex justify-content-md-end">Publicado el {{$filtro->FECHA_HORA}}</p>
             <br>

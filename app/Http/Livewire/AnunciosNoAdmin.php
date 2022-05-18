@@ -40,8 +40,10 @@ class AnunciosNoAdmin extends Component
         $this->rol_publicado=DB::select($sql);
         $sql="SELECT tb_anuncios.ID_ANUNCIOS,tb_anuncios.TEXTO_PUBLICACION, tb_anuncios.MULTIMEDIA, tb_anuncios.FECHA_HORA, tb_anuncios.TIPO_ANUNCIO, tb_anuncios.PUBLICO_ANUNCIO, 
         tb_anuncios.GRADO_ANUNCIO, tb_anuncios.IDIOMA_MAESTRO, tb_anuncios.CALIDAD_ANUNCIO, tb_anuncios.ESTADO_ANUNCIO, tb_anuncios.ID_USUARIO FROM tb_anuncios 
-        INNER JOIN rol_usuario on (tb_anuncios.PUBLICO_ANUNCIO=rol_usuario.ID_ROL AND rol_usuario.ID_USUARIO=$usuario_activo) OR (tb_anuncios.TIPO_ANUNCIO=0 AND rol_usuario.ID_USUARIO=$usuario_activo)
-        ORDER BY tb_anuncios.FECHA_HORA DESC";
+        INNER JOIN rol_usuario on (tb_anuncios.PUBLICO_ANUNCIO=rol_usuario.ID_ROL AND rol_usuario.ID_USUARIO=37) OR (tb_anuncios.TIPO_ANUNCIO=0 AND rol_usuario.ID_USUARIO=37)
+        INNER JOIN tb_docentes on tb_docentes.ID_USER=37
+        INNER JOIN tb_rel on (tb_anuncios.GRADO_ANUNCIO=tb_rel.ID_GR OR tb_anuncios.GRADO_ANUNCIO=0) AND tb_docentes.ID_DOCENTE=tb_rel.ID_DOCENTE 
+        ORDER BY tb_anuncios.FECHA_HORA DESC;";
         $this->filtros=DB::select($sql);
 
         
