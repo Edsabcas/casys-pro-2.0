@@ -28,7 +28,7 @@
     
               <form wire:submit.prevent=''>
                 @csrf
-                <input type="hidden" value='{{$editact}}' name='editact'>
+                <input type="hidden" value='{{$edita}}' name='edita'>
                 <div class="row g-3">
                   <div class="col-sm-3">
                     <label for="exampleInputEmail1" class="form-label " style="font-size:20px">Titulo de la actividad</label>

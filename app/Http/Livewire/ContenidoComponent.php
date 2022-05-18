@@ -17,9 +17,13 @@ class ContenidoComponent extends Component
    public $prueba, $op, $mensaje, $mensaje1, $file, $date, $dia2, $message, $file2, $arch, $vid, $pdf, $formato, $tipo, $id_act,$editt;
    public $titulo, $punteo, $fecha_e, $fecha_ext, $descripcion, $act,$tema_a,$descripciont,$tema,$unidad, $temasb, $archivo, $nota, $descripciona;
 
+<<<<<<< HEAD
     public $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, $grado2, $idsecc2, $arch2,$tema2, $unidad2, $descripciont2, $nombreu,$id_tem, $edita;
 
     
+=======
+public     $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, $grado2, $idsecc2, $arch2,$tema2, $unidad2, $descripciont2, $nombreu,$id_tem, $editact;
+>>>>>>> b5a19d27b789f3a93ef60ccfcead45da12183625
 
     public function render()
     {
@@ -375,13 +379,14 @@ class ContenidoComponent extends Component
     }
 
     Public function edita($id){
-        $editact=$id;
-        $actividadesedit=DB:: select($sql, array($editact));
+        $edita=$id;
+        $sql='SELECT * FROM tb_actividades WHERE ID_ACTIVIDADES=?';
+        $actividadesedit=DB:: select($sql, array($edita));
     
         if($actividadesedit !=null){
             foreach($actividadesedit as $actu)
             {
-                $this->editact=$actu->ID_ACTIVIDADES;
+                $this->edita=$actu->ID_ACTIVIDADES;
                 $this->titulo=$actu->NOMBRE_ACTIVIDAD;
                 $this->descripcion=$actu->descripcion;
                 $this->arch=$actu->archivos;
@@ -396,7 +401,7 @@ class ContenidoComponent extends Component
 
         }
     
-        $this->op='editact';
+        $this->op='edita';
        $this->editt=1;
     }
 
