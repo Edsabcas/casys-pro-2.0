@@ -113,7 +113,9 @@
           <div class="mb-3">
             @if($tipo==1)
             <h3 class="form-label">Visualización de Imagen</h3>
-            <img src="{{$archivo_anuncio->temporaryURL()}}" height="200" weight="200"  alt="...">
+            <div class="offset-4 col-10">
+              <img src="{{$archivo_anuncio->temporaryURL()}}" height="350" weight="350" alt="...">
+            </div>
             @endif
             @if($tipo==2)
             <h3 class="form-label">Visualización de Video</h3>
