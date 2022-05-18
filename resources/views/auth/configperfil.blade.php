@@ -1,5 +1,5 @@
-<div class="card">
-  <div class="card-body">
+<div class="card row container m-50 mx-500">
+  <div class="card-body" >
     <TABLE BORDER width="600" height="300" class="table-striped">
       @foreach ($perfiles as $perfil)
         <TR ALIGN=CENTER><TH>NOMBRE</TH>
@@ -21,7 +21,7 @@
               @endphp
                   @if($foo==1)
                   @if($foto->id==auth()->user()->id)
-                  <img src="imagen/perfil/{{$foto->img_users}}" height="300" weight="100" class="card-img-top" alt="...">
+                  <img src="imagen/perfil/{{$foto->img_users}}" height="300" weight="100" alt="...">
                   @endif
                   @endif
             @endforeach      
