@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <div wire:ignore.self class="modal fade" id="edittema" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="5" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+=======
+<div wire:ignore.self class="modal fade" id="edittema" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="5" aria-labelledby="#edittema" aria-hidden="true">
+>>>>>>> 4ec6b357e4745eea94addc5b0b21ee33b66a4cdf
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header">
