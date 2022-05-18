@@ -1,5 +1,5 @@
 @foreach ($actividades as $actividad)
-<div class="card border-primary mb-3" style="max-width: 55rem;" >
+<div class="card border-primary mb-3" style="max-width: 70rem;" >
     <div class="card-body">
 
  <div class="accordion accordion-flush" id="accordion{{$actividad->ID_ACTIVIDADES}}">
@@ -47,3 +47,4 @@
 </div>
 </div>
 @endforeach
+<button class="btn btn-success" wire:click='edita({{$actividad->ID_ACTIVIDADES}})'> EDITAR </button>
