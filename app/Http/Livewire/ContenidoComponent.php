@@ -17,7 +17,7 @@ class ContenidoComponent extends Component
    public $prueba, $op, $mensaje, $mensaje1, $file, $date, $dia2, $message, $file2, $arch, $vid, $pdf, $formato, $tipo, $id_act,$editt;
    public $titulo, $punteo, $fecha_e, $fecha_ext, $descripcion, $act,$tema_a,$descripciont,$tema,$unidad, $temasb, $archivo, $nota, $descripciona;
 
-public     $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, $grado2, $idsecc2, $arch2,$tema2, $unidad2, $descripciont2, $nombreu,$id_tem;
+public     $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, $grado2, $idsecc2, $arch2,$tema2, $unidad2, $descripciont2, $nombreu,$id_tem, $editact;
 
     public function render()
     {
@@ -372,6 +372,84 @@ public     $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, 
 
     }
 
+    Public function edita($id){
+        $editact=$id;
+        $sql='SELECT * FROM tb_actividades WHERE ID_ACTIVIDADES=?';
+        $actividadesedit=DB:: select($sql, array($editact));
+    
+        if($temast !=null){
+            foreach($actividadesedit as $actu)
+            {
+                $this->id_tem=$actu->ID_TEMA;
+                $this->titulo=$actu->NOMBRE_ACTIVIDAD;
+                $this->descripcion=$actu->descripcion;
+                $this->arch=$actu->archivos;
+                $this->punteo=$actu->punteo;
+                $this->fecha_e=$actu->fecha_entr;
+                $this->fecha_ext=$actu->fecha_extr;
+                $this->unidad1=$actu->ID_MATERIA;
+                $this->grado=$actu->ID_GR;
+                $this->idsecc=$actu->ID_SC;
+                $this->unidadfija=$actu->ID_UNIDADES_FIJAS;    
+            }
+
+        }
+    
+        $this->op='editact';
+       $this->editt=1;
+    }
+
+    public function update_act(){
+        if($this->validate([
+            'tema' => 'required',
+            'descripciont' => 'required',
+    
+        ])==false){
+            $error="no encontrado";
+            session(['message'=>'no encontrado']);
+            return back()->withErrors(['error' => 'Validar el input vacio']);
+        }
+    
+        else{
+        $tema=$this->tema;
+        $descripciont=$this->descripciont;
+        $grado=$this->grado;
+        $idsecc=$this->idsecc;
+        $unidad1=$this->unidad1;
+        $unidadfija=$this->unidadfija;
+        $this->idusuario=auth()->user()->id;
+        DB::begintransaction();
+        
+    
+        $temas=DB::table('tb_temas')->insert(
+            [
+                'NOMBRE_TEMA'=>$tema,
+                'DESCRIPCION'=>$descripciont,
+                'ID_MATERIA'=>$unidad1,
+                'ID_GR'=>$grado,
+                'ID_SC'=>$idsecc,
+                'ID_UNIDADES_FIJAS'=>$unidadfija,
+                'ID'=>$this->idusuario,
+            ]);
+    
+            if($temas){
+                DB::commit();
+                unset($this->mensaje);
+                unset($this->mensaje1);
+                $this->op='addcontenidos';
+                $this->mensaje='Insertado correctamente';
+                }
+                else {
+                DB::rollback();
+                unset($this->mensaje);
+                unset($this->mensaje1);
+                $this->op='addcontenidos';
+                $this->mensaje1='Datos no  insertados correctamente';
+                }
+    }
+       
+    }
+
     public function Subir_Tema(){
         if($this->validate([
             'tema' => 'required',
@@ -424,7 +502,6 @@ public     $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, 
 
 Public function editt($id){
     $id_tem=$id;
-    $sql='SELECT * FROM tb_temas WHERE ID_TEMA=?';
     $temast=DB:: select($sql, array($id_tem));
 
     if($temast !=null){
@@ -468,7 +545,7 @@ public function update_temas(){
     DB::begintransaction();
     
 
-    $temas=DB::table('tb_temas')->insert(
+    $temas=DB::table('tb_temas')->update(
         [
             'NOMBRE_TEMA'=>$tema,
             'DESCRIPCION'=>$descripciont,

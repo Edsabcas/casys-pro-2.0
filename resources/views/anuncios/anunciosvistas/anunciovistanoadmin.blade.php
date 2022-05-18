@@ -42,7 +42,7 @@ $('#exampleModal1').modal('show');
       <br>
         <div class="shadow-lg card" style="background-color: #f4f4f4; width: 50rem">
             <br>
-            <p style="font-size:10px" class="d-grid gap-2 d-md-flex justify-content-md-end">Publicado el {{$anuncio->FECHA_HORA}}</p>
+            <p style="font-size:15px" class="d-grid gap-2 d-md-flex justify-content-md-end">Publicado el {{$anuncio->FECHA_HORA}}</p>
             <br>
             
             @php
@@ -201,7 +201,7 @@ $('#exampleModal1').modal('show');
       <br>
         <div class="shadow-lg card" style="background-color: #ec1c1c; width: 50rem">
             <br>
-            <p style="font-size:10px" class="d-grid gap-2 d-md-flex justify-content-md-end">Publicado el {{$anuncio->FECHA_HORA}}</p>
+            <p style="font-size:15px" class="d-grid gap-2 d-md-flex justify-content-md-end">Publicado el {{$anuncio->FECHA_HORA}}</p>
             <br>
             @php
                 $foo = 0;
@@ -376,7 +376,7 @@ $('#exampleModal1').modal('show');
       <br>
         <div class="shadow-lg card" style="background-color: #c4c4c4; width: 50rem">
             <br>
-            <p style="font-size:10px" class="d-grid gap-2 d-md-flex justify-content-md-end">Publicado el {{$filtro->FECHA_HORA}}</p>
+            <p style="font-size:15px" class="d-grid gap-2 d-md-flex justify-content-md-end">Publicado el {{$filtro->FECHA_HORA}}</p>
             <br>
             @php
                 $foo = 0;

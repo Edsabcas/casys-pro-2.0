@@ -14,10 +14,12 @@ class ListadeusuariosComponent extends Component
     {
         $sql='SELECT * FROM users';
         $listadousers=DB::select($sql);
+        $sql='SELECT * FROM rol_usuario';
+        $listadousers_rols=DB::select($sql);
 
         $this->op=1;
         $this->edit2=1;
-        return view('livewire.listadeusuarios-component', compact('listadousers'));
+        return view('livewire.listadeusuarios-component', compact('listadousers', 'listadousers_rols'));
     }
 
     public function cargar_datos($id_p, $name, $email, $usuario){
