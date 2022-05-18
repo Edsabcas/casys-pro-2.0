@@ -11,7 +11,7 @@ use Livewire\WithFileUploads;
 class PerfilComponent extends Component
 {
     public $id_u, $name, $usuario, $email, $password, $op, $mensaje0, $mensaje4, $mensaje12, $mensaje, $mensaje1, $us, $pass, $state,$updater;
-    public $current_password, $new_password, $new_password_confirmation,$fotos;
+    public $current_password, $new_password, $new_password_confirmation,$fotos, $mensaje24;
     
     use WithFileUploads;
 
@@ -93,15 +93,22 @@ class PerfilComponent extends Component
 
         $archivo_perfil="";
             if($this->archivo_perfil!=null){
+                DB::commit();
                 if($this->archivo_perfil->getClientOriginalExtension()=="jpg" or $this->archivo_perfil->getClientOriginalExtension()=="png" or $this->archivo_perfil->getClientOriginalExtension()=="jpeg"){
+                    DB::commit();
                     $archivo_perfil = "img".time().".".$this->archivo_perfil->getClientOriginalExtension();
                     $this->img=$archivo_perfil;
                     $this->archivo_perfil->storeAS('imagen/perfil/', $this->img,'public_up');
                     $this->tipo=1;
                 }
+                
+                $this->mensaje24='Foto de perfil actualizada';
+            
             }
             DB::beginTransaction();
-            $foto=DB::table('users')->update([
+            $foto=DB::table('users')
+            ->where('id',auth()->user()->id)
+            ->update ([
 
                 'img_users'=>$this->img
 

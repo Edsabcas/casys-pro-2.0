@@ -23,19 +23,20 @@
 
                     
                     @if ($maestro->ESTADO==1)
-                    <td>Activo</td>
+                        <td>Activo</td>
                     @else
-                    <td>Inactivo</td> 
+                        <td>Inactivo</td> 
                     @endif
-                    <td>
-                        <button class="btn btn-success" wire:click='edit({{$maestro->ID_USER}})'>Editar</button>
-                    </td>
-                    
-                    @include('Maestros.modalusuario')
+                 
+                    <span>
                         <td>
-                            <button wire:click='edit({{$maestro->ID_DOCENTE}})' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">Usuario</button>
-                        </td>   
-                      
+                            <button class="btn btn-success" wire:click='edit({{$maestro->ID_DOCENTE}})'>Editar</button>        
+                        </td>
+                        @include('Maestros.modalusuario')
+                        <td>
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal{{$maestro->ID_DOCENTE}}">Eliminar</button>
+                        </td>
+                    </span>   
                 </tr>
             @endforeach
         </tbody>

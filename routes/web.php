@@ -184,6 +184,8 @@ Route::post('/update_temas',[ContenidosController::class, 'update_temas']);
 
 Route::post('/update_act',[ContenidosController::class, 'update_act']);
 
+Route::post('/update_plan',[ContenidosController::class, 'update_plan']);
+
 
 
 
