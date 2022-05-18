@@ -14,13 +14,8 @@
       </div>
     </div>
   </div>
-<<<<<<< HEAD
-  @include('Unidades.Temas.edit')
-  <button class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#edittema">  Editar </button></div>
-=======
   
   <button class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#edittema" wire:click='editt({{$tema->ID_TEMA}})'> EDITAR </button>
->>>>>>> 4ec6b357e4745eea94addc5b0b21ee33b66a4cdf
 </div>
 </div>
 {{$op}}
