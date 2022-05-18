@@ -180,6 +180,8 @@ Route::post('/update_calendarizacion',[CalendarizacionController::class, 'update
 
 Route::get('/Primer_Unidad',[UnidadesControlador::class,'Primer_Unidad']);
 
+Route::post('/update_temas',[ContenidosController::class, 'update_calendarizacion']);
+
 
 
 //Rutas Pre-Inscribir_estudiantes
