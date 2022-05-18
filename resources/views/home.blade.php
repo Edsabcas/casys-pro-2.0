@@ -62,7 +62,10 @@
 @livewire('contenido-component')
 
 @elseif ($op=='edittemas')
-@include('Unidades.Temas.edit')
+@include('Unidades.Temas.modaltemas')
+
+@elseif ($op=='editact')
+@include('Unidades.Temas.modaltemas')
 
 @elseif ($op=='addConsultar')
 @livewire('consultarcomponent')
