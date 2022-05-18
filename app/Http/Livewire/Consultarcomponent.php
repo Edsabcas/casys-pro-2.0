@@ -33,12 +33,13 @@ public $vista2, $vista3;
         ->select('tb_asignaciones_e.ID_E', 'tb_grados.GRADO', 'tb_seccions.SECCION','tb_estudiantes.TB_INFO_NOMBRE','tb_grados.ID_GR')
         ->get();
         
-
         
 
         
+
         
-        $sql= 'SELECT ID_MATERIA , NOMBRE_MATERIA FROM tb_materias';
+        
+        $sql= 'SELECT ID_MATERIA ,TIPO_DE_MATERIA, NOMBRE_MATERIA FROM tb_materias';
         $materias=DB::select($sql);
         $sql= 'SELECT ID_GR , GRADO FROM tb_grados';
         $grados=DB::select($sql);
