@@ -117,6 +117,22 @@ public     $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, 
         ->get();
         }
 
+        $temas="";
+        if($this->unidadfija!=null){
+            $temas=DB::table('tb_temas')
+            ->join('tb_materias','tb_temas.ID_MATERIA','=','tb_materias.ID_MATERIA')
+            ->join('tb_grados', 'tb_temas.ID_GR', '=', 'tb_grados.ID_GR')
+            ->join('tb_seccions', 'tb_temas.ID_SC', '=', 'tb_seccions.ID_SC')
+            ->join('users', 'tb_temas.ID', '=', 'users.id')
+            ->join('tb_unidades_fijas', 'tb_temas.ID_UNIDADES_FIJAS', '=', 'tb_unidades_fijas.ID_UNIDADES_FIJAS')
+            ->select('tb_temas.ID_TEMA', 'tb_materias.NOMBRE_MATERIA', 'tb_grados.ID_GR', 'tb_seccions.ID_SC', 'tb_materias.ID_MATERIA', 'users.name', 'tb_temas.NOMBRE_TEMA', 'tb_unidades_fijas.ID_UNIDADES_FIJAS','tb_temas.DESCRIPCION')
+            ->where('tb_temas.ID_UNIDADES_FIJAS','=',$this->unidadfija)
+            ->where('tb_temas.ID_GR','=',$this->grado)
+            ->where('tb_temas.ID_SC','=',$this->idsecc)
+            ->where('tb_temas.ID_MATERIA','=',$this->unidad1)
+            ->get();
+        }
+
         $sql= 'SELECT * FROM tb_materias';
         $materias=DB::select($sql);
         $sql= 'SELECT * FROM tb_grados';
@@ -129,8 +145,6 @@ public     $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, 
         $estu=DB::select($sql);
         $sql= 'SELECT * FROM tb_unidades_fijas';
         $unidadesf=DB::select($sql);
-        $sql= 'SELECT * FROM tb_temas';
-        $temas=DB::select($sql);
         $sql= 'SELECT * FROM users';
         $Usuarios=DB::select($sql);
         return view('livewire.contenido-component',compact('materias','grados','secciones','uniones','unidades','maestros','actividades','asignaciones','estu','unidadesf','temas','Usuarios','PlanUnion','actividades2'));
@@ -163,6 +177,12 @@ public     $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, 
         
     }
 
+    public function vista_t($num)
+    {
+        $this->op2=$num;
+        
+    }
+
     public function paginacion($num)
     {
         if($num==1){
@@ -174,6 +194,10 @@ public     $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, 
         }
         elseif($num==3){
             $this->op2=3;
+        }
+
+        elseif($num==4){
+            $this->op2=4;
         }
 
     }
@@ -351,7 +375,6 @@ public     $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, 
     public function Subir_Tema(){
         if($this->validate([
             'tema' => 'required',
-            'unidad' => 'required',
             'descripciont' => 'required',
 
         ])==false){
@@ -364,14 +387,23 @@ public     $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, 
         $tema=$this->tema;
         $unidad=$this->unidad;
         $descripciont=$this->descripciont;
+        $grado=$this->grado;
+        $idsecc=$this->idsecc;
+        $unidad1=$this->unidad1;
+        $unidadfija=$this->unidadfija;
+        $this->idusuario=auth()->user()->id;
         DB::begintransaction();
         
 
         $temas=DB::table('tb_temas')->insert(
             [
                 'NOMBRE_TEMA'=>$tema,
-                'ID_UNIDADES'=>$unidad,
                 'DESCRIPCION'=>$descripciont,
+                'ID_MATERIA'=>$unidad1,
+                'ID_GR'=>$grado,
+                'ID_SC'=>$idsecc,
+                'ID_UNIDADES_FIJAS'=>$unidadfija,
+                'ID'=>$this->idusuario,
             ]);
 
             if($temas){
@@ -389,6 +421,28 @@ public     $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, 
                 $this->mensaje1='Datos no  insertados correctamente';
                 }
     }
+}
+
+Public function editt($id){
+    $id_tem=$id;
+    $sql='SELECT * FROM tb_calendarizacion WHERE ID_CALENDARIZACION=?';
+    $calendarizacion=DB:: select($sql, array($id_cal));
+    $sql= 'SELECT * FROM tb_unidades_fijas';
+    $unidades=DB::select($sql);
+
+    if($calendarizacion !=null){
+        foreach($calendarizacion as $calen)
+        {
+            $this->id_cal=$calen->ID_CALENDARIZACION;
+            $this->unidad=$calen->ID_UNIDADES_FIJAS;
+            $this->fecha_ini=$calen->FECHA_INICIO;
+            $this->fecha_final=$calen->FECHA_FINAL;
+
+        }
+    }
+
+    $this->op=43;
+   $this->edit=1;
 }
 
     public function Subir_Tema2(){

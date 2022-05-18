@@ -40,23 +40,7 @@
                       </div> 
                     @enderror
                   </div>
-                  <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label"> Unidad</label>
-                            <select class="form-select form-select-sm" style="border:2px solid rgba(86, 95, 76, 0.466);" aria-label=".form-select-sm example" wire:model='unidad'>
-                      <option selected>Seleccione la unidad</option>
-                      @isset($unidadesf)
-                      @foreach ($unidadesf as $unidad)
-                          <option value="{{$unidad->ID_UNIDADES_FIJAS}}">{{$unidad->NOMBRE_DE_UNIDAD}}</option>
-                      @endforeach
-                      @endisset
-                    </select>
-                    @error('unidad') 
-                    <div class="alert alert-danger d-flex align-items-center" role="alert">
-                      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
-                      <span>Pendiente de seleccionar una Unidad</span>
-                      </div> 
-                    @enderror
-                  </div>
+                  
                   
     
                 </div>
