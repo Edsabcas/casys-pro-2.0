@@ -123,7 +123,7 @@
             @endif
             @if($tipo==3)
             <h3 class="form-label">Visualización de PDF</h3>
-              <iframe width="400" height="400" src="/imagen/temporalpdf/{{$img}}" frameborder="0"></iframe>
+              <iframe width="1250" height="600" src="/imagen/temporalpdf/{{$img}}" frameborder="0"></iframe>
             @endif
           </div>
           
