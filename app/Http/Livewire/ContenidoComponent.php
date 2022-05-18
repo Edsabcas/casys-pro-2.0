@@ -417,6 +417,7 @@ public function limpiar_act(){
                 $this->fecha_e=$actu->fecha_entr;
                 $this->fecha_ext=$actu->fecha_extr;
                 $this->unidad1=$actu->ID_MATERIA;
+                $this->temasb=$actu->ID_TEMA;
                 $this->grado=$actu->ID_GR;
                 $this->idsecc=$actu->ID_SC;
                 $this->unidadfija=$actu->ID_UNIDADES_FIJAS;    

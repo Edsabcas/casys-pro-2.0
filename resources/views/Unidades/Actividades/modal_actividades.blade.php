@@ -72,6 +72,27 @@ Datos actualizados
                       </div> 
                     @enderror             
                   </div>
+                  @if($edita!=null)
+                  <div class="col-sm-3">
+                    <label for="exampleInputEmail1" class="form-label " style="font-size:20px">Fecha de entrega Anterior</label>
+                    <input type="text" class="form-control" wire:model='fecha_e'  style="border:2px solid rgba(86, 95, 76, 0.466);" placeholder="Fecha de entrega" aria-label="Fecha anterior">
+                    <label for="exampleInputEmail1" class="form-label " style="font-size:20px">Fecha de entrega</label>
+                    <input type="datetime-local" class="form-control" wire:model='fecha_e'  style="border:2px solid rgba(86, 95, 76, 0.466);" placeholder="Fecha de entrega" aria-label="Fecha de entrega">
+                    @error('fecha_e') 
+                    <div class="alert alert-danger d-flex align-items-center" role="alert">
+                      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                      <span>Pendiente de colocar una fecha de entrega</span>
+                      </div> 
+                    @enderror  
+                  </div>
+                  <div class="col-sm-3">
+                    <label for="exampleInputEmail1" class="form-label " style="font-size:20px">Fecha extraordinaria Anterior</label>
+                    <input type="text" class="form-control" wire:model='fecha_ext'  style="border:2px solid rgba(86, 95, 76, 0.466);" placeholder="Fecha de entrega" aria-label="Fecha anterior">
+
+                    <label for="exampleInputEmail1" class="form-label " style="font-size:20px">Fecha extraordinaria</label>
+                    <input type="datetime-local" class="form-control" wire:model='fecha_ext'  style="border:2px solid rgba(86, 95, 76, 0.466);" placeholder="Fecha de extraordinaria" aria-label="Fecha extraordinaria">
+                  </div> 
+                  @else
                   <div class="col-sm-3">
                     <label for="exampleInputEmail1" class="form-label " style="font-size:20px">Fecha de entrega</label>
                     <input type="datetime-local" class="form-control" wire:model='fecha_e'  style="border:2px solid rgba(86, 95, 76, 0.466);" placeholder="Fecha de entrega" aria-label="Fecha de entrega">
@@ -85,7 +106,9 @@ Datos actualizados
                   <div class="col-sm-3">
                     <label for="exampleInputEmail1" class="form-label " style="font-size:20px">Fecha extraordinaria</label>
                     <input type="datetime-local" class="form-control" wire:model='fecha_ext'  style="border:2px solid rgba(86, 95, 76, 0.466);" placeholder="Fecha de extraordinaria" aria-label="Fecha extraordinaria">
-                  </div>    
+                  </div> 
+                  @endif
+   
                 </div>
 
                 <div>
