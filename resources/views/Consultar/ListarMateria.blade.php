@@ -6,19 +6,19 @@
           </tr>
       </thead>
       <tbody>
-          @foreach ($relaciones as $relacion)
+          @foreach ($materias as $materia)
               <tr>
                 <th>
-                  <div class="accordion accordion-flush" id="accordion{{$relacion->ID_MATERIA}}">
+                  <div class="accordion accordion-flush" id="accordion{{$materia->ID_MATERIA}}">
                     <div class="accordion-item">
-                        <h2 class="accordion-header" id="flush-heading{{$relacion->ID_MATERIA}}">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{$relacion->ID_MATERIA}}" aria-expanded="false" aria-controls="flush-collapse{{$relacion->ID_MATERIA}}">
-                                {{$relacion->NOMBRE_MATERIA}} 
+                        <h2 class="accordion-header" id="flush-heading{{$materia->ID_MATERIA}}">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{$materia->ID_MATERIA}}" aria-expanded="false" aria-controls="flush-collapse{{$materia->ID_MATERIA}}">
+                                {{$materia->NOMBRE_MATERIA}} 
                             </button>
                           </h2>
-                          <div id="flush-collapse{{$relacion->ID_MATERIA}}" class="accordion-collapse collapse" aria-labelledby="flush-heading{{$relacion->ID_MATERIA}}" data-bs-parent="#accordionFlush{{$relacion->ID_MATERIA}}">
+                          <div id="flush-collapse{{$materia->ID_MATERIA}}" class="accordion-collapse collapse" aria-labelledby="flush-heading{{$materia->ID_MATERIA}}" data-bs-parent="#accordionFlush{{$materia->ID_MATERIA}}">
                         <div class="accordion-body">
-                            <strong>Tipo de materia:@if($relacion->TIPO_DE_MATERIA==1)
+                            <strong>Tipo de materia:@if($materia->TIPO_DE_MATERIA==1)
                                 Practica
                                 @else
                                     Teorica
