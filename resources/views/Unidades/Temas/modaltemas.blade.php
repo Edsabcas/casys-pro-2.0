@@ -56,11 +56,9 @@
                     @enderror
                     </div>
                     <br>
-                    @if($editt!=null)
-                     <button type='submit' class="btn btn-primary" wire:click="update_temas()">Actualizar</button>
-                    @else
+
                     <button type="submit" class="btn btn-primary" wire:click="Subir_Tema()" >Publicar</button>
-                    @endif
+                    
           </form>
            
             

@@ -45,8 +45,8 @@
       </div>
     </div>
   </div>
-  <button class="btn btn-success" wire:click='edita({{$actividad->ID_ACTIVIDADES}})'> EDITAR </button>
-</div>
+  @include('Unidades.Actividades.modaledit_act')
+  <button class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#editact">  Editar </button></div>
 </div>
 
 @endforeach

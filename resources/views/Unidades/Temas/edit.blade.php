@@ -1,8 +1,8 @@
-<div wire:ignore.self class="modal fade" id="tema" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="5" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div wire:ignore.self class="modal fade" id="edittema" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="5" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header">
-          <h2 class="modal-title">Ingrese los datos para crear un tema</h2>
+          <h2 class="modal-title">Cambie los campos que desee</h2>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button >
         </div>
 
@@ -11,14 +11,14 @@
             @if($mensaje!=null)
             
             <div class="alert alert-success" role="alert">
-                Agregado Correctamente!
+                Editado Correctamente!
               </div>
             @endif
             @endisset
             @isset($mensaje1)
               @if($mensaje1!=null)
               <div class="alert alert-success" role="alert">
-                No fue agregado Correctamente!
+                No fue Editado Correctamente!
               </div>
               @endif
             @endisset
@@ -55,7 +55,7 @@
                     @enderror
                     </div>
                     <br>
-                    <button type="submit" class="btn btn-primary">Actualizar</button>
+                    <button type="submit" class="btn btn-primary">Editar</button>
           </form>
            
             
