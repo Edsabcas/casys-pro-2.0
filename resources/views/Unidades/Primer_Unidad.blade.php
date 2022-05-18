@@ -5,7 +5,7 @@
         <p class="card-text">Maestro: {{$ID_DOCENTE}}</p>
         <td>
           @include('Unidades.Temas.modaltemas')
-          <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#tema" id=tema> Temas </button>
+          <button class="btn btn-success" wire:click='limpiar()' data-bs-toggle="modal" data-bs-target="#tema" id=tema> Temas </button>
   
             @include('Unidades.Actividades.modal_actividades')
             <button class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#staticBackdrop"> Crear Actividades </button>
