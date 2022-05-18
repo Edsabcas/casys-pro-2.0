@@ -5,11 +5,16 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use Livewire\WithFileUploads;
 
 class ListadeusuariosComponent extends Component
 {
-    public $password, $id_p, $name, $email, $usuario, $mensaje5, $mensaje6, $mensaje7, $mensaje10, $mensaje11, $n_name, $n_email, $n_user, $n_password;
+    public $password, $id_p, $name, $email, $usuario, $mensaje5, $mensaje6, $mensaje7, $mensaje10, $mensaje11, $n_name, $fotoss, $n_email, $n_user, $n_password;
     
+    use WithFileUploads;
+
+    public $imagen,$tp,$archivo_usuarios;
+
     public function render()
     {
         $sql='SELECT * FROM users';
@@ -96,5 +101,24 @@ class ListadeusuariosComponent extends Component
 
         }
     }
+
+    /*public function cambiofotousuario(){
+
+        $archivo_usuarios="";
+            if($this->archivo_usuarios!=null){
+                if($this->archivo_usuarios->getClientOriginalExtension()=="jpg" or $this->archivo_usuarios->getClientOriginalExtension()=="png" or $this->archivo_usuarios->getClientOriginalExtension()=="jpeg"){
+                    $archivo_usuarios = "img".time().".".$this->archivo_usuarios->getClientOriginalExtension();
+                    $this->imagen=$archivo_usuarios;
+                    $this->archivo_usuarios->storeAS('imagen/perfil/', $this->imagen,'public_up');
+                    $this->tp=1;
+                }
+            }
+            DB::beginTransaction();
+            $foto=DB::table('users')->update([
+
+                'img_users'=>$this->img
+
+            ]);
+    }*/
 
 }

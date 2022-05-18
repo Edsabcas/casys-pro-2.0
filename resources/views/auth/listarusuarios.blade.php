@@ -61,6 +61,7 @@
                   </div>
                 </div>
           @enderror
+          <br>
            
           <label for="usuario" class="col-sm-3 col-form-label">Usuario:</label>
           <input type="text" class="border border-gray-200 rounded-md bg-gray-200 w-full text-lg placeholder-gray-900 p-2 my-2 focus:bg-white" placeholder="usuario"
@@ -73,6 +74,7 @@
             </div>
           </div>
           @enderror
+          <br>
           
           <label for="email" class="col-sm-3 col-form-label">Email:</label>
           <input type="email" class="border border-gray-200 rounded-md bg-gray-200 w-full text-lg placeholder-gray-900 p-2 my-2 focus:bg-white" placeholder="email" 
@@ -85,6 +87,7 @@
             </div>
           </div>
           @enderror
+          <br>
           
           <label for="n_password" class="col-sm-3 col-form-label">Contraseña:</label>
           <input type="password" class="border border-gray-200 rounded-md bg-gray-200 w-full text-lg placeholder-gray-900 p-2 my-2 focus:bg-white" placeholder="Contraseña"

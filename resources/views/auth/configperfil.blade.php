@@ -1,10 +1,5 @@
-<<<<<<< HEAD
 <div class="card row">
   <div class="card-body offset-2 col-10">
-=======
-<div class="card row container m-50 mx-500">
-  <div class="card-body" >
->>>>>>> 288304826fb316066a294ae0949f989264738365
     <TABLE BORDER width="600" height="300" class="table-striped">
       @foreach ($perfiles as $perfil)
         <TR ALIGN=CENTER><TH>NOMBRE</TH>
@@ -19,7 +14,6 @@
         <TR ALIGN=CENTER><TH>FOTO DE PERFIL</TH>
           <TD>
             @foreach ($fotos as $foto)
-<<<<<<< HEAD
             @php
               $foo = 0;
               if (strpos($foto->img_users, '.jpg' ) !== false || strpos($foto->img_users, '.png' ) !== false || strpos($foto->img_users, '.jpeg' ) !== false)
@@ -31,21 +25,22 @@
                 @endif
                 @endif
           @endforeach       
-=======
-              @php
-                $foo = 0;
-                if (strpos($foto->img_users, '.jpg' ) !== false || strpos($foto->img_users, '.png' ) !== false || strpos($foto->img_users, '.jpeg' ) !== false) 
-                { $foo=1; }
-              @endphp
-                  @if($foo==1)
-                  @if($foto->id==auth()->user()->id)
-                  <img src="imagen/perfil/{{$foto->img_users}}" height="300" weight="100" alt="...">
-                  @endif
-                  @endif
-            @endforeach      
->>>>>>> 288304826fb316066a294ae0949f989264738365
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#perfilmodal2">Cambiar</button> 
+            @if($mensaje24 != null)
+            <div class="alert alert-success d-flex align-items-center" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="alert:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>{{$mensaje24}}
+            </div>
+            </div>
+         @endif
           </TD>
+          @if($mensaje24 != null)
+            <div class="alert alert-success d-flex align-items-center" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="alert:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>{{$mensaje24}}
+            </div>
+            </div>
+         @endif
         </TR>
         <TR ALIGN=CENTER><TH>EDITAR</TH>
           <TD>
@@ -78,10 +73,12 @@
             <div class="mb-3">
               @if($tipo==1)
               <h3 class="form-label">Visualización de Imagen</h3>
+              <div class="offset-4 col-10">
               <img src="{{$archivo_perfil->temporaryURL()}}" height="200" weight="200"  alt="...">
+            </div>
               @endif
             </div>  
-            <button type="submit" class="btn btn-primary" wire:click="cambiofoto()">Publicar</button>
+            <button type="submit" class="btn btn-primary" wire:click="cambiofoto()">Guardar</button>
             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
           </form>
           </div>
