@@ -43,7 +43,47 @@ $('#exampleModal1').modal('show');
         <div class="shadow-lg card" style="background-color: #f4f4f4; width: 50rem">
             <br>
             <p style="font-size:15px" class="d-grid gap-2 d-md-flex justify-content-md-end">Publicado el {{$anuncio->FECHA_HORA}}</p>
-            <br>
+        <div class="input-group mb-3">
+          @foreach($usuario_publicacion2 as $usu_publicacion2)
+          @php
+          $foo1=0;
+          if (strpos($usu_publicacion2->img_users, '.jpg' ) !== false || strpos($usu_publicacion2->img_users, '.png' ) !== false || strpos($usu_publicacion2->img_users, '.jpeg' ) !== false) 
+                 { $foo1=1; }
+          @endphp
+          @if($foo1==1 && $usu_publicacion2->id == $anuncio->ID_USUARIO)
+          <img class="rounded-circle"  src="imagen/perfil/{{$usu_publicacion2->img_users}}" width="60" height="60" alt="...">
+          @endif
+          
+          @endforeach
+         <div class="col"> 
+          @foreach($usuario_publicacion as $usu_publicacion)
+          @if($anuncio->ID_USUARIO == $usu_publicacion->id)
+          <h2 class="card-title"><strong>{{$usu_publicacion->usuario}}</strong></h2>
+          @endif
+          @endforeach
+          @foreach($rol_publicado as $rol_publi)
+          @if($anuncio->ID_USUARIO == $rol_publi->ID_USUARIO)
+          @if($rol_publi->ID_ROL==1)
+          <p class="card-text" style="font-size:15px">Superusuario</p>
+          @elseif($rol_publi->ID_ROL==2)
+          <p class="card-text" style="font-size:15px">Administrador</p>
+          @elseif($rol_publi->ID_ROL==3)
+          <p class="card-text" style="font-size:15px">Maestro(a)</p>
+          @elseif($rol_publi->ID_ROL==4)
+          <p class="card-text" style="font-size:15px">Alumno(a)</p>
+          @elseif($rol_publi->ID_ROL==5)
+          <p class="card-text" style="font-size:15px">Padre de Familia</p>
+          @elseif($rol_publi->ID_ROL==6)
+          <p class="card-text" style="font-size:15px">Secretaria</p>
+          @elseif($rol_publi->ID_ROL==7)
+          <p class="card-text" style="font-size:15px">Coordinador</p>
+          @elseif($rol_publi->ID_ROL==8)
+          <p class="card-text" style="font-size:15px">Contabilidad</p>
+          @endif
+          @endif
+          @endforeach
+        </div>
+      </div>
             
             @php
                 $foo = 0;
@@ -71,33 +111,7 @@ $('#exampleModal1').modal('show');
             @endif
             
             <div class="card-body">
-              @foreach($usuario_publicacion as $usu_publicacion)
-            @if($anuncio->ID_USUARIO == $usu_publicacion->id)
-            <h5 class="card-title">{{$usu_publicacion->usuario}}</h5>
-            @endif
-            @endforeach
-            
-            @foreach($rol_publicado as $rol_publi)
-            @if($anuncio->ID_USUARIO == $rol_publi->ID_USUARIO)
-            @if($rol_publi->ID_ROL==1)
-            <p class="card-text" style="font-size:12px">Superusuario</p>
-            @elseif($rol_publi->ID_ROL==2)
-            <p class="card-text" style="font-size:12px">Administrador</p>
-            @elseif($rol_publi->ID_ROL==3)
-            <p class="card-text" style="font-size:12px">Maestro(a)</p>
-            @elseif($rol_publi->ID_ROL==4)
-            <p class="card-text" style="font-size:12px">Alumno(a)</p>
-            @elseif($rol_publi->ID_ROL==5)
-            <p class="card-text" style="font-size:12px">Padre de Familia</p>
-            @elseif($rol_publi->ID_ROL==6)
-            <p class="card-text" style="font-size:12px">Secretaria</p>
-            @elseif($rol_publi->ID_ROL==7)
-            <p class="card-text" style="font-size:12px">Coordinador</p>
-            @elseif($rol_publi->ID_ROL==8)
-            <p class="card-text" style="font-size:12px">Contabilidad</p>
-            @endif
-            @endif
-            @endforeach
+             
               <p class="card-text">{{$anuncio->TEXTO_PUBLICACION}}</p>
               
               @if($anuncio->CALIDAD_ANUNCIO==1)
@@ -202,7 +216,47 @@ $('#exampleModal1').modal('show');
         <div class="shadow-lg card" style="background-color: #ec1c1c; width: 50rem">
             <br>
             <p style="font-size:15px" class="d-grid gap-2 d-md-flex justify-content-md-end">Publicado el {{$anuncio->FECHA_HORA}}</p>
-            <br>
+            <div class="input-group mb-3">
+              @foreach($usuario_publicacion2 as $usu_publicacion2)
+              @php
+              $foo1=0;
+              if (strpos($usu_publicacion2->img_users, '.jpg' ) !== false || strpos($usu_publicacion2->img_users, '.png' ) !== false || strpos($usu_publicacion2->img_users, '.jpeg' ) !== false) 
+                     { $foo1=1; }
+              @endphp
+              @if($foo1==1 && $usu_publicacion2->id == $anuncio->ID_USUARIO)
+              <img class="rounded-circle"  src="imagen/perfil/{{$usu_publicacion2->img_users}}" width="60" height="60" alt="...">
+              @endif
+              
+              @endforeach
+             <div class="col"> 
+              @foreach($usuario_publicacion as $usu_publicacion)
+              @if($anuncio->ID_USUARIO == $usu_publicacion->id)
+              <h2 class="card-title"><strong>{{$usu_publicacion->usuario}}</strong></h2>
+              @endif
+              @endforeach
+              @foreach($rol_publicado as $rol_publi)
+              @if($anuncio->ID_USUARIO == $rol_publi->ID_USUARIO)
+              @if($rol_publi->ID_ROL==1)
+              <p class="card-text" style="font-size:15px">Superusuario</p>
+              @elseif($rol_publi->ID_ROL==2)
+              <p class="card-text" style="font-size:15px">Administrador</p>
+              @elseif($rol_publi->ID_ROL==3)
+              <p class="card-text" style="font-size:15px">Maestro(a)</p>
+              @elseif($rol_publi->ID_ROL==4)
+              <p class="card-text" style="font-size:15px">Alumno(a)</p>
+              @elseif($rol_publi->ID_ROL==5)
+              <p class="card-text" style="font-size:15px">Padre de Familia</p>
+              @elseif($rol_publi->ID_ROL==6)
+              <p class="card-text" style="font-size:15px">Secretaria</p>
+              @elseif($rol_publi->ID_ROL==7)
+              <p class="card-text" style="font-size:15px">Coordinador</p>
+              @elseif($rol_publi->ID_ROL==8)
+              <p class="card-text" style="font-size:15px">Contabilidad</p>
+              @endif
+              @endif
+              @endforeach
+            </div>
+          </div>
             @php
                 $foo = 0;
                 $vid = 0;
@@ -229,33 +283,7 @@ $('#exampleModal1').modal('show');
             @endif
             
             <div class="card-body">
-              @foreach($usuario_publicacion as $usu_publicacion)
-              @if($anuncio->ID_USUARIO == $usu_publicacion->id)
-              <h5 class="card-title">{{$usu_publicacion->usuario}}</h5>
-              @endif
-              @endforeach
-              
-              @foreach($rol_publicado as $rol_publi)
-              @if($anuncio->ID_USUARIO == $rol_publi->ID_USUARIO)
-              @if($rol_publi->ID_ROL==1)
-              <p class="card-text" style="font-size:12px">Superusuario</p>
-              @elseif($rol_publi->ID_ROL==2)
-              <p class="card-text" style="font-size:12px">Administrador</p>
-              @elseif($rol_publi->ID_ROL==3)
-              <p class="card-text" style="font-size:12px">Maestro(a)</p>
-              @elseif($rol_publi->ID_ROL==4)
-              <p class="card-text" style="font-size:12px">Alumno(a)</p>
-              @elseif($rol_publi->ID_ROL==5)
-              <p class="card-text" style="font-size:12px">Padre de Familia</p>
-              @elseif($rol_publi->ID_ROL==6)
-              <p class="card-text" style="font-size:12px">Secretaria</p>
-              @elseif($rol_publi->ID_ROL==7)
-              <p class="card-text" style="font-size:12px">Coordinador</p>
-              @elseif($rol_publi->ID_ROL==8)
-              <p class="card-text" style="font-size:12px">Contabilidad</p>
-              @endif
-              @endif
-              @endforeach
+        
               <p class="card-text">{{$anuncio->TEXTO_PUBLICACION}}</p>
               
               
@@ -377,7 +405,47 @@ $('#exampleModal1').modal('show');
         <div class="shadow-lg card" style="background-color: #c4c4c4; width: 50rem">
             <br>
             <p style="font-size:15px" class="d-grid gap-2 d-md-flex justify-content-md-end">Publicado el {{$filtro->FECHA_HORA}}</p>
-            <br>
+        <div class="input-group mb-3">
+          @foreach($usuario_publicacion2 as $usu_publicacion2)
+          @php
+          $foo1=0;
+          if (strpos($usu_publicacion2->img_users, '.jpg' ) !== false || strpos($usu_publicacion2->img_users, '.png' ) !== false || strpos($usu_publicacion2->img_users, '.jpeg' ) !== false) 
+                 { $foo1=1; }
+          @endphp
+          @if($foo1==1 && $usu_publicacion2->id == $filtro->ID_USUARIO)
+          <img class="rounded-circle"  src="imagen/perfil/{{$usu_publicacion2->img_users}}" width="60" height="60" alt="...">
+          @endif
+          
+          @endforeach
+         <div class="col"> 
+          @foreach($usuario_publicacion as $usu_publicacion)
+          @if($filtro->ID_USUARIO == $usu_publicacion->id)
+          <h2 class="card-title"><strong>{{$usu_publicacion->usuario}}</strong></h2>
+          @endif
+          @endforeach
+          @foreach($rol_publicado as $rol_publi)
+          @if($filtro->ID_USUARIO == $rol_publi->ID_USUARIO)
+          @if($rol_publi->ID_ROL==1)
+          <p class="card-text" style="font-size:15px">Superusuario</p>
+          @elseif($rol_publi->ID_ROL==2)
+          <p class="card-text" style="font-size:15px">Administrador</p>
+          @elseif($rol_publi->ID_ROL==3)
+          <p class="card-text" style="font-size:15px">Maestro(a)</p>
+          @elseif($rol_publi->ID_ROL==4)
+          <p class="card-text" style="font-size:15px">Alumno(a)</p>
+          @elseif($rol_publi->ID_ROL==5)
+          <p class="card-text" style="font-size:15px">Padre de Familia</p>
+          @elseif($rol_publi->ID_ROL==6)
+          <p class="card-text" style="font-size:15px">Secretaria</p>
+          @elseif($rol_publi->ID_ROL==7)
+          <p class="card-text" style="font-size:15px">Coordinador</p>
+          @elseif($rol_publi->ID_ROL==8)
+          <p class="card-text" style="font-size:15px">Contabilidad</p>
+          @endif
+          @endif
+          @endforeach
+        </div>
+      </div>
             @php
                 $foo = 0;
                 $vid = 0;
@@ -404,33 +472,7 @@ $('#exampleModal1').modal('show');
             @endif
             
             <div class="card-body">
-              @foreach($usuario_publicacion as $usu_publicacion)
-              @if($filtro->ID_USUARIO == $usu_publicacion->id)
-              <h5 class="card-title">{{$usu_publicacion->usuario}}</h5>
-              @endif
-              @endforeach
               
-              @foreach($rol_publicado as $rol_publi)
-              @if($filtro->ID_USUARIO == $rol_publi->ID_USUARIO)
-              @if($rol_publi->ID_ROL==1)
-              <p class="card-text" style="font-size:12px">Superusuario</p>
-              @elseif($rol_publi->ID_ROL==2)
-              <p class="card-text" style="font-size:12px">Administrador</p>
-              @elseif($rol_publi->ID_ROL==3)
-              <p class="card-text" style="font-size:12px">Maestro(a)</p>
-              @elseif($rol_publi->ID_ROL==4)
-              <p class="card-text" style="font-size:12px">Alumno(a)</p>
-              @elseif($rol_publi->ID_ROL==5)
-              <p class="card-text" style="font-size:12px">Padre de Familia</p>
-              @elseif($rol_publi->ID_ROL==6)
-              <p class="card-text" style="font-size:12px">Secretaria</p>
-              @elseif($rol_publi->ID_ROL==7)
-              <p class="card-text" style="font-size:12px">Coordinador</p>
-              @elseif($rol_publi->ID_ROL==8)
-              <p class="card-text" style="font-size:12px">Contabilidad</p>
-              @endif
-              @endif
-              @endforeach
               <p class="card-text">{{$filtro->TEXTO_PUBLICACION}}</p>
               
               
