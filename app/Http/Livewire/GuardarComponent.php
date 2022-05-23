@@ -11,7 +11,7 @@ class GuardarComponent extends Component
     public $id_com, $op, $comentarios, $texto_comentario, $op2, $mensaje, $mensaje1, $anuncios, $id_publicacion;
     public $op3, $id_megusta, $mensaje3, $mensaje4, $valorlike, $idcomparacion, $likes3, $mensaje5, $mensaje6;
     public $idusuario, $mensaje7, $mensaje8, $ver_ocultos1, $ocultarc, $admin_rol, $usuario_id, $vistas_totales_id;
-    public $usuario_publicacion, $rol_publicado, $mensaje9, $mensaje10, $contadorlikes, $cambiolike;
+    public $usuario_publicacion, $rol_publicado, $mensaje9, $mensaje10, $contadorlikes, $cambiolike, $usuario_publicacion2;
     public function render()
     {
         $sql="SELECT * FROM tb_anuncios ORDER BY FECHA_HORA DESC";
@@ -26,6 +26,8 @@ class GuardarComponent extends Component
         $this->usuario_publicacion=DB::select($sql);
         $sql="SELECT * FROM rol_usuario";
         $this->rol_publicado=DB::select($sql);
+        $sql="SELECT * FROM users";
+        $this->usuario_publicacion2=DB::select($sql);
         $this->usuario_id=auth()->user()->id;
         $this->vistas_totales_id=5;
         return view('livewire.guardar-component', compact('guardados', 'me_gusta', 'vistoss'));

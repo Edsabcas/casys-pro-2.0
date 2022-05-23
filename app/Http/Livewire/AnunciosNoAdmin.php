@@ -10,7 +10,7 @@ class AnunciosNoAdmin extends Component
     public $id_com, $op, $comentarios, $texto_comentario, $op2, $mensaje, $mensaje1;
     public $id_megusta, $valorlike, $idusuario, $idcomparacion, $mensaje3, $mensaje4;
     public $ver_ocultos1, $ocultarc, $ver_oculto, $admin_rol, $id_publicacion, $mensaje5, $mensaje6, $usuario_id;
-    public $vistas_totales_id, $rol_activo, $grado_activo_estudiante, $mensaje9, $mensaje10;
+    public $vistas_totales_id, $rol_activo, $grado_activo_estudiante, $mensaje9, $mensaje10, $usuario_publicacion2;
     public $filtros, $filt, $cero;
     public function render()
     {
@@ -36,6 +36,8 @@ class AnunciosNoAdmin extends Component
         $this->grado_activo_estudiante=DB::select($sql);
         $sql="SELECT * FROM users";
         $this->usuario_publicacion=DB::select($sql);
+        $sql="SELECT * FROM users";
+        $this->usuario_publicacion2=DB::select($sql);
         $sql="SELECT * FROM rol_usuario";
         $this->rol_publicado=DB::select($sql);
         $sql="SELECT tb_anuncios.ID_ANUNCIOS,tb_anuncios.TEXTO_PUBLICACION, tb_anuncios.MULTIMEDIA, tb_anuncios.FECHA_HORA, tb_anuncios.TIPO_ANUNCIO, tb_anuncios.PUBLICO_ANUNCIO, 

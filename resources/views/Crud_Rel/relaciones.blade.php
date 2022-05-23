@@ -123,6 +123,6 @@ Agregado correctamente
       @if($edit!=null)
       <button type='submit' class="btn btn-primary" wire:click="update_rel()">Actualizar</button>
       @else
-      <button type='submit' class="btn btn-success" wire:click="guardar_rel()">Agregar</button>
+      <button type='submit' class="btn btn-primary" wire:click="guardar_rel()">Agregar</button>
       @endif
   </form>
