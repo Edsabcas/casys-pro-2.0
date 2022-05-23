@@ -114,26 +114,4 @@ class PerfilComponent extends Component
 
             ]);
         }
-
-
-        /*protected function rules(){
-        return [
-            'current_password' => 'required',
-            'new_password' => ['required', 'string', 'confirmed'],
-        ];
-
-       
-          // Save the New Password.
-          $user = auth::users();
-          $user->password = bcrypt($request->get('new_password'));
-          $user->save();
-           return back()->with('message', 'La contraseña fue cambiada');
-        
-
-        }
-        
-        $user = User::find(10);
-        $user->username = "new user";
-        $user->save();*/
-
 }

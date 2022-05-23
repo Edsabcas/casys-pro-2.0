@@ -28,9 +28,9 @@
 
           <td>
             @if ($listadouser->img_users=="" or $listadouser->img_users==null)
-            <img class="rounded-circle" src="img/undraw_profile_1.svg" width="60" height="60" alt="...">      
+            <img class="rounded-circle" src="img/undraw_profile_1.svg" width="20" height="20" alt="...">      
             @else
-            <img class="img-profile rounded-circle"  src="imagen/perfil/{{auth()->user()->img_users}}" />
+            <img class="img-profile rounded-circle" width="55" height="55" src="imagen/perfil/{{auth()->user()->img_users}}"  />
             @endif
           </td>
           <td> 
