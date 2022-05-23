@@ -47,8 +47,8 @@
          </div> 
          @enderror
     @if ($edit!=null)
-    <button class="btn btn-succes" wire:click="update_sec_p()">Editar</button>
+    <button class="btn btn-success" wire:click="update_sec_p()">Editar</button>
     @else
-    <button class="btn btn-success" wire:click="guardar_sec()">Agregar</button>  
+    <button class="btn btn-primary" wire:click="guardar_sec()">Agregar</button>  
     @endif
 </form>
