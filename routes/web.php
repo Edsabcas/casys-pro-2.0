@@ -62,6 +62,10 @@ Route::get('/register', [SessionController::class, 'register'])
 ->name('login.register');
 
 //Formulario de ingreso de usuario
+
+Route::get('/regusuario', [RegisterController::class, 'regusuario'])
+->name('regusuario.regusuario');
+
 Route::post('/register', [RegisterComponent::class, 'guardar'])
 ->name('login.guardar');
 
