@@ -25,6 +25,9 @@
           <br>
           @include('Unidades.modalPlanificacion')
           <button class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#plan" wire:click='editp({{$PlanUni->ID_PLAN}})'> Editar </button>
+
+          @include('Unidades.modaleliminarp')
+          <button class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#staticBackdrop{{$PlanUni->ID_PLAN}}"> Eliminar </button>
         </div>
       </div>
      @endforeach 

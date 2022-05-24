@@ -16,6 +16,9 @@
   </div>
   @include('Unidades.Temas.modaltemas')
   <button class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#tema" wire:click='editt({{$tema->ID_TEMA}})'> Editar </button>
+  
+  @include('Unidades.Temas.modaleliminar')
+  <button class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#staticBackdrop{{$tema->ID_TEMA}}"> Eliminar </button>
 </div>
 </div>
 @endforeach

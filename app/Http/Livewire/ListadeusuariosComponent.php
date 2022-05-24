@@ -15,15 +15,28 @@ class ListadeusuariosComponent extends Component
 
     public $imagen,$tp,$archivo_usuarios;
 
+    public $search;
+
     public function render()
     {
-        $sql='SELECT * FROM users';
-        $listadousers=DB::select($sql);
+        if($this->search!=null and $this->search!=""){
+            $sql="SELECT * FROM users WHERE email like '%".$this->search."%' or usuario like '%".$this->search."%'";
+            $listadousers=DB::select($sql);    
+        }
+        else{
+
+            $sql='SELECT * FROM users';
+            $listadousers=DB::select($sql);
+        }
+
         $sql='SELECT * FROM rol_usuario';
         $listadousers_rols=DB::select($sql);
 
         $this->op=1;
         $this->edit2=1;
+
+        
+
         return view('livewire.listadeusuarios-component', compact('listadousers', 'listadousers_rols'));
     }
 
@@ -101,24 +114,5 @@ class ListadeusuariosComponent extends Component
 
         }
     }
-
-    /*public function cambiofotousuario(){
-
-        $archivo_usuarios="";
-            if($this->archivo_usuarios!=null){
-                if($this->archivo_usuarios->getClientOriginalExtension()=="jpg" or $this->archivo_usuarios->getClientOriginalExtension()=="png" or $this->archivo_usuarios->getClientOriginalExtension()=="jpeg"){
-                    $archivo_usuarios = "img".time().".".$this->archivo_usuarios->getClientOriginalExtension();
-                    $this->imagen=$archivo_usuarios;
-                    $this->archivo_usuarios->storeAS('imagen/perfil/', $this->imagen,'public_up');
-                    $this->tp=1;
-                }
-            }
-            DB::beginTransaction();
-            $foto=DB::table('users')->update([
-
-                'img_users'=>$this->img
-
-            ]);
-    }*/
 
 }
