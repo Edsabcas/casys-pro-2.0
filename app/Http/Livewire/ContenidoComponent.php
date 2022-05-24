@@ -498,6 +498,32 @@ public function limpiar_act(){
     }
        
     }
+
+    Public function deleteact($id){
+        $edita=$id;
+        DB::begintransaction();
+    
+        $borraract=DB::table('tb_actividades')->where('ID_ACTIVIDADES','=', $edita)->delete();
+    
+        if($borraract){
+            DB::commit();
+            unset($this->mensaje);
+            unset($this->mensaje3);
+            unset($this->mensaje_eliminar);
+            $this->op='addcontenidos';
+            $this->mensaje_eliminar='Eliminado Correctamente';
+        }
+        else{
+            DB::rollback();
+            unset($this->mensaje1);
+            unset($this->mensaje4);
+            unset($this->mensaje_eliminar2);
+            $this->op='addcontenidos';  
+            $this->mensaje_eliminar2='No fue posible eliminarlo';
+        }
+    }
+
+
     public function Subir_Tema(){
         if($this->validate([
             'tema' => 'required',
