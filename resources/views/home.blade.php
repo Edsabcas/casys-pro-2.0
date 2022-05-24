@@ -88,6 +88,9 @@
 @elseif($op=='addanunciomaestro')
 @livewire('maestroform-component')
 
+@elseif($op=='RegistrarUsuario')
+@livewire('register-component')
+
 @endif
 @endif
 @endsection

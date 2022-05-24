@@ -20,7 +20,7 @@ class SessionController extends Controller
         return view('home', compact('op'));
     }
     
-    public function guardar(){
+    public function guardar2(){
 
         $this->validate(request(),[
             'name'=>'required',
@@ -40,19 +40,6 @@ class SessionController extends Controller
     public function register(){
         return view('auth.register');
     }
-
-    /*public function validar() {
-        $us=request('usuario');
-        $pass=request("password");
-
-        if(auth()->attempt(['usuario'=>$us,'password'=>$pass])==false){
-            session(['mensaje'=>'no logro ingresar, valida us/pass']);
-            return back()->withErrors(['Mensaje'=> 'no logro ingresar']);
-        }
-        else{
-            return view('inicio');
-        }
-    }*/
 
 
     public function destroy(){

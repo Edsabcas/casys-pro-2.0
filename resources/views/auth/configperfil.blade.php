@@ -1,5 +1,5 @@
-<div class="card row container m-50 mx-500">
-  <div class="card-body offset-2 col-10">
+<div class="card row">
+  <div class="card-body offset-4 col-10">
     <TABLE BORDER width="600" height="300" class="table-striped">
       @foreach ($perfiles as $perfil)
         <TR ALIGN=CENTER><TH>NOMBRE</TH>
@@ -21,7 +21,7 @@
               @endphp
                   @if($foo==1)
                   @if($foto->id==auth()->user()->id)
-                  <img src="imagen/perfil/{{$foto->img_users}}" height="300" weight="100" alt="...">
+                  <img src="imagen/perfil/{{$foto->img_users}}" height="150" weight="75" alt="...">
                   @endif
                   @endif
             @endforeach      
@@ -70,6 +70,13 @@
               <h3 class="form-label">Visualización de Imagen</h3>
               <img src="{{$archivo_perfil->temporaryURL()}}" height="200" weight="200"  alt="...">
               @endif
+              @if($mensaje24 != null)
+                            <div class="alert alert-success d-flex align-items-center" role="alert">
+                              <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                                  <div>{{$mensaje24}}
+                                  </div>
+                                </div>
+                              @endif
             </div>  
             <button type="submit" class="btn btn-primary" wire:click="cambiofoto()">Publicar</button>
             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
