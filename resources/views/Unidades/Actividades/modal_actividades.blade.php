@@ -1,4 +1,3 @@
-
   <div wire:ignore.self class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="5" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
@@ -162,6 +161,60 @@ Datos actualizados
                         </div> 
                       @enderror 
                     </div>
+
+                    @if($edita!=null)
+                    <div>
+                      <label for="exampleInputPassword1" class="form-label " style="font-size:20px">Archivo anterior</label>
+                    </div>
+                    <div>
+  @foreach ($actividades as $actividad)
+                      @php
+
+                      $foo = 0;
+                      $vid = 0;
+                      $pdf = 0;
+                       if (strpos($actividad->archivos, '.jpg' ) !== false || strpos($actividad->archivos, '.png' ) !== false || strpos($actividad->archivos, '.jpeg' ) !== false) 
+                       { $foo=1; }
+                       elseif(strpos($actividad->archivos, '.mp4' ) !== false || strpos($actividad->archivos, '.mpeg' ) !== false)
+                       {$vid=1;}
+                       elseif(strpos($actividad->archivos, '.pdf' ) !== false)
+                       {$pdf=1;}
+                @endphp
+                 @if($foo==1 && $edita==$actividad->ID_ACTIVIDADES)
+                 <img src="imagen/actividades/{{$actividad->archivos}}" height="500" weight="500" class="card-img-top" alt="...">
+                 @endif
+                 @if($vid==1 && $edita==$actividad->ID_ACTIVIDADES)
+                 <video height="500" weight="500" class="card-img-top" alt="..." controls>
+                   <source src="imagen/videos/{{$actividad->archivos}}"  type="video/mp4">
+                     <source src="imagen/videos/{{$actividad->archivos}}"  type="video/ogg">
+                 </video>
+                 @endif
+                 @if($pdf==1 && $edita==$actividad->ID_ACTIVIDADES)
+                 <iframe style="width: 49rem; text-align:center" width="400" height="400" src="/imagen/pdf_act/{{$actividad->archivos}}" frameborder="0"></iframe>
+                   @endif
+        @endforeach
+                    </div>
+                    <div class="col-sm-10">
+                      <label for="exampleInputPassword1" class="form-label " style="font-size:20px">Edicion de arhivo (opcional)</label>
+                      <input type="file" class="form-control " wire:model='archivo'  style="border:2px solid rgba(86, 95, 76, 0.466);" id="exampleInputPassword1">
+                       <div class="col-sm-10">
+                        @if($formato==1)
+                        <h3 class="form-label">Visualización de Imagen</h3>
+                        <img src="{{$archivo->temporaryURL()}}" height="200" weight="200"  alt="...">
+                        @endif
+                        @if($formato==2)
+                        <h3 class="form-label">Visualización de Video</h3>
+                        <video height="500" weight="500" class="card-img-top" alt="..." controls>
+                          <source src="{{$archivo->temporaryURL()}}"  type="video/mp4">
+                        </video>
+                        @endif
+                        @if($formato==3)
+                        <h3 class="form-label">Visualización de PDF</h3>
+                          <iframe width="400" height="400" src="/imagen/temporalpdf/{{$arch}}" frameborder="0"></iframe>
+                        @endif
+                       </div>
+                    </div>             
+                    @else
                     <div class="col-sm-10">
                       <label for="exampleInputPassword1" class="form-label " style="font-size:20px">Adjunte un archivo (opcional)</label>
                       <input type="file" class="form-control " wire:model='archivo'  style="border:2px solid rgba(86, 95, 76, 0.466);" id="exampleInputPassword1">
@@ -181,7 +234,8 @@ Datos actualizados
                           <iframe width="400" height="400" src="/imagen/temporalpdf/{{$arch}}" frameborder="0"></iframe>
                         @endif
                        </div>
-                    </div>
+                    </div>           
+                     @endif
                     <br>
                     
                     @if($edita!=null)
