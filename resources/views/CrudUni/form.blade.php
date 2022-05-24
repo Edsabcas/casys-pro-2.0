@@ -92,6 +92,6 @@ Agregado correctamente
       @if($edit!=null)
       <button type='submit' class="btn btn-primary" wire:click="update_uni()">Actualizar</button>
       @else
-      <button type='submit' class="btn btn-success" wire:click="guardar_unidad()">Agregar</button>
+      <button type='submit' class="btn btn-primary" wire:click="guardar_unidad()">Agregar</button>
       @endif
   </form>

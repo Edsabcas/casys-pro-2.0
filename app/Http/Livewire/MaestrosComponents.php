@@ -17,12 +17,15 @@ class MaestrosComponents extends Component{
 
     public $op,$edit,$edit1;
 
-    public $usuario,$correoed,$pass,$id_usuario,$id_usucorreo,$nomb,$apelli,$id_u;
+    public $usuario,$correoed,$pass,$id_usuario,$id_usucorreo,$nomb,$apelli,$id_u,$search;
     
     public function render(){
 
-        $sql="SELECT * FROM tb_docentes";
-        $maestros=DB::select($sql);
+        
+            $sql="SELECT * FROM tb_docentes WHERE nombre_docente like '%".$this->search."%' or apellido_docente like '%".$this->search."%'";
+            $maestros=DB::select($sql);    
+        
+
         return view('livewire.maestros-components', compact('maestros'));
     }
 

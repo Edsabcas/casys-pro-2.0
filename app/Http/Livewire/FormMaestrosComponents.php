@@ -66,6 +66,8 @@ class FormMaestrosComponents extends Component
         $opgrado=$this->op_grado;
         $this->prueba=$calidadanuncio;
         $estadoanuncio =1;
+        $maestros=3;
+        $alumnos=4;
 
 
         $archivo_anuncio="";
@@ -103,6 +105,7 @@ class FormMaestrosComponents extends Component
         
         $fechaanuncio = $this->dia2 = date("Y-m-d H:i:s");
         
+        //insertar a alumnos
         DB::beginTransaction();
 
         $anuncio=DB::table('tb_anuncios')->insert(
@@ -112,7 +115,7 @@ class FormMaestrosComponents extends Component
                 'CALIDAD_ANUNCIO'=>$calidadanuncio,
                 'FECHA_HORA'=>$fechaanuncio,
                 'TIPO_ANUNCIO'=>$this->tanuncio,
-                'PUBLICO_ANUNCIO'=>$publicoanuncio,
+                'PUBLICO_ANUNCIO'=>$alumnos,
                 'IDIOMA_MAESTRO'=>$idiomamaestro,
                 'GRADO_ANUNCIO'=>$gradoanuncio,
                 'ESTADO_ANUNCIO'=>$estadoanuncio,
@@ -133,6 +136,35 @@ class FormMaestrosComponents extends Component
                 $this->op=2;
                 $this->mensaje1='No fue insertado correctamente';
             }
+            //insertar anuncio a mestros
+            $anuncio=DB::table('tb_anuncios')->insert(
+                [
+                    'TEXTO_PUBLICACION'=>$textoanuncio,
+                    'MULTIMEDIA'=>$this->img,
+                    'CALIDAD_ANUNCIO'=>$calidadanuncio,
+                    'FECHA_HORA'=>$fechaanuncio,
+                    'TIPO_ANUNCIO'=>$this->tanuncio,
+                    'PUBLICO_ANUNCIO'=>$maestros,
+                    'IDIOMA_MAESTRO'=>$idiomamaestro,
+                    'GRADO_ANUNCIO'=>$gradoanuncio,
+                    'ESTADO_ANUNCIO'=>$estadoanuncio,
+    
+                ]
+                );
+                if($anuncio){
+                    $this->reset();
+                    
+                    DB::commit();
+                    $this->op=2;
+                    $this->mensaje='insertado correctamente';
+                   
+    
+                }
+                else{
+                    DB::rollback();
+                    $this->op=2;
+                    $this->mensaje1='No fue insertado correctamente';
+                }
         }
         
         
