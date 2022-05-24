@@ -1,3 +1,12 @@
+    <div class="input-group justify-content">
+      <div class="form-outline">
+        <input type="search" wire:model="search" id="form1" class="form-control" placeholder="Buscar:" />
+      </div>
+      <button type="button" class="btn btn-primary">
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+    <br>
 @isset($maestros)
 <div class="table-responsive">
     <table class="table table-success table-striped">
