@@ -14,7 +14,7 @@
         </button>
       </h2>
       <div id="flush-collapse{{$actividad->ID_ACTIVIDADES}}" class="accordion-collapse collapse" aria-labelledby="flush-heading{{$actividad->ID_ACTIVIDADES}}" data-bs-parent="#accordionFlush{{$actividad->ID_ACTIVIDADES}}">
-        <h6 class="accordion-body">Materia:{{$NOMBRE_MATERIA}}  <p class="card-text">Maestro: {{$ID_DOCENTE}}</p> </h6>
+        <h6 class="accordion-body">Materia:{{$NOMBRE_MATERIA}} <br> <p class="card-text">Maestro: {{$ID_DOCENTE}}</p> </h6>
         
         <div class="accordion-body">Descripcion: {{$actividad->descripcion}} <br> <br> Creado por: {{$actividad->name}}
         <br> <br>

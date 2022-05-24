@@ -625,6 +625,30 @@ public function update_temas(){
    
 }
 
+Public function deletet($id){
+    $id_tem=$id;
+    DB::begintransaction();
+
+    $temat=DB::table('tb_temas')->where('ID_TEMA','=', $id_tem)->delete();
+
+    if($temat){
+        DB::commit();
+        unset($this->mensaje);
+        unset($this->mensaje3);
+        unset($this->mensaje_eliminar);
+        $this->op='addcontenidos';
+        $this->mensaje_eliminar='Eliminado Correctamente';
+    }
+    else{
+        DB::rollback();
+        unset($this->mensaje1);
+        unset($this->mensaje4);
+        unset($this->mensaje_eliminar2);
+        $this->op='addcontenidos';  
+        $this->mensaje_eliminar2='No fue posible eliminarlo';
+    }
+}
+
     public function Subir_Tema2(){
         if($this->validate([
             'tema2' => 'required',
@@ -815,6 +839,31 @@ public function update_plan(){
             }
 }
    
+}
+
+
+Public function deletep($id){
+    $id_plan=$id;
+    DB::begintransaction();
+
+    $plan=DB::table('tb_planificacionanual')->where('ID_PLAN','=', $id_plan)->delete();
+
+    if($plan){
+        DB::commit();
+        unset($this->mensaje);
+        unset($this->mensaje3);
+        unset($this->mensaje_eliminar);
+        $this->op='addcontenidos';
+        $this->mensaje_eliminar='Eliminado Correctamente';
+    }
+    else{
+        DB::rollback();
+        unset($this->mensaje1);
+        unset($this->mensaje4);
+        unset($this->mensaje_eliminar2);
+        $this->op='addcontenidos';  
+        $this->mensaje_eliminar2='No fue posible eliminarlo';
+    }
 }
 
 public function Subir_Act2(){
