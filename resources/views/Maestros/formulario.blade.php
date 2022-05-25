@@ -211,7 +211,7 @@
         <button class="btn btn-success" wire:click="update_docentes()">Editar</button>
       
       @else
-        <button type="button" wire:click='generar_use()' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <button type="button" wire:click='generar_use()' class="btn btn-pre2" data-bs-toggle="modal" data-bs-target="#exampleModal">
           Siguiente
         </button>
       @endif
