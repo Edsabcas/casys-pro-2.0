@@ -145,7 +145,7 @@ class ContenidoComponent extends Component
         $secciones=DB::select($sql);
         $sql= 'SELECT * FROM tb_docentes';
         $maestros=DB::select($sql);
-        $sql= 'SELECT  TB_INFO_NOMBRE  FROM tb_estudiantes';
+        $sql= 'SELECT  TB_INFO_NOMBRE, id  FROM tb_estudiantes';
         $estu=DB::select($sql);
         $sql= 'SELECT * FROM tb_unidades_fijas';
         $unidadesf=DB::select($sql);
