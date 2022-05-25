@@ -60,7 +60,7 @@
           if (strpos($usu_publicacion2->img_users, '.jpg' ) !== false || strpos($usu_publicacion2->img_users, '.png' ) !== false || strpos($usu_publicacion2->img_users, '.jpeg' ) !== false) 
                  { $foo1=1; }
           @endphp
-          @if($foo1==1 && $usu_publicacion2->id == $filtro->ID_USUARIO)
+          @if($foo1==1 && $usu_publicacion2->id == $anuncio->ID_USUARIO)
           <img class="rounded-circle"  src="imagen/perfil/{{$usu_publicacion2->img_users}}" width="60" height="60" alt="...">
           @endif
           
