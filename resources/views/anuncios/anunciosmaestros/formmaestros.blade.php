@@ -86,10 +86,10 @@
             @enderror
             
             <hr>
-            <button type="submit" class="btn btn-primary" wire:click="guardaranuncio()">Publicar</button>
+            <button type="submit" class="btn btn-pre2" wire:click="guardaranuncio()">Publicar</button>
             @isset($mensaje)
             @if($mensaje!=null)
-            <a href="/vistaad" class="btn btn-primary ">Ver Publicación</a>
+            <a href="/vistaad" class="btn btn-pre2 ">Ver Publicación</a>
             @endif
             @endisset
             <br>

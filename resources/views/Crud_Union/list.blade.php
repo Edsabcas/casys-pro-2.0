@@ -24,10 +24,10 @@
                     <span>
                           
                         <td>
-                            <button class="btn btn-success" wire:click='edit({{$union->ID_ASIGNACION}})'> EDITAR </button>
+                            <button class="btn btn-editb" wire:click='edit({{$union->ID_ASIGNACION}})'> EDITAR </button>
 
                               @include('Crud_Union.modaleliminar')
-                              <button class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#staticBackdrop{{$union->ID_ASIGNACION}}"> ELIMINAR </button>
+                              <button class="btn btn-secondary" style="border-radius: 12px;" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{$union->ID_ASIGNACION}}"> ELIMINAR </button>
                           </td>
                      
                     </span>

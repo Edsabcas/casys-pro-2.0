@@ -64,10 +64,10 @@ $('#exampleModal1').modal('show');
     </div>
   </div>
   @include('Unidades.Actividades.modalconfedit')
-  <button id="Crear" class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#confirmacionedit">Editar </button>
+  <button id="Crear" class="btn btn-editb"  data-bs-toggle="modal" data-bs-target="#confirmacionedit">Editar </button>
 
   @include('Unidades.Actividades.modelimiaract')
-  <button class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#eliminaract">  Eliminar </button>
+  <button class="btn btn-secondary" style="border-radius: 12px;" data-bs-toggle="modal" data-bs-target="#eliminaract">  Eliminar </button>
 </div>
 </div>
 

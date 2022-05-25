@@ -140,7 +140,7 @@
                     <br>
                     
                     
-                    <button type="submit" class="btn btn-primary" wire:click='Subir_Act2()' >Publicar</button>
+                    <button type="submit" class="btn btn-pre2" wire:click='Subir_Act2()' >Publicar</button>
                     
                   </form>
            
