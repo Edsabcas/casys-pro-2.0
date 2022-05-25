@@ -25,7 +25,23 @@
     <!-- tutorial de jalar archivos-->
     <link href="filepond.css" rel="stylesheet" />
     <style>
-        
+              .btn-pre2 {
+          border: 0px solid #3a3e7b;
+          -webkit-border-radius: 12px;
+          border-radius: 12px;
+          color:#ffffff;
+          background: -webkit-linear-gradient(-90deg,  #3a3e7b 0,  #3a3e7b 100%);
+          background: -moz-linear-gradient(180deg,  #3a3e7b 0,  #3a3e7b 100%);
+          background: linear-gradient(180deg, r #3a3e7b 0,  #3a3e7b 100%);
+          background-position: 50% 50%;
+          -webkit-background-origin: padding-box;
+          background-origin: padding-box;
+          -webkit-background-clip: border-box;
+          background-clip: border-box;
+          -webkit-background-size: auto auto;
+          background-size: auto auto;
+        }
+
         .btn-pre:hover {
           border: 0px solid #4d57e6;
           -webkit-border-radius: 12px;
