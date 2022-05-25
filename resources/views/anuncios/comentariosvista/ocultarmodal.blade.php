@@ -11,7 +11,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-primary" wire:click="ocultar({{$comentario->ID_COMENTARIOS}})"  data-bs-dismiss="modal">Ocultar</button>
+          <button type="button" class="btn btn-pre2" wire:click="ocultar({{$comentario->ID_COMENTARIOS}})"  data-bs-dismiss="modal">Ocultar</button>
         </div>
       </div>
     </div>

@@ -208,7 +208,7 @@
       
 
       @if ($edit !=null)
-        <button class="btn btn-success" wire:click="update_docentes()">Editar</button>
+        <button class="btn btn-editb" wire:click="update_docentes()">Editar</button>
       
       @else
         <button type="button" wire:click='generar_use()' class="btn btn-pre2" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -240,7 +240,7 @@
             </form>
            </div>
           <div class="modal-footer">
-            <button class="btn btn-success" wire:click="guardar_docentes()">Guardar</button>
+            <button class="btn btn-pre2" wire:click="guardar_docentes()">Guardar</button>
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
           </div>
         </div>
@@ -271,7 +271,7 @@
             </form>
           </div>
           <div class="modal-footer">
-            <button class="btn btn-success" data-bs-dismiss="modal" wire:click="guardar_docentes()">Guardar y salir</button>
+            <button class="btn btn-pre2" data-bs-dismiss="modal" wire:click="guardar_docentes()">Guardar y salir</button>
           </div>
         </div>
       </div>

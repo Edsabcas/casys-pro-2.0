@@ -29,10 +29,10 @@
                     <span>
                           
                         <td>
-                            <button class="btn btn-success" wire:click='edit({{$grado->ID_GRADOS}})'> EDITAR </button>
+                            <button class="btn btn-editb" wire:click='edit({{$grado->ID_GRADOS}})'> EDITAR </button>
 
                               @include('Crud.modaleliminar')
-                              <button class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#staticBackdrop{{$grado->ID_GRADOS}}"> ELIMINAR </button>
+                              <button class="btn btn-secondary" style="border-radius: 12px;" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{$grado->ID_GRADOS}}"> ELIMINAR </button>
                           </td>
                      
                     </span>

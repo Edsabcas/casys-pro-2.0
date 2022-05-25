@@ -27,5 +27,5 @@
           </select>
       </div>
       <br>
-    <button type="submit" class="btn btn-info">Actualizar</button>
+    <button type="submit" class="btn btn-pre2">Actualizar</button>
   </form>   
