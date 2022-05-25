@@ -46,7 +46,9 @@
 @endif
 @endisset
 
-
+<p>
+  <h4 class="text-center">Creación del maestro</h4>
+</p>
 <form wire:submit.prevent="">
   @csrf
   <div class="container">

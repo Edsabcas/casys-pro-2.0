@@ -2,7 +2,7 @@
       <div class="form-outline">
         <input type="search" wire:model="search" id="form1" class="form-control" placeholder="Buscar:" />
       </div>
-      <button type="button" class="btn btn-primary">
+      <button type="button" class="btn btn-pre2">
         <i class="fas fa-search"></i>
       </button>
     </div>
