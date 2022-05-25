@@ -11,7 +11,7 @@ use Illuminate\Pagination\Paginator;
 
 class ListadeusuariosComponent extends Component
 {
-    public $password, $id_p, $name, $email, $usuario, $mensaje5, $mensaje6, $mensaje7, $mensaje10, $mensaje11, $n_name, $fotoss, $n_email, $n_user, $n_password;
+    public $password, $id_p, $name, $email, $usuario, $mensaje5, $mensaje6, $mensaje7, $mensaje10, $mensaje11, $n_name, $fotoss, $n_email, $n_user, $n_password, $mensaje24, $mensaje25;
     
     use WithFileUploads;
 
@@ -20,6 +20,8 @@ class ListadeusuariosComponent extends Component
     public $imagen,$tp,$archivo_usuarios;
 
     public $search;
+
+    public $img,$tipo,$archivo_perfil;
 
     public function render()
     {
@@ -130,14 +132,14 @@ class ListadeusuariosComponent extends Component
                     $this->tipo=1;
 
                     DB::beginTransaction();
-                    $foto=DB::table('users')
-                    ->where('id',auth()->user()->id)
+                    $listadousers=DB::table('users')
+                    ->where('ID_USUARIO',auth()->user()->ID_USUARIO)
                     ->update ([
                         
                         'img_users'=>$this->img
                      ]);
 
-                     if($foto){
+                     if($listadousers){
                         DB::commit();
                         $this->mensaje24="Foto de perfil actualizada";
                     }
