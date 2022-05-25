@@ -16,8 +16,6 @@ class ContenidoComponent extends Component
    public $option1,$option2,$option3,$option4,$vista,$vista2;
    public $prueba, $op, $mensaje, $mensaje1, $file, $date, $dia2, $message, $file2, $arch, $vid, $pdf, $formato, $tipo, $id_act,$editt,$editp;
    public $titulo, $punteo, $fecha_e, $fecha_ext, $descripcion, $act,$tema_a,$descripciont,$tema,$unidad, $temasb, $archivo, $nota, $descripciona;
-
-
     public $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, $grado2, $idsecc2, $arch2,$tema2, $unidad2, $descripciont2, $nombreu,$id_tem, $edita,$id_plan;
 
 
@@ -145,7 +143,7 @@ class ContenidoComponent extends Component
         $secciones=DB::select($sql);
         $sql= 'SELECT * FROM tb_docentes';
         $maestros=DB::select($sql);
-        $sql= 'SELECT  TB_INFO_NOMBRE  FROM tb_estudiantes';
+        $sql= 'SELECT  TB_INFO_NOMBRE, id  FROM tb_estudiantes';
         $estu=DB::select($sql);
         $sql= 'SELECT * FROM tb_unidades_fijas';
         $unidadesf=DB::select($sql);
@@ -718,7 +716,7 @@ Public function deletet($id){
     }
 }
 
-public function nota($ida){
+public function nota($nombre,$ida){
     $nota=$this->nota;
     $this->id_act=$ida;
     $grado=$this->grado;
@@ -729,7 +727,7 @@ public function nota($ida){
     $this->idusuario=auth()->user()->id;
     
 
-
+/*
     DB::begintransaction();
 
 
@@ -747,7 +745,7 @@ public function nota($ida){
 
         ]);
 
-
+*/
 }
 
 public function Subir_Plan(){
