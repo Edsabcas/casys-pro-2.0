@@ -64,7 +64,7 @@ class Sessionscomponent extends Component
             $ro[]=$rols->ID_ROL;
             $id_rol=$rols->ID_ROL;
         }
-        session(['ro' => $ro]);
+        session(['ro' => $ro[0]]);
         $join->on('rol.ID_ROL', '=', 'menu_rol.ID_ROL')
         ->where('menu_rol.ID_ROL', '=', intval($ro[0]));
             })
