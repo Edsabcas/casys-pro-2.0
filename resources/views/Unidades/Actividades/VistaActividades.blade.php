@@ -1,3 +1,21 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+            
+  $(document).on('click', '#Crear', function() {
+
+$('#exampleModal').modal('show');
+
+});
+
+
+
+$(document).on('click', '#val', function() {
+
+$('#exampleModal1').modal('show');
+
+});
+
+</script>
 @foreach ($actividades as $actividad)
 <div class="card border-primary mb-3" style="max-width: 70rem;" >
     <div class="card-body">
@@ -45,8 +63,8 @@
       </div>
     </div>
   </div>
-  @include('Unidades.Actividades.modal_actividades')
-  <button class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#staticBackdrop" wire:click='edita({{$actividad->ID_ACTIVIDADES}})'>  Editar </button>
+  @include('Unidades.Actividades.modalconfedit')
+  <button id="Crear" class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#confirmacionedit">Editar </button>
 
   @include('Unidades.Actividades.modelimiaract')
   <button class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#eliminaract">  Eliminar </button>

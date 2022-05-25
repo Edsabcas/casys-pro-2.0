@@ -718,10 +718,9 @@ Public function deletet($id){
     }
 }
 
-public function nota($nest,$ida){
+public function nota($ida){
     $nota=$this->nota;
     $this->id_act=$ida;
-    $this->nomb_est=$nest;
     $grado=$this->grado;
     $idsecc=$this->idsecc;
     $unidad1=$this->unidad1;
