@@ -6,12 +6,16 @@ use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use Livewire\WithFileUploads;
+use Livewire\WithPagination;
+use Illuminate\Pagination\Paginator;
 
 class ListadeusuariosComponent extends Component
 {
     public $password, $id_p, $name, $email, $usuario, $mensaje5, $mensaje6, $mensaje7, $mensaje10, $mensaje11, $n_name, $fotoss, $n_email, $n_user, $n_password;
     
     use WithFileUploads;
+
+    use WithPagination;
 
     public $imagen,$tp,$archivo_usuarios;
 
@@ -20,24 +24,24 @@ class ListadeusuariosComponent extends Component
     public function render()
     {
         if($this->search!=null and $this->search!=""){
-            $sql="SELECT * FROM users WHERE email like '%".$this->search."%' or usuario like '%".$this->search."%'";
+            $sql="SELECT rol_usuario.ID_USUARIO, users.name, users.email, users.password, users.usuario, users.img_users, rol.DESCRIPCION 
+            FROM rol_usuario inner join users on users.id = rol_usuario.ID_USUARIO inner join rol on rol.ID_ROL = rol_usuario.ID_ROL WHERE email like '%".$this->search."%' or usuario like '%".$this->search."%'";
             $listadousers=DB::select($sql);    
         }
         else{
 
-            $sql='SELECT * FROM users';
+            $sql='SELECT rol_usuario.ID_USUARIO, users.name, users.email, users.password, users.usuario, users.img_users, rol.DESCRIPCION 
+            FROM rol_usuario inner join users on users.id = rol_usuario.ID_USUARIO inner join rol on rol.ID_ROL = rol_usuario.ID_ROL';
             $listadousers=DB::select($sql);
         }
-
-        $sql='SELECT * FROM rol_usuario';
-        $listadousers_rols=DB::select($sql);
 
         $this->op=1;
         $this->edit2=1;
 
-        
+        //$listadousers = array_slice($listadousers, 10 * (4 - 1), 10);
+        //$listadousers = new Paginator($listadousers, 10, 4);
 
-        return view('livewire.listadeusuarios-component', compact('listadousers', 'listadousers_rols'));
+        return view('livewire.listadeusuarios-component', compact('listadousers'));
     }
 
     public function cargar_datos($id_p, $name, $email, $usuario){
