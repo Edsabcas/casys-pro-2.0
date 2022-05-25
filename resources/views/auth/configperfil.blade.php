@@ -94,6 +94,10 @@
     </div>
 
               <div wire:ignore.self class="modal fade" id="perfilmodal" tabindex="-1" aria-labelledby="perfilmodalLabel" aria-hidden="true">
+                <head>
+                  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                    <script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>
+                </head>
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -104,8 +108,10 @@
                       <form wire:submit.prevent='' class="form-horizontal">
                         <div class="form-group row">
                           <label for="current_password" class="col-sm-3 col-form-label">Contraseña actual:</label>
+                           <input type="password"  class="form-control" id="password" name="password" placeholder="Contraseña">  
                           <div class="col-sm-9">
-                              <input wire:model="current_password" type="password" class="form-control"  id="current_password" >
+                              <input style="margin-left:20px;" type="checkbox" id="mostrar_contrasena" title="clic para mostrar contraseña"/>
+                              &nbsp;&nbsp;
                               @error('current_password')
                               <div class="alert alert-danger d-flex align-items-center" role="alert">
                                 <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
@@ -127,6 +133,8 @@
                               <label for="new_password" class="col-sm-3 col-form-label">Contraseña nueva:</label>
                               <div class="col-sm-9">
                                   <input wire:model="new_password" type="password" class="form-control"  id="new_password" >
+                                  <input style="margin-left:20px;" type="checkbox" id="mostrar_contrasena" title="clic para mostrar contraseña"/>
+                              &nbsp;&nbsp;
                                   @error('new_password')
                                   <div class="alert alert-danger d-flex align-items-center" role="alert">
                                     <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
@@ -148,6 +156,10 @@
                             <label for="new_password_confirmation" class="col-sm-3 col-form-label">Confirmar la contraseña nueva:</label>
                             <div class="col-sm-9">
                                 <input wire:model="new_password_confirmation" type="password" class="form-control"  id="new_password_confirmation" >
+                                <div style="margin-top:15px;">
+                                  <input style="margin-left:20px;" type="checkbox" id="mostrar_contrasena" title="clic para mostrar contraseña"/>
+                                  
+                                  &nbsp;&nbsp;Mostrar Contraseña</div>
                                 @error('new_password_confirmation')
                                 <div class="alert alert-danger d-flex align-items-center" role="alert">
                                   <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
@@ -171,6 +183,41 @@
                               @endif
                         </div>
                       </form>
+                      <script>
+                        $(document).ready(function () {
+                          $('#mostrar_contrasena').click(function () {
+                            if ($('#mostrar_contrasena').is(':checked')) {
+                              $('#password').attr('type', 'text');
+                            } else {
+                              $('#password').attr('type', 'password');
+                            }
+                          });
+                        });
+                        </script>
+
+                        <script>
+                          $(document).ready(function () {
+                            $('#mostrar_contrasena').click(function () {
+                              if ($('#mostrar_contrasena').is(':checked')) {
+                                $('#password').attr('type', 'text');
+                              } else {
+                                $('#password').attr('type', 'password');
+                              }
+                            });
+                          });
+                          </script>
+
+                          <script>
+                            $(document).ready(function () {
+                              $('#mostrar_contrasena').click(function () {
+                                if ($('#mostrar_contrasena').is(':checked')) {
+                                  $('#password').attr('type', 'text');
+                                } else {
+                                  $('#password').attr('type', 'password');
+                                }
+                              });
+                            });
+                            </script>
                     </div>
                     <div class="modal-footer">
                     </div>
