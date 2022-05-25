@@ -32,8 +32,8 @@
 
 @isset($asignacion)
 
-  <div class="table-responsive">
-    <table class="table table-success table-striped">
+<div class="table-responsive">
+  <table class="table table-success table-striped table-bordered">
       <thead>
         <tr>
           <th>ID</th>
