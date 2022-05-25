@@ -1,3 +1,4 @@
+
 <div>
   <div class="input-group justify-content-center">
     <div class="form-outline">
@@ -50,7 +51,11 @@
             @endif           
             </td>
             <td> 
+<<<<<<< HEAD
               <button type="button"  class="btn btn-pre2 btn-block" wire:click="cargar_datos('{{$listadouser->ID_USUARIO}}', '{{$listadouser->name}}', '{{$listadouser->email}}', '{{$listadouser->usuario}}','{{$listadouser->DESCRIPCION}}')" class="btn btn-pre2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+=======
+              <button type="button"  class="btn btn-primary btn-block" wire:click="cargar_datos('{{$listadouser->ID_USUARIO}}', '{{$listadouser->name}}', '{{$listadouser->email}}', '{{$listadouser->usuario}}','{{$listadouser->DESCRIPCION}}')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+>>>>>>> 28116c9c3b169b153416423559697d127e655a69
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                   <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                   <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
@@ -108,6 +113,10 @@
     </div>
 
 <div wire:ignore.self class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>
+  </head>
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -157,9 +166,13 @@
           @enderror
           <br>
           
-          <label for="n_password" class="col-sm-3 col-form-label">Contraseña:</label>
-          <input type="password" class="border border-gray-200 rounded-md bg-gray-200 w-full text-lg placeholder-gray-900 p-2 my-2 focus:bg-white" placeholder="Contraseña"
-          id="n_password" wire:model="n_password">
+          <label for="password" class="col-sm-3 col-form-label">Contraseña:</label>
+          <input type="password" class="border border-gray-200 rounded-md bg-gray-200 w-full text-lg placeholder-gray-900 p-2 my-2 focus:bg-white" id="password" name="password" placeholder="Contraseña">  
+
+          <div style="margin-top:15px;">
+            <input style="margin-left:20px;" type="checkbox" id="mostrar_contrasena" title="clic para mostrar contraseña"/>
+            
+            &nbsp;&nbsp;Mostrar Contraseña</div>
           @error('n_password')
           <div class="alert alert-danger d-flex align-items-center" role="alert">
             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
@@ -190,8 +203,19 @@
             </div>
             </div>
           @endif
+          </form>
+          <script>
+            $(document).ready(function () {
+              $('#mostrar_contrasena').click(function () {
+                if ($('#mostrar_contrasena').is(':checked')) {
+                  $('#password').attr('type', 'text');
+                } else {
+                  $('#password').attr('type', 'password');
+                }
+              });
+            });
+            </script> 
       </div>
     </div>
   </div>
 </div>
-
