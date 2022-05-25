@@ -1,3 +1,4 @@
+
 <div>
   <div class="input-group justify-content-center">
     <div class="form-outline">
@@ -108,6 +109,10 @@
     </div>
 
 <div wire:ignore.self class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>
+  </head>
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -157,9 +162,13 @@
           @enderror
           <br>
           
-          <label for="n_password" class="col-sm-3 col-form-label">Contraseña:</label>
-          <input type="password" class="border border-gray-200 rounded-md bg-gray-200 w-full text-lg placeholder-gray-900 p-2 my-2 focus:bg-white" placeholder="Contraseña"
-          id="n_password" wire:model="n_password">
+          <label for="password" class="col-sm-3 col-form-label">Contraseña:</label>
+          <input type="password" class="border border-gray-200 rounded-md bg-gray-200 w-full text-lg placeholder-gray-900 p-2 my-2 focus:bg-white" id="password" name="password" placeholder="Contraseña">  
+
+          <div style="margin-top:15px;">
+            <input style="margin-left:20px;" type="checkbox" id="mostrar_contrasena" title="clic para mostrar contraseña"/>
+            
+            &nbsp;&nbsp;Mostrar Contraseña</div>
           @error('n_password')
           <div class="alert alert-danger d-flex align-items-center" role="alert">
             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
@@ -190,8 +199,19 @@
             </div>
             </div>
           @endif
+          </form>
+          <script>
+            $(document).ready(function () {
+              $('#mostrar_contrasena').click(function () {
+                if ($('#mostrar_contrasena').is(':checked')) {
+                  $('#password').attr('type', 'text');
+                } else {
+                  $('#password').attr('type', 'password');
+                }
+              });
+            });
+            </script> 
       </div>
     </div>
   </div>
 </div>
-
