@@ -122,6 +122,6 @@ Agregado correctamente
         @enderror
       </div>
 
-      <button type="submit" class="btn btn-primary">Actualizar</button>
+      <button type="submit" class="btn btn-pre2">Actualizar</button>
 
   </form>

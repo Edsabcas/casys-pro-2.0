@@ -87,8 +87,8 @@ Agregado correctamente
        </div>
       
       @if($edit!=null)
-      <button type='submit' class="btn btn-primary" wire:click="update_calendarizacion()">Actualizar</button>
+      <button type='submit' class="btn btn-pre2" wire:click="update_calendarizacion()">Actualizar</button>
       @else
-      <button type='submit' class="btn btn-success" wire:click="guardar_calendarizacion()">Agregar</button>
+      <button type='submit' class="btn btn-pre2" wire:click="guardar_calendarizacion()">Agregar</button>
       @endif
   </form>

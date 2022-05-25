@@ -121,8 +121,8 @@ Agregado correctamente
       </div>
 
       @if($edit!=null)
-      <button type='submit' class="btn btn-primary" wire:click="update_rel()">Actualizar</button>
+      <button type='submit' class="btn btn-pre2" wire:click="update_rel()">Actualizar</button>
       @else
-      <button type='submit' class="btn btn-primary" wire:click="guardar_rel()">Agregar</button>
+      <button type='submit' class="btn btn-pre2" wire:click="guardar_rel()">Agregar</button>
       @endif
   </form>

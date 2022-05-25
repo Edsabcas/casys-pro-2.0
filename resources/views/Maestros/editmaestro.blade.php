@@ -55,5 +55,5 @@
       </select>
     </div>
   
-    <button type="submit" class="btn btn-dark">AGREGAR</button>
+    <button type="submit" class="btn btn-pre2">AGREGAR</button>
   </form>

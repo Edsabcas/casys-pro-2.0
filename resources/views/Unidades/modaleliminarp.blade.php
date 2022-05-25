@@ -10,7 +10,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-primary" wire:click='deletep({{$PlanUni->ID_PLAN}})' data-bs-dismiss="modal">Eliminar</button>
+          <button type="button" class="btn btn-pre2" wire:click='deletep({{$PlanUni->ID_PLAN}})' data-bs-dismiss="modal">Eliminar</button>
         </div>
       </div>
     </div>

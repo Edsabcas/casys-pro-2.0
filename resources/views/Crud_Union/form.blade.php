@@ -97,8 +97,8 @@ Agregado correctamente
           @enderror
       </div>
       @if($edit!=null)
-      <button type='submit' class="btn btn-primary" wire:click="update_union()">Actualizar</button>
+      <button type='submit' class="btn btn-pre2" wire:click="update_union()">Actualizar</button>
       @else
-      <button type='submit' class="btn btn-success" wire:click="guardar_union()">Agregar</button>
+      <button type='submit' class="btn btn-pre2" wire:click="guardar_union()">Agregar</button>
       @endif
   </form>

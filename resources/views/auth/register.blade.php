@@ -52,7 +52,7 @@
     wire:model="password_confirmation">
 
     <hr>
-    <button wire:click="guardar" class="btn btn-primary btn-user btn-block">
+    <button wire:click="guardar" class="btn btn-pre2 btn-user btn-block">
         Registrar
     </button>
     </div>
