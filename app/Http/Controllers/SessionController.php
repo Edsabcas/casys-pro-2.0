@@ -17,7 +17,8 @@ class SessionController extends Controller
     }
     public function inicio(){
         $op=0;
-        return view('home', compact('op'));
+        $rol=session('ro');
+        return view('home', compact('op','rol'));
     }
     
     public function guardar2(){

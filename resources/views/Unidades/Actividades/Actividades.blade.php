@@ -39,13 +39,15 @@ function mover(event, to) {
      
       <tbody>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
         @foreach($estu as $est)
+       
         <tr>
           
           <th>{{$est->TB_INFO_NOMBRE}}</th> 
           @foreach($actividades as $activi)
           <div class="md-form w-30">
-          <th><input type="text" class="input" id="exampleForm{{$est->TB_INFO_NOMBRE}}{{$activi->ID_ACTIVIDADES}}" wire:model='nota{{$est->TB_INFO_NOMBRE}}{{$activi->ID_ACTIVIDADES}}'  wire:click='nota("{{$est->TB_INFO_NOMBRE}},{{$activi->ID_ACTIVIDADES}}")' placeholder="nota" autocomplete="off" tabindex="10"></th>
+          <th><input type="text" class="input" id="exampleForm{{$est->TB_INFO_NOMBRE}}{{$activi->ID_ACTIVIDADES}}"  wire:model="nota.{{$est->TB_INFO_NOMBRE}}{{$activi->ID_ACTIVIDADES}}" value="{{$activi->ID_ACTIVIDADES}}" wire:click='nota("{{$activi->ID_ACTIVIDADES}}","{{$est->TB_INFO_NOMBRE}}")' placeholder="nota" autocomplete="off" tabindex="10"></th>
           @endforeach
           </div>
           

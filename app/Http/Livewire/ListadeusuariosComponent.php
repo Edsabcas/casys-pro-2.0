@@ -11,7 +11,7 @@ use Illuminate\Pagination\Paginator;
 
 class ListadeusuariosComponent extends Component
 {
-    public $password, $id_p, $name, $email, $usuario, $mensaje5, $mensaje6, $mensaje7, $mensaje10, $mensaje11, $n_name, $fotoss, $n_email, $n_user, $n_password;
+    public $password, $id_p, $name, $email, $usuario, $mensaje5, $mensaje6, $mensaje7, $mensaje10, $mensaje11, $n_name, $fotoss, $n_email, $n_user, $n_password, $mensaje24, $mensaje25;
     
     use WithFileUploads;
 
@@ -20,6 +20,8 @@ class ListadeusuariosComponent extends Component
     public $imagen,$tp,$archivo_usuarios;
 
     public $search;
+
+    public $img,$tipo,$archivo_perfil;
 
     public function render()
     {
@@ -118,5 +120,38 @@ class ListadeusuariosComponent extends Component
 
         }
     }
+
+    public function cambiofotolist(){
+
+        $archivo_perfil="";
+            if($this->archivo_perfil!=null){
+                if($this->archivo_perfil->getClientOriginalExtension()=="jpg" or $this->archivo_perfil->getClientOriginalExtension()=="png" or $this->archivo_perfil->getClientOriginalExtension()=="jpeg"){
+                    $archivo_perfil = "img".time().".".$this->archivo_perfil->getClientOriginalExtension();
+                    $this->img=$archivo_perfil;
+                    $this->archivo_perfil->storeAS('imagen/perfil/', $this->img,'public_up');
+                    $this->tipo=1;
+
+                    DB::beginTransaction();
+                    $listadousers=DB::table('users')
+                    ->where('ID_USUARIO',auth()->user()->ID_USUARIO)
+                    ->update ([
+                        
+                        'img_users'=>$this->img
+                     ]);
+
+                     if($listadousers){
+                        DB::commit();
+                        $this->mensaje24="Foto de perfil actualizada";
+                    }
+                    else{
+                        DB::rollback();
+                        $this->mensaje25="No se logró actualizar";
+                    }
+                }
+            
+            }
+            
+            
+        }
 
 }
