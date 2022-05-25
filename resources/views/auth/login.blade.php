@@ -58,7 +58,7 @@
         
             <div>
             <button type="submit" class="rounded-md bg-indigo-500 w-full text-lg
-            text-white font-semibold p-2 my-3 hover:bg-indigo-600"  >Ingresar</button>
+            text-white font-semibold p-2 my-3 hover:bg-indigo-600">Ingresar</button>
           </div>
         
         
