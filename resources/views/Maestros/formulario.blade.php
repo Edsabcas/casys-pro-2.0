@@ -216,42 +216,12 @@
         </button>
       @endif
     <!-- Modal -->
-    <div wire:ignore.self class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">Creación de Usuario</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <form>
-              <div class="mb-3">
-                <label for="recipient-name" class="col-form-label">Usuario:</label>
-                <input type="text" class="form-control" wire:model='usuario' id="recipient-name">
-              </div>
-              <div class="mb-3">
-                <label for="recipient-name" class="col-form-label">Correo:</label>
-                <input type="text" class="form-control" wire:model='correoed' id="recipient-name">
-              </div>
-              <div class="mb-3">
-                <label for="recipient-name" class="col-form-label">Contraseña:</label>
-                <input type="password" class="form-control" wire:model='pass' id="recipient-name">
-              </div>
-            </form>
-           </div>
-          <div class="modal-footer">
-            <button class="btn btn-success" wire:click="guardar_docentes()">Guardar</button>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <div wire:ignore.self class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Título del modal</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Datos del usuario</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
