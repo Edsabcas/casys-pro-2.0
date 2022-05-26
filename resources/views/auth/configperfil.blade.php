@@ -108,19 +108,10 @@
                       <form wire:submit.prevent='' class="form-horizontal">
                         <div class="form-group row">
                           <label for="current_password" class="col-sm-3 col-form-label">Contraseña actual:</label> 
-                          <div class="col-sm-9">
-<<<<<<< HEAD
-                              <input wire:model="current_password" type="password" class="form-control"  id="current_password" >
-                              <div>
-                                <div style="margin-top:15px;">
-                                    <input style="margin-left:20px;" type="checkbox" id="current_password" title="clic para mostrar contraseña"/>
-                                    &nbsp;&nbsp;Mostrar Contraseña</div>
-                                </div>
-=======
+                          <div class="col-sm-9">            
                             <input wire:model="current_password" type="password"  class="form-control" id="password" name="password" placeholder="Contraseña"> 
                               <input style="margin-left:20px;" type="checkbox" id="mostrar_contrasena" title="clic para mostrar contraseña"/>
                               &nbsp;&nbsp;
->>>>>>> d6a73dff8685a2c7c0fcc934ec55b4040ce3e0b0
                               @error('current_password')
                               <div class="alert alert-danger d-flex align-items-center" role="alert">
                                 <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
@@ -141,18 +132,9 @@
                           <div class="form-group row">
                               <label for="new_password" class="col-sm-3 col-form-label">Contraseña nueva:</label>
                               <div class="col-sm-9">
-<<<<<<< HEAD
-                                  <input wire:model="new_password" type="password" class="form-control"  id="new_password" >
-                                  <div>
-                                    <div style="margin-top:15px;">
-                                        <input style="margin-left:20px;" type="checkbox" id="new_password" title="clic para mostrar contraseña"/>
-                                        &nbsp;&nbsp;Mostrar Contraseña</div>
-                                    </div>
-=======
                                 <input wire:model="new_password" type="password"  class="form-control" id="passwordd" name="passwordd" placeholder="Contraseña"> 
                                 <input style="margin-left:20px;" type="checkbox" id="mostrar_contrasenaa" title="clic para mostrar contraseña"/>
                                 &nbsp;&nbsp;
->>>>>>> d6a73dff8685a2c7c0fcc934ec55b4040ce3e0b0
                                   @error('new_password')
                                   <div class="alert alert-danger d-flex align-items-center" role="alert">
                                     <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
@@ -173,18 +155,9 @@
                           <div class="form-group row">
                             <label for="new_password_confirmation" class="col-sm-3 col-form-label">Confirmar la contraseña nueva:</label>
                             <div class="col-sm-9">
-<<<<<<< HEAD
-                                <input wire:model="new_password_confirmation" type="password" class="form-control"  id="new_password_confirmation" >
-                                <div>
-                                  <div style="margin-top:15px;">
-                                      <input style="margin-left:20px;" type="checkbox" id="new_password_confirmation" title="clic para mostrar contraseña"/>
-                                      &nbsp;&nbsp;Mostrar Contraseña</div>
-                                  </div>
-=======
                               <input wire:model="new_password_confirmation" type="password"  class="form-control" id="ppassword" name="ppassword" placeholder="Contraseña"> 
                               <input style="margin-left:20px;" type="checkbox" id="mmostrar_contrasena" title="clic para mostrar contraseña"/>
                               &nbsp;&nbsp;
->>>>>>> d6a73dff8685a2c7c0fcc934ec55b4040ce3e0b0
                                 @error('new_password_confirmation')
                                 <div class="alert alert-danger d-flex align-items-center" role="alert">
                                   <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
@@ -208,9 +181,6 @@
                               @endif
                         </div>
                       </form>
-<<<<<<< HEAD
-                      
-=======
                       <script>
                         $(document).ready(function () {
                           $('#mostrar_contrasena').click(function () {
@@ -246,7 +216,6 @@
                               });
                             });
                             </script>
->>>>>>> d6a73dff8685a2c7c0fcc934ec55b4040ce3e0b0
                     </div>
                     <div class="modal-footer">
                     </div>

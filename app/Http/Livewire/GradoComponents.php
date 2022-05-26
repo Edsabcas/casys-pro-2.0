@@ -240,13 +240,13 @@ class GradoComponents extends Component
                     $this->reset();
                     unset($this->mensaje7);
                     $this->op=2;
-                    $this->mensaje2='Insertado correctamente';
+                    $this->mensaje7='Insertado correctamente';
                 }
                 else{
                     DB::rollback();
                     unset($this->mensaje8);
                     $this->op=2;
-                    $this->mensaje3='No fue posible insertar correctamente';
+                    $this->mensaje8='No fue posible insertar correctamente';
                 }
             }
         }
@@ -271,7 +271,7 @@ class GradoComponents extends Component
     
             $tipojornada=DB::table('tb_jornada')->insert(
                 [
-                    'TIPO_JORNADA '=> $nombre_jornada,
+                    'TIPO_JORNADA'=> $nombre_jornada,
                     'ESTADO'=> $estado_jornada,
                 ]);
                 if($tipojornada){
@@ -279,13 +279,13 @@ class GradoComponents extends Component
                     $this->reset();
                     unset($this->mensaje9);
                     $this->op=2;
-                    $this->mensaje2='Insertado correctamente';
+                    $this->mensaje9='Insertado correctamente';
                 }
                 else{
                     DB::rollback();
                     unset($this->mensaje10);
                     $this->op=2;
-                    $this->mensaje3='No fue posible insertar correctamente';
+                    $this->mensaje10='No fue posible insertar correctamente';
                 }
             }
         }

@@ -13,6 +13,9 @@
   @endif
 @endisset
 
+<p>
+  <h4 class="text-center">Crear Grado</h4>
+</p>
 <form row g-3 wire:submit.prevent="">
   @csrf
   <div class="container">
@@ -68,19 +71,19 @@
               <h5 class="modal-title" id="seccionLabel">Creación de Sección</h5>
             </div>
             @isset($mensaje5)
-  @if ($mensaje5!=null)
-    <div class="alert alert-success" role="alert">
-      Agregado Correctamente!
-    </div>
-  @endif
-@endisset
-@isset($mensaje6)
-  @if($mensaje6!=null)
-    <div class="alert alert-danger" role="alert">
-       No se logro insetar sección
-    </div>
-  @endif
-@endisset
+                @if ($mensaje5!=null)
+                  <div class="alert alert-success" role="alert">
+                    Agregado Correctamente!
+                  </div>
+                @endif
+              @endisset
+              @isset($mensaje6)
+                @if($mensaje6!=null)
+                  <div class="alert alert-danger" role="alert">
+                    No se logro insetar sección
+                  </div>
+                @endif
+              @endisset
             <div class="modal-body">
                 <div class="mb-3">
                     <label for="floatingInput">Ingresar Sección:</label>
@@ -162,19 +165,19 @@
         
   <div class="container"> 
     <div class="row">  
-        <div class="col">
-          
-            <label for="floatingInput">Nivel Académico:</label>
+        <div class="col">          
+          <label for="floatingInput">Nivel Académico:</label>
             <div class="input-group">
               <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#nivelacademico" type="button"><img src="https://img.icons8.com/material-two-tone/24/000000/add.png"/></button>    
-            <select class="form-select" aria-label="Default select example" wire:model="academico_gr">
-              <option selected>Seleccionar:</option>
-            @isset($academico)
-            @foreach ($academico as $aca)
-              <option value="{{$aca->ID_NVL}}">{{$aca->NIVEL_ACADEMICO}}</option>
-            @endforeach              
-          @endisset
-            </select>
+                <select class="form-select" aria-label="Default select example" wire:model="academico_gr">
+                    <option selected>Seleccionar:</option>
+                  @isset($academico)
+                    @foreach ($academico as $aca)
+                      <option value="{{$aca->ID_NVL}}">{{$aca->NIVEL_ACADEMICO}}</option>
+                    @endforeach              
+                  @endisset
+                </select>
+            </div>
         </div>
           @error('academico_gr') 
             <div class="alert alert-danger d-flex align-items-center" role="alert">
@@ -194,19 +197,19 @@
         <h5 class="modal-title" id="nivelacademicoLabel">Agregar nivel academico</h5>
       </div>
       @isset($mensaje7)
-@if ($mensaje7!=null)
-<div class="alert alert-success" role="alert">
-Agregado Correctamente!
-</div>
-@endif
-@endisset
-@isset($mensaje8)
-@if($mensaje8!=null)
-<div class="alert alert-danger" role="alert">
- No se logro insetar sección
-</div>
-@endif
-@endisset
+        @if ($mensaje7!=null)
+        <div class="alert alert-success" role="alert">
+        Agregado Correctamente!
+        </div>
+        @endif
+        @endisset
+        @isset($mensaje8)
+        @if($mensaje8!=null)
+        <div class="alert alert-danger" role="alert">
+        No se logro insetar sección
+        </div>
+        @endif
+      @endisset
       <div class="modal-body">
           <div class="mb-3">
               <label for="floatingInput">Ingresar Nivel Académico:</label>
