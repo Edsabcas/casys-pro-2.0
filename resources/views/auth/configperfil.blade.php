@@ -107,9 +107,9 @@
                     <div class="modal-body">
                       <form wire:submit.prevent='' class="form-horizontal">
                         <div class="form-group row">
-                          <label for="current_password" class="col-sm-3 col-form-label">Contraseña actual:</label>
-                           <input type="password"  class="form-control" id="password" name="password" placeholder="Contraseña">  
+                          <label for="current_password" class="col-sm-3 col-form-label">Contraseña actual:</label> 
                           <div class="col-sm-9">
+                            <input wire:model="current_password" type="password"  class="form-control" id="password" name="password" placeholder="Contraseña"> 
                               <input style="margin-left:20px;" type="checkbox" id="mostrar_contrasena" title="clic para mostrar contraseña"/>
                               &nbsp;&nbsp;
                               @error('current_password')
@@ -132,9 +132,9 @@
                           <div class="form-group row">
                               <label for="new_password" class="col-sm-3 col-form-label">Contraseña nueva:</label>
                               <div class="col-sm-9">
-                                  <input wire:model="new_password" type="password" class="form-control"  id="new_password" >
-                                  <input style="margin-left:20px;" type="checkbox" id="mostrar_contrasena" title="clic para mostrar contraseña"/>
-                              &nbsp;&nbsp;
+                                <input wire:model="new_password" type="password"  class="form-control" id="passwordd" name="passwordd" placeholder="Contraseña"> 
+                                <input style="margin-left:20px;" type="checkbox" id="mostrar_contrasenaa" title="clic para mostrar contraseña"/>
+                                &nbsp;&nbsp;
                                   @error('new_password')
                                   <div class="alert alert-danger d-flex align-items-center" role="alert">
                                     <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
@@ -155,11 +155,9 @@
                           <div class="form-group row">
                             <label for="new_password_confirmation" class="col-sm-3 col-form-label">Confirmar la contraseña nueva:</label>
                             <div class="col-sm-9">
-                                <input wire:model="new_password_confirmation" type="password" class="form-control"  id="new_password_confirmation" >
-                                <div style="margin-top:15px;">
-                                  <input style="margin-left:20px;" type="checkbox" id="mostrar_contrasena" title="clic para mostrar contraseña"/>
-                                  
-                                  &nbsp;&nbsp;Mostrar Contraseña</div>
+                              <input wire:model="new_password_confirmation" type="password"  class="form-control" id="ppassword" name="ppassword" placeholder="Contraseña"> 
+                              <input style="margin-left:20px;" type="checkbox" id="mmostrar_contrasena" title="clic para mostrar contraseña"/>
+                              &nbsp;&nbsp;
                                 @error('new_password_confirmation')
                                 <div class="alert alert-danger d-flex align-items-center" role="alert">
                                   <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
@@ -197,11 +195,11 @@
 
                         <script>
                           $(document).ready(function () {
-                            $('#mostrar_contrasena').click(function () {
-                              if ($('#mostrar_contrasena').is(':checked')) {
-                                $('#password').attr('type', 'text');
+                            $('#mostrar_contrasenaa').click(function () {
+                              if ($('#mostrar_contrasenaa').is(':checked')) {
+                                $('#passwordd').attr('type', 'text');
                               } else {
-                                $('#password').attr('type', 'password');
+                                $('#passwordd').attr('type', 'password');
                               }
                             });
                           });
@@ -209,11 +207,11 @@
 
                           <script>
                             $(document).ready(function () {
-                              $('#mostrar_contrasena').click(function () {
-                                if ($('#mostrar_contrasena').is(':checked')) {
-                                  $('#password').attr('type', 'text');
+                              $('#mmostrar_contrasena').click(function () {
+                                if ($('#mmostrar_contrasena').is(':checked')) {
+                                  $('#ppassword').attr('type', 'text');
                                 } else {
-                                  $('#password').attr('type', 'password');
+                                  $('#ppassword').attr('type', 'password');
                                 }
                               });
                             });
