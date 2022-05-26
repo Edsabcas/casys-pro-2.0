@@ -25,8 +25,7 @@
     <!-- tutorial de jalar archivos-->
     <link href="filepond.css" rel="stylesheet" />
 
-<<<<<<< HEAD
-=======
+    <style>
         .btn-editb {
           border: 0px solid #5ab507;
           -webkit-border-radius: 12px;
@@ -76,7 +75,6 @@
         }
         </style>
       
->>>>>>> d6a73dff8685a2c7c0fcc934ec55b4040ce3e0b0
     @livewireStyles
 </head>
 
