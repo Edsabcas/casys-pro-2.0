@@ -11,7 +11,7 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
           @include('Unidades.Actividades.modal_actividades')
-          <button class="btn btn-success"  id="val" data-bs-toggle="modal" data-bs-target="#staticBackdrop"   wire:click='edita({{$actividad->ID_ACTIVIDADES}})'>  Continuar </button>
+          <button class="btn btn-editb"  id="val" data-bs-toggle="modal" data-bs-target="#staticBackdrop"   wire:click='edita({{$actividad->ID_ACTIVIDADES}})'>  Continuar </button>
         </div>
       </div>
     </div>

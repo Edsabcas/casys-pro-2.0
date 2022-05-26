@@ -1,5 +1,5 @@
 <div class="table-responsive">
-    <table class="table table-info  table-striped table-hover table-bordered">
+    <table class="table table-success table-striped table-bordered">
       <thead>
           <tr>
               <th>ID</th>
@@ -25,10 +25,10 @@
                     <span>
                           
                         <td>
-                            <button class="btn btn-success" wire:click='edit({{$calen->ID_CALENDARIZACION}})'> EDITAR </button>
+                            <button class="btn btn-editb" style="border-radius: 12px;" wire:click='edit({{$calen->ID_CALENDARIZACION}})'> EDITAR </button>
 
                               @include('CALENDARIZACION.modaleliminar')
-                              <button class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#staticBackdrop{{$calen->ID_CALENDARIZACION}}"> ELIMINAR </button>
+                              <button class="btn btn-editb" style="border-radius: 12px;" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{$calen->ID_CALENDARIZACION}}"> ELIMINAR </button>
                           </td>
                      
                     </span>

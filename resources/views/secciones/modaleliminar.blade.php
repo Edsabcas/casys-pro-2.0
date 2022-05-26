@@ -11,7 +11,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-dark" wire:click='delete({{$seccion->ID_SC}})' data-bs-dismiss="modal">Eliminar Datos</button>
+          <button type="button" class="btn btn-pre2" wire:click='delete({{$seccion->ID_SC}})' data-bs-dismiss="modal">Eliminar Datos</button>
         </div>
       </div>
     </div>

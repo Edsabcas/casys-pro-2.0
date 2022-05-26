@@ -46,7 +46,9 @@
 @endif
 @endisset
 
-
+<p>
+  <h4 class="text-center">Creación del maestro</h4>
+</p>
 <form wire:submit.prevent="">
   @csrf
   <div class="container">
@@ -208,7 +210,7 @@
       
 
       @if ($edit !=null)
-        <button class="btn btn-success" wire:click="update_docentes()">Editar</button>
+        <button class="btn btn-editb" wire:click="update_docentes()">Editar</button>
       
       @else
         <button type="button" wire:click='generar_use()' class="btn btn-pre2" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -216,6 +218,7 @@
         </button>
       @endif
     <!-- Modal -->
+
     <div wire:ignore.self class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -240,7 +243,7 @@
             </form>
            </div>
           <div class="modal-footer">
-            <button class="btn btn-success" wire:click="guardar_docentes()">Guardar</button>
+            <button class="btn btn-pre2" wire:click="guardar_docentes()">Guardar</button>
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
           </div>
         </div>
@@ -251,7 +254,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Título del modal</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Datos del usuario</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
@@ -271,7 +274,7 @@
             </form>
           </div>
           <div class="modal-footer">
-            <button class="btn btn-success" data-bs-dismiss="modal" wire:click="guardar_docentes()">Guardar y salir</button>
+            <button class="btn btn-pre2" data-bs-dismiss="modal" wire:click="guardar_docentes()">Guardar y salir</button>
           </div>
         </div>
       </div>

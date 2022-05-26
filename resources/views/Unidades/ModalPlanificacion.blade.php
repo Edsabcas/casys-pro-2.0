@@ -42,9 +42,9 @@
                     </div>
                     <br>
                     @if($editp!=null)
-                    <button type='submit' class="btn btn-primary" wire:click="update_plan()">Actualizar</button>
+                    <button type='submit' class="btn btn-pre2" wire:click="update_plan()">Actualizar</button>
                     @else
-                    <button type="submit" class="btn btn-primary" wire:click="Subir_Plan()" >Publicar</button>
+                    <button type="submit" class="btn btn-pre2" wire:click="Subir_Plan()" >Publicar</button>
                     @endif
                     
                     

@@ -42,13 +42,30 @@
           background-size: auto auto;
         }
 
+        .btn-editb {
+          border: 0px solid #5ab507;
+          -webkit-border-radius: 12px;
+          border-radius: 12px;
+          color:#ffffff;
+          background: -webkit-linear-gradient(-90deg,  #5ab507 0,  #5ab507 100%);
+          background: -moz-linear-gradient(180deg,  #5ab507 0,  #5ab507 100%);
+          background: linear-gradient(180deg, r #5ab507 0,  #5ab507 100%);
+          background-position: 50% 50%;
+          -webkit-background-origin: padding-box;
+          background-origin: padding-box;
+          -webkit-background-clip: border-box;
+          background-clip: border-box;
+          -webkit-background-size: auto auto;
+          background-size: auto auto;
+        }
+
         .btn-pre:hover {
           border: 0px solid #4d57e6;
           -webkit-border-radius: 12px;
           border-radius: 12px;
-          background: -webkit-linear-gradient(-90deg,  #626bdd 0,  #6269cc 100%);
-          background: -moz-linear-gradient(180deg,  #626bdd 0,  #6269cc 100%);
-          background: linear-gradient(180deg, r #626bdd 0,  #6269cc 100%);
+          background: -webkit-linear-gradient(-90deg,  #3a3e7b 0,  #3a3e7b 100%);
+          background: -moz-linear-gradient(180deg,  #3a3e7b 0,  #3a3e7b 100%);
+          background: linear-gradient(180deg, r #3a3e7b 0,  #3a3e7b 100%);
           background-position: 50% 50%;
           -webkit-background-origin: padding-box;
           background-origin: padding-box;
@@ -103,7 +120,7 @@
             <!-- Nav Item - Pages Collapse Menu -->
            
 
-            <ul class="navbar-nav sidebar sidebar-dark accordion fw-bold" style="background-color: #a4cb39" id="accordionSidebar">
+            <ul class="navbar-nav sticky-top sidebar sidebar-dark accordion fw-bold" style="background-color: #a4cb39" id="accordionSidebar">
                 @if(Session::get('menu_rol')!=null)
                 @foreach (Session::get('menu_rol') as $menu_rol)
                 <li class="nav-item">

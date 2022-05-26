@@ -55,14 +55,14 @@
                     @enderror
                     </div>
                     <br>
-                    <button type="submit" class="btn btn-primary">Editar</button>
+                    <button type="submit" class="btn btn-editb">Editar</button>
           </form>
            
             
             </div>        
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-secondary" Style="border-radius: 12px;" data-bs-dismiss="modal">Cerrar</button>
           </div>
       </div>
     </div>

@@ -11,7 +11,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-primary" wire:click='eliminar_cat({{$categoria->ID_CATEGORIA}})' data-bs-dismiss="modal">Eliminar</button>
+          <button type="button" class="btn btn-pre2" wire:click='eliminar_cat({{$categoria->ID_CATEGORIA}})' data-bs-dismiss="modal">Eliminar</button>
         </div>
       </div>
     </div>
