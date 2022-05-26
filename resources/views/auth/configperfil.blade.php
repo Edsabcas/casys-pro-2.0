@@ -106,6 +106,11 @@
                           <label for="current_password" class="col-sm-3 col-form-label">Contraseña actual:</label>
                           <div class="col-sm-9">
                               <input wire:model="current_password" type="password" class="form-control"  id="current_password" >
+                              <div>
+                                <div style="margin-top:15px;">
+                                    <input style="margin-left:20px;" type="checkbox" id="current_password" title="clic para mostrar contraseña"/>
+                                    &nbsp;&nbsp;Mostrar Contraseña</div>
+                                </div>
                               @error('current_password')
                               <div class="alert alert-danger d-flex align-items-center" role="alert">
                                 <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
@@ -127,6 +132,11 @@
                               <label for="new_password" class="col-sm-3 col-form-label">Contraseña nueva:</label>
                               <div class="col-sm-9">
                                   <input wire:model="new_password" type="password" class="form-control"  id="new_password" >
+                                  <div>
+                                    <div style="margin-top:15px;">
+                                        <input style="margin-left:20px;" type="checkbox" id="new_password" title="clic para mostrar contraseña"/>
+                                        &nbsp;&nbsp;Mostrar Contraseña</div>
+                                    </div>
                                   @error('new_password')
                                   <div class="alert alert-danger d-flex align-items-center" role="alert">
                                     <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
@@ -148,6 +158,11 @@
                             <label for="new_password_confirmation" class="col-sm-3 col-form-label">Confirmar la contraseña nueva:</label>
                             <div class="col-sm-9">
                                 <input wire:model="new_password_confirmation" type="password" class="form-control"  id="new_password_confirmation" >
+                                <div>
+                                  <div style="margin-top:15px;">
+                                      <input style="margin-left:20px;" type="checkbox" id="new_password_confirmation" title="clic para mostrar contraseña"/>
+                                      &nbsp;&nbsp;Mostrar Contraseña</div>
+                                  </div>
                                 @error('new_password_confirmation')
                                 <div class="alert alert-danger d-flex align-items-center" role="alert">
                                   <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
@@ -171,6 +186,7 @@
                               @endif
                         </div>
                       </form>
+                      
                     </div>
                     <div class="modal-footer">
                     </div>

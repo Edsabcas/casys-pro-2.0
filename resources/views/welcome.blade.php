@@ -24,56 +24,7 @@
 
     <!-- tutorial de jalar archivos-->
     <link href="filepond.css" rel="stylesheet" />
-    <style>
-              .btn-pre2 {
-          border: 0px solid #3a3e7b;
-          -webkit-border-radius: 12px;
-          border-radius: 12px;
-          color:#ffffff;
-          background: -webkit-linear-gradient(-90deg,  #3a3e7b 0,  #3a3e7b 100%);
-          background: -moz-linear-gradient(180deg,  #3a3e7b 0,  #3a3e7b 100%);
-          background: linear-gradient(180deg, r #3a3e7b 0,  #3a3e7b 100%);
-          background-position: 50% 50%;
-          -webkit-background-origin: padding-box;
-          background-origin: padding-box;
-          -webkit-background-clip: border-box;
-          background-clip: border-box;
-          -webkit-background-size: auto auto;
-          background-size: auto auto;
-        }
 
-        .btn-pre:hover {
-          border: 0px solid #4d57e6;
-          -webkit-border-radius: 12px;
-          border-radius: 12px;
-          background: -webkit-linear-gradient(-90deg,  #626bdd 0,  #6269cc 100%);
-          background: -moz-linear-gradient(180deg,  #626bdd 0,  #6269cc 100%);
-          background: linear-gradient(180deg, r #626bdd 0,  #6269cc 100%);
-          background-position: 50% 50%;
-          -webkit-background-origin: padding-box;
-          background-origin: padding-box;
-          -webkit-background-clip: border-box;
-          background-clip: border-box;
-          -webkit-background-size: auto auto;
-          background-size: auto auto;
-        }
-        
-        .btn-pre:active {
-          -webkit-border-radius: 17px;
-          border-radius: 12px;
-          background: -webkit-linear-gradient(-90deg, #3a3e7b 0,  #3a3e7b 100%);
-          background: -moz-linear-gradient(180deg,  #3a3e7b 0,  #3a3e7b 100%);
-          background: linear-gradient(180deg,  #3a3e7b 0,  #3a3e7b 100%);
-          background-position: 50% 50%;
-          -webkit-background-origin: padding-box;
-          background-origin: padding-box;
-          -webkit-background-clip: border-box;
-          background-clip: border-box;
-          -webkit-background-size: auto auto;
-          background-size: auto auto;
-        }
-        </style>
-      
     @livewireStyles
 </head>
 
@@ -107,11 +58,11 @@
                 @if(Session::get('menu_rol')!=null)
                 @foreach (Session::get('menu_rol') as $menu_rol)
                 <li class="nav-item">
-                    <a class="nav-link collapsed btn-pre" href="#" data-toggle="collapse" data-target="#collapseUtilities{{$menu_rol->ID_MENU}}"
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities{{$menu_rol->ID_MENU}}"
                         aria-expanded="true" aria-controls="collapseUtilities{{$menu_rol->ID_MENU}}">
                         @php
                         echo $menu_rol->ICONO;
-                        @endphp
+                        @endphp+-
                         <span>{{$menu_rol->DESCRIPCION}}</span>
                     </a>
                  
@@ -307,7 +258,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Cerrar Sesión</h5>
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>

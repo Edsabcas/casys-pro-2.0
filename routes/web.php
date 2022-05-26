@@ -12,6 +12,7 @@ use App\Http\Controllers\VistaPruebaController;
 use App\Http\Controllers\GradosController;
 use App\Http\Controllers\SeccionController;
 use App\Http\Controllers\MaestrosController;
+use App\Http\Controllers\TipoDeJornadaController;
 use App\Http\Controllers\AsignacionController;
 use App\Http\Controllers\AsignacionesEsController;
 use App\Http\Controllers\ContenidosController;
@@ -120,6 +121,11 @@ Route::get('/Maestros', [MaestrosController::class, 'agregar_docentes']);
 Route::get('/Maestros_guías', [AsignacionController::class, 'agregar_a']);
 
 Route::get('/Estudiantes', [AsignacionesEsController::class, 'agregar_e']);
+
+
+
+
+Route::get('/Tipo_De_Jornada', [TipoDeJornadaController::class, 'agregar_jornada']);
 
 
 

@@ -91,6 +91,12 @@
 @elseif($op=='RegistrarUsuario')
 @livewire('register-component')
 
+
+
+
+@elseif($op=='jornada')
+@livewire('tipo-de-jornada-component')
+
 @endif
 @endif
 @endsection
