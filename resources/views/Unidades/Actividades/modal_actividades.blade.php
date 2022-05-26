@@ -9,44 +9,12 @@
           @endif
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button >
         </div>
-
-        <div class="modal-body">
-            @isset($mensaje)
-            @if($mensaje!=null)
-            
-            <div class="alert alert-success" role="alert">
-                Agregado Correctamente!
-              </div>
-            @endif
-            @endisset
-            @isset($mensaje1)
-              @if($mensaje1!=null)
-              <div class="alert alert-success" role="alert">
-                No fue agregado Correctamente!
-              </div>
-              @endif
-            @endisset
-@isset($mensaje3)
-@if($mensaje3!=null)
-<div class="alert alert-success" role="alert">
-Datos actualizados  
-</div>
-@endif
-@endisset
-
-@isset($mensaje4)
-@if($mensaje4!=null)
-<div cclass="alert alert-danger" role="alert">
-    Datos no actualizados  
-</div>
-@endif
-@endisset
             <div class="container-sm">
-              @if($edita!=null)
+            @if($edita!=null)
               <h3 class="form-label text" style="font-size:40px">Edicion Actividad</h3> 
               @else
              <h3 class="form-label text" style="font-size:40px">Crear Actividad</h3> 
-               @endif
+             @endif
               <form  action="/update_act" method="POST" wire:submit.prevent=''>
                 @csrf
                 <input type="hidden" value='{{$edita}}' name='edita'>
@@ -162,12 +130,11 @@ Datos actualizados
                       @enderror 
                     </div>
 
-                    @if($edita!=null)
+          @if($edita!=null)
                     <div>
                       <label for="exampleInputPassword1" class="form-label " style="font-size:20px">Archivo anterior</label>
                     </div>
-                    <div>
-  @foreach ($actividades as $actividad)
+         @foreach ($actividades as $actividad)
                       @php
 
                       $foo = 0;
@@ -180,8 +147,11 @@ Datos actualizados
                        elseif(strpos($actividad->archivos, '.pdf' ) !== false)
                        {$pdf=1;}
                 @endphp
-                 @if($foo==1 && $edita==$actividad->ID_ACTIVIDADES)
-                 <img src="imagen/actividades/{{$actividad->archivos}}" height="500" weight="500" class="card-img-top" alt="...">
+               <div class="mb-3">
+                  @if($foo==1 && $edita==$actividad->ID_ACTIVIDADES)
+                   <div class="offset-4 col-10">
+                    <img src="imagen/actividades/{{$actividad->archivos}}" height="360" weight="360" class="card" alt="...">
+                   </div>
                  @endif
                  @if($vid==1 && $edita==$actividad->ID_ACTIVIDADES)
                  <video height="500" weight="500" class="card-img-top" alt="..." controls>
@@ -191,10 +161,14 @@ Datos actualizados
                  @endif
                  @if($pdf==1 && $edita==$actividad->ID_ACTIVIDADES)
                  <iframe style="width: 49rem; text-align:center" width="400" height="400" src="/imagen/pdf_act/{{$actividad->archivos}}" frameborder="0"></iframe>
-                   @endif
+                 @endif
+            </div>
+               
         @endforeach
-                    </div>
-                    <div class="col-sm-10">
+                  <button type='submit' class="btn btn-danger" wire:click="elminararch" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                    <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+                  </svg></button>
+                    <div class="mb-3">
                       <label for="exampleInputPassword1" class="form-label " style="font-size:20px">Edicion de arhivo (opcional)</label>
                       <input type="file" class="form-control " wire:model='archivo'  style="border:2px solid rgba(86, 95, 76, 0.466);" id="exampleInputPassword1">
                        <div class="col-sm-10">
@@ -214,7 +188,7 @@ Datos actualizados
                         @endif
                        </div>
                     </div>             
-                    @else
+             @else
                     <div class="col-sm-10">
                       <label for="exampleInputPassword1" class="form-label " style="font-size:20px">Adjunte un archivo (opcional)</label>
                       <input type="file" class="form-control " wire:model='archivo'  style="border:2px solid rgba(86, 95, 76, 0.466);" id="exampleInputPassword1">
@@ -235,7 +209,7 @@ Datos actualizados
                         @endif
                        </div>
                     </div>           
-                     @endif
+              @endif
                     <br>
                     
                     @if($edita!=null)
@@ -244,6 +218,37 @@ Datos actualizados
                     <button type="submit" class="btn btn-primary" wire:click='Subir_Act()' >Publicar</button>
                     @endif
                   </form>
+                  <div class="modal-body">
+                    @isset($mensaje)
+                    @if($mensaje!=null)
+                    
+                    <div class="alert alert-success" role="alert">
+                        Agregado Correctamente!
+                      </div>
+                    @endif
+                    @endisset
+                    @isset($mensaje1)
+                      @if($mensaje1!=null)
+                      <div class="alert alert-success" role="alert">
+                        No fue agregado Correctamente!
+                      </div>
+                      @endif
+                    @endisset
+        @isset($mensaje3)
+        @if($mensaje3!=null)
+        <div class="alert alert-success" role="alert">
+        Datos actualizados  
+        </div>
+        @endif
+        @endisset
+        
+        @isset($mensaje4)
+        @if($mensaje4!=null)
+        <div cclass="alert alert-danger" role="alert">
+            Datos no actualizados  
+        </div>
+        @endif
+        @endisset
            
             
             </div>        

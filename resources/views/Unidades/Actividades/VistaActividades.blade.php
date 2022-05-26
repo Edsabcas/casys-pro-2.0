@@ -1,21 +1,3 @@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script>
-            
-  $(document).on('click', '#Crear', function() {
-
-$('#exampleModal').modal('show');
-
-});
-
-
-
-$(document).on('click', '#val', function() {
-
-$('#exampleModal1').modal('show');
-
-});
-
-</script>
 @foreach ($actividades as $actividad)
 <div class="card border-primary mb-3" style="max-width: 70rem;" >
     <div class="card-body">
@@ -48,7 +30,9 @@ $('#exampleModal1').modal('show');
                {$pdf=1;}
         @endphp
          @if($foo==1)
-         <img src="imagen/actividades/{{$actividad->archivos}}" height="500" weight="500" class="card-img-top" alt="...">
+         <div class="offset-4 col-10">
+         <img src="imagen/actividades/{{$actividad->archivos}}" height="360" weight="360" class="card" alt="...">
+         </div>
          @endif
          @if($vid==1)
          <video height="500" weight="500" class="card-img-top" alt="..." controls>
@@ -58,13 +42,13 @@ $('#exampleModal1').modal('show');
          @endif
          @if($pdf==1)
          <iframe style="width: 49rem; text-align:center" width="400" height="400" src="/imagen/pdf_act/{{$actividad->archivos}}" frameborder="0"></iframe>
-           @endif
+         @endif
     </div>
       </div>
     </div>
   </div>
-  @include('Unidades.Actividades.modalconfedit')
-  <button id="Crear" class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#confirmacionedit">Editar </button>
+  @include('Unidades.Actividades.modal_actividades')
+  <button class="btn btn-success"  id="val" data-bs-toggle="modal" data-bs-target="#staticBackdrop"   wire:click='edita({{$actividad->ID_ACTIVIDADES}})'>  Editar </button>
 
   @include('Unidades.Actividades.modelimiaract')
   <button class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#eliminaract">  Eliminar </button>

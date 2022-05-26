@@ -16,7 +16,7 @@ class ContenidoComponent extends Component
    public $option1,$option2,$option3,$option4,$vista,$vista2;
    public $prueba, $op, $mensaje, $mensaje1, $file, $date, $dia2, $message, $file2, $arch, $vid, $pdf, $formato, $tipo, $id_act,$editt,$editp;
    public $titulo, $punteo, $fecha_e, $fecha_ext, $descripcion, $act,$tema_a,$descripciont,$tema,$unidad, $temasb, $archivo, $nota, $descripciona;
-    public $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, $grado2, $idsecc2, $arch2,$tema2, $unidad2, $descripciont2, $nombreu,$id_tem, $edita,$id_plan;
+    public $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, $grado2, $idsecc2, $arch2,$tema2, $unidad2, $descripciont2, $nombreu,$id_tem, $edita,$id_plan, $idarch;
 
 
 
@@ -387,6 +387,7 @@ public function limpiar_act(){
     $this->fecha_e="";
     $this->descripcion="";
     $this->temasb="";
+    $this->formato="";
     unset($this->mensaje);
     unset($this->mensaje);
     unset($this->mensaje3);
@@ -399,7 +400,9 @@ public function limpiar_act(){
 
 }
 
+//edicion de las actividades de unidades dijas
     Public function edita($id){
+        $this->limpiarcract();
         $edita=$id;
         $sql='SELECT * FROM tb_actividades WHERE ID_ACTIVIDADES=?';
         $actividadesedit=DB:: select($sql, array($edita));
@@ -427,6 +430,7 @@ public function limpiar_act(){
        $this->editt=1;
     }
 
+    //Actualizar actividades de unidades fijas
     public function update_act(){
         if($this->validate([
             'titulo' => 'required',
@@ -452,7 +456,30 @@ public function limpiar_act(){
             $idsecc=$this->idsecc;
             $unidad1=$this->unidad1;
             $unidadfija=$this->unidadfija;
+            $this->arch=$this->arch;
             $this->idusuario=auth()->user()->id;
+
+            if($this->archivo!=null){
+                if($this->archivo->getClientOriginalExtension()=="jpg" or $this->archivo->getClientOriginalExtension()=="png" or $this->archivo->getClientOriginalExtension()=="jpeg"){
+                    $archivo = "img".time().".".$this->archivo->getClientOriginalExtension();
+                    $this->arch=$archivo;
+                    $this->archivo->storeAS('imagen/actividades/', $this->arch,'public_up');
+                    $this->formato=1;
+                }
+                elseif($this->archivo->getClientOriginalExtension()=="mp4" or $this->archivo->getClientOriginalExtension()=="mpeg"){
+                    $archivo = "vid".time().".".$this->archivo->getClientOriginalExtension();
+                    $this->arch=$archivo;
+                    $this->archivo->storeAS('imagen/videos_act/', $this->arch,'public_up');
+                    $this->formato=2;
+                }
+                elseif($this->archivo->getClientOriginalExtension()=="pdf"){
+                    $archivo = "pdf".time().".".$this->archivo->getClientOriginalExtension();
+                    $this->arch=$archivo;
+                    $this->archivo->storeAS('imagen/pdf_act/', $this->arch,'public_up');
+                    $this->formato=3;
+                }
+            }
+
             DB::begintransaction();
         
     
@@ -497,6 +524,15 @@ public function limpiar_act(){
        
     }
 
+public function limpiarcract(){
+    unset($this->mensaje);
+    unset($this->mensaje1);
+    unset($this->mensaje4);
+    unset($this->mensaje3);
+    $this->formato="";
+}
+
+    //borrar actividades creadas en las unidades fijas
     Public function deleteact($id){
         $edita=$id;
         DB::begintransaction();
@@ -519,6 +555,57 @@ public function limpiar_act(){
             $this->op='addcontenidos';  
             $this->mensaje_eliminar2='No fue posible eliminarlo';
         }
+    }
+
+    //eliminar arhivo de unidades fijas
+    public function elminararch(){
+            $edita=$this->edita;
+            $archivo="";
+    if($this->archivo!=null){
+        if($this->archivo->getClientOriginalExtension()=="jpg" or $this->archivo->getClientOriginalExtension()=="png" or $this->archivo->getClientOriginalExtension()=="jpeg"){
+            $archivo = "img".time().".".$this->archivo->getClientOriginalExtension();
+            $this->arch=$archivo;
+            $this->archivo->storeAS('imagen/actividades/', $this->arch,'public_up');
+            $this->formato=1;
+        }
+        elseif($this->archivo->getClientOriginalExtension()=="mp4" or $this->archivo->getClientOriginalExtension()=="mpeg"){
+            $archivo = "vid".time().".".$this->archivo->getClientOriginalExtension();
+            $this->arch=$archivo;
+            $this->archivo->storeAS('imagen/videos_act/', $this->arch,'public_up');
+            $this->formato=2;
+        }
+        elseif($this->archivo->getClientOriginalExtension()=="pdf"){
+            $archivo = "pdf".time().".".$this->archivo->getClientOriginalExtension();
+            $this->arch=$archivo;
+            $this->archivo->storeAS('imagen/pdf_act/', $this->arch,'public_up');
+            $this->formato=3;
+        }
+    }
+            DB::begintransaction();
+        
+    
+        $updatearchiv=DB::table('tb_actividades')
+        ->where('ID_ACTIVIDADES', $edita)
+        ->update(
+            [
+                'archivos'=>0,
+            ]);
+            if($updatearchiv){
+                DB::commit();
+                unset($this->mensaje);
+                unset($this->mensaje3);
+                unset($this->mensaje_eliminar);
+                $this->op='addcontenidos';
+                $this->mensaje_eliminar='Eliminado Correctamente';
+            }
+            else{
+                DB::rollback();
+                unset($this->mensaje1);
+                unset($this->mensaje4);
+                unset($this->mensaje_eliminar2);
+                $this->op='addcontenidos';  
+                $this->mensaje_eliminar2='No fue posible eliminarlo';
+            }
     }
 
 
