@@ -91,16 +91,17 @@
 @elseif($op=='RegistrarUsuario')
 @livewire('register-component')
 
-<<<<<<< HEAD
 
+@elseif($op=='nivelacademico')
+@livewire('nivel-academico')
 
 
 @elseif($op=='jornada')
 @livewire('tipo-de-jornada-component')
-=======
+
 @elseif($op=='aMostrarRoles')
 @livewire('rolesdeusuario-component')
->>>>>>> d6a73dff8685a2c7c0fcc934ec55b4040ce3e0b0
+
 
 @endif
 @endif

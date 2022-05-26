@@ -10,7 +10,8 @@ class GradoComponents extends Component
 {
     public $nombre_gr,$estado_gr,$op,$mensaje,$mensaje1,$edit,$mensaje3,$mensaje4,$mensaje5,$mensaje6,$mensajeeliminar,$mensajeeliminar1;
     public $seccion_gr,$precio_gr,$ministerial_gr,$resolucion_gr,$jornada_gr,$academico_gr;
-    public $estado_sec,$nombre_sec;
+    public $estado_sec,$nombre_sec,$nombre_jornada,$nombre_nvl,$estado_jornada,$estado_nvl;
+    public $mensaje7,$mensaje8,$mensaje9,$mensaje10;
     public function render()
     {
         $grad= DB::table('tb_grados')
@@ -24,7 +25,11 @@ class GradoComponents extends Component
         $grados=DB::select($sql);
         $sql="SELECT * FROM tb_seccions";
         $secciones=DB::select($sql);
-        return view('livewire.grado-components', compact('grados','secciones','grad'));
+        $sql="SELECT * FROM tb_nvlacademico";
+        $academico=DB::select($sql);
+        $sql="SELECT * FROM tb_jornada";
+        $jornada=DB::select($sql);
+        return view('livewire.grado-components', compact('grados','secciones','grad','academico','jornada'));
     }
 
     public function guardar_gr(){
@@ -205,6 +210,84 @@ class GradoComponents extends Component
                 $this->mensaje6='No se logro insertar correctamente';
             }
         }
+        }
+        public function guardar_nvlacademico(){
+
+            if($this->validate([
+                'nombre_nvl' => 'required',
+                'estado_nvl' => 'required',
+        
+            ])==false)
+            {
+                $mensaje="no encontrado";
+                session(['message' => 'no encontrado']);
+                return back()->withErrors(['mensaje' =>'Validar el input vacio']);
+            }
+            else
+            {
+            $nombre_nvl=$this->nombre_nvl;
+            $estado_nvl=$this->estado_nvl;
+    
+            DB::beginTransaction();
+    
+            $nivelacademico=DB::table('tb_nvlacademico')->insert(
+                [
+                    'NIVEL_ACADEMICO'=> $nombre_nvl,
+                    'ESTADO'=> $estado_nvl,
+                ]);
+                if($nivelacademico){
+                    DB::commit();
+                    $this->reset();
+                    unset($this->mensaje7);
+                    $this->op=2;
+                    $this->mensaje2='Insertado correctamente';
+                }
+                else{
+                    DB::rollback();
+                    unset($this->mensaje8);
+                    $this->op=2;
+                    $this->mensaje3='No fue posible insertar correctamente';
+                }
+            }
+        }
+        public function guardar_jornada(){
+
+            if($this->validate([
+                'nombre_jornada' => 'required',
+                'estado_jornada' => 'required',
+        
+            ])==false)
+            {
+                $mensaje="no encontrado";
+                session(['message' => 'no encontrado']);
+                return back()->withErrors(['mensaje' =>'Validar el input vacio']);
+            }
+            else
+            {
+            $nombre_jornada=$this->nombre_jornada;
+            $estado_jornada=$this->estado_jornada;
+    
+            DB::beginTransaction();
+    
+            $tipojornada=DB::table('tb_jornada')->insert(
+                [
+                    'TIPO_JORNADA '=> $nombre_jornada,
+                    'ESTADO'=> $estado_jornada,
+                ]);
+                if($tipojornada){
+                    DB::commit();
+                    $this->reset();
+                    unset($this->mensaje9);
+                    $this->op=2;
+                    $this->mensaje2='Insertado correctamente';
+                }
+                else{
+                    DB::rollback();
+                    unset($this->mensaje10);
+                    $this->op=2;
+                    $this->mensaje3='No fue posible insertar correctamente';
+                }
+            }
         }
 }
 
