@@ -91,6 +91,9 @@
 @elseif($op=='RegistrarUsuario')
 @livewire('register-component')
 
+@elseif($op=='aMostrarRoles')
+@livewire('rolesdeusuario-component')
+
 @endif
 @endif
 @endsection
