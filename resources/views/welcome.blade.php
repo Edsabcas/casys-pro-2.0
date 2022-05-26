@@ -84,7 +84,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav sidebar sidebar-dark accordion" style="background-color: #a4cb39" id="accordionSidebar">
+        <ul class="navbar-nav sidebar   sidebar-dark accordion" style="background-color: #a4cb39" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/inicio">
@@ -104,7 +104,7 @@
             <!-- Nav Item - Pages Collapse Menu -->
            
 
-            <ul class="navbar-nav sidebar sidebar-dark accordion fw-bold" style="background-color: #a4cb39" id="accordionSidebar">
+            <ul class="navbar-nav sticky-top sidebar sidebar-dark accordion fw-bold" style="background-color: #a4cb39" id="accordionSidebar">
                 @if(Session::get('menu_rol')!=null)
                 @foreach (Session::get('menu_rol') as $menu_rol)
                 <li class="nav-item">
