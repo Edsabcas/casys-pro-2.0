@@ -46,13 +46,21 @@ function mover(event, to) {
           
           <th>{{$est->TB_INFO_NOMBRE}}</th> 
           @foreach($actividades as $activi)
+
+          @foreach($notas as $nota)
+          @if($nota->ID_ACTIVIDADES == $activi->ID_ACTIVIDADES)
           <div class="md-form w-30">
-          <th><input type="text" class="input" id="exampleForm{{$est->TB_INFO_NOMBRE}}{{$activi->ID_ACTIVIDADES}}"  wire:model="nota.{{$est->TB_INFO_NOMBRE}}{{$activi->ID_ACTIVIDADES}}" value="{{$activi->ID_ACTIVIDADES}}" wire:click='nota("{{$activi->ID_ACTIVIDADES}}","{{$est->TB_INFO_NOMBRE}}")' placeholder="nota" autocomplete="off" tabindex="10"></th>
+          <th><input type="text" class="input" id="exampleForm{{$est->id}}{{$activi->ID_ACTIVIDADES}}" value="{{$nota->NOTA}}"  wire:model="nota.{{$est->id}}{{$activi->ID_ACTIVIDADES}}.name"  wire:click='nota("{{$activi->ID_ACTIVIDADES}}","{{$est->id}}")' placeholder="nota" autocomplete="off" tabindex="10"></th>
+          @endif
           @endforeach
+          @endforeach 
           </div>
           
         </tr>
         @endforeach
+        @if($prueba2!=null)
+        <p>{{$prueba2}}</p>
+        @endif
       </tbody>
     </table>
   </div>

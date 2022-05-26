@@ -61,11 +61,8 @@ Route::get('/login', [SessionController::class, 'index'])
 
 
 //Formulario de ingreso de usuario
-Route::get('/regusuario', [RegisterController::class, 'regusuario'])
-->name('regusuario.configperfil');
 
-Route::get('/regusuario', [RegisterController::class, 'regusuario'])
-->name('regusuario.regusuario');
+
 
 Route::post('/register', [RegisterComponent::class, 'guardar'])
 ->name('login.guardar');
@@ -103,9 +100,9 @@ Route::get('/e_perfiles', [ListadeusuariosComponent::class, 'e_perfiles'])
 
 //Grupo #2
 
-Route::get('/Crear_pblicacion', [EdicionAnuncioController::class, 'edicion'])->middleware('auth');
+Route::get('/Crear_publicación', [EdicionAnuncioController::class, 'edicion'])->middleware('auth');
 
-Route::get('/Vista_publicacion', [AnunciosAdController::class, 'vistaadmin'])->middleware('auth');
+Route::get('/Vista_publicación', [AnunciosAdController::class, 'vistaadmin'])->middleware('auth');
 Route::get('/Publicaciones_guardadas', [GuardarController::class, 'guardar'])->middleware('auth');
 Route::get('/Anuncio_Nuevo', [FormMaestrosController::class, 'edicionmaestro'])->middleware('auth');
 Route::get('/Publicaciones', [AnunciosNoAdController::class, 'vistanoadmin'])->middleware('auth');
@@ -120,7 +117,7 @@ Route::get('/Secciones', [SeccionController::class, 'agregar_sec']);
 
 Route::get('/Maestros', [MaestrosController::class, 'agregar_docentes']);
 
-Route::get('/Asignacion_maestro', [AsignacionController::class, 'agregar_a']);
+Route::get('/Maestros_guías', [AsignacionController::class, 'agregar_a']);
 
 Route::get('/Estudiantes', [AsignacionesEsController::class, 'agregar_e']);
 

@@ -50,8 +50,9 @@
   @include('Unidades.Actividades.modal_actividades')
   <button class="btn btn-success"  id="val" data-bs-toggle="modal" data-bs-target="#staticBackdrop"   wire:click='edita({{$actividad->ID_ACTIVIDADES}})'>  Editar </button>
 
+
   @include('Unidades.Actividades.modelimiaract')
-  <button class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#eliminaract">  Eliminar </button>
+  <button class="btn btn-secondary" style="border-radius: 12px;" data-bs-toggle="modal" data-bs-target="#eliminaract">  Eliminar </button>
 </div>
 </div>
 

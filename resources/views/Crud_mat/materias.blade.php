@@ -89,9 +89,9 @@ Agregado correctamente
           @enderror
       </div>
       @if($edit!=null)
-    <button type='submit' class="btn btn-primary" wire:click="update_mat()">Actualizar</button>
+    <button type='submit' class="btn btn-pre2" wire:click="update_mat()">Actualizar</button>
     @else
-    <button  class="btn btn-primary" wire:click="guardar_mat()">Agregar</button>
+    <button  class="btn btn-pre2" wire:click="guardar_mat()">Agregar</button>
     <br>
     @endif
   </form>

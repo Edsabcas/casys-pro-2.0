@@ -40,5 +40,5 @@ Agregado correctamente
             <option value="2">Inactivo</option>
           </select>
       </div>
-    <button type="submit" class="btn btn-primary">Actualizar</button>
+    <button type="submit" class="btn btn-pre2">Actualizar</button>
   </form>

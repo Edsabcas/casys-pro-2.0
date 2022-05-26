@@ -5,13 +5,13 @@
         <p class="card-text">Maestro: {{$ID_DOCENTE}}</p>
         <td>
           @include('Unidades.Temas.modaltemas')
-          <button class="btn btn-success" wire:click='limpiar()' data-bs-toggle="modal" data-bs-target="#tema" id=tema> Temas </button>
+          <button class="btn btn-pre2" wire:click='limpiar()' data-bs-toggle="modal" data-bs-target="#tema" id=tema> Temas </button>
   
             @include('Unidades.Actividades.modal_actividades')
             <button class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#staticBackdrop" Wire:Click="limpiar_act"> Crear Actividades </button>            
-            <a wire:click='vista_a("3")' class="btn btn-success">Ver Actividades </a>
+            <a wire:click='vista_a("3")' class="btn btn-pre2">Ver Actividades </a>
 
-            <a wire:click='vista_t("4")' class="btn btn-success">Ver Temas </a>
+            <a wire:click='vista_t("4")' class="btn btn-pre2">Ver Temas </a>
         </td>
         <br>
         <br>

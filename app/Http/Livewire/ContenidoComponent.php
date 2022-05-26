@@ -16,8 +16,9 @@ class ContenidoComponent extends Component
    public $option1,$option2,$option3,$option4,$vista,$vista2;
    public $prueba, $op, $mensaje, $mensaje1, $file, $date, $dia2, $message, $file2, $arch, $vid, $pdf, $formato, $tipo, $id_act,$editt,$editp;
    public $titulo, $punteo, $fecha_e, $fecha_ext, $descripcion, $act,$tema_a,$descripciont,$tema,$unidad, $temasb, $archivo, $nota, $descripciona;
-    public $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, $grado2, $idsecc2, $arch2,$tema2, $unidad2, $descripciont2, $nombreu,$id_tem, $edita,$id_plan, $idarch;
 
+    public $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, $grado2, $idsecc2, $arch2,$tema2, $unidad2, $descripciont2, $nombreu,$id_tem, $edita,$id_plan;
+    public $prueba2, $idas, $nombress;
 
 
     public function render()
@@ -135,6 +136,36 @@ class ContenidoComponent extends Component
             ->get();
         }
 
+        $notas="";
+        if($this->nombress!=null){
+            $notas=DB::table('tb_notas')
+        ->join('tb_grados', 'tb_notas.ID_GR', '=', 'tb_grados.ID_GR')
+        ->join('tb_seccions', 'tb_notas.ID_SC', '=', 'tb_seccions.ID_SC')
+        ->join('tb_estudiantes', 'tb_notas.ID_ESTUDIANTE', '=', 'tb_estudiantes.id')
+        ->join('tb_materias','tb_notas.ID_MATERIA','=','tb_materias.ID_MATERIA')
+        ->join('tb_unidades_fijas', 'tb_notas.ID_UNIDADES_FIJAS', '=', 'tb_unidades_fijas.ID_UNIDADES_FIJAS')
+        ->join('tb_actividades', 'tb_notas.ID_ACTIVIDADES', '=', 'tb_actividades.ID_ACTIVIDADES')
+        ->select('tb_notas.ID_NOTA', 'tb_grados.GRADO', 'tb_seccions.SECCION', 'tb_actividades.ID_ACTIVIDADES', 'tb_unidades_fijas.ID_UNIDADES_FIJAS', 'tb_grados.ID_GR', 'tb_seccions.ID_SC', 'tb_materias.ID_MATERIA', 'tb_notas.ID_ESTUDIANTE','tb_notas.NOTA')
+        ->where('tb_notas.ID_UNIDADES_FIJAS','=',$this->unidadfija)
+            ->where('tb_notas.ID_GR','=',$this->grado)
+            ->where('tb_notas.ID_SC','=',$this->idsecc)
+            ->where('tb_notas.ID_MATERIA','=',$this->unidad1)
+            ->where('tb_notas.ID_ESTUDIANTE','=',$this->nombress)
+        ->get();
+        } 
+        
+        $estu="";
+        $estu=DB::table('tb_asignaciones_e')
+        ->join('tb_grados', 'tb_asignaciones_e.ID_GR', '=', 'tb_grados.ID_GR')
+        ->join('tb_seccions', 'tb_asignaciones_e.ID_SC', '=', 'tb_seccions.ID_SC')
+        ->join('tb_estudiantes', 'tb_asignaciones_e.id', '=', 'tb_estudiantes.id')
+        ->select('tb_estudiantes.id','tb_asignaciones_e.ID_E', 'tb_grados.GRADO', 'tb_seccions.SECCION','tb_estudiantes.TB_INFO_NOMBRE','tb_grados.ID_GR')
+        ->where('tb_asignaciones_e.ID_GR','=',$this->grado)
+        ->where('tb_asignaciones_e.ID_SC','=',$this->idsecc)
+        ->get();
+
+        
+
         $sql= 'SELECT * FROM tb_materias';
         $materias=DB::select($sql);
         $sql= 'SELECT * FROM tb_grados';
@@ -143,13 +174,11 @@ class ContenidoComponent extends Component
         $secciones=DB::select($sql);
         $sql= 'SELECT * FROM tb_docentes';
         $maestros=DB::select($sql);
-        $sql= 'SELECT  TB_INFO_NOMBRE, id  FROM tb_estudiantes';
-        $estu=DB::select($sql);
         $sql= 'SELECT * FROM tb_unidades_fijas';
         $unidadesf=DB::select($sql);
         $sql= 'SELECT * FROM users';
         $Usuarios=DB::select($sql);
-        return view('livewire.contenido-component',compact('materias','grados','secciones','uniones','unidades','maestros','actividades','asignaciones','estu','unidadesf','temas','Usuarios','PlanUnion','actividades2'));
+        return view('livewire.contenido-component',compact('materias','grados','secciones','uniones','unidades','maestros','actividades','asignaciones','unidadesf','temas','Usuarios','PlanUnion','actividades2','notas','estu'));
 
     }
     
@@ -803,9 +832,16 @@ Public function deletet($id){
     }
 }
 
-public function nota($nombre,$ida){
-    $nota=$this->nota;
-    $this->id_act=$ida;
+public function nota($ida,$nombre){
+    $com=''.$nombre.$ida;
+    foreach($nota as $not){
+        $this->prueba2 = $not.$com.name;
+    }
+    
+    //$this->nota.$ida.$nombre=$this->nota;
+    //$this->prueba2=$this->nota.$com;
+    $this->idas=$ida;
+    $this->nombress=$nombre;
     $grado=$this->grado;
     $idsecc=$this->idsecc;
     $unidad1=$this->unidad1;

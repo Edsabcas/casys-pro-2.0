@@ -213,9 +213,9 @@
                     <br>
                     
                     @if($edita!=null)
-                    <button type='submit' class="btn btn-primary" wire:click="update_act()">Actualizar</button>
+                    <button type='submit' class="btn btn-pre2" wire:click="update_act()">Actualizar</button>
                     @else
-                    <button type="submit" class="btn btn-primary" wire:click='Subir_Act()' >Publicar</button>
+                    <button type="submit" class="btn btn-pre2" wire:click='Subir_Act()' >Publicar</button>
                     @endif
                   </form>
                   <div class="modal-body">
