@@ -43,7 +43,7 @@
                     </div>
                     <br>
                     
-                    <button type="submit" class="btn btn-primary" wire:click="update_plan()">actualizar</button>
+                    <button type="submit" class="btn btn-pre2" wire:click="update_plan()">actualizar</button>
                     
           </form>
            
@@ -51,7 +51,7 @@
             </div>        
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-secondary" Style="border-radius: 12px;" data-bs-dismiss="modal">Cerrar</button>
           </div>
       </div>
     </div>
