@@ -232,7 +232,8 @@ class MaestrosComponents extends Component{
         
         if($mae){
             DB::commit();
-            $this->op=4;
+            $this->reset();
+            unset($this->mensaje);
             $this->mensaje3='Editado Correctamente';
         }
         else{

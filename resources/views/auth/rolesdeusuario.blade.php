@@ -1,5 +1,8 @@
+<h1 class="text-3xl text-center font-bold">Roles disponibles</h1>
+<br>
+
 <div class="table-responsive">
-    <table class="table table-bordered">
+    <table class="table table-bordered table-success table-striped">
         <thead>
             <tr>
                 <th>NO.</th>

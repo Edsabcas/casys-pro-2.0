@@ -1,3 +1,3 @@
 <div class='contenido'>
-    @include('auth.register')
+    @include('auth.registrar')
 </div>

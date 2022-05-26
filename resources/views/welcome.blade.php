@@ -24,24 +24,8 @@
 
     <!-- tutorial de jalar archivos-->
     <link href="filepond.css" rel="stylesheet" />
-    <style>
-              .btn-pre2 {
-          border: 0px solid #3a3e7b;
-          -webkit-border-radius: 12px;
-          border-radius: 12px;
-          color:#ffffff;
-          background: -webkit-linear-gradient(-90deg,  #3a3e7b 0,  #3a3e7b 100%);
-          background: -moz-linear-gradient(180deg,  #3a3e7b 0,  #3a3e7b 100%);
-          background: linear-gradient(180deg, r #3a3e7b 0,  #3a3e7b 100%);
-          background-position: 50% 50%;
-          -webkit-background-origin: padding-box;
-          background-origin: padding-box;
-          -webkit-background-clip: border-box;
-          background-clip: border-box;
-          -webkit-background-size: auto auto;
-          background-size: auto auto;
-        }
 
+    <style>
         .btn-editb {
           border: 0px solid #5ab507;
           -webkit-border-radius: 12px;
@@ -78,9 +62,9 @@
         .btn-pre:active {
           -webkit-border-radius: 17px;
           border-radius: 12px;
-          background: -webkit-linear-gradient(-90deg, #3a3e7b 0,  #3a3e7b 100%);
-          background: -moz-linear-gradient(180deg,  #3a3e7b 0,  #3a3e7b 100%);
-          background: linear-gradient(180deg,  #3a3e7b 0,  #3a3e7b 100%);
+          background: -webkit-linear-gradient(-90deg, #626bdd 0,  #626bdd 100%);
+          background: -moz-linear-gradient(180deg,  #626bdd 0,  #626bdd 100%);
+          background: linear-gradient(180deg,  #626bdd 0,  #626bdd 100%);
           background-position: 50% 50%;
           -webkit-background-origin: padding-box;
           background-origin: padding-box;
@@ -120,7 +104,7 @@
             <!-- Nav Item - Pages Collapse Menu -->
            
 
-            <ul class="navbar-nav sticky-top sidebar sidebar-dark accordion fw-bold" style="background-color: #a4cb39" id="accordionSidebar">
+            <ul class="navbar-nav sidebar sidebar-dark accordion fw-bold" style="background-color: #a4cb39" id="accordionSidebar">
                 @if(Session::get('menu_rol')!=null)
                 @foreach (Session::get('menu_rol') as $menu_rol)
                 <li class="nav-item">
@@ -324,7 +308,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Cerrar Sesión</h5>
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>

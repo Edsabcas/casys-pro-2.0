@@ -12,6 +12,8 @@ use App\Http\Controllers\VistaPruebaController;
 use App\Http\Controllers\GradosController;
 use App\Http\Controllers\SeccionController;
 use App\Http\Controllers\MaestrosController;
+use App\Http\Controllers\NivelAcademicoController;
+use App\Http\Controllers\TipoDeJornadaController;
 use App\Http\Controllers\AsignacionController;
 use App\Http\Controllers\AsignacionesEsController;
 use App\Http\Controllers\ContenidosController;
@@ -37,6 +39,8 @@ use App\Http\Controllers\ListadeusuariosController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Livewire\RegisterComponent;
 
+use App\Http\Controllers\RolesdeusuarioController;
+use App\Http\Livewire\RolesdeusuarioComponent;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -61,11 +65,11 @@ Route::get('/login', [SessionController::class, 'index'])
 
 
 //Formulario de ingreso de usuario
+Route::get('/regusuario', [RegisterController::class, 'regusuario'])
+->middleware('auth')->name('regusuario.regusuario');
 
-
-
-Route::post('/register', [RegisterComponent::class, 'guardar'])
-->name('login.guardar');
+Route::post('/guardar', [RegisterComponent::class, 'guardar'])
+->name('guardar.guardar');
 
 //Formulario de ingreso de usuario
 Route::post('/ingresar', [Sessionscomponent::class, 'validar'])
@@ -87,8 +91,6 @@ Route::get('/c_pass', [PerfilComponent::class, 'c_pass'])
 Route::post('/c_pass', [PerfilComponent::class, 'c_pass'])
 ->name('c_pass.c_pass');
 
-Route::get('/Registrar', [RevistrarComponent::class, 'index'])
-->middleware('auth')->name('Registrar.index');
 
 //Rutas de submenu
 //administracion
@@ -97,6 +99,9 @@ Route::get('/Lista_de_usuarios', [ListadeusuariosController::class, 'listarusers
 
 Route::get('/e_perfiles', [ListadeusuariosComponent::class, 'e_perfiles'])
 ->middleware('auth')->name('e_perfiles.e_perfiles');
+
+Route::get('/Roles_de_usuario', [RolesdeusuarioController::class, 'mostrarroles'])
+->middleware('auth')->name('Roles_de_usuario.mostrarroles');
 
 //Grupo #2
 
@@ -120,6 +125,10 @@ Route::get('/Maestros', [MaestrosController::class, 'agregar_docentes']);
 Route::get('/Maestros_guías', [AsignacionController::class, 'agregar_a']);
 
 Route::get('/Estudiantes', [AsignacionesEsController::class, 'agregar_e']);
+
+Route::get('/Nivel_Academico', [NivelAcademicoController::class, 'agregar_nivelacedemico']);
+
+Route::get('/Tipo_De_Jornada', [TipoDeJornadaController::class, 'agregar_jornada']);
 
 
 
