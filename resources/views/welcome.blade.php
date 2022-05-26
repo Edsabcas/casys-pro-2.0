@@ -24,26 +24,8 @@
 
     <!-- tutorial de jalar archivos-->
     <link href="filepond.css" rel="stylesheet" />
-
-<<<<<<< HEAD
-=======
-        .btn-editb {
-          border: 0px solid #5ab507;
-          -webkit-border-radius: 12px;
-          border-radius: 12px;
-          color:#ffffff;
-          background: -webkit-linear-gradient(-90deg,  #5ab507 0,  #5ab507 100%);
-          background: -moz-linear-gradient(180deg,  #5ab507 0,  #5ab507 100%);
-          background: linear-gradient(180deg, r #5ab507 0,  #5ab507 100%);
-          background-position: 50% 50%;
-          -webkit-background-origin: padding-box;
-          background-origin: padding-box;
-          -webkit-background-clip: border-box;
-          background-clip: border-box;
-          -webkit-background-size: auto auto;
-          background-size: auto auto;
-        }
-
+    <style>
+        
         .btn-pre:hover {
           border: 0px solid #4d57e6;
           -webkit-border-radius: 12px;
@@ -63,9 +45,9 @@
         .btn-pre:active {
           -webkit-border-radius: 17px;
           border-radius: 12px;
-          background: -webkit-linear-gradient(-90deg, #3a3e7b 0,  #3a3e7b 100%);
-          background: -moz-linear-gradient(180deg,  #3a3e7b 0,  #3a3e7b 100%);
-          background: linear-gradient(180deg,  #3a3e7b 0,  #3a3e7b 100%);
+          background: -webkit-linear-gradient(-90deg, #626bdd 0,  #626bdd 100%);
+          background: -moz-linear-gradient(180deg,  #626bdd 0,  #626bdd 100%);
+          background: linear-gradient(180deg,  #626bdd 0,  #626bdd 100%);
           background-position: 50% 50%;
           -webkit-background-origin: padding-box;
           background-origin: padding-box;
@@ -76,7 +58,6 @@
         }
         </style>
       
->>>>>>> d6a73dff8685a2c7c0fcc934ec55b4040ce3e0b0
     @livewireStyles
 </head>
 
@@ -106,15 +87,15 @@
             <!-- Nav Item - Pages Collapse Menu -->
            
 
-            <ul class="navbar-nav sticky-top sidebar sidebar-dark accordion fw-bold" style="background-color: #a4cb39" id="accordionSidebar">
+            <ul class="navbar-nav sidebar sidebar-dark accordion fw-bold" style="background-color: #a4cb39" id="accordionSidebar">
                 @if(Session::get('menu_rol')!=null)
                 @foreach (Session::get('menu_rol') as $menu_rol)
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities{{$menu_rol->ID_MENU}}"
+                    <a class="nav-link collapsed btn-pre" href="#" data-toggle="collapse" data-target="#collapseUtilities{{$menu_rol->ID_MENU}}"
                         aria-expanded="true" aria-controls="collapseUtilities{{$menu_rol->ID_MENU}}">
                         @php
                         echo $menu_rol->ICONO;
-                        @endphp+-
+                        @endphp
                         <span>{{$menu_rol->DESCRIPCION}}</span>
                     </a>
                  
@@ -258,7 +239,7 @@
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Perfil 
                             </a>
-                            <a class="dropdown-item" href="/regusuario">
+                            <a class="dropdown-item" href="/register">
                                 <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Registrar un usuario
                             </a>

@@ -23,34 +23,49 @@
   </ol>
 </nav>
 @if($op2==null)
-<div class="card">
-  <h5 class="card-header">Grados</h5>
-  <div class="card-body">
+<div class="card shadow rounded">
+  <div class="text-center">
+    <br>
+    <h1 style="color: #3a3e7b"><strong>GRADOS</strong></h1>
+    <br>
+  </div>
+</div>
 
-    
-    @foreach($grados as $grado)
-    @foreach($secciones as $seccion)
-    @if($grado->ID_SC==$seccion->ID_SC)
-    <a wire:click='mostrar_m("{{$grado->ID_GR}}","{{$grado->GRADO}}","{{$seccion->SECCION}}","{{$seccion->ID_SC}}","1")' class="btn btn-success">{{$grado->GRADO}} {{$seccion->SECCION}}
+<br>
+
+<div class="row">
+  @foreach($grados as $grado)
+  @foreach($secciones as $seccion)
+  @if($grado->ID_SC==$seccion->ID_SC)
+    <div class="col-xl-4 col-sm-7 col-13 mb-5">
+      <div class="card shadow rounded">
+        <div class="card-body">
+          <div class="text-center">
+            <div class="align-self-center">
+              <br>
+              @php
+              echo $grado->ICONO;
+              @endphp
+            </div>
+            <div class="text-center">
+              <a wire:click='mostrar_m("{{$grado->ID_GR}}","{{$grado->GRADO}}","{{$seccion->SECCION}}","{{$seccion->ID_SC}}","1")'>
+                <p>{{$grado->GRADO}} {{$seccion->SECCION}}</p>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     @endif
     @endforeach
-    </a>
-  @endforeach
-   @elseif($op2!=null && $op2==1)
-   @include('Temas.Pre_kinder')
-
-   @elseif($op2!=null && $op2==2)
-   @include('Unidades.Unidad1')
-   
-
-   @elseif($op2!=null && $op2==3)
-   @include('Unidades.Actividades.VistaActividades');
-   
-
-   @elseif($op2!=null && $op2==4)
-   @include('Unidades.Temas.VistaTemas');
-   @endif
-
-   
- </div>
+    @endforeach
+    @elseif($op2!=null && $op2==1)
+    @include('Temas.Pre_kinder')
+    @elseif($op2!=null && $op2==2)
+    @include('Unidades.Unidad1')
+    @elseif($op2!=null && $op2==3)
+    @include('Unidades.Actividades.VistaActividades');
+    @elseif($op2!=null && $op2==4)
+    @include('Unidades.Temas.VistaTemas');
+    @endif
 </div>
