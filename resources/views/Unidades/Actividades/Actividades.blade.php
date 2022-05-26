@@ -22,47 +22,42 @@ function mover(event, to) {
 </script>
 
 <div class="table-responsive">
+  <form  wire:submit.prevent='notas1'>
     <table class="table table-info  table-striped table-hover table-bordered">
       <thead>
-        
-
-        
+       
           <tr>
               <th>Alumno</th>
               @foreach ($actividades as $activi)
               <th>{{$activi->NOMBRE_ACTIVIDAD}}</th>
               @endforeach
           </tr>
-        
-        
       </thead>
-     
       <tbody>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
+          @csrf
         @foreach($estu as $est)
-       
         <tr>
-          
           <th>{{$est->TB_INFO_NOMBRE}}</th> 
-          @foreach($actividades as $activi)
 
           @foreach($notas as $nota)
-          @if($nota->ID_ACTIVIDADES == $activi->ID_ACTIVIDADES)
+          @if($nota->id==$est->id)
           <div class="md-form w-30">
-          <th><input type="text" class="input" id="exampleForm{{$est->id}}{{$activi->ID_ACTIVIDADES}}" value="{{$nota->NOTA}}"  wire:model="nota.{{$est->id}}{{$activi->ID_ACTIVIDADES}}.name"  wire:click='nota("{{$activi->ID_ACTIVIDADES}}","{{$est->id}}")' placeholder="nota" autocomplete="off" tabindex="10"></th>
-          @endif
-          @endforeach
+          <input type="hidden" name="idnota[]" value="{{$nota->ID_NOTA}}"/>
+          <th>
+            <input type="text" class="input" id="exampleForm{{$nota->ID_NOTA}}" value="{{$nota->NOTA}}" name="nota[]"  autocomplete="off" tabindex="10"/>
+          </th>
+        </div>
+        @endif
           @endforeach 
-          </div>
-          
         </tr>
         @endforeach
-        @if($prueba2!=null)
-        <p>{{$prueba2}}</p>
-        @endif
+    
       </tbody>
+
     </table>
+    <input class="btn btn-primary" type="submit" value="Guarsdar"/>
+  </form>
   </div>
 
 

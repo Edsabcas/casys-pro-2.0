@@ -4,9 +4,9 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
-use App\Http\Livewire\Request;
+use Illuminate\Http\Request;
 use Livewire\WithFileUploads;
-
+use App\Models\Actividad;
 
 class ContenidoComponent extends Component
 {
@@ -19,6 +19,7 @@ class ContenidoComponent extends Component
     public $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, $grado2, $idsecc2, $arch2,$tema2, $unidad2, $descripciont2, $nombreu,$id_tem, $edita,$id_plan;
     public $prueba2, $idas, $nombress;
 
+    
 
     public function render()
     {
@@ -136,7 +137,7 @@ class ContenidoComponent extends Component
         }
 
         $notas="";
-        if($this->nombress!=null){
+        if($this->unidadfija!=null){
             $notas=DB::table('tb_notas')
         ->join('tb_grados', 'tb_notas.ID_GR', '=', 'tb_grados.ID_GR')
         ->join('tb_seccions', 'tb_notas.ID_SC', '=', 'tb_seccions.ID_SC')
@@ -144,12 +145,12 @@ class ContenidoComponent extends Component
         ->join('tb_materias','tb_notas.ID_MATERIA','=','tb_materias.ID_MATERIA')
         ->join('tb_unidades_fijas', 'tb_notas.ID_UNIDADES_FIJAS', '=', 'tb_unidades_fijas.ID_UNIDADES_FIJAS')
         ->join('tb_actividades', 'tb_notas.ID_ACTIVIDADES', '=', 'tb_actividades.ID_ACTIVIDADES')
-        ->select('tb_notas.ID_NOTA', 'tb_grados.GRADO', 'tb_seccions.SECCION', 'tb_actividades.ID_ACTIVIDADES', 'tb_unidades_fijas.ID_UNIDADES_FIJAS', 'tb_grados.ID_GR', 'tb_seccions.ID_SC', 'tb_materias.ID_MATERIA', 'tb_notas.ID_ESTUDIANTE','tb_notas.NOTA')
+        ->select('tb_notas.ID_NOTA', 'tb_grados.GRADO', 'tb_seccions.SECCION', 'tb_estudiantes.id','tb_actividades.ID_ACTIVIDADES', 'tb_unidades_fijas.ID_UNIDADES_FIJAS', 'tb_grados.ID_GR', 'tb_seccions.ID_SC', 'tb_materias.ID_MATERIA', 'tb_notas.ID_ESTUDIANTE','tb_notas.NOTA')
         ->where('tb_notas.ID_UNIDADES_FIJAS','=',$this->unidadfija)
             ->where('tb_notas.ID_GR','=',$this->grado)
             ->where('tb_notas.ID_SC','=',$this->idsecc)
             ->where('tb_notas.ID_MATERIA','=',$this->unidad1)
-            ->where('tb_notas.ID_ESTUDIANTE','=',$this->nombress)
+            //->where('tb_notas.ID_ESTUDIANTE','=',$this->nombress)
         ->get();
         } 
         
@@ -744,15 +745,21 @@ Public function deletet($id){
     }
 }
 
-public function nota($ida,$nombre){
-    $com=''.$nombre.$ida;
-    foreach($nota as $not){
-        $this->prueba2 = $not.$com.name;
+public function notas1(Request $request){
+  /*  
+    foreach ($request->get('nota') as $key => $value) 
+    {
+        $asistencia = Actividad::find($request->get('idnota')[$key]);
+        $asistencia->ID_NOTA = $request->get('idnota')[$key];
+        $asistencia->NOTA = $value;
+        //$asistencia->idCursoProg = $request->get('idCursoProg')[$key];
+        //$asistencia->IdRegistro = $request->get('IdRegistro')[$key];
+        $asistencia->update();
     }
-    
+    */
     //$this->nota.$ida.$nombre=$this->nota;
     //$this->prueba2=$this->nota.$com;
-    $this->idas=$ida;
+   /* $this->idas=$ida;
     $this->nombress=$nombre;
     $grado=$this->grado;
     $idsecc=$this->idsecc;
@@ -760,7 +767,7 @@ public function nota($ida,$nombre){
     $unidadfija=$this->unidadfija;
     $unidadn=$this->unidadn;
     $this->idusuario=auth()->user()->id;
-    
+    */
 
 /*
     DB::begintransaction();
