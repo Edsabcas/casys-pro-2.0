@@ -15,7 +15,11 @@
                 <tr>
                     <td>{{$rol->ID_ROL}}</td>
                     <td>{{$rol->DESCRIPCION}}</td>
-                    <td>{{$rol->ESTADO}}</td>
+                    @if($rol->ESTADO==1)
+                    <td>Activo</td>   
+                    @else
+                        <td>Inactivo</td>
+                    @endif
                 </tr>
             @endforeach
         </tbody>

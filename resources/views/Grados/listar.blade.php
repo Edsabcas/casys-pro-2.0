@@ -49,7 +49,11 @@
         <tr>
             <td>{{$grado->ID_GR}}</td>
             <td>{{$grado->GRADO}}</td> 
-            <td>{{$grado->ID_SC}}</td> 
+            @foreach($secciones as $seccion)
+            @if($grado->ID_SC==$seccion->ID_SC)
+            <th>{{$seccion->SECCION}}</th>
+            @endif
+            @endforeach
             @if ($grado->ESTADO==1)
             <td>Activo</td>
             @else

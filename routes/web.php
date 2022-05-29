@@ -161,7 +161,7 @@ Route::post('/list_u',[UnidadesController::class,'list_u']);
 
 Route::post('/update_uni',[UnidadesController::class, 'update_uni']);
 
-Route::get('/Administrar_cursos',[Relaciones::class,'relaciones']);
+Route::get('/Asignaciones_de_cursos',[Relaciones::class,'relaciones']);
 
 Route::post('/guardar_relaciones',[Relaciones::class,'guardar_rel']);
 
