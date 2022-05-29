@@ -104,7 +104,7 @@
             <!-- Nav Item - Pages Collapse Menu -->
            
 
-            <ul class="navbar-nav sticky-top sidebar sidebar-dark accordion fw-bold" style="background-color: #a4cb39" id="accordionSidebar">
+            <ul class="navbar-nav sticky-sm-top bd-layout sidebar sidebar-dark accordion fw-bold" style="background-color: #a4cb39" id="accordionSidebar">
                 @if(Session::get('menu_rol')!=null)
                 @foreach (Session::get('menu_rol') as $menu_rol)
                 <li class="nav-item">
@@ -132,6 +132,8 @@
                 </li>
                 @endforeach
                 @endif
+
+                
                 
             </ul>
 
@@ -148,6 +150,9 @@
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
 
+            <a class="scroll-to-top rounded" href="#page-top">
+                <i class="fas fa-angle-up"></i>
+            </a>
 
         </ul>
         <!-- End of Sidebar -->

@@ -40,9 +40,6 @@ class ListadeusuariosComponent extends Component
         $this->op=1;
         $this->edit2=1;
 
-        //$listadousers = array_slice($listadousers, 10 * (4 - 1), 10);
-        //$listadousers = new Paginator($listadousers, 10, 4);
-
         return view('livewire.listadeusuarios-component', compact('listadousers'));
     }
 
@@ -121,7 +118,7 @@ class ListadeusuariosComponent extends Component
         }
     }
 
-    public function cambiofotolist(){
+    public function cambiofotolist($id){
 
         $archivo_perfil="";
             if($this->archivo_perfil!=null){
@@ -132,14 +129,14 @@ class ListadeusuariosComponent extends Component
                     $this->tipo=1;
 
                     DB::beginTransaction();
-                    $listadousers=DB::table('users')
-                    ->where('ID_USUARIO',auth()->user()->ID_USUARIO)
-                    ->update ([
+                    $listadousers2=DB::table('users')
+                    ->where('id',$id)
+                    ->update ([ 
                         
                         'img_users'=>$this->img
                      ]);
 
-                     if($listadousers){
+                     if($listadousers2){
                         DB::commit();
                         $this->mensaje24="Foto de perfil actualizada";
                     }
