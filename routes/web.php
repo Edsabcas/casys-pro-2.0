@@ -36,9 +36,6 @@ use App\Http\Controllers\ListaDeEstudiantesController;
 use App\Http\Livewire\ListadeusuariosComponent;
 use App\Http\Controllers\ListadeusuariosController;
 
-use App\Http\Controllers\RegisterController;
-use App\Http\Livewire\RegisterComponent;
-
 use App\Http\Controllers\RolesdeusuarioController;
 use App\Http\Controllers\AdminisionesController;
 use App\Http\Livewire\RolesdeusuarioComponent;
@@ -65,13 +62,6 @@ Route::get('/', [SessionController::class, 'inicio'])
 Route::get('/login', [SessionController::class, 'index'])
 ->name('login.index');
 
-
-//Formulario de ingreso de usuario
-Route::get('/regusuario', [RegisterController::class, 'regusuario'])
-->middleware('auth')->name('regusuario.regusuario');
-
-Route::post('/guardar', [RegisterComponent::class, 'guardar'])
-->name('guardar.guardar');
 
 //Formulario de ingreso de usuario
 Route::post('/ingresar', [Sessionscomponent::class, 'validar'])
