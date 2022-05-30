@@ -48,7 +48,7 @@ function mover(event, to) {
             <input type="text" class="input" id="exampleForm{{$nota->ID_NOTA}}" value="{{$nota->NOTA}}" name="nota[]"  autocomplete="off" tabindex="10"/>
           </th>
         </div>
-        @endif
+        @endif  
           @endforeach 
         </tr>
         @endforeach

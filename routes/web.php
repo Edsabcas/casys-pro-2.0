@@ -52,11 +52,11 @@ use App\Http\Livewire\RolesdeusuarioComponent;
 |
 */
 //Raiz principal para acceso a home
-Route::get('/', function () {
-    return view('home');
-})->middleware('auth');
+//Route::get('/', function () {
+ //   return view('home');
+//})->middleware('auth');
 
-Route::get('/inicio', [SessionController::class, 'inicio'])
+Route::get('/', [SessionController::class, 'inicio'])
 ->middleware('auth')->name('General.inicio');
 
 //Formulario de ingreso de usuario

@@ -87,9 +87,9 @@
         <ul class="navbar-nav sidebar   sidebar-dark accordion" style="background-color: #a4cb39" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/inicio">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
                 <div class="sidebar-brand-icon">
-                    <img src="https://th.bing.com/th/id/OIP.n9AjAKxolzre7itDRM9XHAHaHa?pid=ImgDet&rs=1" class="rounded mx-auto d-block" width="50" height="50" alt="...">
+                    <img  src="img/Logo-casyy29052022.png" class="rounded mx-auto d-block" width="50" height="50" alt="...">
                 </div>
                 <div class="sidebar-brand-text mx-3" style="font-size: 25px; color:#3a3e7b"> CASYS <sup></sup></div>
             </a>
@@ -244,10 +244,8 @@
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                            
                             @if(auth()->check())
-                            
-                            Bienvenido <b>{{ auth()->user()->name }} </b>
+                            Bienvenido | <b>{{ auth()->user()->name }} </b>
                             </span>
                             
                             <img class="img-profile rounded-circle"  src="imagen/perfil/{{auth()->user()->img_users}}" />
@@ -260,10 +258,6 @@
                             <a class="dropdown-item" href="/configperfil">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Perfil 
-                            </a>
-                            <a class="dropdown-item" href="/register">
-                                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Registrar un usuario
                             </a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal">
@@ -288,9 +282,9 @@
 
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
+                <div class="container my-auto"  style="color:#3a3e7b">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright made by Stephany, Darlin, Sebas, Diego, Byron, Ligia y su Dios Rony &copy;</span>
+                        <span>Copyright by Castaño | Promo 2021-2022 &copy;</span>
                     </div>
                 </div>
             </footer>
