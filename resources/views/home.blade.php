@@ -102,6 +102,9 @@
 @elseif($op=='aMostrarRoles')
 @livewire('rolesdeusuario-component')
 
+@elseif($op=='admisiones')
+@livewire('adminisiones-componet')
+
 
 @endif
 @endif
