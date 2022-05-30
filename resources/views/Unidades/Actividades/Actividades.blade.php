@@ -56,7 +56,17 @@ function mover(event, to) {
       </tbody>
 
     </table>
-    <input class="btn btn-primary" type="submit" value="Guarsdar"/>
+    
+
+    <script>
+      function llamar(){
+        $.ajax({url:"ContenidoComponent.php", success:function(notas1){
+        $("div").text(notas1);}
+        })
+    }
+      </script>
+    <input class="btn btn-primary" type="submit" onclick='llamar()' value="Guardar"/>
+    <div></div>
   </form>
   </div>
 

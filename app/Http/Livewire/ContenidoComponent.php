@@ -834,7 +834,7 @@ Public function deletet($id){
 }
 
 public function notas1(Request $request){
-  /*  
+    
     foreach ($request->get('nota') as $key => $value) 
     {
         $asistencia = Actividad::find($request->get('idnota')[$key]);
@@ -844,7 +844,7 @@ public function notas1(Request $request){
         //$asistencia->IdRegistro = $request->get('IdRegistro')[$key];
         $asistencia->update();
     }
-    */
+    
     //$this->nota.$ida.$nombre=$this->nota;
     //$this->prueba2=$this->nota.$com;
    /* $this->idas=$ida;
