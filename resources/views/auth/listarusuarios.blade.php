@@ -82,7 +82,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
           <script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>
       </head>
-      <div class="modal-dialog">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Datos del usuario</h5>
@@ -90,21 +90,42 @@
           </div>
           <div class="modal-body">
             <form>
-              <div class="mb-3">
-                <label for="recipient-name" class="col-form-label">Usuario:</label>
-                <input type="text" class="form-control" wire:model='usuario1' id="recipient-name">
+              <div class="container">
+                <div class="row">
+                  <div class="col"> 
+                    <div class="mb-3">
+                      <label for="recipient-name" class="col-form-label">Usuario:</label>
+                      <input type="text" class="form-control" wire:model='usuario1' id="recipient-name">
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="mb-3">
+                      <label for="recipient-name" class="col-form-label">Correo:</label>
+                      <input type="text" class="form-control" wire:model='correoed' id="recipient-name">
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="mb-3">
-                <label for="recipient-name" class="col-form-label">Correo:</label>
-                <input type="text" class="form-control" wire:model='correoed' id="recipient-name">
+              <div class="container">
+                <div class="row">
+                  <div class="col">
+                    <div class="mb-3">
+                      <label for="recipient-name" class="col-form-label">Contraseña:</label>
+                      <input type="password" class="form-control" wire:model='pass' id="password">
+                      <input style="margin-left:20px;" type="checkbox" id="mostrar_contrasena" title="clic para mostrar contraseña"/>
+                                    &nbsp;&nbsp;Mostrar Contraseña
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group row">
+                      <label for="exampleInputPassword1" class="form-label" style="font-size:20px">Elegir foto de perfil:</label>
+                      <div class="mb-3">
+                        <input type="file" id="archivo"  wire:model="archivo_perfil">
+                      </div> 
+                    </div>
+                 </div>
+                </div>
               </div>
-              <div class="mb-3">
-                <label for="recipient-name" class="col-form-label">Contraseña:</label>
-                <input type="password" class="form-control" wire:model='pass' id="password">
-                <input style="margin-left:20px;" type="checkbox" id="mostrar_contrasena" title="clic para mostrar contraseña"/>
-                              &nbsp;&nbsp;Mostrar Contraseña
-              </div>
-
             </form>
             <script>
               $(document).ready(function () {
@@ -134,8 +155,8 @@
             <th>EMAIL</th>
             <th>USUARIO</th>
             <th>ROL</th>
-            <th>FOTO DE PERFIL</th>
-            <th> EDITAR </th>
+            <th>FOTO</th>
+            <th>EDITAR</th>
         </tr>
     </thead>
     <tbody>

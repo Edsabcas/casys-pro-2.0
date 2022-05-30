@@ -23,7 +23,7 @@ class ListadeusuariosComponent extends Component
 
     public $img,$tipo,$archivo_perfil,$edit;
 
-    public $apelli,$nombre,$pass,$correoed,$usuario1,$rol,$op;
+    public $apelli,$nombre,$pass,$correoed,$usuario1,$rol,$op,$nomb;
 
     public function render()
     {
@@ -228,6 +228,7 @@ class ListadeusuariosComponent extends Component
             $nombre=$this->nombre;
             $apelli=$this->apelli;
             $rol=$this->rol;
+            $img=$this->archivo_perfil;
     
             $usuario1=$this->usuario1;
             $correoed=$this->correoed;
@@ -254,7 +255,8 @@ class ListadeusuariosComponent extends Component
                     'name'=>$usuario1,
                     'email'=>$correoed,  
                     'usuario'=>$usuario1,
-                    'password'=>$pass,  
+                    'password'=>$pass,
+                    'img_users'=>$img, 
                 ]);
     
                 $id_rol=$this->rol;
