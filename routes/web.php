@@ -173,7 +173,7 @@ Route::get('/Consultar',[Conusltarcontroller::class,'Consultar']);
 
 Route::post('/list_g',[Conusltarcontroller::class,'list_g']);
 
-Route::get('/Calendarizacion',[CalendarizacionController::class,'Calendarizacion']);
+Route::get('/Calendarización',[CalendarizacionController::class,'Calendarizacion']);
 
 Route::post('/guardar_calendarizacion',[CalendarizacionController::class,'guardar_calendarizacion']);
 

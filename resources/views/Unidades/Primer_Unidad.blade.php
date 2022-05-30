@@ -5,6 +5,20 @@
       <div class="card-body">
         <h5 class="card-title">Materia: <strong>{{$NOMBRE_MATERIA}}</strong></h5>
         <h5 class="card-text">Maestro: <strong>{{$ID_DOCENTE}}</strong></h5>
+        @isset($restriccion)   
+        <td>
+          @if($restriccion==1)
+            @include('Unidades.Temas.modaltemas')
+            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#tema" id=tema disabled> Temas </button>
+    
+              @include('Unidades.Actividades.modal_actividades')
+              <button class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#staticBackdrop" disabled> Crear Actividades </button>
+              
+              <a wire:click='vista_a("3")' class="btn btn-success">Ver Actividades </a>
+  
+              <a wire:click='vista_t("4")' class="btn btn-success">Ver Temas </a>
+          </td>
+          @elseif($restriccion==0)
         <td>
           @include('Unidades.Temas.modaltemas')
           <button class="btn btn-success" wire:click='limpiar()' data-bs-toggle="modal" data-bs-target="#tema" id=tema> Temas </button>
@@ -15,6 +29,8 @@
 
             <a wire:click='vista_t("4")' class="btn btn-success">Ver Temas </a>
         </td>
+        @endif
+        @endisset
         <br>
         <br>
         <br>
