@@ -27,6 +27,12 @@ class ListadeusuariosComponent extends Component
 
     public function render()
     {
+        if($this->archivo_perfil!=null){
+            if($this->archivo_perfil->getClientOriginalExtension()=="jpg" or $this->archivo_perfil->getClientOriginalExtension()=="png" or $this->archivo_perfil->getClientOriginalExtension()=="jpeg"){
+                $this->tipo=1;
+            }
+        }
+
         if($this->search!=null and $this->search!=""){
             $sql="SELECT rol_usuario.ID_USUARIO, users.name, users.email, users.password, users.usuario, users.img_users, rol.DESCRIPCION 
             FROM rol_usuario inner join users on users.id = rol_usuario.ID_USUARIO inner join rol on rol.ID_ROL = rol_usuario.ID_ROL WHERE email like '%".$this->search."%' or usuario like '%".$this->search."%'";
@@ -277,10 +283,10 @@ class ListadeusuariosComponent extends Component
         public function generar_use(){
 
         
-            $this->nombre=$this->nombre;
+            $this->nomb=$this->nombre;
             $this->apelli=$this->apelli;
     
-            $primerNombre = explode(" ",$this->nombre);
+            $primerNombre = explode(" ",$this->nomb);
             $primerApellido = explode(" ", $this->apelli);
     
             $this->usuario1 = substr($primerNombre[0],0,10) . '.' . $primerApellido[0];
