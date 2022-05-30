@@ -16,7 +16,7 @@ class CalendarizacionComponent extends Component
     {
         $sql= 'SELECT * FROM tb_unidades_fijas';
         $unidades=DB::select($sql);
-        $sql= 'SELECT * FROM tb_calendarizacion';
+        $sql= 'SELECT * FROM TB_CALENDARIZACION';
         $calendarizacion=DB::select($sql);
         return view('livewire.calendarizacion-component',compact('unidades','calendarizacion'));
     }
@@ -34,14 +34,16 @@ class CalendarizacionComponent extends Component
         }
 
         else{
+        $id_usuariolog = auth()->user()->id;    
         $unidad=$this->unidad;
         $fecha_ini=$this->fecha_ini;
         $fecha_final=$this->fecha_final;
 
         DB::begintransaction();
 
-        $unidades=DB::table('tb_calendarizacion')->insert(
+        $unidades=DB::table('TB_CALENDARIZACION')->insert(
             [
+                'id'=>$id_usuariolog,
                 'ID_UNIDADES_FIJAS'=>$unidad,
                 'FECHA_INICIO'=>$fecha_ini,
                 'FECHA_FINAL'=>$fecha_final,
@@ -73,7 +75,7 @@ class CalendarizacionComponent extends Component
     public function list_calendarizacion(){
         $sql= 'SELECT * FROM tb_unidades_fijas';
         $unidades=DB::select($sql);
-        $sql= 'SELECT * FROM tb_calendarizacion';
+        $sql= 'SELECT * FROM TB_CALENDARIZACION';
         $calendarizacion=DB::select($sql);
         $op=42;
         return view('home', compact('unidades','op','calendarizacion'));
@@ -81,7 +83,7 @@ class CalendarizacionComponent extends Component
 
      Public function edit($id){
         $id_cal=$id;
-        $sql='SELECT * FROM tb_calendarizacion WHERE ID_CALENDARIZACION=?';
+        $sql='SELECT * FROM TB_CALENDARIZACION WHERE ID_CALENDARIZACION=?';
         $calendarizacion=DB:: select($sql, array($id_cal));
         $sql= 'SELECT * FROM tb_unidades_fijas';
         $unidades=DB::select($sql);
@@ -121,7 +123,7 @@ class CalendarizacionComponent extends Component
 
             DB::begintransaction();
     
-            $calen=DB::table('tb_calendarizacion')
+            $calen=DB::table('TB_CALENDARIZACION')
             ->where('ID_CALENDARIZACION', $id_cal)
             ->update( 
                 [
@@ -139,7 +141,7 @@ class CalendarizacionComponent extends Component
                     $this->reset();
                     $sql= 'SELECT * FROM tb_unidades_fijas';
                     $unidades=DB::select($sql);
-                    $sql= 'SELECT * FROM tb_calendarizacion';
+                    $sql= 'SELECT * FROM TB_CALENDARIZACION';
                     $calendarizacion=DB::select($sql);
                     $this->op=40;
                     $this->mensaje3='Editado Correctamente';
@@ -160,7 +162,7 @@ class CalendarizacionComponent extends Component
         $id_cal=$id;
         DB::begintransaction();
 
-        $calen=DB::table('tb_calendarizacion')->where('ID_CALENDARIZACION','=', $id_cal)->delete();
+        $calen=DB::table('TB_CALENDARIZACION')->where('ID_CALENDARIZACION','=', $id_cal)->delete();
 
         if($calen){
             DB::commit();
@@ -169,7 +171,7 @@ class CalendarizacionComponent extends Component
             unset($this->mensaje_eliminar);
             $sql= 'SELECT * FROM tb_unidades_fijas';
             $unidades=DB::select($sql);
-            $sql= 'SELECT * FROM tb_calendarizacion';
+            $sql= 'SELECT * FROM TB_CALENDARIZACION';
             $calendarizacion=DB::select($sql);
             $this->op=40;
             $this->mensaje_eliminar='Eliminado Correctamente';

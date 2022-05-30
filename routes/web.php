@@ -36,11 +36,10 @@ use App\Http\Controllers\ListaDeEstudiantesController;
 use App\Http\Livewire\ListadeusuariosComponent;
 use App\Http\Controllers\ListadeusuariosController;
 
-use App\Http\Controllers\RegisterController;
-use App\Http\Livewire\RegisterComponent;
-
 use App\Http\Controllers\RolesdeusuarioController;
+use App\Http\Controllers\AdminisionesController;
 use App\Http\Livewire\RolesdeusuarioComponent;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -52,24 +51,17 @@ use App\Http\Livewire\RolesdeusuarioComponent;
 |
 */
 //Raiz principal para acceso a home
-Route::get('/', function () {
-    return view('home');
-})->middleware('auth');
+//Route::get('/', function () {
+ //   return view('home');
+//})->middleware('auth');
 
-Route::get('/inicio', [SessionController::class, 'inicio'])
+Route::get('/', [SessionController::class, 'inicio'])
 ->middleware('auth')->name('General.inicio');
 
 //Formulario de ingreso de usuario
 Route::get('/login', [SessionController::class, 'index'])
 ->name('login.index');
 
-
-//Formulario de ingreso de usuario
-Route::get('/regusuario', [RegisterController::class, 'regusuario'])
-->middleware('auth')->name('regusuario.regusuario');
-
-Route::post('/guardar', [RegisterComponent::class, 'guardar'])
-->name('guardar.guardar');
 
 //Formulario de ingreso de usuario
 Route::post('/ingresar', [Sessionscomponent::class, 'validar'])
@@ -181,7 +173,7 @@ Route::get('/Consultar',[Conusltarcontroller::class,'Consultar']);
 
 Route::post('/list_g',[Conusltarcontroller::class,'list_g']);
 
-Route::get('/Calendarizacion',[CalendarizacionController::class,'Calendarizacion']);
+Route::get('/Calendarización',[CalendarizacionController::class,'Calendarizacion']);
 
 Route::post('/guardar_calendarizacion',[CalendarizacionController::class,'guardar_calendarizacion']);
 
@@ -201,4 +193,9 @@ Route::post('/update_plan',[ContenidosController::class, 'update_plan']);
 
 
 //Rutas Pre-Inscribir_estudiantes
+
+Route::get('/Admisiones', [AdminisionesController::class, 'adm'])->middleware('auth');
+
+
+
 Route::get('/Precios', [AsignarPrecioController::class, 'precios'])->middleware('auth');

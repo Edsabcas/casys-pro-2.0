@@ -43,6 +43,22 @@
           background-size: auto auto;
         }
 
+        .btn-pre2 {
+          border: 0px solid #4d57e6;
+          -webkit-border-radius: 12px;
+          border-radius: 12px;
+          color:#ffffff;
+          background: -webkit-linear-gradient(-90deg,  #3a3e7b 0,  #3a3e7b 100%);
+          background: -moz-linear-gradient(180deg,  #3a3e7b 0,  #3a3e7b 100%);
+          background: linear-gradient(180deg, r #3a3e7b 0,  #3a3e7b 100%);
+          background-position: 50% 50%;
+          -webkit-background-origin: padding-box;
+          background-origin: padding-box;
+          -webkit-background-clip: border-box;
+          background-clip: border-box;
+          -webkit-background-size: auto auto;
+          background-size: auto auto;
+
         .btn-pre:hover {
           border: 0px solid #4d57e6;
           -webkit-border-radius: 12px;
@@ -87,9 +103,9 @@
         <ul class="navbar-nav sidebar   sidebar-dark accordion" style="background-color: #a4cb39" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/inicio">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
                 <div class="sidebar-brand-icon">
-                    <img src="https://th.bing.com/th/id/OIP.n9AjAKxolzre7itDRM9XHAHaHa?pid=ImgDet&rs=1" class="rounded mx-auto d-block" width="50" height="50" alt="...">
+                    <img  src="img/Logo-casyy29052022.png" class="rounded mx-auto d-block" width="50" height="50" alt="...">
                 </div>
                 <div class="sidebar-brand-text mx-3" style="font-size: 25px; color:#3a3e7b"> CASYS <sup></sup></div>
             </a>
@@ -104,7 +120,7 @@
             <!-- Nav Item - Pages Collapse Menu -->
            
 
-            <ul class="navbar-nav sticky-top sidebar sidebar-dark accordion fw-bold" style="background-color: #a4cb39" id="accordionSidebar">
+            <ul class="navbar-nav sticky-sm-top bd-layout sidebar sidebar-dark accordion fw-bold" style="background-color: #a4cb39" id="accordionSidebar">
                 @if(Session::get('menu_rol')!=null)
                 @foreach (Session::get('menu_rol') as $menu_rol)
                 <li class="nav-item">
@@ -132,6 +148,8 @@
                 </li>
                 @endforeach
                 @endif
+
+                
                 
             </ul>
 
@@ -148,6 +166,9 @@
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
 
+            <a class="scroll-to-top rounded" href="#page-top">
+                <i class="fas fa-angle-up"></i>
+            </a>
 
         </ul>
         <!-- End of Sidebar -->
@@ -239,10 +260,8 @@
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                            
                             @if(auth()->check())
-                            
-                            Bienvenido <b>{{ auth()->user()->name }} </b>
+                            Bienvenido | <b>{{ auth()->user()->name }} </b>
                             </span>
                             
                             <img class="img-profile rounded-circle"  src="imagen/perfil/{{auth()->user()->img_users}}" />
@@ -255,10 +274,6 @@
                             <a class="dropdown-item" href="/configperfil">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Perfil 
-                            </a>
-                            <a class="dropdown-item" href="/register">
-                                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Registrar un usuario
                             </a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal">
@@ -283,9 +298,9 @@
 
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
+                <div class="container my-auto"  style="color:#3a3e7b">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright made by Stephany, Darlin, Sebas, Diego, Byron, Ligia y su Dios Rony &copy;</span>
+                        <span>Copyright by Castaño | Promo 2021-2022 &copy;</span>
                     </div>
                 </div>
             </footer>
@@ -304,24 +319,24 @@
 
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel"></h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">¿Estas seguro de cerrar sesión?</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                    <a class="btn btn-primary" href="/logout">Cerrar sesión</a>
-                </div>
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title w-100 text-center">¿Esta seguro que quiere cerrar sesión?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Al cerrar la sesión, se finalizarán todos los procesos que haya 
+                realizado en su cuenta. Si desea iniciar sesión nuevamente, puede iniciar como <b>{{ auth()->user()->name }} </b></div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" style="border-radius: 12px;" type="button" data-dismiss="modal">Cancelar</button>
+                <a class="btn btn-pre2" href="/logout">Cerrar sesión</a>
             </div>
         </div>
     </div>
-
+</div>
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

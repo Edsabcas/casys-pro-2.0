@@ -8,7 +8,7 @@ use App\Http\Livewire\Request;
 
 class SeccionComponents extends Component
 {
-    public $nombre_sec,$estado_sec,$op,$mensaje2,$mensaje3,$mensaje4,$mensaje5,$edit,$mensajeeliminar,$mensajeeliminar1;
+    public $nombre_sec,$estado_sec,$op,$mensaje2,$mensaje3,$mensaje4,$mensaje5,$edit,$mensajeeliminar,$mensajeeliminar1,$id_sec;
     public function render()
     {
         $sql="SELECT * FROM tb_seccions";
@@ -44,13 +44,11 @@ class SeccionComponents extends Component
                 DB::commit();
                 $this->reset();
                 unset($this->mensaje2);
-                $this->op=2;
                 $this->mensaje2='Insertado correctamente';
             }
             else{
                 DB::rollback();
                 unset($this->mensaje3);
-                $this->op=2;
                 $this->mensaje3='No fue posible insertar correctamente';
             }
         }
@@ -96,12 +94,13 @@ class SeccionComponents extends Component
 
             if($seccion){
                 DB::commit();
-                $this->op=3;
+                $this->reset();
+                unset($this->mensaje4);
                 $this->mensaje4='Editado correctamente';
             }
             else{
                 DB::rollback();
-                $this->op=3;
+                unset($this->mensaje5);
                 $this->mensaje5='No fue posible editar correctamente';
             }
     }
@@ -114,12 +113,13 @@ class SeccionComponents extends Component
 
         if($seccion){
             DB::commit();
-            $this->op=4;
+            $this->reset();
+            unset($this->mensajeeliminar);
             $this->mensajeeliminar='Eliminado correctamente';
         }
         else{
             DB::rollback();
-            $this->op=4;
+            unset($this->mensajeeliminar1);            
             $this->mensajeeliminar1='No fue posible eliminar correctamente';
         }
     }

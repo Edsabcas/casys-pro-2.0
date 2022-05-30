@@ -8,7 +8,7 @@ use App\Http\Livewire\Request;
 
 class GradoComponents extends Component
 {
-    public $nombre_gr,$estado_gr,$op,$mensaje,$mensaje1,$edit,$mensaje3,$mensaje4,$mensaje5,$mensaje6,$mensajeeliminar,$mensajeeliminar1;
+    public $nombre_gr,$id_gr,$estado_gr,$op,$mensaje,$mensaje1,$edit,$mensaje3,$mensaje4,$mensaje5,$mensaje6,$mensajeeliminar,$mensajeeliminar1;
     public $seccion_gr,$precio_gr,$ministerial_gr,$resolucion_gr,$jornada_gr,$academico_gr;
     public $estado_sec,$nombre_sec,$nombre_jornada,$nombre_nvl,$estado_jornada,$estado_nvl;
     public $mensaje7,$mensaje8,$mensaje9,$mensaje10;
@@ -77,14 +77,11 @@ class GradoComponents extends Component
             if($grados){
                 DB::commit();
                 $this->reset();
-                unset($this->mensaje);
-                $this->op=2;
                 $this->mensaje='Insertado correctamente';
             }
             else{
                 DB::rollback();
-                unset($this->mensaje1);
-                $this->op=2;
+                unset($this->mensaje);
                 $this->mensaje1='No fue posible insertar correctamente';
             }
         }
@@ -146,12 +143,12 @@ class GradoComponents extends Component
 
             if($grado){
                 DB::commit();
-                $this->op=3;
+                $this->reset();
                 $this->mensaje3='Editado correctamente';
             }
             else{
                 DB::rollback();
-                $this->op=3;
+                unset($this->mensaje3);                
                 $this->mensaje4='No fue posible editar correctamente';
             }
     }
@@ -164,12 +161,12 @@ class GradoComponents extends Component
 
         if($grado){
             DB::commit();
-            $this->op=4;
+            $this->reset();
             $this->mensajeeliminar='Eliminado correctamente';
         }
         else{
             DB::rollback();
-            $this->op=4;
+            unset($this->mensajeeliminar);
             $this->mensajeeliminar1='No fue posible eliminar correctamente';
         }
     }
@@ -201,12 +198,11 @@ class GradoComponents extends Component
             if($grados){
                 DB::commit();
                 $this->reset();
-                unset($this->mensaje);
                 $this->mensaje5='Insertado correctamente';
             }
             else{
                 DB::rollback();
-                unset($this->mensaje1);
+                unset($this->mensaje5);
                 $this->mensaje6='No se logro insertar correctamente';
             }
         }
@@ -238,14 +234,11 @@ class GradoComponents extends Component
                 if($nivelacademico){
                     DB::commit();
                     $this->reset();
-                    unset($this->mensaje7);
-                    $this->op=2;
                     $this->mensaje7='Insertado correctamente';
                 }
                 else{
                     DB::rollback();
-                    unset($this->mensaje8);
-                    $this->op=2;
+                    unset($this->mensaje7);
                     $this->mensaje8='No fue posible insertar correctamente';
                 }
             }
@@ -277,14 +270,11 @@ class GradoComponents extends Component
                 if($tipojornada){
                     DB::commit();
                     $this->reset();
-                    unset($this->mensaje9);
-                    $this->op=2;
                     $this->mensaje9='Insertado correctamente';
                 }
                 else{
                     DB::rollback();
-                    unset($this->mensaje10);
-                    $this->op=2;
+                    unset($this->mensaje9);
                     $this->mensaje10='No fue posible insertar correctamente';
                 }
             }

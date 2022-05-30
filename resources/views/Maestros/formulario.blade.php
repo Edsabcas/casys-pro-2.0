@@ -219,38 +219,11 @@
       @endif
     <!-- Modal -->
 
-    <div wire:ignore.self class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">Creación de Usuario</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <form>
-              <div class="mb-3">
-                <label for="recipient-name" class="col-form-label">Usuario:</label>
-                <input type="text" class="form-control" wire:model='usuario' id="recipient-name">
-              </div>
-              <div class="mb-3">
-                <label for="recipient-name" class="col-form-label">Correo:</label>
-                <input type="text" class="form-control" wire:model='correoed' id="recipient-name">
-              </div>
-              <div class="mb-3">
-                <label for="recipient-name" class="col-form-label">Contraseña:</label>
-                <input type="password" class="form-control" wire:model='pass' id="recipient-name">
-              </div>
-            </form>
-           </div>
-          <div class="modal-footer">
-            <button class="btn btn-pre2" wire:click="guardar_docentes()">Guardar</button>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <div wire:ignore.self class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+          <script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>
+      </head>
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -269,9 +242,22 @@
               </div>
               <div class="mb-3">
                 <label for="recipient-name" class="col-form-label">Contraseña:</label>
-                <input type="password" class="form-control" wire:model='pass' id="recipient-name">
+                <input type="password" class="form-control" wire:model='pass' id="password">
+                <input style="margin-left:20px;" type="checkbox" id="mostrar_contrasena" title="clic para mostrar contraseña"/>
+                &nbsp;&nbsp;Mostrar Contraseña
               </div>
             </form>
+            <script>
+              $(document).ready(function () {
+                $('#mostrar_contrasena').click(function () {
+                  if ($('#mostrar_contrasena').is(':checked')) {
+                    $('#password').attr('type', 'text');
+                  } else {
+                    $('#password').attr('type', 'password');
+                  }
+                });
+              });
+              </script>
           </div>
           <div class="modal-footer">
             <button class="btn btn-pre2" data-bs-dismiss="modal" wire:click="guardar_docentes()">Guardar y salir</button>
