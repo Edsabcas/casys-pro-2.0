@@ -21,7 +21,7 @@ class ListadeusuariosComponent extends Component
 
     public $search;
 
-    public $img,$tipo,$archivo_perfil;
+    public $img,$tipo,$archivo_perfil,$edit;
 
     public $apelli,$nombre,$pass,$correoed,$usuario1,$rol,$op;
 
@@ -89,14 +89,17 @@ class ListadeusuariosComponent extends Component
                     );
                     if ($usuarios){
                         DB::commit();
+                        $this->reset();
                         $this->mensaje5='se cambio de manera correcta';
                     }
                     else {
                         DB::rollback();
+                        unset($this->mensaje5);
                         $this->mensaje6='no se cambio de manera correcta';
                     }
                     DB::commit();
-                $this->mensaje10='Se actualizo de manera correcta';
+                    unset($this->mensaje6);
+                    $this->mensaje10='Se actualizo de manera correcta';
                 
                 }
                 else{
@@ -113,14 +116,17 @@ class ListadeusuariosComponent extends Component
                     );
                     if ($usuarios){
                         DB::commit();
+                        $this->reset();
                         $this->mensaje5='se cambio de manera correcta';
                     }
                     else {
                         DB::rollback();
+                        unset($this->mensaje5);
                         $this->mensaje6='no se cambio de manera correcta';
                     }
                     DB::rollback();
-                $this->mensaje11='Se actualizo de manera correcta';
+                    unset($this->mensaje6);
+                    $this->mensaje11='Se actualizo de manera correcta';
                 }       
 
         }
@@ -146,10 +152,12 @@ class ListadeusuariosComponent extends Component
 
                      if($listadousers2){
                         DB::commit();
+                        $this->reset();
                         $this->mensaje24="Foto de perfil actualizada";
                     }
                     else{
                         DB::rollback();
+                        unset($this->mensaje24);
                         $this->mensaje25="No se logró actualizar";
                     }
                 }
@@ -167,12 +175,12 @@ class ListadeusuariosComponent extends Component
     
             if ($lista){
                 DB::commit();
-                $this->op=4;
+                $this->reset();
                 $this->mensajeeliminar='Eliminado correctamente';
             }
             else{
                 DB::rollback();
-                $this->op=4;
+                unset($this->mensajeeliminar);
                 $this->mensajeeliminar1='No fue posible eliminar correctamente';
             }
         }  
@@ -254,14 +262,11 @@ class ListadeusuariosComponent extends Component
                 if($usuario && $rolusuario){
                     DB::commit();
                     $this->reset();
-                    unset($this->mensaje1);
-                    $op=4;
                     $this->mensaje1='Insertado correctamente';
                 }
                 else{
                     DB::rollback();
-                    unset($this->mensaje2);
-                    $op=4;
+                    unset($this->mensaje1);
                     $this->mensaje2='No fue posible insertar correctamente';
                 }
             }

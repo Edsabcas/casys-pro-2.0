@@ -132,14 +132,11 @@ class MaestrosComponents extends Component{
             if($usuario && $maestro && $rolusuario){
                 DB::commit();
                 $this->reset();
-                unset($this->mensaje1);
-                $op=4;
                 $this->mensaje1='Insertado correctamente';
             }
             else{
                 DB::rollback();
-                unset($this->mensaje2);
-                $op=4;
+                unset($this->mensaje1);
                 $this->mensaje2='No fue posible insertar correctamente';
             }
         }

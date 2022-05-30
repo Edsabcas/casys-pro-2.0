@@ -8,7 +8,7 @@ use App\Http\Livewire\Request;
 
 class GradoComponents extends Component
 {
-    public $nombre_gr,$estado_gr,$op,$mensaje,$mensaje1,$edit,$mensaje3,$mensaje4,$mensaje5,$mensaje6,$mensajeeliminar,$mensajeeliminar1;
+    public $nombre_gr,$id_gr,$estado_gr,$op,$mensaje,$mensaje1,$edit,$mensaje3,$mensaje4,$mensaje5,$mensaje6,$mensajeeliminar,$mensajeeliminar1;
     public $seccion_gr,$precio_gr,$ministerial_gr,$resolucion_gr,$jornada_gr,$academico_gr;
     public $estado_sec,$nombre_sec,$nombre_jornada,$nombre_nvl,$estado_jornada,$estado_nvl;
     public $mensaje7,$mensaje8,$mensaje9,$mensaje10;
@@ -77,14 +77,11 @@ class GradoComponents extends Component
             if($grados){
                 DB::commit();
                 $this->reset();
-                unset($this->mensaje);
-                $this->op=2;
                 $this->mensaje='Insertado correctamente';
             }
             else{
                 DB::rollback();
-                unset($this->mensaje1);
-                $this->op=2;
+                unset($this->mensaje);
                 $this->mensaje1='No fue posible insertar correctamente';
             }
         }
