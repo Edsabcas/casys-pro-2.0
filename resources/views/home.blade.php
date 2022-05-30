@@ -88,9 +88,6 @@
 @elseif($op=='addanunciomaestro')
 @livewire('maestroform-component')
 
-@elseif($op=='RegistrarUsuario')
-@livewire('register-component')
-
 
 @elseif($op=='nivelacademico')
 @livewire('nivel-academico')

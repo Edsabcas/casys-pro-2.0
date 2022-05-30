@@ -19,6 +19,12 @@ class PerfilComponent extends Component
 
     public function render()
     {
+        if($this->archivo_perfil!=null){
+            if($this->archivo_perfil->getClientOriginalExtension()=="jpg" or $this->archivo_perfil->getClientOriginalExtension()=="png" or $this->archivo_perfil->getClientOriginalExtension()=="jpeg"){
+                $this->tipo=1;
+            }
+        }
+
         $sql="SELECT * FROM users ORDER BY img_users DESC";
         $this->fotos=DB::select($sql);
 
@@ -89,17 +95,19 @@ class PerfilComponent extends Component
             
     }
 
-    public function cambiofoto(){
-
+    public function cambiofoto()
+    {
         $archivo_perfil="";
-            if($this->archivo_perfil!=null){
-                if($this->archivo_perfil->getClientOriginalExtension()=="jpg" or $this->archivo_perfil->getClientOriginalExtension()=="png" or $this->archivo_perfil->getClientOriginalExtension()=="jpeg"){
-                    $archivo_perfil = "img".time().".".$this->archivo_perfil->getClientOriginalExtension();
-                    $this->img=$archivo_perfil;
-                    $this->archivo_perfil->storeAS('imagen/perfil/', $this->img,'public_up');
-                    $this->tipo=1;
-
-                    DB::beginTransaction();
+        if($this->archivo_perfil!=null){
+            if($this->archivo_perfil->getClientOriginalExtension()=="jpg" or $this->archivo_perfil->getClientOriginalExtension()=="png" or $this->archivo_perfil->getClientOriginalExtension()=="jpeg"){
+                $archivo_perfil = "img".time().".".$this->archivo_perfil->getClientOriginalExtension();
+                $this->img=$archivo_perfil;
+                $this->archivo_perfil->storeAS('imagen/perfil/', $this->img,'public_up');
+            }
+            if($this->archivo_perfil->getClientOriginalExtension()=="jpg" or $this->archivo_perfil->getClientOriginalExtension()=="png" or $this->archivo_perfil->getClientOriginalExtension()=="jpeg"){
+                $this->tipo=1;
+            }
+            DB::beginTransaction();
                     $foto=DB::table('users')
                     ->where('id',auth()->user()->id)
                     ->update ([
@@ -115,10 +123,6 @@ class PerfilComponent extends Component
                         DB::rollback();
                         $this->mensaje25="No se logró actualizar";
                     }
-                }
-            
-            }
-            
-            
         }
+    }
 }

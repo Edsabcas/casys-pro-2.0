@@ -16,7 +16,7 @@ class ContenidoComponent extends Component
    public $option1,$option2,$option3,$option4,$vista,$vista2;
    public $prueba, $op, $mensaje, $mensaje1, $file, $date, $dia2, $message, $file2, $arch, $vid, $pdf, $formato, $tipo, $id_act,$editt,$editp;
    public $titulo, $punteo, $fecha_e, $fecha_ext, $descripcion, $act,$tema_a,$descripciont,$tema,$unidad, $temasb, $archivo, $nota, $descripciona;
-
+   public $restriccion, $fecha_date; 
     public $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, $grado2, $idsecc2, $arch2,$tema2, $unidad2, $descripciont2, $nombreu,$id_tem, $edita,$id_plan;
     public $prueba2, $idas, $nombress;
 
@@ -243,6 +243,22 @@ class ContenidoComponent extends Component
     public function validar_u($nunif){
         $this->limpiarplan();
         $this->unidadfija=$nunif;
+        $this->fecha_date=date("Y-m-d");
+
+        $sql= 'SELECT ID_UNIDADES_FIJAS, FECHA_INICIO, FECHA_FINAL FROM TB_CALENDARIZACION';
+        $fecha_dates=DB::select($sql);
+
+        $this->restriccion;
+
+        foreach($fecha_dates as $fecha_d)
+        {
+            if($fecha_d->ID_UNIDADES_FIJAS==$this->unidadfija && ($this->fecha_date < $fecha_d->FECHA_INICIO or $this->fecha_date > $fecha_d->FECHA_FINAL)){
+                $this->restriccion=1;
+            }
+            elseif($fecha_d->ID_UNIDADES_FIJAS==$this->unidadfija && ($this->fecha_date > $fecha_d->FECHA_INICIO or $this->fecha_date < $fecha_d->FECHA_FINAL)){
+                $this->restriccion=0;
+            }
+        } 
  
         if($this->unidadfija==1){
             if($this->vista!=null && $this->vista==1){
