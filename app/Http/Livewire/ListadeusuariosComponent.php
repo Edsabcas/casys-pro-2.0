@@ -43,7 +43,7 @@ class ListadeusuariosComponent extends Component
         $rols=DB::select($sql);
 
         $this->op=1;
-        $this->edit2=1;
+        $this->edit=1;
 
         //$listadousers = array_slice($listadousers, 10 * (4 - 1), 10);
         //$listadousers = new Paginator($listadousers, 10, 4);

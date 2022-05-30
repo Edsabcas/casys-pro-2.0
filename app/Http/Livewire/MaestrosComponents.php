@@ -233,12 +233,11 @@ class MaestrosComponents extends Component{
         if($mae){
             DB::commit();
             $this->reset();
-            unset($this->mensaje);
             $this->mensaje3='Editado Correctamente';
         }
         else{
             DB::rollback();
-            $this->op=4;
+            unset($this->mensaje3);
             $this->mensaje4='No fue posible editar correctamente';
         }
     
@@ -252,12 +251,12 @@ class MaestrosComponents extends Component{
 
         if ($mae){
             DB::commit();
-            $this->op=4;
+            $this->reset();
             $this->mensajeeliminar='Eliminado correctamente';
         }
         else{
             DB::rollback();
-            $this->op=4;
+            unset($this->mensajeeliminar);
             $this->mensajeeliminar1='No fue posible eliminar correctamente';
         }
     }  

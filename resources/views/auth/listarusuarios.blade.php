@@ -34,25 +34,40 @@
           </div>
           <div class="modal-body">
             <form>
-              <div class="mb-3">
-                <label for="recipient-name" class="col-form-label">Nombre:</label>
-                <input type="text" class="form-control" wire:model='nombre' id="recipient-name">
+              <div class="container">
+                <div class="row">
+                  <div class="col"> 
+                    <div class="mb-3">
+                      <label for="recipient-name" class="col-form-label">Nombre:</label>
+                      <input type="text" class="form-control" wire:model='nombre' id="recipient-name">
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="mb-3">
+                      <label for="recipient-name" class="col-form-label">Apellido:</label>
+                      <input type="text" class="form-control" wire:model='apelli' id="recipient-name">
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="mb-3">
-                <label for="recipient-name" class="col-form-label">Apellido:</label>
-                <input type="text" class="form-control" wire:model='apelli' id="recipient-name">
+              <div class="container">
+                <div class="row">
+                  <div class="col"> 
+                    <div class="mb-3">
+                      <label for="recipient-name" class="col-form-label">Rol:</label>
+                      <select class="form-select" aria-label="Default select example" wire:model="rol" required>
+                        <option selected>Seleccionar:</option>
+                        @isset($rols)
+                          @foreach ($rols as $rol)
+                            <option value="{{$rol->ID_ROL}}">{{$rol->DESCRIPCION}}</option>
+                          @endforeach              
+                        @endisset
+                      </select>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="mb-3">
-                <label for="recipient-name" class="col-form-label">Rol:</label>
-                <select class="form-select" aria-label="Default select example" wire:model="rol" required>
-                  <option selected>Seleccionar:</option>
-                  @isset($rols)
-                    @foreach ($rols as $rol)
-                      <option value="{{$rol->ID_ROL}}">{{$rol->DESCRIPCION}}</option>
-                    @endforeach              
-                  @endisset
-                </select>
-              </div>
+
             </form>
            </div>
            <div class="modal-footer">
@@ -83,6 +98,7 @@
                 <label for="recipient-name" class="col-form-label">Contraseña:</label>
                 <input type="password" class="form-control" wire:model='pass' id="recipient-name">
               </div>
+
             </form>
             
           </div>
