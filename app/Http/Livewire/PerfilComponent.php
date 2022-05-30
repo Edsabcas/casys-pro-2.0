@@ -19,6 +19,12 @@ class PerfilComponent extends Component
 
     public function render()
     {
+        if($this->archivo_perfil!=null){
+            if($this->archivo_perfil->getClientOriginalExtension()=="jpg" or $this->archivo_perfil->getClientOriginalExtension()=="png" or $this->archivo_perfil->getClientOriginalExtension()=="jpeg"){
+                $this->tipo=1;
+            }
+        }
+
         $sql="SELECT * FROM users ORDER BY img_users DESC";
         $this->fotos=DB::select($sql);
 

@@ -105,11 +105,14 @@
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
+
+
+
                       <form wire:submit.prevent='' class="form-horizontal">
                         <div class="form-group row">
                           <label for="current_password" class="col-sm-3 col-form-label">Contraseña actual:</label> 
                           <div class="col-sm-9">            
-                            <input wire:model="current_password" type="password"  class="form-control" id="password" name="password" placeholder="Contraseña"> 
+                            <input wire:model="current_password" type="password"  class="form-control" id="password" name="password" placeholder="Contraseña">
                               <input style="margin-left:20px;" type="checkbox" id="mostrar_contrasena" title="clic para mostrar contraseña"/>
                               &nbsp;&nbsp;
                               @error('current_password')
@@ -128,7 +131,8 @@
                               </div>
                               @endif
                           </div>
-                      </div>
+                        </div>
+
                           <div class="form-group row">
                               <label for="new_password" class="col-sm-3 col-form-label">Contraseña nueva:</label>
                               <div class="col-sm-9">
