@@ -1,15 +1,97 @@
 <h1 class="text-3xl text-center font-bold">Lista de Usuarios</h1>
-<div>
-  <div class="input-group justify-content-center">
-    <div class="form-outline">
-      <input type="search" wire:model="search" id="form1" class="form-control" placeholder="Buscar:" />
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div>
+        <div class="input-group justify-content-center">
+          <div class="form-outline">
+            <input type="search" wire:model="search" id="form1" class="form-control" placeholder="Buscar:" />
+          </div>
+          <button type="button" class="btn btn-pre2">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+        <br>
+      </div>
     </div>
-    <button type="button" class="btn btn-pre2">
-      <i class="fas fa-search"></i>
-    </button>
+
+    <div class="col">
+      <button type="button"  class="btn btn-pre2" data-bs-toggle="modal" data-bs-target="#usuarionuevo">
+          Agregar Usuario
+      </button>
+    </div>
   </div>
-  <br>
 </div>
+
+<!-- Modal -->
+  
+<div class="modal fade" id="usuarionuevo" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Creación de Usuario</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">Nombre:</label>
+                <input type="text" class="form-control" wire:model='usuario' id="recipient-name">
+              </div>
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">Apellido:</label>
+                <input type="text" class="form-control" wire:model='correoed' id="recipient-name">
+              </div>
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">Rol:</label>
+                <select class="form-select" aria-label="Default select example" wire:model="grado_a" required>
+                  <option selected>Seleccionar:</option>
+                  @isset($rols)
+                    @foreach ($rols as $rol)
+                      <option value="{{$rol->ID_ROL}}">{{$rol->DESCRIPCION}}</option>
+                    @endforeach              
+                  @endisset
+                </select>
+              </div>
+            </form>
+           </div>
+           <div class="modal-footer">
+            <button class="btn btn-primary" data-bs-target="#creacion" data-bs-toggle="modal">Open second modal</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div wire:ignore.self class="modal fade" id="creacion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Datos del usuario</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">Usuario:</label>
+                <input type="text" class="form-control" wire:model='usuario' id="recipient-name">
+              </div>
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">Correo:</label>
+                <input type="text" class="form-control" wire:model='correoed' id="recipient-name">
+              </div>
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">Contraseña:</label>
+                <input type="password" class="form-control" wire:model='pass' id="recipient-name">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-pre2" data-bs-dismiss="modal" wire:click="guardar_docentes()">Guardar y salir</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
 <div class="table-responsive">
   <table class="table table-success table-striped table-bordered">
@@ -99,7 +181,13 @@
                   <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                   <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                 </svg>
-              </button>                        
+              </button>    
+              
+              @include('auth.eliminarmodal')
+                        
+              <button type="button" class="btn btn-secondary" style="border-radius: 12px;" data-bs-toggle="modal" data-bs-target="#eliminar{{$listadouser->ID_USUARIO}}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+              </svg></button>
             </td>
         </tr>  
       @endforeach
