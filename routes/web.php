@@ -40,7 +40,9 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Livewire\RegisterComponent;
 
 use App\Http\Controllers\RolesdeusuarioController;
+use App\Http\Controllers\AdminisionesController;
 use App\Http\Livewire\RolesdeusuarioComponent;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -52,11 +54,11 @@ use App\Http\Livewire\RolesdeusuarioComponent;
 |
 */
 //Raiz principal para acceso a home
-Route::get('/', function () {
-    return view('home');
-})->middleware('auth');
+//Route::get('/', function () {
+ //   return view('home');
+//})->middleware('auth');
 
-Route::get('/inicio', [SessionController::class, 'inicio'])
+Route::get('/', [SessionController::class, 'inicio'])
 ->middleware('auth')->name('General.inicio');
 
 //Formulario de ingreso de usuario
@@ -201,4 +203,9 @@ Route::post('/update_plan',[ContenidosController::class, 'update_plan']);
 
 
 //Rutas Pre-Inscribir_estudiantes
+
+Route::get('/Admisiones', [AdminisionesController::class, 'adm'])->middleware('auth');
+
+
+
 Route::get('/Precios', [AsignarPrecioController::class, 'precios'])->middleware('auth');

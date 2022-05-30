@@ -23,6 +23,8 @@ class ListadeusuariosComponent extends Component
 
     public $img,$tipo,$archivo_perfil;
 
+    public $apelli,$nombre,$pass,$correoed,$usuario1,$rol,$op;
+
     public function render()
     {
         if($this->search!=null and $this->search!=""){
@@ -37,10 +39,16 @@ class ListadeusuariosComponent extends Component
             $listadousers=DB::select($sql);
         }
 
-        $this->op=1;
-        $this->edit2=1;
+        $sql="SELECT * FROM rol Where ID_ROL IN (2,6,7,8)";
+        $rols=DB::select($sql);
 
-        return view('livewire.listadeusuarios-component', compact('listadousers'));
+        $this->op=1;
+        $this->edit=1;
+
+        //$listadousers = array_slice($listadousers, 10 * (4 - 1), 10);
+        //$listadousers = new Paginator($listadousers, 10, 4);
+
+        return view('livewire.listadeusuarios-component', compact('listadousers','rols'));
     }
 
     public function cargar_datos($id_p, $name, $email, $usuario){
@@ -148,6 +156,142 @@ class ListadeusuariosComponent extends Component
             
             }
             
+            
+        }
+        public function delete($id){
+            $id=$id;
+    
+            DB::beginTransaction();
+    
+            $lista=DB::table('users')->where('id','=', $id)->delete();
+    
+            if ($lista){
+                DB::commit();
+                $this->op=4;
+                $this->mensajeeliminar='Eliminado correctamente';
+            }
+            else{
+                DB::rollback();
+                $this->op=4;
+                $this->mensajeeliminar1='No fue posible eliminar correctamente';
+            }
+        }  
+
+        public function guardar_trigliceridos(){
+
+            $sql='SELECT * FROM users WHERE usuario=?';
+            $maes=DB::select($sql,array($this->usuario));
+    
+            if($maes !=null){
+    
+                $inicial=substr($this->nombre,0,1);
+                $iniciales=explode(" ", $this->nombre);
+                $inicial2=substr($iniciales[1],0,1);
+                $apellidos=explode(" ", $this->apelli);
+                $apellido=$apellidos[0];
+                $apellido2=substr($apellidos[1],0,1);
+                
+    
+                $this->usuario1=$this->usuario1.$inicial2;
+    
+                $this->correoed=$inicial.$inicial2.$apellido.$apellido2.$inicial2.'@colegioelcastano.edu.gt';
+                $this->usuario1 = strtolower($this->usuario1);
+                $this->correoed = strtolower($this->correoed);
+            }
+    
+    
+            if($this->validate([
+                'nombre' => 'required',
+                'apelli' => 'required',
+                'rol' => 'required',
+
+            ])==false){
+                $mensaje="no encontrado";
+                session(['message' => 'no encontrado']);
+                return back()->withErrors(['mensaje' =>'Validar el input vacio']);
+            }
+            else{
+            $nombre=$this->nombre;
+            $apelli=$this->apelli;
+            $rol=$this->rol;
+    
+            $usuario1=$this->usuario1;
+            $correoed=$this->correoed;
+            $pass=bcrypt($this->pass);
+    
+    
+            $id=0;
+    
+    
+            $sql='SELECT MAX(id+1) AS id FROM users;';
+            $valor=DB::select($sql);
+    
+            foreach($valor as $val){
+    
+                $id=$val->id;
+            }  
+    
+            DB::beginTransaction();
+    
+    
+            $usuario=DB::table('users')->insert(
+                [
+                    'id'=>$id,
+                    'name'=>$usuario1,
+                    'email'=>$correoed,  
+                    'usuario'=>$usuario1,
+                    'password'=>$pass,  
+                ]);
+    
+                $id_rol=$this->rol;
+    
+                $rolusuario=DB::table('rol_usuario')->insert(
+                    [
+                        'ID_ROL'=>$id_rol,
+                        'ID_USUARIO'=>$id,  
+                    ]);
+    
+                if($usuario && $rolusuario){
+                    DB::commit();
+                    $this->reset();
+                    unset($this->mensaje1);
+                    $op=4;
+                    $this->mensaje1='Insertado correctamente';
+                }
+                else{
+                    DB::rollback();
+                    unset($this->mensaje2);
+                    $op=4;
+                    $this->mensaje2='No fue posible insertar correctamente';
+                }
+            }
+    
+        }
+
+
+        public function generar_use(){
+
+        
+            $this->nomb=$this->nombre;
+            $this->apelli=$this->apelli;
+    
+            $primerNombre = explode(" ",$this->nomb);
+            $primerApellido = explode(" ", $this->apelli);
+    
+            $this->usuario1 = substr($primerNombre[0],0,10) . '.' . $primerApellido[0];
+    
+            $this->usuario1 = strtolower($this->usuario1);
+    
+            $inicial=substr($this->nombre,0,1);
+            $iniciales=explode(" ", $this->nombre);
+            $inicial2=substr($iniciales[1],0,1);
+            $apellidos=explode(" ", $this->apelli);
+            $apellido=$apellidos[0];
+            $apellido2=substr($apellidos[1],0,1);
+            
+            $this->correoed=$inicial.$inicial2.$apellido.$apellido2.'@colegioelcastano.edu.gt';
+            $this->correoed=strtolower($this->correoed);
+            $this->pass='Cole123';
             
         }
 
