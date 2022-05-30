@@ -220,6 +220,10 @@
     <!-- Modal -->
 
     <div wire:ignore.self class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+          <script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>
+      </head>
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -238,9 +242,22 @@
               </div>
               <div class="mb-3">
                 <label for="recipient-name" class="col-form-label">Contraseña:</label>
-                <input type="password" class="form-control" wire:model='pass' id="recipient-name">
+                <input type="password" class="form-control" wire:model='pass' id="password">
+                <input style="margin-left:20px;" type="checkbox" id="mostrar_contrasena" title="clic para mostrar contraseña"/>
+                &nbsp;&nbsp;Mostrar Contraseña
               </div>
             </form>
+            <script>
+              $(document).ready(function () {
+                $('#mostrar_contrasena').click(function () {
+                  if ($('#mostrar_contrasena').is(':checked')) {
+                    $('#password').attr('type', 'text');
+                  } else {
+                    $('#password').attr('type', 'password');
+                  }
+                });
+              });
+              </script>
           </div>
           <div class="modal-footer">
             <button class="btn btn-pre2" data-bs-dismiss="modal" wire:click="guardar_docentes()">Guardar y salir</button>
