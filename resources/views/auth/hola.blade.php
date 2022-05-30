@@ -40,7 +40,6 @@
             <br>
             <br>
             
-            <div class="invisible" id="Jimena tu diosa">.</div>
             <div class="card o-hidden border-0 shadow-lg my-5">
                 <div class="card-body p-0">
                     <!-- Nested Row within Card Body -->
@@ -109,7 +108,13 @@
     
     </div>
     
-
+    <footer class="sticky-footer">
+        <div class="container my-auto">
+            <div class="copyright text-center my-auto" style="color:#3a3e7b">
+                <span>Copyright by Castaño | Promo 2021-2022 &copy;</span>
+            </div>
+        </div>
+    </footer>
     
 
     <!-- Bootstrap core JavaScript-->
