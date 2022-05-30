@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\DB;
 class AdminisionesComponet extends Component
 {
     public $search0,$search1,$search2,$search3,$search4,$search5;
+    public $gradoin,$nombre_es,$f_nacimiento_es,$genero,$cui_es,$codigo_pe_es,$nac_es,$lug_nac_es,$tel_es,$cel_es,$direccion_es,$religion_es;
+    public $nombre_en,$fnacimiento_en,$dpi_en,$extentido_en,$es_civil_en,$direccion_en,$tel_casa_en,$cel_en,$correo_en,$religion_en;
+    public $a,$mensaje,$gradose;
+    public $val,$val1,$gestion,$errorfecha;
     public function render()
     {
 
