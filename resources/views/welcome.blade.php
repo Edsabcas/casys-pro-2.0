@@ -319,24 +319,24 @@
 
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel"></h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">¿Esta seguro de cerrar sesión?</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" style="border-radius: 12px;" type="button" data-dismiss="modal">Cancelar</button>
-                    <a class="btn btn-pre2" href="/logout">Cerrar sesión</a>
-                </div>
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title w-100 text-center">¿Esta seguro que quiere cerrar sesión?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Al cerrar la sesión, se finalizarán todos los procesos que haya 
+                realizado en su cuenta. Si desea iniciar sesión nuevamente, puede iniciar como <b>{{ auth()->user()->name }} </b></div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" style="border-radius: 12px;" type="button" data-dismiss="modal">Cancelar</button>
+                <a class="btn btn-pre2" href="/logout">Cerrar sesión</a>
             </div>
         </div>
     </div>
-
+</div>
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
