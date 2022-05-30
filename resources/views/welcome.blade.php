@@ -43,6 +43,22 @@
           background-size: auto auto;
         }
 
+        .btn-pre2 {
+          border: 0px solid #4d57e6;
+          -webkit-border-radius: 12px;
+          border-radius: 12px;
+          color:#ffffff;
+          background: -webkit-linear-gradient(-90deg,  #3a3e7b 0,  #3a3e7b 100%);
+          background: -moz-linear-gradient(180deg,  #3a3e7b 0,  #3a3e7b 100%);
+          background: linear-gradient(180deg, r #3a3e7b 0,  #3a3e7b 100%);
+          background-position: 50% 50%;
+          -webkit-background-origin: padding-box;
+          background-origin: padding-box;
+          -webkit-background-clip: border-box;
+          background-clip: border-box;
+          -webkit-background-size: auto auto;
+          background-size: auto auto;
+
         .btn-pre:hover {
           border: 0px solid #4d57e6;
           -webkit-border-radius: 12px;
@@ -312,10 +328,10 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">¿Estas seguro de cerrar sesión?</div>
+                <div class="modal-body">¿Esta seguro de cerrar sesión?</div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                    <a class="btn btn-primary" href="/logout">Cerrar sesión</a>
+                    <button class="btn btn-secondary" style="border-radius: 12px;" type="button" data-dismiss="modal">Cancelar</button>
+                    <a class="btn btn-pre2" href="/logout">Cerrar sesión</a>
                 </div>
             </div>
         </div>
