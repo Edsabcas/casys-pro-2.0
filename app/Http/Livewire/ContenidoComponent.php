@@ -183,6 +183,7 @@ class ContenidoComponent extends Component
 
     }
     
+    //funcion de mostrar todas las mataerias existentes
     public function mostrar_m($id,$nomb,$secc,$ids,$num)
     {
         unset($this->mat);
@@ -193,6 +194,7 @@ class ContenidoComponent extends Component
         $this->op2=$num;
     }
 
+    //funcion que muestra todas las unidades 
     public function mostrar_u($id,$nombm,$nombrem,$num)
     {
         unset($this->unidad1);
@@ -203,18 +205,21 @@ class ContenidoComponent extends Component
         
     }
 
+    //funcion de la visualizacion de las vista de actividades
     public function vista_a($num)
     {
         $this->op2=$num;
         
     }
 
+    //funcion de la vista de temas
     public function vista_t($num)
     {
         $this->op2=$num;
         
     }
 
+    //funcion de la paginacion
     public function paginacion($num)
     {
         if($num==1){
@@ -233,6 +238,8 @@ class ContenidoComponent extends Component
         }
 
     }
+
+    //validacion de unidades 
     public function validar_u($nunif){
         $this->limpiarplan();
         $this->unidadfija=$nunif;
@@ -298,6 +305,7 @@ class ContenidoComponent extends Component
         }  
     }
 
+    //funcion que muestra la vista de las unidades nuevas creadas
     public function validar_u2($nun,$nomu){
         unset($this->unidadn);
         $this->unidadn=$nun;
@@ -410,6 +418,7 @@ class ContenidoComponent extends Component
 
 }
 
+//funcion que limpia los datos que se llenaton en los formularios anterirores 
 public function limpiar_act(){
     $this->edita="";
     $this->titulo="";
@@ -430,7 +439,7 @@ public function limpiar_act(){
 
 }
 
-//edicion de las actividades de unidades dijas
+//edicion de las actividades de unidades fijas
     Public function edita($id){
         $this->limpiarcract();
         $edita=$id;
@@ -554,6 +563,7 @@ public function limpiar_act(){
        
     }
 
+    //funcnion que limpia las variables en el modal de edicion 
 public function limpiarcract(){
     unset($this->mensaje);
     unset($this->mensaje1);
@@ -639,6 +649,7 @@ public function limpiarcract(){
     }
 
 
+    //funcion de las suibda de temas en las unidades fijas
     public function Subir_Tema(){
         if($this->validate([
             'tema' => 'required',
@@ -689,6 +700,7 @@ public function limpiarcract(){
     }
 }
 
+//funcnion de la edicion de temas en las uniddades fijas 
 Public function editt($id){
     $id_tem=$id;
     $sql='SELECT * FROM tb_temas WHERE ID_TEMA=?';
@@ -712,6 +724,7 @@ Public function editt($id){
    $this->editt=1;
 }
 
+//funcion de edicion de temas en unidades fijas 
 public function update_temas(){
     if($this->validate([
         'tema' => 'required',
@@ -766,6 +779,7 @@ public function update_temas(){
    
 }
 
+//funcion de eliminar temas en unidades fijas 
 Public function deletet($id){
     $id_tem=$id;
     DB::begintransaction();
@@ -790,6 +804,7 @@ Public function deletet($id){
     }
 }
 
+//creacion de los temas en las unidades nuevas 
     public function Subir_Tema2(){
         if($this->validate([
             'tema2' => 'required',
@@ -833,6 +848,7 @@ Public function deletet($id){
     }
 }
 
+//funcnion de la inserccion de las notas 
 public function notas1(Request $request){
   /*  
     foreach ($request->get('nota') as $key => $value) 
@@ -878,6 +894,7 @@ public function notas1(Request $request){
 */
 }
 
+//funcnion de subir la planificacion anual 
 public function Subir_Plan(){
     if($this->validate([
         'descripciona' => 'required',
@@ -925,6 +942,7 @@ public function Subir_Plan(){
 
 }
 
+//edicion de las planificaciones anuales 
 Public function editp($id){
     $id_plan=$id;
     $sql='SELECT * FROM tb_planificacionanual WHERE ID_PLAN=?';
@@ -946,6 +964,7 @@ Public function editp($id){
    $this->editp=1;
 }
 
+//edicion de la edicion de la planificacion anual 
 public function update_plan(){
     if($this->validate([
         'descripciona' => 'required',
@@ -995,7 +1014,7 @@ public function update_plan(){
    
 }
 
-
+//borrar las planificaciones anuales 
 Public function deletep($id){
     $id_plan=$id;
     DB::begintransaction();
@@ -1020,6 +1039,7 @@ Public function deletep($id){
     }
 }
 
+//funcion de subir actividades en las unidades creadas
 public function Subir_Act2(){
     if($this->validate([
         'titulo2' => 'required',
@@ -1109,6 +1129,7 @@ public function Subir_Act2(){
 
 }
 
+//limpiar variables de temas
 public function limpiar(){
     $this->tema="";
     $this->descripciont="";
@@ -1116,6 +1137,7 @@ public function limpiar(){
  
 }
 
+//funcion de limpiar las variables de la planificacion anual 
 public function limpiarplan(){
 
     $this->descripciona="";
