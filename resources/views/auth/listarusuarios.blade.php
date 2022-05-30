@@ -117,10 +117,10 @@
                 });
               });
               </script>
-            
           </div>
           <div class="modal-footer">
-            <button class="btn btn-pre2" data-bs-dismiss="modal" wire:click="guardar_trigliceridos()">Guardar y salir</button>
+            <button class="btn btn-pre2" wire:click="guardar_trigliceridos()">Guardar</button>
+            <button class="btn btn-pre2" data-bs-dismiss="modal">Cerrar</button>
           </div>
         </div>
       </div>

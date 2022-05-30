@@ -21,7 +21,7 @@ class ListadeusuariosComponent extends Component
 
     public $search;
 
-    public $img,$tipo,$archivo_perfil;
+    public $img,$tipo,$archivo_perfil,$edit;
 
     public $apelli,$nombre,$pass,$correoed,$usuario1,$rol,$op;
 
@@ -272,10 +272,10 @@ class ListadeusuariosComponent extends Component
         public function generar_use(){
 
         
-            $this->nomb=$this->nombre;
+            $this->nombre=$this->nombre;
             $this->apelli=$this->apelli;
     
-            $primerNombre = explode(" ",$this->nomb);
+            $primerNombre = explode(" ",$this->nombre);
             $primerApellido = explode(" ", $this->apelli);
     
             $this->usuario1 = substr($primerNombre[0],0,10) . '.' . $primerApellido[0];
