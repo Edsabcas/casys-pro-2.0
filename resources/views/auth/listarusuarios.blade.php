@@ -25,7 +25,7 @@
 
 <!-- Modal -->
   
-<div class="modal fade" id="usuarionuevo" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+<div wire:ignore.self class="modal fade" id="usuarionuevo" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
@@ -36,15 +36,15 @@
             <form>
               <div class="mb-3">
                 <label for="recipient-name" class="col-form-label">Nombre:</label>
-                <input type="text" class="form-control" wire:model='usuario' id="recipient-name">
+                <input type="text" class="form-control" wire:model='nombre' id="recipient-name">
               </div>
               <div class="mb-3">
                 <label for="recipient-name" class="col-form-label">Apellido:</label>
-                <input type="text" class="form-control" wire:model='correoed' id="recipient-name">
+                <input type="text" class="form-control" wire:model='apelli' id="recipient-name">
               </div>
               <div class="mb-3">
                 <label for="recipient-name" class="col-form-label">Rol:</label>
-                <select class="form-select" aria-label="Default select example" wire:model="grado_a" required>
+                <select class="form-select" aria-label="Default select example" wire:model="rol" required>
                   <option selected>Seleccionar:</option>
                   @isset($rols)
                     @foreach ($rols as $rol)
@@ -56,8 +56,7 @@
             </form>
            </div>
            <div class="modal-footer">
-            <button class="btn btn-primary" data-bs-target="#creacion" data-bs-toggle="modal">Open second modal</button>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button class="btn btn-primary" data-bs-target="#creacion" data-bs-dismiss="modal" wire:click="generar_use()" data-bs-toggle="modal">Siguiente</button>
           </div>
         </div>
       </div>
@@ -74,7 +73,7 @@
             <form>
               <div class="mb-3">
                 <label for="recipient-name" class="col-form-label">Usuario:</label>
-                <input type="text" class="form-control" wire:model='usuario' id="recipient-name">
+                <input type="text" class="form-control" wire:model='usuario1' id="recipient-name">
               </div>
               <div class="mb-3">
                 <label for="recipient-name" class="col-form-label">Correo:</label>
@@ -85,9 +84,10 @@
                 <input type="password" class="form-control" wire:model='pass' id="recipient-name">
               </div>
             </form>
+            
           </div>
           <div class="modal-footer">
-            <button class="btn btn-pre2" data-bs-dismiss="modal" wire:click="guardar_docentes()">Guardar y salir</button>
+            <button class="btn btn-pre2" data-bs-dismiss="modal" wire:click="guardar_trigliceridos()">Guardar y salir</button>
           </div>
         </div>
       </div>
@@ -301,6 +301,7 @@
               });
             });
             </script> 
+            
       </div>
     </div>
   </div>

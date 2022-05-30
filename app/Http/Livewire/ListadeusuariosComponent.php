@@ -23,6 +23,8 @@ class ListadeusuariosComponent extends Component
 
     public $img,$tipo,$archivo_perfil;
 
+    public $apelli,$nombre,$pass,$correoed,$usuario1,$rol,$op;
+
     public function render()
     {
         if($this->search!=null and $this->search!=""){
@@ -175,44 +177,45 @@ class ListadeusuariosComponent extends Component
             }
         }  
 
-        public function guardar_docentes(){
+        public function guardar_trigliceridos(){
 
             $sql='SELECT * FROM users WHERE usuario=?';
             $maes=DB::select($sql,array($this->usuario));
     
             if($maes !=null){
     
-                $inicial=substr($this->nombre_docente,0,1);
-                $iniciales=explode(" ", $this->nombre_docente);
+                $inicial=substr($this->nombre,0,1);
+                $iniciales=explode(" ", $this->nombre);
                 $inicial2=substr($iniciales[1],0,1);
-                $apellidos=explode(" ", $this->apellido_docente);
+                $apellidos=explode(" ", $this->apelli);
                 $apellido=$apellidos[0];
                 $apellido2=substr($apellidos[1],0,1);
                 
     
-                $this->usuario=$this->usuario.$inicial2;
+                $this->usuario1=$this->usuario1.$inicial2;
     
                 $this->correoed=$inicial.$inicial2.$apellido.$apellido2.$inicial2.'@colegioelcastano.edu.gt';
-                $this->usuario = strtolower($this->usuario);
+                $this->usuario1 = strtolower($this->usuario1);
                 $this->correoed = strtolower($this->correoed);
             }
     
     
             if($this->validate([
-                'nombre_docente' => 'required',
-                'apellido_docente' => 'required',
+                'nombre' => 'required',
+                'apelli' => 'required',
                 'rol' => 'required',
+
             ])==false){
                 $mensaje="no encontrado";
                 session(['message' => 'no encontrado']);
                 return back()->withErrors(['mensaje' =>'Validar el input vacio']);
             }
             else{
-            $num_docente=$this->nombre_docente;
-            $ape_docente=$this->apellido_docente;
+            $nombre=$this->nombre;
+            $apelli=$this->apelli;
             $rol=$this->rol;
     
-            $usuario=$this->usuario;
+            $usuario1=$this->usuario1;
             $correoed=$this->correoed;
             $pass=bcrypt($this->pass);
     
@@ -234,20 +237,17 @@ class ListadeusuariosComponent extends Component
             $usuario=DB::table('users')->insert(
                 [
                     'id'=>$id,
-                    'name'=>$usuario,
+                    'name'=>$usuario1,
                     'email'=>$correoed,  
-                    'usuario'=>$usuario,
+                    'usuario'=>$usuario1,
                     'password'=>$pass,  
                 ]);
     
-                $id_ro=2;
-                $id_rol=6;
-                $id_role=7;
-                $id_roles=8;
+                $id_rol=$this->rol;
     
                 $rolusuario=DB::table('rol_usuario')->insert(
                     [
-                        'ID_ROL'=>$id_ro,$id_rol,$id_role,$id_roles,
+                        'ID_ROL'=>$id_rol,
                         'ID_USUARIO'=>$id,  
                     ]);
     
@@ -272,20 +272,20 @@ class ListadeusuariosComponent extends Component
         public function generar_use(){
 
         
-            $this->nomb=$this->nombre_docente;
-            $this->apelli=$this->apellido_docente;
+            $this->nomb=$this->nombre;
+            $this->apelli=$this->apelli;
     
             $primerNombre = explode(" ",$this->nomb);
             $primerApellido = explode(" ", $this->apelli);
     
-            $this->usuario = substr($primerNombre[0],0,10) . '.' . $primerApellido[0];
+            $this->usuario1 = substr($primerNombre[0],0,10) . '.' . $primerApellido[0];
     
-            $this->usuario = strtolower($this->usuario);
+            $this->usuario1 = strtolower($this->usuario1);
     
-            $inicial=substr($this->nombre_docente,0,1);
-            $iniciales=explode(" ", $this->nombre_docente);
+            $inicial=substr($this->nombre,0,1);
+            $iniciales=explode(" ", $this->nombre);
             $inicial2=substr($iniciales[1],0,1);
-            $apellidos=explode(" ", $this->apellido_docente);
+            $apellidos=explode(" ", $this->apelli);
             $apellido=$apellidos[0];
             $apellido2=substr($apellidos[1],0,1);
             
