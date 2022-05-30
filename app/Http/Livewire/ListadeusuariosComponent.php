@@ -277,10 +277,10 @@ class ListadeusuariosComponent extends Component
         public function generar_use(){
 
         
-            $this->nomb=$this->nombre;
+            $this->nombre=$this->nombre;
             $this->apelli=$this->apelli;
     
-            $primerNombre = explode(" ",$this->nomb);
+            $primerNombre = explode(" ",$this->nombre);
             $primerApellido = explode(" ", $this->apelli);
     
             $this->usuario1 = substr($primerNombre[0],0,10) . '.' . $primerApellido[0];
