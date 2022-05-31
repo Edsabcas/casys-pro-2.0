@@ -1,4 +1,4 @@
-<h1 class="text-3xl text-center font-bold">Roles disponibles</h1>
+<h1 class="text-3xl text-center font-bold">Roles disponibles </h1>
 <br>
 
 <div class="table-responsive">
