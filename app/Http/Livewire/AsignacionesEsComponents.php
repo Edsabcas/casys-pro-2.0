@@ -67,14 +67,11 @@ class AsignacionesEsComponents extends Component
             if($estudiante){
                 DB::commit();
                 $this->reset();
-                unset($this->mensaje);
-                $this->op=2;
                 $this->mensaje='Insertado correctamente';
             }
             else{
                 DB::rollback();
-                unset($this->mensaje1);
-                $this->op=2;
+                unset($this->mensaje);
                 $this->mensaje1='No fue posible insertar correctamente';
             }
         }
@@ -127,12 +124,11 @@ class AsignacionesEsComponents extends Component
             if($est){
                 DB::commit();
                 $this->reset();
-                $this->op=3;
                 $this->mensaje2='Editado correctamente';
             }
             else{
                 DB::rollback();
-                $this->op=3;
+                unset($this->mensaje2);
                 $this->mensaje3='No fue posible editar correctamente';
             }
     }
@@ -146,12 +142,11 @@ class AsignacionesEsComponents extends Component
         if ($est){
             DB::commit();
             $this->reset();
-            $this->op=4;
             $this->mensajeeliminar='Eliminado correctamente';
         }
         else{
             DB::rollback();
-            $this->op=4;
+            unset($this->mensajeeliminar);
             $this->mensajeeliminar1='No fue posible eliminar correctamente';
         }
     }  

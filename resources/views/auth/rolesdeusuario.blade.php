@@ -2,7 +2,7 @@
 <br>
 
 <div class="table-responsive">
-    <table class="table table-bordered table-success table-striped">
+    <table class="table table-success table-striped table-bordered">
         <thead>
             <tr>
                 <th>NO.</th>
@@ -15,7 +15,11 @@
                 <tr>
                     <td>{{$rol->ID_ROL}}</td>
                     <td>{{$rol->DESCRIPCION}}</td>
-                    <td>{{$rol->ESTADO}}</td>
+                    @if($rol->ESTADO==1)
+                    <td>Activo</td>   
+                    @else
+                        <td>Inactivo</td>
+                    @endif
                 </tr>
             @endforeach
         </tbody>

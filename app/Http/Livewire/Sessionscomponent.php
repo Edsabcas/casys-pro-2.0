@@ -86,8 +86,8 @@ class Sessionscomponent extends Component
         session(['users' => $users]);
 
         $op=0;
-        $rol=$ro[0];
-        return view('home', compact('op','rol'));
+        $rol=$ro[0];     
+        return redirect()->to('/');
         }
     }
 }

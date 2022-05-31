@@ -48,7 +48,7 @@ function mover(event, to) {
             <input type="text" class="input" id="exampleForm{{$nota->ID_NOTA}}" value="{{$nota->NOTA}}" name="nota[]"  autocomplete="off" tabindex="10"/>
           </th>
         </div>
-        @endif
+        @endif  
           @endforeach 
         </tr>
         @endforeach
@@ -56,7 +56,17 @@ function mover(event, to) {
       </tbody>
 
     </table>
-    <input class="btn btn-primary" type="submit" value="Guarsdar"/>
+    
+
+    <script>
+      function llamar(){
+        $.ajax({url:"ContenidoComponent.php", success:function(notas1){
+        $("div").text(notas1);}
+        })
+    }
+      </script>
+    <input class="btn btn-primary" type="submit" onclick='llamar()' value="Guardar"/>
+    <div></div>
   </form>
   </div>
 
