@@ -66,6 +66,12 @@
                 </div> 
             </div>
             <div class="mb-3">
+              <div wire:loading wire:target="archivo_perfil" class="alert alert-warning" role="alert">
+                <strong class="font-bold">¡Imagen cargando!</strong>
+                  <span class="block sm:inlone">Espere un momento hasta que la imagen se haya procesado.</span>
+                <div class="spinner-border text-warning" role="status">
+                </div>
+              </div>
               @if($tipo==1)
               <h3 class="form-label">Visualización de Imagen</h3>
               <img src="{{$archivo_perfil->temporaryURL()}}" height="200" weight="200"  alt="...">
