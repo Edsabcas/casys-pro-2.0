@@ -39,7 +39,7 @@
   @if($grado->ID_SC==$seccion->ID_SC)
     <div class="col-xl-4 col-sm-7 col-13 mb-5">
       <div class="card shadow rounded">
-        <div class="card-body">
+        <div class="card-body" id="{{$grado->ID_GR}}">
           <div class="text-center">
             <div class="align-self-center">
               <br>
@@ -48,8 +48,8 @@
               @endphp
             </div>
             <div class="text-center">
-              <a wire:click='mostrar_m("{{$grado->ID_GR}}","{{$grado->GRADO}}","{{$seccion->SECCION}}","{{$seccion->ID_SC}}","1")'>
-                <p>{{$grado->GRADO}} {{$seccion->SECCION}}</p>
+              <a type="button" wire:click="mostrar_m('{{$grado->ID_GR}}','{{$grado->GRADO}}','{{$seccion->SECCION}}','{{$seccion->ID_SC}}',1)">
+                <p>{{$grado->GRADO}}{{$seccion->SECCION}}</p>
               </a>
             </div>
           </div>
@@ -57,8 +57,10 @@
       </div>
     </div>
     @endif
+
     @endforeach
     @endforeach
+
     @elseif($op2!=null && $op2==1)
     @include('Temas.Pre_kinder')
     @elseif($op2!=null && $op2==2)
@@ -68,4 +70,5 @@
     @elseif($op2!=null && $op2==4)
     @include('Unidades.Temas.VistaTemas');
     @endif
-</div>
+
+  </div>

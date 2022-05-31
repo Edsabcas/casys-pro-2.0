@@ -2,9 +2,9 @@
   <div wire:ignore.self class="modal fade" id="info{{$estado_cer->ID_PRE}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="5" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
-        <div class="modal-header text-center">
-          <h2 class="modal-title text text-center">Infromación Pre-Inscripción</h2>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-header text-center" style="background:#3a3e7b;color:rgba(255, 255, 255, 0.703)">
+          <h3 class="modal-title text-center" style="color:rgba(255, 255, 255, 0.703)" >Proceso Pre-Inscripción</h3>
+          <button type="button" class="btn btn-warning" style="color:rgba(22, 21, 21, 0.703)"  data-bs-dismiss="modal" aria-label="Close">X</button>
         </div>
 
         <div class="modal-body">
@@ -25,7 +25,10 @@
             @endisset
             <div class="container-sm">
 
-              <h4 class="form-label text text-center" style="font-size:25px">Gestion: #{{$estado_cer->NO_GESTION}}</h4> 
+              <h4 class="form-label text text-center" style="font-size:25px">Gestion: #{{$estado_cer->NO_GESTION}}
+              
+              </h4> 
+              <p  class="text text-center">Fecha de solicitud: <b>{{$fingreso_gestion}}</b></p>
               <br>
               <div wire:ignore.self class="accordion" id="accordionPanelsStayOpenExample2">
                 <div style="border-radius: 60px 60px 60px 60px;" class="accordion-item">
@@ -38,16 +41,18 @@
                   <div  wire:ignore.self id="panelsStayOpen-collapseTwo"style="border-radius: 60px 60px 60px 60px;" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingTwo">
                     <div  wire:ignore.self class="accordion-body" style="border-radius: 60px 60px 60px 60px;">
                                <form wire:submit.prevent="" class="form-floating">
+                                <div class="row g-3">
                                   <div class="col-md">
                                     <label for="inputNombres" style="font-size: 15px; color:#000000;">Nombre Completo:
                                     </label>
-                                    <input  wire:model="nombre_es" value="@php echo $estado_cer->NOMBRE_ES; @endphp" placeholder="{{$estado_cer->NOMBRE_ES}}" class="form-control " required>
+                                    <input  wire:model="nombre_es" class="form-control " required>
                                     @error('nombre_es')
                                     <div class="alert alert-warning" role="alert">
                                      Pendiente
                                     </div>
                                     @enderror
                                 </div>
+                              </div>
                                 <div class="row g-3">
                                   <div class="col-md">
                                     <label for="inputApellidos" style="font-size: 15px; color:#000000;">Fecha de Nacimiento:</label>
@@ -57,8 +62,7 @@
                                      Pendiente
                                     </div>
                                     @enderror
-                                </div> </div>
-                                
+                                </div>
                                 <div class="col-md">
                                   <label for="inputApellidos" style="font-size: 15px; color:#000000;">Género:</label>
                                   <br>
@@ -80,6 +84,9 @@
                                     @enderror
                                   </div>
                                 </div>
+                               </div>
+                                
+                               
                     
                                 <div class="row g-3">
                                   <div class="col-md">
@@ -100,6 +107,7 @@
                                   <b>!</b>  
                                     </a>
                                 </label>
+                             
                                 <input type='text' placeholder=""  wire:model="codigo_pe_es" class="form-control " required>
                                 @error('codigo_pe_es')
                                 <div class="alert alert-warning" role="alert">
@@ -107,6 +115,7 @@
                                 </div>
                                 @enderror
                               </div>
+                            </div>
                             
                           <div class="row g-3">
                             <div class="col-md">
@@ -130,41 +139,35 @@
                           </div>
                           <div class="row g-3">
                             <div class="col-md">
-                              <label for="inputInstitucion" style="font-size: 15px; color:#000000;">Teléfono de Casa:</label>
-                              <input type='number' placeholder=""  wire:model="tel_es" class="form-control " required>
-                              @error('tel_es')
-                              <div class="alert alert-warning" role="alert">
-                                Pendiente
-                              </div>
-                              @enderror
+                              <label for="inputInstitucion" style="font-size: 15px; color:#000000;">Dirección de domicilio:</label>
+                              <input type='text' placeholder=""  wire:model="direccion_es" class="form-control" required>
                             </div>
-                            
-                            <div class="col-md">
-                              <label for="inputInstitucion" style="font-size: 15px; color:#000000;">Teléfono Celular:</label>
-                              <input type='number' placeholder=""  wire:model="cel_es" class="form-control " required>
-                              @error('cel_es')
-                              <div class="alert alert-warning" role="alert">
-                                Pendiente
-                              </div>
-                              @enderror
+                            @error('direccion_es')
+                            <div class="alert alert-warning" role="alert">
+                            Pendiente
                             </div>
+                            @enderror
+                           
                           </div>
                     
                         <div class="row g-3">
-                        <div class="col-md">
-                          <label for="inputInstitucion" style="font-size: 15px; color:#000000;">Dirección de domicilio:</label>
-                          <input type='text' placeholder=""  wire:model="direccion_es" class="form-control" required>
-                        </div>
-                        @error('direccion_es')
-                        <div class="alert alert-warning" role="alert">
-                        Pendiente
-                        </div>
-                        @enderror
+                          <div class="col-md">
+                            <label for="inputInstitucion" style="font-size: 15px; color:#000000;">Teléfono Celular:</label>
+                            <input type='number' placeholder=""  wire:model="cel_es" class="form-control " required>
+                            @error('cel_es')
+                            <div class="alert alert-warning" role="alert">
+                              Pendiente
+                            </div>
+                            @enderror
+                          </div>
+
+                      
                           <div class="col-md">
                             <label for="inputApellidos" style="font-size: 15px; color:#000000;">Religión:</label>
                             <br>
                             <input type='text' placeholder=""  wire:model="religion_es" class="form-control" required>
                           </div>
+
                           @error('religion_es')
                           <div class="alert alert-warning" role="alert">
                           Pendiente
@@ -302,31 +305,8 @@
                         @enderror
                         <div class="col-md">
                           <label for="inputApellidos" style="font-size: 15px; color:#000000;">Religión:</label>
+                          <input type="text"  wire:model="religion_en" class="form-control " required>
                           <br>
-                          <div class="form-check form-check-inline">
-                            <input class="form-check-input"  type="radio" wire:model="religion_en" value="Catolica" id="flexRadioReligionen222" >
-                            <label class="form-check-label" for="flexRadioReligionen222" style="font-size: 15px; color:#000000;">
-                            Catolica
-                            </label>
-                          </div>
-                          <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" wire:model="religion_en" value="Protestante" id="flexRadioReligionen2">
-                            <label class="form-check-label" for="flexRadioReligionen2" style="font-size: 15px; color:#000000;">
-                              Protestante
-                            </label>
-                          </div>
-                          <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" wire:model="religion_en" value="Otra" id="flexRadioReligionen23">
-                            <label class="form-check-label" for="flexRadioReligionen23" style="font-size: 15px; color:#000000;">
-                              Otra
-                            </label>
-                          </div>
-                          <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" wire:model="religion_en" value="Evangelica" id="flexRadioReligionen3">
-                            <label class="form-check-label" for="flexRadioReligionen3" style="font-size: 15px; color:#000000;">
-                              Evangelica
-                            </label>
-                          </div>
                         </div>
                         @error('religion_en')
                         <div class="alert alert-warning" role="alert">
@@ -350,9 +330,10 @@
         <div class="modal-footer">
             <a wire:click='val3' type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-warning">Validar</a>
                 
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-secondary" style="border-radius: 60px 60px 60px 60px;" data-bs-dismiss="modal">Cerrar</button>
                
         </div>
       </div>
     </div>
-  </div>
+  </div>     
+   @include('admisiones.codmineduc')
