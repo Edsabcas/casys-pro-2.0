@@ -48,7 +48,7 @@
               @endphp
             </div>
             <div class="text-center">
-              <a wire:click='mostrar_m("{{$grado->ID_GR}}","{{$grado->GRADO}}","{{$seccion->SECCION}}","{{$seccion->ID_SC}}","1")'>
+              <a type="button" wire:click="mostrar_m('{{$grado->ID_GR}}','{{$grado->GRADO}}','{{$seccion->SECCION}}','{{$seccion->ID_SC}}',1)">
                 <p>{{$grado->GRADO}} {{$seccion->SECCION}}</p>
               </a>
             </div>
@@ -57,8 +57,10 @@
       </div>
     </div>
     @endif
+
     @endforeach
     @endforeach
+  </div>
     @elseif($op2!=null && $op2==1)
     @include('Temas.Pre_kinder')
     @elseif($op2!=null && $op2==2)
@@ -68,4 +70,4 @@
     @elseif($op2!=null && $op2==4)
     @include('Unidades.Temas.VistaTemas');
     @endif
-</div>
+
