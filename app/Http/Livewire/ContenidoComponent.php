@@ -866,7 +866,11 @@ Public function deletet($id){
 
 //funcnion de la inserccion de las notas 
 public function notas1(Request $request){
+<<<<<<< HEAD
+    
+=======
   
+>>>>>>> f1333639f05fa1df6b3094e2a604805c3323645d
     foreach ($request->get('nota') as $key => $value) 
     {
         $asistencia = Actividad::find($request->get('idnota')[$key]);
