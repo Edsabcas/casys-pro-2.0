@@ -253,7 +253,7 @@
       @endforeach
     </tbody>
     </table>
-    {{ $listadousers->links() }}
+
 </div>
 
 

@@ -1,5 +1,5 @@
 
-  <div wire:ignore.self class="modal fade" id="info" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="5" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div wire:ignore.self class="modal fade" id="info2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="5" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header text-center" style="background:#3a3e7b;color:rgba(255, 255, 255, 0.703)">
@@ -25,8 +25,8 @@
             @endisset
             <div class="container-sm">
 
-              <h4 class="form-label text text-center" style="font-size:25px">Gestion: #{{$gestion}}
-              
+              <h4 class="form-label text text-center" style="font-size:25px">
+                Gestion: #{{$gestion}}              
               </h4> 
               <p  class="text text-center">Fecha de solicitud: <b>{{$fingreso_gestion}}</b></p>
               <br>

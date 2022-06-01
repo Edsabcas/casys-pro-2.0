@@ -61,10 +61,10 @@ class ListadeusuariosComponent extends Component
         $this->op=1;
         $this->edit=1;
 
-        $listadousers=User::where(function($search){
-            $search->where('name', 'like', '%' . $this->search . '%')
-                ->orwhere('email', 'like', '%' . $this->search . '%');
-        })->paginate(5);
+     //   $listadousers=User::where(function($search){
+      //      $search->where('name', 'like', '%' . $this->search . '%')
+       //         ->orwhere('email', 'like', '%' . $this->search . '%');
+       // })->paginate(5);
 
         return view('livewire.listadeusuarios-component', compact('listadousers','rols'));
     }
