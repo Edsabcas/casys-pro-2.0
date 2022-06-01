@@ -100,9 +100,6 @@ class ListadeusuariosComponent extends Component
                      ->update(
                          [
                              'password'=>bcrypt($this->n_password),
-                             'name'=>($this->name),
-                             'email'=>($this->email),
-                             'usuario'=>($this->usuario),
                         ]
                     );
                     if ($usuarios){
@@ -128,8 +125,8 @@ class ListadeusuariosComponent extends Component
                          [
 
                              'name'=>($this->name),
-                             'email'=>($this->email),
-                             'usuario'=>($this->usuario),
+                             'password'=>bcrypt($this->n_password),
+
                         ]
                     );
                     if ($usuarios){

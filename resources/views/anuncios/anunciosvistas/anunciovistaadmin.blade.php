@@ -37,7 +37,7 @@ $('#exampleModal1').modal('show');
 @foreach ($anuncios as $anuncio)
 
 <br>
-<div class="offset-3 col-10">
+<div class="offset-2 col-8">
   <div  class="row">
     <br>
       <div class="shadow-lg card" style="background-color: #f4f4f4; width: 50rem">

@@ -8,10 +8,10 @@ use App\Http\Livewire\Request;
 
 class GradoComponents extends Component
 {
-    public $nombre_gr,$id_gr,$estado_gr,$op,$mensaje,$mensaje1,$edit,$mensaje3,$mensaje4,$mensaje5,$mensaje6,$mensajeeliminar,$mensajeeliminar1;
+    public $nombre_gr,$id_gr,$estado_gr,$op,$mensaje,$mensaje1,$edit,$mensaje3,$mensaje4,$mensaje5,$mensaje6,$mensajeeliminar,$mensajeeliminar1,$mensajeeliminar2,$mensajeeliminar3;
     public $seccion_gr,$precio_gr,$ministerial_gr,$resolucion_gr,$jornada_gr,$academico_gr;
-    public $estado_sec,$nombre_sec,$nombre_jornada,$nombre_nvl,$estado_jornada,$estado_nvl;
-    public $mensaje7,$mensaje8,$mensaje9,$mensaje10;
+    public $estado_sec,$nombre_sec,$nombre_jornada,$nombre_nvl,$estado_jornada,$estado_nvl,$edit1;
+    public $mensaje7,$mensaje8,$mensaje9,$mensaje10,$mensaje11,$mensaje12,$id_sc;
     public function render()
     {
         $grad= DB::table('tb_grados')
@@ -170,6 +170,13 @@ class GradoComponents extends Component
             $this->mensajeeliminar1='No fue posible eliminar correctamente';
         }
     }
+
+    /* 
+
+    PARTE SECCIÓN
+
+    */
+
     public function guardar_seccion(){
 
         if($this->validate([
@@ -207,6 +214,77 @@ class GradoComponents extends Component
             }
         }
         }
+        public function edit1($id){
+            $id_sc=$id;
+            $sql='SELECT * FROM tb_seccions WHERE ID_SC=?';
+            $secciones=DB::select($sql,array($id_sc));
+    
+            if($secciones!=null){
+                foreach($secciones as $seccion)
+                {
+                    $this->id_sc=$seccion->ID_SC;               
+                    $this->nombre_sec=$seccion->SECCION;   
+                    $this->estado_sec=$seccion->ESTADO;         
+                }
+            }
+            $this->op=2;
+    
+            $this->edit1=1;
+        }
+        public function update_sc_p(){
+            $id_sc=$this->id_sc;
+            $nombre_sec=$this->nombre_sec;
+            $estado_sec=$this->estado_sec;
+    
+            DB::beginTransaction();
+    
+            $secciones=DB::table('tb_seccions')
+            ->where('ID_SC',$id_sc)
+            ->update(
+                [
+                    'SECCION'=>$nombre_sec,
+                    'ESTADO'=>$estado_sec,
+                ]
+                );
+    
+                if($secciones){
+                    DB::commit();
+                    $this->reset();
+                    unset($this->mensaje11);
+                    $this->mensaje11='Editado correctamente';
+                }
+                else{
+                    DB::rollback();
+                    unset($this->mensaje12);
+                    $this->mensaje12='No fue posible editar correctamente';
+                }
+        }
+        public function delete1($id){
+            $id_sc=$id;
+    
+            DB::beginTransaction();
+    
+            $seccion=DB::table('tb_seccions')->where('ID_SC','=', $id_sc)->delete();
+    
+            if($seccion){
+                DB::commit();
+                $this->reset();
+                unset($this->mensajeeliminar2);
+                $this->mensajeeliminar2='Eliminado correctamente';
+            }
+            else{
+                DB::rollback();
+                unset($this->mensajeeliminar3);            
+                $this->mensajeeliminar3='No fue posible eliminar correctamente';
+            }
+        }
+
+        /* 
+        
+        PARTE NIVEL ACADEMICO
+
+        */
+
         public function guardar_nvlacademico(){
 
             if($this->validate([
@@ -243,6 +321,77 @@ class GradoComponents extends Component
                 }
             }
         }
+
+        public function edit2($id){
+            $id_nvl=$id;
+            $sql='SELECT * FROM tb_nvlacademico WHERE ID_NVL=?';
+            $nivelacademico=DB::select($sql,array($id_nvl));
+    
+            if($nivelacademico!=null){
+                foreach($nivelacademico as $nivel)
+                {
+                    $this->id_sc=$nivel->ID_NVL;               
+                    $this->nombre_nvl=$nivel->NIVEL_ACADEMICO;   
+                    $this->estado_nvl=$nivel->ESTADO;         
+                }
+            }
+            $this->op=2;
+    
+            $this->edit2=1;
+        }
+        public function update_nvl_p(){
+            $id_nvl=$this->id_nvl;
+            $nombre_nvl=$this->nombre_nvl;
+            $estado_nvl=$this->estado_nvl;
+    
+            DB::beginTransaction();
+    
+            $nivelacademico=DB::table('tb_nvlacademico')
+            ->where('ID_NVL',$id_nvl)
+            ->update(
+                [
+                    'NIVEL_ACADEMICO'=>$nombre_nvl,
+                    'ESTADO'=>$estado_nvl,
+                ]
+                );
+    
+                if($nivelacademico){
+                    DB::commit();
+                    $this->reset();
+                    unset($this->mensaje11);
+                    $this->mensaje11='Editado correctamente';
+                }
+                else{
+                    DB::rollback();
+                    unset($this->mensaje12);
+                    $this->mensaje12='No fue posible editar correctamente';
+                }
+        }
+        public function delete2($id){
+            $id_nvl=$id;
+    
+            DB::beginTransaction();
+    
+            $nivelacademico=DB::table('tb_nvlacademico')->where('ID_NVL','=', $id_nvl)->delete();
+    
+            if($nivelacademico){
+                DB::commit();
+                $this->reset();
+                unset($this->mensajeeliminar4);
+                $this->mensajeeliminar4='Eliminado correctamente';
+            }
+            else{
+                DB::rollback();
+                unset($this->mensajeeliminar5);            
+                $this->mensajeeliminar5='No fue posible eliminar correctamente';
+            }
+        }
+        /* 
+        
+        PARTE TIPO DE JORNADA
+        
+        */
+
         public function guardar_jornada(){
 
             if($this->validate([
