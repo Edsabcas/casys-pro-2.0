@@ -100,7 +100,7 @@ class ContenidoComponent extends Component
             ->join('tb_seccions', 'tb_actividades.ID_SC', '=', 'tb_seccions.ID_SC')
             ->join('users', 'tb_actividades.ID', '=', 'users.id')
             ->join('tb_unidades', 'tb_actividades.ID_UNIDADES', '=', 'tb_unidades.ID_UNIDADES')
-            ->select('tb_actividades.ID_ACTIVIDADES', 'tb_materias.NOMBRE_MATERIA', 'tb_grados.ID_GR', 'tb_seccions.ID_SC', 'tb_materias.ID_MATERIA', 'users.name', 'tb_actividades.NOMBRE_ACTIVIDAD', 'tb_unidades.ID_UNIDADES')
+            ->select('tb_actividades.ID_ACTIVIDADES', 'tb_materias.NOMBRE_MATERIA', 'tb_grados.ID_GR', 'tb_seccions.ID_SC', 'tb_materias.ID_MATERIA', 'users.name', 'tb_actividades.NOMBRE_ACTIVIDAD', 'tb_unidades.ID_UNIDADES','tb_actividades.fecha_cr','tb_actividades.fecha_entr','tb_actividades.descripcion','tb_actividades.archivos')
             ->where('tb_actividades.ID_UNIDADES','=',$this->unidadn)
             ->where('tb_actividades.ID_GR','=',$this->grado)
             ->where('tb_actividades.ID_SC','=',$this->idsecc)
@@ -136,6 +136,24 @@ class ContenidoComponent extends Component
             ->where('tb_temas.ID_MATERIA','=',$this->unidad1)
             ->get();
         }
+
+        $temas2="";
+        if($this->unidadn!=null){
+            $temas2=DB::table('tb_temas')
+            ->join('tb_materias','tb_temas.ID_MATERIA','=','tb_materias.ID_MATERIA')
+            ->join('tb_grados', 'tb_temas.ID_GR', '=', 'tb_grados.ID_GR')
+            ->join('tb_seccions', 'tb_temas.ID_SC', '=', 'tb_seccions.ID_SC')
+            ->join('users', 'tb_temas.ID', '=', 'users.id')
+            ->join('tb_unidades', 'tb_temas.ID_UNIDADES', '=', 'tb_unidades.ID_UNIDADES')
+            ->select('tb_temas.ID_TEMA', 'tb_materias.NOMBRE_MATERIA', 'tb_grados.ID_GR', 'tb_seccions.ID_SC', 'tb_materias.ID_MATERIA', 'users.name', 'tb_temas.NOMBRE_TEMA', 'tb_unidades.ID_UNIDADES','tb_temas.DESCRIPCION')
+            ->where('tb_temas.ID_UNIDADES','=',$this->unidadn)
+            ->where('tb_temas.ID_GR','=',$this->grado)
+            ->where('tb_temas.ID_SC','=',$this->idsecc)
+            ->where('tb_temas.ID_MATERIA','=',$this->unidad1)
+            ->get();
+        }
+
+
 
         $notas="";
         if($this->unidadfija!=null){
@@ -179,7 +197,7 @@ class ContenidoComponent extends Component
         $unidadesf=DB::select($sql);
         $sql= 'SELECT * FROM users';
         $Usuarios=DB::select($sql);
-        return view('livewire.contenido-component',compact('materias','grados','secciones','uniones','unidades','maestros','actividades','asignaciones','unidadesf','temas','Usuarios','PlanUnion','actividades2','notas','estu'));
+        return view('livewire.contenido-component',compact('materias','grados','secciones','uniones','unidades','maestros','actividades','asignaciones','unidadesf','temas','temas2','Usuarios','PlanUnion','actividades2','notas','estu'));
 
     }
     
@@ -205,15 +223,29 @@ class ContenidoComponent extends Component
         
     }
 
-    //funcion de la visualizacion de las vista de actividades
+    //funcion de la visualizacion de las vista de actividades de las unidades fijas
     public function vista_a($num)
     {
         $this->op2=$num;
         
     }
 
-    //funcion de la vista de temas
+    //funcion de la visualizacion de las vista de actividades de las unidades nuevas
+    public function vista_a2($num)
+    {
+        $this->op2=$num;
+            
+    }
+
+    //funcion de la vista de temas de unidades fijas
     public function vista_t($num)
+    {
+        $this->op2=$num;
+        
+    }
+
+    //funcion de la vista de temas de unidades nuevas
+    public function vista_t2($num)
     {
         $this->op2=$num;
         
@@ -235,6 +267,13 @@ class ContenidoComponent extends Component
 
         elseif($num==4){
             $this->op2=4;
+        }
+
+        elseif($num==5){
+            $this->op2=5;
+        }
+        elseif($num==6){
+            $this->op2=6;
         }
 
     }
@@ -355,6 +394,7 @@ class ContenidoComponent extends Component
     }
 
     else{
+    $this->limpiar_act();
     $titulo=$this->titulo;
     $punteo=$this->punteo;
     $fecha_e=$this->fecha_e;
@@ -434,26 +474,7 @@ class ContenidoComponent extends Component
 
 }
 
-//funcion que limpia los datos que se llenaton en los formularios anterirores 
-public function limpiar_act(){
-    $this->edita="";
-    $this->titulo="";
-    $this->punteo="";
-    $this->fecha_e="";
-    $this->descripcion="";
-    $this->temasb="";
-    $this->formato="";
-    unset($this->mensaje);
-    unset($this->mensaje);
-    unset($this->mensaje3);
-    unset($this->mensaje1);
-    unset($this->mensaje4);
-    unset($this->mensaje1);
-    unset($this->mensaje4);
-    unset($this->mensaje);
-    unset($this->mensaje3);
 
-}
 
 //edicion de las actividades de unidades fijas
     Public function edita($id){
@@ -579,14 +600,6 @@ public function limpiar_act(){
        
     }
 
-    //funcnion que limpia las variables en el modal de edicion 
-public function limpiarcract(){
-    unset($this->mensaje);
-    unset($this->mensaje1);
-    unset($this->mensaje4);
-    unset($this->mensaje3);
-    $this->formato="";
-}
 
     //borrar actividades creadas en las unidades fijas
     Public function deleteact($id){
@@ -740,6 +753,30 @@ Public function editt($id){
    $this->editt=1;
 }
 
+//funcnion de la edicion de temas en las uniddades nuevas 
+Public function editt2($id){
+    $id_tem=$id;
+    $sql='SELECT * FROM tb_temas WHERE ID_TEMA=?';
+    $temast=DB:: select($sql, array($id_tem));
+    if($temast !=null){
+        foreach($temast as $temat)
+        {
+            $this->id_tem=$temat->ID_TEMA;
+            $this->tema2=$temat->NOMBRE_TEMA;
+            $this->descripciont2=$temat->DESCRIPCION;
+            $this->grado=$temat->ID_GR;
+            $this->idsecc=$temat->ID_SC;
+            $this->unidad1=$temat->ID_MATERIA;
+            $this->unidadn=$temat->ID_UNIDADES;
+            $this->idusuario=$temat->ID;
+
+        }
+    }
+
+    $this->op='edittemas';
+   $this->editt=1;
+}
+
 //funcion de edicion de temas en unidades fijas 
 public function update_temas(){
     if($this->validate([
@@ -795,6 +832,61 @@ public function update_temas(){
    
 }
 
+//funcion de edicion de temas en unidades nuevas
+public function update_temas2(){
+    if($this->validate([
+        'tema2' => 'required',
+        'descripciont2' => 'required',
+
+    ])==false){
+        $error="no encontrado";
+        session(['message'=>'no encontrado']);
+        return back()->withErrors(['error' => 'Validar el input vacio']);
+    }
+
+    else{
+    $id_tem=$this->id_tem;
+    $tema2=$this->tema2;
+    $descripciont2=$this->descripciont2;
+    $grado=$this->grado;
+    $idsecc=$this->idsecc;
+    $unidad1=$this->unidad1;
+    $unidadn=$this->unidadn;
+    $this->idusuario=auth()->user()->id;
+    DB::begintransaction();
+    
+
+    $temat=DB::table('tb_temas')
+    ->where('ID_TEMA', $id_tem)
+    ->update( 
+        [
+            'NOMBRE_TEMA'=>$tema2,
+            'DESCRIPCION'=>$descripciont2,
+            'ID_MATERIA'=>$unidad1,
+            'ID_GR'=>$grado,
+            'ID_SC'=>$idsecc,
+            'ID_UNIDADES'=>$unidadn,
+            'ID'=>$this->idusuario,
+        ]);
+
+        if($temat){
+            DB::commit();
+            unset($this->mensaje);
+            unset($this->mensaje1);
+            $this->op='addcontenidos';
+            $this->mensaje='Insertado correctamente';
+            }
+            else {
+            DB::rollback();
+            unset($this->mensaje);
+            unset($this->mensaje1);
+            $this->op='addcontenidos';
+            $this->mensaje1='Datos no  insertados correctamente';
+            }
+}
+   
+}
+
 //funcion de eliminar temas en unidades fijas 
 Public function deletet($id){
     $id_tem=$id;
@@ -820,49 +912,86 @@ Public function deletet($id){
     }
 }
 
-//creacion de los temas en las unidades nuevas 
-    public function Subir_Tema2(){
-        if($this->validate([
-            'tema2' => 'required',
-            'unidad2' => 'required',
-            'descripciont2' => 'required',
 
-        ])==false){
-            $error="no encontrado";
-            session(['message'=>'no encontrado']);
-            return back()->withErrors(['error' => 'Validar el input vacio']);
-        }
+//funcion de eliminar temas en unidades fijas 
+Public function deletet2($id){
+    $id_tem=$id;
+    DB::begintransaction();
 
-        else{
-        $tema2=$this->tema2;
-        $unidad2=$this->unidad2;
-        $descripciont2=$this->descripciont2;
-        DB::begintransaction();
-        
+    $temat=DB::table('tb_temas')->where('ID_TEMA','=', $id_tem)->delete();
 
-        $temas=DB::table('tb_temas')->insert(
-            [
-                'NOMBRE_TEMA'=>$tema2,
-                'ID_UNIDADES_FIJAS'=>$unidad2,
-                'DESCRIPCION'=>$descripciont2,
-            ]);
-
-            if($temas){
-                DB::commit();
-                unset($this->mensaje);
-                unset($this->mensaje1);
-                $this->op='addcontenidos';
-                $this->mensaje='Insertado correctamente';
-                }
-                else {
-                DB::rollback();
-                unset($this->mensaje);
-                unset($this->mensaje1);
-                $this->op='addcontenidos';
-                $this->mensaje1='Datos no  insertados correctamente';
-                }
+    if($temat){
+        DB::commit();
+        unset($this->mensaje);
+        unset($this->mensaje3);
+        unset($this->mensaje_eliminar);
+        $this->op='addcontenidos';
+        $this->mensaje_eliminar='Eliminado Correctamente';
+    }
+    else{
+        DB::rollback();
+        unset($this->mensaje1);
+        unset($this->mensaje4);
+        unset($this->mensaje_eliminar2);
+        $this->op='addcontenidos';  
+        $this->mensaje_eliminar2='No fue posible eliminarlo';
     }
 }
+
+//creacion de los temas en las unidades nuevas 
+public function Subir_Tema2(){
+    if($this->validate([
+        'tema2' => 'required',
+        'descripciont2' => 'required',
+
+    ])==false){
+        $error="no encontrado";
+        session(['message'=>'no encontrado']);
+        return back()->withErrors(['error' => 'Validar el input vacio']);
+    }
+
+    else{
+        $tema2=$this->tema2;
+        $descripciont2=$this->descripciont2;
+
+    $grado=$this->grado;
+    $idsecc=$this->idsecc;
+    $unidad1=$this->unidad1;
+    $unidadn=$this->unidadn;
+    $this->idusuario=auth()->user()->id;
+    DB::begintransaction();
+    
+
+    $temas=DB::table('tb_temas')->insert(
+        [
+            'NOMBRE_TEMA'=>$tema2,
+            'DESCRIPCION'=>$descripciont2,
+            'ID_MATERIA'=>$unidad1,
+            'ID_GR'=>$grado,
+            'ID_SC'=>$idsecc,
+            'ID_UNIDADES'=>$unidadn,
+            'ID'=>$this->idusuario,
+        ]);
+
+        if($temas){
+            DB::commit();
+            unset($this->mensaje);
+            unset($this->mensaje1);
+            $this->op='addcontenidos';
+            $this->mensaje='Insertado correctamente';
+            }
+            else {
+            DB::rollback();
+            unset($this->mensaje);
+            unset($this->mensaje1);
+            $this->op='addcontenidos';
+            $this->mensaje1='Datos no  insertados correctamente';
+            }
+}
+}
+
+
+
 
 //funcnion de la inserccion de las notas 
 public function notas1(Request $request){
@@ -1069,6 +1198,7 @@ public function Subir_Act2(){
     }
 
     else{
+    $this->limpiarcract();
     $titulo2=$this->titulo2;
     $punteo2=$this->punteo2;
     $fecha_e2=$this->fecha_e2;
@@ -1151,6 +1281,44 @@ public function limpiar(){
     $this->editt="";
  
 }
+
+//funcion que limpia los datos que se llenaron en los formularios anterirores 
+public function limpiar_act(){
+    $this->edita="";
+    $this->titulo="";
+    $this->punteo="";
+    $this->fecha_e="";
+    $this->descripcion="";
+    $this->temasb="";
+    $this->formato="";
+    unset($this->mensaje);
+    unset($this->mensaje);
+    unset($this->mensaje3);
+    unset($this->mensaje1);
+    unset($this->mensaje4);
+    unset($this->mensaje1);
+    unset($this->mensaje4);
+    unset($this->mensaje);
+    unset($this->mensaje3);
+
+}
+
+//limpiar variables de temas en las unidades 2
+public function limpiart2(){
+    $this->tema2="";
+    $this->descripciont2="";
+    $this->editt2="";
+ 
+}
+
+    //funcnion que limpia las variables en el modal de edicion 
+    public function limpiarcract(){
+        unset($this->mensaje);
+        unset($this->mensaje1);
+        unset($this->mensaje4);
+        unset($this->mensaje3);
+        $this->formato="";
+    }
 
 //funcion de limpiar las variables de la planificacion anual 
 public function limpiarplan(){

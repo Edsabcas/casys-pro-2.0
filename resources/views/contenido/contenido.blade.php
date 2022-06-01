@@ -19,6 +19,16 @@
     <li class="breadcrumb-item"><a href="#" wire:click='paginacion("1")'>Materias</a></li>
     <li class="breadcrumb-item"><a href="#" wire:click='paginacion("2")'>Unidades</a></li>
     <li class="breadcrumb-item"><a href="#" wire:click='paginacion("4")'>Temas</a></li>
+    @elseif($op2==5)
+    <li class="breadcrumb-item"><a href="/Contenidos">Grados</a></li>
+    <li class="breadcrumb-item"><a href="#" wire:click='paginacion("1")'>Materias</a></li>
+    <li class="breadcrumb-item"><a href="#" wire:click='paginacion("2")'>Unidades</a></li>
+    <li class="breadcrumb-item"><a href="#" wire:click='paginacion("5")'>Actividades</a></li>
+    @elseif($op2==6)
+    <li class="breadcrumb-item"><a href="/Contenidos">Grados</a></li>
+    <li class="breadcrumb-item"><a href="#" wire:click='paginacion("1")'>Materias</a></li>
+    <li class="breadcrumb-item"><a href="#" wire:click='paginacion("2")'>Unidades</a></li>
+    <li class="breadcrumb-item"><a href="#" wire:click='paginacion("6")'>Temas</a></li>   
     @endif
   </ol>
 </nav>
@@ -69,6 +79,10 @@
     @include('Unidades.Actividades.VistaActividades');
     @elseif($op2!=null && $op2==4)
     @include('Unidades.Temas.VistaTemas');
+    @elseif($op2!=null && $op2==5)
+    @include('Unidades.ActividadesN.VistaActividades_n');
+    @elseif($op2!=null && $op2==6)
+    @include('Unidades.Temas.VistaTemasN');
     @endif
 
   </div>

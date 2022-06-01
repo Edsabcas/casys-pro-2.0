@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-success bg-success">
+<nav class="navbar navbar-expand-lg navbar-casys bg-casys">
     <div class="container-fluid">
 
       <a class="navbar-brand text-white" style="font-size:20px" href="#">Seleccione filtros de consulta</a>
@@ -12,15 +12,15 @@
     <div class="form-check">
     <input class="form-check-input"  type="checkbox" name="checkbox1" wire:click="buscar('1')" value="1" >
     <label class="form-check-label text-white"> Maestros</label >
-     <label class="text-success">////</label>
+     <label class="text-casys">////</label>
      
     <input class="form-check-input" type="checkbox" name="checkbox2" wire:click="buscar('2')" value="2" >
     <label class="form-check-label text-white"> Grados  </label>
-    <label class="text-success">////</label>
+    <label class="text-casys">////</label>
 
     <input class="form-check-input" type="checkbox" name="checkbox3" wire:click="buscar('3')" value="3" >
     <label class="form-check-label text-white"> Materia </label>
-    <label class="text-success">////</label>
+    <label class="text-casys">////</label>
   
         </ul>
       </div>
