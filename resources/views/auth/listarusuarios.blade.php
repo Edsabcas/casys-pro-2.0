@@ -71,7 +71,7 @@
             </form>
            </div>
            <div class="modal-footer">
-            <button class="btn btn-primary" data-bs-target="#creacion" data-bs-dismiss="modal" wire:click="generar_use()" data-bs-toggle="modal">Siguiente</button>
+            <button class="btn btn-pre2" data-bs-target="#creacion" data-bs-dismiss="modal" wire:click="generar_use()" data-bs-toggle="modal">Siguiente</button>
           </div>
         </div>
       </div>
@@ -229,8 +229,8 @@
                                         </div>
                                       @endif
                     </div>  
-                    <button class="btn btn-primary" wire:click="cambiofotolist({{$listadouser->ID_USUARIO}})">Publicar</button>
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                    <button class="btn btn-pre2" wire:click="cambiofotolist({{$listadouser->ID_USUARIO}})">Publicar</button>
+                    <button type="button" class="btn btn-secondary" style="border-radius: 12px;" data-bs-dismiss="modal">Cerrar</button>
                   </form>
                   </div>
                 </div>
@@ -333,7 +333,7 @@
 
           <hr>
           <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-secondary" style="border-radius: 12px;" data-bs-dismiss="modal">Cerrar</button>
           <button wire:click='e_perfiles' class="btn btn-pre2"> 
             Guardar
           </button>

@@ -1,4 +1,4 @@
-    <div class="input-group justify-content">
+    <div class="input-group justify-content-center">
       <div class="form-outline">
         <input type="search" wire:model="search" id="form1" class="form-control" placeholder="Buscar:" />
       </div>
