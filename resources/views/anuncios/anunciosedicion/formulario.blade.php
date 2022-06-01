@@ -64,9 +64,9 @@
       @endif
        @if($publico_anuncio==3)
        <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label" style="font-size:20px">Desea escojer un idioma en especifíco de maestros?</label>
+        <label for="exampleInputPassword1" class="form-label" style="font-size:20px">¿Desea escoger un idioma en especifíco de maestros?</label>
         <select class="form-select" aria-label="Default select example" wire:model="idioma_maestro">
-          <option selected>Desea escojer un idioma en especifíco de maestros?</option>
+          <option selected>¿Desea escoger un idioma en especifíco de maestros?</option>
           @isset($idiomas)
           @foreach($idiomas as $idioma)
           <option value="{{$idioma->ID_IDIOMA}}">{{$idioma->DESCRIPCION_IDIOMA}}</option>
