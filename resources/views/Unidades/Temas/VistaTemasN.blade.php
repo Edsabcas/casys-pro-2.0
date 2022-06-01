@@ -14,11 +14,11 @@
       </div>
     </div>
   </div>
-  @include('Unidades.Temas.modaltemas')
-  <button class="btn btn-editb"  data-bs-toggle="modal" data-bs-target="#tema" wire:click='editt({{$tema->ID_TEMA}})'> Editar </button>
+  @include('Unidades.Temas.modaledit_temasn')
+  <button class="btn btn-editb"  data-bs-toggle="modal" data-bs-target="#tema_n" wire:click='editt2({{$tema->ID_TEMA}})'> Editar </button>
   
-  @include('Unidades.Temas.modaleliminar')
-  <button class="btn btn-secondary" Style="border-radius: 12px;" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{$tema->ID_TEMA}}"> Eliminar </button>
+  @include('Unidades.Temas.modaleliminartemas_n')
+  <button class="btn btn-secondary" Style="border-radius: 12px;" data-bs-toggle="modal" data-bs-target="#deletetema_n{{$tema->ID_TEMA}}"> Eliminar </button>
 </div>
 </div>
 @endforeach

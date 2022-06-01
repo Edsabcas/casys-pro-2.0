@@ -47,12 +47,12 @@
       </div>
     </div>
   </div>
-  @include('Unidades.Actividades.modaledit_act')
-  <button class="btn btn-success"  id="val" data-bs-toggle="modal" data-bs-target="#editaractividades"   wire:click='edita({{$actividad->ID_ACTIVIDADES}})'>  Editar </button>
+  @include('Unidades.ActividadesN.modaleditaractividad_n')
+  <button class="btn btn-success"  id="val" data-bs-toggle="modal" data-bs-target="#editact_n"   wire:click='edita2({{$actividad->ID_ACTIVIDADES}})'>  Editar </button>
 
 
-  @include('Unidades.Actividades.modelimiaract')
-  <button class="btn btn-secondary" style="border-radius: 12px;" data-bs-toggle="modal" data-bs-target="#eliminaract">  Eliminar </button>
+  @include('Unidades.ActividadesN.modaleliminar_n')
+  <button class="btn btn-secondary" style="border-radius: 12px;" data-bs-toggle="modal" data-bs-target="#eliminar_n">  Eliminar </button>
 </div>
 </div>
 
