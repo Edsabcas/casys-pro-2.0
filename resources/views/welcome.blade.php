@@ -43,6 +43,23 @@
           background-size: auto auto;
         }
 
+        .btn-editb:hover {
+          border: 0px solid #a5df6f;
+          color:#ffffff; 
+          -webkit-border-radius: 12px;
+          border-radius: 12px;
+          background: -webkit-linear-gradient(-90deg,  #a5df6f 0,  #a5df6f 100%);
+          background: -moz-linear-gradient(180deg,  #a5df6f 0,  #a5df6f 100%);
+          background: linear-gradient(180deg, r #a5df6f 0,  #a5df6f 100%);
+          background-position: 50% 50%;
+          -webkit-background-origin: padding-box;
+          background-origin: padding-box;
+          -webkit-background-clip: border-box;
+          background-clip: border-box;
+          -webkit-background-size: auto auto;
+          background-size: auto auto;
+        }
+
         .btn-pre2 {
           border: 0px solid #4d57e6;
           -webkit-border-radius: 12px;
@@ -59,6 +76,24 @@
           -webkit-background-size: auto auto;
           background-size: auto auto;
         }
+
+        .btn-pre2:hover {
+          border: 0px solid #8b91e4;
+          color:#ffffff; 
+          -webkit-border-radius: 12px;
+          border-radius: 12px;
+          background: -webkit-linear-gradient(-90deg,  #8b91e4 0,  #8b91e4 100%);
+          background: -moz-linear-gradient(180deg,  #8b91e4 0,  #8b91e4 100%);
+          background: linear-gradient(180deg, r #8b91e4 0,  #8b91e4 100%);
+          background-position: 50% 50%;
+          -webkit-background-origin: padding-box;
+          background-origin: padding-box;
+          -webkit-background-clip: border-box;
+          background-clip: border-box;
+          -webkit-background-size: auto auto;
+          background-size: auto auto;
+        }
+
         .btn-pre:hover {
           border: 0px solid #4d57e6;
           -webkit-border-radius: 12px;
