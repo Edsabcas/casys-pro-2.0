@@ -8,21 +8,7 @@
         </div>
 
         <div class="modal-body">
-            @isset($mensaje)
-            @if($mensaje!=null)
-            
-            <div class="alert alert-success" role="alert">
-                Agregado Correctamente!
-              </div>
-            @endif
-            @endisset
-            @isset($mensaje1)
-              @if($mensaje1!=null)
-              <div class="alert alert-success" role="alert">
-                No fue agregado Correctamente!
-              </div>
-              @endif
-            @endisset
+           
             <div class="container-sm">
               <h3 class="form-label text" style="font-size:40px">Crear Tema</h3> 
     
@@ -33,30 +19,14 @@
                   <div class="col-sm-3">
                     <label for="exampleInputEmail1" class="form-label " style="font-size:20px">Titulo del Tema</label>
                     <input type="text" class="form-control" wire:model='tema2'  style="border:2px solid rgba(86, 95, 76, 0.466);" placeholder="Titulo de la actividad" aria-label="Titulo de la actividad">
-                    @error('tema') 
+                    @error('tema2') 
                     <div class="alert alert-danger d-flex align-items-center" role="alert">
                       <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
                       <span>Pendiente de nombrar una actividad</span>
                       </div> 
                     @enderror
                   </div>
-                  <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label"> Unidad</label>
-                            <select class="form-select form-select-sm" style="border:2px solid rgba(86, 95, 76, 0.466);" aria-label=".form-select-sm example" wire:model='unidad2'>
-                      <option selected>Seleccione la unidad</option>
-                      @isset($unidades)
-                      @foreach ($unidades as $unidad)
-                          <option value="{{$unidad->ID_UNIDADES}}">{{$unidad->ID_UNIDADES}}</option>
-                      @endforeach
-                      @endisset
-                    </select>
-                    @error('unidad') 
-                    <div class="alert alert-danger d-flex align-items-center" role="alert">
-                      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
-                      <span>Pendiente de seleccionar una Unidad</span>
-                      </div> 
-                    @enderror
-                  </div>
+                  
                   
     
                 </div>
@@ -64,7 +34,7 @@
                     <div class="col-sm-10">
                       <label for="exampleFormControlTextarea1" class="form-label" style="font-size:20px">Descripcion Tema</label>
                       <textarea type="text" class="form-control" wire:model='descripciont2'  style="border:2px solid rgba(128, 156, 96, 0.466);" id="exampleFormControlTextarea1" rows="3"></textarea>
-                      @error('descripciont') 
+                      @error('descripciont2') 
                     <div class="alert alert-danger d-flex align-items-center" role="alert">
                       <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
                       <span>Pendiente de dar una descripcion</span>
@@ -72,7 +42,27 @@
                     @enderror
                     </div>
                     <br>
+                    @if($editt!=null)
+                    <button type='submit' class="btn btn-pre2" wire:click="update_temas2()">Actualizar</button>
+                    @else
                     <button type="submit" class="btn btn-pre2" wire:click="Subir_Tema2()" >Publicar</button>
+                    @endif
+                    @isset($mensaje)
+                    @if($mensaje!=null)
+                    
+                    <div class="alert alert-success" role="alert">
+                        El tema fue agregado Correctamente!
+                      </div>
+                    @endif
+                    @endisset
+                    @isset($mensaje1)
+                      @if($mensaje1!=null)
+                      <div class="alert alert-success" role="alert">
+                        No fue posible agregar el tema Correctamente!
+                      </div>
+                      @endif
+                    @endisset
+                    
           </form>
            
             

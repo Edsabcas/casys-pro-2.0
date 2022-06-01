@@ -8,21 +8,6 @@
         </div>
 
         <div class="modal-body">
-            @isset($mensaje)
-            @if($mensaje!=null)
-            
-            <div class="alert alert-success" role="alert">
-                Agregado Correctamente!
-              </div>
-            @endif
-            @endisset
-            @isset($mensaje1)
-              @if($mensaje1!=null)
-              <div class="alert alert-success" role="alert">
-                No fue agregado Correctamente!
-              </div>
-              @endif
-            @endisset
             <div class="container-sm">
               <h3 class="form-label text" style="font-size:40px">Crear Actividad</h3> 
     
@@ -70,13 +55,13 @@
                   <label for="exampleInputEmail1" class="form-label" style="font-size:20px">seleccione un tema</label>
                   <select class="form-select form-select-sm" wire:model="temasb2" aria-label=".form-select-sm example"  style="border:2px solid rgba(86, 95, 76, 0.466);">
                     <option selected>seleccione un tema</option>
-                    @isset($temas)
-                    @foreach ($temas as $tema)
-                        <option value="{{$tema->ID_TEMA}}">{{$tema->NOMBRE_TEMA}}</option>
+                    @isset($temas2)
+                    @foreach ($temas2 as $tema2)
+                        <option value="{{$tema2->ID_TEMA}}">{{$tema2->NOMBRE_TEMA}}</option>
                     @endforeach
                     @endisset
                   </select>
-                  @error('temasb') 
+                  @error('temasb2') 
                   <div class="alert alert-danger d-flex align-items-center" role="alert">
                     <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
                     <span>Pendiente de seleccionar un tema</span>
@@ -143,7 +128,21 @@
                     <button type="submit" class="btn btn-pre2" wire:click='Subir_Act2()' >Publicar</button>
                     
                   </form>
-           
+                  @isset($mensaje)
+                  @if($mensaje!=null)
+                  
+                  <div class="alert alert-success" role="alert">
+                      La actividad fue agragada Correctamente!
+                    </div>
+                  @endif
+                  @endisset
+                  @isset($mensaje1)
+                    @if($mensaje1!=null)
+                    <div class="alert alert-success" role="alert">
+                      No fue posible agregar la actividad  Correctamente!
+                    </div>
+                    @endif
+                  @endisset
             
             </div>        
         </div>
