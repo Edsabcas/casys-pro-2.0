@@ -24,7 +24,16 @@ class ListadeusuariosComponent extends Component
     public $img,$tipo,$archivo_perfil,$edit;
 
     public $apelli,$nombre,$pass,$correoed,$usuario1,$rol,$op,$nomb;
-    
+
+    public function paginationView()
+    {
+        return 'livewire.custom-pagination-links-view';
+    }
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
 
     public function render()
     {
@@ -52,8 +61,10 @@ class ListadeusuariosComponent extends Component
         $this->op=1;
         $this->edit=1;
 
-        //$listadousers = array_slice($listadousers, 10 * (4 - 1), 10);
-        //$listadousers = new Paginator($listadousers, 10, 4);
+        $listadousers=User::where(function($search){
+            $search->where('name', 'like', '%' . $this->search . '%')
+                ->orwhere('email', 'like', '%' . $this->search . '%');
+        })->paginate(5);
 
         return view('livewire.listadeusuarios-component', compact('listadousers','rols'));
     }
@@ -301,7 +312,7 @@ class ListadeusuariosComponent extends Component
             $apellido=$apellidos[0];
             $apellido2=substr($apellidos[1],0,1);
             $this->usuario1 = substr($primerNombre[0],0,10) . '.' . $primerApellido[0].$inicial;
-    
+
             $this->usuario1 = strtolower($this->usuario1);
             $this->correoed=$inicial.$inicial2.$apellido.$apellido2.$inicial2.'@colegioelcastano.edu.gt';
             $this->correoed=strtolower($this->correoed);

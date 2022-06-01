@@ -5,7 +5,7 @@
       <div>
         <div class="input-group justify-content-center">
           <div class="form-outline">
-            <input type="search" wire:model="search" id="form1" class="form-control" placeholder="Buscar:" />
+            <input type="search" wire:model="search" id="search" class="form-control" placeholder="Buscar:" />
           </div>
           <button type="button" class="btn btn-pre2">
             <i class="fas fa-search"></i>
@@ -141,8 +141,7 @@
               </script>
           </div>
           <div class="modal-footer">
-            <button class="btn btn-pre2" wire:click="guardar_trigliceridos()">Guardar</button>
-            <button class="btn btn-pre2" data-bs-dismiss="modal">Cerrar</button>
+            <button class="btn btn-pre2" data-bs-dismiss="modal" wire:click="guardar_trigliceridos()">Guardar</button>
           </div>
         </div>
       </div>
@@ -153,9 +152,10 @@
       <thead>
         <tr>
             <th>NOMBRE</th>
+            <th>ROL</th>
             <th>EMAIL</th>
             <th>USUARIO</th>
-            <th>ROL</th>
+            
             <th>FOTO</th>
             <th>EDITAR</th>
         </tr>
@@ -164,9 +164,10 @@
       @foreach ($listadousers as $listadouser)
         <tr>
             <td>{{$listadouser->name}}</td>
+            <td>{{$listadouser->DESCRIPCION}}</td>
             <td>{{$listadouser->email}}</td>
             <td>{{$listadouser->usuario}}</td>
-            <td>{{$listadouser->DESCRIPCION}}</td>
+           
 
             <td>
               @if ($listadouser->img_users=="" or $listadouser->img_users==null )
@@ -252,7 +253,10 @@
       @endforeach
     </tbody>
     </table>
+    {{ $listadousers->links() }}
 </div>
+
+
 
 
 
