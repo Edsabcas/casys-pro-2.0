@@ -24,6 +24,7 @@ class ListadeusuariosComponent extends Component
     public $img,$tipo,$archivo_perfil,$edit;
 
     public $apelli,$nombre,$pass,$correoed,$usuario1,$rol,$op,$nomb;
+    
 
     public function render()
     {
@@ -285,15 +286,13 @@ class ListadeusuariosComponent extends Component
         public function generar_use(){
 
         
-            $this->nomb=$this->nombre;
+            $this->nombre=$this->nombre;
             $this->apelli=$this->apelli;
     
-            $primerNombre = explode(" ",$this->nomb);
+            $primerNombre = explode(" ",$this->nombre);
             $primerApellido = explode(" ", $this->apelli);
     
-            $this->usuario1 = substr($primerNombre[0],0,10) . '.' . $primerApellido[0];
-    
-            $this->usuario1 = strtolower($this->usuario1);
+           
     
             $inicial=substr($this->nombre,0,1);
             $iniciales=explode(" ", $this->nombre);
@@ -301,8 +300,10 @@ class ListadeusuariosComponent extends Component
             $apellidos=explode(" ", $this->apelli);
             $apellido=$apellidos[0];
             $apellido2=substr($apellidos[1],0,1);
-            
-            $this->correoed=$inicial.$inicial2.$apellido.$apellido2.'@colegioelcastano.edu.gt';
+            $this->usuario1 = substr($primerNombre[0],0,10) . '.' . $primerApellido[0].$inicial;
+    
+            $this->usuario1 = strtolower($this->usuario1);
+            $this->correoed=$inicial.$inicial2.$apellido.$apellido2.$inicial2.'@colegioelcastano.edu.gt';
             $this->correoed=strtolower($this->correoed);
             $this->pass='Cole123';
             
