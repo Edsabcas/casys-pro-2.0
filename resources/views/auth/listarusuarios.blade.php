@@ -315,13 +315,13 @@
           @enderror
           <br>
           
-          <label for="password" class="col-sm-3 col-form-label">Contraseña:</label>
-          <input type="password" wire:model="n_password" class="border border-gray-200 rounded-md bg-gray-200 w-full text-lg placeholder-gray-900 p-2 my-2 focus:bg-white" id="password" name="password" placeholder="Contraseña">  
+          <label for="n_password" class="col-sm-3 col-form-label">Contraseña:</label>
+          <input type="password" wire:model="n_password" id="passwoord" name="passwoord" class="border border-gray-200 rounded-md bg-gray-200 w-full text-lg placeholder-gray-900 p-2 my-2 focus:bg-white"  placeholder="Contraseña">  
 
           <div style="margin-top:15px;">
-            <input style="margin-left:20px;" type="checkbox" id="mostrar_contrasena" title="clic para mostrar contraseña"/>
-            
+            <input style="margin-left:20px;" type="checkbox" id="mosttrar_contrasena" title="clic para mostrar contraseña"/>
             &nbsp;&nbsp;Mostrar Contraseña</div>
+
           @error('n_password')
           <div class="alert alert-danger d-flex align-items-center" role="alert">
             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
@@ -355,11 +355,11 @@
           </form>
           <script>
             $(document).ready(function () {
-              $('#mostrar_contrasena').click(function () {
-                if ($('#mostrar_contrasena').is(':checked')) {
-                  $('#password').attr('type', 'text');
+              $('#mosttrar_contrasena').click(function () {
+                if ($('#mosttrar_contrasena').is(':checked')) {
+                  $('#passwoord').attr('type', 'text');
                 } else {
-                  $('#password').attr('type', 'password');
+                  $('#passwoord').attr('type', 'password');
                 }
               });
             });
@@ -369,3 +369,4 @@
     </div>
   </div>
 </div>
+
