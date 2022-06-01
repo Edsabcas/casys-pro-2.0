@@ -58,7 +58,7 @@
           background-clip: border-box;
           -webkit-background-size: auto auto;
           background-size: auto auto;
-
+        }
         .btn-pre:hover {
           border: 0px solid #4d57e6;
           -webkit-border-radius: 12px;
