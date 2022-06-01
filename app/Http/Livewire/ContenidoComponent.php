@@ -100,7 +100,7 @@ class ContenidoComponent extends Component
             ->join('tb_seccions', 'tb_actividades.ID_SC', '=', 'tb_seccions.ID_SC')
             ->join('users', 'tb_actividades.ID', '=', 'users.id')
             ->join('tb_unidades', 'tb_actividades.ID_UNIDADES', '=', 'tb_unidades.ID_UNIDADES')
-            ->select('tb_actividades.ID_ACTIVIDADES', 'tb_materias.NOMBRE_MATERIA', 'tb_grados.ID_GR', 'tb_seccions.ID_SC', 'tb_materias.ID_MATERIA', 'users.name', 'tb_actividades.NOMBRE_ACTIVIDAD', 'tb_unidades.ID_UNIDADES')
+            ->select('tb_actividades.ID_ACTIVIDADES', 'tb_materias.NOMBRE_MATERIA', 'tb_grados.ID_GR', 'tb_seccions.ID_SC', 'tb_materias.ID_MATERIA', 'users.name', 'tb_actividades.NOMBRE_ACTIVIDAD', 'tb_unidades.ID_UNIDADES','tb_actividades.fecha_cr','tb_actividades.fecha_entr','tb_actividades.descripcion','tb_actividades.archivos')
             ->where('tb_actividades.ID_UNIDADES','=',$this->unidadn)
             ->where('tb_actividades.ID_GR','=',$this->grado)
             ->where('tb_actividades.ID_SC','=',$this->idsecc)
@@ -223,15 +223,29 @@ class ContenidoComponent extends Component
         
     }
 
-    //funcion de la visualizacion de las vista de actividades
+    //funcion de la visualizacion de las vista de actividades de las unidades fijas
     public function vista_a($num)
     {
         $this->op2=$num;
         
     }
 
-    //funcion de la vista de temas
+    //funcion de la visualizacion de las vista de actividades de las unidades nuevas
+    public function vista_a2($num)
+    {
+        $this->op2=$num;
+            
+    }
+
+    //funcion de la vista de temas de unidades fijas
     public function vista_t($num)
+    {
+        $this->op2=$num;
+        
+    }
+
+    //funcion de la vista de temas de unidades nuevas
+    public function vista_t2($num)
     {
         $this->op2=$num;
         
@@ -253,6 +267,13 @@ class ContenidoComponent extends Component
 
         elseif($num==4){
             $this->op2=4;
+        }
+
+        elseif($num==5){
+            $this->op2=5;
+        }
+        elseif($num==6){
+            $this->op2=6;
         }
 
     }

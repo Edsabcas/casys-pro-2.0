@@ -9,9 +9,9 @@
   
           @include('Unidades.ActividadesN.modal_actividades_n')
           <button class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#modal_act_n" Wire:Click="limpiar_act">Crear Actividades </button>
-            <a wire:click='vista_a("3")' class="btn btn-success">Ver Actividades </a>
+            <a wire:click='vista_a("5")' class="btn btn-success">Ver Actividades </a>
 
-            <a wire:click='vista_t("4")' class="btn btn-success">Ver Temas </a>
+            <a wire:click='vista_t("6")' class="btn btn-success">Ver Temas </a>
         </td>
         <br>
         <br>
