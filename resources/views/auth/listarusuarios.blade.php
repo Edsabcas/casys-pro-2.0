@@ -71,7 +71,7 @@
             </form>
            </div>
            <div class="modal-footer">
-            <button class="btn btn-primary" data-bs-target="#creacion" data-bs-dismiss="modal" wire:click="generar_use()" data-bs-toggle="modal">Siguiente</button>
+            <button class="btn btn-pre2" data-bs-target="#creacion" data-bs-dismiss="modal" wire:click="generar_use()" data-bs-toggle="modal">Siguiente</button>
           </div>
         </div>
       </div>
@@ -229,8 +229,8 @@
                                         </div>
                                       @endif
                     </div>  
-                    <button class="btn btn-primary" wire:click="cambiofotolist({{$listadouser->ID_USUARIO}})">Publicar</button>
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                    <button class="btn btn-pre2" wire:click="cambiofotolist({{$listadouser->ID_USUARIO}})">Publicar</button>
+                    <button type="button" class="btn btn-secondary" style="border-radius: 12px;" data-bs-dismiss="modal">Cerrar</button>
                   </form>
                   </div>
                 </div>
@@ -315,13 +315,13 @@
           @enderror
           <br>
           
-          <label for="password" class="col-sm-3 col-form-label">Contraseña:</label>
-          <input type="password" wire:model="n_password" class="border border-gray-200 rounded-md bg-gray-200 w-full text-lg placeholder-gray-900 p-2 my-2 focus:bg-white" id="password" name="password" placeholder="Contraseña">  
+          <label for="n_password" class="col-sm-3 col-form-label">Contraseña:</label>
+          <input type="password" wire:model="n_password" id="passwoord" name="passwoord" class="border border-gray-200 rounded-md bg-gray-200 w-full text-lg placeholder-gray-900 p-2 my-2 focus:bg-white"  placeholder="Contraseña">  
 
           <div style="margin-top:15px;">
-            <input style="margin-left:20px;" type="checkbox" id="mostrar_contrasena" title="clic para mostrar contraseña"/>
-            
+            <input style="margin-left:20px;" type="checkbox" id="mosttrar_contrasena" title="clic para mostrar contraseña"/>
             &nbsp;&nbsp;Mostrar Contraseña</div>
+
           @error('n_password')
           <div class="alert alert-danger d-flex align-items-center" role="alert">
             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
@@ -333,7 +333,7 @@
 
           <hr>
           <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-secondary" style="border-radius: 12px;" data-bs-dismiss="modal">Cerrar</button>
           <button wire:click='e_perfiles' class="btn btn-pre2"> 
             Guardar
           </button>
@@ -355,11 +355,11 @@
           </form>
           <script>
             $(document).ready(function () {
-              $('#mostrar_contrasena').click(function () {
-                if ($('#mostrar_contrasena').is(':checked')) {
-                  $('#password').attr('type', 'text');
+              $('#mosttrar_contrasena').click(function () {
+                if ($('#mosttrar_contrasena').is(':checked')) {
+                  $('#passwoord').attr('type', 'text');
                 } else {
-                  $('#password').attr('type', 'password');
+                  $('#passwoord').attr('type', 'password');
                 }
               });
             });
@@ -369,3 +369,4 @@
     </div>
   </div>
 </div>
+

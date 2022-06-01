@@ -1,3 +1,15 @@
+<<<<<<< HEAD
+=======
+    <div class="input-group justify-content-center">
+      <div class="form-outline">
+        <input type="search" wire:model="search" id="form1" class="form-control" placeholder="Buscar:" />
+      </div>
+      <button type="button" class="btn btn-pre2">
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+    <br>
+>>>>>>> 5469111781c5e7de6809097e1b3155e40f168d48
 @isset($maestros)
     <div class="accordion accordion-flush rounded" id="accordionFlushExample">
         <div class="accordion-item" style="border-radius: 60px 60px 60px 60px;" >
