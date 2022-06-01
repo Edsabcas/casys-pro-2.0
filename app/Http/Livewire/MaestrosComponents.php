@@ -11,7 +11,7 @@ class MaestrosComponents extends Component{
 
     public $maestro;
 
-    public $nombre_docente,$apellido_docente,$dpi,$telefono,$correo,$estado_civil,$estado,$id_docente,$direccion;
+    public $nombre_docente,$apellido_docente,$dpi,$telefono,$correo,$estado_civil,$estado,$id_docente,$direccion,$fecha_nacimiento;
 
     public $mensaje1,$mensaje2,$mensaje3,$mensaje4,$mensajeeliminar,$mensajeeliminar1;
 
@@ -60,6 +60,7 @@ class MaestrosComponents extends Component{
             'correo' => 'required',
             'estado_civil' => 'required',
             'direccion' => 'required',
+            'fecha_nacimiento' => 'required',
             'estado' => 'required',
         ])==false){
             $mensaje="no encontrado";
@@ -74,6 +75,7 @@ class MaestrosComponents extends Component{
         $corre=$this->correo;
         $estado_c=$this->estado_civil;
         $direccion=$this->direccion;
+        $fecha_nacimiento=$this->fecha_nacimiento;
         $estado=$this->estado;
 
         $usuario=$this->usuario;
@@ -116,6 +118,7 @@ class MaestrosComponents extends Component{
                 'CORREO'=>$corre,
                 'ESTADO_CIVIL'=>$estado_c,
                 'DIRECCION'=>$direccion,
+                'FECHA_NACIMIENTO'=>$fecha_nacimiento,
                 'ESTADO'=>$estado,
                 'ID_USER'=>$id,
             ]);
@@ -249,11 +252,12 @@ class MaestrosComponents extends Component{
         if ($mae){
             DB::commit();
             $this->reset();
+            unset($this->mensajeeliminar);
             $this->mensajeeliminar='Eliminado correctamente';
         }
         else{
             DB::rollback();
-            unset($this->mensajeeliminar);
+            unset($this->mensajeeliminar1);
             $this->mensajeeliminar1='No fue posible eliminar correctamente';
         }
     }  
