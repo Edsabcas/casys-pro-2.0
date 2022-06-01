@@ -753,6 +753,30 @@ Public function editt($id){
    $this->editt=1;
 }
 
+//funcnion de la edicion de temas en las uniddades nuevas 
+Public function editt2($id){
+    $id_tem=$id;
+    $sql='SELECT * FROM tb_temas WHERE ID_TEMA=?';
+    $temast=DB:: select($sql, array($id_tem));
+    if($temast !=null){
+        foreach($temast as $temat)
+        {
+            $this->id_tem=$temat->ID_TEMA;
+            $this->tema2=$temat->NOMBRE_TEMA;
+            $this->descripciont2=$temat->DESCRIPCION;
+            $this->grado=$temat->ID_GR;
+            $this->idsecc=$temat->ID_SC;
+            $this->unidad1=$temat->ID_MATERIA;
+            $this->unidadn=$temat->ID_UNIDADES;
+            $this->idusuario=$temat->ID;
+
+        }
+    }
+
+    $this->op='edittemas';
+   $this->editt=1;
+}
+
 //funcion de edicion de temas en unidades fijas 
 public function update_temas(){
     if($this->validate([
@@ -808,8 +832,89 @@ public function update_temas(){
    
 }
 
+//funcion de edicion de temas en unidades nuevas
+public function update_temas2(){
+    if($this->validate([
+        'tema2' => 'required',
+        'descripciont2' => 'required',
+
+    ])==false){
+        $error="no encontrado";
+        session(['message'=>'no encontrado']);
+        return back()->withErrors(['error' => 'Validar el input vacio']);
+    }
+
+    else{
+    $id_tem=$this->id_tem;
+    $tema2=$this->tema2;
+    $descripciont2=$this->descripciont2;
+    $grado=$this->grado;
+    $idsecc=$this->idsecc;
+    $unidad1=$this->unidad1;
+    $unidadn=$this->unidadn;
+    $this->idusuario=auth()->user()->id;
+    DB::begintransaction();
+    
+
+    $temat=DB::table('tb_temas')
+    ->where('ID_TEMA', $id_tem)
+    ->update( 
+        [
+            'NOMBRE_TEMA'=>$tema2,
+            'DESCRIPCION'=>$descripciont2,
+            'ID_MATERIA'=>$unidad1,
+            'ID_GR'=>$grado,
+            'ID_SC'=>$idsecc,
+            'ID_UNIDADES'=>$unidadn,
+            'ID'=>$this->idusuario,
+        ]);
+
+        if($temat){
+            DB::commit();
+            unset($this->mensaje);
+            unset($this->mensaje1);
+            $this->op='addcontenidos';
+            $this->mensaje='Insertado correctamente';
+            }
+            else {
+            DB::rollback();
+            unset($this->mensaje);
+            unset($this->mensaje1);
+            $this->op='addcontenidos';
+            $this->mensaje1='Datos no  insertados correctamente';
+            }
+}
+   
+}
+
 //funcion de eliminar temas en unidades fijas 
 Public function deletet($id){
+    $id_tem=$id;
+    DB::begintransaction();
+
+    $temat=DB::table('tb_temas')->where('ID_TEMA','=', $id_tem)->delete();
+
+    if($temat){
+        DB::commit();
+        unset($this->mensaje);
+        unset($this->mensaje3);
+        unset($this->mensaje_eliminar);
+        $this->op='addcontenidos';
+        $this->mensaje_eliminar='Eliminado Correctamente';
+    }
+    else{
+        DB::rollback();
+        unset($this->mensaje1);
+        unset($this->mensaje4);
+        unset($this->mensaje_eliminar2);
+        $this->op='addcontenidos';  
+        $this->mensaje_eliminar2='No fue posible eliminarlo';
+    }
+}
+
+
+//funcion de eliminar temas en unidades fijas 
+Public function deletet2($id){
     $id_tem=$id;
     DB::begintransaction();
 
