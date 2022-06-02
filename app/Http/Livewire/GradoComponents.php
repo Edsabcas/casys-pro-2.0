@@ -359,12 +359,12 @@ class GradoComponents extends Component
                     DB::commit();
                     $this->reset();
                     unset($this->mensaje13);
-                    $this->mensaje11='Editado correctamente';
+                    $this->mensaje13='Editado correctamente';
                 }
                 else{
                     DB::rollback();
                     unset($this->mensaje14);
-                    $this->mensaje12='No fue posible editar correctamente';
+                    $this->mensaje14='No fue posible editar correctamente';
                 }
         }
         public function delete2($id){

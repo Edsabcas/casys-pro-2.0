@@ -13,9 +13,15 @@
   @endif
 @endisset
 
-<p>
-  <h4 class="text-center">Crear Grado</h4>
-</p>
+<div class="card shadow rounded">
+  <div class="text-center">
+    <br>
+    <h1 style="color: #3a3e7b"><strong>Creación de Grado</strong></h1>
+    <br>
+  </div>
+</div>
+<br><br>
+
 <form row g-3 wire:submit.prevent="">
   @csrf
   <div class="container">
@@ -70,13 +76,13 @@
             <div class="modal-header">
               <h5 class="modal-title" id="seccionLabel">Creación de Sección</h5>
             </div>
-            @isset($mensaje5)
-                @if ($mensaje5!=null)
-                  <div class="alert alert-success" role="alert">
-                    Agregado Correctamente!
-                  </div>
-                @endif
-            @endisset
+              @isset($mensaje5)
+                  @if ($mensaje5!=null)
+                    <div class="alert alert-success" role="alert">
+                      Agregado Correctamente!
+                    </div>
+                  @endif
+              @endisset
               @isset($mensaje6)
                 @if($mensaje6!=null)
                   <div class="alert alert-danger" role="alert">
@@ -145,6 +151,7 @@
                      @enderror
              </form>
              @isset($secciones)
+      <div class="card shadow rounded">
         <div class="accordion accordion-flush rounded" id="accordionFlushExample">
           <div class="accordion-item" style="border-radius: 60px 60px 60px 60px;" >
               <h2 class="accordion-header" style="border-radius: 60px 60px 60px 60px; color: #3a3e7b"  id="flush-headingOne">
@@ -196,7 +203,7 @@
             </div>
         </div>
     </div>
-    
+      </div>
 @endisset
 
             </div>
@@ -293,12 +300,40 @@
         Agregado Correctamente!
         </div>
         @endif
-        @endisset
-        @isset($mensaje8)
+      @endisset
+      @isset($mensaje8)
         @if($mensaje8!=null)
         <div class="alert alert-danger" role="alert">
         No se logro insetar sección
         </div>
+        @endif
+      @endisset
+      @isset($mensaje13)
+        @if ($mensaje13!=null)
+          <div class="alert alert-success" role="alert">
+            Editado Correctamente
+          </div>
+        @endif
+      @endisset
+      @isset($mensaje14)
+        @if($mensaje14!=null)
+          <div class="alert alert-danger" role="alert">
+            No se logro editar los datos
+          </div>
+        @endif
+      @endisset
+      @isset($mensajeeliminar4)
+        @if($mensajeeliminar4!==null)
+          <div class="alert alert-success" role="alert">
+            ELIMINADO CORRECTAMENTE!
+          </div>
+        @endif
+      @endisset
+      @isset($mensajeeliminar5)
+        @if($mensajeeliminar5!==null)
+          <div class="alert alert-danger" role="alert">
+            NO SE LOGRÓ ELIMINAR LOS DATOS :(
+          </div>
         @endif
       @endisset
       <div class="modal-body">
@@ -334,6 +369,7 @@
                @enderror
        </form>
        @isset($academico)
+       <div class="card shadow rounded"> 
         <div class="accordion accordion-flush rounded" id="accordionFlushExample">
           <div class="accordion-item" style="border-radius: 60px 60px 60px 60px;" >
               <h2 class="accordion-header" style="border-radius: 60px 60px 60px 60px; color: #3a3e7b"  id="flush-headingOne">
@@ -385,7 +421,7 @@
             </div>
         </div>
     </div>
-    
+  </div>
 @endisset
 
       </div>
@@ -442,16 +478,44 @@
       </div>
       @isset($mensaje9)
         @if ($mensaje9!=null)
-        <div class="alert alert-success" role="alert">
-        Agregado Correctamente!
-        </div>
+          <div class="alert alert-success" role="alert">
+            Agregado Correctamente!
+          </div>
         @endif
-        @endisset
-        @isset($mensaje10)
+      @endisset
+      @isset($mensaje10)
         @if($mensaje10!=null)
-        <div class="alert alert-danger" role="alert">
-        No se logro insetar sección
-        </div>
+          <div class="alert alert-danger" role="alert">
+            No se logro insetar sección
+          </div>
+        @endif
+      @endisset
+      @isset($mensaje15)
+        @if ($mensaje15!=null)
+          <div class="alert alert-success" role="alert">
+            Editado Correctamente
+          </div>
+        @endif
+      @endisset
+      @isset($mensaje16)
+        @if($mensaje16!=null)
+          <div class="alert alert-danger" role="alert">
+            No se logro editar los datos
+          </div>
+        @endif
+      @endisset
+      @isset($mensajeeliminar6)
+        @if($mensajeeliminar6!==null)
+          <div class="alert alert-success" role="alert">
+            ELIMINADO CORRECTAMENTE!
+          </div>
+        @endif
+      @endisset
+      @isset($mensajeeliminar7)
+        @if($mensajeeliminar7!==null)
+          <div class="alert alert-danger" role="alert">
+            NO SE LOGRÓ ELIMINAR LOS DATOS :(
+          </div>
         @endif
       @endisset
       <div class="modal-body">
@@ -487,6 +551,7 @@
                @enderror
        </form>
        @isset($jornada)
+    <div class="card shadow rounded">
        <div class="accordion accordion-flush rounded" id="accordionFlushExample">
          <div class="accordion-item" style="border-radius: 60px 60px 60px 60px;" >
              <h2 class="accordion-header" style="border-radius: 60px 60px 60px 60px; color: #3a3e7b"  id="flush-headingOne">
@@ -538,6 +603,7 @@
            </div>
        </div>
    </div>
+    </div>
 @endisset
       </div>
       <div class="modal-footer">
