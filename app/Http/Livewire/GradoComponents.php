@@ -11,7 +11,7 @@ class GradoComponents extends Component
     public $nombre_gr,$id_gr,$estado_gr,$op,$mensaje,$mensaje1,$edit,$mensaje3,$mensaje4,$mensaje5,$mensaje6,$mensajeeliminar,$mensajeeliminar1,$mensajeeliminar2,$mensajeeliminar3;
     public $seccion_gr,$precio_gr,$ministerial_gr,$resolucion_gr,$jornada_gr,$academico_gr;
     public $estado_sec,$nombre_sec,$nombre_jornada,$nombre_nvl,$estado_jornada,$estado_nvl,$edit1;
-    public $mensaje7,$mensaje8,$mensaje9,$mensaje10,$mensaje11,$mensaje12,$id_sc;
+    public $mensaje7,$mensaje8,$mensaje9,$mensaje10,$mensaje11,$mensaje12,$id_sc,$edit2,$id_nvl;
     public function render()
     {
         $grad= DB::table('tb_grados')
@@ -304,12 +304,12 @@ class GradoComponents extends Component
     
             DB::beginTransaction();
     
-            $nivelacademico=DB::table('tb_nvlacademico')->insert(
+            $academico=DB::table('tb_nvlacademico')->insert(
                 [
                     'NIVEL_ACADEMICO'=> $nombre_nvl,
                     'ESTADO'=> $estado_nvl,
                 ]);
-                if($nivelacademico){
+                if($academico){
                     DB::commit();
                     $this->reset();
                     $this->mensaje7='Insertado correctamente';
@@ -325,12 +325,12 @@ class GradoComponents extends Component
         public function edit2($id){
             $id_nvl=$id;
             $sql='SELECT * FROM tb_nvlacademico WHERE ID_NVL=?';
-            $nivelacademico=DB::select($sql,array($id_nvl));
+            $academico=DB::select($sql,array($id_nvl));
     
-            if($nivelacademico!=null){
-                foreach($nivelacademico as $nivel)
+            if($academico!=null){
+                foreach($academico as $nivel)
                 {
-                    $this->id_sc=$nivel->ID_NVL;               
+                    $this->id_nvl=$nivel->ID_NVL;               
                     $this->nombre_nvl=$nivel->NIVEL_ACADEMICO;   
                     $this->estado_nvl=$nivel->ESTADO;         
                 }
@@ -346,7 +346,7 @@ class GradoComponents extends Component
     
             DB::beginTransaction();
     
-            $nivelacademico=DB::table('tb_nvlacademico')
+            $academico=DB::table('tb_nvlacademico')
             ->where('ID_NVL',$id_nvl)
             ->update(
                 [
@@ -355,7 +355,7 @@ class GradoComponents extends Component
                 ]
                 );
     
-                if($nivelacademico){
+                if($academico){
                     DB::commit();
                     $this->reset();
                     unset($this->mensaje11);
@@ -372,9 +372,9 @@ class GradoComponents extends Component
     
             DB::beginTransaction();
     
-            $nivelacademico=DB::table('tb_nvlacademico')->where('ID_NVL','=', $id_nvl)->delete();
+            $academico=DB::table('tb_nvlacademico')->where('ID_NVL','=', $id_nvl)->delete();
     
-            if($nivelacademico){
+            if($academico){
                 DB::commit();
                 $this->reset();
                 unset($this->mensajeeliminar4);
