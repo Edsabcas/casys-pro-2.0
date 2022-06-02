@@ -8,10 +8,10 @@ use App\Http\Livewire\Request;
 
 class GradoComponents extends Component
 {
-    public $nombre_gr,$id_gr,$estado_gr,$op,$mensaje,$mensaje1,$edit,$mensaje3,$mensaje4,$mensaje5,$mensaje6,$mensajeeliminar,$mensajeeliminar1,$mensajeeliminar2,$mensajeeliminar3;
+    public $nombre_gr,$id_gr,$estado_gr,$op,$mensaje,$mensaje1,$edit,$mensaje3,$mensaje4,$mensaje5,$mensaje6,$mensajeeliminar,$mensajeeliminar1,$mensajeeliminar2,$mensajeeliminar3,$mensajeeliminar4,$mensajeeliminar5,$mensajeeliminar6,$mensajeeliminar7;
     public $seccion_gr,$precio_gr,$ministerial_gr,$resolucion_gr,$jornada_gr,$academico_gr;
-    public $estado_sec,$nombre_sec,$nombre_jornada,$nombre_nvl,$estado_jornada,$estado_nvl,$edit1;
-    public $mensaje7,$mensaje8,$mensaje9,$mensaje10,$mensaje11,$mensaje12,$id_sc,$edit2,$id_nvl;
+    public $estado_sec,$nombre_sec,$nombre_jornada,$nombre_nvl,$estado_jornada,$estado_nvl,$edit1,$id_jornada,$edit3;
+    public $mensaje7,$mensaje8,$mensaje9,$mensaje10,$mensaje11,$mensaje12,$mensaje13,$mensaje14,$mensaje15,$mensaje16,$id_sc,$edit2,$id_nvl;
     public function render()
     {
         $grad= DB::table('tb_grados')
@@ -358,12 +358,12 @@ class GradoComponents extends Component
                 if($academico){
                     DB::commit();
                     $this->reset();
-                    unset($this->mensaje11);
+                    unset($this->mensaje13);
                     $this->mensaje11='Editado correctamente';
                 }
                 else{
                     DB::rollback();
-                    unset($this->mensaje12);
+                    unset($this->mensaje14);
                     $this->mensaje12='No fue posible editar correctamente';
                 }
         }
@@ -411,12 +411,12 @@ class GradoComponents extends Component
     
             DB::beginTransaction();
     
-            $tipojornada=DB::table('tb_jornada')->insert(
+            $jornada=DB::table('tb_jornada')->insert(
                 [
                     'TIPO_JORNADA'=> $nombre_jornada,
                     'ESTADO'=> $estado_jornada,
                 ]);
-                if($tipojornada){
+                if($jornada){
                     DB::commit();
                     $this->reset();
                     $this->mensaje9='Insertado correctamente';
@@ -426,6 +426,70 @@ class GradoComponents extends Component
                     unset($this->mensaje9);
                     $this->mensaje10='No fue posible insertar correctamente';
                 }
+            }
+        }
+        public function edit3($id){
+            $id_jornada=$id;
+            $sql='SELECT * FROM tb_jornada WHERE ID_JORNADA=?';
+            $jornada=DB::select($sql,array($id_jornada));
+    
+            if($jornada!=null){
+                foreach($jornada as $jor)
+                {
+                    $this->id_jornada=$jor->ID_JORNADA;               
+                    $this->nombre_jornada=$jor->TIPO_JORNADA;   
+                    $this->estado_jornada=$jor->ESTADO;         
+                }
+            }
+            $this->op=2;
+    
+            $this->edit3=1;
+        }
+        public function update_jornada_p(){
+            $id_jornada=$this->id_jornada;
+            $nombre_jornada=$this->nombre_jornada;
+            $estado_jornada=$this->estado_jornada;
+    
+            DB::beginTransaction();
+    
+            $jornada=DB::table('tb_jornada')
+            ->where('ID_JORNADA',$id_jornada)
+            ->update(
+                [
+                    'TIPO_JORNADA'=>$nombre_jornada,
+                    'ESTADO'=>$estado_jornada,
+                ]
+                );
+    
+                if($jornada){
+                    DB::commit();
+                    $this->reset();
+                    unset($this->mensaje15);
+                    $this->mensaje11='Editado correctamente';
+                }
+                else{
+                    DB::rollback();
+                    unset($this->mensaje16);
+                    $this->mensaje12='No fue posible editar correctamente';
+                }
+        }
+        public function delete3($id){
+            $id_jornada=$id;
+    
+            DB::beginTransaction();
+    
+            $jornada=DB::table('tb_jornada')->where('ID_JORNADA','=', $id_jornada)->delete();
+    
+            if($jornada){
+                DB::commit();
+                $this->reset();
+                unset($this->mensajeeliminar6);
+                $this->mensajeeliminar6='Eliminado correctamente';
+            }
+            else{
+                DB::rollback();
+                unset($this->mensajeeliminar7);            
+                $this->mensajeeliminar7='No fue posible eliminar correctamente';
             }
         }
 }
