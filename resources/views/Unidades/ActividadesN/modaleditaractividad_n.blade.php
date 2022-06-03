@@ -1,8 +1,8 @@
-<div wire:ignore.self class="modal fade" id="editact_n" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="5" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div wire:ignore.self class="modal fade" id="editaractividades2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="5" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
-        @if($edita!=null)
+        @if($edita2!=null)
         <h2 class="modal-title">Edicion de activdades</h2>
         @else
         <h2 class="modal-title">Ingrese los datos para crear la actividad</h2>
@@ -10,14 +10,14 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button >
       </div>
           <div class="container-sm">
-            @if($edita!=null)
+            @if($edita2!=null)
             <h3 class="form-label text" style="font-size:40px">Edicion Actividad</h3> 
             @else
            <h3 class="form-label text" style="font-size:40px">Crear Actividad</h3> 
              @endif
             <form  action="/update_act" method="POST" wire:submit.prevent=''>
               @csrf
-              <input type="hidden" value='{{$edita}}' name='edita'>
+              <input type="hidden" value='{{$edita2}}' name='edita2'>
               <div class="row g-3">
                 <div class="col-sm-3">
                   <label for="exampleInputEmail1" class="form-label " style="font-size:20px">Titulo de la actividad</label>
@@ -39,7 +39,7 @@
                     </div> 
                   @enderror             
                 </div>
-                @if($edita!=null)
+                @if($edita2!=null)
                 <div class="col-sm-3">
                   <label for="exampleInputEmail1" class="form-label " style="font-size:20px">Fecha de entrega Anterior</label>
                   <input type="text" class="form-control" wire:model='fecha_e2'  style="border:2px solid rgba(86, 95, 76, 0.466);" placeholder="Fecha de entrega" aria-label="Fecha anterior">
@@ -83,8 +83,8 @@
                 <select class="form-select form-select-sm" wire:model="temasb2" aria-label=".form-select-sm example"  style="border:2px solid rgba(86, 95, 76, 0.466);">
                   <option selected>seleccione un tema</option>
                   @isset($temas2)
-                  @foreach ($temas2 as $tema2)
-                      <option value="{{$tema2->ID_TEMA}}">{{$tema2->NOMBRE_TEMA}}</option>
+                  @foreach ($temas2 as $tema)
+                      <option value="{{$tema->ID_TEMA}}">{{$tema->NOMBRE_TEMA}}</option>
                   @endforeach
                   @endisset
                 </select>
@@ -130,12 +130,12 @@
                     @enderror 
                   </div>
 
-                  @if($edita!=null)
+                  @if($edita2!=null)
                   <div>
                     <label for="exampleInputPassword1" class="form-label " style="font-size:20px">Archivo anterior</label>
                   </div>
                   <div>
-@foreach ($actividades as $actividad)
+@foreach ($actividades2 as $actividad)
                     @php
 
                     $foo = 0;
@@ -148,18 +148,18 @@
                      elseif(strpos($actividad->archivos, '.pdf' ) !== false)
                      {$pdf=1;}
               @endphp
-               @if($foo==1 && $edita==$actividad->ID_ACTIVIDADES)
+               @if($foo==1 && $edita2==$actividad->ID_ACTIVIDADES)
                <div class="offset-4 col-10">
                <img src="imagen/actividades/{{$actividad->archivos}}" height="300" weight="300" c alt="...">
                </div>
                @endif
-               @if($vid==1 && $edita==$actividad->ID_ACTIVIDADES)
+               @if($vid==1 && $edita2==$actividad->ID_ACTIVIDADES)
                <video height="500" weight="500" class="card-img-top" alt="..." controls>
                  <source src="imagen/videos/{{$actividad->archivos}}"  type="video/mp4">
                    <source src="imagen/videos/{{$actividad->archivos}}"  type="video/ogg">
                </video>
                @endif
-               @if($pdf==1 && $edita==$actividad->ID_ACTIVIDADES)
+               @if($pdf==1 && $edita2==$actividad->ID_ACTIVIDADES)
                <iframe style="width: 49rem; text-align:center" width="400" height="400" src="/imagen/pdf_act/{{$actividad->archivos}}" frameborder="0"></iframe>
                  @endif
       @endforeach
@@ -213,7 +213,7 @@
                    @endif
                   <br>
                   
-                  @if($edita!=null)
+                  @if($edita2!=null)
                   <button type='submit' class="btn btn-primary" wire:click="update_act2()">Actualizar</button>
                   @else
                   <button type="submit" class="btn btn-primary" wire:click='Subir_Act2()' >Publicar</button>
