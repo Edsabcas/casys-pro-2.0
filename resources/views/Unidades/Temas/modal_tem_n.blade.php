@@ -42,11 +42,8 @@
                     @enderror
                     </div>
                     <br>
-                    @if($editt!=null)
-                    <button type='submit' class="btn btn-pre2" wire:click="update_temas2()">Actualizar</button>
-                    @else
+
                     <button type="submit" class="btn btn-pre2" wire:click="Subir_Tema2()" >Publicar</button>
-                    @endif
                     @isset($mensaje)
                     @if($mensaje!=null)
                     

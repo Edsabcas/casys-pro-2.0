@@ -2,14 +2,14 @@
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header">
-          <h2 class="modal-title">Ingrese los datos para crear un tema</h2>
+          <h2 class="modal-title">Edite los datos que desee</h2>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button >
         </div>
 
         <div class="modal-body">
            
             <div class="container-sm">
-              <h3 class="form-label text" style="font-size:40px">Crear Tema</h3> 
+              <h3 class="form-label text" style="font-size:40px">Editar un Tema</h3> 
     
               <form wire:submit.prevent=''>
                 @csrf
@@ -41,23 +41,20 @@
                     @enderror
                     </div>
                     <br>
-                    @if($editt!=null)
                     <button type='submit' class="btn btn-pre2" wire:click="update_temas2()">Actualizar</button>
-                    @else
-                    <button type="submit" class="btn btn-pre2" wire:click="Subir_Tema2()" >Publicar</button>
-                    @endif
+ 
                     @isset($mensaje)
                     @if($mensaje!=null)
                     
                     <div class="alert alert-success" role="alert">
-                        El tema fue agregado Correctamente!
+                        El tema fue editado Correctamente!
                       </div>
                     @endif
                     @endisset
                     @isset($mensaje1)
                       @if($mensaje1!=null)
                       <div class="alert alert-success" role="alert">
-                        No fue posible agregar el tema Correctamente!
+                        No fue posible editar el tema !
                       </div>
                       @endif
                     @endisset
