@@ -394,7 +394,6 @@ class ContenidoComponent extends Component
     }
 
     else{
-    $this->limpiar_act();
     $titulo=$this->titulo;
     $punteo=$this->punteo;
     $fecha_e=$this->fecha_e;
