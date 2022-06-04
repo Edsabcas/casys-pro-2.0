@@ -257,7 +257,7 @@ class ContenidoComponent extends Component
         
     }
 
-<<<<<<< HEAD
+
     public function vista_eleccion($num,$flujo)
     {
         $this->op2=$num;
@@ -268,12 +268,13 @@ class ContenidoComponent extends Component
     {
         $this->op2=$num;
         $this->opf=$flujo;
-=======
+
+    }
     //funcion de la vista de temas de unidades nuevas
     public function vista_t2($num)
     {
         $this->op2=$num;
->>>>>>> 0f555d96e55de5e2a8dcb7038d0be501f4406976
+
         
     }
 
@@ -298,12 +299,12 @@ class ContenidoComponent extends Component
         elseif($num==5){
             $this->op2=5;
         }
-<<<<<<< HEAD
-=======
+
+
         elseif($num==6){
             $this->op2=6;
         }
->>>>>>> 0f555d96e55de5e2a8dcb7038d0be501f4406976
+
 
     }
 
