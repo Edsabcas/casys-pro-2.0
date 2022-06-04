@@ -5,15 +5,29 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 use App\Http\Livewire\Request;
+use App\Models\tb_seccion;
+use Livewire\WithPagination;
 
 class SeccionComponents extends Component
 {
     public $nombre_sec,$estado_sec,$op,$mensaje2,$mensaje3,$mensaje4,$mensaje5,$edit,$mensajeeliminar,$mensajeeliminar1,$id_sec;
-    public function render()
+
+    use WithPagination;
+
+    public function paginationView()
     {
-        $sql="SELECT * FROM tb_seccions";
-        $secciones=DB::select($sql);
-        return view('livewire.seccion-components', compact('secciones'));
+        return 'livewire.custom-pagination-links-view';
+    }
+
+    public function render()
+
+    {
+
+        /* $secciones=tb_seccion::Paginate(3); */
+
+        /* $sql="SELECT * FROM tb_seccions";
+        $secciones=DB::select($sql); */
+        return view('livewire.seccion-components', ['secciones'=>tb_seccion::paginate(2)] /* compact('secciones') */);
     }
 
     public function guardar_sec(){

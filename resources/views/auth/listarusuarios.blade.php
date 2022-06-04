@@ -5,7 +5,7 @@
       <div>
         <div class="input-group justify-content-center">
           <div class="form-outline">
-            <input type="search" wire:model="search" id="form1" class="form-control" placeholder="Buscar:" />
+            <input type="search" wire:model="search" id="search" class="form-control" placeholder="Buscar:" />
           </div>
           <button type="button" class="btn btn-pre2">
             <i class="fas fa-search"></i>
@@ -71,7 +71,7 @@
             </form>
            </div>
            <div class="modal-footer">
-            <button class="btn btn-primary" data-bs-target="#creacion" data-bs-dismiss="modal" wire:click="generar_use()" data-bs-toggle="modal">Siguiente</button>
+            <button class="btn btn-pre2" data-bs-target="#creacion" data-bs-dismiss="modal" wire:click="generar_use()" data-bs-toggle="modal">Siguiente</button>
           </div>
         </div>
       </div>
@@ -141,8 +141,7 @@
               </script>
           </div>
           <div class="modal-footer">
-            <button class="btn btn-pre2" wire:click="guardar_trigliceridos()">Guardar</button>
-            <button class="btn btn-pre2" data-bs-dismiss="modal">Cerrar</button>
+            <button class="btn btn-pre2" data-bs-dismiss="modal" wire:click="guardar_trigliceridos()">Guardar</button>
           </div>
         </div>
       </div>
@@ -153,9 +152,10 @@
       <thead>
         <tr>
             <th>NOMBRE</th>
+            <th>ROL</th>
             <th>EMAIL</th>
             <th>USUARIO</th>
-            <th>ROL</th>
+            
             <th>FOTO</th>
             <th>EDITAR</th>
         </tr>
@@ -164,9 +164,10 @@
       @foreach ($listadousers as $listadouser)
         <tr>
             <td>{{$listadouser->name}}</td>
+            <td>{{$listadouser->DESCRIPCION}}</td>
             <td>{{$listadouser->email}}</td>
             <td>{{$listadouser->usuario}}</td>
-            <td>{{$listadouser->DESCRIPCION}}</td>
+           
 
             <td>
               @if ($listadouser->img_users=="" or $listadouser->img_users==null )
@@ -203,6 +204,12 @@
                         </div> 
                     </div>
                     <div class="mb-3">
+                      <div wire:loading wire:target="archivo_perfil" class="alert alert-warning" role="alert">
+                        <strong class="font-bold">¡Imagen cargando!</strong>
+                          <span class="block sm:inlone">Espere un momento hasta que la imagen se haya procesado.</span>
+                        <div class="spinner-border text-warning" role="status">
+                        </div>
+                      </div>
                       @if($tipo==1)
                       <h3 class="form-label">Visualización de Imagen</h3>
                       <img src="{{$archivo_perfil->temporaryURL()}}" height="200" weight="200"  alt="...">
@@ -222,8 +229,8 @@
                                         </div>
                                       @endif
                     </div>  
-                    <button class="btn btn-primary" wire:click="cambiofotolist({{$listadouser->ID_USUARIO}})">Publicar</button>
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                    <button class="btn btn-pre2" wire:click="cambiofotolist({{$listadouser->ID_USUARIO}})">Publicar</button>
+                    <button type="button" class="btn btn-secondary" style="border-radius: 12px;" data-bs-dismiss="modal">Cerrar</button>
                   </form>
                   </div>
                 </div>
@@ -246,7 +253,10 @@
       @endforeach
     </tbody>
     </table>
+
 </div>
+
+
 
 
 
@@ -305,13 +315,13 @@
           @enderror
           <br>
           
-          <label for="password" class="col-sm-3 col-form-label">Contraseña:</label>
-          <input type="password" wire:model="n_password" class="border border-gray-200 rounded-md bg-gray-200 w-full text-lg placeholder-gray-900 p-2 my-2 focus:bg-white" id="password" name="password" placeholder="Contraseña">  
+          <label for="n_password" class="col-sm-3 col-form-label">Contraseña:</label>
+          <input type="password" wire:model="n_password" id="passwoord" name="passwoord" class="border border-gray-200 rounded-md bg-gray-200 w-full text-lg placeholder-gray-900 p-2 my-2 focus:bg-white"  placeholder="Contraseña">  
 
           <div style="margin-top:15px;">
-            <input style="margin-left:20px;" type="checkbox" id="mostrar_contrasena" title="clic para mostrar contraseña"/>
-            
+            <input style="margin-left:20px;" type="checkbox" id="mosttrar_contrasena" title="clic para mostrar contraseña"/>
             &nbsp;&nbsp;Mostrar Contraseña</div>
+
           @error('n_password')
           <div class="alert alert-danger d-flex align-items-center" role="alert">
             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
@@ -323,7 +333,7 @@
 
           <hr>
           <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-secondary" style="border-radius: 12px;" data-bs-dismiss="modal">Cerrar</button>
           <button wire:click='e_perfiles' class="btn btn-pre2"> 
             Guardar
           </button>
@@ -345,11 +355,11 @@
           </form>
           <script>
             $(document).ready(function () {
-              $('#mostrar_contrasena').click(function () {
-                if ($('#mostrar_contrasena').is(':checked')) {
-                  $('#password').attr('type', 'text');
+              $('#mosttrar_contrasena').click(function () {
+                if ($('#mosttrar_contrasena').is(':checked')) {
+                  $('#passwoord').attr('type', 'text');
                 } else {
-                  $('#password').attr('type', 'password');
+                  $('#passwoord').attr('type', 'password');
                 }
               });
             });
@@ -359,3 +369,4 @@
     </div>
   </div>
 </div>
+

@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 use App\Http\Livewire\Request;
+use App\Models\tb_nvlacademico;
 
 class NivelAcademico extends Component
 {
@@ -35,7 +36,7 @@ class NivelAcademico extends Component
 
         DB::beginTransaction();
 
-        $nivelacademico=DB::table('tb_nvlacademico')->insert(
+        $nivelacademico=DB::table('tb_nvlacademicos')->insert(
             [
                 'NIVEL_ACADEMICO'=> $nombre_nvl,
                 'ESTADO'=> $estado_nvl,

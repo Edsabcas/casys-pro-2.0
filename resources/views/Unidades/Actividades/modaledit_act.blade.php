@@ -2,19 +2,13 @@
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
-        @if($edita!=null)
         <h2 class="modal-title">Edicion de activdades</h2>
-        @else
-        <h2 class="modal-title">Ingrese los datos para crear la actividad</h2>
-        @endif
+
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button >
       </div>
           <div class="container-sm">
-            @if($edita!=null)
             <h3 class="form-label text" style="font-size:40px">Edicion Actividad</h3> 
-            @else
-           <h3 class="form-label text" style="font-size:40px">Crear Actividad</h3> 
-             @endif
+
             <form  action="/update_act" method="POST" wire:submit.prevent=''>
               @csrf
               <input type="hidden" value='{{$edita}}' name='edita'>
@@ -39,7 +33,6 @@
                     </div> 
                   @enderror             
                 </div>
-                @if($edita!=null)
                 <div class="col-sm-3">
                   <label for="exampleInputEmail1" class="form-label " style="font-size:20px">Fecha de entrega Anterior</label>
                   <input type="text" class="form-control" wire:model='fecha_e'  style="border:2px solid rgba(86, 95, 76, 0.466);" placeholder="Fecha de entrega" aria-label="Fecha anterior">
@@ -59,22 +52,6 @@
                   <label for="exampleInputEmail1" class="form-label " style="font-size:20px">Fecha extraordinaria</label>
                   <input type="datetime-local" class="form-control" wire:model='fecha_ext'  style="border:2px solid rgba(86, 95, 76, 0.466);" placeholder="Fecha de extraordinaria" aria-label="Fecha extraordinaria">
                 </div> 
-                @else
-                <div class="col-sm-3">
-                  <label for="exampleInputEmail1" class="form-label " style="font-size:20px">Fecha de entrega</label>
-                  <input type="datetime-local" class="form-control" wire:model='fecha_e'  style="border:2px solid rgba(86, 95, 76, 0.466);" placeholder="Fecha de entrega" aria-label="Fecha de entrega">
-                  @error('fecha_e') 
-                  <div class="alert alert-danger d-flex align-items-center" role="alert">
-                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
-                    <span>Pendiente de colocar una fecha de entrega</span>
-                    </div> 
-                  @enderror  
-                </div>
-                <div class="col-sm-3">
-                  <label for="exampleInputEmail1" class="form-label " style="font-size:20px">Fecha extraordinaria</label>
-                  <input type="datetime-local" class="form-control" wire:model='fecha_ext'  style="border:2px solid rgba(86, 95, 76, 0.466);" placeholder="Fecha de extraordinaria" aria-label="Fecha extraordinaria">
-                </div> 
-                @endif
  
               </div>
 
@@ -130,7 +107,6 @@
                     @enderror 
                   </div>
 
-                  @if($edita!=null)
                   <div>
                     <label for="exampleInputPassword1" class="form-label " style="font-size:20px">Archivo anterior</label>
                   </div>
@@ -187,37 +163,10 @@
                       @endif
                      </div>
                   </div>  
-                  @else
-
-
-                  <div class="col-sm-10">
-                    <label for="exampleInputPassword1" class="form-label " style="font-size:20px">Adjunte un archivo (opcional)</label>
-                    <input type="file" class="form-control " wire:model='archivo'  style="border:2px solid rgba(86, 95, 76, 0.466);" id="exampleInputPassword1">
-                     <div class="col-sm-10">
-                      @if($formato==1)
-                      <h3 class="form-label">Visualización de Imagen</h3>
-                      <img src="{{$archivo->temporaryURL()}}" height="200" weight="200"  alt="...">
-                      @endif
-                      @if($formato==2)
-                      <h3 class="form-label">Visualización de Video</h3>
-                      <video height="500" weight="500" class="card-img-top" alt="..." controls>
-                        <source src="{{$archivo->temporaryURL()}}"  type="video/mp4">
-                      </video>
-                      @endif
-                      @if($formato==3)
-                      <h3 class="form-label">Visualización de PDF</h3>
-                        <iframe width="400" height="400" src="/imagen/temporalpdf/{{$arch}}" frameborder="0"></iframe>
-                      @endif
-                     </div>
-                  </div>           
-                   @endif
                   <br>
                   
-                  @if($edita!=null)
                   <button type='submit' class="btn btn-primary" wire:click="update_act()">Actualizar</button>
-                  @else
-                  <button type="submit" class="btn btn-primary" wire:click='Subir_Act()' >Publicar</button>
-                  @endif
+
                 </form>
                 <div class="modal-body">
                   @isset($mensaje)
@@ -257,9 +206,6 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
         
-        @if($mensaje!=null)
-        <a href="/" class="btn btn-primary ">Ver actividad</a>
-        @endif
       </div>
     </div>
   </div>

@@ -1,4 +1,4 @@
-@if($op2!=null && $op2==1)
+
 <div class="card shadow rounded">
   <div class="text-center">
     <br>
@@ -44,6 +44,8 @@
 
     @endforeach
     @endforeach
+
+
 
     @endif
 

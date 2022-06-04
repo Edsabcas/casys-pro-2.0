@@ -1,8 +1,10 @@
 <div class="card ">
-  <h6>Unidad 2</h6>
-      <div class="card-body  ">
-        <h5 class="card-title">Materia:{{$NOMBRE_MATERIA}}</h5>
-        <p class="card-text">Maestro: {{$ID_DOCENTE}}</p>
+  <br>
+  <h1 style="color: #a4cb39"><strong>UNIDAD 2</strong></h1>
+  <hr>
+      <div class="card-body">
+        <h5 class="card-title">Materia: <strong>{{$NOMBRE_MATERIA}}</strong></h5>
+        <h5 class="card-text">Maestro: <strong>{{$ID_DOCENTE}}</strong></h5>
         @isset($restriccion)   
         <td>
           @if($restriccion==1)
@@ -19,12 +21,17 @@
           @elseif($restriccion==0)
         <td>
           @include('Unidades.Temas.modaltemas')
-          <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#tema" id=tema> Temas </button>
+          <button class="btn btn-success" wire:click='limpiar()' data-bs-toggle="modal" data-bs-target="#tema" id=tema> Temas </button>
   
             @include('Unidades.Actividades.modal_actividades')
+<<<<<<< HEAD
             <button class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#staticBackdrop"> Crear Actividades </button>
             
             <a wire:click='vista_a("4")' class="btn btn-success">Ver Actividades </a>
+=======
+            <button class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#staticBackdrop" Wire:Click="limpiar_act"> Crear Actividades </button>            
+            <a wire:click='vista_a("3")' class="btn btn-success">Ver Actividades </a>
+>>>>>>> 0f555d96e55de5e2a8dcb7038d0be501f4406976
 
             <a wire:click='vista_t("5")' class="btn btn-success">Ver Temas </a>
         </td>

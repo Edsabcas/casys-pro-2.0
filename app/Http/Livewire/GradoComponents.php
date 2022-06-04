@@ -8,10 +8,10 @@ use App\Http\Livewire\Request;
 
 class GradoComponents extends Component
 {
-    public $nombre_gr,$id_gr,$estado_gr,$op,$mensaje,$mensaje1,$edit,$mensaje3,$mensaje4,$mensaje5,$mensaje6,$mensajeeliminar,$mensajeeliminar1;
+    public $nombre_gr,$id_gr,$estado_gr,$op,$mensaje,$mensaje1,$edit,$mensaje3,$mensaje4,$mensaje5,$mensaje6,$mensajeeliminar,$mensajeeliminar1,$mensajeeliminar2,$mensajeeliminar3,$mensajeeliminar4,$mensajeeliminar5,$mensajeeliminar6,$mensajeeliminar7;
     public $seccion_gr,$precio_gr,$ministerial_gr,$resolucion_gr,$jornada_gr,$academico_gr;
-    public $estado_sec,$nombre_sec,$nombre_jornada,$nombre_nvl,$estado_jornada,$estado_nvl;
-    public $mensaje7,$mensaje8,$mensaje9,$mensaje10;
+    public $estado_sec,$nombre_sec,$nombre_jornada,$nombre_nvl,$estado_jornada,$estado_nvl,$edit1,$id_jornada,$edit3;
+    public $mensaje7,$mensaje8,$mensaje9,$mensaje10,$mensaje11,$mensaje12,$mensaje13,$mensaje14,$mensaje15,$mensaje16,$id_sc,$edit2,$id_nvl;
     public function render()
     {
         $grad= DB::table('tb_grados')
@@ -170,6 +170,13 @@ class GradoComponents extends Component
             $this->mensajeeliminar1='No fue posible eliminar correctamente';
         }
     }
+
+    /* 
+
+    PARTE SECCIÓN
+
+    */
+
     public function guardar_seccion(){
 
         if($this->validate([
@@ -207,6 +214,77 @@ class GradoComponents extends Component
             }
         }
         }
+        public function edit1($id){
+            $id_sc=$id;
+            $sql='SELECT * FROM tb_seccions WHERE ID_SC=?';
+            $secciones=DB::select($sql,array($id_sc));
+    
+            if($secciones!=null){
+                foreach($secciones as $seccion)
+                {
+                    $this->id_sc=$seccion->ID_SC;               
+                    $this->nombre_sec=$seccion->SECCION;   
+                    $this->estado_sec=$seccion->ESTADO;         
+                }
+            }
+            $this->op=2;
+    
+            $this->edit1=1;
+        }
+        public function update_sc_p(){
+            $id_sc=$this->id_sc;
+            $nombre_sec=$this->nombre_sec;
+            $estado_sec=$this->estado_sec;
+    
+            DB::beginTransaction();
+    
+            $secciones=DB::table('tb_seccions')
+            ->where('ID_SC',$id_sc)
+            ->update(
+                [
+                    'SECCION'=>$nombre_sec,
+                    'ESTADO'=>$estado_sec,
+                ]
+                );
+    
+                if($secciones){
+                    DB::commit();
+                    $this->reset();
+                    unset($this->mensaje11);
+                    $this->mensaje11='Editado correctamente';
+                }
+                else{
+                    DB::rollback();
+                    unset($this->mensaje12);
+                    $this->mensaje12='No fue posible editar correctamente';
+                }
+        }
+        public function delete1($id){
+            $id_sc=$id;
+    
+            DB::beginTransaction();
+    
+            $seccion=DB::table('tb_seccions')->where('ID_SC','=', $id_sc)->delete();
+    
+            if($seccion){
+                DB::commit();
+                $this->reset();
+                unset($this->mensajeeliminar2);
+                $this->mensajeeliminar2='Eliminado correctamente';
+            }
+            else{
+                DB::rollback();
+                unset($this->mensajeeliminar3);            
+                $this->mensajeeliminar3='No fue posible eliminar correctamente';
+            }
+        }
+
+        /* 
+        
+        PARTE NIVEL ACADEMICO
+
+        */
+
         public function guardar_nvlacademico(){
 
             if($this->validate([
@@ -226,12 +304,12 @@ class GradoComponents extends Component
     
             DB::beginTransaction();
     
-            $nivelacademico=DB::table('tb_nvlacademico')->insert(
+            $academico=DB::table('tb_nvlacademico')->insert(
                 [
                     'NIVEL_ACADEMICO'=> $nombre_nvl,
                     'ESTADO'=> $estado_nvl,
                 ]);
-                if($nivelacademico){
+                if($academico){
                     DB::commit();
                     $this->reset();
                     $this->mensaje7='Insertado correctamente';
@@ -243,6 +321,77 @@ class GradoComponents extends Component
                 }
             }
         }
+
+        public function edit2($id){
+            $id_nvl=$id;
+            $sql='SELECT * FROM tb_nvlacademico WHERE ID_NVL=?';
+            $academico=DB::select($sql,array($id_nvl));
+    
+            if($academico!=null){
+                foreach($academico as $nivel)
+                {
+                    $this->id_nvl=$nivel->ID_NVL;               
+                    $this->nombre_nvl=$nivel->NIVEL_ACADEMICO;   
+                    $this->estado_nvl=$nivel->ESTADO;         
+                }
+            }
+            $this->op=2;
+    
+            $this->edit2=1;
+        }
+        public function update_nvl_p(){
+            $id_nvl=$this->id_nvl;
+            $nombre_nvl=$this->nombre_nvl;
+            $estado_nvl=$this->estado_nvl;
+    
+            DB::beginTransaction();
+    
+            $academico=DB::table('tb_nvlacademico')
+            ->where('ID_NVL',$id_nvl)
+            ->update(
+                [
+                    'NIVEL_ACADEMICO'=>$nombre_nvl,
+                    'ESTADO'=>$estado_nvl,
+                ]
+                );
+    
+                if($academico){
+                    DB::commit();
+                    $this->reset();
+                    unset($this->mensaje13);
+                    $this->mensaje13='Editado correctamente';
+                }
+                else{
+                    DB::rollback();
+                    unset($this->mensaje14);
+                    $this->mensaje14='No fue posible editar correctamente';
+                }
+        }
+        public function delete2($id){
+            $id_nvl=$id;
+    
+            DB::beginTransaction();
+    
+            $academico=DB::table('tb_nvlacademico')->where('ID_NVL','=', $id_nvl)->delete();
+    
+            if($academico){
+                DB::commit();
+                $this->reset();
+                unset($this->mensajeeliminar4);
+                $this->mensajeeliminar4='Eliminado correctamente';
+            }
+            else{
+                DB::rollback();
+                unset($this->mensajeeliminar5);            
+                $this->mensajeeliminar5='No fue posible eliminar correctamente';
+            }
+        }
+        /* 
+        
+        PARTE TIPO DE JORNADA
+        
+        */
+
         public function guardar_jornada(){
 
             if($this->validate([
@@ -262,12 +411,12 @@ class GradoComponents extends Component
     
             DB::beginTransaction();
     
-            $tipojornada=DB::table('tb_jornada')->insert(
+            $jornada=DB::table('tb_jornada')->insert(
                 [
                     'TIPO_JORNADA'=> $nombre_jornada,
                     'ESTADO'=> $estado_jornada,
                 ]);
-                if($tipojornada){
+                if($jornada){
                     DB::commit();
                     $this->reset();
                     $this->mensaje9='Insertado correctamente';
@@ -277,6 +426,70 @@ class GradoComponents extends Component
                     unset($this->mensaje9);
                     $this->mensaje10='No fue posible insertar correctamente';
                 }
+            }
+        }
+        public function edit3($id){
+            $id_jornada=$id;
+            $sql='SELECT * FROM tb_jornada WHERE ID_JORNADA=?';
+            $jornada=DB::select($sql,array($id_jornada));
+    
+            if($jornada!=null){
+                foreach($jornada as $jor)
+                {
+                    $this->id_jornada=$jor->ID_JORNADA;               
+                    $this->nombre_jornada=$jor->TIPO_JORNADA;   
+                    $this->estado_jornada=$jor->ESTADO;         
+                }
+            }
+            $this->op=2;
+    
+            $this->edit3=1;
+        }
+        public function update_jornada_p(){
+            $id_jornada=$this->id_jornada;
+            $nombre_jornada=$this->nombre_jornada;
+            $estado_jornada=$this->estado_jornada;
+    
+            DB::beginTransaction();
+    
+            $jornada=DB::table('tb_jornada')
+            ->where('ID_JORNADA',$id_jornada)
+            ->update(
+                [
+                    'TIPO_JORNADA'=>$nombre_jornada,
+                    'ESTADO'=>$estado_jornada,
+                ]
+                );
+    
+                if($jornada){
+                    DB::commit();
+                    $this->reset();
+                    unset($this->mensaje15);
+                    $this->mensaje11='Editado correctamente';
+                }
+                else{
+                    DB::rollback();
+                    unset($this->mensaje16);
+                    $this->mensaje12='No fue posible editar correctamente';
+                }
+        }
+        public function delete3($id){
+            $id_jornada=$id;
+    
+            DB::beginTransaction();
+    
+            $jornada=DB::table('tb_jornada')->where('ID_JORNADA','=', $id_jornada)->delete();
+    
+            if($jornada){
+                DB::commit();
+                $this->reset();
+                unset($this->mensajeeliminar6);
+                $this->mensajeeliminar6='Eliminado correctamente';
+            }
+            else{
+                DB::rollback();
+                unset($this->mensajeeliminar7);            
+                $this->mensajeeliminar7='No fue posible eliminar correctamente';
             }
         }
 }
