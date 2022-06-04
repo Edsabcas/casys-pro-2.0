@@ -49,7 +49,7 @@
   }
 </style>
 
-@if($op2!=null && $op2==2)
+@if($op2!=null && $op2==3)
   <div class="card shadow rounded">
     <div class="text-center">
       <br>

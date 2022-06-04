@@ -12,9 +12,9 @@
               @include('Unidades.Actividades.modal_actividades')
               <button class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#staticBackdrop" disabled> Crear Actividades </button>
               
-              <a wire:click='vista_a("3")' class="btn btn-success">Ver Actividades </a>
+              <a wire:click='vista_a("4")' class="btn btn-success">Ver Actividades </a>
   
-              <a wire:click='vista_t("4")' class="btn btn-success">Ver Temas </a>
+              <a wire:click='vista_t("5")' class="btn btn-success">Ver Temas </a>
           </td>
           @elseif($restriccion==0)
         <td>
@@ -24,9 +24,9 @@
             @include('Unidades.Actividades.modal_actividades')
             <button class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#staticBackdrop"> Crear Actividades </button>
             
-            <a wire:click='vista_a("3")' class="btn btn-success">Ver Actividades </a>
+            <a wire:click='vista_a("4")' class="btn btn-success">Ver Actividades </a>
 
-            <a wire:click='vista_t("4")' class="btn btn-success">Ver Temas </a>
+            <a wire:click='vista_t("5")' class="btn btn-success">Ver Temas </a>
         </td>
         @endif
         @endisset
