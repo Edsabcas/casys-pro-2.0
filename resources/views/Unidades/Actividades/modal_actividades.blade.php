@@ -5,6 +5,26 @@
         <h2 class="modal-title">Ingrese los datos para crear la actividad</h2>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button >
       </div>
+      @if($option1==1)
+      se envio valor enviar como tarea
+           
+           
+      @endif
+      @if($option2==2)
+      se envio valor enviar como notificaion
+
+      @endif
+      @if($option3==3)
+      se envio valor enviar como mejoramiento
+
+
+      @endif
+      @if($option4==4)
+      se envio valor enviar como sancion automatica
+    
+
+      @endif
+      
           <div class="container-sm">
            <h3 class="form-label text" style="font-size:40px">Crear Actividad</h3> 
             <form  action="/update_act" method="POST" wire:submit.prevent=''>
@@ -45,49 +65,54 @@
                   <label for="exampleInputEmail1" class="form-label " style="font-size:20px">Fecha extraordinaria</label>
                   <input type="datetime-local" class="form-control" wire:model='fecha_ext'  style="border:2px solid rgba(86, 95, 76, 0.466);" placeholder="Fecha de extraordinaria" aria-label="Fecha extraordinaria">
                 </div> 
- 
+
+                <div class="col-sm-3">
+                  <label for="inputState" class="form-label" style="font-size:20px">Seleccione un tema</label>
+                  <div class="input-group">
+                    <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#tema" type="button"><img src="https://img.icons8.com/material-two-tone/24/000000/add.png"/></button>
+                    <select id="inputZip" class="form-select " wire:model="temasb" aria-label=".form-select-sm example"  style="border:2px solid rgba(86, 95, 76, 0.466);">
+                      <option selected>seleccione un tema</option>
+                      @isset($temas)
+                      @foreach ($temas as $tema)
+                          <option value="{{$tema->ID_TEMA}}">{{$tema->NOMBRE_TEMA}}</option>
+                      @endforeach
+                      @endisset
+                    </select>
+                    @error('temasb') 
+                    <div class="alert alert-danger d-flex align-items-center" role="alert">
+                      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                      <span>Pendiente de seleccionar un tema</span>
+                      </div> 
+                    @enderror 
+                  </div>
+                  </select>
+                </div>
+                
               </div>
 
-              <div>
-                <label for="exampleInputEmail1" class="form-label" style="font-size:20px">seleccione un tema</label>
-                <select class="form-select form-select-sm" wire:model="temasb" aria-label=".form-select-sm example"  style="border:2px solid rgba(86, 95, 76, 0.466);">
-                  <option selected>seleccione un tema</option>
-                  @isset($temas)
-                  @foreach ($temas as $tema)
-                      <option value="{{$tema->ID_TEMA}}">{{$tema->NOMBRE_TEMA}}</option>
-                  @endforeach
-                  @endisset
-                </select>
-                @error('temasb') 
-                <div class="alert alert-danger d-flex align-items-center" role="alert">
-                  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
-                  <span>Pendiente de seleccionar un tema</span>
-                  </div> 
-                @enderror 
-              </div>
+
               <br>
 
-              <div >
-                <div class="form-check form-switch form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="solicitud" checked>
-                  <label class="form-check-label" for="flexSwitchCheckChecked">Solicitar como tarea</label> 
-                  </div>
-    
-                <div class="form-check form-switch form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="notificacion">
-                 <label class="form-check-label" for="flexSwitchCheckDefault">Enviar notificacion</label>  
-                 </div>  
+              <div class="form-check form-switch form-check-inline">
+                <input class="form-check-input" type="checkbox" id="solicitud" wire:click="validaciones('1')" >
+                <label class="form-check-label" for="flexSwitchCheckChecked">Solicitar como tarea</label> 
+                </div>
+  
+              <div class="form-check form-switch form-check-inline">
+                <input class="form-check-input" type="checkbox" id="notificacion" wire:click="validaciones('2')">
+               <label class="form-check-label" for="flexSwitchCheckDefault">Enviar notificacion</label>  
+               </div>  
 
-                 <div class="form-check form-switch form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="mejoramiento">
-                 <label class="form-check-label" for="flexSwitchCheckDefault">Mejoramiento</label>  
-                 </div>  
+               <div class="form-check form-switch form-check-inline">
+                <input class="form-check-input" type="checkbox" id="mejoramiento" wire:click="validaciones('3')">
+               <label class="form-check-label" for="flexSwitchCheckDefault">Mejoramiento</label>  
+               </div>  
 
-                 <div class="form-check form-switch form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="sancion">
-                 <label class="form-check-label" for="flexSwitchCheckDefault">sancion automatica</label>  
-                 </div>  
-              </div>
+               <div class="form-check form-switch form-check-inline">
+                <input class="form-check-input" type="checkbox" id="sancion" wire:click="validaciones('4')">
+               <label class="form-check-label" for="flexSwitchCheckDefault">sancion automatica</label>  
+               </div> 
+
               
                   <div class="col-sm-10">
                     <label for="exampleFormControlTextarea1" class="form-label" style="font-size:20px">Descripcion Actividad</label>
