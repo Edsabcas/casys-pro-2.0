@@ -17,9 +17,11 @@ class ContenidoComponent extends Component
    public $prueba, $op, $mensaje, $mensaje1, $file, $date, $dia2, $message, $file2, $arch, $vid, $pdf, $formato, $tipo, $id_act,$editt,$editp;
    public $titulo, $punteo, $fecha_e, $fecha_ext, $descripcion, $act,$tema_a,$descripciont,$tema,$unidad, $temasb, $archivo, $nota, $descripciona;
    public $restriccion, $fecha_date; 
-   public $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, $grado2, $idsecc2, $arch2,$tema2, $unidad2, $descripciont2, $nombreu,$id_tem, $edita,$id_plan,$edita2;
-   public $prueba2, $idas, $nombress;
-   public $validation1, $validation2, $validation3, $validation4, $validation5,$validation6;
+    public $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, $grado2, $idsecc2, $arch2,$tema2, $unidad2, $descripciont2, $nombreu,$id_tem, $edita,$id_plan;
+    public $prueba2, $idas, $nombress,$opf;
+
+
+
     
 
     public function render()
@@ -212,6 +214,16 @@ class ContenidoComponent extends Component
         $this->op2=$num;
     }
 
+    public function mostrar_mef($id,$nomb,$secc,$ids,$num)
+    {
+        unset($this->mat);
+        $this->grado=$id;
+        $this->nombre_g=$nomb;
+        $this->nombre_s=$secc;
+        $this->idsecc=$ids;
+        $this->op2=$num;
+    }
+
     //funcion que muestra todas las unidades 
     public function mostrar_u($id,$nombm,$nombrem,$num)
     {
@@ -244,10 +256,24 @@ class ContenidoComponent extends Component
         
     }
 
+
+    public function vista_eleccion($num,$flujo)
+    {
+        $this->op2=$num;
+        $this->opf=$flujo;
+    }
+
+    public function vista_eleccion2($num,$flujo)
+    {
+        $this->op2=$num;
+        $this->opf=$flujo;
+
+    }
     //funcion de la vista de temas de unidades nuevas
     public function vista_t2($num)
     {
         $this->op2=$num;
+
         
     }
 
@@ -272,9 +298,12 @@ class ContenidoComponent extends Component
         elseif($num==5){
             $this->op2=5;
         }
+
+
         elseif($num==6){
             $this->op2=6;
         }
+
 
     }
 

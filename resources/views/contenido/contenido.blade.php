@@ -1,38 +1,4 @@
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    @if($op2==null)
-    <li class="breadcrumb-item"><a href="/Contenidos">Grados</a></li>
-    @elseif($op2==1)
-    <li class="breadcrumb-item"><a href="/Contenidos">Grados</a></li>
-    <li class="breadcrumb-item"><a href="#" wire:click='paginacion("1")'>Materias</a></li>
-    @elseif($op2==2)
-    <li class="breadcrumb-item"><a href="/Contenidos">Grados</a></li>
-    <li class="breadcrumb-item"><a href="#" wire:click='paginacion("1")'>Materias</a></li>
-    <li class="breadcrumb-item"><a href="#" wire:click='paginacion("2")'>Unidades</a></li>
-    @elseif($op2==3)
-    <li class="breadcrumb-item"><a href="/Contenidos">Grados</a></li>
-    <li class="breadcrumb-item"><a href="#" wire:click='paginacion("1")'>Materias</a></li>
-    <li class="breadcrumb-item"><a href="#" wire:click='paginacion("2")'>Unidades</a></li>
-    <li class="breadcrumb-item"><a href="#" wire:click='paginacion("3")'>Actividades</a></li>
-    @elseif($op2==4)
-    <li class="breadcrumb-item"><a href="/Contenidos">Grados</a></li>
-    <li class="breadcrumb-item"><a href="#" wire:click='paginacion("1")'>Materias</a></li>
-    <li class="breadcrumb-item"><a href="#" wire:click='paginacion("2")'>Unidades</a></li>
-    <li class="breadcrumb-item"><a href="#" wire:click='paginacion("4")'>Temas</a></li>
-    @elseif($op2==5)
-    <li class="breadcrumb-item"><a href="/Contenidos">Grados</a></li>
-    <li class="breadcrumb-item"><a href="#" wire:click='paginacion("1")'>Materias</a></li>
-    <li class="breadcrumb-item"><a href="#" wire:click='paginacion("2")'>Unidades</a></li>
-    <li class="breadcrumb-item"><a href="#" wire:click='paginacion("5")'>Actividades</a></li>
-    @elseif($op2==6)
-    <li class="breadcrumb-item"><a href="/Contenidos">Grados</a></li>
-    <li class="breadcrumb-item"><a href="#" wire:click='paginacion("1")'>Materias</a></li>
-    <li class="breadcrumb-item"><a href="#" wire:click='paginacion("2")'>Unidades</a></li>
-    <li class="breadcrumb-item"><a href="#" wire:click='paginacion("6")'>Temas</a></li>   
-    @endif
-  </ol>
-</nav>
-@if($op2==null)
+
 <div class="card shadow rounded">
   <div class="text-center">
     <br>
@@ -57,11 +23,19 @@
               echo $grado->ICONO;
               @endphp
             </div>
+            @if ($opf==1)      
             <div class="text-center">
-              <a type="button" wire:click="mostrar_m('{{$grado->ID_GR}}','{{$grado->GRADO}}','{{$seccion->SECCION}}','{{$seccion->ID_SC}}',1)">
+              <a type="button" wire:click="mostrar_m('{{$grado->ID_GR}}','{{$grado->GRADO}}','{{$seccion->SECCION}}','{{$seccion->ID_SC}}',2)">
                 <p>{{$grado->GRADO}}{{$seccion->SECCION}}</p>
               </a>
             </div>
+            @elseif($opf==2)
+            <div class="text-center">
+              <a type="button" wire:click="mostrar_mef('{{$grado->ID_GR}}','{{$grado->GRADO}}','{{$seccion->SECCION}}','{{$seccion->ID_SC}}',6)">
+                <p>{{$grado->GRADO}}{{$seccion->SECCION}}</p>
+              </a>
+            </div>
+            @endif
           </div>
         </div>
       </div>
@@ -71,18 +45,8 @@
     @endforeach
     @endforeach
 
-    @elseif($op2!=null && $op2==1)
-    @include('Temas.Pre_kinder')
-    @elseif($op2!=null && $op2==2)
-    @include('Unidades.Unidad1')
-    @elseif($op2!=null && $op2==3)
-    @include('Unidades.Actividades.VistaActividades');
-    @elseif($op2!=null && $op2==4)
-    @include('Unidades.Temas.VistaTemas');
-    @elseif($op2!=null && $op2==5)
-    @include('Unidades.ActividadesN.VistaActividades_n');
-    @elseif($op2!=null && $op2==6)
-    @include('Unidades.Temas.VistaTemasN');
+
+
     @endif
 
   </div>
