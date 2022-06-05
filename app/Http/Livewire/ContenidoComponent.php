@@ -474,7 +474,22 @@ class ContenidoComponent extends Component
         unset($this->unidadn);
         $this->unidadn=$nun;
         $this->nombreu=$nomu;
+        $this->fecha_date=date("Y-m-d");
 
+        $sql= 'SELECT ID_UNIDADES, FECHA_INICIO, FECHA_FINAL FROM TB_CALENDARIZACION';
+        $fecha_dates=DB::select($sql);
+
+        $this->restriccion;
+
+        foreach($fecha_dates as $fecha_d)
+        {
+            if($fecha_d->ID_UNIDADES==$this->unidadn && ($this->fecha_date < $fecha_d->FECHA_INICIO or $this->fecha_date > $fecha_d->FECHA_FINAL)){
+                $this->restriccion=1;
+            }
+            elseif($fecha_d->ID_UNIDADES==$this->unidadn && ($this->fecha_date > $fecha_d->FECHA_INICIO or $this->fecha_date < $fecha_d->FECHA_FINAL)){
+                $this->restriccion=0;
+            }
+        } 
  
         if($this->unidadn==$this->unidadn){
             if($this->vista2!=null && $this->vista2==$this->unidadn){
