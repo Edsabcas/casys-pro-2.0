@@ -72,7 +72,7 @@
             <button wire:click='validar_ur("{{$unidadf->ID_UNIDADES_FIJAS}}")' class="btn btn-unib">{{$unidadf->NOMBRE_DE_UNIDAD}}</button>
             @endforeach
   
-            @foreach($unidades as $uni)
+            @foreach($unidadesr as $uni)
             <button wire:click='validar_u2r("{{$uni->ID_UNIDADES}}","{{$uni->NOMNBRE_UNIDAD}}")' class="btn btn-unib">{{$uni->NOMNBRE_UNIDAD}}</button>
             @endforeach
           </li>
@@ -80,27 +80,27 @@
         </ul>
       </div>
       <div class="card-body text-center">
-        @if($vista==1)
-        @include('Unidades.Primer_Unidad');
+        @if($vistar==1)
+        @include('Revisar.Unidad1');
         @endif
         
-        @if($vista==2)
-        @include('Unidades.Unidad2');
+        @if($vistar==2)
+        @include('Revisar.Unidad2');
         @endif
         
-        @if($vista==3)
-        @include('Unidades.Unidad3');
+        @if($vistar==3)
+        @include('Revisar.Unidad3');
         @endif
         
-        @if($vista==4)
-        @include('Unidades.Unidad4');
+        @if($vistar==4)
+        @include('Revisar.Unidad4');
         @endif
   
-        @if($vista==5)
-        @include('Unidades.PlanificacionA');
+        @if($vistar==5)
+        @include('Revisar.Planificacion');
         @endif
         
-        @if($vista2==6)
+        @if($vistar2==6)
         @include('Unidades.Unidades_n');
         @endif
       </div>

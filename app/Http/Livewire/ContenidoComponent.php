@@ -19,7 +19,7 @@ class ContenidoComponent extends Component
    public $restriccion, $fecha_date; 
    public $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, $grado2, $idsecc2, $arch2,$tema2, $unidad2, $descripciont2, $nombreu,$id_tem, $edita,$id_plan,$edita2;
    public $prueba2, $idas, $nombress,$opf;
-   public $validation1, $validation2, $validation3, $validation4, $validation5,$validation6;
+   public $validation1, $validation2, $validation3, $validation4, $validation5,$validation6,$vistar,$vistar2;
 
 
 
@@ -77,6 +77,12 @@ class ContenidoComponent extends Component
             ->where('tb_unidades.ID_MATERIA','=',$this->unidad1)
             ->get();
         }
+
+        $unidadesr="";
+            $unidadesr=DB::table('tb_unidades')
+            ->join('tb_materias','tb_unidades.ID_MATERIA','=','tb_materias.ID_MATERIA')
+            ->select('tb_unidades.ID_UNIDADES', 'tb_materias.ID_MATERIA', 'tb_unidades.ESTADO','tb_unidades.NOMNBRE_UNIDAD')
+            ->get();
         
 
         $actividades="";
@@ -201,7 +207,9 @@ class ContenidoComponent extends Component
         $unidadesf=DB::select($sql);
         $sql= 'SELECT * FROM users';
         $Usuarios=DB::select($sql);
-        return view('livewire.contenido-component',compact('materias','grados','secciones','uniones','unidades','maestros','actividades','asignaciones','unidadesf','temas','temas2','Usuarios','PlanUnion','actividades2','notas','estu'));
+        $sql= 'SELECT * FROM estado_actividades';
+        $Estado_acts=DB::select($sql);
+        return view('livewire.contenido-component',compact('materias','grados','secciones','uniones','unidades','maestros','actividades','asignaciones','unidadesf','temas','temas2','Usuarios','PlanUnion','actividades2','notas','estu','Estado_acts','unidadesr'));
 
     }
     
@@ -235,6 +243,10 @@ class ContenidoComponent extends Component
         $this->ID_DOCENTE=$nombrem;
         $this->op2=$num;
         
+    }
+
+    public function confirmar_materia($id){
+        $this->unidad1=$id;
     }
 
     //funcion de la visualizacion de las vista de actividades de las unidades fijas
@@ -391,6 +403,70 @@ class ContenidoComponent extends Component
         }  
     }
 
+    public function validar_ur($nunif){
+        $this->unidadfija=$nunif;
+        
+        if($this->unidadfija==1){
+            if($this->vistar!=null && $this->vistar==1){
+                unset($this->unidadn);
+                $this->vistar=0;
+                $this->vistar2=0;
+
+            }
+            else{
+                $this->vistar2=0;
+                $this->vistar=1;
+            }
+        }
+
+        if($this->unidadfija==2){
+            if($this->vistar!=null && $this->vistar==2){
+                unset($this->unidadn);
+                $this->vistar=0;
+                $this->vistar2=0;
+
+            }
+            else{
+                $this->vistar2=0;
+                $this->vistar=2;
+            }
+        }
+
+        if($this->unidadfija==3){
+            if($this->vistar!=null && $this->vistar==3){
+                unset($this->unidadn);
+                $this->vistar=0;
+                $this->vistar2=0;
+            }
+            else{
+                $this->vistar2=0;
+                $this->vistar=3;
+            }
+        }
+
+        if($this->unidadfija==4){
+            if($this->vistar!=null && $this->vistar==4){
+                $this->vistar=0;
+                $this->unidadn=null;
+            }
+            else{
+                $this->vistar2=0;
+                $this->vistar=4;
+            }
+        }
+        
+        if($this->unidadfija==5){
+            if($this->vistar!=null && $this->vistar==5){
+                $this->vistar=0;
+                $this->unidadn=null;
+            }
+            else{
+                $this->vistar2=0;
+                $this->vistar=5;
+            }
+        }
+    }   
+
     //funcion que muestra la vista de las unidades nuevas creadas
     public function validar_u2($nun,$nomu){
         unset($this->unidadn);
@@ -414,6 +490,7 @@ class ContenidoComponent extends Component
    public function Subir_Act(){
     if($this->validate([
         'titulo' => 'required',
+        'punteo' => 'required',
         'fecha_e' => 'required',
         'descripcion' => 'required',
         'temasb' => 'required',
@@ -1445,14 +1522,6 @@ Public function deletep($id){
                 $this->option4=4;
             }
         }
-        if($val==5){
-            if($this->option5!=null && $this->option5==5){
-                $this->option5=0;
-            }
-            else{
-                $this->option5=5;
-            }
-        }
 
 
     }
@@ -1472,6 +1541,7 @@ public function Subir_Act2(){
     }
 
     else{
+    $this->limpiar_act2();
     $titulo2=$this->titulo2;
     $punteo2=$this->punteo2;
     $fecha_e2=$this->fecha_e2;
@@ -1564,8 +1634,7 @@ public function limpiar_act(){
     $this->fecha_e="";
     $this->descripcion="";
     $this->temasb="";
-    $this->archivo="";
-    $this->formato=0;
+    $this->formato="";
     unset($this->mensaje);
     unset($this->mensaje);
     unset($this->mensaje3);
@@ -1586,8 +1655,7 @@ public function limpiar_act2(){
     $this->fecha_e2="";
     $this->descripcion2="";
     $this->temasb2="";
-    $this->archivo="";
-    $this->formato=0;
+    $this->formato2="";
     unset($this->mensaje);
     unset($this->mensaje);
     unset($this->mensaje3);
