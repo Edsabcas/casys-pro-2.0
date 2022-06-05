@@ -414,7 +414,6 @@ class ContenidoComponent extends Component
    public function Subir_Act(){
     if($this->validate([
         'titulo' => 'required',
-        'punteo' => 'required',
         'fecha_e' => 'required',
         'descripcion' => 'required',
         'temasb' => 'required',
@@ -1446,6 +1445,14 @@ Public function deletep($id){
                 $this->option4=4;
             }
         }
+        if($val==5){
+            if($this->option5!=null && $this->option5==5){
+                $this->option5=0;
+            }
+            else{
+                $this->option5=5;
+            }
+        }
 
 
     }
@@ -1465,7 +1472,6 @@ public function Subir_Act2(){
     }
 
     else{
-    $this->limpiar_act2();
     $titulo2=$this->titulo2;
     $punteo2=$this->punteo2;
     $fecha_e2=$this->fecha_e2;
@@ -1558,7 +1564,8 @@ public function limpiar_act(){
     $this->fecha_e="";
     $this->descripcion="";
     $this->temasb="";
-    $this->formato="";
+    $this->archivo="";
+    $this->formato=0;
     unset($this->mensaje);
     unset($this->mensaje);
     unset($this->mensaje3);
@@ -1579,7 +1586,8 @@ public function limpiar_act2(){
     $this->fecha_e2="";
     $this->descripcion2="";
     $this->temasb2="";
-    $this->formato2="";
+    $this->archivo="";
+    $this->formato=0;
     unset($this->mensaje);
     unset($this->mensaje);
     unset($this->mensaje3);
