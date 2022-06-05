@@ -13,12 +13,13 @@ class ContenidoComponent extends Component
     use WithFileUploads;
 
    public $grado,$mat, $nombre_g, $nombre_s, $unidad1, $NOMBRE_MATERIA, $ID_DOCENTE,$op2,$asig, $usuario,$idsecc,$unidadfija,$unidadn,$idusuario;
-   public $option1,$option2,$option3,$option4,$option5,$option6, $vista,$vista2;
+   public $vista,$vista2;
    public $prueba, $op, $mensaje, $mensaje1, $file, $date, $dia2, $message, $file2, $arch, $vid, $pdf, $formato, $tipo, $id_act,$editt,$editp;
    public $titulo, $punteo, $fecha_e, $fecha_ext, $descripcion, $act,$tema_a,$descripciont,$tema,$unidad, $temasb, $archivo, $nota, $descripciona;
    public $restriccion, $fecha_date; 
    public $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, $grado2, $idsecc2, $arch2,$tema2, $unidad2, $descripciont2, $nombreu,$id_tem, $edita,$id_plan,$edita2;
    public $prueba2, $idas, $nombress,$opf;
+   public $option1, $option2, $option3, $option4, $option5, $option6;
    public $validation1, $validation2, $validation3, $validation4, $validation5,$validation6;
 
 
@@ -1457,6 +1458,60 @@ Public function deletep($id){
 
     }
 
+        //funcnion de crear validaciones en el modal de actividades de las unidades fijas
+        public function validaciones_edit($valedit){
+            if($valedit==1){
+                if($this->validation1!=null && $this->validation1==1){
+                    $this->validation1=0;
+                }
+                else{
+                    $this->validation1=1;
+                }
+            }
+            if($valedit==2){
+                if($this->validation2!=null && $this->validation2==2){
+                    $this->validation2=0;
+                }
+                else{
+                    $this->option2=2;
+                }
+            }
+            if($valedit==3){
+                if($this->validation3!=null && $this->validation3==3){
+                    $this->validation3=0;
+                }
+                else{
+                    $this->validation3=3;
+                }
+            }
+            if($valedit==4){
+                if($this->validation4!=null && $this->validation4==4){
+                    $this->validation4=0;
+                }
+                else{
+                    $this->validation4=4;
+                }
+            }
+            if($valedit==5){
+                if($this->validation5!=null && $this->validation5==5){
+                    $this->validation5=0;
+                }
+                else{
+                    $this->validation5=5;
+                }
+            }
+            if($valedit==6){
+                if($this->validation6!=null && $this->validation6==6){
+                    $this->validation6=0;
+                }
+                else{
+                    $this->validation6=6;
+                }
+            }
+    
+    
+        }
+
 //funcion de subir actividades en las unidades creadas
 public function Subir_Act2(){
     if($this->validate([
@@ -1562,10 +1617,16 @@ public function limpiar_act(){
     $this->titulo="";
     $this->punteo="";
     $this->fecha_e="";
+    $this->fecha_ext="";
     $this->descripcion="";
     $this->temasb="";
     $this->archivo="";
-    $this->formato=0;
+    $this->formato="";
+    $this->option1="";
+    $this->option2="";
+    $this->option3="";
+    $this->option4="";
+    $this->option5="";
     unset($this->mensaje);
     unset($this->mensaje);
     unset($this->mensaje3);
@@ -1584,10 +1645,16 @@ public function limpiar_act2(){
     $this->titulo2="";
     $this->punteo2="";
     $this->fecha_e2="";
+    $this->fecha_ext2="";
     $this->descripcion2="";
     $this->temasb2="";
     $this->archivo="";
     $this->formato=0;
+    $this->option1="";
+    $this->option2="";
+    $this->option3="";
+    $this->option4="";
+    $this->option5="";
     unset($this->mensaje);
     unset($this->mensaje);
     unset($this->mensaje3);
@@ -1615,7 +1682,6 @@ public function limpiart2(){
         unset($this->mensaje1);
         unset($this->mensaje4);
         unset($this->mensaje3);
-        $this->formato="";
     }
 
         //funcnion que limpia las variables en el modal de edicion 
@@ -1624,7 +1690,6 @@ public function limpiart2(){
             unset($this->mensaje1);
             unset($this->mensaje4);
             unset($this->mensaje3);
-            $this->formato="";
         }
 
 //funcion de limpiar las variables de la planificacion anual 
