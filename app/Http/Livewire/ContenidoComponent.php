@@ -13,13 +13,14 @@ class ContenidoComponent extends Component
     use WithFileUploads;
 
    public $grado,$mat, $nombre_g, $nombre_s, $unidad1, $NOMBRE_MATERIA, $ID_DOCENTE,$op2,$asig, $usuario,$idsecc,$unidadfija,$unidadn,$idusuario;
-   public $option1,$option2,$option3,$option4,$vista,$vista2;
+   public $option1,$option2,$option3,$option4,$option5,$option6, $vista,$vista2;
    public $prueba, $op, $mensaje, $mensaje1, $file, $date, $dia2, $message, $file2, $arch, $vid, $pdf, $formato, $tipo, $id_act,$editt,$editp;
    public $titulo, $punteo, $fecha_e, $fecha_ext, $descripcion, $act,$tema_a,$descripciont,$tema,$unidad, $temasb, $archivo, $nota, $descripciona;
    public $restriccion, $fecha_date; 
+   public $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, $grado2, $idsecc2, $arch2,$tema2, $unidad2, $descripciont2, $nombreu,$id_tem, $edita,$id_plan;
+   public $prueba2, $idas, $nombress,$opf;
+   public $validation1, $validation2, $validation3, $validation4, $validation5,$validation6;
 
-    public $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, $grado2, $idsecc2, $arch2,$tema2, $unidad2, $descripciont2, $nombreu,$id_tem, $edita,$id_plan;
-    public $prueba2, $idas, $nombress,$opf;
 
 
 
@@ -1410,6 +1411,44 @@ Public function deletep($id){
         $this->mensaje_eliminar2='No fue posible eliminarlo';
     }
 }
+
+    //funcnion de crear validaciones en el modal de actividades de las unidades fijas
+    public function validaciones($val){
+        if($val==1){
+            if($this->option1!=null && $this->option1==1){
+                $this->option1=0;
+            }
+            else{
+                $this->option1=1;
+            }
+        }
+        if($val==2){
+            if($this->option2!=null && $this->option2==2){
+                $this->option2=0;
+            }
+            else{
+                $this->option2=2;
+            }
+        }
+        if($val==3){
+            if($this->option3!=null && $this->option3==3){
+                $this->option3=0;
+            }
+            else{
+                $this->option3=3;
+            }
+        }
+        if($val==4){
+            if($this->option4!=null && $this->option4==4){
+                $this->option4=0;
+            }
+            else{
+                $this->option4=4;
+            }
+        }
+
+
+    }
 
 //funcion de subir actividades en las unidades creadas
 public function Subir_Act2(){
