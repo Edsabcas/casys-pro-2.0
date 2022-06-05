@@ -5,26 +5,6 @@
         <h2 class="modal-title">Ingrese los datos para crear la actividad</h2>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button >
       </div>
-      @if($option1==1)
-      se envio valor enviar como tarea
-           
-           
-      @endif
-      @if($option2==2)
-      se envio valor enviar como notificaion
-
-      @endif
-      @if($option3==3)
-      se envio valor enviar como mejoramiento
-
-
-      @endif
-      @if($option4==4)
-      se envio valor enviar como sancion automatica
-    
-
-      @endif
-      
           <div class="container-sm">
            <h3 class="form-label text" style="font-size:40px">Crear Actividad</h3> 
             <form  action="/update_act" method="POST" wire:submit.prevent=''>
@@ -61,10 +41,17 @@
                     </div> 
                   @enderror  
                 </div>
+                @if($option3==3)
                 <div class="col-sm-3">
                   <label for="exampleInputEmail1" class="form-label " style="font-size:20px">Fecha extraordinaria</label>
                   <input type="datetime-local" class="form-control" wire:model='fecha_ext'  style="border:2px solid rgba(86, 95, 76, 0.466);" placeholder="Fecha de extraordinaria" aria-label="Fecha extraordinaria">
-                </div> 
+                </div>                    
+                @else
+                    
+                          
+          
+                @endif
+                 
 
                 <div class="col-sm-3">
                   <label for="inputState" class="form-label" style="font-size:20px">Seleccione un tema</label>
