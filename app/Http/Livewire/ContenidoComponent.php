@@ -19,8 +19,9 @@ class ContenidoComponent extends Component
    public $restriccion, $fecha_date; 
    public $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, $grado2, $idsecc2, $arch2,$tema2, $unidad2, $descripciont2, $nombreu,$id_tem, $edita,$id_plan,$edita2;
    public $prueba2, $idas, $nombress,$opf;
-
-   public $validation1, $validation2, $validation3, $validation4, $validation5,$validation6,$vistar,$vistar2;
+   public $option1, $option2, $option3, $option4, $option5, $option6;
+   public $validation1, $validation2, $validation3, $validation4, $validation5,$validation6;
+   public $vistar,$vistar2;
 
 
 
@@ -1691,6 +1692,18 @@ public function limpiar_act(){
     $this->descripcion="";
     $this->temasb="";
     $this->formato="";
+    $this->archivo="";
+    $this->formato=0;
+    $this->option1="";
+    $this->option2="";
+    $this->option3="";
+    $this->option4="";
+    $this->option5="";
+    $this->validation1="";
+    $this->validation2="";
+    $this->validation3="";
+    $this->validation4="";
+    $this->validation5="";
     unset($this->mensaje);
     unset($this->mensaje);
     unset($this->mensaje3);
@@ -1712,7 +1725,19 @@ public function limpiar_act2(){
     $this->fecha_ext2="";
     $this->descripcion2="";
     $this->temasb2="";
-    $this->formato2="";
+    $this->archivo="";
+    $this->formato=0;
+    $this->option1="";
+    $this->option2="";
+    $this->option3="";
+    $this->option4="";
+    $this->option5="";
+    $this->validation1="";
+    $this->validation2="";
+    $this->validation3="";
+    $this->validation4="";
+    $this->validation5="";
+
     unset($this->mensaje);
     unset($this->mensaje);
     unset($this->mensaje3);
