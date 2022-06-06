@@ -23,7 +23,7 @@ class ContenidoComponent extends Component
    public $validation1, $validation2, $validation3, $validation4, $validation5,$validation6;
    public $vistar,$vistar2;
    public $texto_advertencia, $prioridad_advertencia, $fecha_inicio, $fecha_fin, $invalido, $advertencia_adver, $advertenciass, $advertenciasss;
-   public $blockadvertencia, $dia_exacto;
+   public $blockadvertencia, $dia_exacto, $mensaje_eliminar, $mensaje_eliminar2;
 
     
 
