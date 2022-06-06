@@ -60,6 +60,15 @@
                   <input type="text" class="form-control" wire:model='punteo'  style="border:2px solid rgba(86, 95, 76, 0.466);" placeholder="Punteo de la actividad" aria-label="Punteo de la actividad">             
                 </div>
           @endif
+          
+          @if($option4==4)
+            <div class="col-sm-3">
+              <label for="exampleInputEmail1" class="form-label " style="font-size:20px">Sancion Automatica</label>
+              <input type="text" class="form-control" wire:model='sancion'  style="border:2px solid rgba(86, 95, 76, 0.466);" placeholder="Sancio automatica por entrega tardia" aria-label="Sancio automatica por entrega tardia">             
+            </div>
+          @else
+            
+          @endif
                 <div class="col-sm-3">
                   <label for="exampleInputEmail1" class="form-label " style="font-size:20px">Fecha de entrega</label>
                   <input type="datetime-local" class="form-control" wire:model='fecha_e'  style="border:2px solid rgba(86, 95, 76, 0.466);" placeholder="Fecha de entrega" aria-label="Fecha de entrega">
@@ -79,15 +88,6 @@
                  
 
              @endif
-
-          @if($option4==4)
-            <div class="col-sm-3">
-              <label for="exampleInputEmail1" class="form-label " style="font-size:20px">Sancion Automatica</label>
-              <input type="text" class="form-control" wire:model='sancion'  style="border:2px solid rgba(86, 95, 76, 0.466);" placeholder="Sancio automatica por entrega tardia" aria-label="Sancio automatica por entrega tardia">             
-            </div>
-          @else
-            
-          @endif
                  
 
           <div class="col-sm-3">
