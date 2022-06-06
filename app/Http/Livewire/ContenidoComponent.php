@@ -23,7 +23,7 @@ class ContenidoComponent extends Component
    public $validation1, $validation2, $validation3, $validation4, $validation5,$validation6;
    public $vistar,$vistar2;
    public $texto_advertencia, $prioridad_advertencia, $fecha_inicio, $fecha_fin, $invalido, $advertencia_adver, $advertenciass, $advertenciasss;
-   public $blockadvertencia, $dia_exacto, $mensaje_eliminar, $mensaje_eliminar2;
+   public $blockadvertencia, $dia_exacto, $mensaje_eliminar, $mensaje_eliminar2,$editrevisar,$comentario_r,$comentario_d_r,$id_estado_act;
 
     
 
@@ -689,14 +689,13 @@ Public function eliminaradv($id){
             }        
     }
 
-
-}
-
+   }
 
 
 //edicion de las actividades de unidades fijas
     Public function edita($id){
         $this->limpiarcract();
+        $this->editrev();
         $edita=$id;
         $sql='SELECT * FROM tb_actividades WHERE ID_ACTIVIDADES=?';
         $actividadesedit=DB:: select($sql, array($edita));
@@ -1892,6 +1891,64 @@ public function limpiarplan(){
  
 }
 
-
-
+public function editrev(){
+    $this->editrevisar=1;
 }
+
+Public function edit_estado_rev($id){
+    $id_estado_act=$id;
+    $sql='SELECT * FROM estado_actividades WHERE ID_ESTADO_ACT=?';
+    $estactr=DB:: select($sql, array($id_estado_act));
+    if($estactr !=null){
+        foreach($estactr as $estac)
+        {
+            $this->id_estado_act=$estac->ID_ESTADO_ACT;
+            $this->id_actividad_r=$estac->ID_ACTIVIDADES;
+            $this->validacion_r=$estac->ESTADO;
+            $this->comentario_d_r=$estac->COMENTARIO;
+        }
+    }
+
+    $this->op='editrevact';
+   $this->editp=1;
+}
+
+public function revisiones($id,$val){
+   $this->id_actividad_r=$id;
+   $this->validacion_r=$val;
+   $comentario_d_r=$this->comentario_d_r;
+   $id_estado_act=$this->id_estado_act;
+
+
+   DB::begintransaction();
+
+
+   $revisiones=DB::table('estado_actividades')
+   ->where('ID_ESTADO_ACT', $id_estado_act)
+   ->update(
+        [
+            'ID_ACTIVIDADES'=>$this->id_actividad_r,
+            'ESTADO'=>$this->validacion_r,
+            'COMENTARIO'=>$comentario_d_r,
+        ]);
+
+        if($revisiones){
+            DB::commit();
+            unset($this->mensaje);;
+            unset($this->mensaje1);
+            $this->op='addcontenidos';
+            $this->mensaje='Insertado correctamente';
+            }
+            else {
+            DB::rollback();
+            unset($this->mensaje);;
+            unset($this->mensaje1);
+            $this->op='addcontenidos';
+            $this->mensaje1='Datos no  insertados correctamente';
+            }        
+    }
+}
+
+
+
+

@@ -70,6 +70,9 @@
 @elseif ($op=='editact')
 @include('Unidades.Temas.modal_actividades')
 
+@elseif ($op=='editrevact')
+@include('Revisar.modal_coment')
+
 @elseif ($op=='addConsultar')
 @livewire('consultarcomponent')
 
