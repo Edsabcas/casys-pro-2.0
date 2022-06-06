@@ -21,16 +21,15 @@
                     </div> 
                   @enderror
                 </div>
+           @if($option5==5)
+
+          @else
+
                 <div class="col-sm-3">
                   <label for="exampleInputEmail1" class="form-label " style="font-size:20px">Punteo de la actividad</label>
-                  <input type="text" class="form-control" wire:model='punteo'  style="border:2px solid rgba(86, 95, 76, 0.466);" placeholder="Punteo de la actividad" aria-label="Punteo de la actividad">
-                  @error('punteo') 
-                  <div class="alert alert-danger d-flex align-items-center" role="alert">
-                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
-                    <span>Pendiente de poner un punteo a la actividad</span>
-                    </div> 
-                  @enderror             
+                  <input type="text" class="form-control" wire:model='punteo'  style="border:2px solid rgba(86, 95, 76, 0.466);" placeholder="Punteo de la actividad" aria-label="Punteo de la actividad">             
                 </div>
+          @endif
                 <div class="col-sm-3">
                   <label for="exampleInputEmail1" class="form-label " style="font-size:20px">Fecha de entrega</label>
                   <input type="datetime-local" class="form-control" wire:model='fecha_e'  style="border:2px solid rgba(86, 95, 76, 0.466);" placeholder="Fecha de entrega" aria-label="Fecha de entrega">
@@ -41,55 +40,81 @@
                     </div> 
                   @enderror  
                 </div>
+            @if($option3==3)
+             <div class="col-sm-3">
+              <label for="exampleInputEmail1" class="form-label " style="font-size:20px">Fecha extraordinaria</label>
+              <input type="datetime-local" class="form-control" wire:model='fecha_ext'  style="border:2px solid rgba(86, 95, 76, 0.466);" placeholder="Fecha de extraordinaria" aria-label="Fecha extraordinaria">
+            </div>                    
+             @else
+                 
+
+             @endif
+
+          @if($option4==4)
+            <div class="col-sm-3">
+              <label for="exampleInputEmail1" class="form-label " style="font-size:20px">Sancion Automatica</label>
+              <input type="text" class="form-control" wire:model='sancion'  style="border:2px solid rgba(86, 95, 76, 0.466);" placeholder="Sancio automatica por entrega tardia" aria-label="Sancio automatica por entrega tardia">             
+            </div>
+          @else
+            
+          @endif
+                 
+
                 <div class="col-sm-3">
-                  <label for="exampleInputEmail1" class="form-label " style="font-size:20px">Fecha extraordinaria</label>
-                  <input type="datetime-local" class="form-control" wire:model='fecha_ext'  style="border:2px solid rgba(86, 95, 76, 0.466);" placeholder="Fecha de extraordinaria" aria-label="Fecha extraordinaria">
-                </div> 
- 
+                  <label for="inputState" class="form-label" style="font-size:20px">Seleccione un tema</label>
+                  <div class="input-group">
+                    @include('Unidades.Temas.modaltemas')
+                    <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#tema" type="button"><img src="https://img.icons8.com/material-two-tone/24/000000/add.png"/></button>
+                    <select id="inputZip" class="form-select " wire:model="temasb" aria-label=".form-select-sm example"  style="border:2px solid rgba(86, 95, 76, 0.466);">
+                      <option selected>seleccione un tema</option>
+                      @isset($temas)
+                      @foreach ($temas as $tema)
+                          <option value="{{$tema->ID_TEMA}}">{{$tema->NOMBRE_TEMA}}</option>
+                      @endforeach
+                      @endisset
+                    </select>
+                    @error('temasb') 
+                    <div class="alert alert-danger d-flex align-items-center" role="alert">
+                      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                      <span>Pendiente de seleccionar un tema</span>
+                      </div> 
+                    @enderror 
+                  </div>
+                  </select>
+                </div>
+                
               </div>
 
-              <div>
-                <label for="exampleInputEmail1" class="form-label" style="font-size:20px">seleccione un tema</label>
-                <select class="form-select form-select-sm" wire:model="temasb" aria-label=".form-select-sm example"  style="border:2px solid rgba(86, 95, 76, 0.466);">
-                  <option selected>seleccione un tema</option>
-                  @isset($temas)
-                  @foreach ($temas as $tema)
-                      <option value="{{$tema->ID_TEMA}}">{{$tema->NOMBRE_TEMA}}</option>
-                  @endforeach
-                  @endisset
-                </select>
-                @error('temasb') 
-                <div class="alert alert-danger d-flex align-items-center" role="alert">
-                  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
-                  <span>Pendiente de seleccionar un tema</span>
-                  </div> 
-                @enderror 
-              </div>
+
               <br>
 
-              <div >
-                <div class="form-check form-switch form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="solicitud" checked>
-                  <label class="form-check-label" for="flexSwitchCheckChecked">Solicitar como tarea</label> 
-                  </div>
-    
-                <div class="form-check form-switch form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="notificacion">
-                 <label class="form-check-label" for="flexSwitchCheckDefault">Enviar notificacion</label>  
-                 </div>  
+              <div class="form-check form-switch form-check-inline">
+                <input class="form-check-input" type="checkbox" id="solicitud" wire:click="validaciones('1')" >
+                <label class="form-check-label" for="flexSwitchCheckChecked">Solicitar como tarea</label> 
+                </div>
+  
+              <div class="form-check form-switch form-check-inline">
+                <input class="form-check-input" type="checkbox" id="notificacion" wire:click="validaciones('2')">
+               <label class="form-check-label" for="flexSwitchCheckDefault">Enviar notificacion</label>  
+               </div>  
 
-                 <div class="form-check form-switch form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="mejoramiento">
-                 <label class="form-check-label" for="flexSwitchCheckDefault">Mejoramiento</label>  
-                 </div>  
+               <div class="form-check form-switch form-check-inline">
+                <input class="form-check-input" type="checkbox" id="mejoramiento" wire:click="validaciones('3')" >
+               <label class="form-check-label" for="flexSwitchCheckDefault"> mejoramiento</label>  
+               </div>  
 
-                 <div class="form-check form-switch form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="sancion">
-                 <label class="form-check-label" for="flexSwitchCheckDefault">sancion automatica</label>  
-                 </div>  
-              </div>
+               <div class="form-check form-switch form-check-inline">
+                <input class="form-check-input" type="checkbox" id="sancion" wire:click="validaciones('4')">
+               <label class="form-check-label" for="flexSwitchCheckDefault">sancion automatica</label>  
+               </div> 
+
+               <div class="form-check form-switch form-check-inline">
+                <input class="form-check-input" type="checkbox" id="sancion" wire:click="validaciones('5')">
+               <label class="form-check-label" for="flexSwitchCheckDefault">subir actividad sin punteo</label>  
+               </div> 
+
               
-                  <div class="col-sm-10">
+                  <div class="col-sm-12">
                     <label for="exampleFormControlTextarea1" class="form-label" style="font-size:20px">Descripcion Actividad</label>
                     <textarea class="form-control" wire:model='descripcion'  style="border:2px solid rgba(128, 156, 96, 0.466);" id="exampleFormControlTextarea1" rows="3"></textarea>
                     @error('descripcion') 
@@ -100,7 +125,7 @@
                     @enderror 
                   </div>
 
-                  <div class="col-sm-10">
+                  <div class="col-sm-12">
                     <label for="exampleInputPassword1" class="form-label " style="font-size:20px">Adjunte un archivo (opcional)</label>
                     <input type="file" class="form-control " wire:model='archivo'  style="border:2px solid rgba(86, 95, 76, 0.466);" id="exampleInputPassword1">
                      <div class="col-sm-10">

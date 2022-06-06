@@ -21,17 +21,12 @@
           @elseif($restriccion==0)
         <td>
           @include('Unidades.Temas.modaltemas')
-          <button class="btn btn-success" wire:click='limpiar()' data-bs-toggle="modal" data-bs-target="#tema" id=tema> Temas </button>
+          <button class="btn btn-success" wire:click='limpiar()' data-bs-toggle="modal" data-bs-target="#tema" id=tema>Temas </button>
   
             @include('Unidades.Actividades.modal_actividades')
-<<<<<<< HEAD
-            <button class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#staticBackdrop"> Crear Actividades </button>
-            
-            <a wire:click='vista_a("4")' class="btn btn-success">Ver Actividades </a>
-=======
+
             <button class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#staticBackdrop" Wire:Click="limpiar_act"> Crear Actividades </button>            
-            <a wire:click='vista_a("3")' class="btn btn-success">Ver Actividades </a>
->>>>>>> 0f555d96e55de5e2a8dcb7038d0be501f4406976
+            <a wire:click='vista_a("4")' class="btn btn-success">Ver Actividades </a>
 
             <a wire:click='vista_t("5")' class="btn btn-success">Ver Temas </a>
         </td>
