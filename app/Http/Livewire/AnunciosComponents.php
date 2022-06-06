@@ -134,7 +134,7 @@ class AnunciosComponents extends Component
 
             }
             else{
-                
+                DB::rollback();
                 $this->op=2;
                 $this->mensaje1='No fue insertado correctamente';
             }
