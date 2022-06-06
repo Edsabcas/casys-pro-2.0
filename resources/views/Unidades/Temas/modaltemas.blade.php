@@ -4,7 +4,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h2 class="modal-title">Ingrese los datos para crear un tema</h2>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button >
+          <button type="button" class="btn-close"  aria-label="Close" data-bs-dismiss="modal"></button >
         </div>
 
         <div class="modal-body">
@@ -65,7 +65,7 @@
             </div>        
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"  aria-label="Close">Cerrar</button>
           </div>
       </div>
     </div>
