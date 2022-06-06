@@ -216,7 +216,7 @@
           </div>        
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="Cerrar">Cerrar</button>
         
         @if($mensaje!=null)
         <a href="/" class="btn btn-primary ">Ver actividad</a>

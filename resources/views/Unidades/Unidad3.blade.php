@@ -16,6 +16,8 @@ $('#exampleModal1').modal('show');
 });
 
 </script>
+
+
 <div class="card ">
   <br>
   <h1 style="color: #a4cb39"><strong>UNIDAD 3</strong></h1>
@@ -29,8 +31,9 @@ $('#exampleModal1').modal('show');
             @include('Unidades.Temas.modaltemas')
             <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#tema" id=tema disabled> Temas </button>
     
-              @include('Unidades.Actividades.modal_actividades')
+            @include('Unidades.Actividades.modal_actividades')
               <button class="btn btn-success" id="Crear" data-bs-toggle="modal" data-bs-target="#staticBackdrop" disabled> Crear Actividades </button>
+              
               
               <a wire:click='vista_a("4")' class="btn btn-success">Ver Actividades </a>
   
@@ -43,7 +46,7 @@ $('#exampleModal1').modal('show');
   
             @include('Unidades.Actividades.modal_actividades')
 
-            <button class="btn btn-success"  id="crear" data-bs-toggle="modal" data-bs-target="#staticBackdrop" Wire:Click="limpiar_act"> Crear Actividades </button>
+            <button class="btn btn-success"  id="Crear" data-bs-toggle="modal" data-bs-target="#staticBackdrop" Wire:Click="limpiar_act"> Crear Actividades </button>
             
             <a wire:click='vista_a("4")' class="btn btn-success">Ver Actividades </a>
 

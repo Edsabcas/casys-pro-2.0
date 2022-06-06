@@ -538,31 +538,6 @@ class ContenidoComponent extends Component
         }
     }
 
-     //funcion de eliminar advertencias
-    Public function eliminaradv($id){
-    $id_adv=$id;
-    DB::begintransaction();
-
-    $adv=DB::table('tb_advertencias')->where('ID_ADVERTENCIA','=', $id_adv)->delete();
-
-    if($adv){
-        DB::commit();
-        unset($this->mensaje);
-        unset($this->mensaje3);
-        unset($this->mensaje_eliminar);
-        $this->op='addvertencias';
-        $this->mensaje_eliminar='Eliminado Correctamente';
-    }
-    else{
-        DB::rollback();
-        unset($this->mensaje1);
-        unset($this->mensaje4);
-        unset($this->mensaje_eliminar2);
-        $this->op='addvertencias';  
-        $this->mensaje_eliminar2='No fue posible eliminarlo';
-    }
-}
-
     //funcion que muestra la vista de las unidades nuevas creadas
     public function validar_u2($nun,$nomu){
         unset($this->unidadn);

@@ -1,3 +1,21 @@
+<script>
+            
+  $(document).on('click', '#Cerrar', function() {
+
+$('#exampleModal').modal('close');
+
+});
+
+
+
+$(document).on('click', '#cerar2', function() {
+
+$('#exampleModal1').modal('close');
+
+});
+
+</script>
+
 <div wire:ignore.self class="modal fade" id="editaractividades" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="5" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
@@ -241,7 +259,7 @@
           </div>        
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="Cerrar">Cerrar</button>
         
       </div>
     </div>
