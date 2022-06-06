@@ -23,7 +23,7 @@ class ContenidoComponent extends Component
    public $validation1, $validation2, $validation3, $validation4, $validation5,$validation6;
    public $vistar,$vistar2;
    public $texto_advertencia, $prioridad_advertencia, $fecha_inicio, $fecha_fin, $invalido, $advertencia_adver, $advertenciass, $advertenciasss;
-   public $blockadvertencia, $dia_exacto, $mensaje_eliminar, $mensaje_eliminar2;
+   public $blockadvertencia, $dia_exacto, $mensaje_eliminar, $mensaje_eliminar2, $editaadv;
 
     
 
@@ -539,7 +539,7 @@ class ContenidoComponent extends Component
     }
 
     //funcion de eliminar advertencias
-Public function eliminaradv($id){
+    Public function eliminaradv($id){
     $id_adv=$id;
     DB::begintransaction();
 
@@ -562,6 +562,83 @@ Public function eliminaradv($id){
         $this->op='addvertencias';
         $this->mensaje_eliminar2='No fue posible eliminarlo';
     }
+}
+
+//edicion de las actividades de unidades fijas
+Public function editaadv($id){
+    $editaadv=$id;
+    $sql='SELECT * FROM tb_advertencias WHERE ID_ADVERTENCIA=?';
+    $advertenciaedit=DB:: select($sql, array($editaadv));
+
+    if($advertenciaedit !=null){
+        foreach($advertenciaedit as $advedit)
+        {
+            $this->editaadv=$advedit->ID_ADVERTENCIA;
+            $this->texto_advertencia=$advedit->DESCRIPCION;
+            $this->prioridad_advertencia=$advedit->PRIORIDAD;
+            $this->fecha_inicio=$advedit->FECHA_INICIO;
+            $this->fecha_fin=$advedit->FECHA_FIND;  
+        }
+
+    }
+
+    $this->op='editaadv';
+    $this->editaadv=1;
+   
+}
+
+//Actualizar advertencias
+public function update_adv(){
+    if($this->validate([
+        'texto_advertencia' => 'required',
+        'prioridad_advertencia' => 'required',
+        'fecha_inicio' => 'required',
+        'fecha_fin' => 'required',
+    ])==false){
+        $error="no encontrado";
+        session(['message'=>'no encontrado']);
+        return back()->withErrors(['error' => 'Validar el input vacio']);
+    }
+
+    else{
+        $editaadv=$this->editaadv;
+        $textoadvertencia=$this->texto_advertencia;
+        $prioridadadvertencia=$this->prioridad_advertencia;
+        $fechainicio=$this->fecha_inicio;
+        $fechafin=$this->fecha_fin;
+    }
+
+    DB::begintransaction();
+    
+    $advupdate=DB::table('tb_advertencias')
+    ->where('ID_ADVERTENCIA', $editaadv)
+    ->update(
+        [
+            'DESCRIPCION'=>$textoadvertencia,
+            'PRIORIDAD'=>$prioridadadvertencia,
+            'FECHA_INICIO'=>$fechainicio,
+            'FECHA_FIND'=>$fechafin,
+        ]);
+
+        if($advupdate){
+            DB::commit();
+            unset($this->mensaje);
+            unset($this->mensaje);
+            unset($this->mensaje3);
+            unset($this->mensaje1);
+            unset($this->mensaje4);
+            $this->op='addvertencias';
+            $this->mensaje3='Editado Correctamente';
+            }
+            else {
+            DB::rollback();
+            unset($this->mensaje1);
+            unset($this->mensaje4);
+            unset($this->mensaje);
+            unset($this->mensaje3);
+            $this->op='addvertencias';
+            $this->mensaje4='No fue posible editarlo Correctamente';
+            }
 }
 
     //funcion que muestra la vista de las unidades nuevas creadas

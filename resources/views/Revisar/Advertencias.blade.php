@@ -43,7 +43,8 @@
                   <td>
                       <span>
                           <td>
-                              <button class="btn btn-success">Editar</button>
+                            @include('Revisar.Modaladvedit')
+                            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModaledit" wire:click='editaadv({{$advertenciaa->ID_ADVERTENCIA}})'> EDITAR </button>
                           </td>
                           <td>
                             @include('Unidades.Temas.modaleliminaradve')
