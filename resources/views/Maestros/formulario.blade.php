@@ -1,61 +1,62 @@
-@isset($mensaje1)
-@if ($mensaje1!==null)
-    <div class="alert alert-success" role="alert">
-    AGREGADO CORRECTAMENTE!
-    </div>
-    @endif
-    @endisset
-
-    @isset($mensaje2)
-    @if($mensaje2!==null)
-    <div class="alert alert-danger" role="alert">
-    NO SE LOGRÓ INSERTAR DATOS :(
-    </div>
-@endif
-@endisset
-
-@isset($mensaje3)
-@if ($mensaje3!==null)
-    <div class="alert alert-success" role="alert">
-    EDITADO CORRECTAMENTE!
-    </div>
-    @endif
-    @endisset
-
-    @isset($mensaje4)
-    @if($mensaje4!==null)
-    <div class="alert alert-danger" role="alert">
-    NO SE LOGRÓ EDITAR DATOS :(
-    </div>
-@endif
-@endisset
-
-@isset($mensajeeliminar)
-@if ($mensajeeliminar!==null)
-    <div class="alert alert-success" role="alert">
-    ELIMINADO CORRECTAMENTE!
-    </div>
-    @endif
-    @endisset
-
-    @isset($mensajeeliminar1)
-    @if($mensajeeliminar1!==null)
-    <div class="alert alert-danger" role="alert">
-    NO SE LOGRÓ ELIMINAR LOS DATOS :(
-    </div>
-@endif
-@endisset
-
 <div class="card shadow rounded">
-        <div class="text-center">
-          <br>
-          <h1 style="color: #3a3e7b"><strong>Creación maestro</strong></h1>
-          <br>
-        </div>
-      </div>
+  <div class="text-center">
+    <br>
+    <h1 style="color: #3a3e7b"><strong>Creación maestro</strong></h1>
+    <br>
+  </div>
+</div>
       <br><br>
+
+    @isset($mensaje1)
+      @if ($mensaje1!==null)
+        <div class="alert alert-success" role="alert">
+          AGREGADO CORRECTAMENTE!
+        </div>
+      @endif
+    @endisset
+    
+    @isset($mensaje2)
+      @if($mensaje2!==null)
+        <div class="alert alert-danger" role="alert">
+          NO SE LOGRÓ INSERTAR DATOS :(
+        </div>
+      @endif
+    @endisset
+    
+    @isset($mensaje3)
+      @if ($mensaje3!==null)
+        <div class="alert alert-success" role="alert">
+          EDITADO CORRECTAMENTE!
+        </div>
+      @endif
+    @endisset
+    
+    @isset($mensaje4)
+      @if($mensaje4!==null)
+        <div class="alert alert-danger" role="alert">
+          NO SE LOGRÓ EDITAR DATOS :(
+        </div>
+      @endif
+    @endisset
+    
+    @isset($mensajeeliminar)
+      @if ($mensajeeliminar!==null)
+        <div class="alert alert-success" role="alert">
+          ELIMINADO CORRECTAMENTE!
+        </div>
+      @endif
+    @endisset
+    
+    @isset($mensajeeliminar1)
+      @if($mensajeeliminar1!==null)
+        <div class="alert alert-danger" role="alert">
+          NO SE LOGRÓ ELIMINAR LOS DATOS :(
+        </div>
+      @endif
+    @endisset
+
 <form wire:submit.prevent="">
-  @csrf
+ @csrf
   <div class="container">
     <div class="row">
       <div class="col">

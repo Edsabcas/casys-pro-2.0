@@ -1,3 +1,12 @@
+<div class="card shadow rounded">
+  <div class="text-center">
+    <br>
+    <h1 style="color: #3a3e7b"><strong>Creación de Grado</strong></h1>
+    <br>
+  </div>
+</div>
+<br><br>
+
 @isset($mensaje)
   @if ($mensaje!=null)
     <div class="alert alert-success" role="alert">
@@ -13,14 +22,6 @@
   @endif
 @endisset
 
-<div class="card shadow rounded">
-  <div class="text-center">
-    <br>
-    <h1 style="color: #3a3e7b"><strong>Creación de Grado</strong></h1>
-    <br>
-  </div>
-</div>
-<br><br>
 
 <form row g-3 wire:submit.prevent="">
   @csrf
@@ -119,6 +120,7 @@
                 @endif
               @endisset
             <div class="modal-body">
+              <form>
                 <div class="mb-3">
                     <label for="floatingInput">Ingresar Sección:</label>
                     <input type="text" class="form-control" id="floatingInput"  wire:model="nombre_sec" required>
@@ -202,8 +204,8 @@
                 </div>
             </div>
         </div>
-    </div>
       </div>
+    </div>
 @endisset
 
             </div>
