@@ -221,6 +221,12 @@ $('#exampleModal1').modal('close');
                   <br>
                   
                   <button type='submit' class="btn btn-primary" wire:click="update_act()">Actualizar</button>
+                  @if($editrevisar==1)
+                  <button type='submit' class="btn btn-editb" wire:click='revisiones("{{$actividad->ID_ACTIVIDADES}}","2")'>Validar</button>
+
+                  @include('Revisar.modal_coment')
+                  <button type='submit' data-bs-toggle="modal" data-bs-target="#comentario_revision" class="btn btn-editb">Mandar a revision</button>
+                  @endif
 
                 </form>
                 <div class="modal-body">

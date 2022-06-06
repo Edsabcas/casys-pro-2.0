@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div wire:ignore.self class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div wire:ignore.self class="modal fade" id="exampleModaledit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -36,7 +36,7 @@
               </div>
               <div class="mb-3">
                 <label for="examplenombre" class="form-label" style="font-size:20px"> Fecha de Inicio de vigencia</label>
-                <input type="date" class="form-control" name='fecha_inicio' wire:model='fecha_inicio'>
+                <input type="date" class="form-control"  name='fecha_inicio' wire:model='fecha_inicio'>
               </div>
               <div class="mb-3">
                 <label for="examplenombre" class="form-label" style="font-size:20px"> Fecha de final de vigencia</label>
@@ -48,7 +48,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-primary" wire:click="advertencia_in()" data-bs-dismiss="modal">Guardar</button>
+          <button type="button" class="btn btn-primary" name="update_adv()" data-bs-dismiss="modal">Actualizar</button>
         </div>
       </div>
     </div>
