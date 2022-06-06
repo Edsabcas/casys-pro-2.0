@@ -102,6 +102,8 @@
 @elseif($op=='admisiones')
 @livewire('adminisiones-componet')
 
+@elseif($op=='addvertencias')
+@livewire('contenido-componet')
 
 @endif
 @endif
