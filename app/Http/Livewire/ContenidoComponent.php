@@ -774,10 +774,10 @@ Public function eliminaradv($id){
             $edita=$this->edita;
             $titulo=$this->titulo;
             $punteo=$this->punteo;
-            $sancion=$this->sancion;
             $fecha_e=$this->fecha_e;
-            $descripcion=$this->descripcion;
+            $descripcion=$this->descripcion; 
             $fecha_ext=$this->fecha_ext;
+            $sancion=$this->sancion;
             $temasb=$this->temasb;
             $grado=$this->grado;
             $idsecc=$this->idsecc;
