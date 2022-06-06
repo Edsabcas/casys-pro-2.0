@@ -689,8 +689,47 @@ Public function eliminaradv($id){
             $this->mensaje1='Datos no  insertados correctamente';
             }        
     }
+    
+    $edita_r=0;
+    $sql='SELECT MAX(ID_ACTIVIDADES+1) AS ID_ACTIVIDADES FROM tb_actividades';
+    $valor=DB::select($sql);
 
-   }
+    foreach($valor as $val){
+
+        $edita_r=$val->ID_ACTIVIDADES;
+    }  
+
+    $estado_act=1;
+
+    DB::begintransaction();
+    $estado_actividad=DB::table('estado_actividades')->insert(
+        [
+            'ID_ACTIVIDADES'=>$valor,
+            'ESTADO'=>$estado_act,
+
+        ]);
+
+        if($estado_actividad){
+            DB::commit();
+            unset($this->mensaje);
+            unset($this->mensaje1);
+            unset($this->mensaje3);
+            unset($this->mensaje4);
+            $this->op='addcontenidos';
+            $this->mensaje='Insertado correctamente';
+            }
+            else {
+            DB::rollback();
+            unset($this->mensaje);
+            unset($this->mensaje1);
+            unset($this->mensaje4);
+            unset($this->mensaje3);
+            $this->op='addcontenidos';
+            $this->mensaje1='Datos no  insertados correctamente';
+            }        
+    }
+
+
 
 
 //edicion de las actividades de unidades fijas
