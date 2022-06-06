@@ -14,7 +14,7 @@
       </div>
       <br>
           @isset($restriccion)   
-        <td>
+        <td> 
           @if($restriccion==1)
           @include('Unidades.Temas.modal_tem_n')
           <button class="btn btn-editb" wire:click='limpiar2()' data-bs-toggle="modal" data-bs-target="#tema_n" id=tema disabled>Temas </button>

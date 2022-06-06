@@ -22,9 +22,8 @@ class ContenidoComponent extends Component
    public $option1, $option2, $option3, $option4, $option5, $option6;
    public $validation1, $validation2, $validation3, $validation4, $validation5,$validation6;
    public $vistar,$vistar2;
-
-
-
+   public $texto_advertencia, $prioridad_advertencia, $fecha_inicio, $fecha_fin, $invalido, $advertencia_adver, $advertenciass, $advertenciasss;
+   public $blockadvertencia, $dia_exacto;
 
     
 
@@ -196,7 +195,7 @@ class ContenidoComponent extends Component
         ->get();
 
         
-
+        $this->dia_exacto=date("Y-m-d");
         $sql= 'SELECT * FROM tb_materias';
         $materias=DB::select($sql);
         $sql= 'SELECT * FROM tb_grados';
@@ -211,6 +210,8 @@ class ContenidoComponent extends Component
         $Usuarios=DB::select($sql);
         $sql= 'SELECT * FROM estado_actividades';
         $Estado_acts=DB::select($sql);
+        $sql= 'SELECT * FROM tb_advertencias';
+        $this->advertenciass=DB::select($sql);
         return view('livewire.contenido-component',compact('materias','grados','secciones','uniones','unidades','maestros','actividades','asignaciones','unidadesf','temas','temas2','Usuarios','PlanUnion','actividades2','notas','estu','Estado_acts','unidadesr'));
 
     }
@@ -469,12 +470,121 @@ class ContenidoComponent extends Component
         }
     }   
 
+    //funcion que envía a advertencias
+    public function advertencia($adv){
+        $this->vistar=$adv;
+        $sql= 'SELECT * FROM tb_advertencias';
+        $this->advertenciasss=DB::select($sql);
+        $fechadehoy=date("Y-m-d");
+
+        foreach($this->advertenciasss as $advertenciaa){
+            if($fechadehoy>=$advertenciaa->FECHA_INICIO && $fechadehoy<=$advertenciaa->FECHA_FIND){
+                $this->blockadvertencia=1;
+            }
+            elseif($fechadehoy>=$advertenciaa->FECHA_INICIO && $fechadehoy>=$advertenciaa->FECHA_FIND){
+                $this->blockadvertencia=0;
+            }
+            else{
+                $this->blockadvertencia=0;
+            }
+        }
+
+    }
+    
+    //funcion que inserta datos
+    public function advertencia_in(){
+        if($this->validate([
+            'texto_advertencia' => 'required',
+            'prioridad_advertencia' => 'required',
+            'fecha_inicio' => 'required',
+            'fecha_fin' => 'required',
+        ])==false){
+            $error="no encontrado";
+            session(['message'=>'no encontrado']);
+            return back()->withErrors(['error' => 'Validar el input vacio']);
+        }
+        else{
+            $textoadvertencia=$this->texto_advertencia;
+            $prioridadadvertencia=$this->prioridad_advertencia;
+            $fechainicio=$this->fecha_inicio;
+            $fechafin=$this->fecha_fin;
+
+            if($fechainicio>$fechafin){
+                $this->invalido=1;
+            }
+            else{
+                $this->invalido=0;
+                DB::begintransaction();
+                $advertencias=DB::table('tb_advertencias')->insert(
+                    [
+                        'DESCRIPCION'=>$textoadvertencia,
+                        'PRIORIDAD'=>$prioridadadvertencia,
+                        'FECHA_INICIO'=>$fechainicio,
+                        'FECHA_FIND'=>$fechafin,
+        
+                    ]
+                    );
+                if($advertencias){
+                    $this->reset();
+                
+                    DB::commit();
+                    $this->advertencia_adver=1;
+                }
+                else{
+                    DB::rollback();
+                    $this->advertencia_adver=2;
+                }
+            }
+        }
+    }
+
+    //funcion de eliminar advertencias
+Public function eliminaradv($id){
+    $id_adv=$id;
+    DB::begintransaction();
+
+    $adv=DB::table('tb_advertencias')->where('ID_ADVERTENCIA','=', $id_adv)->delete();
+
+    if($adv){
+        DB::commit();
+        unset($this->mensaje);
+        unset($this->mensaje3);
+        unset($this->mensaje_eliminar);
+        $this->blockadvertencia=0;
+        $this->op='addvertencias';
+        $this->mensaje_eliminar='Eliminado Correctamente';
+    }
+    else{
+        DB::rollback();
+        unset($this->mensaje1);
+        unset($this->mensaje4);
+        unset($this->mensaje_eliminar2);
+        $this->op='addvertencias';
+        $this->mensaje_eliminar2='No fue posible eliminarlo';
+    }
+}
+
     //funcion que muestra la vista de las unidades nuevas creadas
     public function validar_u2($nun,$nomu){
         unset($this->unidadn);
         $this->unidadn=$nun;
         $this->nombreu=$nomu;
+        $this->fecha_date=date("Y-m-d");
 
+        $sql= 'SELECT ID_UNIDADES, FECHA_INICIO, FECHA_FINAL FROM TB_CALENDARIZACION';
+        $fecha_dates=DB::select($sql);
+
+        $this->restriccion;
+
+        foreach($fecha_dates as $fecha_d)
+        {
+            if($fecha_d->ID_UNIDADES==$this->unidadn && ($this->fecha_date < $fecha_d->FECHA_INICIO or $this->fecha_date > $fecha_d->FECHA_FINAL)){
+                $this->restriccion=1;
+            }
+            elseif($fecha_d->ID_UNIDADES==$this->unidadn && ($this->fecha_date > $fecha_d->FECHA_INICIO or $this->fecha_date < $fecha_d->FECHA_FINAL)){
+                $this->restriccion=0;
+            }
+        } 
  
         if($this->unidadn==$this->unidadn){
             if($this->vista2!=null && $this->vista2==$this->unidadn){

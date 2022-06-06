@@ -75,6 +75,8 @@
             @foreach($unidadesr as $uni)
             <button wire:click='validar_u2r("{{$uni->ID_UNIDADES}}","{{$uni->NOMNBRE_UNIDAD}}")' class="btn btn-unib">{{$uni->NOMNBRE_UNIDAD}}</button>
             @endforeach
+
+            <button wire:click="advertencia('7')" class="btn btn-unib" value="7">Advertencias</button>
           </li>
           <br>
         </ul>
@@ -102,6 +104,10 @@
         
         @if($vistar2==6)
         @include('Unidades.Unidades_n');
+        @endif
+
+        @if($vistar==7)
+        @include('Revisar.Advertencias');
         @endif
       </div>
     </div>

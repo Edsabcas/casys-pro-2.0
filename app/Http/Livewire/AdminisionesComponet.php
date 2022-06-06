@@ -12,7 +12,7 @@ class AdminisionesComponet extends Component
     public $nombre_en,$fnacimiento_en,$dpi_en,$extentido_en,$es_civil_en,$direccion_en,$tel_casa_en,$cel_en,$correo_en,$religion_en;
     public $a,$mensaje,$gradose,$fingreso_gestion,$id_ges_cambio,$tipo_cambio;
     public $val,$val1,$gestion,$errorfecha;
-    public $mensaje1;
+    public $mensaje1,$id2;
     public function render()
     {
 
@@ -72,6 +72,7 @@ class AdminisionesComponet extends Component
         $this->id_ges_cambio=$id;
         $this->tipo_cambio=$tipo;
         $this->gestion=$gestion;
+        
     }
 
 
@@ -99,9 +100,9 @@ class AdminisionesComponet extends Component
         }
 
     }
-
     public function editar1($id)
     {
+        $this->id2=$id;
        $sql="SELECT TB_PRE_INS.*, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE ESTADO_PRE_INS=0 and ID_PRE=?";
         $preinsp=DB::select($sql,array($id));
 

@@ -1,3 +1,4 @@
+
 <div wire:ignore.self class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="5" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
@@ -7,6 +8,35 @@
       </div>
           <div class="container-sm">
            <h3 class="form-label text" style="font-size:40px">Crear Actividad</h3> 
+           @foreach($advertenciass as $advertenciasa)
+           @if($dia_exacto>=$advertenciasa->FECHA_INICIO && $dia_exacto<=$advertenciasa->FECHA_INICIO)
+           @if($advertenciasa->PRIORIDAD == 1)
+           <div class="alert alert-success d-flex align-items-center rounded-pill" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:"><use xlink:href="#info-fill"/></svg>
+            <div>
+              Informativo : {{$advertenciasa->DESCRIPCION}}
+            </div>
+          </div>
+           @elseif($advertenciasa->PRIORIDAD == 2)
+           <div class="alert alert-warning d-flex align-items-center rounded-pill" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+              Importante : {{$advertenciasa->DESCRIPCION}}
+            </div>
+          </div>
+           @elseif($advertenciasa->PRIORIDAD == 3)
+           <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
+              <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+            </svg>
+            <div>
+              Urgente : {{$advertenciasa->DESCRIPCION}}
+            </div>
+          </div>
+           @endif
+           @endif
+           @endforeach
+           
             <form  action="/update_act" method="POST" wire:submit.prevent=''>
               @csrf
               <input type="hidden" value='{{$edita}}' name='edita'>
@@ -60,27 +90,28 @@
           @endif
                  
 
-                <div class="col-sm-3">
-                  <label for="inputState" class="form-label" style="font-size:20px">Seleccione un tema</label>
-                  <div class="input-group">
-                    <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#tema" type="button"><img src="https://img.icons8.com/material-two-tone/24/000000/add.png"/></button>
-                    <select id="inputZip" class="form-select " wire:model="temasb" aria-label=".form-select-sm example"  style="border:2px solid rgba(86, 95, 76, 0.466);">
-                      <option selected>seleccione un tema</option>
-                      @isset($temas)
-                      @foreach ($temas as $tema)
-                          <option value="{{$tema->ID_TEMA}}">{{$tema->NOMBRE_TEMA}}</option>
-                      @endforeach
-                      @endisset
-                    </select>
-                    @error('temasb') 
-                    <div class="alert alert-danger d-flex align-items-center" role="alert">
-                      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
-                      <span>Pendiente de seleccionar un tema</span>
-                      </div> 
-                    @enderror 
-                  </div>
-                  </select>
-                </div>
+          <div class="col-sm-3">
+            <label for="inputState" class="form-label" style="font-size:20px">Seleccione un tema</label>
+            <div class="input-group">
+              @include('Unidades.Temas.modaltemas')
+              <button class="btn btn-outline-primary" id="val" data-bs-toggle="modal" data-bs-target="#tema" type="button"><img src="https://img.icons8.com/material-two-tone/24/000000/add.png"/></button>
+              <select id="inputZip" class="form-select " wire:model="temasb" aria-label=".form-select-sm example"  style="border:2px solid rgba(86, 95, 76, 0.466);">
+                <option selected>seleccione un tema</option>
+                @isset($temas)
+                @foreach ($temas as $tema)
+                    <option value="{{$tema->ID_TEMA}}">{{$tema->NOMBRE_TEMA}}</option>
+                @endforeach
+                @endisset
+              </select>
+              @error('temasb') 
+              <div class="alert alert-danger d-flex align-items-center" role="alert">
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                <span>Pendiente de seleccionar un tema</span>
+                </div> 
+              @enderror 
+            </div>
+            </select>
+          </div>
                 
               </div>
 
@@ -185,7 +216,7 @@
           </div>        
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="Cerrar">Cerrar</button>
         
         @if($mensaje!=null)
         <a href="/" class="btn btn-primary ">Ver actividad</a>
