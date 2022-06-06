@@ -1,3 +1,4 @@
+
 <div wire:ignore.self class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="5" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
@@ -60,28 +61,28 @@
           @endif
                  
 
-                <div class="col-sm-3">
-                  <label for="inputState" class="form-label" style="font-size:20px">Seleccione un tema</label>
-                  <div class="input-group">
-                    @include('Unidades.Temas.modaltemas')
-                    <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#tema" type="button"><img src="https://img.icons8.com/material-two-tone/24/000000/add.png"/></button>
-                    <select id="inputZip" class="form-select " wire:model="temasb" aria-label=".form-select-sm example"  style="border:2px solid rgba(86, 95, 76, 0.466);">
-                      <option selected>seleccione un tema</option>
-                      @isset($temas)
-                      @foreach ($temas as $tema)
-                          <option value="{{$tema->ID_TEMA}}">{{$tema->NOMBRE_TEMA}}</option>
-                      @endforeach
-                      @endisset
-                    </select>
-                    @error('temasb') 
-                    <div class="alert alert-danger d-flex align-items-center" role="alert">
-                      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
-                      <span>Pendiente de seleccionar un tema</span>
-                      </div> 
-                    @enderror 
-                  </div>
-                  </select>
-                </div>
+          <div class="col-sm-3">
+            <label for="inputState" class="form-label" style="font-size:20px">Seleccione un tema</label>
+            <div class="input-group">
+              @include('Unidades.Temas.modaltemas')
+              <button class="btn btn-outline-primary" id="val" data-bs-toggle="modal" data-bs-target="#tema" type="button"><img src="https://img.icons8.com/material-two-tone/24/000000/add.png"/></button>
+              <select id="inputZip" class="form-select " wire:model="temasb" aria-label=".form-select-sm example"  style="border:2px solid rgba(86, 95, 76, 0.466);">
+                <option selected>seleccione un tema</option>
+                @isset($temas)
+                @foreach ($temas as $tema)
+                    <option value="{{$tema->ID_TEMA}}">{{$tema->NOMBRE_TEMA}}</option>
+                @endforeach
+                @endisset
+              </select>
+              @error('temasb') 
+              <div class="alert alert-danger d-flex align-items-center" role="alert">
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                <span>Pendiente de seleccionar un tema</span>
+                </div> 
+              @enderror 
+            </div>
+            </select>
+          </div>
                 
               </div>
 

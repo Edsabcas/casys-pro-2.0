@@ -1,3 +1,21 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+            
+  $(document).on('click', '#Crear', function() {
+
+$('#exampleModal').modal('show');
+
+});
+
+
+
+$(document).on('click', '#val', function() {
+
+$('#exampleModal1').modal('show');
+
+});
+
+</script>
 <div class="card ">
   <br>
   <h1 style="color: #a4cb39"><strong>UNIDAD 3</strong></h1>
@@ -12,7 +30,7 @@
             <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#tema" id=tema disabled> Temas </button>
     
               @include('Unidades.Actividades.modal_actividades')
-              <button class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#staticBackdrop" disabled> Crear Actividades </button>
+              <button class="btn btn-success" id="Crear" data-bs-toggle="modal" data-bs-target="#staticBackdrop" disabled> Crear Actividades </button>
               
               <a wire:click='vista_a("4")' class="btn btn-success">Ver Actividades </a>
   
@@ -25,7 +43,8 @@
   
             @include('Unidades.Actividades.modal_actividades')
 
-            <button class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#staticBackdrop" Wire:Click="limpiar_act"> Crear Actividades </button>            
+            <button class="btn btn-success"  id="crear" data-bs-toggle="modal" data-bs-target="#staticBackdrop" Wire:Click="limpiar_act"> Crear Actividades </button>
+            
             <a wire:click='vista_a("4")' class="btn btn-success">Ver Actividades </a>
 
             <a wire:click='vista_t("5")' class="btn btn-success">Ver Temas </a>
