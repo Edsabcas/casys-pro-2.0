@@ -21,9 +21,9 @@ function mover(event, to) {
 }
 </script>
 
-<div class="table-responsive">
+<div class="table-responsive shadow rounded">
   <form  wire:submit.prevent='notas1'>
-    <table class="table table-info  table-striped table-hover table-bordered">
+    <table class="table table-light  table-striped table-hover table-bordered">
       <thead>
        
           <tr>
@@ -65,8 +65,9 @@ function mover(event, to) {
         })
     }
       </script>
-    <input class="btn btn-primary" type="submit" onclick='llamar()' value="Guardar"/>
+    <input class="btn btn-pre2" type="submit" onclick='llamar()' value="Guardar"/>
     <div></div>
+    <br>
   </form>
   </div>
 

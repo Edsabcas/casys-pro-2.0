@@ -16,15 +16,14 @@ class ContenidoComponent extends Component
    public $vista,$vista2;
    public $prueba, $op, $mensaje, $mensaje1, $file, $date, $dia2, $message, $file2, $arch, $vid, $pdf, $formato, $tipo, $id_act,$editt,$editp;
    public $titulo, $punteo, $fecha_e, $fecha_ext, $descripcion, $act,$tema_a,$descripciont,$tema,$unidad, $temasb, $archivo, $nota, $descripciona;
-   public $restriccion, $fecha_date; 
+   public $restriccion, $fecha_date, $sancion; 
    public $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, $grado2, $idsecc2, $arch2,$tema2, $unidad2, $descripciont2, $nombreu,$id_tem, $edita,$id_plan,$edita2;
    public $prueba2, $idas, $nombress,$opf;
    public $option1, $option2, $option3, $option4, $option5, $option6;
    public $validation1, $validation2, $validation3, $validation4, $validation5,$validation6;
    public $vistar,$vistar2;
-
-
-
+   public $texto_advertencia, $prioridad_advertencia, $fecha_inicio, $fecha_fin, $invalido, $advertencia_adver, $advertenciass, $advertenciasss;
+   public $blockadvertencia, $dia_exacto, $mensaje_eliminar, $mensaje_eliminar2,$editrevisar,$comentario_r,$comentario_d_r,$id_estado_act, $editaadv;
 
     
 
@@ -196,7 +195,7 @@ class ContenidoComponent extends Component
         ->get();
 
         
-
+        $this->dia_exacto=date("Y-m-d");
         $sql= 'SELECT * FROM tb_materias';
         $materias=DB::select($sql);
         $sql= 'SELECT * FROM tb_grados';
@@ -211,6 +210,8 @@ class ContenidoComponent extends Component
         $Usuarios=DB::select($sql);
         $sql= 'SELECT * FROM estado_actividades';
         $Estado_acts=DB::select($sql);
+        $sql= 'SELECT * FROM tb_advertencias';
+        $this->advertenciass=DB::select($sql);
         return view('livewire.contenido-component',compact('materias','grados','secciones','uniones','unidades','maestros','actividades','asignaciones','unidadesf','temas','temas2','Usuarios','PlanUnion','actividades2','notas','estu','Estado_acts','unidadesr'));
 
     }
@@ -469,6 +470,177 @@ class ContenidoComponent extends Component
         }
     }   
 
+    //funcion que envía a advertencias
+    public function advertencia($adv){
+        $this->vistar=$adv;
+        $sql= 'SELECT * FROM tb_advertencias';
+        $this->advertenciasss=DB::select($sql);
+        $fechadehoy=date("Y-m-d");
+
+        foreach($this->advertenciasss as $advertenciaa){
+            if($fechadehoy>=$advertenciaa->FECHA_INICIO && $fechadehoy<=$advertenciaa->FECHA_FIND){
+                $this->blockadvertencia=1;
+            }
+            elseif($fechadehoy>=$advertenciaa->FECHA_INICIO && $fechadehoy>=$advertenciaa->FECHA_FIND){
+                $this->blockadvertencia=0;
+            }
+            else{
+                $this->blockadvertencia=0;
+            }
+        }
+
+    }
+    
+    //funcion que inserta datos
+    public function advertencia_in(){
+        if($this->validate([
+            'texto_advertencia' => 'required',
+            'prioridad_advertencia' => 'required',
+            'fecha_inicio' => 'required',
+            'fecha_fin' => 'required',
+        ])==false){
+            $error="no encontrado";
+            session(['message'=>'no encontrado']);
+            return back()->withErrors(['error' => 'Validar el input vacio']);
+        }
+        else{
+            $textoadvertencia=$this->texto_advertencia;
+            $prioridadadvertencia=$this->prioridad_advertencia;
+            $fechainicio=$this->fecha_inicio;
+            $fechafin=$this->fecha_fin;
+
+            if($fechainicio>$fechafin){
+                $this->invalido=1;
+            }
+            else{
+                $this->invalido=0;
+                DB::begintransaction();
+                $advertencias=DB::table('tb_advertencias')->insert(
+                    [
+                        'DESCRIPCION'=>$textoadvertencia,
+                        'PRIORIDAD'=>$prioridadadvertencia,
+                        'FECHA_INICIO'=>$fechainicio,
+                        'FECHA_FIND'=>$fechafin,
+        
+                    ]
+                    );
+                if($advertencias){
+                    $this->reset();
+                
+                    DB::commit();
+                    $this->advertencia_adver=1;
+                }
+                else{
+                    DB::rollback();
+                    $this->advertencia_adver=2;
+                }
+            }
+        }
+    }
+
+    //funcion de eliminar advertencias
+    Public function eliminaradv($id){
+    $id_adv=$id;
+    DB::begintransaction();
+
+    $adv=DB::table('tb_advertencias')->where('ID_ADVERTENCIA','=', $id_adv)->delete();
+
+    if($adv){
+        DB::commit();
+        unset($this->mensaje);
+        unset($this->mensaje3);
+        unset($this->mensaje_eliminar);
+        $this->blockadvertencia=0;
+        $this->op='addvertencias';
+        $this->mensaje_eliminar='Eliminado Correctamente';
+    }
+    else{
+        DB::rollback();
+        unset($this->mensaje1);
+        unset($this->mensaje4);
+        unset($this->mensaje_eliminar2);
+        $this->op='addvertencias';
+        $this->mensaje_eliminar2='No fue posible eliminarlo';
+    }
+}
+
+    //edicion de las advertencias
+    Public function editaadv($id){
+        $editaadv=$id;
+        $sql='SELECT * FROM tb_advertencias WHERE ID_ADVERTENCIA=?';
+        $advertenciaedit=DB:: select($sql, array($editaadv));
+
+        if($advertenciaedit !=null){
+            foreach($advertenciaedit as $advedit)
+            {
+                $this->editaadv=$advedit->ID_ADVERTENCIA;
+                $this->texto_advertencia=$advedit->DESCRIPCION;
+                $this->prioridad_advertencia=$advedit->PRIORIDAD;
+                $this->fecha_inicio=$advedit->FECHA_INICIO;
+                $this->fecha_fin=$advedit->FECHA_FIND;  
+            }
+
+        }
+
+        $this->op='editaadv';
+        $this->editaadv=1;
+    
+    }
+
+    //Actualizar advertencias
+    public function update_adv(){
+        if($this->validate([
+            'texto_advertencia' => 'required',
+            'prioridad_advertencia' => 'required',
+            'fecha_inicio' => 'required',
+            'fecha_fin' => 'required',
+        ])==false){
+            $error="no encontrado";
+            session(['message'=>'no encontrado']);
+            return back()->withErrors(['error' => 'Validar el input vacio']);
+        }
+
+        else{
+            $editaadv=$this->editaadv;
+            $textoadvertencia=$this->texto_advertencia;
+            $prioridadadvertencia=$this->prioridad_advertencia;
+            $fechainicio=$this->fecha_inicio;
+            $fechafin=$this->fecha_fin;
+        }
+
+        DB::begintransaction();
+        
+        $advupdate=DB::table('tb_advertencias')
+        ->where('ID_ADVERTENCIA', $editaadv)
+        ->update(
+            [
+                'DESCRIPCION'=>$textoadvertencia,
+                'PRIORIDAD'=>$prioridadadvertencia,
+                'FECHA_INICIO'=>$fechainicio,
+                'FECHA_FIND'=>$fechafin,
+            ]);
+
+            if($advupdate){
+                DB::commit();
+                unset($this->mensaje);
+                unset($this->mensaje);
+                unset($this->mensaje3);
+                unset($this->mensaje1);
+                unset($this->mensaje4);
+                $this->op='addvertencias';
+                $this->mensaje3='Editado Correctamente';
+                }
+                else {
+                DB::rollback();
+                unset($this->mensaje1);
+                unset($this->mensaje4);
+                unset($this->mensaje);
+                unset($this->mensaje3);
+                $this->op='addvertencias';
+                $this->mensaje4='No fue posible editarlo Correctamente';
+                }
+    }
+
     //funcion que muestra la vista de las unidades nuevas creadas
     public function validar_u2($nun,$nomu){
         unset($this->unidadn);
@@ -507,7 +679,6 @@ class ContenidoComponent extends Component
    public function Subir_Act(){
     if($this->validate([
         'titulo' => 'required',
-        'punteo' => 'required',
         'fecha_e' => 'required',
         'descripcion' => 'required',
         'temasb' => 'required',
@@ -522,7 +693,6 @@ class ContenidoComponent extends Component
     $punteo=$this->punteo;
     $fecha_e=$this->fecha_e;
     $descripcion=$this->descripcion;
-    $fecha_ext=$this->fecha_ext;
     $temasb=$this->temasb;
     $grado=$this->grado;
     $idsecc=$this->idsecc;
@@ -564,7 +734,6 @@ class ContenidoComponent extends Component
             'archivos'=>$this->arch,
             'punteo'=>$punteo,
             'fecha_entr'=>$fecha_e,
-            'fecha_extr'=>$fecha_ext,
             'ID_TEMA'=>$temasb,
             'ID_MATERIA'=>$unidad1,
             'ID_GR'=>$grado,
@@ -593,15 +762,53 @@ class ContenidoComponent extends Component
             $this->mensaje1='Datos no  insertados correctamente';
             }        
     }
+    
+    $edita_r=0;
+    $sql='SELECT MAX(ID_ACTIVIDADES+1) AS ID_ACTIVIDADES FROM tb_actividades';
+    $valor=DB::select($sql);
 
+    foreach($valor as $val){
 
-}
+        $edita_r=$val->ID_ACTIVIDADES;
+    }  
+
+    $estado_act=1;
+
+    DB::begintransaction();
+    $estado_actividad=DB::table('estado_actividades')->insert(
+        [
+            'ID_ACTIVIDADES'=>$valor,
+            'ESTADO'=>$estado_act,
+
+        ]);
+
+        if($estado_actividad){
+            DB::commit();
+            unset($this->mensaje);
+            unset($this->mensaje1);
+            unset($this->mensaje3);
+            unset($this->mensaje4);
+            $this->op='addcontenidos';
+            $this->mensaje='Insertado correctamente';
+            }
+            else {
+            DB::rollback();
+            unset($this->mensaje);
+            unset($this->mensaje1);
+            unset($this->mensaje4);
+            unset($this->mensaje3);
+            $this->op='addcontenidos';
+            $this->mensaje1='Datos no  insertados correctamente';
+            }        
+    }
+
 
 
 
 //edicion de las actividades de unidades fijas
     Public function edita($id){
         $this->limpiarcract();
+        $this->editrev();
         $edita=$id;
         $sql='SELECT * FROM tb_actividades WHERE ID_ACTIVIDADES=?';
         $actividadesedit=DB:: select($sql, array($edita));
@@ -615,7 +822,6 @@ class ContenidoComponent extends Component
                 $this->arch=$actu->archivos;
                 $this->punteo=$actu->punteo;
                 $this->fecha_e=$actu->fecha_entr;
-                $this->fecha_ext=$actu->fecha_extr;
                 $this->unidad1=$actu->ID_MATERIA;
                 $this->temasb=$actu->ID_TEMA;
                 $this->grado=$actu->ID_GR;
@@ -645,7 +851,6 @@ class ContenidoComponent extends Component
                 $this->arch=$actu->archivos;
                 $this->punteo2=$actu->punteo;
                 $this->fecha_e2=$actu->fecha_entr;
-                $this->fecha_ext2=$actu->fecha_extr;
                 $this->unidad1=$actu->ID_MATERIA;
                 $this->temasb2=$actu->ID_TEMA;
                 $this->grado=$actu->ID_GR;
@@ -678,8 +883,7 @@ class ContenidoComponent extends Component
             $titulo=$this->titulo;
             $punteo=$this->punteo;
             $fecha_e=$this->fecha_e;
-            $descripcion=$this->descripcion;
-            $fecha_ext=$this->fecha_ext;
+            $descripcion=$this->descripcion; 
             $temasb=$this->temasb;
             $grado=$this->grado;
             $idsecc=$this->idsecc;
@@ -721,7 +925,6 @@ class ContenidoComponent extends Component
                 'archivos'=>$this->arch,
                 'punteo'=>$punteo,
                 'fecha_entr'=>$fecha_e,
-                'fecha_extr'=>$fecha_ext,
                 'ID_TEMA'=>$temasb,
                 'ID_MATERIA'=>$unidad1,
                 'ID_GR'=>$grado,
@@ -773,7 +976,6 @@ class ContenidoComponent extends Component
                 $punteo2=$this->punteo2;
                 $fecha_e2=$this->fecha_e2;
                 $descripcion2=$this->descripcion2;
-                $fecha_ext2=$this->fecha_ext2;
                 $temasb2=$this->temasb2;
                 $grado=$this->grado;
                 $idsecc=$this->idsecc;
@@ -815,7 +1017,6 @@ class ContenidoComponent extends Component
                     'archivos'=>$this->arch,
                     'punteo'=>$punteo2,
                     'fecha_entr'=>$fecha_e2,
-                    'fecha_extr'=>$fecha_ext2,
                     'ID_TEMA'=>$temasb2,
                     'ID_MATERIA'=>$unidad1,
                     'ID_GR'=>$grado,
@@ -1612,12 +1813,10 @@ public function Subir_Act2(){
     }
 
     else{
-    $this->limpiar_act2();
     $titulo2=$this->titulo2;
     $punteo2=$this->punteo2;
     $fecha_e2=$this->fecha_e2;
     $descripcion2=$this->descripcion2;
-    $fecha_ext2=$this->fecha_ext2;
     $temasb2=$this->temasb2;
     $grado=$this->grado;
     $idsecc=$this->idsecc;
@@ -1659,7 +1858,6 @@ public function Subir_Act2(){
             'archivos'=>$this->arch,
             'punteo'=>$punteo2,
             'fecha_entr'=>$fecha_e2,
-            'fecha_extr'=>$fecha_ext2,
             'ID_TEMA'=>$temasb2,
             'ID_MATERIA'=>$unidad1,
             'ID_GR'=>$grado,
@@ -1708,6 +1906,7 @@ public function limpiar_act(){
     $this->temasb="";
     $this->formato="";
     $this->archivo="";
+    $this->sancion="";
     $this->formato=0;
     $this->option1="";
     $this->option2="";
@@ -1797,6 +1996,64 @@ public function limpiarplan(){
  
 }
 
-
-
+public function editrev(){
+    $this->editrevisar=1;
 }
+
+Public function edit_estado_rev($id){
+    $id_estado_act=$id;
+    $sql='SELECT * FROM estado_actividades WHERE ID_ESTADO_ACT=?';
+    $estactr=DB:: select($sql, array($id_estado_act));
+    if($estactr !=null){
+        foreach($estactr as $estac)
+        {
+            $this->id_estado_act=$estac->ID_ESTADO_ACT;
+            $this->id_actividad_r=$estac->ID_ACTIVIDADES;
+            $this->validacion_r=$estac->ESTADO;
+            $this->comentario_d_r=$estac->COMENTARIO;
+        }
+    }
+
+    $this->op='editrevact';
+   $this->editp=1;
+}
+
+public function revisiones($id,$val){
+   $this->id_actividad_r=$id;
+   $this->validacion_r=$val;
+   $comentario_d_r=$this->comentario_d_r;
+   $id_estado_act=$this->id_estado_act;
+
+
+   DB::begintransaction();
+
+
+   $revisiones=DB::table('estado_actividades')
+   ->where('ID_ESTADO_ACT', $id_estado_act)
+   ->update(
+        [
+            'ID_ACTIVIDADES'=>$this->id_actividad_r,
+            'ESTADO'=>$this->validacion_r,
+            'COMENTARIO'=>$comentario_d_r,
+        ]);
+
+        if($revisiones){
+            DB::commit();
+            unset($this->mensaje);;
+            unset($this->mensaje1);
+            $this->op='addcontenidos';
+            $this->mensaje='Insertado correctamente';
+            }
+            else {
+            DB::rollback();
+            unset($this->mensaje);;
+            unset($this->mensaje1);
+            $this->op='addcontenidos';
+            $this->mensaje1='Datos no  insertados correctamente';
+            }        
+    }
+}
+
+
+
+
