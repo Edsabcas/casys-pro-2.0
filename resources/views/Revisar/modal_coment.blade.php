@@ -8,6 +8,7 @@
         <div class="modal-body">
           <div class="container-sm">
               <form action="/revisiones" method="POST">
+                @csrf 
                 <input type="hidden" value='{{$id_estado_act}}' name='id_estado_act'>
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label" style="font-size:20px">Agregue su comentario</label>
