@@ -48,7 +48,7 @@
     </div>
   </div>
   @include('Unidades.Actividades.modaledit_act')
-  <button class="btn btn-success"  id="val" data-bs-toggle="modal" data-bs-target="#editaractividades"   wire:click='edita({{$actividad->ID_ACTIVIDADES}})'>  Editar </button>
+  <button class="btn btn-editb"  id="val" data-bs-toggle="modal" data-bs-target="#editaractividades"   wire:click='edita({{$actividad->ID_ACTIVIDADES}})'>  Editar </button>
 
 
   @include('Unidades.Actividades.modelimiaract')
