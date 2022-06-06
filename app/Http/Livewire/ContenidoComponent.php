@@ -550,6 +550,7 @@ Public function eliminaradv($id){
         unset($this->mensaje);
         unset($this->mensaje3);
         unset($this->mensaje_eliminar);
+        $this->blockadvertencia=0;
         $this->op='addvertencias';
         $this->mensaje_eliminar='Eliminado Correctamente';
     }
