@@ -691,10 +691,8 @@ class ContenidoComponent extends Component
     else{
     $titulo=$this->titulo;
     $punteo=$this->punteo;
-    $sancion=$this->sancion;
     $fecha_e=$this->fecha_e;
     $descripcion=$this->descripcion;
-    $fecha_ext=$this->fecha_ext;
     $temasb=$this->temasb;
     $grado=$this->grado;
     $idsecc=$this->idsecc;
@@ -735,9 +733,7 @@ class ContenidoComponent extends Component
             'descripcion'=>$descripcion,
             'archivos'=>$this->arch,
             'punteo'=>$punteo,
-            'Sancionaut'=>$sancion,
             'fecha_entr'=>$fecha_e,
-            'fecha_extr'=>$fecha_ext,
             'ID_TEMA'=>$temasb,
             'ID_MATERIA'=>$unidad1,
             'ID_GR'=>$grado,
@@ -825,9 +821,7 @@ class ContenidoComponent extends Component
                 $this->descripcion=$actu->descripcion;
                 $this->arch=$actu->archivos;
                 $this->punteo=$actu->punteo;
-                $this->sancion=$actu->sancion;
                 $this->fecha_e=$actu->fecha_entr;
-                $this->fecha_ext=$actu->fecha_extr;
                 $this->unidad1=$actu->ID_MATERIA;
                 $this->temasb=$actu->ID_TEMA;
                 $this->grado=$actu->ID_GR;
@@ -857,7 +851,6 @@ class ContenidoComponent extends Component
                 $this->arch=$actu->archivos;
                 $this->punteo2=$actu->punteo;
                 $this->fecha_e2=$actu->fecha_entr;
-                $this->fecha_ext2=$actu->fecha_extr;
                 $this->unidad1=$actu->ID_MATERIA;
                 $this->temasb2=$actu->ID_TEMA;
                 $this->grado=$actu->ID_GR;
@@ -891,8 +884,6 @@ class ContenidoComponent extends Component
             $punteo=$this->punteo;
             $fecha_e=$this->fecha_e;
             $descripcion=$this->descripcion; 
-            $fecha_ext=$this->fecha_ext;
-            $sancion=$this->sancion;
             $temasb=$this->temasb;
             $grado=$this->grado;
             $idsecc=$this->idsecc;
@@ -933,9 +924,7 @@ class ContenidoComponent extends Component
                 'descripcion'=>$descripcion,
                 'archivos'=>$this->arch,
                 'punteo'=>$punteo,
-                'Sancionaut'=>$sancion,
                 'fecha_entr'=>$fecha_e,
-                'fecha_extr'=>$fecha_ext,
                 'ID_TEMA'=>$temasb,
                 'ID_MATERIA'=>$unidad1,
                 'ID_GR'=>$grado,
@@ -987,7 +976,6 @@ class ContenidoComponent extends Component
                 $punteo2=$this->punteo2;
                 $fecha_e2=$this->fecha_e2;
                 $descripcion2=$this->descripcion2;
-                $fecha_ext2=$this->fecha_ext2;
                 $temasb2=$this->temasb2;
                 $grado=$this->grado;
                 $idsecc=$this->idsecc;
@@ -1029,7 +1017,6 @@ class ContenidoComponent extends Component
                     'archivos'=>$this->arch,
                     'punteo'=>$punteo2,
                     'fecha_entr'=>$fecha_e2,
-                    'fecha_extr'=>$fecha_ext2,
                     'ID_TEMA'=>$temasb2,
                     'ID_MATERIA'=>$unidad1,
                     'ID_GR'=>$grado,
@@ -1830,7 +1817,6 @@ public function Subir_Act2(){
     $punteo2=$this->punteo2;
     $fecha_e2=$this->fecha_e2;
     $descripcion2=$this->descripcion2;
-    $fecha_ext2=$this->fecha_ext2;
     $temasb2=$this->temasb2;
     $grado=$this->grado;
     $idsecc=$this->idsecc;
@@ -1872,7 +1858,6 @@ public function Subir_Act2(){
             'archivos'=>$this->arch,
             'punteo'=>$punteo2,
             'fecha_entr'=>$fecha_e2,
-            'fecha_extr'=>$fecha_ext2,
             'ID_TEMA'=>$temasb2,
             'ID_MATERIA'=>$unidad1,
             'ID_GR'=>$grado,
