@@ -48,7 +48,7 @@
     </div>
   </div>
   @include('Unidades.ActividadesN.modaleditaractividad_n')
-  <button class="btn btn-success"  id="val" data-bs-toggle="modal" data-bs-target="#editact_n"   wire:click='edita2({{$actividad->ID_ACTIVIDADES}})'>  Editar </button>
+  <button class="btn btn-success"  id="val" data-bs-toggle="modal" data-bs-target="#editaractividades2"   wire:click='edita2({{$actividad->ID_ACTIVIDADES}})'>  Editar </button>
 
 
   @include('Unidades.ActividadesN.modaleliminar_n')

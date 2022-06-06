@@ -9,7 +9,7 @@
            <h3 class="form-label text" style="font-size:40px">Crear Actividad</h3> 
             <form  action="/update_act" method="POST" wire:submit.prevent=''>
               @csrf
-              <input type="hidden" value='{{$edita}}' name='edita'>
+              <input type="hidden" value='{{$edita2}}' name='edita2'>
               <div class="row g-3">
                 <div class="col-sm-3">
                   <label for="exampleInputEmail1" class="form-label " style="font-size:20px">Titulo de la actividad</label>

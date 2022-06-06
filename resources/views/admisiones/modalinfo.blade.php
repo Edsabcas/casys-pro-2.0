@@ -1,5 +1,5 @@
 
-  <div wire:ignore.self class="modal fade" id="info" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="5" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div wire:ignore.self id="infodata" style="border-radius: 60px 60px 60px 60px;" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="infodata" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header text-center" style="background:#3a3e7b;color:rgba(255, 255, 255, 0.703)">
@@ -8,21 +8,6 @@
         </div>
 
         <div class="modal-body">
-            @isset($mensaje)
-            @if($mensaje!=null)
-            
-            <div class="alert alert-success" role="alert">
-                Agregado Correctamente!
-              </div>
-            @endif
-            @endisset
-            @isset($mensaje1)
-              @if($mensaje1!=null)
-              <div class="alert alert-success" role="alert">
-                No fue agregado Correctamente!
-              </div>
-              @endif
-            @endisset
             <div class="container-sm">
 
               <h4 class="form-label text text-center" style="font-size:25px">Gestion: #{{$gestion}}
@@ -328,7 +313,7 @@
             </div>        
         </div>
         <div class="modal-footer">
-            <a wire:click='val3' type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-warning">Validar</a>
+            <a  id="valpedido" wire:click="tipo_cambio('{{$id2}}',1,{{$gestion}})" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-warning" data-bs-dismiss="modal">Validar</a>
                 
           <button type="button" class="btn btn-secondary" style="border-radius: 60px 60px 60px 60px;" data-bs-dismiss="modal">Cerrar</button>
                

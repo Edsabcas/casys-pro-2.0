@@ -8,7 +8,7 @@ use App\Http\Livewire\Request;
 
 class CalendarizacionComponent extends Component
 {
-    public $unidad, $fecha_ini,$fecha_final,$id_cal;
+    public $unidad, $fecha_ini,$fecha_final,$id_cal,$op3,$unidadextra;
 
     public $prueba, $op, $mensaje, $mensaje1, $edit, $mensaje3, $mensaje4, $mensaje_eliminar, $mensaje_eliminar2;
 
@@ -18,12 +18,17 @@ class CalendarizacionComponent extends Component
         $unidades=DB::select($sql);
         $sql= 'SELECT * FROM TB_CALENDARIZACION';
         $calendarizacion=DB::select($sql);
-        return view('livewire.calendarizacion-component',compact('unidades','calendarizacion'));
+        $sql= 'SELECT * FROM tb_unidades';
+        $unidadesex=DB::select($sql);
+        return view('livewire.calendarizacion-component',compact('unidades','calendarizacion','unidadesex'));
+    }
+
+    public function validarext($num){
+         $this->op3=$num;
     }
 
     public function guardar_calendarizacion(){
         if($this->validate([
-            'unidad' => 'required',
             'fecha_ini' => 'required',
             'fecha_final' => 'required',
 
@@ -38,6 +43,8 @@ class CalendarizacionComponent extends Component
         $unidad=$this->unidad;
         $fecha_ini=$this->fecha_ini;
         $fecha_final=$this->fecha_final;
+        $unidadextra=$this->unidadextra;
+
 
         DB::begintransaction();
 
@@ -45,6 +52,7 @@ class CalendarizacionComponent extends Component
             [
                 'id'=>$id_usuariolog,
                 'ID_UNIDADES_FIJAS'=>$unidad,
+                'ID_UNIDADES'=>$unidadextra,
                 'FECHA_INICIO'=>$fecha_ini,
                 'FECHA_FINAL'=>$fecha_final,
             ]);
@@ -77,8 +85,10 @@ class CalendarizacionComponent extends Component
         $unidades=DB::select($sql);
         $sql= 'SELECT * FROM TB_CALENDARIZACION';
         $calendarizacion=DB::select($sql);
+        $sql= 'SELECT * FROM tb_unidades';
+        $unidadesex=DB::select($sql);
         $op=42;
-        return view('home', compact('unidades','op','calendarizacion'));
+        return view('home', compact('unidades','op','calendarizacion','unidadesex'));
      }
 
      Public function edit($id){
@@ -87,6 +97,8 @@ class CalendarizacionComponent extends Component
         $calendarizacion=DB:: select($sql, array($id_cal));
         $sql= 'SELECT * FROM tb_unidades_fijas';
         $unidades=DB::select($sql);
+        $sql= 'SELECT * FROM tb_unidades';
+        $unidadesex=DB::select($sql);
 
         if($calendarizacion !=null){
             foreach($calendarizacion as $calen)
@@ -95,6 +107,7 @@ class CalendarizacionComponent extends Component
                 $this->unidad=$calen->ID_UNIDADES_FIJAS;
                 $this->fecha_ini=$calen->FECHA_INICIO;
                 $this->fecha_final=$calen->FECHA_FINAL;
+                $this->unidadextra=$calen->ID_UNIDADES;
 
             }
         }
@@ -105,7 +118,6 @@ class CalendarizacionComponent extends Component
     
     public function update_calendarizacion(){
         if($this->validate([
-            'unidad' => 'required',
             'fecha_ini' => 'required',
             'fecha_final' => 'required',
 
@@ -120,6 +132,7 @@ class CalendarizacionComponent extends Component
             $unidad=$this->unidad;
             $fecha_ini=$this->fecha_ini;
             $fecha_final=$this->fecha_final;
+            $unidadextra=$this->unidadextra;
 
             DB::begintransaction();
     
@@ -128,6 +141,7 @@ class CalendarizacionComponent extends Component
             ->update( 
                 [
                     'ID_UNIDADES_FIJAS'=>$unidad,
+                    'ID_UNIDADES'=>$unidadextra,
                     'FECHA_INICIO'=>$fecha_ini,
                     'FECHA_FINAL'=>$fecha_final,
                 ]

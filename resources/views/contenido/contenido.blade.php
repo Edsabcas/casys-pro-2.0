@@ -1,42 +1,15 @@
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    @if($op2==null)
-    <li class="breadcrumb-item"><a href="/Contenidos">Grados</a></li>
-    @elseif($op2==1)
-    <li class="breadcrumb-item"><a href="/Contenidos">Grados</a></li>
-    <li class="breadcrumb-item"><a href="#" wire:click='paginacion("1")'>Materias</a></li>
-    @elseif($op2==2)
-    <li class="breadcrumb-item"><a href="/Contenidos">Grados</a></li>
-    <li class="breadcrumb-item"><a href="#" wire:click='paginacion("1")'>Materias</a></li>
-    <li class="breadcrumb-item"><a href="#" wire:click='paginacion("2")'>Unidades</a></li>
-    @elseif($op2==3)
-    <li class="breadcrumb-item"><a href="/Contenidos">Grados</a></li>
-    <li class="breadcrumb-item"><a href="#" wire:click='paginacion("1")'>Materias</a></li>
-    <li class="breadcrumb-item"><a href="#" wire:click='paginacion("2")'>Unidades</a></li>
-    <li class="breadcrumb-item"><a href="#" wire:click='paginacion("3")'>Actividades</a></li>
-    @elseif($op2==4)
-    <li class="breadcrumb-item"><a href="/Contenidos">Grados</a></li>
-    <li class="breadcrumb-item"><a href="#" wire:click='paginacion("1")'>Materias</a></li>
-    <li class="breadcrumb-item"><a href="#" wire:click='paginacion("2")'>Unidades</a></li>
-    <li class="breadcrumb-item"><a href="#" wire:click='paginacion("4")'>Temas</a></li>
-    @elseif($op2==5)
-    <li class="breadcrumb-item"><a href="/Contenidos">Grados</a></li>
-    <li class="breadcrumb-item"><a href="#" wire:click='paginacion("1")'>Materias</a></li>
-    <li class="breadcrumb-item"><a href="#" wire:click='paginacion("2")'>Unidades</a></li>
-    <li class="breadcrumb-item"><a href="#" wire:click='paginacion("5")'>Actividades</a></li>
-    @elseif($op2==6)
-    <li class="breadcrumb-item"><a href="/Contenidos">Grados</a></li>
-    <li class="breadcrumb-item"><a href="#" wire:click='paginacion("1")'>Materias</a></li>
-    <li class="breadcrumb-item"><a href="#" wire:click='paginacion("2")'>Unidades</a></li>
-    <li class="breadcrumb-item"><a href="#" wire:click='paginacion("6")'>Temas</a></li>   
-    @endif
-  </ol>
-</nav>
-@if($op2==null)
+
 <div class="card shadow rounded">
   <div class="text-center">
     <br>
+    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#a4cb39" class="bi bi-card-checklist" viewBox="0 0 16 16">
+      <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
+      <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0zM7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z"/>
+    </svg>
+    <br>
+    <br>
     <h1 style="color: #3a3e7b"><strong>GRADOS</strong></h1>
+    <p style="color:black"><strong>Seleccione un grado.</strong></p>
     <br>
   </div>
 </div>
@@ -57,11 +30,19 @@
               echo $grado->ICONO;
               @endphp
             </div>
+            @if ($opf==1)      
             <div class="text-center">
-              <a type="button" wire:click="mostrar_m('{{$grado->ID_GR}}','{{$grado->GRADO}}','{{$seccion->SECCION}}','{{$seccion->ID_SC}}',1)">
-                <p>{{$grado->GRADO}}{{$seccion->SECCION}}</p>
+              <a type="button" wire:click="mostrar_m('{{$grado->ID_GR}}','{{$grado->GRADO}}','{{$seccion->SECCION}}','{{$seccion->ID_SC}}',2)">
+                <p>{{$grado->GRADO}} {{$seccion->SECCION}}</p>
               </a>
             </div>
+            @elseif($opf==2)
+            <div class="text-center">
+              <a type="button" wire:click="mostrar_mef('{{$grado->ID_GR}}','{{$grado->GRADO}}','{{$seccion->SECCION}}','{{$seccion->ID_SC}}',6)">
+                <p>{{$grado->GRADO}} {{$seccion->SECCION}}</p>
+              </a>
+            </div>
+            @endif
           </div>
         </div>
       </div>
@@ -71,18 +52,7 @@
     @endforeach
     @endforeach
 
-    @elseif($op2!=null && $op2==1)
-    @include('Temas.Pre_kinder')
-    @elseif($op2!=null && $op2==2)
-    @include('Unidades.Unidad1')
-    @elseif($op2!=null && $op2==3)
-    @include('Unidades.Actividades.VistaActividades');
-    @elseif($op2!=null && $op2==4)
-    @include('Unidades.Temas.VistaTemas');
-    @elseif($op2!=null && $op2==5)
-    @include('Unidades.ActividadesN.VistaActividades_n');
-    @elseif($op2!=null && $op2==6)
-    @include('Unidades.Temas.VistaTemasN');
-    @endif
+
+
 
   </div>

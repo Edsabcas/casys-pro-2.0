@@ -1,4 +1,4 @@
 <div class='container'>
-    @include('contenido.contenido')
+    @include('contenido.eleccion')
 
 </div>
