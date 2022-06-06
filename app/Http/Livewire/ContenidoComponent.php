@@ -195,7 +195,7 @@ class ContenidoComponent extends Component
         ->get();
 
         
-
+        $this->dia_exacto=date("Y-m-d");
         $sql= 'SELECT * FROM tb_materias';
         $materias=DB::select($sql);
         $sql= 'SELECT * FROM tb_grados';
