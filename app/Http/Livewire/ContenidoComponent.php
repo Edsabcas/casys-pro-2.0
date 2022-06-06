@@ -16,7 +16,7 @@ class ContenidoComponent extends Component
    public $vista,$vista2;
    public $prueba, $op, $mensaje, $mensaje1, $file, $date, $dia2, $message, $file2, $arch, $vid, $pdf, $formato, $tipo, $id_act,$editt,$editp;
    public $titulo, $punteo, $fecha_e, $fecha_ext, $descripcion, $act,$tema_a,$descripciont,$tema,$unidad, $temasb, $archivo, $nota, $descripciona;
-   public $restriccion, $fecha_date; 
+   public $restriccion, $fecha_date, $sancion; 
    public $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, $grado2, $idsecc2, $arch2,$tema2, $unidad2, $descripciont2, $nombreu,$id_tem, $edita,$id_plan,$edita2;
    public $prueba2, $idas, $nombress,$opf;
    public $option1, $option2, $option3, $option4, $option5, $option6;
@@ -602,7 +602,6 @@ Public function eliminaradv($id){
    public function Subir_Act(){
     if($this->validate([
         'titulo' => 'required',
-        'punteo' => 'required',
         'fecha_e' => 'required',
         'descripcion' => 'required',
         'temasb' => 'required',
@@ -615,6 +614,7 @@ Public function eliminaradv($id){
     else{
     $titulo=$this->titulo;
     $punteo=$this->punteo;
+    $sancion=$this->sancion;
     $fecha_e=$this->fecha_e;
     $descripcion=$this->descripcion;
     $fecha_ext=$this->fecha_ext;
@@ -658,6 +658,7 @@ Public function eliminaradv($id){
             'descripcion'=>$descripcion,
             'archivos'=>$this->arch,
             'punteo'=>$punteo,
+            'Sancionaut'=>$sancion,
             'fecha_entr'=>$fecha_e,
             'fecha_extr'=>$fecha_ext,
             'ID_TEMA'=>$temasb,
@@ -708,6 +709,7 @@ Public function eliminaradv($id){
                 $this->descripcion=$actu->descripcion;
                 $this->arch=$actu->archivos;
                 $this->punteo=$actu->punteo;
+                $this->sancion=$actu->sancion;
                 $this->fecha_e=$actu->fecha_entr;
                 $this->fecha_ext=$actu->fecha_extr;
                 $this->unidad1=$actu->ID_MATERIA;
@@ -771,6 +773,7 @@ Public function eliminaradv($id){
             $edita=$this->edita;
             $titulo=$this->titulo;
             $punteo=$this->punteo;
+            $sancion=$this->sancion;
             $fecha_e=$this->fecha_e;
             $descripcion=$this->descripcion;
             $fecha_ext=$this->fecha_ext;
@@ -814,6 +817,7 @@ Public function eliminaradv($id){
                 'descripcion'=>$descripcion,
                 'archivos'=>$this->arch,
                 'punteo'=>$punteo,
+                'Sancionaut'=>$sancion,
                 'fecha_entr'=>$fecha_e,
                 'fecha_extr'=>$fecha_ext,
                 'ID_TEMA'=>$temasb,
@@ -1706,7 +1710,6 @@ public function Subir_Act2(){
     }
 
     else{
-    $this->limpiar_act2();
     $titulo2=$this->titulo2;
     $punteo2=$this->punteo2;
     $fecha_e2=$this->fecha_e2;
@@ -1802,6 +1805,7 @@ public function limpiar_act(){
     $this->temasb="";
     $this->formato="";
     $this->archivo="";
+    $this->sancion="";
     $this->formato=0;
     $this->option1="";
     $this->option2="";
