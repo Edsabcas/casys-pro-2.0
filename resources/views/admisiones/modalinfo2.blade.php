@@ -1,5 +1,5 @@
 
-  <div wire:ignore.self class="modal fade" id="info2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="5" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div wire:ignore.self id="infodata2" style="border-radius: 60px 60px 60px 60px;" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="infodata2" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header text-center" style="background:#3a3e7b;color:rgba(255, 255, 255, 0.703)">
@@ -8,25 +8,10 @@
         </div>
 
         <div class="modal-body">
-            @isset($mensaje)
-            @if($mensaje!=null)
-            
-            <div class="alert alert-success" role="alert">
-                Agregado Correctamente!
-              </div>
-            @endif
-            @endisset
-            @isset($mensaje1)
-              @if($mensaje1!=null)
-              <div class="alert alert-success" role="alert">
-                No fue agregado Correctamente!
-              </div>
-              @endif
-            @endisset
             <div class="container-sm">
 
-              <h4 class="form-label text text-center" style="font-size:25px">
-                Gestion: #{{$gestion}}              
+              <h4 class="form-label text text-center" style="font-size:25px">Gestion: #{{$gestion}}
+              
               </h4> 
               <p  class="text text-center">Fecha de solicitud: <b>{{$fingreso_gestion}}</b></p>
               <br>
@@ -38,7 +23,7 @@
                     </button>
                    
                   </h2>
-                  <div  wire:ignore.self id="panelsStayOpen-collapseTwo"style="border-radius: 60px 60px 60px 60px;" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingTwo">
+                  <div  wire:ignore.self id="panelsStayOpen-collapseTwo"style="border-radius: 60px 60px 60px 60px;" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
                     <div  wire:ignore.self class="accordion-body" style="border-radius: 60px 60px 60px 60px;">
                                <form wire:submit.prevent="" class="form-floating">
                                 <div class="row g-3">
@@ -189,7 +174,7 @@
                     </button>
                 
                   </h2>
-                  <div  wire:ignore.self id="panelsStayOpen-collapseThree" style="border-radius: 60px 60px 60px 60px;"class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingThree">
+                  <div  wire:ignore.self id="panelsStayOpen-collapseThree" style="border-radius: 60px 60px 60px 60px;"class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
                     <div  wire:ignore.self class="accordion-body" style="border-radius: 60px 60px 60px 60px;">
                       <div class="table-responsive">
                         <form wire:submit.prevent="val3()" class="form-floating">
@@ -324,11 +309,50 @@
                   </div>
                 </div>
               </div>
+              <br>
+              <div class="accordion" id="accordionPanelsStayOpenExample3">
+                <div style="border-radius: 60px 60px 60px 60px;" class="accordion-item">
+                  <h2  style="border-radius: 60px 60px 60px 60px;" class="accordion-header" id="panelsStayOpen-headingThreePago">
+                    <button class="accordion-button collapsed" style="background-color:#d6e7a6; border:6px solid #a4cb39; border-radius: 60px 60px 60px 60px;"  type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThreePago" aria-expanded="false" aria-controls="panelsStayOpen-collapseThreePago">
+                    <h4 class="font-weight-bolder">   <b>Información Pago</b>   </h4>
+                    </button>
+                
+                  </h2>
+                  <div  wire:ignore.self id="panelsStayOpen-collapseThreePago" style="border-radius: 60px 60px 60px 60px;"class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingThreePago">
+                    <div  wire:ignore.self class="accordion-body" style="border-radius: 60px 60px 60px 60px;">
+                        <form wire:submit.prevent="val3()" class="form-floating">
+
+                        <div class="row g-3">
+                          <div class="col-md">
+                          <label for="fnacimiento_en" style="font-size: 15px; color:#000000;">Fecha Nacimiento:</label>
+                          <input type="date" placeholder=""   wire:model="fnacimiento_en" class="form-control " required>
+                      </div>
+                      @error('fnacimiento_en')
+                      <div class="alert alert-warning" role="alert">
+                       Pendiente
+                      </div>
+                      @enderror
+                    
+                      <div class="col-md">
+                            <label for="inputDPI" style="font-size: 15px; color:#000000;">DPI:</label>
+                            <input type="number" placeholder="" type="number"   wire:model="dpi_en" class="form-control " required>
+                        </div>
+                        @error('dpi_en')
+                        <div class="alert alert-warning" role="alert">
+                         Pendiente
+                        </div>
+                        @enderror
+                      </div>
+                        </form>
+                   </div>
+                  </div>
+                </div>
+              </div>
               
             </div>        
         </div>
         <div class="modal-footer">
-            <a wire:click='val3' type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-warning">Validar</a>
+            <a  id="valpedido" wire:click="tipo_cambio('{{$id2}}',1,{{$gestion}})" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-warning" data-bs-dismiss="modal">Validar</a>
                 
           <button type="button" class="btn btn-secondary" style="border-radius: 60px 60px 60px 60px;" data-bs-dismiss="modal">Cerrar</button>
                
