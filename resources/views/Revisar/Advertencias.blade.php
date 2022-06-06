@@ -46,7 +46,8 @@
                               <button class="btn btn-success">Editar</button>
                           </td>
                           <td>
-                              <button class="btn btn-danger">Eliminar</button>
+                            @include('Unidades.Temas.modaleliminaradve')
+                            <button class="btn btn-editb" style="border-radius: 12px;" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{$advertenciaa->ID_ADVERTENCIA}}"> ELIMINAR </button>
                           </td>
                       </span>
                   </td>

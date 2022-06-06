@@ -1,5 +1,5 @@
-<div class="table-responsive">
-    <table class="table table-info  table-striped table-hover table-bordered">
+<div class="table-responsive shadow rounded">
+    <table class="table table-light  table-striped table-hover table-bordered">
       <thead>
         
 

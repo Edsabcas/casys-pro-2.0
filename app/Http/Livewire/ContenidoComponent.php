@@ -23,7 +23,7 @@ class ContenidoComponent extends Component
    public $validation1, $validation2, $validation3, $validation4, $validation5,$validation6;
    public $vistar,$vistar2;
    public $texto_advertencia, $prioridad_advertencia, $fecha_inicio, $fecha_fin, $invalido, $advertencia_adver, $advertenciass, $advertenciasss;
-   public $blockadvertencia;
+   public $blockadvertencia, $dia_exacto, $mensaje_eliminar, $mensaje_eliminar2;
 
     
 
@@ -195,7 +195,7 @@ class ContenidoComponent extends Component
         ->get();
 
         
-
+        $this->dia_exacto=date("Y-m-d");
         $sql= 'SELECT * FROM tb_materias';
         $materias=DB::select($sql);
         $sql= 'SELECT * FROM tb_grados';
@@ -537,6 +537,32 @@ class ContenidoComponent extends Component
             }
         }
     }
+
+    //funcion de eliminar advertencias
+Public function eliminaradv($id){
+    $id_adv=$id;
+    DB::begintransaction();
+
+    $adv=DB::table('tb_advertencias')->where('ID_ADVERTENCIA','=', $id_adv)->delete();
+
+    if($adv){
+        DB::commit();
+        unset($this->mensaje);
+        unset($this->mensaje3);
+        unset($this->mensaje_eliminar);
+        $this->blockadvertencia=0;
+        $this->op='addvertencias';
+        $this->mensaje_eliminar='Eliminado Correctamente';
+    }
+    else{
+        DB::rollback();
+        unset($this->mensaje1);
+        unset($this->mensaje4);
+        unset($this->mensaje_eliminar2);
+        $this->op='addvertencias';
+        $this->mensaje_eliminar2='No fue posible eliminarlo';
+    }
+}
 
     //funcion que muestra la vista de las unidades nuevas creadas
     public function validar_u2($nun,$nomu){
