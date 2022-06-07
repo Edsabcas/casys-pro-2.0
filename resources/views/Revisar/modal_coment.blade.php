@@ -21,7 +21,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-primary" wire:click='revisiones("{{$actividad->ID_ACTIVIDADES}}","3")'>Guardar</button>
+          <button type="button" class="btn btn-primary" wire:click='revisiones(3)'>Guardar</button>
         </div>
       </div>
     </div>

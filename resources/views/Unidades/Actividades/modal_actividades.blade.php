@@ -37,8 +37,7 @@
            @endif
            @endforeach
            
-            <form  action="/update_act" method="POST" wire:submit.prevent=''>
-              @csrf
+            <form wire:submit.prevent=''>
               <input type="hidden" value='{{$edita}}' name='edita'>
               <div class="row g-3">
                 <div class="col-sm-3">

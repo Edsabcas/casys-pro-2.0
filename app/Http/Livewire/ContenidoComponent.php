@@ -94,7 +94,7 @@ class ContenidoComponent extends Component
             ->join('tb_seccions', 'tb_actividades.ID_SC', '=', 'tb_seccions.ID_SC')
             ->join('users', 'tb_actividades.ID', '=', 'users.id')
             ->join('tb_unidades_fijas', 'tb_actividades.ID_UNIDADES_FIJAS', '=', 'tb_unidades_fijas.ID_UNIDADES_FIJAS')
-            ->select('tb_actividades.ID_ACTIVIDADES', 'tb_materias.NOMBRE_MATERIA', 'tb_grados.ID_GR', 'tb_seccions.ID_SC', 'tb_materias.ID_MATERIA', 'users.name', 'tb_actividades.NOMBRE_ACTIVIDAD', 'tb_unidades_fijas.ID_UNIDADES_FIJAS','tb_actividades.fecha_cr','tb_actividades.fecha_entr','tb_actividades.descripcion','tb_actividades.archivos')
+            ->select('tb_actividades.ID_ACTIVIDADES', 'tb_materias.NOMBRE_MATERIA', 'tb_grados.ID_GR', 'tb_seccions.ID_SC', 'tb_materias.ID_MATERIA', 'users.name', 'tb_actividades.NOMBRE_ACTIVIDAD', 'tb_unidades_fijas.ID_UNIDADES_FIJAS','tb_actividades.fecha_cr','tb_actividades.fecha_entr','tb_actividades.descripcion','tb_actividades.archivos','tb_actividades.fecha_cr')
             ->where('tb_actividades.ID_UNIDADES_FIJAS','=',$this->unidadfija)
             ->where('tb_actividades.ID_GR','=',$this->grado)
             ->where('tb_actividades.ID_SC','=',$this->idsecc)
@@ -742,8 +742,25 @@ class ContenidoComponent extends Component
             'ID'=>$this->idusuario,
 
         ]);
+        $edita_r=0;
+        $sql='SELECT MAX(ID_ACTIVIDADES) AS ID_ACTIVIDADES FROM tb_actividades';
+        $consulta1=DB::select($sql);
 
-        if($actividades){
+        foreach($consulta1 as $consul){
+        $edita_r=$consul->ID_ACTIVIDADES;
+        } 
+
+        $estado_act=1;
+
+    
+        $estado_actividad=DB::table('estado_actividades')->insert(
+            [
+                'ID_ACTIVIDADES'=>$edita_r,
+                'ESTADO'=>$estado_act,
+    
+            ]);
+
+        if($actividades && $estado_actividad){
             DB::commit();
             unset($this->mensaje);
             unset($this->mensaje1);
@@ -762,44 +779,7 @@ class ContenidoComponent extends Component
             $this->mensaje1='Datos no  insertados correctamente';
             }        
     }
-    
-    $edita_r=0;
-    $sql='SELECT MAX(ID_ACTIVIDADES+1) AS ID_ACTIVIDADES FROM tb_actividades';
-    $valor=DB::select($sql);
 
-    foreach($valor as $val){
-
-        $edita_r=$val->ID_ACTIVIDADES;
-    }  
-
-    $estado_act=1;
-
-    DB::begintransaction();
-    $estado_actividad=DB::table('estado_actividades')->insert(
-        [
-            'ID_ACTIVIDADES'=>$valor,
-            'ESTADO'=>$estado_act,
-
-        ]);
-
-        if($estado_actividad){
-            DB::commit();
-            unset($this->mensaje);
-            unset($this->mensaje1);
-            unset($this->mensaje3);
-            unset($this->mensaje4);
-            $this->op='addcontenidos';
-            $this->mensaje='Insertado correctamente';
-            }
-            else {
-            DB::rollback();
-            unset($this->mensaje);
-            unset($this->mensaje1);
-            unset($this->mensaje4);
-            unset($this->mensaje3);
-            $this->op='addcontenidos';
-            $this->mensaje1='Datos no  insertados correctamente';
-            }        
     }
 
 
@@ -807,6 +787,35 @@ class ContenidoComponent extends Component
 
 //edicion de las actividades de unidades fijas
     Public function edita($id){
+        $this->limpiarcract();
+        $edita=$id;
+        $sql='SELECT * FROM tb_actividades WHERE ID_ACTIVIDADES=?';
+        $actividadesedit=DB:: select($sql, array($edita));
+    
+        if($actividadesedit !=null){
+            foreach($actividadesedit as $actu)
+            {
+                $this->edita=$actu->ID_ACTIVIDADES;
+                $this->titulo=$actu->NOMBRE_ACTIVIDAD;
+                $this->descripcion=$actu->descripcion;
+                $this->arch=$actu->archivos;
+                $this->punteo=$actu->punteo;
+                $this->fecha_e=$actu->fecha_entr;
+                $this->unidad1=$actu->ID_MATERIA;
+                $this->temasb=$actu->ID_TEMA;
+                $this->grado=$actu->ID_GR;
+                $this->idsecc=$actu->ID_SC;
+                $this->unidadfija=$actu->ID_UNIDADES_FIJAS;    
+            }
+            $this->edit_estado_rev($this->edita);
+
+        }
+    
+        $this->op='edita';
+       $this->editt=1;
+    }
+
+    Public function editarevisar($id){
         $this->limpiarcract();
         $this->editrev();
         $edita=$id;
@@ -828,6 +837,7 @@ class ContenidoComponent extends Component
                 $this->idsecc=$actu->ID_SC;
                 $this->unidadfija=$actu->ID_UNIDADES_FIJAS;    
             }
+            $this->edit_estado_rev($this->edita);
 
         }
     
@@ -2001,9 +2011,9 @@ public function editrev(){
 }
 
 Public function edit_estado_rev($id){
-    $id_estado_act=$id;
-    $sql='SELECT * FROM estado_actividades WHERE ID_ESTADO_ACT=?';
-    $estactr=DB:: select($sql, array($id_estado_act));
+    $id_actividad_act=$id;
+    $sql='SELECT * FROM estado_actividades WHERE ID_ACTIVIDADES=?';
+    $estactr=DB:: select($sql, array($id_actividad_act));
     if($estactr !=null){
         foreach($estactr as $estac)
         {
@@ -2018,11 +2028,12 @@ Public function edit_estado_rev($id){
    $this->editp=1;
 }
 
-public function revisiones($id,$val){
-   $this->id_actividad_r=$id;
-   $this->validacion_r=$val;
+public function revisiones($estadoact){
+   $id_actividad_r=$this->id_actividad_r;
+   $this->validacion_r=$estadoact;
    $comentario_d_r=$this->comentario_d_r;
    $id_estado_act=$this->id_estado_act;
+   
 
 
    DB::begintransaction();

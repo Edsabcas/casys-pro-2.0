@@ -219,10 +219,12 @@ $('#exampleModal1').modal('close');
                 
                 @endif
                   <br>
-                  
-                  <button type='submit' class="btn btn-primary" wire:click="update_act()">Actualizar</button>
+                  @if($editrevisar==null  or $editrevisar=="")
+                  <button type='submit' class="btn btn-primary" name='editnormal' wire:click="update_act()">Actualizar</button>
+                  @endif
                   @if($editrevisar==1)
-                  <button type='submit' class="btn btn-editb" wire:click='revisiones("{{$actividad->ID_ACTIVIDADES}}","2")'>Validar</button>
+                  <button type='submit' class="btn btn-primary" name='editrevisar' wire:click="update_act()">Actualizar</button>
+                  <button type='submit' class="btn btn-editb" wire:click='revisiones(2)'>Validar</button>
 
                   @include('Revisar.modal_coment')
                   <button type='submit' data-bs-toggle="modal" data-bs-target="#comentario_revision" class="btn btn-editb">Mandar a revision</button>
