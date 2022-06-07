@@ -525,8 +525,7 @@ class ContenidoComponent extends Component
                     ]
                     );
                 if($advertencias){
-                    $this->reset();
-                
+                    $this->blockadvertencia=1;
                     DB::commit();
                     $this->advertencia_adver=1;
                 }
