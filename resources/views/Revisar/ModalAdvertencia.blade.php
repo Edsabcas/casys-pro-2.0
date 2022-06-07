@@ -25,6 +25,14 @@
                 <label for="exampleInputEmail1" class="form-label" style="font-size:20px">Coloque un enunciado para la advertencia</label>
                 <textarea class="form-control" id="summary-ckeditor" name="summary-ckeditor" rows="4" wire:model="texto_advertencia"></textarea>
             </div>
+            @error('texto_advertencia')
+          <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+              Es necesario que llenes este campo
+            </div>
+          </div>
+          @enderror
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label" style="font-size:20px">Coloque una prioridad para la advertencia</label>
                 <select class="form-select" aria-label="Default select example" name="calidad" wire:model="prioridad_advertencia" required>
@@ -34,14 +42,38 @@
                   <option value="3">Urgente</option>
                 </select>
               </div>
+              @error('prioridad_advertencia')
+          <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+              Es necesario que llenes este campo
+            </div>
+          </div>
+          @enderror
               <div class="mb-3">
                 <label for="examplenombre" class="form-label" style="font-size:20px"> Fecha de Inicio de vigencia</label>
                 <input type="date" class="form-control" name='fecha_inicio' wire:model='fecha_inicio'>
               </div>
+              @error('fecha_inicio')
+          <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+              Es necesario que llenes este campo
+            </div>
+          </div>
+          @enderror
               <div class="mb-3">
                 <label for="examplenombre" class="form-label" style="font-size:20px"> Fecha de final de vigencia</label>
                 <input type="date" class="form-control"  name='fecha_fin' wire:model='fecha_fin'>
               </div>
+              @error('fecha_fin')
+          <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+              Es necesario que llenes este campo
+            </div>
+          </div>
+          @enderror
             </form>
 
           </div>
