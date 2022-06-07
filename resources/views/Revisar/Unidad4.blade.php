@@ -33,6 +33,8 @@
                   <td><span class="badge rounded-pill bg-warning text-dark">Pendiente R.</span></td>
                   @elseif($estado_act->ESTADO==2)
                   <td><span class="badge rounded-pill bg-danger">Validado</span></td>
+                  @elseif($estado_act->ESTADO==3)
+                  <td><span class="badge rounded-pill bg-danger">Por corregir</span></td>
                   @endif
                   @endif
                   @endforeach

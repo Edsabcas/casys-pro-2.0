@@ -66,11 +66,8 @@ $('#exampleModal1').modal('show');
     </div>
   </div>
   @include('Unidades.Actividades.modaledit_act')
-<<<<<<< HEAD
   <button class="btn btn-editb"  id="val" data-bs-toggle="modal" data-bs-target="#editaractividades"   wire:click='edita({{$actividad->ID_ACTIVIDADES}})'>  Editar </button>
-=======
-  <button class="btn btn-success"  id="crear" data-bs-toggle="modal" data-bs-target="#editaractividades"   wire:click='edita({{$actividad->ID_ACTIVIDADES}})'>  Editar </button>
->>>>>>> 7caa5eee4f85b419fa6b47cdfb342d4e72174bd2
+
 
 
   @include('Unidades.Actividades.modelimiaract')
