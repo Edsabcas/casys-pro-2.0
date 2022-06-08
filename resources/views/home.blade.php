@@ -70,6 +70,9 @@
 @elseif ($op=='editact')
 @include('Unidades.Temas.modal_actividades')
 
+@elseif ($op=='editrevact')
+@include('Revisar.modal_coment')
+
 @elseif ($op=='addConsultar')
 @livewire('consultarcomponent')
 
@@ -103,6 +106,12 @@
 @livewire('adminisiones-componet')
 
 @elseif($op=='addvertencias')
+@livewire('contenido-componet')
+
+@elseif ($op=='editaadv')
+@include('Revisar.Modaladvedit')
+
+@elseif($op=='addvertenciasedit')
 @livewire('contenido-componet')
 
 @endif

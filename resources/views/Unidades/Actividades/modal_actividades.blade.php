@@ -8,8 +8,8 @@
       </div>
           <div class="container-sm">
            <h3 class="form-label text" style="font-size:40px">Crear Actividad</h3> 
-           @foreach($advertenciass as $advertenciasa)
-           @if($dia_exacto>=$advertenciasa->FECHA_INICIO && $dia_exacto<=$advertenciasa->FECHA_INICIO)
+           @foreach(Session::get('advertencias_activas') as $advertenciasa)
+           @if($dia_exacto>=$advertenciasa->FECHA_INICIO && $dia_exacto<=$advertenciasa->FECHA_FIND)
            @if($advertenciasa->PRIORIDAD == 1)
            <div class="alert alert-success d-flex align-items-center rounded-pill" role="alert">
             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:"><use xlink:href="#info-fill"/></svg>
@@ -37,8 +37,7 @@
            @endif
            @endforeach
            
-            <form  action="/update_act" method="POST" wire:submit.prevent=''>
-              @csrf
+            <form wire:submit.prevent=''>
               <input type="hidden" value='{{$edita}}' name='edita'>
               <div class="row g-3">
                 <div class="col-sm-3">
@@ -60,6 +59,15 @@
                   <input type="text" class="form-control" wire:model='punteo'  style="border:2px solid rgba(86, 95, 76, 0.466);" placeholder="Punteo de la actividad" aria-label="Punteo de la actividad">             
                 </div>
           @endif
+          
+          @if($option4==4)
+            <div class="col-sm-3">
+              <label for="exampleInputEmail1" class="form-label " style="font-size:20px">Sancion Automatica</label>
+              <input type="text" class="form-control" wire:model='sancion'  style="border:2px solid rgba(86, 95, 76, 0.466);" placeholder="Sancio automatica por entrega tardia" aria-label="Sancio automatica por entrega tardia">             
+            </div>
+          @else
+            
+          @endif
                 <div class="col-sm-3">
                   <label for="exampleInputEmail1" class="form-label " style="font-size:20px">Fecha de entrega</label>
                   <input type="datetime-local" class="form-control" wire:model='fecha_e'  style="border:2px solid rgba(86, 95, 76, 0.466);" placeholder="Fecha de entrega" aria-label="Fecha de entrega">
@@ -79,15 +87,6 @@
                  
 
              @endif
-
-          @if($option4==4)
-            <div class="col-sm-3">
-              <label for="exampleInputEmail1" class="form-label " style="font-size:20px">Sancion Automatica</label>
-              <input type="text" class="form-control" wire:model='sancion'  style="border:2px solid rgba(86, 95, 76, 0.466);" placeholder="Sancio automatica por entrega tardia" aria-label="Sancio automatica por entrega tardia">             
-            </div>
-          @else
-            
-          @endif
                  
 
           <div class="col-sm-3">

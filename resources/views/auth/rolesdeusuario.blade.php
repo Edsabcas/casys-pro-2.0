@@ -2,7 +2,7 @@
 <br>
 
     <div class="table-responsive">
-        <table class="table table-success table-striped table-bordered">
+        <table class="table table-light table-bordered">
             <thead>
                 <tr>
                     <th>NO.</th>
@@ -190,8 +190,8 @@
             </div>
 
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-              <button type="button" class="btn btn-primary">Guardar</button>
+              <button type="button" class="btn btn-secondary" style="border-radius: 12px;" data-bs-dismiss="modal">Cerrar</button>
+              <button type="button" class="btn btn-pre2">Guardar</button>
             </div>
           </div>
         </div>

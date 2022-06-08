@@ -33,21 +33,25 @@
                   <td><span class="badge rounded-pill bg-warning text-dark">Pendiente R.</span></td>
                   @elseif($estado_act->ESTADO==2)
                   <td><span class="badge rounded-pill bg-danger">Validado</span></td>
+                  @elseif($estado_act->ESTADO==3)
+                  <td><span class="badge rounded-pill bg-danger">Por corregir</span></td>
                   @endif
                   @endif
                   @endforeach
                 
                   <span>
-                      <td>
-                        @include('Unidades.Actividades.modaledit_act')
-                        <button class="btn btn-success"  id="val" data-bs-toggle="modal" data-bs-target="#editaractividades"   wire:click='edita({{$actividad->ID_ACTIVIDADES}})'>  Editar </button>       
+                    
+                    <td>
                      
+                      <button class="btn btn-success"  id="val" data-bs-toggle="modal" data-bs-target="#editaractividades"   wire:click='editarevisar({{$actividad->ID_ACTIVIDADES}})'>  Editar </button>       
                    
-                      
-                        @include('Unidades.Actividades.modelimiaract')
-                        <button class="btn btn-secondary" style="border-radius: 12px;" data-bs-toggle="modal" data-bs-target="#eliminaract">  Eliminar </button>
-                      </td>
-                  </span> 
+                 
+                    
+                      <button class="btn btn-secondary" style="border-radius: 12px;" data-bs-toggle="modal" data-bs-target="#eliminaract{{$actividad->ID_ACTIVIDADES}}">  Eliminar </button>
+                    </td>
+                </span>
+                @include('Unidades.Actividades.modaledit_act')
+                @include('Unidades.Actividades.modelimiaract')
                 </tr>                      
               @endforeach
           </tbody>

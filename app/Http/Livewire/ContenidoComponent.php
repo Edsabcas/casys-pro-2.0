@@ -16,14 +16,14 @@ class ContenidoComponent extends Component
    public $vista,$vista2;
    public $prueba, $op, $mensaje, $mensaje1, $file, $date, $dia2, $message, $file2, $arch, $vid, $pdf, $formato, $tipo, $id_act,$editt,$editp;
    public $titulo, $punteo, $fecha_e, $fecha_ext, $descripcion, $act,$tema_a,$descripciont,$tema,$unidad, $temasb, $archivo, $nota, $descripciona;
-   public $restriccion, $fecha_date; 
+   public $restriccion, $fecha_date, $sancion; 
    public $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, $grado2, $idsecc2, $arch2,$tema2, $unidad2, $descripciont2, $nombreu,$id_tem, $edita,$id_plan,$edita2;
    public $prueba2, $idas, $nombress,$opf;
    public $option1, $option2, $option3, $option4, $option5, $option6;
    public $validation1, $validation2, $validation3, $validation4, $validation5,$validation6;
    public $vistar,$vistar2;
    public $texto_advertencia, $prioridad_advertencia, $fecha_inicio, $fecha_fin, $invalido, $advertencia_adver, $advertenciass, $advertenciasss;
-   public $blockadvertencia, $dia_exacto, $mensaje_eliminar, $mensaje_eliminar2;
+   public $blockadvertencia, $dia_exacto, $mensaje_eliminar, $mensaje_eliminar2,$editrevisar,$comentario_r,$comentario_d_r,$id_estado_act, $editaadv;
 
     
 
@@ -94,7 +94,7 @@ class ContenidoComponent extends Component
             ->join('tb_seccions', 'tb_actividades.ID_SC', '=', 'tb_seccions.ID_SC')
             ->join('users', 'tb_actividades.ID', '=', 'users.id')
             ->join('tb_unidades_fijas', 'tb_actividades.ID_UNIDADES_FIJAS', '=', 'tb_unidades_fijas.ID_UNIDADES_FIJAS')
-            ->select('tb_actividades.ID_ACTIVIDADES', 'tb_materias.NOMBRE_MATERIA', 'tb_grados.ID_GR', 'tb_seccions.ID_SC', 'tb_materias.ID_MATERIA', 'users.name', 'tb_actividades.NOMBRE_ACTIVIDAD', 'tb_unidades_fijas.ID_UNIDADES_FIJAS','tb_actividades.fecha_cr','tb_actividades.fecha_entr','tb_actividades.descripcion','tb_actividades.archivos')
+            ->select('tb_actividades.ID_ACTIVIDADES', 'tb_materias.NOMBRE_MATERIA', 'tb_grados.ID_GR', 'tb_seccions.ID_SC', 'tb_materias.ID_MATERIA', 'users.name', 'tb_actividades.NOMBRE_ACTIVIDAD', 'tb_unidades_fijas.ID_UNIDADES_FIJAS','tb_actividades.fecha_cr','tb_actividades.fecha_entr','tb_actividades.descripcion','tb_actividades.archivos','tb_actividades.fecha_cr')
             ->where('tb_actividades.ID_UNIDADES_FIJAS','=',$this->unidadfija)
             ->where('tb_actividades.ID_GR','=',$this->grado)
             ->where('tb_actividades.ID_SC','=',$this->idsecc)
@@ -525,8 +525,7 @@ class ContenidoComponent extends Component
                     ]
                     );
                 if($advertencias){
-                    $this->reset();
-                
+                    $this->blockadvertencia=1;
                     DB::commit();
                     $this->advertencia_adver=1;
                 }
@@ -539,7 +538,7 @@ class ContenidoComponent extends Component
     }
 
     //funcion de eliminar advertencias
-Public function eliminaradv($id){
+    Public function eliminaradv($id){
     $id_adv=$id;
     DB::begintransaction();
 
@@ -564,6 +563,79 @@ Public function eliminaradv($id){
     }
 }
 
+    //edicion de las advertencias
+    Public function editaadv($id){
+        $editaadv=$id;
+        $sql='SELECT * FROM tb_advertencias WHERE ID_ADVERTENCIA=?';
+        $advertenciaedit=DB:: select($sql, array($editaadv));
+
+        if($advertenciaedit !=null){
+            foreach($advertenciaedit as $advedit)
+            {
+                $this->editaadv=$advedit->ID_ADVERTENCIA;
+                $this->texto_advertencia=$advedit->DESCRIPCION;
+                $this->prioridad_advertencia=$advedit->PRIORIDAD;
+                $this->fecha_inicio=$advedit->FECHA_INICIO;
+                $this->fecha_fin=$advedit->FECHA_FIND;  
+            }
+
+        }
+
+        $this->op='editaadv';
+        $this->editaadv=1;
+    
+    }
+
+    //Actualizar advertencias
+    public function update_adv(){
+        if($this->validate([
+            'texto_advertencia' => 'required',
+            'prioridad_advertencia' => 'required',
+            'fecha_inicio' => 'required',
+            'fecha_fin' => 'required',
+        ])==false){
+            $error="no encontrado";
+            session(['message'=>'no encontrado']);
+            return back()->withErrors(['error' => 'Validar el input vacio']);
+        }
+
+        else{
+            $editaadv=$this->editaadv;
+            $textoadvertencia=$this->texto_advertencia;
+            $prioridadadvertencia=$this->prioridad_advertencia;
+            $fechainicio=$this->fecha_inicio;
+            $fechafin=$this->fecha_fin;
+            
+            if($fechainicio>$fechafin){
+                $this->invalido=1;
+            }
+            else{
+                $this->invalido=0;
+                DB::begintransaction();
+                $advertencias=DB::table('tb_advertencias')->update(
+                    [
+                        'DESCRIPCION'=>$textoadvertencia,
+                        'PRIORIDAD'=>$prioridadadvertencia,
+                        'FECHA_INICIO'=>$fechainicio,
+                        'FECHA_FIND'=>$fechafin,
+        
+                    ]
+                    );
+                if($advertencias){
+                    $this->blockadvertencia=1;
+                    DB::commit();
+                    $this->advertencia_adver=1;
+                }
+                else{
+                    DB::rollback();
+                    $this->advertencia_adver=2;
+                }
+            }
+        }
+    }
+
+
+    
     //funcion que muestra la vista de las unidades nuevas creadas
     public function validar_u2($nun,$nomu){
         unset($this->unidadn);
@@ -602,7 +674,6 @@ Public function eliminaradv($id){
    public function Subir_Act(){
     if($this->validate([
         'titulo' => 'required',
-        'punteo' => 'required',
         'fecha_e' => 'required',
         'descripcion' => 'required',
         'temasb' => 'required',
@@ -617,7 +688,6 @@ Public function eliminaradv($id){
     $punteo=$this->punteo;
     $fecha_e=$this->fecha_e;
     $descripcion=$this->descripcion;
-    $fecha_ext=$this->fecha_ext;
     $temasb=$this->temasb;
     $grado=$this->grado;
     $idsecc=$this->idsecc;
@@ -659,7 +729,6 @@ Public function eliminaradv($id){
             'archivos'=>$this->arch,
             'punteo'=>$punteo,
             'fecha_entr'=>$fecha_e,
-            'fecha_extr'=>$fecha_ext,
             'ID_TEMA'=>$temasb,
             'ID_MATERIA'=>$unidad1,
             'ID_GR'=>$grado,
@@ -668,8 +737,25 @@ Public function eliminaradv($id){
             'ID'=>$this->idusuario,
 
         ]);
+        $edita_r=0;
+        $sql='SELECT MAX(ID_ACTIVIDADES) AS ID_ACTIVIDADES FROM tb_actividades';
+        $consulta1=DB::select($sql);
 
-        if($actividades){
+        foreach($consulta1 as $consul){
+        $edita_r=$consul->ID_ACTIVIDADES;
+        } 
+
+        $estado_act=1;
+
+    
+        $estado_actividad=DB::table('estado_actividades')->insert(
+            [
+                'ID_ACTIVIDADES'=>$edita_r,
+                'ESTADO'=>$estado_act,
+    
+            ]);
+
+        if($actividades && $estado_actividad){
             DB::commit();
             unset($this->mensaje);
             unset($this->mensaje1);
@@ -689,8 +775,8 @@ Public function eliminaradv($id){
             }        
     }
 
+    }
 
-}
 
 
 
@@ -710,13 +796,43 @@ Public function eliminaradv($id){
                 $this->arch=$actu->archivos;
                 $this->punteo=$actu->punteo;
                 $this->fecha_e=$actu->fecha_entr;
-                $this->fecha_ext=$actu->fecha_extr;
                 $this->unidad1=$actu->ID_MATERIA;
                 $this->temasb=$actu->ID_TEMA;
                 $this->grado=$actu->ID_GR;
                 $this->idsecc=$actu->ID_SC;
                 $this->unidadfija=$actu->ID_UNIDADES_FIJAS;    
             }
+            $this->edit_estado_rev($this->edita);
+
+        }
+    
+        $this->op='edita';
+       $this->editt=1;
+    }
+
+    Public function editarevisar($id){
+        $this->limpiarcract();
+        $this->editrev();
+        $edita=$id;
+        $sql='SELECT * FROM tb_actividades WHERE ID_ACTIVIDADES=?';
+        $actividadesedit=DB:: select($sql, array($edita));
+    
+        if($actividadesedit !=null){
+            foreach($actividadesedit as $actu)
+            {
+                $this->edita=$actu->ID_ACTIVIDADES;
+                $this->titulo=$actu->NOMBRE_ACTIVIDAD;
+                $this->descripcion=$actu->descripcion;
+                $this->arch=$actu->archivos;
+                $this->punteo=$actu->punteo;
+                $this->fecha_e=$actu->fecha_entr;
+                $this->unidad1=$actu->ID_MATERIA;
+                $this->temasb=$actu->ID_TEMA;
+                $this->grado=$actu->ID_GR;
+                $this->idsecc=$actu->ID_SC;
+                $this->unidadfija=$actu->ID_UNIDADES_FIJAS;    
+            }
+            $this->edit_estado_rev($this->edita);
 
         }
     
@@ -740,7 +856,6 @@ Public function eliminaradv($id){
                 $this->arch=$actu->archivos;
                 $this->punteo2=$actu->punteo;
                 $this->fecha_e2=$actu->fecha_entr;
-                $this->fecha_ext2=$actu->fecha_extr;
                 $this->unidad1=$actu->ID_MATERIA;
                 $this->temasb2=$actu->ID_TEMA;
                 $this->grado=$actu->ID_GR;
@@ -773,8 +888,7 @@ Public function eliminaradv($id){
             $titulo=$this->titulo;
             $punteo=$this->punteo;
             $fecha_e=$this->fecha_e;
-            $descripcion=$this->descripcion;
-            $fecha_ext=$this->fecha_ext;
+            $descripcion=$this->descripcion; 
             $temasb=$this->temasb;
             $grado=$this->grado;
             $idsecc=$this->idsecc;
@@ -816,7 +930,6 @@ Public function eliminaradv($id){
                 'archivos'=>$this->arch,
                 'punteo'=>$punteo,
                 'fecha_entr'=>$fecha_e,
-                'fecha_extr'=>$fecha_ext,
                 'ID_TEMA'=>$temasb,
                 'ID_MATERIA'=>$unidad1,
                 'ID_GR'=>$grado,
@@ -868,7 +981,6 @@ Public function eliminaradv($id){
                 $punteo2=$this->punteo2;
                 $fecha_e2=$this->fecha_e2;
                 $descripcion2=$this->descripcion2;
-                $fecha_ext2=$this->fecha_ext2;
                 $temasb2=$this->temasb2;
                 $grado=$this->grado;
                 $idsecc=$this->idsecc;
@@ -910,7 +1022,6 @@ Public function eliminaradv($id){
                     'archivos'=>$this->arch,
                     'punteo'=>$punteo2,
                     'fecha_entr'=>$fecha_e2,
-                    'fecha_extr'=>$fecha_ext2,
                     'ID_TEMA'=>$temasb2,
                     'ID_MATERIA'=>$unidad1,
                     'ID_GR'=>$grado,
@@ -1707,12 +1818,10 @@ public function Subir_Act2(){
     }
 
     else{
-    $this->limpiar_act2();
     $titulo2=$this->titulo2;
     $punteo2=$this->punteo2;
     $fecha_e2=$this->fecha_e2;
     $descripcion2=$this->descripcion2;
-    $fecha_ext2=$this->fecha_ext2;
     $temasb2=$this->temasb2;
     $grado=$this->grado;
     $idsecc=$this->idsecc;
@@ -1754,7 +1863,6 @@ public function Subir_Act2(){
             'archivos'=>$this->arch,
             'punteo'=>$punteo2,
             'fecha_entr'=>$fecha_e2,
-            'fecha_extr'=>$fecha_ext2,
             'ID_TEMA'=>$temasb2,
             'ID_MATERIA'=>$unidad1,
             'ID_GR'=>$grado,
@@ -1803,6 +1911,7 @@ public function limpiar_act(){
     $this->temasb="";
     $this->formato="";
     $this->archivo="";
+    $this->sancion="";
     $this->formato=0;
     $this->option1="";
     $this->option2="";
@@ -1892,6 +2001,65 @@ public function limpiarplan(){
  
 }
 
-
-
+public function editrev(){
+    $this->editrevisar=1;
 }
+
+Public function edit_estado_rev($id){
+    $id_actividad_act=$id;
+    $sql='SELECT * FROM estado_actividades WHERE ID_ACTIVIDADES=?';
+    $estactr=DB:: select($sql, array($id_actividad_act));
+    if($estactr !=null){
+        foreach($estactr as $estac)
+        {
+            $this->id_estado_act=$estac->ID_ESTADO_ACT;
+            $this->id_actividad_r=$estac->ID_ACTIVIDADES;
+            $this->validacion_r=$estac->ESTADO;
+            $this->comentario_d_r=$estac->COMENTARIO;
+        }
+    }
+
+    $this->op='editrevact';
+   $this->editp=1;
+}
+
+public function revisiones($estadoact){
+   $id_actividad_r=$this->id_actividad_r;
+   $this->validacion_r=$estadoact;
+   $comentario_d_r=$this->comentario_d_r;
+   $id_estado_act=$this->id_estado_act;
+   
+
+
+   DB::begintransaction();
+
+
+   $revisiones=DB::table('estado_actividades')
+   ->where('ID_ESTADO_ACT', $id_estado_act)
+   ->update(
+        [
+            'ID_ACTIVIDADES'=>$this->id_actividad_r,
+            'ESTADO'=>$this->validacion_r,
+            'COMENTARIO'=>$comentario_d_r,
+        ]);
+
+        if($revisiones){
+            DB::commit();
+            unset($this->mensaje);;
+            unset($this->mensaje1);
+            $this->op='addcontenidos';
+            $this->mensaje='Insertado correctamente';
+            }
+            else {
+            DB::rollback();
+            unset($this->mensaje);;
+            unset($this->mensaje1);
+            $this->op='addcontenidos';
+            $this->mensaje1='Datos no  insertados correctamente';
+            }        
+    }
+}
+
+
+
+

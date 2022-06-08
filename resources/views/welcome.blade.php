@@ -343,7 +343,7 @@
     
                 @yield('content')
             </div>
-          
+            
              <div class="container">
                  @yield('inicio')
              </div>

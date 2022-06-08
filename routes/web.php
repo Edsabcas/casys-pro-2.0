@@ -101,7 +101,7 @@ Route::get('/Crear_publicación', [EdicionAnuncioController::class, 'edicion'])-
 
 Route::get('/Vista_publicación', [AnunciosAdController::class, 'vistaadmin'])->middleware('auth');
 Route::get('/Publicaciones_guardadas', [GuardarController::class, 'guardar'])->middleware('auth');
-Route::get('/Anuncio_Nuevo', [FormMaestrosController::class, 'edicionmaestro'])->middleware('auth');
+Route::get('/Anuncios_nuevos', [FormMaestrosController::class, 'edicionmaestro'])->middleware('auth');
 Route::get('/Publicaciones', [AnunciosNoAdController::class, 'vistanoadmin'])->middleware('auth');
 
 
@@ -188,6 +188,8 @@ Route::post('/update_temas',[ContenidosController::class, 'update_temas']);
 Route::post('/update_act',[ContenidosController::class, 'update_act']);
 
 Route::post('/update_plan',[ContenidosController::class, 'update_plan']);
+
+Route::post('/revisiones',[ContenidosController::class, 'revisiones']);
 
 
 

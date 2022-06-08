@@ -148,7 +148,7 @@
     </div>
 
 <div class="table-responsive">
-  <table class="table table-success table-striped table-bordered">
+  <table class="table table-light table-bordered">
       <thead>
         <tr>
             <th>NOMBRE</th>

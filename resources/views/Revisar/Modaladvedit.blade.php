@@ -1,9 +1,9 @@
 <!-- Modal -->
-<div wire:ignore.self class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div wire:ignore.self class="modal fade" id="exampleModaledit" tabindex="-1" aria-labelledby="exampleModaledit" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Crear una nueva advertencia</h5>
+          <h5 class="modal-title" id="exampleModaledit">Editar la advertencia</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -23,64 +23,32 @@
                 <input type="hidden" value='{{$editaadv}}' name='editaadv'>
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label" style="font-size:20px">Coloque un enunciado para la advertencia</label>
-                <textarea class="form-control" id="summary-ckeditor" name="summary-ckeditor" rows="4" wire:model="texto_advertencia"></textarea>
+                <textarea class="form-control" id="summary-ckeditor" rows="4" wire:model="texto_advertencia"></textarea>
             </div>
-            @error('texto_advertencia')
-          <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
-            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
-            <div>
-              Es necesario que llenes este campo
-            </div>
-          </div>
-          @enderror
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label" style="font-size:20px">Coloque una prioridad para la advertencia</label>
-                <select class="form-select" aria-label="Default select example" name="calidad" wire:model="prioridad_advertencia" required>
+                <select class="form-select" aria-label="Default select example" wire:model="prioridad_advertencia" required>
                   <option selected >Elige la calidad de la advertencia</option>
                   <option value="1">Informativo</option>
                   <option value="2">Importante</option>
                   <option value="3">Urgente</option>
                 </select>
               </div>
-              @error('prioridad_advertencia')
-          <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
-            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
-            <div>
-              Es necesario que llenes este campo
-            </div>
-          </div>
-          @enderror
               <div class="mb-3">
                 <label for="examplenombre" class="form-label" style="font-size:20px"> Fecha de Inicio de vigencia</label>
-                <input type="date" class="form-control" name='fecha_inicio' wire:model='fecha_inicio'>
+                <input type="date" class="form-control" wire:model='fecha_inicio'>
               </div>
-              @error('fecha_inicio')
-          <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
-            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
-            <div>
-              Es necesario que llenes este campo
-            </div>
-          </div>
-          @enderror
               <div class="mb-3">
                 <label for="examplenombre" class="form-label" style="font-size:20px"> Fecha de final de vigencia</label>
-                <input type="date" class="form-control"  name='fecha_fin' wire:model='fecha_fin'>
+                <input type="date" class="form-control" wire:model='fecha_fin'>
               </div>
-              @error('fecha_fin')
-          <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
-            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
-            <div>
-              Es necesario que llenes este campo
-            </div>
-          </div>
-          @enderror
             </form>
 
           </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-primary" wire:click="advertencia_in()" data-bs-dismiss="modal">Guardar</button>
+          <button type="button" class="btn btn-primary" wire:click="update_adv()" data-bs-dismiss="modal">Actualizar</button>
         </div>
       </div>
     </div>
