@@ -49,8 +49,8 @@ $('#exampleModal1').modal('show');
           </td>
           @elseif($restriccion==0)
         <td>
-          @include('Unidades.Temas.modaltemas')
-          <button class="btn btn-editb" wire:click='limpiar()' data-bs-toggle="modal" data-bs-target="#tema" id=tema> Temas </button>
+          @include('Unidades.Temas.temas_original')
+          <button class="btn btn-editb" wire:click='limpiar()' data-bs-toggle="modal" data-bs-target="#tema" > Temas </button>
   
             @include('Unidades.Actividades.modal_actividades')
 

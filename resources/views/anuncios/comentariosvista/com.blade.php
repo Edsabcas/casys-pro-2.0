@@ -2,9 +2,12 @@
  <div wire:ignore.self class="modal fade"  id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModal" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content" style="weight:900px">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Comentarios</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" wire:click='cancel()'></button>
+      <div class="modal-header text-center" style="background:#a4cb39;color:rgb(255, 255, 255)">
+        <h5 class="modal-title text-center" style="color:rgb(255, 255, 255)" id="staticBackdropLabel">
+          <b><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-dots-fill" viewBox="0 0 16 16">
+            <path d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM5 8a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+          </svg>  Comentarios</b></h5>
+        <button type="button" class="btn btn-warning btn-close" style="color:rgb(255, 255, 255)" data-bs-dismiss="modal" aria-label="Close" wire:click='cancel()'></button>
       </div>
       <div class="modal-body">
           <div class="container-sm">
@@ -33,7 +36,7 @@
                        </div>
                      </div>
                       @enderror
-                      <button type="button" class="btn btn-outline-secondary" wire:click='guardarcomentario()' style="margin: 10px">Comentar</button> 
+                      <button type="button" class="btn btn-pre2" wire:click='guardarcomentario()' style="margin: 10px">Comentar</button> 
 
                   </div>
                   
