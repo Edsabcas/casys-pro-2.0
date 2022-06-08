@@ -1,6 +1,6 @@
 
   <div wire:ignore.self class="modal fade" id="plan" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="5" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
+    <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header text-center" style="background:#a4cb39;color:rgb(255, 255, 255)">
           <h2 class="modal-title" style="color:rgb(255, 255, 255)"><strong>Planificación Anual</strong></h2>
