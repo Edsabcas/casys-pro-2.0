@@ -1,5 +1,5 @@
 
-<div wire:ignore.self class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="5" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div wire:ignore.self class="modal fade" id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="5" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
@@ -93,8 +93,8 @@
             <label for="inputState" class="form-label" style="font-size:20px">Seleccione un tema</label>
             <div class="input-group">
               @include('Unidades.Temas.modaltemas')
-              <button class="btn btn-outline-primary" id="val" data-bs-toggle="modal" data-bs-target="#tema" type="button"><img src="https://img.icons8.com/material-two-tone/24/000000/add.png"/></button>
-              <select id="inputZip" class="form-select " wire:model="temasb" aria-label=".form-select-sm example"  style="border:2px solid rgba(86, 95, 76, 0.466);">
+              <button class="btn btn-outline-primary" id="val"  data-bs-dismiss="modal" type="button"><img src="https://img.icons8.com/material-two-tone/24/000000/add.png"/></button>
+              <select id="inputZip" class="form-select " wire:model="temasb"  aria-label=".form-select-sm example"  style="border:2px solid rgba(86, 95, 76, 0.466);">
                 <option selected>seleccione un tema</option>
                 @isset($temas)
                 @foreach ($temas as $tema)

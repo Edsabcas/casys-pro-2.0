@@ -54,7 +54,7 @@ $('#exampleModal1').modal('show');
   
             @include('Unidades.Actividades.modal_actividades')
 
-            <button class="btn btn-editb"  data-bs-toggle="modal" data-bs-target="#staticBackdrop" Wire:Click="limpiar_act"> Crear Actividades </button>            
+            <button class="btn btn-editb" id="Crear" Wire:Click="limpiar_act"> Crear Actividades </button>            
             <a wire:click='vista_a("4")' class="btn btn-editb">Ver Actividades </a>
 
 
