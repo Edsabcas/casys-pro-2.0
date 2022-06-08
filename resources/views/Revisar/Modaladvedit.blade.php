@@ -1,9 +1,9 @@
 <!-- Modal -->
-<div wire:ignore.self class="modal fade" id="exampleModaledit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div wire:ignore.self class="modal fade" id="exampleModaledit" tabindex="-1" aria-labelledby="exampleModaledit" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Editar la advertencia</h5>
+          <h5 class="modal-title" id="exampleModaledit">Editar la advertencia</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -19,6 +19,8 @@
             @endif
           <div class="container-sm">
               <form action="" wire:submit.prevent='' enctype="multipart/form-data" method="POST">
+                @csrf
+                <input type="hidden" value='{{$editaadv}}' name='editaadv'>
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label" style="font-size:20px">Coloque un enunciado para la advertencia</label>
                 <textarea class="form-control" id="summary-ckeditor" rows="4" wire:model="texto_advertencia"></textarea>
@@ -46,7 +48,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-primary" name="update_adv()" data-bs-dismiss="modal">Actualizar</button>
+          <button type="submit" class="btn btn-primary" wire:click="update_adv()" >Actualizar</button>
         </div>
       </div>
     </div>
