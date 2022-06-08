@@ -1,7 +1,7 @@
 <div  wire:ignore.self class="modal fade" id="cambioestado" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="cambioestado" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
-        <div class="modal-header"  style="background:#e43434;color:rgba(255, 255, 255, 255.255)">
+        <div class="modal-header"  style="background:#a4cb39;color:rgba(255, 255, 255, 255.255)">
         
         </div>
         <div class="modal-body">
@@ -11,8 +11,8 @@
             </h4> 
         </div>
         <div class="modal-footer">
-            <a wire:click='cambioestado()' type="button" style="border-radius: 60px 60px 60px 60px;" data-bs-dismiss="modal" class="btn btn-warning">Si</a>
-          <button type="button" class="btn btn-secondary"  style="border-radius: 60px 60px 60px 60px;"  id="info"  data-bs-dismiss="modal">Cancelar</button>
+            <a wire:click='cambioestado()' type="button" data-bs-dismiss="modal" class="btn btn-editb">Si</a>
+          <button type="button" class="btn btn-secondary"  style="border-radius: 12px;"  id="info"  data-bs-dismiss="modal">Cancelar</button>
           
         </div>
       </div>
