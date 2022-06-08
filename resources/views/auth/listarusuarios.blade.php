@@ -191,8 +191,8 @@
             <div wire:ignore.self class="modal fade" id="perfilmodal2{{$listadouser->ID_USUARIO}}" tabindex="-1" aria-labelledby="perfilmodal2Label" aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="perfilmodal2Label">Cambio de foto de perfil</h5>
+                    <div class="modal-header text-center" style="background:#a4cb39;color:rgb(255, 255, 255)">
+                      <h3 class="modal-title text-center" id="perfilmodal2Label" style="color:rgb(255, 255, 255)" ><strong><b>Cambio foto de perfil</b></strong></h3>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
@@ -229,8 +229,7 @@
                                         </div>
                                       @endif
                     </div>  
-                    <button class="btn btn-pre2" wire:click="cambiofotolist({{$listadouser->ID_USUARIO}})">Publicar</button>
-                    <button type="button" class="btn btn-secondary" style="border-radius: 12px;" data-bs-dismiss="modal">Cerrar</button>
+                    <button class="btn btn-pre2" data-bs-dismiss="modal" wire:click="cambiofotolist({{$listadouser->ID_USUARIO}})">Publicar</button>
                   </form>
                   </div>
                 </div>
@@ -268,8 +267,8 @@
   </head>
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Realizar cambios en el usuario</h5>
+      <div class="modal-header text-center" style="background:#a4cb39;color:rgb(255, 255, 255)">
+        <h3 class="modal-title text-center" id="exampleModalLabel" style="color:rgb(255, 255, 255)" ><strong>Cambios en el usuario</strong></h3>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
@@ -333,7 +332,6 @@
 
           <hr>
           <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-          <button type="button" class="btn btn-secondary" style="border-radius: 12px;" data-bs-dismiss="modal">Cerrar</button>
           <button wire:click='e_perfiles' class="btn btn-pre2"> 
             Guardar
           </button>

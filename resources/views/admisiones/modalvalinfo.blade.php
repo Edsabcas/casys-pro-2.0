@@ -1,7 +1,7 @@
 <div  wire:ignore.self class="modal fade" id="cambioestadoinfo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="cambioestadoinfo" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
-        <div class="modal-header"  style="background:#2550df;color:rgba(255, 255, 255, 255.255)">
+        <div class="modal-header"  style="background:#a4cb39;color:rgba(255, 255, 255, 255.255)">
         
         </div>
         <div class="modal-body">
