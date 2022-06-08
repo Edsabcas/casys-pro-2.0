@@ -12,11 +12,12 @@ class AdminisionesComponet extends Component
     public $nombre_en,$fnacimiento_en,$dpi_en,$extentido_en,$es_civil_en,$direccion_en,$tel_casa_en,$cel_en,$correo_en,$religion_en;
     public $a,$mensaje,$gradose,$fingreso_gestion,$id_ges_cambio,$tipo_cambio1;
     public $val,$val1,$gestion,$errorfecha;
+    public $estado_ges;
     public $mensaje1,$id2;
     public function render()
     {
         if($this->mensaje!=null && $this->mensaje!=""){
-            
+
         }
 
         if($this->search0!=null && $this->search0!=""){
@@ -169,6 +170,7 @@ class AdminisionesComponet extends Component
             $this->gradoin=$pre->GRADO_ING_ES;
             $this->gestion=$pre->NO_GESTION;
             $this->fingreso_gestion=$pre->FECHA_REGISTRO;
+            $this->estado_ges=$pre->ESTADO_PRE_INS;
 
         }
 

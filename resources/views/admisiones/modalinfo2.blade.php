@@ -324,10 +324,15 @@
 
                         <div class="row g-3">
                           <div class="col-md">
-                          <label for="fnacimiento_en" style="font-size: 15px; color:#000000;">Fecha Nacimiento:</label>
-                          <input type="date" placeholder=""   wire:model="fnacimiento_en" class="form-control " required>
+                          <label for="fpago" style="font-size: 15px; color:#000000;">Forma de Pago:</label>
+                          <select class="form-select" wire:model="fpago" aria-label="Default select example">
+                            <option selected></option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                          </select>
                       </div>
-                      @error('fnacimiento_en')
+                      @error('fpago')
                       <div class="alert alert-warning" role="alert">
                        Pendiente
                       </div>
@@ -354,10 +359,10 @@
         <div class="modal-footer">
           <a  id="valpedido" wire:click="tipo_cambio(0)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-success" data-bs-dismiss="modal">Reg. Estado</a>
               
+          @if($estado_ges==2)
             <a  id="valpedido" wire:click="tipo_cambio(1)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-warning" data-bs-dismiss="modal">Sig. Estado</a>
-                
-          <button type="button" class="btn btn-secondary" style="border-radius: 60px 60px 60px 60px;" data-bs-dismiss="modal">Cerrar</button>
-               
+            @endif
+ 
         </div>
       </div>
     </div>
