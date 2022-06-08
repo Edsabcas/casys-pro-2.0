@@ -1,9 +1,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>
             
-  $(document).on('click', '#Editar', function() {
+  $(document).on('click', '#Crear', function() {
 
-$('#Editact').modal('show');
+$('#exampleModal').modal('show');
 
 });
 
@@ -66,7 +66,7 @@ $('#exampleModal1').modal('show');
     </div>
   </div>
   @include('Unidades.Actividades.modaledit_act')
-  <button class="btn btn-editb" id="Editar"  wire:click='edita({{$actividad->ID_ACTIVIDADES}})'>  Editar </button>            
+  <button class="btn btn-editb"  id="val" data-bs-toggle="modal" data-bs-target="#editaractividades"   wire:click='edita({{$actividad->ID_ACTIVIDADES}})'>  Editar </button>
 
 
 
