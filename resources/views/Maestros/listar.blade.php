@@ -1,14 +1,11 @@
 
 @isset($maestros)
-    <div class="accordion accordion-flush rounded" id="accordionFlushExample">
-        <div class="accordion-item" style="border-radius: 60px 60px 60px 60px;" >
-          <div class="card shadow rounded">
+        <div class="accordion-item" style="border-radius: 60px 60px 60px 60px; border-color: #3a3e7b" >
             <h2 class="accordion-header" style="border-radius: 60px 60px 60px 60px; color: #3a3e7b"  id="flush-headingOne">
                 <button class="accordion-button collapsed"  style="border-radius: 60px 60px 60px 60px; color: #3a3e7b"  type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
                     MAESTROS | visualizar tabla
                 </button>
             </h2>   
-          </div>           
             <div wire:ignore.self id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                 <div wire:ignore.self class="accordion-body">
                     <div class="input-group justify-content">
@@ -71,5 +68,4 @@
                 </div>
             </div>
         </div>
-    </div>
 @endisset
