@@ -605,40 +605,38 @@ class ContenidoComponent extends Component
             $prioridadadvertencia=$this->prioridad_advertencia;
             $fechainicio=$this->fecha_inicio;
             $fechafin=$this->fecha_fin;
-        }
-
-        DB::begintransaction();
+            
+            if($fechainicio>$fechafin){
+                $this->invalido=1;
+            }
+            else{
+                $this->invalido=0;
+                DB::begintransaction();
+                $advupdate=DB::table('tb_advertencias')
+                ->where('ID_ADVERTENCIA', $editaadv)
+                ->update(
+                    [
+                        'DESCRIPCION'=>$textoadvertencia,
+                        'PRIORIDAD'=>$prioridadadvertencia,
+                        'FECHA_INICIO'=>$fechainicio,
+                        'FECHA_FIND'=>$fechafin,
         
-        $advupdate=DB::table('tb_advertencias')
-        ->where('ID_ADVERTENCIA', $editaadv)
-        ->update(
-            [
-                'DESCRIPCION'=>$textoadvertencia,
-                'PRIORIDAD'=>$prioridadadvertencia,
-                'FECHA_INICIO'=>$fechainicio,
-                'FECHA_FIND'=>$fechafin,
-            ]);
-
-            if($advupdate){
-                DB::commit();
-                unset($this->mensaje);
-                unset($this->mensaje);
-                unset($this->mensaje3);
-                unset($this->mensaje1);
-                unset($this->mensaje4);
-                $this->op='addvertencias';
-                $this->mensaje3='Editado Correctamente';
+                    ]
+                    );
+                if($advupdate){
+                    $this->blockadvertencia=1;
+                    DB::commit();
+                    $this->advertencia_adver=1;
                 }
-                else {
-                DB::rollback();
-                unset($this->mensaje1);
-                unset($this->mensaje4);
-                unset($this->mensaje);
-                unset($this->mensaje3);
-                $this->op='addvertencias';
-                $this->mensaje4='No fue posible editarlo Correctamente';
+                else{
+                    DB::rollback();
+                    $this->advertencia_adver=2;
                 }
+            }
+        }
     }
+
+
 
     //funcion que muestra la vista de las unidades nuevas creadas
     public function validar_u2($nun,$nomu){
