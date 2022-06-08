@@ -1,4 +1,4 @@
-<nav aria-label="breadcrumb">
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
     <ol class="breadcrumb">
       @if($op2==null)
       <li class="breadcrumb-item"><a href="/Contenidos">Seleccion</a></li>
@@ -101,9 +101,9 @@
     @elseif($op2!=null && $op2==3)
     @include('Unidades.Unidad1')
     @elseif($op2!=null && $op2==4)
-    @include('Unidades.Actividades.VistaActividades');
+    @include('Unidades.Actividades.VistaActividades')
     @elseif($op2!=null && $op2==5)
-    @include('Unidades.Temas.VistaTemas');
+    @include('Unidades.Temas.VistaTemas')
     @elseif($op2!=null && $op2==6)
-    @include('Revisar.UnidadR');
+    @include('Revisar.UnidadR')
     @endif    
