@@ -313,7 +313,9 @@
             </div>        
         </div>
         <div class="modal-footer">
-            <a  id="valpedido" wire:click="tipo_cambio('{{$id2}}',1,{{$gestion}})" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-warning" data-bs-dismiss="modal">Validar</a>
+          <a  id="valpedido" wire:click="actualizar_info()" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-warning" data-bs-dismiss="modal">Actualizar Info.</a>
+                
+            <a  id="valpedido" wire:click="tipo_cambio(1)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-editb" data-bs-dismiss="modal">Validar Información</a>
                 
           <button type="button" class="btn btn-secondary" style="border-radius: 60px 60px 60px 60px;" data-bs-dismiss="modal">Cerrar</button>
                

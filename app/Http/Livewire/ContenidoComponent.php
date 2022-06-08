@@ -683,6 +683,8 @@ class ContenidoComponent extends Component
         return back()->withErrors(['error' => 'Validar el input vacio']);
     }
 
+
+
     else{
     $titulo=$this->titulo;
     $punteo=$this->punteo;
@@ -690,8 +692,23 @@ class ContenidoComponent extends Component
     $descripcion=$this->descripcion;
     $temasb=$this->temasb;
     $grado=$this->grado;
-    $fecha_ext=$this->fecha_ext;
-    $sancion=$this->sancion;
+
+    if($this->fecha_ext==""){
+        $fecha_ext=null;  
+    }
+        else{
+            $fecha_ext=$this->fecha_ext; 
+        }
+
+
+        if($this->sancion==""){
+            $sancion=null;  
+        }
+            else{
+                $sancion=$this->sancion;
+            }
+    
+
     $idsecc=$this->idsecc;
     $unidad1=$this->unidad1;
     $unidadfija=$this->unidadfija;

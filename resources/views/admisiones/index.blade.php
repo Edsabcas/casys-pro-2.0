@@ -20,12 +20,18 @@
       </div>
       <br><br>
       @if($mensaje!=null)
-      <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <div id="cerrar"class="alert alert-success alert-dismissible fade show cerrar" role="alert">
         <strong> Actualizado Correctamente.</strong> 
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
       @endif
-
+<script>
+  $('#cerrar').fadeIn();     
+  setTimeout(function() {
+   $mensaje=""
+       $("#cerrar").fadeOut();           
+  },2000);
+</script>
       @if($mensaje1!=null)
       <div class="alert alert-danger d-flex align-items-center" role="alert">
         <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
