@@ -3,7 +3,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Editar una  advertencia</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Editar la advertencia</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -19,15 +19,13 @@
             @endif
           <div class="container-sm">
               <form action="" wire:submit.prevent='' enctype="multipart/form-data" method="POST">
-                @csrf
-                <input type="hidden" value='{{$editaadv}}' name='editaadv'>
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label" style="font-size:20px">Coloque un enunciado para la advertencia</label>
-                <textarea class="form-control" id="summary-ckeditor" name="summary-ckeditor" rows="4" wire:model="texto_advertencia"></textarea>
+                <textarea class="form-control" id="summary-ckeditor" rows="4" wire:model="texto_advertencia"></textarea>
             </div>
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label" style="font-size:20px">Coloque una prioridad para la advertencia</label>
-                <select class="form-select" aria-label="Default select example" name="calidad" wire:model="prioridad_advertencia" required>
+                <select class="form-select" aria-label="Default select example" wire:model="prioridad_advertencia" required>
                   <option selected >Elige la calidad de la advertencia</option>
                   <option value="1">Informativo</option>
                   <option value="2">Importante</option>
@@ -36,11 +34,11 @@
               </div>
               <div class="mb-3">
                 <label for="examplenombre" class="form-label" style="font-size:20px"> Fecha de Inicio de vigencia</label>
-                <input type="date" class="form-control"  name='fecha_inicio' wire:model='fecha_inicio'>
+                <input type="date" class="form-control" wire:model='fecha_inicio'>
               </div>
               <div class="mb-3">
                 <label for="examplenombre" class="form-label" style="font-size:20px"> Fecha de final de vigencia</label>
-                <input type="date" class="form-control"  name='fecha_fin' wire:model='fecha_fin'>
+                <input type="date" class="form-control" wire:model='fecha_fin'>
               </div>
             </form>
 
