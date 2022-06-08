@@ -48,7 +48,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          <button type="submit" class="btn btn-primary" wire:click="update_adv()" >Actualizar</button>
+          <button type="button" class="btn btn-primary" wire:click="update_adv()" data-bs-dismiss="modal">Actualizar</button>
         </div>
       </div>
     </div>
