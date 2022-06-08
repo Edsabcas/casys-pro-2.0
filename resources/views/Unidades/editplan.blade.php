@@ -23,7 +23,7 @@
               </div>
               @endif
             @endisset
-            <div class="container-sm">
+            <div class="container-xl">
               <h3 class="form-label text" style="font-size:40px">Crear Tema</h3> 
     
               <form action="/update_plan" method="POST">
