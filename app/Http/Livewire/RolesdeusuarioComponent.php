@@ -126,5 +126,14 @@ class RolesdeusuarioComponent extends Component
         }
     }
 
+    public function cargarmenu($ID_ROL)
+    {
 
+    $sql='SELECT menu_rol.ID_MENU_ROL, rol.ID_ROL, rol.DESCRIPCION as ROLES, menu.DESCRIPCION, menu_rol.ESTADO
+	FROM menu_rol inner join rol on rol.ID_ROL = menu_rol.ID_ROL inner join menu on menu.ID_MENU = menu_rol.ID_MENU WHERE rol.ID_ROL = '.$ID_ROL;
+    $opciones=DB::select($sql);
+
+    session(['opciones' => $opciones]);
+
+    }
 }

@@ -111,6 +111,9 @@
 @elseif ($op=='editaadv')
 @include('Revisar.Modaladvedit')
 
+@elseif($op=='addvertenciasedit')
+@livewire('contenido-componet')
+
 @endif
 @endif
 @endsection
