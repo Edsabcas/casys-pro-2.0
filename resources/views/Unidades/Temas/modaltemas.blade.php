@@ -1,5 +1,5 @@
 
-  <div wire:ignore.self class="modal fade" id="tema" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="5" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div wire:ignore.self class="modal fade" id="exampleModal1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="5" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header">
@@ -57,7 +57,7 @@
                     </div>
                     <br>
                   
-                    <button type="submit" class="btn btn-pre2" wire:click="Subir_Tema()" >Publicar</button>
+                    <button type="submit" class="btn btn-pre2" wire:click="Subir_Tema()"  id="Crear"  data-bs-dismiss="modal" >Publicar</button>
                   
           </form>
            
@@ -65,7 +65,7 @@
             </div>        
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"  aria-label="Close">Cerrar</button>
+          <button type="button" class="btn btn-secondary" aria-label="Close"  id="Crear"  data-bs-dismiss="modal" >Cerrar</button>
         
           </div>
       </div>

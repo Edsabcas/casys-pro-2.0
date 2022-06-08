@@ -6,14 +6,17 @@ use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 
 class MaestrosComponents extends Component{
 
     public $maestro;
 
-    public $nombre_docente,$apellido_docente,$dpi,$telefono,$correo,$estado_civil,$estado,$id_docente,$direccion,$fecha_nacimiento;
+    public $nombre_docente,$apellido_docente,$dpi,$telefono,$correo,$corre,$estado_civil,$estado,$id_docente,$direccion,$fecha_nacimiento;
 
     public $mensaje1,$mensaje2,$mensaje3,$mensaje4,$mensajeeliminar,$mensajeeliminar1;
+
+    public $ape_casada,$extendido,$iggs,$edad,$nit,$telcasa,$emergencia,$tel1,$tel2,$titulonvl,$cedula,$claseescalonaria,$fecha_ascenso,$no_registro,$universidad,$ceduladocente,$claseescalonaria2,$fecha_ascenso2,$regisescalafon,$otros_estudios,$estudiante,$cursos_aprovados,$graduado;
 
     public $op,$edit,$edit1;
 
@@ -53,30 +56,99 @@ class MaestrosComponents extends Component{
 
 
         if($this->validate([
+            /* FORMULARIO 1 */
             'nombre_docente' => 'required',
             'apellido_docente' => 'required',
+            'ape_casada' => 'required',  
             'dpi' => 'required',
-            'telefono' => 'required',
-            'correo' => 'required',
-            'estado_civil' => 'required',
-            'direccion' => 'required',
+            'extendido' => 'required', 
+            'iggs' => 'required', 
             'fecha_nacimiento' => 'required',
+            'edad' => 'required', 
+            'estado_civil' => 'required',
+            'nit' => 'required', 
+            'direccion' => 'required',
+            'telefono' => 'required',
+            'telcasa' => 'required', 
+            'emergencia' => 'required', 
+            'tel1' => 'required', 
+            'tel2' => 'required', 
+            'correo' => 'required',
             'estado' => 'required',
+
+            /* FORMLUARIO 2 */
+
+            'titulonvl' => 'required',
+            'cedula' => 'required',
+            'claseescalonaria' => 'required',
+            'fecha_ascenso' => 'required',
+            'no_registro' => 'required',
+
+            /* FORMULARIO 3 */
+
+            'universidad' => 'required',
+            'ceduladocente' => 'required',
+            'claseescalonaria2' => 'required',
+            'fecha_ascenso2' => 'required',
+            'regisescalafon' => 'required',
+
+            /* FORMLUARIO 4 */
+
+            'otros_estudios' => 'required',
+            'estudiante' => 'required',
+            'cursos_aprovados' => 'required',
+            'graduado' => 'required',
+
         ])==false){
             $mensaje="no encontrado";
             session(['message' => 'no encontrado']);
             return back()->withErrors(['mensaje' =>'Validar el input vacio']);
         }
         else{
+
+            /* FORMULARIO 1 */
+
         $num_docente=$this->nombre_docente;
         $ape_docente=$this->apellido_docente;
+        $ape_casada=$this->ape_casada;
         $dpi=$this->dpi;
-        $tel=$this->telefono;
-        $corre=$this->correo;
-        $estado_c=$this->estado_civil;
-        $direccion=$this->direccion;
+        $extendido=$this->extendido;
+        $iggs=$this->iggs;
         $fecha_nacimiento=$this->fecha_nacimiento;
+        $edad=$this->edad;
+        $estado_c=$this->estado_civil;
+        $nit=$this->nit;
+        $direccion=$this->direccion;
+        $tel=$this->telefono;
+        $telcasa=$this->telcasa;
+        $emergencia=$this->emergencia;
+        $tel1=$this->tel1;
+        $tel2=$this->tel2;
+        $corre=$this->correo;
         $estado=$this->estado;
+
+        /* FORMULARIO 2 */
+
+        $titulonvl=$this->titulonvl;
+        $cedula=$this->cedula;
+        $claseescalonaria=$this->claseescalonaria;
+        $fecha_ascenso=$this->fecha_ascenso;
+        $no_registro=$this->no_registro;
+
+        /* FORMULARIO 3 */
+
+        $universidad=$this->universidad;
+        $ceduladocente=$this->ceduladocente;
+        $claseescalonaria2=$this->claseescalonaria2;
+        $fecha_ascenso2=$this->fecha_ascenso2;
+        $regisescalafon=$this->regisescalafon;
+
+        /* FORMULARIO 4 */
+
+        $otros_estudios=$this->otros_estudios;
+        $estudiante=$this->estudiante;
+        $cursos_aprovados=$this->cursos_aprovados;
+        $graduado=$this->graduado;
 
         $usuario=$this->usuario;
         $correoed=$this->correoed;
@@ -111,18 +183,77 @@ class MaestrosComponents extends Component{
 
         $maestro=DB::table('tb_docentes')->insert(
             [
+                /* FORMULARIO 1 */
+                
                 'NOMBRE_DOCENTE'=>$num_docente,
                 'APELLIDO_DOCENTE'=>$ape_docente,
+                'APELLIDO_CASADA'=>$ape_casada,
                 'DPI'=>$dpi,
-                'TELEFONO'=>$tel,
-                'CORREO'=>$corre,
-                'ESTADO_CIVIL'=>$estado_c,
-                'DIRECCION'=>$direccion,
+                'EXTENDIDO_EN'=>$extendido,
+                'NO_IGGS'=>$iggs,
                 'FECHA_NACIMIENTO'=>$fecha_nacimiento,
+                'EDAD'=>$edad,
+                'ESTADO_CIVIL'=>$estado_c,
+                'NIT'=>$nit,
+                'DIRECCION'=>$direccion,
+                'TELEFONO'=>$tel,
+                'TELEFONO_CASA'=>$telcasa,
+                'EMERGENCIA'=>$emergencia,
+                'TELEFONO1'=>$tel1,
+                'TELEFONO2'=>$tel2,
+                'CORREO'=>$corre,
                 'ESTADO'=>$estado,
                 'ID_USER'=>$id,
-            ]);
 
+                /* FORMULARIO 2 */
+
+                'TITULO_NIVEL_MEDIO'=>$titulonvl,
+                'NO_CEDULA'=>$cedula,
+                'CLASE_ESCALONARIA'=>$claseescalonaria,
+                'FECHA_ASCENSO'=>$fecha_ascenso,
+                'NO_REGISTRO_ESCALAFON'=>$no_registro,
+
+                /* FORMULARIO 3 */
+
+                'TITULO_UNIVERSIDAD'=>$universidad,
+                'NO_CEDULA2'=>$ceduladocente,
+                'CLASE_ESCALONARIA2'=>$claseescalonaria2,
+                'FECHA_ASCENSO2'=>$fecha_ascenso2,
+                'NO_REGISTRO_ESCALAFON2'=>$regisescalafon,
+
+                /* FORMULARIO 4 */
+
+                'OTROS_ESTUDIOS'=>$otros_estudios,
+                'ESTUDIANTE'=>$estudiante,
+                'CURSOS_APROBADOS'=>$cursos_aprovados,
+                'GRADUADO'=>$graduado,
+
+            ]);
+/* 
+            if($usuario && $maestro){
+
+                DB::commit();   
+                $subject = "No responder (Notificación Pre-Ins.Castaño)";
+                $for = $this->corre;
+                $arreglo= array($this->usuario,$this->correoed,$this->pass);
+                Mail::send('Maestros.vistacorreo',compact('arreglo'), function($msj) use($subject,$for){
+                    $msj->from("ingresos@colegioelcastano.edu.gt","ColegioElCastaño");
+                    $msj->subject($subject);
+                    $msj->to($for);
+                  //  $msj->attach('images/a.jpg');
+                   
+                });
+    
+                $this->reset();
+    
+                $this->mensaje=1;
+                
+            }
+            else{
+                //$this->reset();
+                DB::rollback();
+                $this->mensaje=2;
+            } */
 
             $id_rol=3;
 
@@ -145,6 +276,7 @@ class MaestrosComponents extends Component{
         }
 
     }
+    
 
     public function listar_docentes(){
         $sql="SELECT * FROM tb_docentes";
@@ -185,15 +317,51 @@ class MaestrosComponents extends Component{
         if($maestro !=null){
             foreach($maestro as $mae)
             {
+
+                /* FORMULARIO 1 */
+
                 $this->id_docente=$mae->ID_DOCENTE;
                 $this->nombre_docente=$mae->NOMBRE_DOCENTE;
                 $this->apellido_docente=$mae->APELLIDO_DOCENTE;
+                $this->ape_casada=$mae->APELLIDO_CASADA;
                 $this->dpi=$mae->DPI;
-                $this->telefono=$mae->TELEFONO;
-                $this->correo=$mae->CORREO;
+                $this->extendido=$mae->EXTENDIDO_EN;
+                $this->iggs=$mae->NO_IGGS;
+                $this->fecha_nacimiento=$mae->FECHA_NACIMIENTO;
+                $this->edad=$mae->EDAD;
                 $this->estado_civil=$mae->ESTADO_CIVIL;
+                $this->nit=$mae->NIT;
                 $this->direccion=$mae->DIRECCION;
+                $this->telefono=$mae->TELEFONO;
+                $this->telcasa=$mae->TELEFONO_CASA;
+                $this->emergencia=$mae->EMERGENCIA;
+                $this->tel1=$mae->TELEFONO1;
+                $this->tel2=$mae->TELEFONO2;
+                $this->correo=$mae->CORREO;       
                 $this->estado=$mae->ESTADO;
+
+                /* FORMULARIO 2 */
+
+                $this->titulonvl=$mae->TITULO_NIVEL_MEDIO;
+                $this->cedula=$mae->NO_CEDULA;
+                $this->claseescalonaria=$mae->CLASE_ESCALONARIA;
+                $this->fecha_ascenso=$mae->FECHA_ASCENSO;
+                $this->no_registro=$mae->NO_REGISTRO_ESCALAFON;
+
+                /* FORMULARIO 3 */
+
+                $this->universidad=$mae->TITULO_UNIVERSIDAD;
+                $this->ceduladocente=$mae->NO_CEDULA2;
+                $this->claseescalonaria2=$mae->CLASE_ESCALONARIA2;
+                $this->fecha_ascenso2=$mae->FECHA_ASCENSO2;
+                $this->regisescalafon=$mae->NO_REGISTRO_ESCALAFON2;
+
+                /* FORMULARIO 4 */
+
+                $this->otros_estudios=$mae->OTROS_ESTUDIOS;
+                $this->estudiante=$mae->ESTUDIANTE;
+                $this->cursos_aprovados=$mae->CURSOS_APROBADOS;
+                $this->graduado=$mae->GRADUADO;
             }
         }
         $this->op=4;
@@ -201,15 +369,50 @@ class MaestrosComponents extends Component{
     }
 
     public function update_docentes(){
-        $id_docente=$this->id_docente;
-        $nomb_docente=$this->nombre_docente;
-        $apelli_docente=$this->apellido_docente;
-        $dp=$this->dpi;
-        $tl=$this->telefono;
-        $corr=$this->correo;
-        $estado_ci=$this->estado_civil;
+
+        /* FORMULARIO 1 */
+
+        $num_docente=$this->nombre_docente;
+        $ape_docente=$this->apellido_docente;
+        $ape_casada=$this->ape_casada;
+        $dpi=$this->dpi;
+        $extendido=$this->extendido;
+        $iggs=$this->iggs;
+        $fecha_nacimiento=$this->fecha_nacimiento;
+        $edad=$this->edad;
+        $estado_c=$this->estado_civil;
+        $nit=$this->nit;
         $direccion=$this->direccion;
+        $tel=$this->telefono;
+        $telcasa=$this->telcasa;
+        $emergencia=$this->emergencia;
+        $tel1=$this->tel1;
+        $tel2=$this->tel2;
+        $corre=$this->correo;
         $estado=$this->estado;
+
+        /* FORMULARIO 2 */
+
+        $titulonvl=$this->titulonvl;
+        $cedula=$this->cedula;
+        $claseescalonaria=$this->claseescalonaria;
+        $fecha_ascenso=$this->fecha_ascenso;
+        $no_registro=$this->no_registro;
+
+        /* FORMULARIO 3 */
+
+        $universidad=$this->universidad;
+        $ceduladocente=$this->ceduladocente;
+        $claseescalonaria2=$this->claseescalonaria2;
+        $fecha_ascenso2=$this->fecha_ascenso2;
+        $regisescalafon=$this->regisescalafon;
+
+        /* FORMULARIO 4 */
+
+        $otros_estudios=$this->otros_estudios;
+        $estudiante=$this->estudiante;
+        $cursos_aprovados=$this->cursos_aprovados;
+        $graduado=$this->graduado;
 
         DB::beginTransaction();
         
@@ -217,19 +420,51 @@ class MaestrosComponents extends Component{
         ->where('ID_DOCENTE',$id_docente)
         ->update(
             [
-                'NOMBRE_DOCENTE'=>$nomb_docente,
-                'APELLIDO_DOCENTE'=>$apelli_docente,
-                'DPI'=>$dp,
-                'TELEFONO'=>$tl,
-                'CORREO'=>$corr,
-                'ESTADO_CIVIL'=>$estado_ci,
+                /* FORMULARIO 1 */
+                'NOMBRE_DOCENTE'=>$num_docente,
+                'APELLIDO_DOCENTE'=>$ape_docente,
+                'APELLIDO_CASADA'=>$ape_casada,
+                'DPI'=>$dpi,
+                'EXTENDIDO_EN'=>$extendido,
+                'NO_IGGS'=>$iggs,
+                'FECHA_NACIMIENTO'=>$fecha_nacimiento,
+                'EDAD'=>$edad,
+                'ESTADO_CIVIL'=>$estado_c,
+                'NIT'=>$nit,
                 'DIRECCION'=>$direccion,
+                'TELEFONO'=>$tel,
+                'TELEFONO_CASA'=>$telcasa,
+                'EMERGENCIA'=>$emergencia,
+                'TELEFONO1'=>$tel1,
+                'TELEFONO2'=>$tel2,
+                'CORREO'=>$corre,
                 'ESTADO'=>$estado,
+                'ID_USER'=>$id,
+
+                /* FORMULARIO 2 */
+
+                'TITULO_NIVEL_MEDIO'=>$titulonvl,
+                'NO_CEDULA'=>$cedula,
+                'CLASE_ESCALONARIA'=>$claseescalonaria,
+                'FECHA_ASCENSO'=>$fecha_ascenso,
+                'NO_REGISTRO_ESCALAFON'=>$no_registro,
+
+                /* FORMULARIO 3 */
+
+                'TITULO_UNIVERSIDAD'=>$universidad,
+                'NO_CEDULA2'=>$ceduladocente,
+                'CLASE_ESCALONARIA2'=>$claseescalonaria2,
+                'FECHA_ASCENSO2'=>$fecha_ascenso2,
+                'NO_REGISTRO_ESCALAFON2'=>$regisescalafon,
+
+                /* FORMULARIO 4 */
+
+                'OTROS_ESTUDIOS'=>$otros_estudios,
+                'ESTUDIANTE'=>$estudiante,
+                'CURSOS_APROBADOS'=>$cursos_aprovados,
+                'GRADUADO'=>$graduado,
             ]
         );
-
-
-        
         if($mae){
             DB::commit();
             $this->reset();

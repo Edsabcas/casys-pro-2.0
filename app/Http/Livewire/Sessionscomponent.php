@@ -11,7 +11,7 @@ class Sessionscomponent extends Component
 //estos son los roles
 {
 
-    public $menu_rol, $submenu_rol, $users, $op, $mensaje20, $mensaje, $rol_usuario_activo;
+    public $menu_rol, $submenu_rol, $users, $op, $mensaje20, $mensaje, $rol_usuario_activo, $advertenciass;
 
     public function render()
     {
@@ -86,7 +86,11 @@ class Sessionscomponent extends Component
         session(['users' => $users]);
 
         $op=0;
-        $rol=$ro[0];     
+        $rol=$ro[0];
+        session(['rol_usuario_activo' => $rol]); 
+        $sql= 'SELECT * FROM tb_advertencias';
+        $this->advertenciass=DB::select($sql);
+        session(['advertencias_activas' => $this->advertenciass]);   
         return redirect()->to('/');
         }
     }

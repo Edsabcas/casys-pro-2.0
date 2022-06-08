@@ -28,6 +28,7 @@
           </thead>
           <tbody>
               @foreach($advertenciass as $advertenciaa)
+              @if($dia_exacto>=$advertenciaa->FECHA_INICIO && $dia_exacto<=$advertenciaa->FECHA_FIND)
               <tr>
                   <th>{{$advertenciaa->ID_ADVERTENCIA}}</th>
                   <th>{{$advertenciaa->DESCRIPCION}}</th>
@@ -53,6 +54,7 @@
                       </span>
                   </td>
               </tr>
+              @endif
               @endforeach
           </tbody>
     </table>

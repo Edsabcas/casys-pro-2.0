@@ -2,9 +2,9 @@
   <div wire:ignore.self id="infodata2" style="border-radius: 60px 60px 60px 60px;" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="infodata2" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
-        <div class="modal-header text-center" style="background:#3a3e7b;color:rgba(255, 255, 255, 0.703)">
-          <h3 class="modal-title text-center" style="color:rgba(255, 255, 255, 0.703)" >Proceso Pre-Inscripción</h3>
-          <button type="button" class="btn btn-warning" style="color:rgba(22, 21, 21, 0.703)"  data-bs-dismiss="modal" aria-label="Close">X</button>
+        <div class="modal-header text-center" style="background:#a4cb39;color:rgb(255, 255, 255)">
+          <h3 class="modal-title text-center" style="color:rgb(255, 255, 255)" >Proceso Pre-Inscripción</h3>
+          <button type="button" class="btn btn-close btn-warning" style="color:rgb(255, 255, 255)"  data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
         <div class="modal-body">
@@ -352,7 +352,9 @@
             </div>        
         </div>
         <div class="modal-footer">
-            <a  id="valpedido" wire:click="tipo_cambio('{{$id2}}',1,{{$gestion}})" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-warning" data-bs-dismiss="modal">Validar</a>
+          <a  id="valpedido" wire:click="tipo_cambio(0)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-success" data-bs-dismiss="modal">Reg. Estado</a>
+              
+            <a  id="valpedido" wire:click="tipo_cambio(1)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-warning" data-bs-dismiss="modal">Sig. Estado</a>
                 
           <button type="button" class="btn btn-secondary" style="border-radius: 60px 60px 60px 60px;" data-bs-dismiss="modal">Cerrar</button>
                

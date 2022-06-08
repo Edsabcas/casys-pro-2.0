@@ -27,7 +27,7 @@ class SeccionComponents extends Component
 
         /* $sql="SELECT * FROM tb_seccions";
         $secciones=DB::select($sql); */
-        return view('livewire.seccion-components', ['secciones'=>tb_seccion::paginate(2)] /* compact('secciones') */);
+        return view('livewire.seccion-components', ['secciones'=>tb_seccion::paginate(5)] /* compact('secciones') */);
     }
 
     public function guardar_sec(){

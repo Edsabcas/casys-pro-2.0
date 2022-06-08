@@ -108,7 +108,8 @@
 @elseif($op=='addvertencias')
 @livewire('contenido-componet')
 
-
+@elseif ($op=='editaadv')
+@include('Revisar.Modaladvedit')
 
 @elseif($op=='addvertenciasedit')
 @livewire('contenido-componet')

@@ -10,11 +10,14 @@ class AdminisionesComponet extends Component
     public $search0,$search1,$search2,$search3,$search4,$search5;
     public $gradoin,$nombre_es,$f_nacimiento_es,$genero,$cui_es,$codigo_pe_es,$nac_es,$lug_nac_es,$tel_es,$cel_es,$direccion_es,$religion_es;
     public $nombre_en,$fnacimiento_en,$dpi_en,$extentido_en,$es_civil_en,$direccion_en,$tel_casa_en,$cel_en,$correo_en,$religion_en;
-    public $a,$mensaje,$gradose,$fingreso_gestion,$id_ges_cambio,$tipo_cambio;
+    public $a,$mensaje,$gradose,$fingreso_gestion,$id_ges_cambio,$tipo_cambio1;
     public $val,$val1,$gestion,$errorfecha;
     public $mensaje1,$id2;
     public function render()
     {
+        if($this->mensaje!=null && $this->mensaje!=""){
+            
+        }
 
         if($this->search0!=null && $this->search0!=""){
             $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.NO_GESTION, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE ESTADO_PRE_INS=0 and (NO_GESTION like '%".$this->search0."%' or NOMBRE_ES like '%".$this->search0."%')";
@@ -68,14 +71,12 @@ class AdminisionesComponet extends Component
         return view('livewire.adminisiones-componet', compact('estado_cero','estado_uno','estado_dos','estado_tres','estado_cuatro','estado_cinco'));
     }
 
-    public function tipo_cambio($id,$tipo,$gestion){
-        $this->id_ges_cambio=$id;
-        $this->tipo_cambio=$tipo;
-        $this->gestion=$gestion;
+    public function tipo_cambio($tipo){
+      //  $this->id_ges_cambio=$id;
+        $this->tipo_cambio1=$tipo;
+      //  $this->gestion=$gestion;
         
     }
-
-
     public function cambioestado(){
         DB::beginTransaction();
 
@@ -83,7 +84,7 @@ class AdminisionesComponet extends Component
                ->where('ID_PRE',  $this->id_ges_cambio)
                ->update(
                    [
-                    'ESTADO_PRE_INS' => $this->tipo_cambio,
+                    'ESTADO_PRE_INS' => $this->tipo_cambio1,
                     'FECHA_CAMBIOS_REG'=>  date("Y-m-d H:i:s"),
                    ]);
 
@@ -102,12 +103,12 @@ class AdminisionesComponet extends Component
     }
     public function editar1($id)
     {
-        $this->id2=$id;
+        //$this->id2=$id;
        $sql="SELECT TB_PRE_INS.*, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE ESTADO_PRE_INS=0 and ID_PRE=?";
         $preinsp=DB::select($sql,array($id));
 
         foreach($preinsp as $pre){
-            
+            $this->id_ges_cambio=$pre->ID_PRE;
             $this->nombre_es=$pre->NOMBRE_ES;
             $this->f_nacimiento_es=$pre->FEC_NAC;
             $this->genero=$pre->GENERO;
@@ -143,7 +144,7 @@ class AdminisionesComponet extends Component
         $preinsp=DB::select($sql,array($id));
 
         foreach($preinsp as $pre){
-            
+            $this->id_ges_cambio=$pre->ID_PRE;
             $this->nombre_es=$pre->NOMBRE_ES;
             $this->f_nacimiento_es=$pre->FEC_NAC;
             $this->genero=$pre->GENERO;
