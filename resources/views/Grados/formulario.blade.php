@@ -1,7 +1,7 @@
 <div class="card shadow rounded">
   <div class="text-center">
     <br>
-    <h1 style="color: #3a3e7b"><strong>Creación de Grado</strong></h1>
+    <h1 style="color: #3a3e7b"><strong>CREACIÓN DE GRADOS</strong></h1>
     <br>
   </div>
 </div>
@@ -74,8 +74,9 @@
       <div wire:ignore.self class="modal fade" id="seccion" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="seccionLabel">Creación de Sección</h5>
+            <div class="modal-header text-center" style="background:#a4cb39;color:rgb(255, 255, 255)">
+              <h3 class="modal-title text-center" style="color:rgb(255, 255, 255)"><strong>Creación de secciones</strong></h3>
+              <button type="button" class="btn btn-close" style="color:rgb(255, 255, 255)"  data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
               @isset($mensaje5)
                   @if ($mensaje5!=null)
@@ -210,7 +211,6 @@
 
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
               @if ($edit1!=null)
                 <button class="btn btn-success" wire:click="update_sc_p()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                   <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
@@ -218,7 +218,7 @@
                   </svg>
                 </button>
               @else
-                  <button wire:click='guardar_seccion()' class="btn btn-primary">Crear</button>    
+                  <button wire:click='guardar_seccion()' class="btn btn-pre2">Crear</button>    
               @endif               
             </div>
           </div>
@@ -293,8 +293,9 @@
 <div wire:ignore.self class="modal fade" id="nivelacademico" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="nivelacademicoLabel">Agregar nivel academico</h5>
+      <div class="modal-header text-center" style="background:#a4cb39;color:rgb(255, 255, 255)">
+        <h3 class="modal-title text-center" style="color:rgb(255, 255, 255)"><strong>Agregar nivel académico</strong></h3>
+        <button type="button" class="btn btn-close" style="color:rgb(255, 255, 255)"  data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       @isset($mensaje7)
         @if ($mensaje7!=null)
@@ -428,7 +429,6 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
         @if ($edit2!=null)
         <button class="btn btn-success" wire:click="update_nvl_p()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
           <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
@@ -436,7 +436,7 @@
           </svg>
         </button>
       @else
-          <button wire:click='guardar_nvlacademico()' class="btn btn-primary">Crear</button>    
+          <button wire:click='guardar_nvlacademico()' class="btn btn-pre2">Crear</button>    
       @endif       
       </div>
     </div>
@@ -475,8 +475,9 @@
 <div wire:ignore.self class="modal fade" id="tipojornada" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="tipojornadaLabel">Agregar Tipo de Jornada</h5>
+      <div class="modal-header text-center" style="background:#a4cb39;color:rgb(255, 255, 255)">
+        <h3 class="modal-title text-center" style="color:rgb(255, 255, 255)"><strong>Agregar tipo de jornada</strong></h3>
+        <button type="button" class="btn btn-close" style="color:rgb(255, 255, 255)"  data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       @isset($mensaje9)
         @if ($mensaje9!=null)
@@ -609,7 +610,6 @@
 @endisset
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
         @if ($edit3!=null)
         <button class="btn btn-success" wire:click="update_jornada_p()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
           <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
@@ -617,7 +617,7 @@
           </svg>
         </button>
       @else
-          <button wire:click='guardar_jornada()' class="btn btn-primary">Crear</button>    
+          <button wire:click='guardar_jornada()' class="btn btn-pre2">Crear</button>    
       @endif     
       </div>
     </div>
