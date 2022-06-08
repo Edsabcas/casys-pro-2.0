@@ -24,7 +24,7 @@
                         @endif
                         <td>
                           <span>
-                            <button type="button" class="btn btn-pre2" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                            <button type="button" wire:click='cargarmenu({{$rol->ID_ROL}})' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1">
                               Administar Menú
                             </button>
                           </span>  
@@ -152,7 +152,7 @@
         </div>
       </div>
 
-      <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div wire:ignore.self class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-header">
@@ -161,119 +161,34 @@
             </div>
             <div class="modal-body">
               <p class="fs-6 fw-bold">Seleccionar las casillas para el menú:</p>
+             
               <div class="container">
                 <div class="row">
-                  <div class="col">
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                      <label class="form-check-label" for="flexSwitchCheckDefault">Administración</label>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                      <label class="form-check-label" for="flexSwitchCheckDefault">Establecimiento</label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="container">
-                <div class="row">
-                  <div class="col">
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                      <label class="form-check-label" for="flexSwitchCheckDefault">Anuncios</label>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                      <label class="form-check-label" for="flexSwitchCheckDefault">Estudiante</label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="container">
-                <div class="row">
-                  <div class="col">
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                      <label class="form-check-label" for="flexSwitchCheckDefault">Asignaciones</label>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                      <label class="form-check-label" for="flexSwitchCheckDefault">Contenido</label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="container">
-                <div class="row">
-                  <div class="col">
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                      <label class="form-check-label" for="flexSwitchCheckDefault">Académico</label>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                      <label class="form-check-label" for="flexSwitchCheckDefault">Informe Académico</label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="container">
-                <div class="row">
-                  <div class="col">
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                      <label class="form-check-label" for="flexSwitchCheckDefault">Configuración Académico</label>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                      <label class="form-check-label" for="flexSwitchCheckDefault">Pagos</label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="container">
-                <div class="row">
-                  <div class="col">
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                      <label class="form-check-label" for="flexSwitchCheckDefault">Inventario</label>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                      <label class="form-check-label" for="flexSwitchCheckDefault">Informe General</label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="container">
-                <div class="row">
-                  <div class="col">
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                      <label class="form-check-label" for="flexSwitchCheckDefault">Informe</label>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                      <label class="form-check-label" for="flexSwitchCheckDefault">Navegación</label>
-                    </div>
-                  </div>
+
+                  @if (Session::get('opciones')!=null)
+                      @foreach(Session::get('opciones') as $opcion)
+                      @if ($opcion->ESTADO==1)
+                      <div class="col">
+                        <div class="form-check form-switch">
+                          <input class="form-check-input" type="checkbox" role="switch" checked>
+                          <label class="form-check-label" for="flexSwitchCheckDefault">{{$opcion->DESCRIPCION}}</label>
+                        </div>
+                      </div> 
+                    @else
+                      <div class="col">
+                        <div class="form-check form-switch">
+                          <input class="form-check-input" value="1" type="checkbox" role="switch">
+                          <label class="form-check-label" for="flexSwitchCheckDefault">{{$opcion->DESCRIPCION}}</label>
+                        </div>
+                      </div> 
+                    @endif
+                      
+                    @endforeach 
+                  @endif
                 </div>
               </div>
             </div>
+
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" style="border-radius: 12px;" data-bs-dismiss="modal">Cerrar</button>
               <button type="button" class="btn btn-pre2">Guardar</button>

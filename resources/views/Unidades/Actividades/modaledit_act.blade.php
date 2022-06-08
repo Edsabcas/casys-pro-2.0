@@ -27,7 +27,7 @@ $('#exampleModal1').modal('close');
           <div class="container-sm">
             <h3 class="form-label text" style="font-size:40px">Edicion Actividad</h3> 
             @if($editrevisar==null)
-            @foreach($advertenciass as $advertenciasa)
+            @foreach(Session::get('advertencias_activas') as $advertenciasa)
            @if($dia_exacto>=$advertenciasa->FECHA_INICIO && $dia_exacto<=$advertenciasa->FECHA_INICIO)
            @if($advertenciasa->PRIORIDAD == 1)
            <div class="alert alert-success d-flex align-items-center rounded-pill" role="alert">

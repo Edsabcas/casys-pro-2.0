@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use App\Models\rol_usuario;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 use Illuminate\Pagination\Paginator;
@@ -17,7 +18,7 @@ class ListadeusuariosComponent extends Component
 
     use WithPagination;
 
-    public $imagen,$tp,$archivo_usuarios;
+    public $imagen,$tp,$archivo_usuarios,$mensajeeliminar,$mensajeeliminar1,$mensaje1;
 
     public $search;
 
@@ -61,10 +62,11 @@ class ListadeusuariosComponent extends Component
         $this->op=1;
         $this->edit=1;
 
-     //   $listadousers=User::where(function($search){
-      //      $search->where('name', 'like', '%' . $this->search . '%')
-       //         ->orwhere('email', 'like', '%' . $this->search . '%');
-       // })->paginate(5);
+       /*  $listadousers=rol_usuario::where(function($search){
+        $search->where('name', 'like', '%' . $this->search . '%')
+               ->orwhere('email', 'like', '%' . $this->search . '%')
+               ->orwhere('rol', 'like', '%' . $this->search . '%');
+        })->paginate(5); */
 
         return view('livewire.listadeusuarios-component', compact('listadousers','rols'));
     }

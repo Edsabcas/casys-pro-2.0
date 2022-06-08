@@ -612,9 +612,7 @@ class ContenidoComponent extends Component
             else{
                 $this->invalido=0;
                 DB::begintransaction();
-                $advupdate=DB::table('tb_advertencias')
-                ->where('ID_ADVERTENCIA', $editaadv)
-                ->update(
+                $advertencias=DB::table('tb_advertencias')->update(
                     [
                         'DESCRIPCION'=>$textoadvertencia,
                         'PRIORIDAD'=>$prioridadadvertencia,
@@ -623,7 +621,7 @@ class ContenidoComponent extends Component
         
                     ]
                     );
-                if($advupdate){
+                if($advertencias){
                     $this->blockadvertencia=1;
                     DB::commit();
                     $this->advertencia_adver=1;
@@ -637,7 +635,7 @@ class ContenidoComponent extends Component
     }
 
 
-
+    
     //funcion que muestra la vista de las unidades nuevas creadas
     public function validar_u2($nun,$nomu){
         unset($this->unidadn);

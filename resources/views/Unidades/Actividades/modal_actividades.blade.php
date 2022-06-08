@@ -8,8 +8,8 @@
       </div>
           <div class="container-sm">
            <h3 class="form-label text" style="font-size:40px">Crear Actividad</h3> 
-           @foreach($advertenciass as $advertenciasa)
-           @if($dia_exacto>=$advertenciasa->FECHA_INICIO && $dia_exacto<=$advertenciasa->FECHA_INICIO)
+           @foreach(Session::get('advertencias_activas') as $advertenciasa)
+           @if($dia_exacto>=$advertenciasa->FECHA_INICIO && $dia_exacto<=$advertenciasa->FECHA_FIND)
            @if($advertenciasa->PRIORIDAD == 1)
            <div class="alert alert-success d-flex align-items-center rounded-pill" role="alert">
             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:"><use xlink:href="#info-fill"/></svg>
