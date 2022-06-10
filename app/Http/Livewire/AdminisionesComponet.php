@@ -5,13 +5,18 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Livewire\WithFileUploads;
+
 
 class AdminisionesComponet extends Component
 {
+    use WithFileUploads;
+
     public $search0,$search1,$search2,$search3,$search4,$search5;
     public $gradoin,$nombre_es,$f_nacimiento_es,$genero,$cui_es,$codigo_pe_es,$nac_es,$lug_nac_es,$tel_es,$cel_es,$direccion_es,$religion_es;
     public $nombre_en,$fnacimiento_en,$dpi_en,$extentido_en,$es_civil_en,$direccion_en,$tel_casa_en,$cel_en,$correo_en,$religion_en;
     public $a,$mensaje,$gradose,$fingreso_gestion,$id_ges_cambio,$tipo_cambio1;
+    public $id_pre,$metodo,$archivo_comprobante,$img,$tipo,$mensaje24,$mensaje25,$fotos;
     public $val,$val1,$gestion,$errorfecha;
     public $estado_ges;
     public $mensaje1,$id2;
@@ -19,6 +24,11 @@ class AdminisionesComponet extends Component
     public $mensajeup,$mensajeup1;
     public function render()
     {
+        if($this->archivo_comprobante!=null){
+            if($this->archivo_comprobante->getClientOriginalExtension()=="jpg" or $this->archivo_comprobante->getClientOriginalExtension()=="png" or $this->archivo_comprobante->getClientOriginalExtension()=="jpeg"){
+                $this->tipo=1;
+            }
+        }
         if($this->mensaje!=null && $this->mensaje!=""){
 
         }
@@ -32,10 +42,10 @@ class AdminisionesComponet extends Component
         }
 
         if($this->search1!=null && $this->search1!=""){
-            $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.ESTADO_PRE_INS,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.NO_GESTION, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE (ESTADO_PRE_INS=1 or ESTADO_PRE_INS=2) and (NO_GESTION like '%".$this->search1."%' or NOMBRE_ES like '%".$this->search1."%')";
+            $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.ESTADO_PRE_INS,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.NO_GESTION,TB_PRE_INS.COMPROBANTE_PAGO, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE (ESTADO_PRE_INS=1 or ESTADO_PRE_INS=2) and (NO_GESTION like '%".$this->search1."%' or NOMBRE_ES like '%".$this->search1."%')";
             $estado_uno=DB::select($sql);
         }else{
-            $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.ESTADO_PRE_INS,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.NO_GESTION, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE (ESTADO_PRE_INS=1 or ESTADO_PRE_INS=2) order by TB_PRE_INS.ESTADO_PRE_INS DESC";
+            $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.ESTADO_PRE_INS,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.NO_GESTION,TB_PRE_INS.COMPROBANTE_PAGO, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE (ESTADO_PRE_INS=1 or ESTADO_PRE_INS=2) order by TB_PRE_INS.ESTADO_PRE_INS DESC";
             $estado_uno=DB::select($sql);
         }
 
@@ -185,6 +195,8 @@ class AdminisionesComponet extends Component
             $this->fnacimiento_en=$pre->FEC_NAC_EN_ES;
             $this->dpi_en=$pre->DPI_EN_ES;
             $this->extentido_en=$pre->EXTENDIDO_DPI_EN_ES;
+            $this->observacion=$pre->OBSERVACION_COMP;
+            $this->metodo=$pre->FORMA_PAGO;
             $this->es_civil_en=$pre->ESTADO_CIVIL_EN_ES;
             $this->direccion_en=$pre->DIRECCION_EN_ES;
             $this->tel_casa_en=$pre->TEL_EN_ES;
@@ -262,11 +274,11 @@ class AdminisionesComponet extends Component
                     //'FECHA_REGISTRO'=>$this->fingreso_gestion,
                     //''=>,
                     //'FORMA_PAGO'=>$metodo,
-                    //'FORMA_PAGO'=>$metodo,
-                   // 'COMPROBANTE_PAGO'=>$archivo_comprobante,
+                    'FORMA_PAGO'=>$metodo,
+                    'COMPROBANTE_PAGO'=>$archivo_comprobante,
                     'FECHA_CAMBIOS_REG'=> date('y-m-d:h:m:s'),
-                    //'ESTADO_PRE_INS'=>2,
-                    //'OBSERVACION_COMP'=>$observacion,
+                    /* 'ESTADO_PRE_INS'=>2, */
+                    'OBSERVACION_COMP'=>$observacion,
                 ]
                 );
             if($comprobantes){
@@ -317,6 +329,35 @@ class AdminisionesComponet extends Component
             DB::rollback();
             unset($this->mensaje1);
             $this->mensaje1='No fue posible Eliminado';
+        }
+    }
+    public function cambiofoto($id)
+    {
+        $archivo_comprobante="";
+        if($this->archivo_comprobante!=null){
+            if($this->archivo_comprobante->getClientOriginalExtension()=="jpg" or $this->archivo_comprobante->getClientOriginalExtension()=="png" or $this->archivo_comprobante->getClientOriginalExtension()=="jpeg"){
+                $archivo_comprobante = "img".time().".".$this->archivo_comprobante->getClientOriginalExtension();
+                $this->img=$archivo_comprobante;
+                $this->archivo_comprobante->storeAS('comprobantes/imagenes/', $this->img,'public_up');
+                $this->tipo=1;
+            }
+           
+            DB::beginTransaction();
+                    $foto=DB::table('TB_PRE_INS')
+                    ->where('ID_PRE',$id)
+                    ->update ([
+                        
+                        'COMPROBANTE_PAGO'=>$this->archivo_comprobante
+                     ]);
+
+                     if($foto){
+                        DB::commit();
+                        $this->mensaje24="Comprobante de pago actualizado";
+                    }
+                    else{
+                        DB::rollback();
+                        $this->mensaje25="No se logró actualizar";
+                    }
         }
     }
 }

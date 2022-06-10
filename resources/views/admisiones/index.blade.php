@@ -127,6 +127,7 @@
                       <i class="fas fa-search"></i>
                     </button>
                   </div>
+                  <br>
                 <div class="table-responsive">
                     <table class="table table-light table-bordered">
                         <thead>
@@ -135,6 +136,7 @@
                             <th scope="col">Estudiante</th>
                             <th scope="col">Grado Ingreso</th>
                             <th scope="col">Estado</th>
+                            <th scope="col">Comprobante</th>
                             <th scope="col">Acción</th>
                           </tr>
                         </thead>
@@ -149,7 +151,74 @@
                         @elseif($estado_un->ESTADO_PRE_INS==2)
                         <td><span class="badge rounded-pill bg-danger">Validar C.</span></td>
                         @endif
-                      
+                        <td>
+                            @if ($estado_un->COMPROBANTE_PAGO=="" or $estado_un->COMPROBANTE_PAGO==null)
+                            <img class="rounded-circle" src="img/undraw_profile_1.svg" width="40" height="40" alt="...">        
+                            <button type="button" class="btn btn-editb" style="float: right;" data-bs-toggle="modal" data-bs-target="#perfilmodal22{{$estado_un->NO_GESTION}}">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                              </svg>  
+                            </button>  
+                              
+                            @else
+                            <img class="img-profile rounded-circle" style="float: center;" width="35" height="40" src="sitio2022/sitio_20202_casta-o/public/comprobantes/imagenes/{{$estado_un->COMPROBANTE_PAGO}}" />
+                            <button type="button" class="btn btn-editb" style="float: right;" data-bs-toggle="modal" data-bs-target="#perfilmodal22{{$estado_un->NO_GESTION}}">
+                              <svg xmlns="http://www.w3.org/2000/svg" style="float: center;" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                              </svg>  
+                            </button> 
+                          @endif 
+                          <div wire:ignore.self class="modal fade" id="perfilmodal22{{$estado_un->NO_GESTION}}" tabindex="-1" aria-labelledby="perfilmodal2Label" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                              <div class="modal-content">
+                                  <div class="modal-header text-center" style="background:#a4cb39;color:rgb(255, 255, 255)">
+                                    <h3 class="modal-title text-center" id="perfilmodal2Label" style="color:rgb(255, 255, 255)" ><strong><b>Cambio foto de perfil</b></strong></h3>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                  <form wire:submit.prevent='' class="form-horizontal">
+                                    <div class="form-group row">
+                                      <label for="exampleInputPassword1" class="form-label" style="font-size:20px">Elegir foto de perfil:</label>
+                                      <div class="mb-3">
+                                        <input type="file" id="archivo"  wire:model="archivo_comprobante">
+                                      </div> 
+                                  </div>
+                                  <div class="mb-3">
+                                    <div wire:loading wire:target="archivo_comprobante" class="alert alert-warning" role="alert">
+                                      <strong class="font-bold">¡Imagen cargando!</strong>
+                                        <span class="block sm:inlone">Espere un momento hasta que la imagen se haya procesado.</span>
+                                      <div class="spinner-border text-warning" role="status">
+                                      </div>
+                                    </div>
+                                    @if($tipo==1)
+                                    <h3 class="form-label">Visualización de Imagen</h3>
+                                    <img src="{{$archivo_comprobante->temporaryURL()}}" height="100" weight="100"  alt="...">
+                                    @endif
+                                    @if($mensaje24 != null)
+                                                  <div class="alert alert-success d-flex align-items-center" role="alert">
+                                                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                                                        <div>{{$mensaje24}}
+                                                        </div>
+                                                      </div>
+                                                    @endif
+                                                  @if($mensaje25 != null)
+                                                  <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                                                        <div>{{$mensaje25}}
+                                                        </div>
+                                                      </div>
+                                                    @endif
+                                  </div>  
+                                  <button class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                                  <button class="btn btn-pre2" wire:click="cambiofoto({{$estado_un->ID_PRE}})">Publicar</button>
+                                </form>
+                                </div>
+                              </div>
+                            </div>
+                          </div> 
+                          </td>
                         <span>
                             <td>
                                 <button class="btn btn-editb" wire:click="editar2({{ $estado_un->ID_PRE}})" data-bs-toggle="modal" data-bs-target="#infodata2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
