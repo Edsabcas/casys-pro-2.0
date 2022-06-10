@@ -2,8 +2,8 @@
 <div wire:ignore.self class="modal fade" id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="5" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title">Ingrese los datos para crear la actividad</h2>
+      <div class="modal-header text-center" style="background:#a4cb39;color:rgb(255, 255, 255)">
+        <h2 class="modal-title text-center" style="color:rgb(255, 255, 255)"><strong>Ingrese los datos de la actividad</strong></h2>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button >
       </div>
           <div class="container-sm">
@@ -214,11 +214,9 @@
           
           </div>        
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="Cerrar">Cerrar</button>
-        
+      <div class="modal-footer">        
         @if($mensaje!=null)
-        <a href="/" class="btn btn-primary ">Ver actividad</a>
+        <a href="/" class="btn btn-pre2 ">Ver actividad</a>
         @endif
       </div>
     </div>
