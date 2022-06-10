@@ -29,9 +29,9 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">Creación de Usuario</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
+        <h5 class="modal-title" id="staticBackdropLabel">Creación de Usuario</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
           <div class="modal-body">
             <form>
               <div class="container">
@@ -73,9 +73,9 @@
            <div class="modal-footer">
             <button class="btn btn-pre2" data-bs-target="#creacion" data-bs-dismiss="modal" wire:click="generar_use()" data-bs-toggle="modal">Siguiente</button>
           </div>
-        </div>
-      </div>
     </div>
+  </div>
+</div>
 
     <div wire:ignore.self class="modal fade" id="creacion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <head>
@@ -154,8 +154,7 @@
             <th>NOMBRE</th>
             <th>ROL</th>
             <th>EMAIL</th>
-            <th>USUARIO</th>
-            
+            <th>USUARIO</th>           
             <th>FOTO</th>
             <th>EDITAR</th>
         </tr>
@@ -167,8 +166,6 @@
             <td>{{$listadouser->DESCRIPCION}}</td>
             <td>{{$listadouser->email}}</td>
             <td>{{$listadouser->usuario}}</td>
-           
-
             <td>
               @if ($listadouser->img_users=="" or $listadouser->img_users==null )
               <img class="rounded-circle" src="img/undraw_profile_1.svg" width="40" height="40" alt="...">        
