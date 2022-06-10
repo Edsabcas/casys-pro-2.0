@@ -165,7 +165,7 @@
               <div wire:ignore.self id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                   <div wire:ignore.self class="accordion-body">
                       <div class="table-responsive">
-                          <table class="table table-hover">
+                          <table class="table table-light table-bordered">
                             <thead>
                               <tr>
                               <th>ID</th>
@@ -383,7 +383,7 @@
               <div wire:ignore.self id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                   <div wire:ignore.self class="accordion-body">
                       <div class="table-responsive">
-                          <table class="table table-hover">
+                          <table class="table table-light table-bordered">
                             <thead>
                               <tr>
                               <th>ID</th>
@@ -565,7 +565,7 @@
              <div wire:ignore.self id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                  <div wire:ignore.self class="accordion-body">
                      <div class="table-responsive">
-                         <table class="table table-hover">
+                         <table class="table table-light table-bordered">
                            <thead>
                              <tr>
                              <th>ID</th>
