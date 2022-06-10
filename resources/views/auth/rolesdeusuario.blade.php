@@ -48,10 +48,11 @@
         </table>
     </div>
 
+
     <button type="button" {{-- wire:click='guardar_rol()' --}} class="btn btn-pre2" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Agregar
       </button>
-</div>
+    </div>
 
       <div wire:ignore.self class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
