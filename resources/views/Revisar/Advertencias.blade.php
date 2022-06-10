@@ -15,7 +15,7 @@
 <br>
 <h2><strong>Alerta en vigencia</strong></h2>
 <div class="table">
-    <table class="table table-success table-striped">
+    <table class="table table-light table-bordered">
         <thead>
             <tr>
               <th scope="col">ID</th>

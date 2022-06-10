@@ -11,7 +11,7 @@
     <div  wire:ignore.self  id="collapseThree{{$materia->ID_MATERIA}}" class="accordion-collapse collapse" aria-labelledby="headingThree{{$materia->ID_MATERIA}}" data-bs-parent="#accordionExample{{$materia->ID_MATERIA}}">
       <div  wire:ignore.self  class="accordion-body">
           <div class="table-responsive">
-              <table class="table table-hover">
+              <table class="table table-light table-bordered">
                   <thead>
                     <tr>
                       <th scope="col">Actividad</th>

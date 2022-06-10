@@ -12,27 +12,36 @@
 
 
 <br>
-<div class="shadow-lg card" style="background-color: #f4f4f4;">
+<div class="card shadow rounded" style="background-color: #ffffff;">
+  <div class="card-header text-center" style="background-color: #ffffff">
+    <br>
+    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#a4cb39" class="bi bi-file-earmark-plus" viewBox="0 0 16 16">
+      <path d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z"/>
+      <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z"/>
+    </svg>
+    <br>
+    <br>
+    <h1 class="text-center" style="color: #3a3e7b"><strong>CREAR ANUNCIO</strong></h1>
+    <p style="color:black"><strong>Llene los siguientes campos que se le solicitan para crear un anuncio.</strong></p>
+    <br>
+  </div>
   <div class="container-sm">
     <br>
-    <br>
-    <h1 class="form-label" style="font-size:50px">Crear Anuncio</h1>
     <form wire:submit.prevent='' enctype="multipart/form-data">
       @csrf
-      <div>
-        
-      </div>
+      <label for="" class="form-label" style="font-size:20px; color: #3a3e7b"><strong>• Personzalización de un anuncio</strong></label>
       <div class="form-check">
         <input class="form-check-input" type="radio" wire:click="tipo_anuncio()" id="flexRadioDefault1">
         <label class="form-check-label" for="flexRadioDefault1">
-          Personalizado
+          Personalizar
         </label>
       </div>
+      <div><br></div>
       @if($tanuncio == 1)
       <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label" style="font-size:20px">Coloque el público para el anuncio</label>
-        <select class="form-select" aria-label="Default select example" wire:model="publico_anuncio">
-          <option selected >Elige el público para que vea el anuncio</option>
+        <label for="" class="form-label" style="font-size:20px; color: #3a3e7b"><strong>• Seleccione el público que visualizará el anuncio</strong></label>
+        <select class="form-select rounded-pill shadow-sm rounded" style="border-radius: 70px 70px 70px 70px; border-color: #a4cb39" aria-label="Default select example" wire:model="publico_anuncio">
+          <option selected >Elige el público</option>
           @isset($rol)
           @foreach($rol as $role)
           
@@ -49,8 +58,8 @@
       </div>
       @if($publico_anuncio==4 or $publico_anuncio==5)
       <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label" style="font-size:20px">Coloque el grado para el anuncio</label>
-        <select class="form-select" aria-label="Default select example" wire:model="grado_anuncio">
+        <label for="" class="form-label" style="font-size:20px; color: #3a3e7b"><strong>• Seleccione el grado que visualizará el anuncio</strong></label>
+        <select class="form-select rounded-pill shadow-sm rounded" style="border-radius: 70px 70px 70px 70px; border-color: #a4cb39" aria-label="Default select example" wire:model="grado_anuncio">
           <option selected >Elige el grado para que vea el anuncio</option>
           <option value="0">Todos</option>
           @isset($grado_objetivo)
@@ -64,9 +73,9 @@
       @endif
        @if($publico_anuncio==3)
        <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label" style="font-size:20px">¿Desea escoger un idioma en especifíco de maestros?</label>
-        <select class="form-select" aria-label="Default select example" wire:model="idioma_maestro">
-          <option selected>¿Desea escoger un idioma en especifíco de maestros?</option>
+        <label for="" class="form-label" style="font-size:20px; color: #3a3e7b"><strong>• Seleccione el idioma en específico de maestros</strong></label>
+        <select class="form-select rounded-pill shadow-sm rounded" style="border-radius: 70px 70px 70px 70px; border-color: #a4cb39" aria-label="Default select example" wire:model="idioma_maestro">
+          <option selected>Escoge el idioma</option>
           @isset($idiomas)
           @foreach($idiomas as $idioma)
           <option value="{{$idioma->ID_IDIOMA}}">{{$idioma->DESCRIPCION_IDIOMA}}</option>
@@ -75,65 +84,60 @@
         </select>
       </div>
        
-      <label for="exampleInputPassword1" class="form-label" style="font-size:20px">Coloque el grado para el anuncio</label>
-        <select class="form-select" aria-label="Default select example" wire:model="grado_anuncio">
-          <option selected >Elige el grado para que vea el anuncio</option>
+      <label for="" class="form-label" style="font-size:20px; color: #3a3e7b"><strong>• Seleccione el grado que visualizará el anuncio</strong></label>
+        <select class="form-select rounded-pill shadow-sm rounded" style="border-radius: 70px 70px 70px 70px; border-color: #a4cb39" aria-label="Default select example" wire:model="grado_anuncio">
+          <option selected >Seleccione el grado</option>
           <option value="0">Todos</option>
           @isset($grado_objetivo)
           @foreach($grado_objetivo as $g_objetivo)
           <option value="{{$g_objetivo->ID_GR}}">{{$g_objetivo->GRADO}}</option>
           @endforeach
           @endisset
-
         </select>
-      
-      @endif
-      @if($op_grado==1)
-       
-       @endif
-      
-      @endif
         
+        @endif
+        @if($op_grado==1)
+        @endif
+        @endif
+        
+        <br>
         <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label" style="font-size:20px">Inserte una descripción para el anuncio</label>
-          </div>
-        <div class="mb-3">
-          <textarea class="form-control" id="summary-ckeditor" name="summary-ckeditor" rows="4" wire:model="texto_anuncio"></textarea>
+          <label for="" class="form-label" style="font-size:20px; color: #3a3e7b"><strong>• Redacte una descripción para el anuncio</strong></label>
+          <textarea class="form-control shadow-sm rounded" style="border-color: #a4cb39" id="summary-ckeditor" name="summary-ckeditor" rows="4" wire:model="texto_anuncio"></textarea>
         </div>
           
-          <label for="exampleInputPassword1" class="form-label" style="font-size:20px">Inserte un archivo para el anuncio</label>
+        <br>
+        <label for="" class="form-label" style="font-size:20px; color: #3a3e7b"><strong>• Adjunte el archivo a compartir en el anuncio</strong></label>
           <div class="mb-3">
-            
             <input type="file" id="archivo"  wire:model="archivo_anuncio">
-            
           </div>
           @error('file') <span class="error form-label text-white">{{ $message }}</span> @enderror
           <br>
-          <br>
+
           <div class="mb-3">
             @if($tipo==1)
-            <h3 class="form-label">Visualización de Imagen</h3>
+            <label for="" class="form-label" style="font-size:20px; color: #3a3e7b"><strong>• Vista previa de la imagen</strong></label>
             <div class="offset-4 col-10">
               <img src="{{$archivo_anuncio->temporaryURL()}}" height="350" weight="350" alt="...">
             </div>
             @endif
             @if($tipo==2)
-            <h3 class="form-label">Visualización de Video</h3>
+            <h3 class="form-label">Vista previa del vídeo</h3>
             <video height="500" weight="500" class="card-img-top" alt="..." controls>
               <source src="{{$archivo_anuncio->temporaryURL()}}"  type="video/mp4">
             </video>
             @endif
             @if($tipo==3)
-            <h3 class="form-label">Visualización de PDF</h3>
+            <h3 class="form-label">Vista previa del PDF</h3>
               <iframe width="1250" height="600" src="/imagen/temporalpdf/{{$img}}" frameborder="0"></iframe>
             @endif
           </div>
           
           
           <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label" style="font-size:20px">Coloque una calidad para el anuncio</label>
-            <select class="form-select" aria-label="Default select example" wire:model="calidad_anuncio" required>
-              <option selected >Elige la calidad del anuncio</option>
+            <label for="" class="form-label" style="font-size:30p; color: #3a3e7b"><strong>• Seleccione la categoría del anuncio</strong></label>
+            <select class="form-select rounded-pill shadow-sm rounded" style="border-radius: 70px 70px 70px 70px; border-color: #a4cb39" aria-label="Default select example" wire:model="calidad_anuncio" required>
+              <option selected >Elige una categoría</option>
               <option value="1">Informativo</option>
               <option value="2">Importante</option>
               <option value="3">Urgente</option>
@@ -143,19 +147,20 @@
           <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
             <div>
-              Es necesario que llenes por lo menos un campo para publicar el anuncio
+              Es necesario que llenes por lo menos un campo para poder publicar un anuncio.
             </div>
           </div>
           @enderror
-          
-          <hr>
-          <button type="submit" class="btn btn-pre2" wire:click="guardaranuncio()">Publicar</button>
+          <br>
+          <div class="card-footer text-center" style="background-color: #ffffff">
+            <br>
+            <button type="submit" class="btn btn-pre2 text-center btn-lg" wire:click="guardaranuncio()"><strong>Publicar</strong></button>
+          </div>
           @isset($mensaje)
           @if($mensaje!=null)
           
           @endif
           @endisset
-          <br>
           <br>
     </form>
     @isset($mensaje)

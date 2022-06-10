@@ -1,6 +1,6 @@
 <div class="card row">
   <div class="card-body offset-1 col-10">
-    <TABLE BORDER width="600" height="300"  class="table table-success table-striped table-bordered">
+    <TABLE BORDER width="600" height="300"  class="table table-light table-striped table-hover table-bordered">
       @foreach ($perfiles as $perfil)
         <TR ALIGN=CENTER><TH>NOMBRE</TH>
           <TD>{{$perfil->name}}</TD>

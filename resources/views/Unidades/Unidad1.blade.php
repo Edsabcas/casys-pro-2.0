@@ -81,27 +81,27 @@
     </div>
     <div class="card-body text-center">
       @if($vista==1)
-      @include('Unidades.Primer_Unidad');
+      @include('Unidades.Primer_Unidad')
       @endif
       
       @if($vista==2)
-      @include('Unidades.Unidad2');
+      @include('Unidades.Unidad2')
       @endif
       
       @if($vista==3)
-      @include('Unidades.Unidad3');
+      @include('Unidades.Unidad3')
       @endif
       
       @if($vista==4)
-      @include('Unidades.Unidad4');
+      @include('Unidades.Unidad4')
       @endif
 
       @if($vista==5)
-      @include('Unidades.PlanificacionA');
+      @include('Unidades.PlanificacionA')
       @endif
       
       @if($vista2==6)
-      @include('Unidades.Unidades_n');
+      @include('Unidades.Unidades_n')
       @endif
     </div>
   </div>
