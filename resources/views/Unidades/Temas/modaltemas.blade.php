@@ -2,8 +2,8 @@
   <div wire:ignore.self class="modal fade" id="exampleModal1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="5" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
-        <div class="modal-header">
-          <h2 class="modal-title">Ingrese los datos para crear un tema</h2>
+        <div class="modal-header text-center" style="background:#a4cb39;color:rgb(255, 255, 255)">
+          <h3 class="modal-title text-center" style="color:rgb(255, 255, 255)" ><strong>Ingrese los datos requeridos</strong></h3>
           <button type="button" class="btn-close"  aria-label="Close" data-bs-dismiss="modal"></button >
         </div>
 
@@ -65,7 +65,6 @@
             </div>        
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" aria-label="Close"  id="Crear"  data-bs-dismiss="modal" >Cerrar</button>
         
           </div>
       </div>

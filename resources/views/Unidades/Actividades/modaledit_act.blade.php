@@ -19,8 +19,8 @@ $('#exampleModal1').modal('close');
 <div wire:ignore.self class="modal fade" id="editaractividades" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="5" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title">Edicion de activdades</h2>
+      <div class="modal-header text-center" style="background:#a4cb39;color:rgb(255, 255, 255)">
+        <h2 class="modal-title text-center" style="color:rgb(255, 255, 255)"><strong>Edición de actividades</strong></h2>
 
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button >
       </div>
@@ -295,9 +295,7 @@ $('#exampleModal1').modal('close');
           
           </div>        
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="Cerrar">Cerrar</button>
-        
+      <div class="modal-footer">        
       </div>
     </div>
   </div>

@@ -33,9 +33,9 @@
           @include('Unidades.ActividadesN.modal_actividades_n')
 
           <button class="btn btn-editb"  data-bs-toggle="modal" data-bs-target="#modal_act_n" Wire:Click="limpiar_act2">Crear Actividades </button>
-            <a wire:click='vista_a("5")' class="btn btn-editb">Ver Actividades </a>
+            <a wire:click='vista_a("5")' class="btn btn-pre2">Ver Actividades </a>
 
-            <a wire:click='vista_t("6")' class="btn btn-editb">Ver Temas </a>
+            <a wire:click='vista_t("6")' class="btn btn-pre2">Ver Temas </a>
         </td>
         @endif
         @endisset
