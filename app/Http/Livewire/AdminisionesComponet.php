@@ -338,7 +338,7 @@ class AdminisionesComponet extends Component
             if($this->archivo_comprobante->getClientOriginalExtension()=="jpg" or $this->archivo_comprobante->getClientOriginalExtension()=="png" or $this->archivo_comprobante->getClientOriginalExtension()=="jpeg"){
                 $archivo_comprobante = "img".time().".".$this->archivo_comprobante->getClientOriginalExtension();
                 $this->img=$archivo_comprobante;
-                $this->archivo_comprobante->storeAS('comprobantes/imagenes/', $this->img,'public_up');
+                $this->archivo_comprobante->storeAS('public/comprobantes/imagenes/', $this->img,'public_up');
                 $this->tipo=1;
             }
            

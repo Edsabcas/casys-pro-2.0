@@ -88,35 +88,35 @@
               @isset($mensaje6)
                 @if($mensaje6!=null)
                   <div class="alert alert-danger" role="alert">
-                    No se logro insetar sección
+                    ¡No se logro insetar sección!
                   </div>
                 @endif
               @endisset
               @isset($mensaje11)
                 @if ($mensaje11!=null)
                     <div class="alert alert-success" role="alert">
-                      Editado Correctamente
+                      ¡Editado Correctamente!
                     </div>
                 @endif
               @endisset
               @isset($mensaje12)
                 @if($mensaje12!=null)
                     <div class="alert alert-danger" role="alert">
-                      No se logro editar los datos
+                      ¡No se logró editar los datos!
                     </div>
                 @endif
               @endisset
               @isset($mensajeeliminar2)
                 @if ($mensajeeliminar2!==null)
                     <div class="alert alert-success" role="alert">
-                    ELIMINADO CORRECTAMENTE!
+                    ¡Eliminado correctamente!
                     </div>
                 @endif
               @endisset
               @isset($mensajeeliminar3)
                 @if($mensajeeliminar3!==null)
                     <div class="alert alert-danger" role="alert">
-                    NO SE LOGRÓ ELIMINAR LOS DATOS :(
+                    ¡No se logró eliminar correctamente!
                     </div>
                 @endif
               @endisset
@@ -132,7 +132,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
                       <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
                     </svg>
-                      <span>No ha ingresado ninguna sección</span>
+                      <span>¡Pendiente!</span>
                      </div> 
                      @enderror
                 <div class="mb-3">
@@ -149,7 +149,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
                       <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
                     </svg>
-                    <span>Pendiente la seleccion del estado</span>
+                    <span>¡Pendiente!</span>
                      </div> 
                      @enderror
              </form>
@@ -159,7 +159,7 @@
           <div class="accordion-item" style="border-radius: 60px 60px 60px 60px;" >
               <h2 class="accordion-header" style="border-radius: 60px 60px 60px 60px; color: #3a3e7b"  id="flush-headingOne">
                   <button class="accordion-button collapsed"  style="border-radius: 60px 60px 60px 60px; color: #3a3e7b"  type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                      SECCIONES | visualizar tabla
+                      SECCIONES | Visualizar tabla
                   </button>
               </h2>           
               <div wire:ignore.self id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
@@ -169,7 +169,7 @@
                             <thead>
                               <tr>
                               <th>ID</th>
-                              <th>SECCION</th>
+                              <th>SECCIÓN</th>
                               <th>ESTADO</th>
                               <th>ACCIONES</th>
                             </tr>
@@ -240,7 +240,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
               <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
             </svg>
-              <span>Pendiente de asignar el nombre Ministerial</span>
+              <span>¡Pendiente!</span>
           </div> 
         @enderror
 
@@ -259,7 +259,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
               <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
             </svg>
-              <span>Pendiente el ingresar el numero de resolución</span>
+              <span>¡Pendiente!</span>
           </div> 
         @enderror
         
@@ -285,7 +285,7 @@
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
                 <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
               </svg>
-                <span>Pendiente de asignar el nivel academico</span>
+                <span>¡Pendiente!</span>
             </div> 
           @enderror
 
@@ -467,7 +467,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
               <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
             </svg>
-              <span>Pendiente la seleccion del tipo de jornada</span>
+              <span>¡Pendiente!</span>
           </div> 
         @enderror
 
@@ -489,7 +489,7 @@
       @isset($mensaje10)
         @if($mensaje10!=null)
           <div class="alert alert-danger" role="alert">
-            No se logro insetar sección
+            No se logró insetar sección
           </div>
         @endif
       @endisset
@@ -503,21 +503,21 @@
       @isset($mensaje16)
         @if($mensaje16!=null)
           <div class="alert alert-danger" role="alert">
-            No se logro editar los datos
+            No se logró editar los datos
           </div>
         @endif
       @endisset
       @isset($mensajeeliminar6)
         @if($mensajeeliminar6!==null)
           <div class="alert alert-success" role="alert">
-            ELIMINADO CORRECTAMENTE!
+            ¡Eliminado correctamente!
           </div>
         @endif
       @endisset
       @isset($mensajeeliminar7)
         @if($mensajeeliminar7!==null)
           <div class="alert alert-danger" role="alert">
-            NO SE LOGRÓ ELIMINAR LOS DATOS :(
+            ¡No se logro eliminar correctamente!
           </div>
         @endif
       @endisset
@@ -532,7 +532,7 @@
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
                 <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
               </svg>
-                <span>No ha ingresado ninguna sección</span>
+                <span>¡Pendiente!</span>
                </div> 
                @enderror
           <div class="mb-3">
@@ -549,7 +549,7 @@
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
                 <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
               </svg>
-              <span>Pendiente la seleccion del estado</span>
+              <span>¡Pendiente!</span>
                </div> 
                @enderror
        </form>
@@ -559,7 +559,7 @@
          <div class="accordion-item" style="border-radius: 60px 60px 60px 60px;" >
              <h2 class="accordion-header" style="border-radius: 60px 60px 60px 60px; color: #3a3e7b"  id="flush-headingOne">
                  <button class="accordion-button collapsed"  style="border-radius: 60px 60px 60px 60px; color: #3a3e7b"  type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                    TIPO DE JORNADA | visualizar tabla
+                    TIPO DE JORNADA | Visualizar tabla
                  </button>
              </h2>           
              <div wire:ignore.self id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
@@ -642,7 +642,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
           <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
         </svg>
-          <span>Pendiente la seleccion del estado</span>
+          <span>¡Pendiente!</span>
       </div> 
     @enderror
 

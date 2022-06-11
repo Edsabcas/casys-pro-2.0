@@ -2,14 +2,14 @@
 @isset($mensaje3)
   @if ($mensaje3!=null)
       <div class="alert alert-success" role="alert">
-        Editado Correctamente
+        ¡Editado Correctamente!
       </div>
   @endif
 @endisset
 @isset($mensaje4)
   @if($mensaje4!=null)
       <div class="alert alert-danger" role="alert">
-        No se logro editar los datos
+        ¡No se logró editar los datos!
       </div>
   @endif
 @endisset
@@ -17,7 +17,7 @@
 @isset($mensajeeliminar)
 @if ($mensajeeliminar!==null)
     <div class="alert alert-success" role="alert">
-    ELIMINADO CORRECTAMENTE!
+    ¡Eliminado correctamente!
     </div>
     @endif
     @endisset
@@ -25,7 +25,7 @@
     @isset($mensajeeliminar1)
     @if($mensajeeliminar1!==null)
     <div class="alert alert-danger" role="alert">
-    NO SE LOGRÓ ELIMINAR LOS DATOS :(
+    ¡No se logro eliminar correctamente!
     </div>
 @endif
 @endisset
@@ -38,7 +38,7 @@
           <tr>
           <th>ID</th>
           <th>GRADO</th>
-          <th>SECCION</th>
+          <th>SECCIÓN</th>
           <th>ESTADO</th>
           <th>ACCIONES</th>
         </tr>
