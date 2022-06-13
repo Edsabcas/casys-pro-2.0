@@ -16,7 +16,7 @@
           @isset($restriccion)   
         <td> 
           @if($restriccion==1)
-          @include('Unidades.Temas.modal_tem_n')
+          @include('Unidades.TemasN.modal_tem_n')
           <button class="btn btn-editb" wire:click='limpiar2()' data-bs-toggle="modal" data-bs-target="#tema_n" id=tema disabled>Temas </button>
   
           @include('Unidades.ActividadesN.modal_actividades_n')
@@ -27,7 +27,7 @@
             <a wire:click='vista_t("6")' class="btn btn-editb">Ver Temas </a>
           </td>
           @elseif($restriccion==0)
-          @include('Unidades.Temas.modal_tem_n')
+          @include('Unidades.TemasN.modal_tem_n')
           <button class="btn btn-editb" wire:click='limpiar2()' data-bs-toggle="modal" data-bs-target="#tema_n" id=tema>Temas </button>
   
           @include('Unidades.ActividadesN.modal_actividades_n')

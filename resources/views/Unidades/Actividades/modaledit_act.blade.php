@@ -1,22 +1,5 @@
-<script>
-            
-  $(document).on('click', '#Cerrar', function() {
 
-$('#exampleModal').modal('close');
-
-});
-
-
-
-$(document).on('click', '#cerar2', function() {
-
-$('#exampleModal1').modal('close');
-
-});
-
-</script>
-
-<div wire:ignore.self class="modal fade" id="editaractividades" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="5" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div wire:ignore.self class="modal fade" id="Editaract" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="5" aria-labelledby="Editaract" aria-hidden="true">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header text-center" style="background:#a4cb39;color:rgb(255, 255, 255)">
@@ -114,11 +97,11 @@ $('#exampleModal1').modal('close');
 
                
                 <div class="col-sm-3">
-                  @include('Unidades.Temas.modaltemas')
                   <label for="inputState" class="form-label" style="font-size:20px">Seleccione un tema</label>
                   <div class="input-group">
-                    <button class="btn btn-outline-primary" id="val" data-bs-toggle="modal" data-bs-target="#tema" type="button"><img src="https://img.icons8.com/material-two-tone/24/000000/add.png"/></button>
-                    <select id="inputZip" class="form-select " wire:model="temasb" aria-label=".form-select-sm example"  style="border:2px solid rgba(86, 95, 76, 0.466);">
+                    @include('Unidades.Temas.tcr_edit')
+                    <button class="btn btn-outline-primary" id="val1"  data-bs-dismiss="modal" type="button"><img src="https://img.icons8.com/material-two-tone/24/000000/add.png"/></button>                   
+                     <select id="inputZip" class="form-select " wire:model="temasb" aria-label=".form-select-sm example"  style="border:2px solid rgba(86, 95, 76, 0.466);">
                       <option selected>seleccione un tema</option>
                       @isset($temas)
                       @foreach ($temas as $tema)
