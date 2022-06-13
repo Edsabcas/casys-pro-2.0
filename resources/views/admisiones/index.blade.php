@@ -422,4 +422,6 @@
       @include('admisiones.eliminar.modalvaleliminar')
       @include('admisiones.eliminar.modaleliminar')
       @include('admisiones.modalinfo5')
+      @include('admisiones.modalestado4')
+      @include('admisiones.modalestado5')
 </div>
