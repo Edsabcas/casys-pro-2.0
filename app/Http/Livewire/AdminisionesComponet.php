@@ -16,11 +16,11 @@ class AdminisionesComponet extends Component
     public $gradoin,$nombre_es,$f_nacimiento_es,$genero,$cui_es,$codigo_pe_es,$nac_es,$lug_nac_es,$tel_es,$cel_es,$direccion_es,$religion_es;
     public $nombre_en,$fnacimiento_en,$dpi_en,$extentido_en,$es_civil_en,$direccion_en,$tel_casa_en,$cel_en,$correo_en,$religion_en;
     public $a,$mensaje,$gradose,$fingreso_gestion,$id_ges_cambio,$tipo_cambio1;
-    public $id_pre,$metodo,$archivo_comprobante,$img,$tipo,$mensaje24,$mensaje25,$fotos;
+    public $id_pre,$metodo,$archivo_comprobante,$img,$tipo,$mensaje24,$mensaje25,$fotos,$no_gest_con;
     public $val,$val1,$gestion,$errorfecha;
     public $estado_ges;
     public $mensaje1,$id2;
-    public $observacion, $id_pre_ins_arch, $id_no_gest_arch, $archivo_cdiaco, $archivo, $formato,$id_gest,$nuevo_estado;
+    public $observacion, $id_pre_ins_arch, $id_no_gest_arch, $archivo_cdiaco, $archivo, $formato,$id_gest,$nuevo_estado,$id_no_gest_ins;
     public $mensajeup,$mensajeup1;
     public $id_pre_info, $id_pre_i, $confi, $grados_selecionados, $año_ingreso, $grado_primer_ingreso, $nombre_padre, $nacimiento_padre, $nacionalidad_padre;
     public $lugar_nacimiento_padre, $estadocivilp, $DPI_padre, $celular_padre, $telefono_padre, $direccion_residencia, $correo_padre, $profesion_padre;
@@ -692,13 +692,16 @@ $Especifique_ali=$this->Especifique_ali;
             $this->nuevo_estado=$id;  
          }
 
-         public function cambio_estadocon(){
+         public function cambio_estadocon($id){
+            $this->no_gest_con=$id;  
+            $id_pre_ins_arch=$this->id_pre_ins_arch;
+            $nuevo_estado=$this->nuevo_estado;
             $elevar=DB::table('TB_PRE_INS')
-                ->where('ID_PRE', $this->id_pre_ins_arch)
+                ->where('NO_GESTION', $this->no_gest_con)
                 ->update(
                     [
  
-                     'ESTADO_PRE_INS' => $this->nuevo_estado,
+                     'ESTADO_PRE_INS' =>$nuevo_estado,
  
                     ]);
                     if($elevar){
@@ -709,13 +712,16 @@ $Especifique_ali=$this->Especifique_ali;
                     }
          }
 
-         public function cambio_estadoins(){
+         public function cambio_estadoins($no_gest){
+            $this->id_no_gest_ins=$no_gest;
+            $id_ges_cambio=$this->id_ges_cambio;
+            $nuevo_estado=$this->nuevo_estado;
             $elevar=DB::table('TB_PRE_INS')
-                ->where('ID_PRE', $this->id_ges_cambio)
+                ->where('NO_GESTION', $this->id_no_gest_ins)
                 ->update(
                     [
  
-                     'ESTADO_PRE_INS' => $this->nuevo_estado,
+                     'ESTADO_PRE_INS' => $nuevo_estado,
  
                     ]);
                     if($elevar){
