@@ -53,8 +53,15 @@ class AdminisionesComponet extends Component
         $diaco="";
             $diaco=DB::table('tb_pre_diaco')
             ->join('TB_PRE_INS','tb_pre_diaco.ID_PRE','=','TB_PRE_INS.ID_PRE')
-            ->select('tb_pre_diaco.ID_CONTRATO_DIACO', 'TB_PRE_INS.ID_PRE', 'TB_PRE_INS.NO_GESTION','tb_pre_diaco.CONTRATO')
+            ->select('tb_pre_diaco.ID_CONTRATO_DIACO', 'TB_PRE_INS.ID_PRE', 'TB_PRE_INS.NO_GESTION','tb_pre_diaco.CONTRATO','TB_PRE_INS.ESTADO_PRE_INS')
             ->where('tb_pre_diaco.ID_PRE','=',$this->id_pre_ins_arch)
+            ->get();
+
+            $data_ins="";
+            $data_ins=DB::table('TB_PRE_INFO')
+            ->join('TB_PRE_INS','TB_PRE_INFO.ID_PRE','=','TB_PRE_INS.ID_PRE')
+            ->select('TB_PRE_INFO.ID_PRE_INFO', 'TB_PRE_INS.ID_PRE', 'TB_PRE_INS.NO_GESTION','TB_PRE_INS.ESTADO_PRE_INS')
+            ->where('TB_PRE_INFO.ID_PRE','=',$this->id_pre_i)
             ->get();
 
         if($this->archivo_comprobante!=null){
@@ -118,7 +125,7 @@ class AdminisionesComponet extends Component
         $sql= 'SELECT * FROM tb_grados';
         $grados=DB::select($sql);
 
-        return view('livewire.adminisiones-componet', compact('grados','estado_cero','estado_uno','estado_dos','estado_tres','estado_cuatro','estado_cinco','diaco'));
+        return view('livewire.adminisiones-componet', compact('grados','estado_cero','estado_uno','estado_dos','estado_tres','estado_cuatro','estado_cinco','diaco','data_ins'));
     }
 
     public function tipo_cambio($tipo,$id){
