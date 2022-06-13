@@ -817,8 +817,22 @@ class ContenidoComponent extends Component
                 $this->arch=$actu->archivos;
                 $this->punteo=$actu->punteo;
                 $this->fecha_e=$actu->fecha_entr;
-                $this->fecha_ext=$actu->fecha_extr;
-                $this->sancion=$actu->sancion;
+ 
+                if($this->fecha_ext==""){
+                    $fecha_ext=null;  
+                }
+                    else{
+                        $fecha_ext=$this->fecha_ext; 
+                    }
+            
+            
+                if($this->sancion==""){
+                        $sancion=null;  
+                    }
+                        else{
+                            $sancion=$this->sancion;
+                        }
+                        
                 $this->unidad1=$actu->ID_MATERIA;
                 $this->temasb=$actu->ID_TEMA;
                 $this->grado=$actu->ID_GR;

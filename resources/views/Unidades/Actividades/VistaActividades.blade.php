@@ -1,17 +1,17 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>
             
-  $(document).on('click', '#Crear', function() {
+  $(document).on('click', '#Editaract', function() {
 
-$('#exampleModal').modal('show');
+$('#Editact').modal('show');
 
 });
 
 
 
-$(document).on('click', '#val', function() {
+$(document).on('click', '#val1', function() {
 
-$('#exampleModal1').modal('show');
+$('#exampleModaledit1').modal('show');
 
 });
 
@@ -66,7 +66,7 @@ $('#exampleModal1').modal('show');
     </div>
   </div>
   @include('Unidades.Actividades.modaledit_act')
-  <button class="btn btn-editb"  id="val" data-bs-toggle="modal" data-bs-target="#editaractividades"   wire:click='edita({{$actividad->ID_ACTIVIDADES}})'>  Editar </button>
+  <button class="btn btn-editb"  id="Editaract"    wire:click='edita({{$actividad->ID_ACTIVIDADES}})'>  Editar </button>
 
 
 
