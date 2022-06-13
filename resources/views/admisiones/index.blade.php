@@ -5,11 +5,26 @@
     $(document).on('click', '#info', function() {
   $('#infodata').modal('show');
   });
+
+  $(document).on('click', '#info4', function() {
+  $('#infodata3').modal('show');
+  });
+
+  $(document).on('click', '#info5', function() {
+  $('#infodata5').modal('show');
+  });
   
   $(document).on('click', '#valpedido', function() {
   $('#cambioestadoinfo').modal('show');
   });
 
+  $(document).on('click', '#valestado', function() {
+  $('#cambioestadoinfo5').modal('show');
+  });
+
+  $(document).on('click', '#valestado4', function() {
+  $('#cambioestadoinfo4').modal('show');
+  });
 
   $(document).on('click', '#eliminfo', function() {
   $('#eliminformacion').modal('show');
@@ -415,4 +430,6 @@
       @include('admisiones.eliminar.modalvaleliminar')
       @include('admisiones.eliminar.modaleliminar')
       @include('admisiones.modalinfo5')
+      @include('admisiones.modalestado4')
+      @include('admisiones.modalestado5')
 </div>
