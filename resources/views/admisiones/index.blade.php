@@ -192,13 +192,13 @@
                             <div class="modal-dialog modal-dialog-centered">
                               <div class="modal-content">
                                   <div class="modal-header text-center" style="background:#a4cb39;color:rgb(255, 255, 255)">
-                                    <h3 class="modal-title text-center" id="perfilmodal2Label" style="color:rgb(255, 255, 255)" ><strong><b>Cambio foto de perfil</b></strong></h3>
+                                    <h3 class="modal-title text-center" id="perfilmodal2Label" style="color:rgb(255, 255, 255)" ><strong><b>Comprobante de Pago</b></strong></h3>
                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                   <form wire:submit.prevent='' class="form-horizontal">
                                     <div class="form-group row">
-                                      <label for="exampleInputPassword1" class="form-label" style="font-size:20px">Elegir foto de perfil:</label>
+                                      <label for="exampleInputPassword1" class="form-label" style="font-size:20px">Elegir archivo:</label>
                                       <div class="mb-3">
                                         <input type="file" id="archivo"  wire:model="archivo_comprobante">
                                       </div> 
