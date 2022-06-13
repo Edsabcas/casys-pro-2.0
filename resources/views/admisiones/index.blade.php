@@ -5,6 +5,14 @@
     $(document).on('click', '#info', function() {
   $('#infodata').modal('show');
   });
+
+  $(document).on('click', '#info4', function() {
+  $('#infodata3').modal('show');
+  });
+
+  $(document).on('click', '#info5', function() {
+  $('#infodata5').modal('show');
+  });
   
   $(document).on('click', '#valpedido', function() {
   $('#cambioestadoinfo').modal('show');

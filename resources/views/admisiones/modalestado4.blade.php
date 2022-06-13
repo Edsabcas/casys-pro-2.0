@@ -12,7 +12,7 @@
         </div>
         <div class="modal-footer">
             <a wire:click='cambio_estadoins()' type="button" style="border-radius: 60px 60px 60px 60px;" data-bs-dismiss="modal" class="btn btn-warning">Si</a>
-          <button type="button" class="btn btn-secondary"  style="border-radius: 60px 60px 60px 60px;"  id="info"  data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-secondary"  style="border-radius: 60px 60px 60px 60px;"  id="info4"  data-bs-dismiss="modal">Cancelar</button>
           
         </div>
       </div>
