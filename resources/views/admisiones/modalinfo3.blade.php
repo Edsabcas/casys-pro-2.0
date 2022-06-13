@@ -942,6 +942,8 @@
           <a  id="valestado4" wire:click="cambio_estado(4)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-success" data-bs-dismiss="modal">Reg. Estado</a>
               
             <a  id="valestado4" wire:click="cambio_estado(5)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-warning" data-bs-dismiss="modal">Sig. Estado</a>
+
+            <a  type="button"  wire:click="update_datos_ins()" style="border-radius: 60px 60px 60px 60px;" class="btn btn-primary" >Actualizar</a>
     
         </div>
       </div>
