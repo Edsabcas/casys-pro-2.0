@@ -6,7 +6,7 @@
         </div>
         <div class="modal-body">
             <h5 class="modal-title text-center" id="staticBackdropLabel" style="color:#3a3e7b"><b>¿Confirmé que desea cambiar de estado?</b></h5>
-            <h4 class="form-label text text-center" style="font-size:25px">Gestion: #{{$gestion}}
+            <h4 class="form-label text text-center" style="font-size:25px">Gestion: #{{$no_gest}}
               
             </h4> 
         </div>

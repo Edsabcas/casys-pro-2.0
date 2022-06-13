@@ -191,6 +191,10 @@ Route::post('/update_plan',[ContenidosController::class, 'update_plan']);
 
 Route::post('/revisiones',[ContenidosController::class, 'revisiones']);
 
+Route::post('/update_datos_ins',[AdminisionesController::class, 'update_datos_ins']);
+
+Route::post('/update_diaco',[AdminisionesController::class, 'update_diaco']);
+
 
 
 

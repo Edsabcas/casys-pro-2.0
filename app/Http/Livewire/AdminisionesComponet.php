@@ -20,10 +20,45 @@ class AdminisionesComponet extends Component
     public $val,$val1,$gestion,$errorfecha;
     public $estado_ges;
     public $mensaje1,$id2;
-    public $observacion;
+    public $observacion, $id_pre_ins_arch, $id_no_gest_arch, $archivo_cdiaco, $archivo, $formato;
     public $mensajeup,$mensajeup1;
+    public $id_pre_info, $id_pre_i, $confi, $grados_selecionados, $año_ingreso, $grado_primer_ingreso, $nombre_padre, $nacimiento_padre, $nacionalidad_padre;
+    public $lugar_nacimiento_padre, $estadocivilp, $DPI_padre, $celular_padre, $telefono_padre, $direccion_residencia, $correo_padre, $profesion_padre;
+    public $lugar_profesion_padre, $cargo_profesion_padre, $religion_padre, $NIT_padre, $vive_con_elpadre, $nombre_madre, $fechana_madre, $nacionalidad_madre;
+    public $lugar_nacimiento_madre, $estadocivilma, $DPI_madre, $telefono_madre, $celular_madre, $direccion_residenciamadre, $correo_madre, $profesion_madre;
+    public $lugar_prof_madre, $cargo_madre, $religion_madre, $vive_madre, $NIT_madre, $tiene_alergia, $Especifique_alerg, $nombreaseguradora, $nombreencargado;
+    public $poliza, $carne_seguro, $codigo_fam, $nombre_fam, $Especifique_medi, $Especifique_ali, $medicamento, $grados_mostrar,$estadocivil;
+    public $alimento, $vacunas, $alumno_asegurado, $solo_alumno, $encargado_alumno, $bus_colegio, $bus_no_colegio, $nombre_aseguradora, $no_gest;
+
     public function render()
     {
+        if($this->archivo!=null){
+            if($this->archivo->getClientOriginalExtension()=="pdf"){
+                $archivo = "pdf".time().".".$this->archivo->getClientOriginalExtension();
+                $this->arch=$archivo;
+                $this->archivo->storeAS('imagen/temporalpdf/', $this->arch,'public_up');
+            }
+            if($this->archivo->getClientOriginalExtension()=="jpg" or $this->archivo->getClientOriginalExtension()=="png" or $this->archivo->getClientOriginalExtension()=="jpeg"){
+                $this->formato=1;
+            }
+            elseif($this->archivo->getClientOriginalExtension()=="mp4" or $this->archivo->getClientOriginalExtension()=="mpeg"){
+                $this->formato=2;
+            }
+            elseif($this->archivo->getClientOriginalExtension()=="pdf"){
+                $this->formato=3;
+            }
+
+        }
+
+        $diaco="";
+        if($this->id_pre_ins_arch!=null){
+            $diaco=DB::table('tb_pre_diaco')
+            ->join('TB_PRE_INS','tb_pre_diaco.ID_PRE','=','TB_PRE_INS.ID_PRE')
+            ->select('tb_pre_diaco.ID_CONTRATO_DIACO', 'TB_PRE_INS.ID_PRE', 'TB_PRE_INS.NO_GESTION','tb_pre_diaco.CONTRATO')
+            ->where('tb_pre_diaco.ID_PRE','=',$this->id_pre_ins_arch)
+            ->get();
+        }
+
         if($this->archivo_comprobante!=null){
             if($this->archivo_comprobante->getClientOriginalExtension()=="jpg" or $this->archivo_comprobante->getClientOriginalExtension()=="png" or $this->archivo_comprobante->getClientOriginalExtension()=="jpeg"){
                 $this->tipo=1;
@@ -85,10 +120,10 @@ class AdminisionesComponet extends Component
         $sql= 'SELECT * FROM tb_grados';
         $grados=DB::select($sql);
 
-        return view('livewire.adminisiones-componet', compact('grados','estado_cero','estado_uno','estado_dos','estado_tres','estado_cuatro','estado_cinco'));
+        return view('livewire.adminisiones-componet', compact('grados','estado_cero','estado_uno','estado_dos','estado_tres','estado_cuatro','estado_cinco','diaco'));
     }
 
-    public function tipo_cambio($tipo){
+    public function tipo_cambio($tipo,$id){
 
       //  $this->id_ges_cambio=$id;
         $this->tipo_cambio1=$tipo;
@@ -96,9 +131,9 @@ class AdminisionesComponet extends Component
         
     }
     
-    public function cambioestado(){
+    public function cambioestado($id){
         DB::beginTransaction();
-
+        
         $cambio_pre=DB::table('TB_PRE_INS')
                ->where('ID_PRE',  $this->id_ges_cambio)
                ->update(
@@ -360,4 +395,298 @@ class AdminisionesComponet extends Component
                     }
         }
     }
+
+    Public function editardi($id,$no_gest){
+        $id_pre_info=$id;
+        $this->no_gest=$no_gest;
+        $sql='SELECT * FROM TB_PRE_INFO WHERE ID_PRE=?';
+        $estactr=DB:: select($sql, array($id_pre_info));
+        if($estactr !=null){
+            foreach($estactr as $estac)
+            {
+                $this->id_pre_info=$estac->ID_PRE_INFO;
+                $this->id_pre_i=$estac->ID_PRE;
+                $this->confi=$estac->HERMANOS_COLE;
+                $this->grados_selecionados=$estac->GRADO_HERMANOS_COLE;
+    $this->año_ingreso=$estac->AÑO_1R_INGRESO;
+    $this->grado_primer_ingreso=$estac->GRADO_1R_INGRESO;
+    $this->nombre_padre=$estac->NOMB_PADRE;
+    $this->nacimiento_padre=$estac->FECHA_N_PADRE;
+    $this->nacionalidad_padre=$estac->NACIONALIDAD_PADRE;
+    $this->lugar_nacimiento_padre=$estac->LUGAR_NACIMIENTO_PADRE;
+    $this->estadocivilp=$estac->ESTADO_CIVIL_P;
+    $this->DPI_padre=$estac->DPI_PADRE;
+    $this->celular_padre=$estac->CELULAR_PADRE;
+    $this->telefono_padre=$estac->TELEFONO_PADRE;
+    $this->direccion_residencia=$estac->DIRECCION_RESIDENCIA_P;
+    $this->correo_padre=$estac->CORREO_PADRE;
+    $this->profesion_padre=$estac->PROFECION_PADRE;
+    $this->lugar_profesion_padre=$estac->LUGAR_TRABAJO_P;
+    $this->cargo_profesion_padre=$estac->CARGO_PADRE;
+    $this->religion_padre=$estac->RELIGION_PADRE;
+    $this->NIT_padre=$estac->NIT_PADRE;
+    $this->vive_con_elpadre=$estac->VIVE_CON_EL_PADRE;
+    $this->nombre_madre=$estac->NOMB_MADRE;
+    $this->fechana_madre=$estac->FECHA_N_MADRE;
+    $this->nacionalidad_madre=$estac->NACIONALIDAD_MADRE;
+    $this->lugar_nacimiento_madre=$estac->LUGAR_NACIMIENTO_MADRE;
+    $this->estadocivilma=$estac->ESTADO_CIVIL_M;
+    $this->DPI_madre=$estac->DPI_MADRE;
+    $this->telefono_madre=$estac->TELEFONO_MADRE;
+    $this->celular_madre=$estac->CELULAR_MADRE;
+    $this->direccion_residenciamadre=$estac->DIRECCION_RESIDENCIA_M; 
+    $this->correo_madre=$estac->CORREO_MADRE;
+    $this->profesion_madre=$estac->PROFECION_MADRE;
+    $this->lugar_prof_madre=$estac->LUGAR_TRABAJO_M;
+    $this->cargo_madre=$estac->CARGO_MADRE; 
+    $this->religion_madre=$estac->RELIGION_MADRE;
+    $this->vive_madre=$estac->VIVE_CON_LA_MADRE;
+    $this->NIT_madre=$estac->NIT_MADRE;
+    $this->tiene_alergia=$estac->ENFERMEDADES_ALERGIAS;
+    $this->Especifique_alerg=$estac->ESPECIFICACION_ENF_O_ALERG; 
+    $this->nombreaseguradora=$estac->ASEGURADORA;
+    $this->alumno_asegurado=$estac->ALUMNO_ASEGURADO;
+    $this->poliza=$estac->POLIZA_SEGURO;
+    $this->carne_seguro=$estac->NO_CARNET_SEGURO;
+    $this->codigo_fam=$estac->CODIGO_FAMILIA;
+    $this->nombre_fam=$estac->NOMBRE_FAMILIA;
+    $this->medicamento=$estac->ALERG_MEDICAMENTO;
+    $this->Especifique_ali=$estac->ESPECIFICAR_ALERG_ME;
+    $this->alimento=$estac->ALERG_ALIMENTO;
+    $this->vacunas=$estac->VACUNAS;
+    $this->solo_alumno=$estac->SALIDA_SOLO;
+    $this->encargado_alumno=$estac->SALIDA_CON_ENCARGADO;
+    $this->bus_colegio=$estac->SALIDA_BUS_COLEGIO;
+    $this->bus_no_colegio=$estac->SALIDA_BUS_AJENO;
+    $this->Especifique_medi=$estac->ESPECIFICAR_ALERG_ME;
+    $this->nombre_aseguradora=$estac->ASEGURADORA;
+    $this->nombreencargado=$estac->NOMBRE_ENCARGADO;
+            }
+        }
+    }
+
+    
+
+    public function medicamento($medicamento){
+        $this->medicamento=$medicamento;
+    }
+    public function confirmar_hermano($conf){
+        $this->confi=$conf;
+
+
+    }
+    public function insertar_grados_hermanos($grado, $gradomostrar){
+        $this->grados_selecionados=$this->grados_selecionados.";".$grado;
+        $this->grados_mostrar=$this->grados_selecionados.";".$grados_selecionados;
+        
+    }
+    public function estado_civil_padre($estado_civil){
+        $this->estadocivilp=$estado_civil;
+    }
+    public function confirmar_vive_padre($vive_con_padre){
+        $this->vive_con_elpadre=$vive_con_padre;
+    }
+    public function estado_civil_madre($est){
+        $this->estadocivilma=$est;
+    }
+    public function vive_con_la_madre($vive_con_madre){
+        $this->vive_madre=$vive_con_madre;
+    }
+    public function tiene_alergia($tiene_alergias){
+        $this->tiene_alergia=$tiene_alergias;
+    }
+    public function alimento($alimento){
+        $this->alimento=$alimento;
+    }
+    public function vacunas($vacunas){
+        $this->vacunas=$vacunas;
+    }
+    public function alumno_asegurado($alumno_asegurado){
+        $this->alumno_asegurado=$alumno_asegurado;
+    }
+    public function solo_alumno($solo_alumno){
+        $this->solo_alumno=$solo_alumno;
+    }
+    public function encargado_alumno($encargado_alumno){
+        $this->encargado_alumno=$encargado_alumno;
+    }
+    public function bus_colegio($bus_colegio){
+        $this->bus_colegio=$bus_colegio;
+    }
+    public function bus_no_colegio($bus_no_colegio){
+        $this->bus_no_colegio=$bus_no_colegio;
+    }
+
+    public function update_datos_ins(){
+        
+        $id_pre_info=$this->id_pre_info;
+        $id_pre_i=$this->id_pre_i;
+        $confi=$this->confi;
+        $grados_selecionados=$this->grados_selecionados;
+$año_ingreso=$this->año_ingreso;
+$grado_primer_ingreso=$this->grado_primer_ingreso;
+$nombre_padre=$this->nombre_padre;
+$nacimiento_padre=$this->nacimiento_padre;
+$nacionalidad_padre=$this->nacionalidad_padre;
+$lugar_nacimiento_padre=$this->lugar_nacimiento_padre;
+$estadocivilp=$this->estadocivilp;
+$DPI_padre=$this->DPI_padre;
+$celular_padre=$this->celular_padre;
+$telefono_padre=$this->telefono_padre;
+$direccion_residencia=$this->direccion_residencia;
+$correo_padre=$this->correo_padre;
+$profesion_padre=$this->profesion_padre;
+$lugar_profesion_padre=$this->lugar_profesion_padre;
+$cargo_profesion_padre=$this->cargo_profesion_padre;
+$religion_padre=$this->religion_padre;
+$NIT_padre=$this->NIT_padre;
+$vive_con_elpadre=$this->vive_con_elpadre;
+$nombre_madre=$this->nombre_madre;
+$fechana_madre=$this->fechana_madre;
+$nacionalidad_madre=$this->nacionalidad_madre;
+$lugar_nacimiento_madre=$this->lugar_nacimiento_madre;
+$estadocivilma=$this->estadocivilma;
+$DPI_madre=$this->DPI_madre;
+$telefono_madre=$this->telefono_madre;
+$celular_madre=$this->celular_madre;
+$direccion_residenciamadre=$this->direccion_residenciamadre; 
+$correo_madre=$this->correo_madre;
+$profesion_madre=$this->profesion_madre;
+$lugar_prof_madre=$this->lugar_prof_madre;
+$cargo_madre=$this->cargo_madre; 
+$religion_madre=$this->religion_madre;
+$vive_madre=$this->vive_madre;
+$NIT_madre=$this->NIT_madre;
+$tiene_alergia=$this->tiene_alergia;
+$Especifique_alerg=$this->Especifique_alerg; 
+$nombreaseguradora=$this->nombreaseguradora;
+$nombreencargado=$this->nombreencargado;
+$poliza=$this->poliza;
+$carne_seguro=$this->carne_seguro;
+$codigo_fam=$this->codigo_fam;
+$nombre_fam=$this->nombre_fam;
+$Especifique_medi=$this->Especifique_medi;
+$Especifique_ali=$this->Especifique_ali; 
+
+    
+    DB::beginTransaction();
+
+    $comprobantes=DB::table('TB_PRE_INS')
+            ->where('ID_PRE_INFO',$this->id_ges_cambio)
+            ->update(
+        [
+            'HERMANOS_COLE'=>$this->confi,
+            'GRADO_HERMANOS_COLE'=>$this->grados_selecionados,
+            'AÑO_1R_INGRESO'=>$añoingreso,
+            'GRADO_1R_INGRESO'=>$gradoprimeringreso,
+            'NOMB_PADRE'=>$nombrepadre,
+            'FECHA_N_PADRE'=>$nacimientopadre,
+            'NACIONALIDAD_PADRE'=>$nacionalidadpadre,
+            'LUGAR_NACIMIENTO_PADRE'=>$lugarnacimientopadre,
+            'ESTADO_CIVIL_P'=> $this->estadocivilp,
+            'VIVE_CON_LA_MADRE'=> $this->vive_madre,
+            'DPI_PADRE'=>$DPIpadre,
+            'TELEFONO_PADRE'=>$telefonopadre,
+            'CELULAR_PADRE'=>$celularpadre,
+            'DIRECCION_RESIDENCIA_P'=>$direccionresidencia,
+            'CORREO_PADRE'=>$correopadre,
+            'PROFECION_PADRE'=>$profesionpadre,
+            'LUGAR_TRABAJO_P'=>$lugar_profesion_padre,
+            'CARGO_PADRE'=>$cargo_profesion_padre,
+            'RELIGION_PADRE'=>$religion_padre,
+            'NIT_PADRE'=>$NIT_padre,
+            'VIVE_CON_EL_PADRE'=>$this->vive_con_elpadre,
+            'NOMB_MADRE'=>$nombre_madre,
+            'FECHA_N_MADRE'=>$fechana_madre,
+            'NACIONALIDAD_MADRE'=>$nacionalidad_madre,
+            'LUGAR_NACIMIENTO_MADRE'=>$lugar_nacimiento_madre,
+            'ESTADO_CIVIL_M'=>$this->estadocivilma,
+            'DPI_MADRE'=>$DPI_madre,
+            'TELEFONO_MADRE'=>$telefono_madre,
+            'CELULAR_MADRE'=>$celular_madre,
+            'DIRECCION_RESIDENCIA_M'=>$direccion_residenciamadre, 
+            'CORREO_MADRE'=>$correo_madre,
+            'PROFECION_MADRE'=>$rofesion_madre,
+            'LUGAR_TRABAJO_M'=>$lugar_prof_madre,
+            'CARGO_MADRE'=>$cargo_madre,
+            'ALERG_MEDICAMENTO'=>$this->medicamento,
+            'ALERG_ALIMENTO'=>$this->alimento,
+            'RELIGION_MADRE'=>$religion_madre,
+            'NIT_MADRE'=>$NIT_madre,
+            'ESPECIFICAR_ALERG_ME'=>$this->Especifique_medi,
+            'ESPECIFICACION_ALERG_AL'=>$this->Especifique_ali,
+            'ENFERMEDADES_ALERGIAS'=>$this->tiene_alergia,
+            'ESPECIFICACION_ENF_O_ALERG'=>$this->Especifique_alerg,
+            'VACUNAS'=>$this->vacunas,
+            'ALUMNO_ASEGURADO'=>$this->alumno_asegurado,
+            'ASEGURADORA'=>$this->nombre_aseguradora,
+            'POLIZA_SEGURO'=>$poliza,
+            'NO_CARNET_SEGURO'=>$this->carne_seguro,
+            'SALIDA_SOLO'=>$this->solo_alumno,
+            'SALIDA_CON_ENCARGADO'=>$this->encargado_alumno,
+            'NOMBRE_ENCARGADO'=>$this->nombreencargado,
+            'SALIDA_BUS_COLEGIO'=>$this->bus_colegio,
+            'SALIDA_BUS_AJENO'=>$this->bus_no_colegio,
+            'CODIGO_FAMILIA'=>$this->codigo_fam,
+            'NOMBRE_FAMILIA'=>$this->nombre_fam,
+        
+            ]
+        );
+        if($inscripcion_datos){
+            DB::commit();
+            $this->validar_info = 1;
+        }
+        else{
+            DB::rollback();
+            $this->validar_info = 0;
+        }
+    }
+
+    Public function editardiaco($id,$no){
+        $id_pre=$id;
+        $id_gest=$no;
+        $sql='SELECT * FROM tb_pre_diaco WHERE ID_PRE=?';
+        $estactr=DB:: select($sql, array($id_pre));
+        if($estactr !=null){
+            foreach($estactr as $estac)
+            {
+                $this->id_pre_ins_arch=$estac->ID_PRE;
+                $this->id_no_gest_arch=$estac->NO_GESTION;
+                $this->archivo_cdiaco=$estac->CONTRATO;
+            }
+        }  
+    }
+
+    public function update_diaco($estadoact){
+        $id_pre_ins_arch=$this->id_pre_ins_arch;
+        $id_no_gest_arch=$this->id_no_gest_arch;
+        $archivo_cdiaco=$this->archivo_cdiaco;
+        
+     
+     
+        DB::begintransaction();
+     
+     
+        $revisiones=DB::table('tb_pre_diaco')
+        ->where('ID_PRE', $id_pre_ins_arch)
+        ->update(
+             [
+                 'CONTRATO'=>$archivo_cdiaco,
+             ]);
+     
+             if($revisiones){
+                 DB::commit();
+                 unset($this->mensaje);;
+                 unset($this->mensaje1);
+                 $this->op='addcontenidos';
+                 $this->mensaje='Insertado correctamente';
+                 }
+                 else {
+                 DB::rollback();
+                 unset($this->mensaje);;
+                 unset($this->mensaje1);
+                 $this->op='addcontenidos';
+                 $this->mensaje1='Datos no  insertados correctamente';
+                 }        
+         }
 }
