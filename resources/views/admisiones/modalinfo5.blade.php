@@ -8,7 +8,7 @@
 
         <div class="modal-body">
             <div class="container-sm">
-              <h4 class="form-label text text-center" style="font-size:25px">Gestion: #{{$no_gest}}
+              <h4 class="form-label text text-center" style="font-size:25px">Gestion: #{{$id_gest}}
               
               </h4> 
               <form action="/update_diaco" method="POST" wire:submit.prevent=''>
@@ -27,8 +27,9 @@
           
                   <div  wire:ignore.self id="panelsStayOpen-usuario" style="border-radius: 60px 60px 60px 60px;" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
                   <div  wire:ignore.self class="accordion-body" style="border-radius: 60px 60px 60px 60px;">
+                  @foreach ($diaco as $dia)
                   <div class="row">
-                    @foreach ($diaco as $dia)
+                    
                     @php
                     $foo = 0;
                     $vid = 0;
@@ -54,10 +55,10 @@
                @if($pdf==1)
                <iframe style="width: 49rem; text-align:center" width="400" height="400" src="/imagen/pdf_act/{{$dia->CONTRATO}}" frameborder="0"></iframe>
                @endif
-               @endforeach
+               
                     
                 </div>
-          
+                @endforeach
             </div>
             </div>
           </div>

@@ -20,7 +20,7 @@ class AdminisionesComponet extends Component
     public $val,$val1,$gestion,$errorfecha;
     public $estado_ges;
     public $mensaje1,$id2;
-    public $observacion, $id_pre_ins_arch, $id_no_gest_arch, $archivo_cdiaco, $archivo, $formato;
+    public $observacion, $id_pre_ins_arch, $id_no_gest_arch, $archivo_cdiaco, $archivo, $formato,$id_gest;
     public $mensajeup,$mensajeup1;
     public $id_pre_info, $id_pre_i, $confi, $grados_selecionados, $año_ingreso, $grado_primer_ingreso, $nombre_padre, $nacimiento_padre, $nacionalidad_padre;
     public $lugar_nacimiento_padre, $estadocivilp, $DPI_padre, $celular_padre, $telefono_padre, $direccion_residencia, $correo_padre, $profesion_padre;
@@ -51,13 +51,11 @@ class AdminisionesComponet extends Component
         }
 
         $diaco="";
-        if($this->id_pre_ins_arch!=null){
             $diaco=DB::table('tb_pre_diaco')
             ->join('TB_PRE_INS','tb_pre_diaco.ID_PRE','=','TB_PRE_INS.ID_PRE')
             ->select('tb_pre_diaco.ID_CONTRATO_DIACO', 'TB_PRE_INS.ID_PRE', 'TB_PRE_INS.NO_GESTION','tb_pre_diaco.CONTRATO')
             ->where('tb_pre_diaco.ID_PRE','=',$this->id_pre_ins_arch)
             ->get();
-        }
 
         if($this->archivo_comprobante!=null){
             if($this->archivo_comprobante->getClientOriginalExtension()=="jpg" or $this->archivo_comprobante->getClientOriginalExtension()=="png" or $this->archivo_comprobante->getClientOriginalExtension()=="jpeg"){
@@ -644,7 +642,7 @@ $Especifique_ali=$this->Especifique_ali;
 
     Public function editardiaco($id,$no){
         $id_pre=$id;
-        $id_gest=$no;
+        $this->id_gest=$no;
         $sql='SELECT * FROM tb_pre_diaco WHERE ID_PRE=?';
         $estactr=DB:: select($sql, array($id_pre));
         if($estactr !=null){
