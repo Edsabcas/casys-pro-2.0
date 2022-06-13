@@ -10,6 +10,13 @@
   $('#cambioestadoinfo').modal('show');
   });
 
+  $(document).on('click', '#valestado', function() {
+  $('#cambioestadoinfo5').modal('show');
+  });
+
+  $(document).on('click', '#valestado4', function() {
+  $('#cambioestadoinfo4').modal('show');
+  });
 
   $(document).on('click', '#eliminfo', function() {
   $('#eliminformacion').modal('show');

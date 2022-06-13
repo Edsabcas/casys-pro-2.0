@@ -20,7 +20,7 @@ class AdminisionesComponet extends Component
     public $val,$val1,$gestion,$errorfecha;
     public $estado_ges;
     public $mensaje1,$id2;
-    public $observacion, $id_pre_ins_arch, $id_no_gest_arch, $archivo_cdiaco, $archivo, $formato,$id_gest;
+    public $observacion, $id_pre_ins_arch, $id_no_gest_arch, $archivo_cdiaco, $archivo, $formato,$id_gest,$nuevo_estado;
     public $mensajeup,$mensajeup1;
     public $id_pre_info, $id_pre_i, $confi, $grados_selecionados, $año_ingreso, $grado_primer_ingreso, $nombre_padre, $nacimiento_padre, $nacionalidad_padre;
     public $lugar_nacimiento_padre, $estadocivilp, $DPI_padre, $celular_padre, $telefono_padre, $direccion_residencia, $correo_padre, $profesion_padre;
@@ -687,4 +687,44 @@ $Especifique_ali=$this->Especifique_ali;
                  $this->mensaje1='Datos no  insertados correctamente';
                  }        
          }
+
+         public function cambio_estado($id){
+            $this->nuevo_estado=$id;  
+         }
+
+         public function cambio_estadocon(){
+            $elevar=DB::table('TB_PRE_INS')
+                ->where('ID_PRE', $this->id_pre_ins_arch)
+                ->update(
+                    [
+ 
+                     'ESTADO_PRE_INS' => $this->nuevo_estado,
+ 
+                    ]);
+                    if($elevar){
+                        $this->mensaje_diaco='Insertado correctamente';
+                    }
+                    else{
+                        $this->mensaje_diaco1='No se inserto correctamente';
+                    }
+         }
+
+         public function cambio_estadoins(){
+            $elevar=DB::table('TB_PRE_INS')
+                ->where('ID_PRE', $this->id_ges_cambio)
+                ->update(
+                    [
+ 
+                     'ESTADO_PRE_INS' => $this->nuevo_estado,
+ 
+                    ]);
+                    if($elevar){
+                        $this->mensaje_diaco='Insertado correctamente';
+                    }
+                    else{
+                        $this->mensaje_diaco1='No se inserto correctamente';
+                    }
+         }
+
+
 }
