@@ -4,7 +4,7 @@
     <input type="hidden" value="{{$id_gr}}" name="id_gr">
     <div class="form-floating mb-3">
       <input type="text" class="form-control" id="floatingInput" value='{{$nombre_gr}}'  name="nombre_gr">
-      <label for="floatingInput">Nombre Categoria:</label>
+      <label for="floatingInput">Nombre Categoría:</label>
     </div>
     <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Estado:</label>

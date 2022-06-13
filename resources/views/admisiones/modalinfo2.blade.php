@@ -324,15 +324,33 @@
 
                         <div class="row g-3">
                           <div class="col-md">
-                          <label for="fnacimiento_en" style="font-size: 15px; color:#000000;">Fecha Nacimiento:</label>
-                          <input type="date" placeholder=""   wire:model="fnacimiento_en" class="form-control " required>
+                          <label for="fpago" style="font-size: 15px; color:#000000;">Forma de Pago:</label>
+                          <select class="form-select" wire:model="fpago" aria-label="Default select example">
+                            <option selected></option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                          </select>
                       </div>
-                      @error('fnacimiento_en')
+                      @error('fpago')
                       <div class="alert alert-warning" role="alert">
                        Pendiente
                       </div>
                       @enderror
-                    
+
+                      <div class="col-md">
+                        <label for="exampleInputEmail1" class="form-label">Metodo de pago:</label>
+                            <select class="form-select" aria-label="Default select example" wire:model="metodo">
+                              <option selected>Seleccionar:</option>
+                                <option value="1">Efectivo</option>
+                                <option value="2">Transferencia</option>
+                            </select>
+                      </div>
+                      @error('metodo')
+                        <div class="alert alert-warning" role="alert">
+                        Pendiente
+                        </div>
+                      @enderror
                       <div class="col-md">
                             <label for="inputDPI" style="font-size: 15px; color:#000000;">DPI:</label>
                             <input type="number" placeholder="" type="number"   wire:model="dpi_en" class="form-control " required>
@@ -342,6 +360,54 @@
                          Pendiente
                         </div>
                         @enderror
+                        
+                        <div class="mb-3">
+                          <label for="message-text" class="col-form-label">Observación:</label>
+                          <textarea class="form-control" id="message-text" wire:model="observacion"></textarea>
+                        </div>
+                      @error('observación')
+                      <div class="alert alert-warning" role="alert">
+                       Pendiente
+                      </div>
+                      @enderror
+                     {{-- @foreach ($estado_uno as $estado_un)
+                        @php
+                          $foo = 0;
+                          if (strpos($estado_un->COMPROBANTE_PAGO, '.jpg' ) !== false || strpos($estado_un->COMPROBANTE_PAGO, '.png' ) !== false || strpos($estado_un->COMPROBANTE_PAGO, '.jpeg' ) !== false) 
+                          { $foo=1; }
+                        @endphp
+                            @if($foo==1)
+                              @if($estado_un->ID_PRE==auth()->user()->id)
+                              <img class="img-profile rounded-circle" style="float: center;" width="35" height="40" src="public/comprobantes/imagenes/{{$estado_un->ID_PRE==auth()->user()->id}}" /> 
+                              @endif
+                            @endif
+                            @endforeach
+                      <button type="button" class="btn btn-editb" style="float: right;" data-bs-toggle="modal" data-bs-target="#perfilmodal2{{$estado_un->ID_PRE==auth()->user()->id}}">
+                        <svg xmlns="http://www.w3.org/2000/svg" style="float: center;" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                          <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                          <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                        </svg>  
+                      </button> --}}
+                    {{-- @foreach ($estado_uno as $estado_un)
+                        @if ($estado_un->COMPROBANTE_PAGO=="" or $estado_un->COMPROBANTE_PAGO==null)
+                      
+                         <img class="rounded-circle" src="img/undraw_profile_1.svg" width="40" height="40" alt="...">        
+                          <button type="button" class="btn btn-editb" style="float: right;" data-bs-toggle="modal" data-bs-target="#perfilmodal2{{$estado_un->ID_PRE}}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                              <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                              <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                            </svg>  
+                          </button>  
+                        @else
+                          <img class="img-profile rounded-circle" style="float: center;" width="35" height="40" src="public/comprobantes/imagenes/{{$estado_un->COMPROBANTE_PAGO}}" />
+                          <button type="button" class="btn btn-editb" style="float: right;" data-bs-toggle="modal" data-bs-target="#perfilmodal2{{$estado_un->ID_PRE}}">
+                            <svg xmlns="http://www.w3.org/2000/svg" style="float: center;" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                              <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                              <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                            </svg>  
+                          </button> 
+                        @endif 
+                        @endforeach    --}}
                       </div>
                         </form>
                    </div>
@@ -354,12 +420,13 @@
         <div class="modal-footer">
           <a  id="valpedido" wire:click="tipo_cambio(0)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-success" data-bs-dismiss="modal">Reg. Estado</a>
               
+          @if($estado_ges==2)
             <a  id="valpedido" wire:click="tipo_cambio(1)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-warning" data-bs-dismiss="modal">Sig. Estado</a>
-                
-          <button type="button" class="btn btn-secondary" style="border-radius: 60px 60px 60px 60px;" data-bs-dismiss="modal">Cerrar</button>
-               
+            @endif
+ 
         </div>
       </div>
     </div>
-  </div>     
+  </div>    
+
    @include('admisiones.codmineduc')

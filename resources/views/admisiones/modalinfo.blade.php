@@ -15,6 +15,7 @@
               </h4> 
               <p  class="text text-center">Fecha de solicitud: <b>{{$fingreso_gestion}}</b></p>
               <br>
+
               <div wire:ignore.self class="accordion" id="accordionPanelsStayOpenExample2">
                 <div style="border-radius: 60px 60px 60px 60px;" class="accordion-item">
                   <h2 style="border-radius: 60px 60px 60px 60px;" class="accordion-header" id="panelsStayOpen-headingTwo">
@@ -158,6 +159,22 @@
                           Pendiente
                           </div>
                           @enderror 
+                        </div>
+                        <div class="row g-3">
+                          <div class="col-md">
+                            <label for="inputApellidos" style="font-size: 15px; color:#000000;">Grado ingreso:</label>
+                            <br>
+                            <select class="form-select form-select-lg mb-3" wire:model="gradoin" aria-label=".form-select-lg example">
+                              @foreach($grados as $grado)
+                              <option value="{{$grado->ID_GR}}">{{$grado->GRADO}}</option>
+                              @endforeach
+                            </select>
+                            @error('gradoin')
+                            <div class="alert alert-warning" role="alert">
+                            Pendiente
+                            </div>
+                            @enderror 
+                          </div>
                         </div>
                       </form>
                     </div>
@@ -310,19 +327,21 @@
                 </div>
               </div>
               
-            </div>        
+            </div>    
+
         </div>
+      @if($mensajeup!=null)
+      <div id="cerrar"class="alert alert-success alert-dismissible fade show cerrar" role="alert">
+        <strong> Actualizado Correctamente.</strong> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      @endif
         <div class="modal-footer">
-<<<<<<< HEAD
-            <a  id="valpedido" wire:click="tipo_cambio('{{$id2}}',1,{{$gestion}})" type="button" class="btn btn-pre2" data-bs-dismiss="modal">Validar</a>
-=======
-          <a  id="valpedido" wire:click="actualizar_info()" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-warning" data-bs-dismiss="modal">Actualizar Info.</a>
+
+          <a  wire:click="actualizar_info()" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-warning">Actualizar Info.</a>
                 
             <a  id="valpedido" wire:click="tipo_cambio(1)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-editb" data-bs-dismiss="modal">Validar Información</a>
->>>>>>> 84879233aeafc159dfb2f2ba3202420eb65d3ba5
-                
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-               
+
         </div>
       </div>
     </div>
