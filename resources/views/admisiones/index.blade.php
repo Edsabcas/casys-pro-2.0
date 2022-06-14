@@ -143,7 +143,6 @@
                             <th scope="col">Estudiante</th>
                             <th scope="col">Grado Ingreso</th>
                             <th scope="col">Estado</th>
-                            <th scope="col">Comprobante</th>
                             <th scope="col">Acción</th>
                           </tr>
                         </thead>
