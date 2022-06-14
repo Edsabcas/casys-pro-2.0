@@ -377,7 +377,7 @@
           <div class="accordion-item" style="border-radius: 60px 60px 60px 60px;" >
               <h2 class="accordion-header" style="border-radius: 60px 60px 60px 60px; color: #3a3e7b"  id="flush-headingOne">
                   <button class="accordion-button collapsed"  style="border-radius: 60px 60px 60px 60px; color: #3a3e7b"  type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                      NIVEL ACADEMICO | visualizar tabla
+                      NIVEL ACADÉMICO | visualizar tabla
                   </button>
               </h2>           
               <div wire:ignore.self id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
@@ -387,7 +387,7 @@
                             <thead>
                               <tr>
                               <th>ID</th>
-                              <th>NIVEL ACADEMICO</th>
+                              <th>NIVEL ACADÉMICO</th>
                               <th>ESTADO</th>
                               <th>ACCIONES</th>
                             </tr>

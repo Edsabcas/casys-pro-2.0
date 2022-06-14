@@ -1,4 +1,19 @@
-
+      @isset($mensajeup)
+        @if ($mensajeup!=null)
+          <div class="alert alert-success" role="alert">
+          Agregado Correctamente!
+          </div>
+        @endif
+      @endisset
+      @isset($mensajeup1)
+        @if($mensajeup1!=null)
+          <div class="alert alert-danger" role="alert">
+          No se logro insetar sección
+          </div>
+        @endif
+      @endisset
+  
+  
   <div wire:ignore.self id="infodata2" style="border-radius: 60px 60px 60px 60px;" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="infodata2" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -52,17 +67,17 @@
                                   <label for="inputApellidos" style="font-size: 15px; color:#000000;">Género:</label>
                                   <br>
                                   <div class="form-check form-check-inline ">
-                                    <input class="form-check-input"  wire:model='genero' value="Masculino" wire:click="valfecha"  type="radio" wire:model="genero_es" id="flexRadioDefault1">
+                                    <input class="form-check-input"  wire:model='genero' value="Masculino" type="radio" id="flexRadioDefault1">
                                     <label class="form-check-label" for="flexRadioDefault1" style="font-size: 15px; color:#000000;">
                                       Masculino
                                     </label>
                                   </div>
                                   <div class="form-check form-check-inline " >
-                                    <input class="form-check-input"  wire:model='genero' value="Femenino" type="radio" wire:model="genero_es" id="flexRadioDefault2">
+                                    <input class="form-check-input"  wire:model='genero' value="Femenino" type="radio"  id="flexRadioDefault2">
                                     <label class="form-check-label" for="flexRadioDefault2" style="font-size: 15px; color:#000000;">
                                       Femenino
                                     </label>
-                                    @error('genero_es')
+                                    @error('genero')
                                     <div class="alert alert-warning" role="alert">
                                       Pendiente
                                     </div>
@@ -325,11 +340,13 @@
                         <div class="row g-3">
                           <div class="col-md">
                           <label for="fpago" style="font-size: 15px; color:#000000;">Forma de Pago:</label>
-                          <select class="form-select" wire:model="fpago" aria-label="Default select example">
-                            <option selected></option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                          <select class="form-select" wire:model="fpago" aria-label="Default select example" required>
+                            <option selected>Seleccionar:</option>
+                            @isset($formasdepago)
+                              @foreach ($formasdepago as $forma)
+                                <option value="{{$forma->ID_F_PAGO}}">{{$forma->DESCRIPCION}}</option>
+                              @endforeach              
+                            @endisset
                           </select>
                       </div>
                       @error('fpago')
@@ -337,13 +354,15 @@
                        Pendiente
                       </div>
                       @enderror
-
                       <div class="col-md">
                         <label for="exampleInputEmail1" class="form-label">Metodo de pago:</label>
-                            <select class="form-select" aria-label="Default select example" wire:model="metodo">
+                            <select class="form-select" aria-label="Default select example" wire:model="metodo" required>
                               <option selected>Seleccionar:</option>
-                                <option value="1">Efectivo</option>
-                                <option value="2">Transferencia</option>
+                              @isset($metododepago)
+                              @foreach ($metododepago as $metodo)
+                                <option value="{{$metodo->ID_T_D_PAGO}}">{{$metodo->DESCRIPCION}}</option>
+                              @endforeach              
+                            @endisset
                             </select>
                       </div>
                       @error('metodo')
@@ -363,13 +382,83 @@
                         
                         <div class="mb-3">
                           <label for="message-text" class="col-form-label">Observación:</label>
-                          <textarea class="form-control" id="message-text" wire:model="observacion"></textarea>
+                          <textarea class="form-control" id="message-text" wire:model="observacion" required></textarea>
                         </div>
-                      @error('observación')
+                      @error('observacion')
                       <div class="alert alert-warning" role="alert">
                        Pendiente
                       </div>
                       @enderror
+                      <div class="col-md">
+                        @if ($estado_un->COMPROBANTE_PAGO=="" or $estado_un->COMPROBANTE_PAGO==null)
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-file-image" viewBox="0 0 16 16">
+                          <path d="M8.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                          <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM3 2a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v8l-2.083-2.083a.5.5 0 0 0-.76.063L8 11 5.835 9.7a.5.5 0 0 0-.611.076L3 12V2z"/>
+                        </svg>                            
+                        <button type="button" class="btn btn-editb" style="float: right;" data-bs-toggle="modal" data-bs-target="#subirimagen{{$estado_un->ID_PRE}}">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                          </svg>  
+                        </button>    
+                        @else
+                        <img class="img-profile rounded-circle" style="float: center;" width="50" height="50" src="imagen/comprobantes2022/{{$estado_un->COMPROBANTE_PAGO}}" />
+                        <button type="button" class="btn btn-editb" style="float: right;" data-bs-toggle="modal" data-bs-target="#subirimagen{{$estado_un->ID_PRE}}">
+                          <svg xmlns="http://www.w3.org/2000/svg" style="float: center;" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                          </svg>  
+                        </button> 
+                        @endif
+                      <div wire:ignore.self class="modal fade" id="subirimagen{{$estado_un->ID_PRE}}" tabindex="-1" aria-labelledby="perfilmodal2Label" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                          <div class="modal-content">
+                              <div class="modal-header text-center" style="background:#a4cb39;color:rgb(255, 255, 255)">
+                                <h3 class="modal-title text-center" id="perfilmodal2Label" style="color:rgb(255, 255, 255)" ><strong><b>Comprobante de Pago</b></strong></h3>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <form wire:submit.prevent='' class="form-horizontal">
+                                <div class="form-group row">
+                                  <label for="exampleInputPassword1" class="form-label" style="font-size:20px">Elegir foto o archivo de comprobante:</label>
+                                  <div class="mb-3">
+                                    <input type="file" id="archivo"  wire:model="archivo_comprobante">
+                                  </div> 
+                              </div>
+                              <div class="mb-3">
+                                <div wire:loading wire:target="archivo_comprobante" class="alert alert-warning" role="alert">
+                                  <strong class="font-bold">¡Imagen cargando!</strong>
+                                    <span class="block sm:inlone">Espere un momento hasta que la imagen se haya procesado.</span>
+                                  <div class="spinner-border text-warning" role="status">
+                                  </div>
+                                </div>
+                                @if($tipo==1)
+                                <h3 class="form-label">Visualización de Imagen</h3>
+                                <img src="{{$archivo_comprobante->temporaryURL()}}" height="100" weight="100"  alt="...">
+                                @endif
+                                @if($mensaje24 != null)
+                                              <div class="alert alert-success d-flex align-items-center" role="alert">
+                                                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                                                    <div>{{$mensaje24}}
+                                                    </div>
+                                                  </div>
+                                                @endif
+                                              @if($mensaje25 != null)
+                                              <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                                                    <div>{{$mensaje25}}
+                                                    </div>
+                                                  </div>
+                                                @endif
+                              </div>  
+                              <button class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                              <button class="btn btn-pre2" wire:click="cambiofoto({{$estado_un->ID_PRE}})">Publicar</button>
+                            </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div> 
+                      </div>
                      {{-- @foreach ($estado_uno as $estado_un)
                         @php
                           $foo = 0;
@@ -417,7 +506,11 @@
               
             </div>        
         </div>
+
         <div class="modal-footer">
+
+          <button class="btn btn-pre2" style="border-radius: 60px 60px 60px 60px;" wire:click="actualizar_validacion_pago()">Actualizar</button>
+
           <a  id="valpedido" wire:click="tipo_cambio(0)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-success" data-bs-dismiss="modal">Reg. Estado</a>
               
           @if($estado_ges==2)

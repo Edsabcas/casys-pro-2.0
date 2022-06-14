@@ -38,7 +38,7 @@
             <thead>
                 <tr>
                 <th>ID</th>
-                <th>SECCION</th>
+                <th>SECCIÓN</th>
                 <th>ESTADO</th>
                 <th>ACCIONES</th>
               </tr>
@@ -70,13 +70,6 @@
               @endforeach
             </tbody>
           </table>
-          {{-- <nav aria-label="Page navigation example">
-            <ul class="pagination">
-              <li class="page-item"> --}}
-                {{ $secciones->links() }}
-            {{--   </li>
-            </ul>
-          </nav> --}}
         </div>
           
 @endisset

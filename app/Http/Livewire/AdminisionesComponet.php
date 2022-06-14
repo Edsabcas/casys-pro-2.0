@@ -16,7 +16,7 @@ class AdminisionesComponet extends Component
     public $gradoin,$nombre_es,$f_nacimiento_es,$genero,$cui_es,$codigo_pe_es,$nac_es,$lug_nac_es,$tel_es,$cel_es,$direccion_es,$religion_es;
     public $nombre_en,$fnacimiento_en,$dpi_en,$extentido_en,$es_civil_en,$direccion_en,$tel_casa_en,$cel_en,$correo_en,$religion_en;
     public $a,$mensaje,$gradose,$fingreso_gestion,$id_ges_cambio,$tipo_cambio1;
-    public $id_pre,$metodo,$archivo_comprobante,$img,$tipo,$mensaje24,$mensaje25,$fotos;
+    public $id_pre,$metodo,$archivo_comprobante,$img,$tipo,$mensaje24,$mensaje25,$fotos,$fpago;
     public $val,$val1,$gestion,$errorfecha;
     public $estado_ges;
     public $mensaje1,$id2;
@@ -114,11 +114,14 @@ class AdminisionesComponet extends Component
             $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.ESTADO_PRE_INS,TB_PRE_INS.NO_GESTION, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE ESTADO_PRE_INS=8 order by TB_PRE_INS.FECHA_CAMBIOS_REG  DESC";
             $estado_cinco=DB::select($sql);
         }
-
+        $sql="SELECT * FROM TB_FORMAS_DE_PAGO";
+        $formasdepago=DB::select($sql);
+        $sql="SELECT * FROM TB_TIPOS_DE_PAGO";
+        $metododepago=DB::select($sql);
         $sql= 'SELECT * FROM tb_grados';
         $grados=DB::select($sql);
 
-        return view('livewire.adminisiones-componet', compact('grados','estado_cero','estado_uno','estado_dos','estado_tres','estado_cuatro','estado_cinco','diaco'));
+        return view('livewire.adminisiones-componet', compact('metododepago','formasdepago', 'grados','estado_cero','estado_uno','estado_dos','estado_tres','estado_cuatro','estado_cinco','diaco'));
     }
 
     public function tipo_cambio($tipo,$id){
@@ -229,7 +232,8 @@ class AdminisionesComponet extends Component
             $this->dpi_en=$pre->DPI_EN_ES;
             $this->extentido_en=$pre->EXTENDIDO_DPI_EN_ES;
             $this->observacion=$pre->OBSERVACION_COMP;
-            $this->metodo=$pre->FORMA_PAGO;
+            $this->fpago=$pre->FORMA_PAGO;
+            $this->metodo=$pre->TIPO_PAGO;
             $this->es_civil_en=$pre->ESTADO_CIVIL_EN_ES;
             $this->direccion_en=$pre->DIRECCION_EN_ES;
             $this->tel_casa_en=$pre->TEL_EN_ES;
@@ -371,7 +375,7 @@ class AdminisionesComponet extends Component
             if($this->archivo_comprobante->getClientOriginalExtension()=="jpg" or $this->archivo_comprobante->getClientOriginalExtension()=="png" or $this->archivo_comprobante->getClientOriginalExtension()=="jpeg"){
                 $archivo_comprobante = "img".time().".".$this->archivo_comprobante->getClientOriginalExtension();
                 $this->img=$archivo_comprobante;
-                $this->archivo_comprobante->storeAS('public/comprobantes/imagenes/', $this->img,'public_up');
+                $this->archivo_comprobante->storeAS('imagen/comprobantes2022/', $this->img,'public_up');
                 $this->tipo=1;
             }
            
@@ -392,6 +396,109 @@ class AdminisionesComponet extends Component
                         $this->mensaje25="No se logró actualizar";
                     }
         }
+    }
+    public function actualizar_validacion_pago(){
+        if($this->validate([
+
+            /* DATOS DEL ESTUDIANTE */
+            'gradoin' => 'required',
+            'nombre_es' => 'required',
+            'f_nacimiento_es' => 'required',
+            'genero' => 'required',
+            'cui_es' => 'required',
+            'codigo_pe_es' => 'required',
+            'nac_es' => 'required',
+            'lug_nac_es' => 'required',
+            'direccion_es' => 'required',
+            'cel_es' => 'required',
+            'religion_es' => 'required',
+
+            /* DATOS ENCARGADO */
+
+            'nombre_en' => 'required',
+            'fnacimiento_en' => 'required',
+            'dpi_en' => 'required',
+            'extentido_en' => 'required',
+            'es_civil_en' => 'required',
+            'direccion_en' => 'required',
+            'tel_casa_en' => 'required',
+            'cel_en' => 'required',
+            'correo_en' => 'required',
+            'religion_en' => 'required',
+
+            /* INFORMACIÓN PAGO */
+
+            'fpago' => 'required',
+            'metodo' => 'required',
+            'dpi_en' => 'required',
+            'observacion' => 'required',
+
+            ])==false){
+            $mensaje="no encontrado";
+           session(['message' => 'no encontrado']);
+            return  back()->withErrors(['mensaje'=>'Validar el input vacio']);
+        }else{
+            DB::beginTransaction();
+    
+            $validacion_pagos=DB::table('TB_PRE_INS')
+            ->where('ID_PRE',$this->id_ges_cambio)
+            ->update(
+                [
+
+                    /* DATOS DEL ESTUDIANTE */
+
+                    'NOMBRE_ES'=>$this->nombre_es,
+                    'FEC_NAC'=>$this->f_nacimiento_es,
+                    'GENERO'=>$this->genero,
+                    'CUI_ES'=>$this->cui_es,
+                    'CODIGO_PER'=> $this->codigo_pe_es,
+                    'NACIONALIDAD_ES'=>$this->nac_es,
+                    'LUGAR_NAC_ES'=>$this->lug_nac_es,
+                    'CELULAR_ES'=>$this->cel_es,
+                    'DIRECCION_RES_ES'=>$this->direccion_es,
+                    'RELIGION_ES'=>$this->religion_es,
+
+                    /* DATOS ENCARGADO */
+
+                    'NOMBRE_ENCARGADO_ES'=>$this->nombre_en,
+                    'FEC_NAC_EN_ES'=>$this->fnacimiento_en,
+                    'DPI_EN_ES'=>$this->dpi_en,
+                    'EXTENDIDO_DPI_EN_ES'=> $this->extentido_en,
+                    'ESTADO_CIVIL_EN_ES'=>$this->es_civil_en,
+                    'DIRECCION_EN_ES'=>$this->direccion_en,
+                    'TEL_EN_ES'=>$this->tel_casa_en,
+                    'CEL_EN_ES'=>$this->cel_en,
+                    'CORREO_EN_ES'=>$this->correo_en,
+                    'RELIGION_EN_ES'=>$this->religion_en,
+
+                    'FECHA_REGISTRO'=>$this->fingreso_gestion,
+                    'GRADO_ING_ES'=>$this->gradoin,
+                    'NO_GESTION'=>$this->gestion,
+
+                    /* INFORMACIÓN PAGO */
+
+                    'TIPO_PAGO'=>$this->fpago,
+                    'FORMA_PAGO'=>$this->metodo,
+                    'COMPROBANTE_PAGO'=>$this->archivo_comprobante,
+                    'FECHA_CAMBIOS_REG'=> date('y-m-d:h:m:s'),
+                    'OBSERVACION_COMP'=>$this->observacion,
+                ]
+                );
+            if($validacion_pagos){
+    
+                DB::commit();
+               // $this->reset();
+                unset($this->mensajeup);
+                $this->mensajeup='Actualizado correctamente';
+            }
+            else{
+                DB::rollback();
+                unset($this->mensajeup1);
+                $this->mensajeup1='No fue posible actualizar correctamente';
+            }
+    
+        }
+      
     }
 
     Public function editardi($id,$no_gest){
