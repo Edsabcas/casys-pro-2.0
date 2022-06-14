@@ -390,26 +390,37 @@
                       </div>
                       @enderror
                       <div class="col-md">
-                        @if ($estado_un->COMPROBANTE_PAGO=="" or $estado_un->COMPROBANTE_PAGO==null)
-                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-file-image" viewBox="0 0 16 16">
-                          <path d="M8.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-                          <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM3 2a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v8l-2.083-2.083a.5.5 0 0 0-.76.063L8 11 5.835 9.7a.5.5 0 0 0-.611.076L3 12V2z"/>
-                        </svg>                            
-                        <button type="button" class="btn btn-editb" style="float: right;" data-bs-toggle="modal" data-bs-target="#subirimagen{{$estado_un->ID_PRE}}">
+
+                       {{--  @foreach ($estado_uno as $estado_un)
+                          @php
+                            $foo = 0;
+                            if (strpos($estado_un->COMPROBANTE_PAGO, '.jpg' ) !== false || strpos($estado_un->COMPROBANTE_PAGO, '.png' ) !== false || strpos($estado_un->COMPROBANTE_PAGO, '.jpeg' ) !== false) 
+                            { $foo=1; }
+                          @endphp
+                              @if($foo==1)
+                              @if($estado_un->ID_PRE)
+                              <img src="imagen/comprobantes2022/{{$estado_un->COMPROBANTE_PAGO}}" height="150" weight="75" alt="...">
+                              @endif
+                              @endif
+                        @endforeach      
+                        <button type="button" class="btn btn-editb" data-bs-toggle="modal" data-bs-target="#perfilmodal2">
                           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                             <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                             <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                           </svg>  
-                        </button>    
-                        @else
-                        <img class="img-profile rounded-circle" style="float: center;" width="50" height="50" src="imagen/comprobantes2022/{{$estado_un->COMPROBANTE_PAGO}}" />
+                        </button>  --}}
+
+                        @foreach ($estado_uno as $estado_un)
+                        <img class="img-profile rounded-circle" style="float: center;" width="50" height="50" src="imagen/comprobantes2022/{{$estado_un->COMPROBANTE_PAGO}}">
                         <button type="button" class="btn btn-editb" style="float: right;" data-bs-toggle="modal" data-bs-target="#subirimagen{{$estado_un->ID_PRE}}">
                           <svg xmlns="http://www.w3.org/2000/svg" style="float: center;" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                             <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                             <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                           </svg>  
                         </button> 
-                        @endif
+                        @endforeach
+                        
+
                       <div wire:ignore.self class="modal fade" id="subirimagen{{$estado_un->ID_PRE}}" tabindex="-1" aria-labelledby="perfilmodal2Label" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                           <div class="modal-content">
@@ -457,46 +468,8 @@
                             </div>
                           </div>
                         </div>
-                      </div> 
                       </div>
-                     {{-- @foreach ($estado_uno as $estado_un)
-                        @php
-                          $foo = 0;
-                          if (strpos($estado_un->COMPROBANTE_PAGO, '.jpg' ) !== false || strpos($estado_un->COMPROBANTE_PAGO, '.png' ) !== false || strpos($estado_un->COMPROBANTE_PAGO, '.jpeg' ) !== false) 
-                          { $foo=1; }
-                        @endphp
-                            @if($foo==1)
-                              @if($estado_un->ID_PRE==auth()->user()->id)
-                              <img class="img-profile rounded-circle" style="float: center;" width="35" height="40" src="public/comprobantes/imagenes/{{$estado_un->ID_PRE==auth()->user()->id}}" /> 
-                              @endif
-                            @endif
-                            @endforeach
-                      <button type="button" class="btn btn-editb" style="float: right;" data-bs-toggle="modal" data-bs-target="#perfilmodal2{{$estado_un->ID_PRE==auth()->user()->id}}">
-                        <svg xmlns="http://www.w3.org/2000/svg" style="float: center;" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                          <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                          <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                        </svg>  
-                      </button> --}}
-                    {{-- @foreach ($estado_uno as $estado_un)
-                        @if ($estado_un->COMPROBANTE_PAGO=="" or $estado_un->COMPROBANTE_PAGO==null)
-                      
-                         <img class="rounded-circle" src="img/undraw_profile_1.svg" width="40" height="40" alt="...">        
-                          <button type="button" class="btn btn-editb" style="float: right;" data-bs-toggle="modal" data-bs-target="#perfilmodal2{{$estado_un->ID_PRE}}">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                              <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                              <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                            </svg>  
-                          </button>  
-                        @else
-                          <img class="img-profile rounded-circle" style="float: center;" width="35" height="40" src="public/comprobantes/imagenes/{{$estado_un->COMPROBANTE_PAGO}}" />
-                          <button type="button" class="btn btn-editb" style="float: right;" data-bs-toggle="modal" data-bs-target="#perfilmodal2{{$estado_un->ID_PRE}}">
-                            <svg xmlns="http://www.w3.org/2000/svg" style="float: center;" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                              <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                              <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                            </svg>  
-                          </button> 
-                        @endif 
-                        @endforeach    --}}
+                      </div> 
                       </div>
                         </form>
                    </div>
