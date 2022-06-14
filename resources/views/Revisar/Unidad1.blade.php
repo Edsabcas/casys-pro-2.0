@@ -5,7 +5,7 @@
 <div class="accordion-item" style="border-radius: 70px 70px 70px 70px; border-color: #3a3e7b">
     <h2 class="accordion-header" style="border-radius: 70px 70px 70px 70px; border-color:#3a3e7b"  style="" id="headingThree{{$materia->ID_MATERIA}}">
       <button class="accordion-button collapsed rounded-pill" wire:click='confirmar_materia("{{$materia->ID_MATERIA}}")' style="border-color:#3a3e7b; color: #3a3e7b" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree{{$materia->ID_MATERIA}}" aria-expanded="false" aria-controls="collapseThree{{$materia->ID_MATERIA}}">
-        <strong>{{$union->NOMBRE_MATERIA}}</strong>
+        <strong>{{$union->NOMBRE_MATERIA}}</strong> 
       </button>
     </h2>
     <div  wire:ignore.self  id="collapseThree{{$materia->ID_MATERIA}}" class="accordion-collapse collapse" aria-labelledby="headingThree{{$materia->ID_MATERIA}}" data-bs-parent="#accordionExample{{$materia->ID_MATERIA}}">

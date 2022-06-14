@@ -2102,7 +2102,14 @@ public function revisiones($estadoact){
             $this->mensaje1='Datos no  insertados correctamente';
             }        
     }
-}
+    public $id_est_act, $id_act_est, $est_act_pen, $id_mat_est,$activo_pendientes;
+
+    
+           
+        
+    
+    }
+
 
 
 

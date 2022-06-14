@@ -34,26 +34,12 @@
                     $foo = 0;
                     $vid = 0;
                     $pdf = 0;
-                     if (strpos($dia->CONTRATO, '.jpg' ) !== false || strpos($dia->CONTRATO, '.png' ) !== false || strpos($dia->CONTRATO, '.jpeg' ) !== false) 
-                     { $foo=1; }
-                     elseif(strpos($dia->CONTRATO, '.mp4' ) !== false || strpos($dia->CONTRATO, '.mpeg' ) !== false)
-                     {$vid=1;}
-                     elseif(strpos($dia->CONTRATO, '.pdf' ) !== false)
+                     
+                     if(strpos($dia->CONTRATO, '.pdf' ) !== false)
                      {$pdf=1;}
               @endphp
-               @if($foo==1)
-               <div class="offset-4 col-10">
-               <img src="imagen/actividades/{{$dia->CONTRATO}}" height="360" weight="360" class="card" alt="...">
-               </div>
-               @endif
-               @if($vid==1)
-               <video height="500" weight="500" class="card-img-top" alt="..." controls>
-                 <source src="imagen/videos/{{$dia->CONTRATO}}"  type="video/mp4">
-                   <source src="imagen/videos/{{$dia->CONTRATO}}"  type="video/ogg">
-               </video>
-               @endif
                @if($pdf==1)
-               <iframe style="width: 49rem; text-align:center" width="400" height="400" src="/imagen/pdf_act/{{$dia->CONTRATO}}" frameborder="0"></iframe>
+               <iframe style="width: 49rem; text-align:center" width="400" height="400" src="docs_con_reg\{{$dia->CONTRATO}}" frameborder="0"></iframe>
                @endif
                
                     
