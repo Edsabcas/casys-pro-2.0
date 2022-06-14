@@ -128,7 +128,7 @@ class AdminisionesComponet extends Component
         $sql= 'SELECT * FROM tb_grados';
         $grados=DB::select($sql);
 
-        return view('livewire.adminisiones-componet', compact('metododepago','formasdepago', 'grados','estado_cero','estado_uno','estado_dos','estado_tres','estado_cuatro','estado_cinco','diaco'));
+        return view('livewire.adminisiones-componet', compact('metododepago','formasdepago', 'grados','estado_cero','estado_uno','estado_dos','estado_tres','estado_cuatro','estado_cinco','diaco','data_ins'));
     }
 
     public function tipo_cambio($tipo,$id){
