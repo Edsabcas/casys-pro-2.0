@@ -6,13 +6,13 @@
         </div>
         <div class="modal-body">
             <h5 class="modal-title text-center" id="staticBackdropLabel" style="color:#3a3e7b"><b>¿Confirmé que desea cambiar de estado?</b></h5>
-            <h4 class="form-label text text-center" style="font-size:25px">Gestion: #{{$no_gest}}
+            <h4 class="form-label text text-center" style="font-size:25px">Gestion: #{{$id_gest}}
               
             </h4> 
         </div>
         <div class="modal-footer">
-            <a wire:click='cambio_estadocon()' type="button" style="border-radius: 60px 60px 60px 60px;" data-bs-dismiss="modal" class="btn btn-warning">Si</a>
-          <button type="button" class="btn btn-secondary"  style="border-radius: 60px 60px 60px 60px;"  id="info"  data-bs-dismiss="modal">Cancelar</button>
+            <a wire:click='cambio_estadocon({{$id_gest}})' type="button" style="border-radius: 60px 60px 60px 60px;" data-bs-dismiss="modal" class="btn btn-warning">Si</a>
+          <button type="button" class="btn btn-secondary"  style="border-radius: 60px 60px 60px 60px;"  id="info5"  data-bs-dismiss="modal">Cancelar</button>
           
         </div>
       </div>
