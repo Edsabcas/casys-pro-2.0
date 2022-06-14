@@ -192,7 +192,7 @@
                   <div  wire:ignore.self id="panelsStayOpen-collapseThree" style="border-radius: 60px 60px 60px 60px;"class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
                     <div  wire:ignore.self class="accordion-body" style="border-radius: 60px 60px 60px 60px;">
                       <div class="table-responsive">
-                        <form wire:submit.prevent="val3()" class="form-floating">
+                        <form wire:submit.prevent="" class="form-floating">
                           <div class="form-group col-xs-12">
                             <label for="inputNombres" style="font-size: 15px; color:#000000;">Nombre Completo:</label>
                             <input type="text" placeholder=""  wire:model="nombre_en" class="form-control " required>
@@ -335,7 +335,7 @@
                   </h2>
                   <div  wire:ignore.self id="panelsStayOpen-collapseThreePago" style="border-radius: 60px 60px 60px 60px;"class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingThreePago">
                     <div  wire:ignore.self class="accordion-body" style="border-radius: 60px 60px 60px 60px;">
-                        <form wire:submit.prevent="val3()" class="form-floating">
+                        <form wire:submit.prevent="" class="form-floating">
 
                         <div class="row g-3">
                           <div class="col-md">
@@ -410,18 +410,28 @@
                           </svg>  
                         </button>  --}}
 
-                        @foreach ($estado_uno as $estado_un)
-                        <img class="img-profile rounded-circle" style="float: center;" width="50" height="50" src="imagen/comprobantes2022/{{$estado_un->COMPROBANTE_PAGO}}">
-                        <button type="button" class="btn btn-editb" style="float: right;" data-bs-toggle="modal" data-bs-target="#subirimagen{{$estado_un->ID_PRE}}">
+                        <td>
+                          @if ($archivo_comprobante=="" or $archivo_comprobante==null )
+                          <img class="rounded-circle" src="img/undraw_profile_1.svg" width="40" height="40" alt="...">        
+                          <button type="button" class="btn btn-editb" style="float: right;" data-bs-toggle="modal" data-bs-target="#subirimagen{{$id_ges_cambio}}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                              <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                              <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                            </svg>  
+                          </button>  
+                            
+                          @else
+                        <img class="img-profile rounded-circle" style="float: center;" width="50" height="50" src="imagen/comprobantes2022/{{$archivo_comprobante}}">
+                        <button type="button" class="btn btn-editb" style="float: right;" data-bs-toggle="modal" data-bs-target="#subirimagen{{$id_ges_cambio}}">
                           <svg xmlns="http://www.w3.org/2000/svg" style="float: center;" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                             <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                             <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                           </svg>  
                         </button> 
-                        @endforeach
+                        @endif
                         
-
-                      <div wire:ignore.self class="modal fade" id="subirimagen{{$estado_un->ID_PRE}}" tabindex="-1" aria-labelledby="perfilmodal2Label" aria-hidden="true">
+                        </td>
+                      <div wire:ignore.self class="modal fade" id="subirimagen{{$id_ges_cambio}}" tabindex="-1" aria-labelledby="perfilmodal2Label" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                           <div class="modal-content">
                               <div class="modal-header text-center" style="background:#a4cb39;color:rgb(255, 255, 255)">
@@ -463,7 +473,7 @@
                                                 @endif
                               </div>  
                               <button class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-                              <button class="btn btn-pre2" wire:click="cambiofoto({{$estado_un->ID_PRE}})">Publicar</button>
+                              <button class="btn btn-pre2" wire:click="cambiofoto()">Publicar</button>
                             </form>
                             </div>
                           </div>

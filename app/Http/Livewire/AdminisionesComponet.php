@@ -32,6 +32,7 @@ class AdminisionesComponet extends Component
 
     public function render()
     {
+
         if($this->archivo!=null){
             if($this->archivo->getClientOriginalExtension()=="pdf"){
                 $archivo = "pdf".time().".".$this->archivo->getClientOriginalExtension();
@@ -64,11 +65,11 @@ class AdminisionesComponet extends Component
             ->where('TB_PRE_INFO.ID_PRE','=',$this->id_pre_i)
             ->get();
 
-        if($this->archivo_comprobante!=null){
+       /*  if($this->archivo_comprobante!=null){
             if($this->archivo_comprobante->getClientOriginalExtension()=="jpg" or $this->archivo_comprobante->getClientOriginalExtension()=="png" or $this->archivo_comprobante->getClientOriginalExtension()=="jpeg"){
                 $this->tipo=1;
             }
-        }
+        } */
         if($this->mensaje!=null && $this->mensaje!=""){
 
         }
@@ -237,6 +238,7 @@ class AdminisionesComponet extends Component
             $this->nombre_en=$pre->NOMBRE_ENCARGADO_ES;
             $this->fnacimiento_en=$pre->FEC_NAC_EN_ES;
             $this->dpi_en=$pre->DPI_EN_ES;
+            $this->archivo_comprobante=$pre->COMPROBANTE_PAGO;
             $this->extentido_en=$pre->EXTENDIDO_DPI_EN_ES;
             $this->observacion=$pre->OBSERVACION_COMP;
             $this->fpago=$pre->FORMA_PAGO;
@@ -375,7 +377,7 @@ class AdminisionesComponet extends Component
             $this->mensaje1='No fue posible Eliminado';
         }
     }
-    public function cambiofoto($id)
+    public function cambiofoto()
     {
         $archivo_comprobante="";
         if($this->archivo_comprobante!=null){
@@ -391,7 +393,8 @@ class AdminisionesComponet extends Component
                     ->where('ID_PRE',$id)
                     ->update ([
                         
-                        'COMPROBANTE_PAGO'=>$this->archivo_comprobante
+                        'COMPROBANTE_PAGO'=>$this->archivo_comprobante,
+                        'FECHA_CAMBIOS_REG'=> date('y-m-d:h:m:s'),
                      ]);
 
                      if($foto){
