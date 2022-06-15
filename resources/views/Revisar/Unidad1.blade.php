@@ -4,8 +4,19 @@
   @if($union->ID_MATERIA==$materia->ID_MATERIA)
 <div class="accordion-item" style="border-radius: 70px 70px 70px 70px; border-color: #3a3e7b">
     <h2 class="accordion-header" style="border-radius: 70px 70px 70px 70px; border-color:#3a3e7b"  style="" id="headingThree{{$materia->ID_MATERIA}}">
-      <button class="accordion-button collapsed rounded-pill" wire:click='confirmar_materia("{{$materia->ID_MATERIA}}")' style="border-color:#3a3e7b; color: #3a3e7b" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree{{$materia->ID_MATERIA}}" aria-expanded="false" aria-controls="collapseThree{{$materia->ID_MATERIA}}">
-        <strong>{{$union->NOMBRE_MATERIA}}</strong> 
+      <button class="accordion-button collapsed rounded-pill"  style="border-color:#3a3e7b; color: #3a3e7b" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree{{$materia->ID_MATERIA}}" aria-expanded="false" aria-controls="collapseThree{{$materia->ID_MATERIA}}">
+        <strong>{{$union->NOMBRE_MATERIA}} @php
+            $cantidad=0;
+        @endphp @foreach ($estado_actu as $estado_act)
+          @if($estado_act->ID_MATERIA==$materia->ID_MATERIA && $estado_act->ESTADO==1)
+          @php
+              $cantidad=$cantidad+1;
+          @endphp
+
+          @endif
+        @endforeach @if ($cantidad>0)
+        <span class="badge rounded-pill bg-warning text-dark">Pendientes</span>
+        @endif</strong> 
       </button>
     </h2>
     <div  wire:ignore.self  id="collapseThree{{$materia->ID_MATERIA}}" class="accordion-collapse collapse" aria-labelledby="headingThree{{$materia->ID_MATERIA}}" data-bs-parent="#accordionExample{{$materia->ID_MATERIA}}">
@@ -22,7 +33,8 @@
                     </tr>
                   </thead>
           <tbody>
-               @foreach ($actividades as $actividad)
+            @foreach ($actividadesr as $actividad)
+            @if ($actividad->ID_MATERIA==$materia->ID_MATERIA)
               <tr>
                   <th>{{$actividad->NOMBRE_ACTIVIDAD}}</th>
                   <th>{{$actividad->name}}</th>
@@ -43,7 +55,7 @@
                     
                     <td>
                      
-                      <button class="btn btn-success"  id="val" data-bs-toggle="modal" data-bs-target="#editaractividades"   wire:click='editarevisar({{$actividad->ID_ACTIVIDADES}})'>  Editar </button>       
+                      <button class="btn btn-success"  id="val" data-bs-toggle="modal" data-bs-target="#Editaract"   wire:click='editarevisar({{$actividad->ID_ACTIVIDADES}})'>  Editar </button>       
                    
                  
                     
@@ -52,7 +64,8 @@
                 </span>
                 @include('Unidades.Actividades.modaledit_act')
                 @include('Unidades.Actividades.modelimiaract')
-                </tr>                      
+                </tr> 
+                @endif              
               @endforeach
           </tbody>
       </table>
