@@ -163,7 +163,7 @@ class AdminisionesComponet extends Component
         return view('livewire.adminisiones-componet', compact('estado_cuatro4','estado_tres3','estado_dos2','estado_uno2','metododepago','formasdepago', 'grados','estado_cero','estado_uno','estado_dos','estado_tres','estado_cuatro','estado_cinco','diaco','data_ins'));
     }
 
-    public function tipo_cambio($tipo,$id){
+    public function tipo_cambio($tipo){
 
       //  $this->id_ges_cambio=$id;
         $this->tipo_cambio1=$tipo;
@@ -171,7 +171,7 @@ class AdminisionesComponet extends Component
         
     }
     
-    public function cambioestado($id){
+    public function cambioestado(){
         DB::beginTransaction();
         
         $cambio_pre=DB::table('TB_PRE_INS')
