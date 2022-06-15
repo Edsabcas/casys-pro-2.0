@@ -58,12 +58,13 @@ class AdminisionesComponet extends Component
             ->where('tb_pre_diaco.ID_PRE','=',$this->id_pre_ins_arch)
             ->get();
 
-            $data_ins="";
-            $data_ins=DB::table('TB_PRE_INFO')
-            ->join('TB_PRE_INS','TB_PRE_INFO.ID_PRE','=','TB_PRE_INS.ID_PRE')
-            ->select('TB_PRE_INFO.ID_PRE_INFO', 'TB_PRE_INS.ID_PRE', 'TB_PRE_INS.NO_GESTION','TB_PRE_INS.ESTADO_PRE_INS')
-            ->where('TB_PRE_INFO.ID_PRE','=',$this->id_pre_i)
-            ->get();
+       /*      $data_ins="";
+                $data_ins=DB::table('TB_PRE_INFO')
+                ->join('TB_PRE_INS','TB_PRE_INFO.ID_PRE','=','TB_PRE_INS.ID_PRE')
+                ->select('TB_PRE_INFO.ID_PRE_INFO', 'TB_PRE_INS.ID_PRE', 'TB_PRE_INS.NO_GESTION','TB_PRE_INS.ESTADO_PRE_INS')
+                ->where('TB_PRE_INFO.ID_PRE','=',$this->id_pre_i)
+                ->get(); */
+          
 
         if($this->archivo_comprobante2!=null){
             if($this->archivo_comprobante2->getClientOriginalExtension()=="jpg" or $this->archivo_comprobante2->getClientOriginalExtension()=="png" or $this->archivo_comprobante2->getClientOriginalExtension()=="jpeg"){
@@ -160,7 +161,7 @@ class AdminisionesComponet extends Component
         $sql= 'SELECT * FROM tb_grados';
         $grados=DB::select($sql);
 
-        return view('livewire.adminisiones-componet', compact('estado_cuatro4','estado_tres3','estado_dos2','estado_uno2','metododepago','formasdepago', 'grados','estado_cero','estado_uno','estado_dos','estado_tres','estado_cuatro','estado_cinco','diaco','data_ins'));
+        return view('livewire.adminisiones-componet', compact('estado_cuatro4','estado_tres3','estado_dos2','estado_uno2','metododepago','formasdepago', 'grados','estado_cero','estado_uno','estado_dos','estado_tres','estado_cuatro','estado_cinco','diaco'));
     }
 
     public function tipo_cambio($tipo){
