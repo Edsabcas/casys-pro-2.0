@@ -425,9 +425,6 @@
                                     <img class="img-profile " style="float: center;" width="250" height="250" src="imagen/comprobantes2022/{{$archivo_comprobante}}">                                          
                                   @endif
                               </div>
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Salir</button>                  
-                              </div>
                             </div>
                           </div>
                         </div>
