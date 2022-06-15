@@ -114,6 +114,9 @@
 @elseif($op=='addvertenciasedit')
 @livewire('contenido-componet')
 
+@elseif($op=='amontos')
+@livewire('cuentas-estudiantes-component')
+
 @endif
 @endif
 @endsection

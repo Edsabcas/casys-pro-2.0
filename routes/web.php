@@ -40,6 +40,7 @@ use App\Http\Controllers\RolesdeusuarioController;
 use App\Http\Controllers\AdminisionesController;
 use App\Http\Livewire\RolesdeusuarioComponent;
 
+use App\Http\Controllers\CuentasEstudiantesControllers;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -68,7 +69,7 @@ Route::post('/ingresar', [Sessionscomponent::class, 'validar'])
 ->name('ingresar.validar');
 
 Route::get('/logout', [SessionController::class, 'destroy'])
-->middleware('auth')->name('login.logout');
+->middleware('auth')->name('logout.destroy');
 
 //cambiar contra de usuario
 Route::get('/c_perfiles', [PerfilComponent::class, 'index'])
@@ -94,6 +95,9 @@ Route::get('/e_perfiles', [ListadeusuariosComponent::class, 'e_perfiles'])
 
 Route::get('/Roles_de_usuario', [RolesdeusuarioController::class, 'mostrarroles'])
 ->middleware('auth')->name('Roles_de_usuario.mostrarroles');
+
+Route::get('/Cuentas_estudiantes', [CuentasEstudiantesControllers::class, 'montos'])
+->middleware('auth')->name('Cuentas_estudiantes.montos');
 
 //Grupo #2
 
