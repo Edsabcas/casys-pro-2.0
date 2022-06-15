@@ -19,7 +19,7 @@ class ContenidoComponent extends Component
    public $restriccion, $fecha_date, $sancion; 
    public $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, $grado2, $idsecc2, $arch2,$tema2, $unidad2, $descripciont2, $nombreu,$id_tem, $edita,$id_plan,$edita2;
    public $prueba2, $idas, $nombress,$opf;
-   public $option1, $option2, $option3, $option4, $option5, $option6;
+   public $option1, $option2, $option3, $option4, $option5, $option6,$materia_revi;
    public $validation1, $validation2, $validation3, $validation4, $validation5,$validation6;
    public $vistar,$vistar2;
    public $texto_advertencia, $prioridad_advertencia, $fecha_inicio, $fecha_fin, $invalido, $advertencia_adver, $advertenciass, $advertenciasss;
@@ -99,6 +99,22 @@ class ContenidoComponent extends Component
             ->where('tb_actividades.ID_GR','=',$this->grado)
             ->where('tb_actividades.ID_SC','=',$this->idsecc)
             ->where('tb_actividades.ID_MATERIA','=',$this->unidad1)
+            ->get();
+        }
+
+        $actividadesr="";
+        if($this->unidadfija!=null){
+            $actividadesr=DB::table('tb_actividades')
+            ->join('tb_materias','tb_actividades.ID_MATERIA','=','tb_materias.ID_MATERIA')
+            ->join('tb_grados', 'tb_actividades.ID_GR', '=', 'tb_grados.ID_GR')
+            ->join('tb_seccions', 'tb_actividades.ID_SC', '=', 'tb_seccions.ID_SC')
+            ->join('users', 'tb_actividades.ID', '=', 'users.id')
+            ->join('tb_unidades_fijas', 'tb_actividades.ID_UNIDADES_FIJAS', '=', 'tb_unidades_fijas.ID_UNIDADES_FIJAS')
+            ->select('tb_actividades.ID_ACTIVIDADES', 'tb_materias.NOMBRE_MATERIA', 'tb_grados.ID_GR', 'tb_seccions.ID_SC', 'tb_materias.ID_MATERIA', 'users.name', 'tb_actividades.NOMBRE_ACTIVIDAD', 'tb_unidades_fijas.ID_UNIDADES_FIJAS','tb_actividades.fecha_cr','tb_actividades.fecha_entr','tb_actividades.descripcion','tb_actividades.archivos','tb_actividades.fecha_cr')
+            ->where('tb_actividades.ID_UNIDADES_FIJAS','=',$this->unidadfija)
+            ->where('tb_actividades.ID_GR','=',$this->grado)
+            ->where('tb_actividades.ID_SC','=',$this->idsecc)
+            //->where('tb_actividades.ID_MATERIA','=',$this->materia_revi)
             ->get();
         }
 
@@ -194,6 +210,21 @@ class ContenidoComponent extends Component
         ->where('tb_asignaciones_e.ID_SC','=',$this->idsecc)
         ->get();
 
+
+        $estado_actu="";
+        if($this->unidadfija!=null){
+            $estado_actu=DB::table('estado_actividades')
+            ->join('tb_grados', 'estado_actividades.ID_GR', '=', 'tb_grados.ID_GR')
+            ->join('tb_seccions', 'estado_actividades.ID_SC', '=', 'tb_seccions.ID_SC')
+            ->join('tb_materias','estado_actividades.ID_MATERIA','=','tb_materias.ID_MATERIA')
+            ->join('tb_unidades_fijas', 'estado_actividades.ID_UNIDADES_FIJAS', '=', 'tb_unidades_fijas.ID_UNIDADES_FIJAS')
+            ->select('estado_actividades.ID_ESTADO_ACT', 'tb_grados.ID_GR', 'tb_seccions.ID_SC', 'tb_unidades_fijas.ID_UNIDADES_FIJAS','tb_materias.ID_MATERIA','estado_actividades.ESTADO')
+            ->where('estado_actividades.ID_UNIDADES_FIJAS','=',$this->unidadfija)
+            ->where('estado_actividades.ID_GR','=',$this->grado)
+            ->where('estado_actividades.ID_SC','=',$this->idsecc)
+            ->get();
+        }
+
         
         $this->dia_exacto=date("Y-m-d");
         $sql= 'SELECT * FROM tb_materias';
@@ -211,9 +242,9 @@ class ContenidoComponent extends Component
         $sql= 'SELECT * FROM estado_actividades';
         $Estado_acts=DB::select($sql);
         $sql= 'SELECT * FROM tb_advertencias';
-        $this->advertenciass=DB::select($sql);
-        return view('livewire.contenido-component',compact('materias','grados','secciones','uniones','unidades','maestros','actividades','asignaciones','unidadesf','temas','temas2','Usuarios','PlanUnion','actividades2','notas','estu','Estado_acts','unidadesr'));
-
+        $this->advertenciass=DB::select($sql); 
+        return view('livewire.contenido-component',compact('materias','grados','secciones','uniones','unidades','maestros','actividades','asignaciones','unidadesf','temas','temas2','Usuarios','PlanUnion','actividades2','notas','estu','Estado_acts','unidadesr','actividadesr','estado_actu'));
+    
     }
     
     //funcion de mostrar todas las mataerias existentes
@@ -772,6 +803,10 @@ class ContenidoComponent extends Component
         $estado_actividad=DB::table('estado_actividades')->insert(
             [
                 'ID_ACTIVIDADES'=>$edita_r,
+                'ID_GR'=>$this->grado,
+                'ID_SC'=>$this->idsecc,
+                'ID_MATERIA'=>$this->unidad1,
+                'ID_UNIDADES_FIJAS'=>$this->unidadfija,
                 'ESTADO'=>$estado_act,
     
             ]);
