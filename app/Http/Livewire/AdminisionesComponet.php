@@ -18,7 +18,7 @@ class AdminisionesComponet extends Component
     public $a,$mensaje,$gradose,$fingreso_gestion,$id_ges_cambio,$tipo_cambio1;
     public $id_pre,$metodo,$archivo_comprobante,$img,$tipo,$mensaje24,$mensaje25,$fotos,$fpago,$no_gest_con;
     public $val,$val1,$gestion,$errorfecha;
-    public $estado_ges;
+    public $estado_ges,$archivo_comprobante2;
     public $mensaje1,$id2;
     public $observacion, $id_pre_ins_arch, $id_no_gest_arch, $archivo_cdiaco, $archivo, $formato,$id_gest,$nuevo_estado,$id_no_gest_ins;
     public $mensajeup,$mensajeup1;
@@ -32,6 +32,7 @@ class AdminisionesComponet extends Component
 
     public function render()
     {
+
         if($this->archivo!=null){
             if($this->archivo->getClientOriginalExtension()=="pdf"){
                 $archivo = "pdf".time().".".$this->archivo->getClientOriginalExtension();
@@ -64,8 +65,8 @@ class AdminisionesComponet extends Component
             ->where('TB_PRE_INFO.ID_PRE','=',$this->id_pre_i)
             ->get();
 
-        if($this->archivo_comprobante!=null){
-            if($this->archivo_comprobante->getClientOriginalExtension()=="jpg" or $this->archivo_comprobante->getClientOriginalExtension()=="png" or $this->archivo_comprobante->getClientOriginalExtension()=="jpeg"){
+        if($this->archivo_comprobante2!=null){
+            if($this->archivo_comprobante2->getClientOriginalExtension()=="jpg" or $this->archivo_comprobante2->getClientOriginalExtension()=="png" or $this->archivo_comprobante2->getClientOriginalExtension()=="jpeg"){
                 $this->tipo=1;
             }
         }
@@ -237,6 +238,7 @@ class AdminisionesComponet extends Component
             $this->nombre_en=$pre->NOMBRE_ENCARGADO_ES;
             $this->fnacimiento_en=$pre->FEC_NAC_EN_ES;
             $this->dpi_en=$pre->DPI_EN_ES;
+            $this->archivo_comprobante=$pre->COMPROBANTE_PAGO;
             $this->extentido_en=$pre->EXTENDIDO_DPI_EN_ES;
             $this->observacion=$pre->OBSERVACION_COMP;
             $this->fpago=$pre->FORMA_PAGO;
@@ -375,27 +377,29 @@ class AdminisionesComponet extends Component
             $this->mensaje1='No fue posible Eliminado';
         }
     }
-    public function cambiofoto($id)
+    public function cambiofoto()
     {
         $archivo_comprobante="";
-        if($this->archivo_comprobante!=null){
-            if($this->archivo_comprobante->getClientOriginalExtension()=="jpg" or $this->archivo_comprobante->getClientOriginalExtension()=="png" or $this->archivo_comprobante->getClientOriginalExtension()=="jpeg"){
-                $archivo_comprobante = "img".time().".".$this->archivo_comprobante->getClientOriginalExtension();
+        if($this->archivo_comprobante2!=null){
+            if($this->archivo_comprobante2->getClientOriginalExtension()=="jpg" or $this->archivo_comprobante2->getClientOriginalExtension()=="png" or $this->archivo_comprobante2->getClientOriginalExtension()=="jpeg"){
+                $archivo_comprobante = "img".time().".".$this->archivo_comprobante2->getClientOriginalExtension();
                 $this->img=$archivo_comprobante;
-                $this->archivo_comprobante->storeAS('imagen/comprobantes2022/', $this->img,'public_up');
+                $this->archivo_comprobante2->storeAS('imagen/comprobantes2022/', $this->img,'public_up');
                 $this->tipo=1;
             }
            
             DB::beginTransaction();
                     $foto=DB::table('TB_PRE_INS')
-                    ->where('ID_PRE',$id)
+                    ->where('ID_PRE',$this->id_ges_cambio)
                     ->update ([
                         
-                        'COMPROBANTE_PAGO'=>$this->archivo_comprobante
+                        'COMPROBANTE_PAGO'=>$this->img,
+                        'FECHA_CAMBIOS_REG'=> date('y-m-d:h:m:s'),
                      ]);
 
                      if($foto){
                         DB::commit();
+                        $this->archivo_comprobante=$this->img;
                         $this->mensaje24="Comprobante de pago actualizado";
                     }
                     else{
