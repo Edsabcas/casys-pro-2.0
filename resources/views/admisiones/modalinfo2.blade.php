@@ -420,9 +420,9 @@
                               </div>
                               <div class="modal-body modal-dialog-centered">
                                   @if($archivo_comprobante=="" or $archivo_comprobante==null )
-                                    <img class="rounded-circle" src="img/undraw_profile_1.svg" width="100" height="100" alt="...">          
+                                    <img class="rounded-circle" src="img/undraw_profile_1.svg" width="300" height="300" alt="...">          
                                     @else
-                                    <img class="img-profile " style="float: center;" width="250" height="250" src="imagen/comprobantes2022/{{$archivo_comprobante}}">                                          
+                                    <img class="img-profile " style="float: center;" width="400" height="400" src="imagen/comprobantes2022/{{$archivo_comprobante}}">                                          
                                   @endif
                               </div>
                             </div>
