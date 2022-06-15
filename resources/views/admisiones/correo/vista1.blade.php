@@ -337,13 +337,6 @@ table, td { color: #000000; } a { color: #0000ee; text-decoration: underline; } 
     </tr>
   </tbody>
 </table>
-
-
-
-
-
-
-        
 <div class="u-row-container" style="padding: 0px;background-color: #3a3e7b">
   <div class="u-row" style="Margin: 0 auto;min-width: 320px;max-width: 650px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: transparent;">
     <div style="border-collapse: collapse;display: table;width: 100%;background-color: #3a3e7b;">
