@@ -248,10 +248,9 @@ class AdminisionesComponet extends Component
     }
     public function editar2($id)
     {
-        $this->reset();
         unset($this->mensajeup);
         unset($this->mensajeup1);
-       $sql="SELECT TB_PRE_INS.*, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE (ESTADO_PRE_INS=1 or  ESTADO_PRE_INS=2)  and ID_PRE=?";
+       $sql="SELECT TB_PRE_INS.*, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE (ESTADO_PRE_INS=1 or  ESTADO_PRE_INS=2 or ESTADO_PRE_INS=3 or ESTADO_PRE_INS=4)  and ID_PRE=?";
         $preinsp=DB::select($sql,array($id));
 
         foreach($preinsp as $pre){
@@ -544,6 +543,7 @@ class AdminisionesComponet extends Component
     }
 
     Public function editardi($id,$no_gest){
+        $this->editar2($id);
         $id_pre_info=$id;
         $this->no_gest=$no_gest;
         $sql='SELECT * FROM TB_PRE_INFO WHERE ID_PRE=?';
@@ -609,6 +609,7 @@ class AdminisionesComponet extends Component
     $this->nombre_aseguradora=$estac->ASEGURADORA;
     $this->nombreencargado=$estac->NOMBRE_ENCARGADO;
             }
+            
         }
     }
 
