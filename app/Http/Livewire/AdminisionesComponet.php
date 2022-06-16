@@ -183,6 +183,9 @@ class AdminisionesComponet extends Component
                     'FECHA_CAMBIOS_REG'=>  date("Y-m-d H:i:s"),
                    ]);
 
+
+                   
+
         if($cambio_pre){
             DB::commit();
             $subject = "Notificación Pre-Ins.Castaño (No responder)";
