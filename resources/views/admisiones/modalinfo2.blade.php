@@ -28,7 +28,7 @@
               <h4 class="form-label text text-center" style="font-size:25px">Gestion: #{{$gestion}}
               
               </h4> 
-              <p  class="text text-center">Fecha de solicitud: <b>{{$fingreso_gestion}}</b></p>
+              <p  class="text text-center">Fecha de ultimo cambio: <b>{{$fecha_ultimo_cambio}}</b></p>
               <br>
               <div wire:ignore.self class="accordion" id="accordionPanelsStayOpenExample2">
                 <div style="border-radius: 60px 60px 60px 60px;" class="accordion-item">

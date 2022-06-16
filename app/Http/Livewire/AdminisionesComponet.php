@@ -18,7 +18,7 @@ class AdminisionesComponet extends Component
     public $a,$mensaje,$gradose,$fingreso_gestion,$id_ges_cambio,$tipo_cambio1;
     public $id_pre,$metodo,$archivo_comprobante,$img,$tipo,$mensaje24,$mensaje25,$fotos,$fpago,$no_gest_con;
     public $val,$val1,$gestion,$errorfecha;
-    public $estado_ges,$archivo_comprobante2;
+    public $estado_ges,$archivo_comprobante2,$fecha_ultimo_cambio,$mensajeins,$mensajeins1;
     public $mensaje1,$id2;
     public $observacion, $id_pre_ins_arch, $id_no_gest_arch, $archivo_cdiaco, $archivo, $formato,$id_gest,$nuevo_estado,$id_no_gest_ins;
     public $mensajeup,$mensajeup1;
@@ -242,6 +242,7 @@ class AdminisionesComponet extends Component
             $this->gradoin=$pre->GRADO_ING_ES;
             $this->gestion=$pre->NO_GESTION;
             $this->fingreso_gestion=$pre->FECHA_REGISTRO;
+            $this->fecha_ultimo_cambio=$pre->FECHA_CAMBIOS_REG;
 
         }
 
@@ -285,6 +286,7 @@ class AdminisionesComponet extends Component
             $this->gestion=$pre->NO_GESTION;
             $this->fingreso_gestion=$pre->FECHA_REGISTRO;
             $this->estado_ges=$pre->ESTADO_PRE_INS;
+            $this->fecha_ultimo_cambio=$pre->FECHA_CAMBIOS_REG;
 
         }
 
@@ -720,26 +722,26 @@ $Especifique_ali=$this->Especifique_ali;
     
     DB::beginTransaction();
 
-    $comprobantes=DB::table('TB_PRE_INS')
-            ->where('ID_PRE_INFO',$this->id_ges_cambio)
+    $inscripcion_datos=DB::table('TB_PRE_INFO')
+            ->where('ID_PRE',$this->id_pre_i)
             ->update(
         [
             'HERMANOS_COLE'=>$this->confi,
             'GRADO_HERMANOS_COLE'=>$this->grados_selecionados,
-            'AÑO_1R_INGRESO'=>$añoingreso,
-            'GRADO_1R_INGRESO'=>$gradoprimeringreso,
-            'NOMB_PADRE'=>$nombrepadre,
-            'FECHA_N_PADRE'=>$nacimientopadre,
-            'NACIONALIDAD_PADRE'=>$nacionalidadpadre,
-            'LUGAR_NACIMIENTO_PADRE'=>$lugarnacimientopadre,
+            'AÑO_1R_INGRESO'=>$año_ingreso,
+            'GRADO_1R_INGRESO'=>$grado_primer_ingreso,
+            'NOMB_PADRE'=>$nombre_padre,
+            'FECHA_N_PADRE'=>$nacimiento_padre,
+            'NACIONALIDAD_PADRE'=>$nacionalidad_padre,
+            'LUGAR_NACIMIENTO_PADRE'=>$lugar_nacimiento_padre,
             'ESTADO_CIVIL_P'=> $this->estadocivilp,
             'VIVE_CON_LA_MADRE'=> $this->vive_madre,
-            'DPI_PADRE'=>$DPIpadre,
-            'TELEFONO_PADRE'=>$telefonopadre,
-            'CELULAR_PADRE'=>$celularpadre,
-            'DIRECCION_RESIDENCIA_P'=>$direccionresidencia,
-            'CORREO_PADRE'=>$correopadre,
-            'PROFECION_PADRE'=>$profesionpadre,
+            'DPI_PADRE'=>$DPI_padre,
+            'TELEFONO_PADRE'=>$telefono_padre,
+            'CELULAR_PADRE'=>$celular_padre,
+            'DIRECCION_RESIDENCIA_P'=>$direccion_residencia,
+            'CORREO_PADRE'=>$correo_padre,
+            'PROFECION_PADRE'=>$profesion_padre,
             'LUGAR_TRABAJO_P'=>$lugar_profesion_padre,
             'CARGO_PADRE'=>$cargo_profesion_padre,
             'RELIGION_PADRE'=>$religion_padre,
@@ -755,7 +757,7 @@ $Especifique_ali=$this->Especifique_ali;
             'CELULAR_MADRE'=>$celular_madre,
             'DIRECCION_RESIDENCIA_M'=>$direccion_residenciamadre, 
             'CORREO_MADRE'=>$correo_madre,
-            'PROFECION_MADRE'=>$rofesion_madre,
+            'PROFECION_MADRE'=>$profesion_madre,
             'LUGAR_TRABAJO_M'=>$lugar_prof_madre,
             'CARGO_MADRE'=>$cargo_madre,
             'ALERG_MEDICAMENTO'=>$this->medicamento,
@@ -783,11 +785,11 @@ $Especifique_ali=$this->Especifique_ali;
         );
         if($inscripcion_datos){
             DB::commit();
-            $this->validar_info = 1;
+            $this->mensajeins=1;
         }
         else{
             DB::rollback();
-            $this->validar_info = 0;
+            $this->mensajeins1=1;
         }
     }
 
