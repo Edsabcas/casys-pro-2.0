@@ -1,18 +1,3 @@
-      @isset($mensajeup)
-        @if ($mensajeup!=null)
-          <div class="alert alert-success" role="alert">
-          Agregado Correctamente!
-          </div>
-        @endif
-      @endisset
-      @isset($mensajeup1)
-        @if($mensajeup1!=null)
-          <div class="alert alert-danger" role="alert">
-          No se logro insetar sección
-          </div>
-        @endif
-      @endisset
-  
   
   <div wire:ignore.self id="infodata2" style="border-radius: 60px 60px 60px 60px;" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="infodata2" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -426,11 +411,24 @@
                             </div>
                           @endif
                       </div>
-                      
-
                     </div> 
                       </div>
                         </form>
+                        @isset($mensajeup)
+                      @if ($mensajeup!=null)
+                      <div class="alert alert-success" role="alert">
+                        Editado correctamente!
+                      </div>
+                      @endif
+                      @endisset
+
+                      @isset($mensajeup1)
+                      @if($mensajeup1!=null)
+                      <div class="alert alert-danger" role="alert">
+                        No se logro editar correctamente!
+                      </div>
+                      @endif
+                      @endisset
                    </div>
                   </div>
                 </div>

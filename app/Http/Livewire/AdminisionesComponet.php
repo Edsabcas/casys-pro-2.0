@@ -828,14 +828,14 @@ $Especifique_ali=$this->Especifique_ali;
                  unset($this->mensaje);;
                  unset($this->mensaje1);
                  $this->op='addcontenidos';
-                 $this->mensaje='Insertado correctamente';
+                 $this->mensaje='Editado correctamente';
                  }
                  else {
                  DB::rollback();
                  unset($this->mensaje);;
                  unset($this->mensaje1);
                  $this->op='addcontenidos';
-                 $this->mensaje1='Datos no  insertados correctamente';
+                 $this->mensaje1='No se logro editar correctamente';
                  }        
          }
 
@@ -856,10 +856,10 @@ $Especifique_ali=$this->Especifique_ali;
  
                     ]);
                     if($elevar){
-                        $this->mensaje_diaco='Insertado correctamente';
+                        $this->mensaje_diaco='Editado correctamente';
                     }
                     else{
-                        $this->mensaje_diaco1='No se inserto correctamente';
+                        $this->mensaje_diaco1='No se logro editar correctamente';
                     }
          }
 
@@ -876,10 +876,10 @@ $Especifique_ali=$this->Especifique_ali;
  
                     ]);
                     if($elevar){
-                        $this->mensaje_diaco='Insertado correctamente';
+                        $this->mensaje_diaco='Editado correctamente';
                     }
                     else{
-                        $this->mensaje_diaco1='No se inserto correctamente';
+                        $this->mensaje_diaco1='No se logro editar correctamente';
                     }
          }
 

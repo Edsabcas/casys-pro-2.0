@@ -1,6 +1,6 @@
 
   <div  wire:ignore.self class="modal fade" id="visualizarimagen" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="visualizarimagenLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-lg modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title text-center" id="visualizarimagenLabel" style="color:rgb(0, 0, 0)"><b>Visualización del comprobante</b></h5>
@@ -8,9 +8,9 @@
         </div>
         <div class="modal-body modal-dialog-centered">
             @if($archivo_comprobante=="" or $archivo_comprobante==null )
-              <img class="rounded-circle" src="img/undraw_profile_1.svg" width="100" height="100" alt="...">          
+              <img class="rounded-circle" src="img/undraw_profile_1.svg" width="400" height="400" alt="...">          
               @else
-              <img class="img-profile " style="float: center;" width="250" height="250" src="imagen/comprobantes2022/{{$archivo_comprobante}}">                                          
+              <img class="img-fluid img-profile mx-auto" style="float: center;" width="400" height="400" src="imagen/comprobantes2022/{{$archivo_comprobante}}">                                          
             @endif
         </div>
       </div>
