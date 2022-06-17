@@ -1363,17 +1363,17 @@
           <div>
           @if($estado_ges==4)
           
-          <a  id="valestadoinfo" wire:click="cambio_estado(3)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-success" data-bs-dismiss="modal">Reg. Estado</a>
+          <a  id="valestadoinfo4" wire:click="cambio_estado(3)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-success" data-bs-dismiss="modal">Reg. Estado</a>
               
-            <a  id="valestadoinfo" wire:click="cambio_estado(5)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-warning" data-bs-dismiss="modal">Sig. Estado</a>
+            <a  id="valestadoinfo4" wire:click="cambio_estado(5)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-warning" data-bs-dismiss="modal">Sig. Estado</a>
 
             <a  type="button"  wire:click="update_datos_ins()" style="border-radius: 60px 60px 60px 60px;" class="btn btn-primary" >Actualizar</a>
           
             @elseif($estado_ges==3)
             
-            <a  id="valestadoinfo" wire:click="cambio_estado(2)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-success" data-bs-dismiss="modal">Reg. Estado</a>
+            <a  id="valestadoinfo4" wire:click="cambio_estado(2)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-success" data-bs-dismiss="modal">Reg. Estado</a>
               
-            <a  id="valestadoinfo" wire:click="cambio_estado(4)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-warning" data-bs-dismiss="modal">Sig. Estado</a>
+            <a  id="valestadoinfo4" wire:click="cambio_estado(4)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-warning" data-bs-dismiss="modal">Sig. Estado</a>
 
             <a  type="button"  wire:click="update_datos_ins()" style="border-radius: 60px 60px 60px 60px;" class="btn btn-primary" >Actualizar</a>
             
@@ -1387,3 +1387,4 @@
         </div>
    @include('admisiones.codmineduc')
    @include('admisiones.modalverysubircomp2')
+   @include('admisiones.modalestado4')
