@@ -18,7 +18,7 @@ class AdminisionesComponet extends Component
     public $a,$mensaje,$gradose,$fingreso_gestion,$id_ges_cambio,$tipo_cambio1;
     public $id_pre,$metodo,$archivo_comprobante,$img,$tipo,$mensaje24,$mensaje25,$fotos,$fpago,$no_gest_con;
     public $val,$val1,$gestion,$errorfecha;
-    public $estado_ges,$archivo_comprobante2;
+    public $estado_ges,$archivo_comprobante2,$fecha_ultimo_cambio,$mensajeins,$mensajeins1;
     public $mensaje1,$id2;
     public $observacion, $id_pre_ins_arch, $id_no_gest_arch, $archivo_cdiaco, $archivo, $formato,$id_gest,$nuevo_estado,$id_no_gest_ins;
     public $mensajeup,$mensajeup1;
@@ -58,12 +58,13 @@ class AdminisionesComponet extends Component
             ->where('tb_pre_diaco.ID_PRE','=',$this->id_pre_ins_arch)
             ->get();
 
-            $data_ins="";
-            $data_ins=DB::table('TB_PRE_INFO')
-            ->join('TB_PRE_INS','TB_PRE_INFO.ID_PRE','=','TB_PRE_INS.ID_PRE')
-            ->select('TB_PRE_INFO.ID_PRE_INFO', 'TB_PRE_INS.ID_PRE', 'TB_PRE_INS.NO_GESTION','TB_PRE_INS.ESTADO_PRE_INS')
-            ->where('TB_PRE_INFO.ID_PRE','=',$this->id_pre_i)
-            ->get();
+       /*      $data_ins="";
+                $data_ins=DB::table('TB_PRE_INFO')
+                ->join('TB_PRE_INS','TB_PRE_INFO.ID_PRE','=','TB_PRE_INS.ID_PRE')
+                ->select('TB_PRE_INFO.ID_PRE_INFO', 'TB_PRE_INS.ID_PRE', 'TB_PRE_INS.NO_GESTION','TB_PRE_INS.ESTADO_PRE_INS')
+                ->where('TB_PRE_INFO.ID_PRE','=',$this->id_pre_i)
+                ->get(); */
+          
 
         if($this->archivo_comprobante2!=null){
             if($this->archivo_comprobante2->getClientOriginalExtension()=="jpg" or $this->archivo_comprobante2->getClientOriginalExtension()=="png" or $this->archivo_comprobante2->getClientOriginalExtension()=="jpeg"){
@@ -160,10 +161,10 @@ class AdminisionesComponet extends Component
         $sql= 'SELECT * FROM tb_grados';
         $grados=DB::select($sql);
 
-        return view('livewire.adminisiones-componet', compact('estado_cuatro4','estado_tres3','estado_dos2','estado_uno2','metododepago','formasdepago', 'grados','estado_cero','estado_uno','estado_dos','estado_tres','estado_cuatro','estado_cinco','diaco','data_ins'));
+        return view('livewire.adminisiones-componet', compact('estado_cuatro4','estado_tres3','estado_dos2','estado_uno2','metododepago','formasdepago', 'grados','estado_cero','estado_uno','estado_dos','estado_tres','estado_cuatro','estado_cinco','diaco'));
     }
 
-    public function tipo_cambio($tipo,$id){
+    public function tipo_cambio($tipo){
 
       //  $this->id_ges_cambio=$id;
         $this->tipo_cambio1=$tipo;
@@ -171,7 +172,7 @@ class AdminisionesComponet extends Component
         
     }
     
-    public function cambioestado($id){
+    public function cambioestado(){
         DB::beginTransaction();
         
         $cambio_pre=DB::table('TB_PRE_INS')
@@ -250,6 +251,7 @@ class AdminisionesComponet extends Component
             $this->gradoin=$pre->GRADO_ING_ES;
             $this->gestion=$pre->NO_GESTION;
             $this->fingreso_gestion=$pre->FECHA_REGISTRO;
+            $this->fecha_ultimo_cambio=$pre->FECHA_CAMBIOS_REG;
 
         }
 
@@ -257,10 +259,9 @@ class AdminisionesComponet extends Component
     }
     public function editar2($id)
     {
-        $this->reset();
         unset($this->mensajeup);
         unset($this->mensajeup1);
-       $sql="SELECT TB_PRE_INS.*, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE (ESTADO_PRE_INS=1 or  ESTADO_PRE_INS=2)  and ID_PRE=?";
+       $sql="SELECT TB_PRE_INS.*, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE (ESTADO_PRE_INS=1 or  ESTADO_PRE_INS=2 or ESTADO_PRE_INS=3 or ESTADO_PRE_INS=4)  and ID_PRE=?";
         $preinsp=DB::select($sql,array($id));
 
         foreach($preinsp as $pre){
@@ -294,6 +295,7 @@ class AdminisionesComponet extends Component
             $this->gestion=$pre->NO_GESTION;
             $this->fingreso_gestion=$pre->FECHA_REGISTRO;
             $this->estado_ges=$pre->ESTADO_PRE_INS;
+            $this->fecha_ultimo_cambio=$pre->FECHA_CAMBIOS_REG;
 
         }
 
@@ -553,6 +555,7 @@ class AdminisionesComponet extends Component
     }
 
     Public function editardi($id,$no_gest){
+        $this->editar2($id);
         $id_pre_info=$id;
         $this->no_gest=$no_gest;
         $sql='SELECT * FROM TB_PRE_INFO WHERE ID_PRE=?';
@@ -618,6 +621,7 @@ class AdminisionesComponet extends Component
     $this->nombre_aseguradora=$estac->ASEGURADORA;
     $this->nombreencargado=$estac->NOMBRE_ENCARGADO;
             }
+            
         }
     }
 
@@ -727,26 +731,26 @@ $Especifique_ali=$this->Especifique_ali;
     
     DB::beginTransaction();
 
-    $comprobantes=DB::table('TB_PRE_INS')
-            ->where('ID_PRE_INFO',$this->id_ges_cambio)
+    $inscripcion_datos=DB::table('TB_PRE_INFO')
+            ->where('ID_PRE',$this->id_pre_i)
             ->update(
         [
             'HERMANOS_COLE'=>$this->confi,
             'GRADO_HERMANOS_COLE'=>$this->grados_selecionados,
-            'AÑO_1R_INGRESO'=>$añoingreso,
-            'GRADO_1R_INGRESO'=>$gradoprimeringreso,
-            'NOMB_PADRE'=>$nombrepadre,
-            'FECHA_N_PADRE'=>$nacimientopadre,
-            'NACIONALIDAD_PADRE'=>$nacionalidadpadre,
-            'LUGAR_NACIMIENTO_PADRE'=>$lugarnacimientopadre,
+            'AÑO_1R_INGRESO'=>$año_ingreso,
+            'GRADO_1R_INGRESO'=>$grado_primer_ingreso,
+            'NOMB_PADRE'=>$nombre_padre,
+            'FECHA_N_PADRE'=>$nacimiento_padre,
+            'NACIONALIDAD_PADRE'=>$nacionalidad_padre,
+            'LUGAR_NACIMIENTO_PADRE'=>$lugar_nacimiento_padre,
             'ESTADO_CIVIL_P'=> $this->estadocivilp,
             'VIVE_CON_LA_MADRE'=> $this->vive_madre,
-            'DPI_PADRE'=>$DPIpadre,
-            'TELEFONO_PADRE'=>$telefonopadre,
-            'CELULAR_PADRE'=>$celularpadre,
-            'DIRECCION_RESIDENCIA_P'=>$direccionresidencia,
-            'CORREO_PADRE'=>$correopadre,
-            'PROFECION_PADRE'=>$profesionpadre,
+            'DPI_PADRE'=>$DPI_padre,
+            'TELEFONO_PADRE'=>$telefono_padre,
+            'CELULAR_PADRE'=>$celular_padre,
+            'DIRECCION_RESIDENCIA_P'=>$direccion_residencia,
+            'CORREO_PADRE'=>$correo_padre,
+            'PROFECION_PADRE'=>$profesion_padre,
             'LUGAR_TRABAJO_P'=>$lugar_profesion_padre,
             'CARGO_PADRE'=>$cargo_profesion_padre,
             'RELIGION_PADRE'=>$religion_padre,
@@ -762,7 +766,7 @@ $Especifique_ali=$this->Especifique_ali;
             'CELULAR_MADRE'=>$celular_madre,
             'DIRECCION_RESIDENCIA_M'=>$direccion_residenciamadre, 
             'CORREO_MADRE'=>$correo_madre,
-            'PROFECION_MADRE'=>$rofesion_madre,
+            'PROFECION_MADRE'=>$profesion_madre,
             'LUGAR_TRABAJO_M'=>$lugar_prof_madre,
             'CARGO_MADRE'=>$cargo_madre,
             'ALERG_MEDICAMENTO'=>$this->medicamento,
@@ -790,11 +794,11 @@ $Especifique_ali=$this->Especifique_ali;
         );
         if($inscripcion_datos){
             DB::commit();
-            $this->validar_info = 1;
+            $this->mensajeins=1;
         }
         else{
             DB::rollback();
-            $this->validar_info = 0;
+            $this->mensajeins1=1;
         }
     }
 
@@ -835,14 +839,14 @@ $Especifique_ali=$this->Especifique_ali;
                  unset($this->mensaje);;
                  unset($this->mensaje1);
                  $this->op='addcontenidos';
-                 $this->mensaje='Insertado correctamente';
+                 $this->mensaje='Editado correctamente';
                  }
                  else {
                  DB::rollback();
                  unset($this->mensaje);;
                  unset($this->mensaje1);
                  $this->op='addcontenidos';
-                 $this->mensaje1='Datos no  insertados correctamente';
+                 $this->mensaje1='No se logro editar correctamente';
                  }        
          }
 
@@ -863,10 +867,10 @@ $Especifique_ali=$this->Especifique_ali;
  
                     ]);
                     if($elevar){
-                        $this->mensaje_diaco='Insertado correctamente';
+                        $this->mensaje_diaco='Editado correctamente';
                     }
                     else{
-                        $this->mensaje_diaco1='No se inserto correctamente';
+                        $this->mensaje_diaco1='No se logro editar correctamente';
                     }
          }
 
@@ -883,10 +887,10 @@ $Especifique_ali=$this->Especifique_ali;
  
                     ]);
                     if($elevar){
-                        $this->mensaje_diaco='Insertado correctamente';
+                        $this->mensaje_diaco='Editado correctamente';
                     }
                     else{
-                        $this->mensaje_diaco1='No se inserto correctamente';
+                        $this->mensaje_diaco1='No se logro editar correctamente';
                     }
          }
 
