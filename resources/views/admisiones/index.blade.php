@@ -22,7 +22,7 @@
   $('#cambioestadoinfo5').modal('show');
   });
 
-  $(document).on('click', '#valestadoinfo', function() {
+  $(document).on('click', '#valestadoinfo4', function() {
   $('#cambioestadoinfo4').modal('show');
   });
 

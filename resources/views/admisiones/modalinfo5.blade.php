@@ -44,7 +44,7 @@
                
                     
                 </div>
-                
+                @endforeach
             </div>
             </div>
           </div>
@@ -54,22 +54,23 @@
             </div>        
         </div>
         <div class="modal-footer">
-          @if($dia->ESTADO_PRE_INS==6)
+          @if($estado_pre_boton==6)
           <a  id="valestado" wire:click="cambio_estado(5)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-success" data-bs-dismiss="modal">Reg. Estado</a>
               
             <a  id="valestado" wire:click="cambio_estado(7)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-warning" data-bs-dismiss="modal">Sig. Estado</a>
 
             <a  type="button"  wire:click="update_diaco()" style="border-radius: 60px 60px 60px 60px;" class="btn btn-primary" >Actualizar</a>
             
-            @elseif($dia->ESTADO_PRE_INS==5)
+            @elseif($estado_pre_boton==5)
             <a  id="valestado" wire:click="cambio_estado(4)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-success" data-bs-dismiss="modal">Reg. Estado</a>
               
             <a  id="valestado" wire:click="cambio_estado(6)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-warning" data-bs-dismiss="modal">Sig. Estado</a>
 
             <a  type="button"  wire:click="update_diaco()" style="border-radius: 60px 60px 60px 60px;" class="btn btn-primary" >Actualizar</a>
           @endif
+          
         </div>
-        @endforeach
+        
       </div>
     </div>
   </div>     

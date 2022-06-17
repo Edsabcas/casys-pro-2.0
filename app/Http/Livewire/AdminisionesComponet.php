@@ -18,7 +18,7 @@ class AdminisionesComponet extends Component
     public $a,$mensaje,$gradose,$fingreso_gestion,$id_ges_cambio,$tipo_cambio1;
     public $id_pre,$metodo,$archivo_comprobante,$img,$tipo,$mensaje24,$mensaje25,$fotos,$fpago,$no_gest_con;
     public $val,$val1,$gestion,$errorfecha;
-    public $estado_ges,$archivo_comprobante2,$fecha_ultimo_cambio,$mensajeins,$mensajeins1;
+    public $estado_ges,$archivo_comprobante2,$fecha_ultimo_cambio,$mensajeins,$mensajeins1,$id_pre_boton,$estado_pre_boton;
     public $mensaje1,$id2;
     public $observacion, $id_pre_ins_arch, $id_no_gest_arch, $archivo_cdiaco, $archivo, $formato,$id_gest,$nuevo_estado,$id_no_gest_ins;
     public $mensajeup,$mensajeup1;
@@ -688,7 +688,7 @@ class AdminisionesComponet extends Component
     }
 
     public function update_datos_ins(){
-        
+        $this->actualizar_validacion_pago();
         $id_pre_info=$this->id_pre_info;
         $id_pre_i=$this->id_pre_i;
         $confi=$this->confi;
@@ -824,7 +824,17 @@ $Especifique_ali=$this->Especifique_ali;
                 $this->id_no_gest_arch=$estac->NO_GESTION;
                 $this->archivo_cdiaco=$estac->CONTRATO;
             }
-        }  
+        }
+
+        $sql='SELECT * FROM TB_PRE_INS WHERE ID_PRE=?';
+        $botones5=DB:: select($sql, array($id_pre));
+        if($botones5 !=null){
+            foreach($botones5 as $boton)
+            {
+                $this->id_pre_boton=$boton->ID_PRE;
+                $this->estado_pre_boton=$boton->ESTADO_PRE_INS;
+            }
+        }
     }
 
     public function update_diaco($estadoact){
