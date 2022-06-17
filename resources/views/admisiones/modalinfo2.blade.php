@@ -53,7 +53,7 @@
                                     <label for="inputApellidos" style="font-size: 15px; color:#000000;">Género:</label>
                                     <br>
                                     <div class="form-check form-check-inline ">
-                                      <input class="form-check-input"  wire:model='genero' value="Masculino" wire:click="valfecha"  type="radio" wire:model="genero_es" id="flexRadioDefault1">
+                                      <input class="form-check-input"  wire:model='genero' value="Masculino" type="radio" wire:model="genero_es" id="flexRadioDefault1">
                                       <label class="form-check-label" for="flexRadioDefault1" style="font-size: 15px; color:#000000;">
                                         Masculino
                                       </label>
