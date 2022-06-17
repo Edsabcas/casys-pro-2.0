@@ -9,7 +9,7 @@ use App\Http\Livewire\Request;
 class GradoComponents extends Component
 {
     public $nombre_gr,$id_gr,$estado_gr,$op,$mensaje,$mensaje1,$edit,$mensaje3,$mensaje4,$mensaje5,$mensaje6,$mensajeeliminar,$mensajeeliminar1,$mensajeeliminar2,$mensajeeliminar3,$mensajeeliminar4,$mensajeeliminar5,$mensajeeliminar6,$mensajeeliminar7;
-    public $seccion_gr,$precio_gr,$ministerial_gr,$resolucion_gr,$jornada_gr,$academico_gr;
+    public $seccion_gr,$precio_gr,$ministerial_gr,$resolucion_gr,$jornada_gr,$academico_gr,$preciopre,$preciovir,$totalpre,$totalvir,$adelantopre,$adelantovir;
     public $estado_sec,$nombre_sec,$nombre_jornada,$nombre_nvl,$estado_jornada,$estado_nvl,$edit1,$id_jornada,$edit3;
     public $mensaje7,$mensaje8,$mensaje9,$mensaje10,$mensaje11,$mensaje12,$mensaje13,$mensaje14,$mensaje15,$mensaje16,$id_sc,$edit2,$id_nvl;
     public function render()
@@ -39,6 +39,8 @@ class GradoComponents extends Component
             'seccion_gr' => 'required',
             'ministerial_gr' => 'required',
             'resolucion_gr' => 'required',
+            'preciopre' => 'required',
+            'preciovir' => 'required',
             'academico_gr' => 'required',
             'jornada_gr' => 'required',
             'estado_gr' => 'required',
@@ -56,6 +58,8 @@ class GradoComponents extends Component
         $precio_gr=$this->precio_gr; 
         $ministerial_gr=$this->ministerial_gr;
         $resolucion_gr=$this->resolucion_gr;
+        $preciopre=$this->preciopre;
+        $preciovir=$this->preciovir;
         $academico_gr=$this->academico_gr; 
         $jornada_gr=$this->jornada_gr;
         $estado_gr=$this->estado_gr;
@@ -66,9 +70,10 @@ class GradoComponents extends Component
             [
                 'GRADO'=> $nombre_gr,
                 'ID_SC'=> $seccion_gr,
-                'PRECIO_GRADO'=> $precio_gr=0,
                 'MINISTERIAL'=> $ministerial_gr,
                 'RESOLUCION'=> $resolucion_gr,
+                'PRECIO_PRESENCIAL'=> $preciopre,
+                'PRECIO_VIRTUAL'=> $preciovir,
                 'NIVEL_ACADEMICO'=> $academico_gr,
                 'JORNADA'=> $jornada_gr,
                 'ESTADO'=> $estado_gr,
@@ -105,6 +110,8 @@ class GradoComponents extends Component
                 $this->seccion_gr=$gra->ID_SC;
                 $this->ministerial_gr=$gra->MINISTERIAL;
                 $this->resolucion_gr=$gra->RESOLUCION;
+                $this->preciopre=$gra->PRECIO_PRESENCIAL;
+                $this->preciovir=$gra->PRECIO_VIRTUAL;
                 $this->academico_gr=$gra->NIVEL_ACADEMICO;
                 $this->jornada_gr=$gra->JORNADA;
                 $this->estado_gr=$gra->ESTADO;
@@ -120,6 +127,8 @@ class GradoComponents extends Component
         $seccion_gr=$this->seccion_gr;
         $ministerial_gr=$this->ministerial_gr;
         $resolucion_gr=$this->resolucion_gr;
+        $preciopre=$this->preciopre;
+        $preciovir=$this->preciovir;
         $academico_gr=$this->academico_gr; 
         $jornada_gr=$this->jornada_gr;
         $estado_gr=$this->estado_gr;
@@ -132,9 +141,10 @@ class GradoComponents extends Component
             [
                 'GRADO'=>$nombre_gr,
                 'ID_SC'=> $seccion_gr,
-                'PRECIO_GRADO'=> $precio_gr=0,
                 'MINISTERIAL'=> $ministerial_gr,
                 'RESOLUCION'=> $resolucion_gr,
+                'PRECIO_PRESENCIAL'=> $preciopre,
+                'PRECIO_VIRTUAL'=> $preciovir,
                 'NIVEL_ACADEMICO'=> $academico_gr,
                 'JORNADA'=> $jornada_gr,
                 'ESTADO'=>$estado_gr,
@@ -289,6 +299,10 @@ class GradoComponents extends Component
 
             if($this->validate([
                 'nombre_nvl' => 'required',
+                'adelantovir' => 'required',
+                'totalvir' => 'required',
+                'adelantopre' => 'required',
+                'totalpre' => 'required',
                 'estado_nvl' => 'required',
         
             ])==false)
@@ -300,6 +314,10 @@ class GradoComponents extends Component
             else
             {
             $nombre_nvl=$this->nombre_nvl;
+            $adelantovir=$this->adelantovir;
+            $totalvir=$this->totalvir;
+            $adelantopre=$this->adelantopre;
+            $totalpre=$this->totalpre;
             $estado_nvl=$this->estado_nvl;
     
             DB::beginTransaction();
@@ -307,6 +325,10 @@ class GradoComponents extends Component
             $academico=DB::table('tb_nvlacademico')->insert(
                 [
                     'NIVEL_ACADEMICO'=> $nombre_nvl,
+                    'ADELANTO_VIRTUAL'=> $adelantovir,
+                    'TOTAL_VIRTUAL'=> $totalvir,
+                    'ADELANTO_PRESENCIAL'=> $adelantopre,
+                    'TOTAL_PRESENCIAL'=> $totalpre,
                     'ESTADO'=> $estado_nvl,
                 ]);
                 if($academico){
@@ -331,17 +353,24 @@ class GradoComponents extends Component
                 foreach($academico as $nivel)
                 {
                     $this->id_nvl=$nivel->ID_NVL;               
-                    $this->nombre_nvl=$nivel->NIVEL_ACADEMICO;   
+                    $this->nombre_nvl=$nivel->NIVEL_ACADEMICO;
+                    $this->adelantovir=$nivel->ADELANTO_VIRTUAL;   
+                    $this->totalvir=$nivel->TOTAL_VIRTUAL;  
+                    $this->adelantopre=$nivel->ADELANTO_PRESENCIAL;   
+                    $this->totalpre=$nivel->TOTAL_PRESENCIAL;  
                     $this->estado_nvl=$nivel->ESTADO;         
                 }
             }
             $this->op=2;
-    
             $this->edit2=1;
         }
         public function update_nvl_p(){
             $id_nvl=$this->id_nvl;
             $nombre_nvl=$this->nombre_nvl;
+            $adelantovir=$this->adelantovir;
+            $totalvir=$this->totalvir;
+            $adelantopre=$this->adelantopre;
+            $totalpre=$this->totalpre;
             $estado_nvl=$this->estado_nvl;
     
             DB::beginTransaction();
@@ -351,6 +380,10 @@ class GradoComponents extends Component
             ->update(
                 [
                     'NIVEL_ACADEMICO'=>$nombre_nvl,
+                    'ADELANTO_VIRTUAL'=> $adelantovir,
+                    'TOTAL_VIRTUAL'=> $totalvir,
+                    'ADELANTO_PRESENCIAL'=> $adelantopre,
+                    'TOTAL_PRESENCIAL'=> $totalpre,
                     'ESTADO'=>$estado_nvl,
                 ]
                 );

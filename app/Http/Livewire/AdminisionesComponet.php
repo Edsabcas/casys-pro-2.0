@@ -182,6 +182,15 @@ class AdminisionesComponet extends Component
                     'FECHA_CAMBIOS_REG'=>  date("Y-m-d H:i:s"),
                    ]);
 
+            
+            $cuentaestudiante=DB::table('cuentaestudiante')->insert(
+                [
+                    'ID_PRE'=> $nombre_es,
+                    'ID_GR'=> $gradoin,
+                    /* 'RESOLUCION'=> $resolucion_gr, */
+                    'ESTADO'=>1, 
+                ]);
+
         if($cambio_pre){
             DB::commit();
             $subject = "Notificación Pre-Ins.Castaño (No responder)";

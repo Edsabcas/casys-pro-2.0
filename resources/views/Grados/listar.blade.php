@@ -39,6 +39,8 @@
           <th>ID</th>
           <th>GRADO</th>
           <th>SECCIÓN</th>
+          <th>PRECIO PRESENCIAL</th>
+          <th>PRECIO VIRTUAL</th>
           <th>ESTADO</th>
           <th>ACCIONES</th>
         </tr>
@@ -54,6 +56,8 @@
             <th>{{$seccion->SECCION}}</th>
             @endif
             @endforeach
+            <td>Q. {{$grado->PRECIO_PRESENCIAL}}</td>
+            <td>Q. {{$grado->PRECIO_VIRTUAL}}</td>
             @if ($grado->ESTADO==1)
             <td>Activo</td>
             @else
