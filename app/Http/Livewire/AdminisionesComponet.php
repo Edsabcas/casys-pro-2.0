@@ -188,7 +188,11 @@ class AdminisionesComponet extends Component
                 [
                     'ID_PRE'=> $this->id_ges_cambio,
                     'ID_GR'=> $this->gradoin,
-                    'RESOLUCION'=> $resolucion_gr, 
+                    'FECHA_PAGO'=>  date("Y-m-d H:i:s"),
+                    'FECHA_ULIMOPAGO'=>  date("Y-m-d H:i:s"),
+                    'ID_MES'=>1,
+                    'MONTO_RECUPERACION'=>0,
+                    'MONTO_DESCUENTO'=>0,
                     'ESTADO'=>1,  
                 ]);
 

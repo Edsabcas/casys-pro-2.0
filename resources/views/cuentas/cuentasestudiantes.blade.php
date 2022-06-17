@@ -94,8 +94,14 @@
               </div>
             </div>
             <br>
+            @if ($edit!=null)
+              <button class="btn btn-success" wire:click="update_c_p()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+              </svg></button>
+            @else
             <button class="btn btn-pre2" wire:click="guardar_cuenta()">Agregar</button>    
-
+            @endif
           </form>
 
           <br>
@@ -114,57 +120,65 @@
                       <thead>
                           <tr>
                               <th>PRE-INSCRIPCIÓN</th>
+                              <th>MODALIDAD</th>
                               <th>NIVEL ACADÉMICO</th>
                               <th>GRADO</th>
                               <th>MES</th>
                               <th>FECHA DE PAGO</th>
                               <th>PAGO MÁS RECIENTE</th>
-                              <th>MONTO DE INSCRIPCIÓN</th>
-                              <th>MONTO MENSUAL</th>
-                              <th>MONTO DE RECUPERACIÓN</th>
-                              <th>MONTO DE DESCUENTO</th>
+                              <th>INSCRIPCIÓN P.</th>
+                              <th>INSCRIPCIÓN V.</th>
+                              <th>MENSUAL</th>
+                              <th>RECUPERACIÓN</th>
+                              <th>DESCUENTO</th>
                               <th>ESTADO</th>
+                              {{-- <th>ACCIONES</th> --}}
                           </tr>
                       </thead>
                           <tbody>
                             @foreach ($cuentas as $cuenta)
                               <tr>
-                                @foreach($inscripciones as $inscrip)
-                                  @if($cuenta->ID_PRE==$inscrip->ID_PRE)
-                                    <td>{{$inscrip->NOMBRE_ES}}</td>
-                                  @endif
-                                @endforeach
-                                @foreach($grados as $grado)
-                                  @if($cuenta->ID_GR==$grado->ID_GR)
-                                    <td>{{$grado->NIVEL_ACADEMICO}}</td>
-                                  @endif
-                                @endforeach
-                                @foreach($grados as $grado)
-                                  @if($cuenta->ID_GR==$grado->ID_GR)
-                                    <td>{{$grado->GRADO}}</td>
-                                  @endif
-                                @endforeach
-                                @foreach($meses as $mes)
-                                  @if($cuenta->ID_MES==$mes->ID_MES)
-                                    <td>{{$mes->DESCRIPCION}}</td>
-                                  @endif
-                                @endforeach
+                                    
+                                <td>{{$cuenta->NOMBRE_ES}}</td>
+                                <td>{{$cuenta->MODALIDAD_EST}}</td>
+                                <td>{{$cuenta->NIVEL_ACADEMICO}}</td>
+                                <td>{{$cuenta->GRADO}}</td>
+                                <td>{{$cuenta->DESCRIPCION}}</td>
                                 <td>{{$cuenta->FECHA_PAGO}}</td>
                                 <td>{{$cuenta->FECHA_ULIMOPAGO}}</td>
-                                <td>{{$cuenta->MONTO_INSCRIPCION}}</td>
-                                <td>{{$cuenta->MONTO_RECUPERACION}}</td>
-                                @foreach($grados as $grado)
-                                  @if($cuenta->ID_GR==$grado->ID_GR)
-                                <td>{{$grado->PRECIO_PRESENCIAL}}</td>
-                                @endif
-                                @endforeach
-                                <td>{{$cuenta->MONTO_DESCUENTO}}</td>
+                                <td>Q. {{$cuenta->TOTAL_PRESENCIAL}}</td>
+                                <td>Q. {{$cuenta->TOTAL_VIRTUAL}}</td>
+                                <td>Q. {{$cuenta->PRECIO_PRESENCIAL}}</td>
+                                <td>Q. {{$cuenta->MONTO_RECUPERACION}}</td>
+                                <td>Q. {{$cuenta->MONTO_DESCUENTO}}</td>
+
+                                {{-- ESTADO --}}
+                                
                                 @if($cuenta->ESTADO==1)
                                     <td>Activo</td>   
                                   @else
                                     <td>Inactivo</td>
                                 @endif
-                              </tr>
+                              
+                              {{-- <span>
+                                <td>
+                                  @foreach ($cuen as $cue)
+                                      
+                                  @endforeach
+                                  <button class="btn btn-editb" wire:click='edit({{$cue->ID_CUENTA}})'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                                  </svg></button>        
+                              
+                                @include('cuentas.modaleliminar')
+                            
+                                  <button type="button" class="btn btn-secondary" style="border-radius: 12px;" data-bs-toggle="modal" data-bs-target="#exampleModal{{$cue->ID_CUENTA}}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                                    <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+                                  </svg></button>
+
+                                </td>
+                              </span>   --}}
+                            </tr>  
                             @endforeach
                           </tbody>
                     </table>
