@@ -11,7 +11,7 @@
               <h4 class="form-label text text-center" style="font-size:25px">Gestion: #{{$no_gest}}
               
               </h4>
-              <p  class="text text-center">Fecha de solicitud: <b>{{$fingreso_gestion}}</b></p>
+              <p  class="text text-center">Fecha de ultimo cambio: <b>{{$fecha_ultimo_cambio}}</b></p>
               <br>
               <div wire:ignore.self class="accordion" id="accordionPanelsStayOpenExample2">
                 <div style="border-radius: 60px 60px 60px 60px;" class="accordion-item">
@@ -316,7 +316,7 @@
                     </button>
                 
                   </h2>
-                  <div  wire:ignore.self id="panelsStayOpen-collapseThreePago" style="border-radius: 60px 60px 60px 60px;"class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingThreePago">
+                  <div  wire:ignore.self id="panelsStayOpen-collapseThreePago" style="border-radius: 60px 60px 60px 60px;"class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThreePago">
                     <div  wire:ignore.self class="accordion-body" style="border-radius: 60px 60px 60px 60px;">
                         <form wire:submit.prevent="" class="form-floating">
 
@@ -1342,24 +1342,44 @@
        </form>
 
 
-            </div>        
+            </div>
+            
+            @if($mensajeins!=null && $mensajeins==1)
+            <br>
+            <div class="alert alert-success" role="alert">
+                Editado Correctamente!
+              </div>
+            @endif
+              @if($mensajeins1!=null && $mensajeins1==1)
+              <br>
+              <div class="alert alert-Danger" role="alert">
+                No fue Editado Correctamente!
+              </div>
+              @endif
+                    
         </div>
 
         <div class="modal-footer">
+          <div>
           @if($estado_ges==4)
+          
           <a  id="valestadoinfo" wire:click="cambio_estado(3)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-success" data-bs-dismiss="modal">Reg. Estado</a>
               
             <a  id="valestadoinfo" wire:click="cambio_estado(5)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-warning" data-bs-dismiss="modal">Sig. Estado</a>
 
             <a  type="button"  wire:click="update_datos_ins()" style="border-radius: 60px 60px 60px 60px;" class="btn btn-primary" >Actualizar</a>
-            
+          
             @elseif($estado_ges==3)
+            
             <a  id="valestadoinfo" wire:click="cambio_estado(2)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-success" data-bs-dismiss="modal">Reg. Estado</a>
               
             <a  id="valestadoinfo" wire:click="cambio_estado(4)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-warning" data-bs-dismiss="modal">Sig. Estado</a>
 
             <a  type="button"  wire:click="update_datos_ins()" style="border-radius: 60px 60px 60px 60px;" class="btn btn-primary" >Actualizar</a>
+            
             @endif
+          </div>
+            
         </div>
 
     </div>
