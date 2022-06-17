@@ -175,6 +175,36 @@
                             </div>
                             @enderror 
                           </div>
+
+                          <div class="mb-3">
+                            <option></option>
+                            <label for="lastname" style="color: #3a3e7b">
+                                <b>¿Cómo prefiere que sus hijos estudien el ciclo escolar 2023?</b></label>
+                                <br>
+                                <br>
+                                <li class="list-group-item list-group-item-action">
+                                 
+                                    <input class="form-check-input me-1"  type="radio" wire:model="tipo2" value="Presencial" aria-label="..."  id="flexRadioGradopre">
+                                    <label class="form-check-label" for="flexRadioGradopre" style="font-size: 15px; color:#000000;">
+                                        Presencial 
+                                      </label>
+                                    
+                                  </li>
+                                  <li class="list-group-item list-group-item-action">
+                                    <input class="form-check-input me-1"  type="radio"  wire:model="tipo2" value="Virtual" aria-label="..."  id="flexRadioGradvir">
+                                    <label class="form-check-label" for="flexRadioGradvir" style="font-size: 15px; color:#000000;">
+                                      Virtual
+                                      </label>
+                                  
+                                  </li>
+                                  @error('tipo') 
+                                        <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                          <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                                          
+                                            <span>Debe de seleccionar</span>
+                                           </div> @enderror
+                        </div>
+
                         </div>
                       </form>
                     </div>
@@ -305,6 +335,15 @@
                          Pendiente
                         </div>
                         @enderror
+                        <div class="col-md">
+                          <label for="inputApellidos" style="font-size: 15px; color:#000000;">Correo electronico (opcional):</label>
+                          <input placeholder="" type="email"  wire:model="correo_en2" class="form-control " required>
+                      </div>
+                      @error('correo_en')
+                      <div class="alert alert-warning" role="alert">
+                       Pendiente
+                      </div>
+                      @enderror
                         <div class="col-md">
                           <label for="inputApellidos" style="font-size: 15px; color:#000000;">Religión:</label>
                           <input type="text"  wire:model="religion_en" class="form-control " required>
