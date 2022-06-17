@@ -186,10 +186,10 @@ class AdminisionesComponet extends Component
             
             $cuentaestudiante=DB::table('cuentaestudiante')->insert(
                 [
-                    'ID_PRE'=> $nombre_es,
-                    'ID_GR'=> $gradoin,
-                    /* 'RESOLUCION'=> $resolucion_gr, */
-                    'ESTADO'=>1, 
+                    'ID_PRE'=> $this->id_ges_cambio,
+                    'ID_GR'=> $this->gradoin,
+                    'RESOLUCION'=> $resolucion_gr, 
+                    'ESTADO'=>1,  
                 ]);
 
         if($cambio_pre){

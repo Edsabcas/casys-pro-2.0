@@ -36,12 +36,12 @@
   <table class="table table-light table-bordered">
       <thead>
           <tr>
-          <th>ID</th>
+          <th>NIVEL ACADEMICO</th>
+          <th>TIPO DE JORNADA</th>
           <th>GRADO</th>
           <th>SECCIÓN</th>
           <th>PRECIO PRESENCIAL</th>
           <th>PRECIO VIRTUAL</th>
-          <th>ESTADO</th>
           <th>ACCIONES</th>
         </tr>
       </thead>
@@ -49,7 +49,16 @@
 
         @foreach ($grados as $grado)
         <tr>
-            <td>{{$grado->ID_GR}}</td>
+            @foreach($jornada as $jor)
+            @if($grado->JORNADA==$jor->ID_JORNADA)
+              <td>{{$jor->TIPO_JORNADA}}</td>
+            @endif
+            @endforeach
+            @foreach($academico as $acade)
+            @if($grado->NIVEL_ACADEMICO==$acade->ID_NVL)
+              <td>{{$acade->NIVEL_ACADEMICO}}</td>
+            @endif
+            @endforeach
             <td>{{$grado->GRADO}}</td> 
             @foreach($secciones as $seccion)
             @if($grado->ID_SC==$seccion->ID_SC)
@@ -58,11 +67,6 @@
             @endforeach
             <td>Q. {{$grado->PRECIO_PRESENCIAL}}</td>
             <td>Q. {{$grado->PRECIO_VIRTUAL}}</td>
-            @if ($grado->ESTADO==1)
-            <td>Activo</td>
-            @else
-            <td>Inactivo</td>               
-            @endif 
            <span>
               <td>
                 <button class="btn btn-editb" wire:click='edit({{$grado->ID_GR}})'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">

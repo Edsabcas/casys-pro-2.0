@@ -113,7 +113,6 @@
                     <table class="table table-light table-bordered">
                       <thead>
                           <tr>
-                              <th>NO. GESTION</th>
                               <th>PRE-INSCRIPCIÓN</th>
                               <th>NIVEL ACADÉMICO</th>
                               <th>GRADO</th>
@@ -132,17 +131,12 @@
                               <tr>
                                 @foreach($inscripciones as $inscrip)
                                   @if($cuenta->ID_PRE==$inscrip->ID_PRE)
-                                    <td>#{{$inscrip->NO_GESTION}}</td>
-                                  @endif
-                                @endforeach
-                                @foreach($inscripciones as $inscrip)
-                                  @if($cuenta->ID_PRE==$inscrip->ID_PRE)
                                     <td>{{$inscrip->NOMBRE_ES}}</td>
                                   @endif
                                 @endforeach
-                                @foreach($academicos as $academico)
-                                  @if($cuenta->ID_NVL==$academico->ID_NVL)
-                                    <td>{{$academico->NIVEL_ACADEMICO}}</td>
+                                @foreach($grados as $grado)
+                                  @if($cuenta->ID_GR==$grado->ID_GR)
+                                    <td>{{$grado->NIVEL_ACADEMICO}}</td>
                                   @endif
                                 @endforeach
                                 @foreach($grados as $grado)
@@ -159,7 +153,11 @@
                                 <td>{{$cuenta->FECHA_ULIMOPAGO}}</td>
                                 <td>{{$cuenta->MONTO_INSCRIPCION}}</td>
                                 <td>{{$cuenta->MONTO_RECUPERACION}}</td>
-                                <td>{{$cuenta->MONTO_MENSUAL}}</td>
+                                @foreach($grados as $grado)
+                                  @if($cuenta->ID_GR==$grado->ID_GR)
+                                <td>{{$grado->PRECIO_PRESENCIAL}}</td>
+                                @endif
+                                @endforeach
                                 <td>{{$cuenta->MONTO_DESCUENTO}}</td>
                                 @if($cuenta->ESTADO==1)
                                     <td>Activo</td>   
