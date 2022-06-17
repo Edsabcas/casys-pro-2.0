@@ -29,7 +29,7 @@ class AdminisionesComponet extends Component
     public $lugar_prof_madre, $cargo_madre, $religion_madre, $vive_madre, $NIT_madre, $tiene_alergia, $Especifique_alerg, $nombreaseguradora, $nombreencargado;
     public $poliza, $carne_seguro, $codigo_fam, $nombre_fam, $Especifique_medi, $Especifique_ali, $medicamento, $grados_mostrar,$estadocivil;
     public $alimento, $vacunas, $alumno_asegurado, $solo_alumno, $encargado_alumno, $bus_colegio, $bus_no_colegio, $nombre_aseguradora, $no_gest;
-
+    public $tipo2,$correo_en2;
     public function render()
     {
 
@@ -250,8 +250,10 @@ class AdminisionesComponet extends Component
             $this->fingreso_gestion=$pre->FECHA_REGISTRO;
             $this->gradoin=$pre->GRADO_ING_ES;
             $this->gestion=$pre->NO_GESTION;
+            $this->tipo2=$pre->MODALIDAD_EST;
             $this->fingreso_gestion=$pre->FECHA_REGISTRO;
             $this->fecha_ultimo_cambio=$pre->FECHA_CAMBIOS_REG;
+            $this->correo_en2=$pre->CORREO_EN_ES2;
 
         }
 
@@ -295,8 +297,9 @@ class AdminisionesComponet extends Component
             $this->gestion=$pre->NO_GESTION;
             $this->fingreso_gestion=$pre->FECHA_REGISTRO;
             $this->estado_ges=$pre->ESTADO_PRE_INS;
+            $this->tipo2=$pre->MODALIDAD_EST;
             $this->fecha_ultimo_cambio=$pre->FECHA_CAMBIOS_REG;
-
+            $this->correo_en2=$pre->CORREO_EN_ES2;
         }
 
 
@@ -359,14 +362,16 @@ class AdminisionesComponet extends Component
                     'FECHA_REGISTRO'=>$this->fingreso_gestion,
                     'GRADO_ING_ES'=>$this->gradoin,
                     'NO_GESTION'=>$this->gestion,
+                    'MODALIDAD_EST'=>$this->tipo2,
+                   'CORREO_EN_ES2'=> $this->correo_en2,
                     //'FECHA_REGISTRO'=>$this->fingreso_gestion,
                     //''=>,
                     //'FORMA_PAGO'=>$metodo,
-                    'FORMA_PAGO'=>$metodo,
-                    'COMPROBANTE_PAGO'=>$archivo_comprobante,
+                   // 'FORMA_PAGO'=>$metodo,
+                    //'COMPROBANTE_PAGO'=>$archivo_comprobante,
                     'FECHA_CAMBIOS_REG'=> date('y-m-d:h:m:s'),
                     /* 'ESTADO_PRE_INS'=>2, */
-                    'OBSERVACION_COMP'=>$observacion,
+                   // 'OBSERVACION_COMP'=>$observacion,
                 ]
                 );
             if($comprobantes){
@@ -527,7 +532,8 @@ class AdminisionesComponet extends Component
                     'FECHA_REGISTRO'=>$this->fingreso_gestion,
                     'GRADO_ING_ES'=>$this->gradoin,
                     'NO_GESTION'=>$this->gestion,
-
+                    'MODALIDAD_EST'=>$this->tipo2,
+                    'CORREO_EN_ES2'=> $this->correo_en2,
                     /* INFORMACIÓN PAGO */
 
                     'TIPO_PAGO'=>$this->fpago,
