@@ -119,21 +119,20 @@
                     <table class="table table-light table-bordered">
                       <thead>
                           <tr>
-                              <th>PRE-INSCRIPCIÓN</th>
+                              <th>ALUMNO</th>
                               <th>MODALIDAD</th>
-                              <th>NIVEL ACADÉMICO</th>
                               <th>GRADO</th>
-                              <th>MES</th>
-                              <th>FECHA DE PAGO</th>
-                              <th>PAGO MÁS RECIENTE</th>
-                              <th>INSCRIPCIÓN P.</th>
-                              <th>INSCRIPCIÓN V.</th>
-                              <th>MENSUAL</th>
-                              <th>RECUPERACIÓN</th>
-                              <th>DESCUENTO</th>
-                              <th>ESTADO</th>
-                              {{-- <th>ACCIONES</th> --}}
-                          </tr>
+                              <th>MES PAGO P.</th>
+                              {{-- <th>FECHA DE PAGO</th>
+                              <th>PAGO MÁS RECIENTE</th> --}}
+                              <th>C. INSCRIPCIÓN</th>
+                              <th>C. MENSUALIDAD</th>
+                              {{-- <th>RECUPERACIÓN</th>
+                              <th>DESCUENTO</th> --}}
+                              {{-- <th>ESTADO</th> --}}
+                              <th>DEBE</th>
+                              <th>ACCIONES</th>
+                            </tr>
                       </thead>
                           <tbody>
                             @foreach ($cuentas as $cuenta)
@@ -141,24 +140,27 @@
                                     
                                 <td>{{$cuenta->NOMBRE_ES}}</td>
                                 <td>{{$cuenta->MODALIDAD_EST}}</td>
-                                <td>{{$cuenta->NIVEL_ACADEMICO}}</td>
                                 <td>{{$cuenta->GRADO}}</td>
                                 <td>{{$cuenta->DESCRIPCION}}</td>
-                                <td>{{$cuenta->FECHA_PAGO}}</td>
-                                <td>{{$cuenta->FECHA_ULIMOPAGO}}</td>
-                                <td>Q. {{$cuenta->TOTAL_PRESENCIAL}}</td>
-                                <td>Q. {{$cuenta->TOTAL_VIRTUAL}}</td>
-                                <td>Q. {{$cuenta->PRECIO_PRESENCIAL}}</td>
-                                <td>Q. {{$cuenta->MONTO_RECUPERACION}}</td>
-                                <td>Q. {{$cuenta->MONTO_DESCUENTO}}</td>
+                                {{-- <td>{{$cuenta->FECHA_PAGO}}</td>
+                                <td>{{$cuenta->FECHA_ULIMOPAGO}}</td> --}}
+                                <td>Q. {{$cuenta->MONTO_INSCRIPCION}}</td>
+                                <td>Q. {{$cuenta->MONTO_MENSUAL}}</td>
+                                @if ($cuenta->ESTADO_CANCELADO==1)
+                                <td>Q. {{$cuenta->MONTO_MENSUAL*10}}</td>
+                                @else
+                                <td>Q. {{$cuenta->MONTO_MENSUAL*10+($cuenta->MONTO_INSCRIPCION)}}</td>  
+                                @endif
+                                {{-- <td>Q. {{$cuenta->MONTO_RECUPERACION}}</td>
+                                <td>Q. {{$cuenta->MONTO_DESCUENTO}}</td> --}}
 
                                 {{-- ESTADO --}}
-                                
+                                {{-- 
                                 @if($cuenta->ESTADO==1)
                                     <td>Activo</td>   
                                   @else
                                     <td>Inactivo</td>
-                                @endif
+                                @endif --}}
                               
                               {{-- <span>
                                 <td>

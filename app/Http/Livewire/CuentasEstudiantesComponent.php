@@ -14,11 +14,11 @@ class CuentasEstudiantesComponent extends Component
     {
 
 
-        $sql= 'SELECT cuentaestudiante.FECHA_PAGO, tb_grados.GRADO, tb_nvlacademico.NIVEL_ACADEMICO, cuentaestudiante.FECHA_ULIMOPAGO, mes.DESCRIPCION, 
-        tb_nvlacademico.TOTAL_PRESENCIAL, tb_nvlacademico.TOTAL_VIRTUAL, tb_grados.PRECIO_PRESENCIAL, tb_grados.PRECIO_VIRTUAL, cuentaestudiante.MONTO_DESCUENTO,
-        cuentaestudiante.MONTO_RECUPERACION, cuentaestudiante.ESTADO, TB_PRE_INS.NOMBRE_ES, TB_PRE_INS.MODALIDAD_EST FROM cuentaestudiante 
+        $sql= '	SELECT cuentaestudiante.FECHA_PAGO, tb_grados.GRADO, cuentaestudiante.FECHA_ULIMOPAGO, mes.DESCRIPCION, 
+        cuentaestudiante.MONTO_INSCRIPCION, cuentaestudiante.MONTO_MENSUAL, cuentaestudiante.MONTO_DESCUENTO,
+        cuentaestudiante.MONTO_RECUPERACION, cuentaestudiante.ESTADO, TB_PRE_INS.NOMBRE_ES, TB_PRE_INS.MODALIDAD_EST, 
+        cuentaestudiante.MONTO_CANCELADO, cuentaestudiante.ESTADO_CANCELADO  FROM cuentaestudiante 
         inner join tb_grados on cuentaestudiante.ID_GR=tb_grados.ID_GR 
-        inner join tb_nvlacademico on tb_grados.NIVEL_ACADEMICO=tb_nvlacademico.ID_NVL
         inner join mes on cuentaestudiante.ID_MES=mes.ID_MES
         inner join TB_PRE_INS on TB_PRE_INS.ID_PRE=cuentaestudiante.ID_PRE';
         $cuentas=DB::select($sql);

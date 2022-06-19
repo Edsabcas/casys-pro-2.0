@@ -29,7 +29,7 @@ class AdminisionesComponet extends Component
     public $lugar_prof_madre, $cargo_madre, $religion_madre, $vive_madre, $NIT_madre, $tiene_alergia, $Especifique_alerg, $nombreaseguradora, $nombreencargado;
     public $poliza, $carne_seguro, $codigo_fam, $nombre_fam, $Especifique_medi, $Especifique_ali, $medicamento, $grados_mostrar,$estadocivil;
     public $alimento, $vacunas, $alumno_asegurado, $solo_alumno, $encargado_alumno, $bus_colegio, $bus_no_colegio, $nombre_aseguradora, $no_gest;
-    public $tipo2,$correo_en2;
+    public $tipo2,$correo_en2,$preciopre,$preciovir,$id_gr,$id_nvl;
     public function render()
     {
 
@@ -160,8 +160,10 @@ class AdminisionesComponet extends Component
         $metododepago=DB::select($sql);
         $sql= 'SELECT * FROM tb_grados';
         $grados=DB::select($sql);
+        $sql="SELECT * FROM tb_nvlacademico";
+        $academico=DB::select($sql);
 
-        return view('livewire.adminisiones-componet', compact('estado_cuatro4','estado_tres3','estado_dos2','estado_uno2','metododepago','formasdepago', 'grados','estado_cero','estado_uno','estado_dos','estado_tres','estado_cuatro','estado_cinco','diaco'));
+        return view('livewire.adminisiones-componet', compact('estado_cuatro4','estado_tres3','estado_dos2','estado_uno2','metododepago','formasdepago','academico','grados','estado_cero','estado_uno','estado_dos','estado_tres','estado_cuatro','estado_cinco','diaco'));
     }
 
     public function tipo_cambio($tipo){
@@ -183,18 +185,77 @@ class AdminisionesComponet extends Component
                     'FECHA_CAMBIOS_REG'=>  date("Y-m-d H:i:s"),
                    ]);
 
+        if($this->tipo_cambio1==1){
+                $id_gr=$this->gradoin;
+                $sql='SELECT * FROM tb_grados WHERE ID_GR=?';
+                $grados=DB::select($sql,array($id_gr));
+                
+                foreach($grados as $gra){
+                        $this->id_nvlacademico=$gra->NIVEL_ACADEMICO;
+                        $this->preciopre=$gra->PRECIO_PRESENCIAL;
+                        $this->preciovir=$gra->PRECIO_VIRTUAL;
+                        };
+                            $id_nvl=$this->id_nvlacademico;
+                            $sql='SELECT * FROM tb_nvlacademico WHERE ID_NVL=?';
+                            $academico=DB::select($sql,array($id_nvl));
+
+                            foreach($academico as $acade){
+                                $this->totalpre=$acade->TOTAL_PRESENCIAL;
+                                $this->totalvir=$acade->TOTAL_VIRTUAL;
+                            }
+
+                        $varpre=0;
+                        $varmenvir=0;
+                if($this->tipo2=='Presencial'){
+                    $varpre=$this->totalpre;
+                    $varmenvir=$this->preciopre;
             
-            $cuentaestudiante=DB::table('cuentaestudiante')->insert(
-                [
+                }else{
+                    $varpre=$this->totalvir;
+                    $varmenvir=$this->preciovir;
+                }        
+            
+            $cuentaestudiante=DB::table('cuentaestudiante')->insert(  
+                [          
                     'ID_PRE'=> $this->id_ges_cambio,
                     'ID_GR'=> $this->gradoin,
                     'FECHA_PAGO'=>  date("Y-m-d H:i:s"),
                     'FECHA_ULIMOPAGO'=>  date("Y-m-d H:i:s"),
                     'ID_MES'=>1,
+                    'MONTO_INSCRIPCION'=>$varpre,
+                    'MONTO_MENSUAL'=>$varmenvir,
                     'MONTO_RECUPERACION'=>0,
                     'MONTO_DESCUENTO'=>0,
-                    'ESTADO'=>1,  
-                ]);
+                    'ESTADO'=>1,                      
+                ]
+            );
+        }
+        if($this->tipo_cambio1==3){
+
+            $id_pre=$this->id_ges_cambio;
+            $sql='SELECT * FROM cuentaestudiante WHERE ID_PRE=?';
+            $cuentas=DB::select($sql,array($id_pre));
+
+            $id_cuenta=0;
+            $monto_ins=0;
+            foreach($cuentas as $cuenta){
+                $id_cuenta=$cuenta->ID_CUENTA;
+                $monto_ins=$cuenta->MONTO_INSCRIPCION;
+            }
+
+            
+            $cambio_pre=DB::table('cuentaestudiante')
+               ->where('ID_CUENTA',  $id_cuenta)
+               ->update(
+                   [
+
+                    'ESTADO_CANCELADO' =>1,
+                    'FECHA_ULIMOPAGO'=>  date("Y-m-d H:i:s"),
+                    'MONTO_CANCELADO'=>$monto_ins,
+                   ]);
+
+        }
+            
 
         if($cambio_pre){
             DB::commit();
@@ -218,6 +279,7 @@ class AdminisionesComponet extends Component
             unset($this->mensaje1);
             $this->mensaje1="No fue posible enviar correo y actualizar";
         }
+
 
     }
     public function editar1($id)
