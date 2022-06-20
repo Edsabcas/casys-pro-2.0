@@ -210,7 +210,8 @@ class AdminisionesComponet extends Component
                     $varpre=$this->totalpre;
                     $varmenvir=$this->preciopre;
             
-                }else{
+                }
+                else{
                     $varpre=$this->totalvir;
                     $varmenvir=$this->preciovir;
                 }        
@@ -243,12 +244,12 @@ class AdminisionesComponet extends Component
                 $monto_ins=$cuenta->MONTO_INSCRIPCION;
             }
 
-            
+
             $cambio_pre=DB::table('cuentaestudiante')
                ->where('ID_CUENTA',  $id_cuenta)
                ->update(
                    [
-
+                    /* 'MES'= */
                     'ESTADO_CANCELADO' =>1,
                     'FECHA_ULIMOPAGO'=>  date("Y-m-d H:i:s"),
                     'MONTO_CANCELADO'=>$monto_ins,

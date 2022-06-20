@@ -12,8 +12,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col">
-                      <label for="recipient-name" class="col-form-label">Pre-inscripción::</label>
-                            <select class="form-select" id="inputGroupSelect03" aria-label="Example select with button addon" wire:model="preinscripcion">
+                      <label for="recipient-name" class="col-form-label">Alumno:</label>
+                            <select class="form-select" id="inputGroupSelect03" aria-label="Example select with button addon" wire:model="preinscripcion" disabled>
                               <option selected>Seleccionar:</option>
                               @isset($inscripciones)
                               @foreach ($inscripciones as $ins)
@@ -22,7 +22,7 @@
                             @endisset
                             </select>
                     </div>                   
-                    <div class="col">
+                    {{-- <div class="col">
                         <label for="recipient-name" class="col-form-label">Nivel académico:</label>
                         <select class="form-select" id="inputGroupSelect03" aria-label="Example select with button addon" wire:model="nvlacademico">
                           <option selected>Seleccionar:</option>
@@ -32,10 +32,10 @@
                           @endforeach              
                         @endisset
                         </select>
-                    </div>
+                    </div> --}}
                   <div class="col">
                       <label for="recipient-name" class="col-form-label">Grado:</label>
-                      <select class="form-select" id="inputGroupSelect03" aria-label="Example select with button addon" wire:model="grado">
+                      <select class="form-select" id="inputGroupSelect03" aria-label="Example select with button addon" wire:model="grado" disabled>
                         <option selected>Seleccionar:</option>
                         @isset($grados)
                           @foreach ($grados as $grado)
@@ -47,7 +47,7 @@
                 
                 <div class="col">
                     <label for="recipient-name" class="col-form-label">Mes:</label>
-                    <select class="form-select" id="inputGroupSelect03" aria-label="Example select with button addon" wire:model="mes">
+                    <select class="form-select" id="inputGroupSelect03" aria-label="Example select with button addon" wire:model="mes" disabled>
                       <option selected>Seleccionar:</option>
                       @isset($meses)
                         @foreach ($meses as $mes)
@@ -59,7 +59,7 @@
               </div>
             </div>
             <br>
-            <div class="container">
+{{--             <div class="container">
               <div class="row">
                 <div class="col">
                   <label for="recipient-name" class="col-form-label">Fecha de pago:</label>
@@ -72,24 +72,24 @@
                 </div>
               </div>
             </div>
-            <br>
+            <br> --}}
             <div class="container">
               <div class="row">
                 <div class="col">
                   <label for="recipient-name" class="col-form-label">Monto de inscripción:</label>
-                  <input type="number" class="form-control" wire:model='montoins' id="recipient-name">
+                  <input type="number" class="form-control" Q. wire:model='montoins' id="recipient-name" disabled readonly>
                 </div>
                 <div class="col">
                   <label for="recipient-name" class="col-form-label">Monto mensual:</label>
-                  <input type="number" class="form-control" wire:model='montomen' id="recipient-name">
+                  <input type="number" class="form-control" wire:model='montomen' id="recipient-name" disabled readonly>
                 </div>
                 <div class="col">
                   <label for="recipient-name" class="col-form-label">Monto de recuperación:</label>
-                  <input type="number" class="form-control" wire:model='montorecu' id="recipient-name">
+                  <input type="number" class="form-control" wire:model='montorecu' id="recipient-name" >
                 </div>
                 <div class="col">
                   <label for="recipient-name" class="col-form-label">Monto de descuento:</label>
-                  <input type="number" class="form-control" wire:model='montodes' id="recipient-name">
+                  <input type="number" class="form-control" wire:model='montodes'  id="recipient-name">
                 </div>
               </div>
             </div>
@@ -162,7 +162,7 @@
                                     <td>Inactivo</td>
                                 @endif --}}
                               
-                              {{-- <span>
+                              <span>
                                 <td>
                                   @foreach ($cuen as $cue)
                                       
@@ -171,7 +171,7 @@
                                     <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                                     <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                                   </svg></button>        
-                              
+                                
                                 @include('cuentas.modaleliminar')
                             
                                   <button type="button" class="btn btn-secondary" style="border-radius: 12px;" data-bs-toggle="modal" data-bs-target="#exampleModal{{$cue->ID_CUENTA}}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
@@ -179,7 +179,7 @@
                                   </svg></button>
 
                                 </td>
-                              </span>   --}}
+                              </span>  
                             </tr>  
                             @endforeach
                           </tbody>
