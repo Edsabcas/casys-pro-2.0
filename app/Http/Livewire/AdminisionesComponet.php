@@ -19,7 +19,7 @@ class AdminisionesComponet extends Component
     public $id_pre,$metodo,$archivo_comprobante,$img,$tipo,$mensaje24,$mensaje25,$fotos,$fpago,$no_gest_con;
     public $val,$val1,$gestion,$errorfecha;
     public $estado_ges,$archivo_comprobante2,$fecha_ultimo_cambio,$mensajeins,$mensajeins1,$id_pre_boton,$estado_pre_boton;
-    public $mensaje1,$id2;
+    public $mensaje1,$id2,$profesion_en;
     public $observacion, $id_pre_ins_arch, $id_no_gest_arch, $archivo_cdiaco, $archivo, $formato,$id_gest,$nuevo_estado,$id_no_gest_ins;
     public $mensajeup,$mensajeup1;
     public $id_pre_info, $id_pre_i, $confi, $grados_selecionados, $año_ingreso, $grado_primer_ingreso, $nombre_padre, $nacimiento_padre, $nacionalidad_padre;
@@ -329,6 +329,7 @@ class AdminisionesComponet extends Component
             $this->fingreso_gestion=$pre->FECHA_REGISTRO;
             $this->fecha_ultimo_cambio=$pre->FECHA_CAMBIOS_REG;
             $this->correo_en2=$pre->CORREO_EN_ES2;
+            $this->profesion_en=$pre->PROFESION_EN_ES;
 
         }
 
@@ -375,6 +376,7 @@ class AdminisionesComponet extends Component
             $this->tipo2=$pre->MODALIDAD_EST;
             $this->fecha_ultimo_cambio=$pre->FECHA_CAMBIOS_REG;
             $this->correo_en2=$pre->CORREO_EN_ES2;
+            $this->profesion_en=$pre->PROFESION_EN_ES;
         }
 
 
@@ -439,6 +441,7 @@ class AdminisionesComponet extends Component
                     'NO_GESTION'=>$this->gestion,
                     'MODALIDAD_EST'=>$this->tipo2,
                    'CORREO_EN_ES2'=> $this->correo_en2,
+                   'PROFESION_EN_ES'=>$this->profesion_en,
                     //'FECHA_REGISTRO'=>$this->fingreso_gestion,
                     //''=>,
                     //'FORMA_PAGO'=>$metodo,
@@ -603,6 +606,7 @@ class AdminisionesComponet extends Component
                     'CEL_EN_ES'=>$this->cel_en,
                     'CORREO_EN_ES'=>$this->correo_en,
                     'RELIGION_EN_ES'=>$this->religion_en,
+                    'PROFESION_EN_ES'=>$this->profesion_en,
 
                     'FECHA_REGISTRO'=>$this->fingreso_gestion,
                     'GRADO_ING_ES'=>$this->gradoin,
