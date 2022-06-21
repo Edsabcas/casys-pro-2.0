@@ -8,7 +8,7 @@ use App\Http\Livewire\Request;
 
 class CuentasEstudiantesComponent extends Component
 {
-    public $op,$id_cuenta,$estado,$montocan,$estadocan,$preinscripcion,$nvlacademico,$grado,$mes,$fpago,$pagor,$montoins,$montomen,$montorecu,$montodes,$mensaje,$mensaje1,$edit,$mensajeeliminar1,$mensajeeliminar;
+    public $op,$id_cuenta, $mensaje3, $estado,$montocan,$estadocan,$preinscripcion,$mensaje4, $nvlacademico,$grado,$mes,$fpago,$pagor,$montoins,$montomen,$montorecu,$montodes,$mensaje,$mensaje1,$edit,$mensajeeliminar1,$mensajeeliminar;
 
     public function render()
     {
@@ -120,18 +120,18 @@ class CuentasEstudiantesComponent extends Component
     }
     public function update_c_p(){
         $id_cuenta=$this->id_cuenta;
-        $preinscripcion=$this->preinscripcion; 
+        /* $preinscripcion=$this->preinscripcion; 
         $grado=$this->grado; 
         $mes=$this->mes;
         $fpago=$this->fpago;
         $pagor=$this->pagor; 
-        $montoins=$this->montoins;
+        $montoins=$this->montoins; */ 
         $montomen=$this->montomen;
         $montodes=$this->montodes;
-        $montorecu=$this->montorecu;
+   /*      $montorecu=$this->montorecu;
         $estado=$this->estado;
         $montocan=$this->montocan;
-        $estadocan=$this->estadocan;
+        $estadocan=$this->estadocan; */
 
         DB::beginTransaction();
 
@@ -139,18 +139,18 @@ class CuentasEstudiantesComponent extends Component
         ->where('ID_CUENTA',$id_cuenta)
         ->update(
             [
-                'ID_PRE'=> $preinscripcion,
+               /*  'ID_PRE'=> $preinscripcion,
                 'ID_GR'=> $grado,
                 'ID_MES'=> $mes,
                 'FECHA_PAGO'=> $fpago,
                 'FECHA_ULIMOPAGO'=> $pagor,
-                'MONTO_INSCRIPCION'=> $montoins,
+                'MONTO_INSCRIPCION'=> $montoins, */
                 'MONTO_RECUPERACION'=> $montomen,
-                'MONTO_MENSUAL'=> $montorecu,
+              /*   'MONTO_MENSUAL'=> $montorecu, */
                 'MONTO_DESCUENTO'=> $montodes,
-                'ESTADO'=> $estado=1,
+                /* 'ESTADO'=> $estado=1,
                 'MONTO_CANCELADO'=>$montocan,
-                'ESTADO_CANCELADO'=>$estadocan,
+                'ESTADO_CANCELADO'=>$estadocan, */
             ]
             );
 

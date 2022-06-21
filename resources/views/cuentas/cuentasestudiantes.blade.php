@@ -1,61 +1,98 @@
 <div class="card shadow rounded">
-    <div class="text-center">
-      <br>
-      <h1 style="color: #3a3e7b"><strong>Información de Pagos</strong></h1>
-      <br>
-    </div>
+  <div class="text-center">
+    <br>
+    <h1 style="color: #3a3e7b"><strong>Información de Pagos</strong></h1>
+    <br>
   </div>
-        <br><br>
+</div>
+<br>
+@if($mensajeeliminar != null)
+  <div  class="alert alert-success alert-dismissible fade show align-items-center" role="alert">
+    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  <div>{{$mensajeeliminar}}
+  </div>
+  </div>
+  @endif
 
-          <form row g-3 wire:submit.prevent="">
-            @csrf
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                      <label for="recipient-name" class="col-form-label">Alumno:</label>
-                            <select class="form-select" id="inputGroupSelect03" aria-label="Example select with button addon" wire:model="preinscripcion" disabled>
-                              <option selected>Seleccionar:</option>
-                              @isset($inscripciones)
-                              @foreach ($inscripciones as $ins)
-                                <option value="{{$ins->ID_PRE}}">{{$ins->NOMBRE_ES}}</option>
-                              @endforeach              
-                            @endisset
-                            </select>
-                    </div>                   
-                    {{-- <div class="col">
-                        <label for="recipient-name" class="col-form-label">Nivel académico:</label>
-                        <select class="form-select" id="inputGroupSelect03" aria-label="Example select with button addon" wire:model="nvlacademico">
-                          <option selected>Seleccionar:</option>
-                          @isset($academicos)
-                          @foreach ($academicos as $academico)
-                            <option value="{{$academico->ID_NVL}}">{{$academico->NIVEL_ACADEMICO}}</option>
-                          @endforeach              
-                        @endisset
-                        </select>
-                    </div> --}}
+  @if($mensajeeliminar1 != null)
+  <div  class="alert alert-danger alert-dismissible fade show align-items-center"  role="alert">
+    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  <div>{{$mensajeeliminar1}}
+  </div>
+  </div>
+  @endif
+
+
+  @if($mensaje3 != null)
+  <div  class="alert alert-success alert-dismissible fade show align-items-center" role="alert">
+    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  <div>{{$mensaje3}}
+  </div>
+  </div>
+  @endif
+
+  @if($mensaje4 != null)
+  <div  class="alert alert-danger alert-dismissible fade show align-items-center"  role="alert">
+    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  <div>{{$mensaje4}}
+  </div>
+  </div>
+  @endif
+
+      <br><br>
+
+        <form row g-3 wire:submit.prevent="">
+          @csrf
+          <div class="container">
+              <div class="row">
                   <div class="col">
-                      <label for="recipient-name" class="col-form-label">Grado:</label>
-                      <select class="form-select" id="inputGroupSelect03" aria-label="Example select with button addon" wire:model="grado" disabled>
+                    <label for="recipient-name" class="col-form-label">Alumno:</label>
+                          <select class="form-select" id="inputGroupSelect03" aria-label="Example select with button addon" wire:model="preinscripcion" disabled>
+                            <option selected>Seleccionar:</option>
+                            @isset($inscripciones)
+                            @foreach ($inscripciones as $ins)
+                              <option value="{{$ins->ID_PRE}}">{{$ins->NOMBRE_ES}}</option>
+                            @endforeach              
+                          @endisset
+                          </select>
+                  </div>                   
+                  {{-- <div class="col">
+                      <label for="recipient-name" class="col-form-label">Nivel académico:</label>
+                      <select class="form-select" id="inputGroupSelect03" aria-label="Example select with button addon" wire:model="nvlacademico">
                         <option selected>Seleccionar:</option>
-                        @isset($grados)
-                          @foreach ($grados as $grado)
-                            <option value="{{$grado->ID_GR}}">{{$grado->GRADO}}</option>
-                          @endforeach              
-                        @endisset
+                        @isset($academicos)
+                        @foreach ($academicos as $academico)
+                          <option value="{{$academico->ID_NVL}}">{{$academico->NIVEL_ACADEMICO}}</option>
+                        @endforeach              
+                      @endisset
                       </select>
-                  </div>
-                
+                  </div> --}}
                 <div class="col">
-                    <label for="recipient-name" class="col-form-label">Mes:</label>
-                    <select class="form-select" id="inputGroupSelect03" aria-label="Example select with button addon" wire:model="mes" disabled>
+                    <label for="recipient-name" class="col-form-label">Grado:</label>
+                    <select class="form-select" id="inputGroupSelect03" aria-label="Example select with button addon" wire:model="grado" disabled>
                       <option selected>Seleccionar:</option>
-                      @isset($meses)
-                        @foreach ($meses as $mes)
-                          <option value="{{$mes->ID_MES}}">{{$mes->DESCRIPCION}}</option>
+                      @isset($grados)
+                        @foreach ($grados as $grado)
+                          <option value="{{$grado->ID_GR}}">{{$grado->GRADO}}</option>
                         @endforeach              
                       @endisset
                     </select>
                 </div>
+              
+              <div class="col">
+                  <label for="recipient-name" class="col-form-label">Mes:</label>
+                  <select class="form-select" id="inputGroupSelect03" aria-label="Example select with button addon" wire:model="mes" disabled>
+                    <option selected>Seleccionar:</option>
+                    @isset($meses)
+                      @foreach ($meses as $mes)
+                        <option value="{{$mes->ID_MES}}">{{$mes->DESCRIPCION}}</option>
+                      @endforeach              
+                    @endisset
+                  </select>
               </div>
             </div>
             <br>
@@ -190,6 +227,7 @@
                 </div>
             </div>
           </div>
-      </div>
+          <br>
+    </div>
 
-    @endisset
+  @endisset
