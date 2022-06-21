@@ -8,14 +8,14 @@ use App\Http\Livewire\Request;
 
 class CuentasEstudiantesComponent extends Component
 {
-    public $op,$id_cuenta,$estado,$montocan,$estadocan,$preinscripcion,$nvlacademico,$grado,$mes,$fpago,$pagor,$montoins,$montomen,$montorecu,$montodes,$mensaje,$mensaje1,$edit,$mensajeeliminar1,$mensajeeliminar;
+    public $op,$id_cuenta, $mensaje3, $estado,$montocan,$estadocan,$preinscripcion,$mensaje4, $nvlacademico,$grado,$mes,$fpago,$pagor,$montoins,$montomen,$montorecu,$montodes,$mensaje,$mensaje1,$edit,$mensajeeliminar1,$mensajeeliminar;
 
     public function render()
     {
 
 
-        $sql= '	SELECT cuentaestudiante.FECHA_PAGO, tb_grados.GRADO, cuentaestudiante.FECHA_ULIMOPAGO, mes.DESCRIPCION, 
-        cuentaestudiante.MONTO_INSCRIPCION, cuentaestudiante.MONTO_MENSUAL, cuentaestudiante.MONTO_DESCUENTO,
+        $sql= '	SELECT cuentaestudiante.ID_CUENTA, cuentaestudiante.FECHA_PAGO, tb_grados.GRADO, cuentaestudiante.FECHA_ULIMOPAGO, mes.DESCRIPCION, 
+        cuentaestudiante.MONTO_INSCRIPCION, cuentaestudiante.MONTO_MENSUAL, cuentaestudiante.MONTO_DESCUENTO, 
         cuentaestudiante.MONTO_RECUPERACION, cuentaestudiante.ESTADO, TB_PRE_INS.NOMBRE_ES, TB_PRE_INS.MODALIDAD_EST, 
         cuentaestudiante.MONTO_CANCELADO, cuentaestudiante.ESTADO_CANCELADO  FROM cuentaestudiante 
         inner join tb_grados on cuentaestudiante.ID_GR=tb_grados.ID_GR 
@@ -30,10 +30,8 @@ class CuentasEstudiantesComponent extends Component
         $meses=DB::select($sql);
         $sql='SELECT * FROM tb_nvlacademico';
         $academicos=DB::select($sql);
-        $sql='SELECT * FROM cuentaestudiante';
-        $cuen=DB::select($sql);
         
-        return view('livewire.cuentas-estudiantes-component',compact('cuentas','cuen','inscripciones','grados','meses','academicos'));
+        return view('livewire.cuentas-estudiantes-component',compact('cuentas','inscripciones','grados','meses','academicos'));
     }
     public function guardar_cuenta(){
 
@@ -100,10 +98,10 @@ class CuentasEstudiantesComponent extends Component
     public function edit($id){
         $id_cuenta=$id;
         $sql='SELECT * FROM cuentaestudiante WHERE ID_CUENTA=?';
-        $cuen=DB::select($sql,array($id_cuenta));
+        $cuentas=DB::select($sql,array($id_cuenta));
 
-        if($cuen!=null){
-            foreach($cuen as $cue)
+        if($cuentas!=null){
+            foreach($cuentas as $cue)
             {
                 $this->preinscripcion=$cue->ID_PRE;
                 $this->grado=$cue->ID_GR;
@@ -122,41 +120,41 @@ class CuentasEstudiantesComponent extends Component
     }
     public function update_c_p(){
         $id_cuenta=$this->id_cuenta;
-        $preinscripcion=$this->preinscripcion; 
+        /* $preinscripcion=$this->preinscripcion; 
         $grado=$this->grado; 
         $mes=$this->mes;
         $fpago=$this->fpago;
         $pagor=$this->pagor; 
-        $montoins=$this->montoins;
+        $montoins=$this->montoins; */ 
         $montomen=$this->montomen;
         $montodes=$this->montodes;
-        $montorecu=$this->montorecu;
+   /*      $montorecu=$this->montorecu;
         $estado=$this->estado;
         $montocan=$this->montocan;
-        $estadocan=$this->estadocan;
+        $estadocan=$this->estadocan; */
 
         DB::beginTransaction();
 
-        $cuen=DB::table('cuentaestudiante')
+        $cuentas=DB::table('cuentaestudiante')
         ->where('ID_CUENTA',$id_cuenta)
         ->update(
             [
-                'ID_PRE'=> $preinscripcion,
+               /*  'ID_PRE'=> $preinscripcion,
                 'ID_GR'=> $grado,
                 'ID_MES'=> $mes,
                 'FECHA_PAGO'=> $fpago,
                 'FECHA_ULIMOPAGO'=> $pagor,
-                'MONTO_INSCRIPCION'=> $montoins,
+                'MONTO_INSCRIPCION'=> $montoins, */
                 'MONTO_RECUPERACION'=> $montomen,
-                'MONTO_MENSUAL'=> $montorecu,
+              /*   'MONTO_MENSUAL'=> $montorecu, */
                 'MONTO_DESCUENTO'=> $montodes,
-                'ESTADO'=> $estado=1,
+                /* 'ESTADO'=> $estado=1,
                 'MONTO_CANCELADO'=>$montocan,
-                'ESTADO_CANCELADO'=>$estadocan,
+                'ESTADO_CANCELADO'=>$estadocan, */
             ]
             );
 
-            if($cuen){
+            if($cuentas){
                 DB::commit();
                 $this->reset();
                 $this->mensaje3='Editado correctamente';
@@ -172,9 +170,9 @@ class CuentasEstudiantesComponent extends Component
 
         DB::beginTransaction();
 
-        $cuen=DB::table('cuentaestudiante')->where('ID_CUENTA','=', $id_cuenta)->delete();
+        $cuentas=DB::table('cuentaestudiante')->where('ID_CUENTA','=', $id_cuenta)->delete();
 
-        if($cuen){
+        if($cuentas){
             DB::commit();
             $this->reset();
             $this->mensajeeliminar='Eliminado correctamente';
