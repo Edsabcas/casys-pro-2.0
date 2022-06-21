@@ -18,7 +18,7 @@ class AdminisionesComponet extends Component
     public $a,$mensaje,$gradose,$fingreso_gestion,$id_ges_cambio,$tipo_cambio1;
     public $id_pre,$metodo,$archivo_comprobante,$img,$tipo,$mensaje24,$mensaje25,$fotos,$fpago,$no_gest_con;
     public $val,$val1,$gestion,$errorfecha;
-    public $estado_ges,$archivo_comprobante2,$fecha_ultimo_cambio,$mensajeins,$mensajeins1,$id_pre_boton,$estado_pre_boton;
+    public $estado_ges,$archivo_comprobante2,$fecha_ultimo_cambio,$mensajeins,$mensajeins1,$id_pre_boton,$estado_pre_boton,$matricula_bus_aj;
     public $mensaje1,$id2,$profesion_en;
     public $observacion, $id_pre_ins_arch, $id_no_gest_arch, $archivo_cdiaco, $archivo, $formato,$id_gest,$nuevo_estado,$id_no_gest_ins;
     public $mensajeup,$mensajeup1;
@@ -705,6 +705,7 @@ class AdminisionesComponet extends Component
     $this->Especifique_medi=$estac->ESPECIFICAR_ALERG_ME;
     $this->nombre_aseguradora=$estac->ASEGURADORA;
     $this->nombreencargado=$estac->NOMBRE_ENCARGADO;
+    $this->matricula_bus_aj=$estac->Matricula_bus_aj;
             }
             
         }
@@ -812,6 +813,7 @@ $codigo_fam=$this->codigo_fam;
 $nombre_fam=$this->nombre_fam;
 $Especifique_medi=$this->Especifique_medi;
 $Especifique_ali=$this->Especifique_ali; 
+$matricula_bus_aj=$this->matricula_bus_aj; 
 
     
     DB::beginTransaction();
@@ -874,6 +876,7 @@ $Especifique_ali=$this->Especifique_ali;
             'SALIDA_BUS_AJENO'=>$this->bus_no_colegio,
             'CODIGO_FAMILIA'=>$this->codigo_fam,
             'NOMBRE_FAMILIA'=>$this->nombre_fam,
+            'Matricula_bus_aj'=>$matricula_bus_aj,
         
             ]
         );
