@@ -30,6 +30,7 @@ class AdminisionesComponet extends Component
     public $poliza, $carne_seguro, $codigo_fam, $nombre_fam, $Especifique_medi, $Especifique_ali, $medicamento, $grados_mostrar,$estadocivil;
     public $alimento, $vacunas, $alumno_asegurado, $solo_alumno, $encargado_alumno, $bus_colegio, $bus_no_colegio, $nombre_aseguradora, $no_gest;
     public $tipo2,$correo_en2,$preciopre,$preciovir,$id_gr,$id_nvl;
+    public $can1,$can2;
     public function render()
     {
 
@@ -78,9 +79,11 @@ class AdminisionesComponet extends Component
         if($this->search0!=null && $this->search0!=""){
             $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.NO_GESTION, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE ESTADO_PRE_INS=0 and (NO_GESTION like '%".$this->search0."%' or NOMBRE_ES like '%".$this->search0."%') ";
             $estado_cero=DB::select($sql);
+            
         }else{
             $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.NO_GESTION, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE ESTADO_PRE_INS=0 order by TB_PRE_INS.FECHA_REGISTRO";
             $estado_cero=DB::select($sql);
+            $this->can1=count($estado_cero);
         }
 
         if($this->search1!=null && $this->search1!=""){
