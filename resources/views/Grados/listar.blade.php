@@ -36,8 +36,8 @@
   <table class="table table-light table-bordered">
       <thead>
           <tr>
-          <th>NIVEL ACADEMICO</th>
           <th>TIPO DE JORNADA</th>
+          <th>NIVEL ACADEMICO</th>
           <th>GRADO</th>
           <th>SECCIÓN</th>
           <th>PRECIO PRESENCIAL</th>

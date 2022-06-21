@@ -210,8 +210,7 @@ class AdminisionesComponet extends Component
                     $varpre=$this->totalpre;
                     $varmenvir=$this->preciopre;
             
-                }
-                else{
+                }elseif($this->tipo2=='Virtual'){
                     $varpre=$this->totalvir;
                     $varmenvir=$this->preciovir;
                 }        
@@ -242,15 +241,24 @@ class AdminisionesComponet extends Component
             foreach($cuentas as $cuenta){
                 $id_cuenta=$cuenta->ID_CUENTA;
                 $monto_ins=$cuenta->MONTO_INSCRIPCION;
-            }
 
+            }
+            $mespagado=0;
+            $estado_cance=0;
+            if($this->fpago==1){
+                $mespagado=2;
+                $estado_cance=2;
+            }elseif($this->fpago==2){
+                $mespagado=1;
+                $estado_cance=1;
+            }
 
             $cambio_pre=DB::table('cuentaestudiante')
                ->where('ID_CUENTA',  $id_cuenta)
                ->update(
                    [
-                    /* 'MES'= */
-                    'ESTADO_CANCELADO' =>1,
+                    'ID_MES'=>$mespagado,
+                    'ESTADO_CANCELADO' =>$estado_cance,
                     'FECHA_ULIMOPAGO'=>  date("Y-m-d H:i:s"),
                     'MONTO_CANCELADO'=>$monto_ins,
                    ]);

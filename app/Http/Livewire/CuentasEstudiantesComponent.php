@@ -14,8 +14,8 @@ class CuentasEstudiantesComponent extends Component
     {
 
 
-        $sql= '	SELECT cuentaestudiante.FECHA_PAGO, tb_grados.GRADO, cuentaestudiante.FECHA_ULIMOPAGO, mes.DESCRIPCION, 
-        cuentaestudiante.MONTO_INSCRIPCION, cuentaestudiante.MONTO_MENSUAL, cuentaestudiante.MONTO_DESCUENTO,
+        $sql= '	SELECT cuentaestudiante.ID_CUENTA, cuentaestudiante.FECHA_PAGO, tb_grados.GRADO, cuentaestudiante.FECHA_ULIMOPAGO, mes.DESCRIPCION, 
+        cuentaestudiante.MONTO_INSCRIPCION, cuentaestudiante.MONTO_MENSUAL, cuentaestudiante.MONTO_DESCUENTO, 
         cuentaestudiante.MONTO_RECUPERACION, cuentaestudiante.ESTADO, TB_PRE_INS.NOMBRE_ES, TB_PRE_INS.MODALIDAD_EST, 
         cuentaestudiante.MONTO_CANCELADO, cuentaestudiante.ESTADO_CANCELADO  FROM cuentaestudiante 
         inner join tb_grados on cuentaestudiante.ID_GR=tb_grados.ID_GR 
@@ -30,10 +30,8 @@ class CuentasEstudiantesComponent extends Component
         $meses=DB::select($sql);
         $sql='SELECT * FROM tb_nvlacademico';
         $academicos=DB::select($sql);
-        $sql='SELECT * FROM cuentaestudiante';
-        $cuen=DB::select($sql);
         
-        return view('livewire.cuentas-estudiantes-component',compact('cuentas','cuen','inscripciones','grados','meses','academicos'));
+        return view('livewire.cuentas-estudiantes-component',compact('cuentas','inscripciones','grados','meses','academicos'));
     }
     public function guardar_cuenta(){
 
@@ -100,10 +98,10 @@ class CuentasEstudiantesComponent extends Component
     public function edit($id){
         $id_cuenta=$id;
         $sql='SELECT * FROM cuentaestudiante WHERE ID_CUENTA=?';
-        $cuen=DB::select($sql,array($id_cuenta));
+        $cuentas=DB::select($sql,array($id_cuenta));
 
-        if($cuen!=null){
-            foreach($cuen as $cue)
+        if($cuentas!=null){
+            foreach($cuentas as $cue)
             {
                 $this->preinscripcion=$cue->ID_PRE;
                 $this->grado=$cue->ID_GR;
@@ -137,7 +135,7 @@ class CuentasEstudiantesComponent extends Component
 
         DB::beginTransaction();
 
-        $cuen=DB::table('cuentaestudiante')
+        $cuentas=DB::table('cuentaestudiante')
         ->where('ID_CUENTA',$id_cuenta)
         ->update(
             [
@@ -156,7 +154,7 @@ class CuentasEstudiantesComponent extends Component
             ]
             );
 
-            if($cuen){
+            if($cuentas){
                 DB::commit();
                 $this->reset();
                 $this->mensaje3='Editado correctamente';
@@ -172,9 +170,9 @@ class CuentasEstudiantesComponent extends Component
 
         DB::beginTransaction();
 
-        $cuen=DB::table('cuentaestudiante')->where('ID_CUENTA','=', $id_cuenta)->delete();
+        $cuentas=DB::table('cuentaestudiante')->where('ID_CUENTA','=', $id_cuenta)->delete();
 
-        if($cuen){
+        if($cuentas){
             DB::commit();
             $this->reset();
             $this->mensajeeliminar='Eliminado correctamente';
