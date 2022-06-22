@@ -8,7 +8,7 @@ use App\Http\Livewire\Request;
 
 class CuentasEstudiantesComponent extends Component
 {
-    public $op,$id_cuenta, $mensaje3, $estado,$montocan,$estadocan,$preinscripcion,$mensaje4, $nvlacademico,$grado,$mes,$fpago,$pagor,$montoins,$montomen,$montorecu,$montodes,$mensaje,$mensaje1,$edit,$mensajeeliminar1,$mensajeeliminar;
+    public $op,$id_cuenta, $mensaje3,$montocan,$estadocan,$preinscripcion,$mensaje4, $nvlacademico,$grado,$mes,$fpago,$pagor,$montoins,$montomen,$montorecu,$montodes,$mensaje,$mensaje1,$edit,$mensajeeliminar1,$mensajeeliminar;
 
     public function render()
     {
@@ -30,37 +30,39 @@ class CuentasEstudiantesComponent extends Component
         $meses=DB::select($sql);
         $sql='SELECT * FROM tb_nvlacademico';
         $academicos=DB::select($sql);
+        $sql='SELECT * FROM cuentaestudiante';
+        $cuenta=DB::select($sql);
+        
         
         return view('livewire.cuentas-estudiantes-component',compact('cuentas','inscripciones','grados','meses','academicos'));
     }
-    public function guardar_cuenta(){
+    public function edit($id){
+        $id_cuenta=$id;
+        $sql='SELECT * FROM cuentaestudiante WHERE ID_CUENTA=?';
+        $cuenta=DB::select($sql,array($id_cuenta));
 
-        if($this->validate([
-            'preinscripcion' => 'required',
-            'nvlacademico' => 'required',
-            'grado' => 'required',
-            'mes' => 'required',
-            'fpago' => 'required',
-            'pagor' => 'required',
-            'montoins' => 'required',
-            'montomen' => 'required',
-            'montorecu' => 'required',
-            'montodes' => 'required',
-
-        ])==false)
-        {
-            $mensaje="no encontrado";
-            session(['message' => 'no encontrado']);
-            return back()->withErrors(['mensaje' =>'Validar el input vacio']);
+        if($cuenta!=null){
+            foreach($cuenta as $cue)
+            {
+                $this->id_cuenta=$cue->ID_CUENTA;
+                $this->preinscripcion=$cue->ID_PRE;
+                $this->grado=$cue->ID_GR;
+                $this->mes=$cue->ID_MES;
+                $this->montoins=$cue->MONTO_INSCRIPCION;
+                $this->montomen=$cue->MONTO_MENSUAL;
+                $this->montorecu=$cue->MONTO_RECUPERACION;
+                $this->montodes=$cue->MONTO_DESCUENTO;
+            }
         }
-        else
-        {
-        $preinscripcion=$this->preinscripcion; 
-        $nvlacademico=$this->nvlacademico;
-        $grado=$this->grado; 
+        $this->op=2;
+
+        $this->edit=1;
+    }
+    public function update_montos_p(){
+        $id_cuenta=$this->id_cuenta;
+        $preinscripcion=$this->preinscripcion;
+        $grado=$this->grado;
         $mes=$this->mes;
-        $fpago=$this->fpago;
-        $pagor=$this->pagor; 
         $montoins=$this->montoins;
         $montomen=$this->montomen;
         $montorecu=$this->montorecu;
@@ -68,95 +70,24 @@ class CuentasEstudiantesComponent extends Component
 
         DB::beginTransaction();
 
-        $cuentas=DB::table('cuentaestudiante')->insert(
-            [
-                'ID_PRE'=> $preinscripcion,
-                'ID_NVL'=> $nvlacademico,
-                'ID_GR'=> $grado,
-                'ID_MES'=> $mes,
-                'FECHA_PAGO'=> $fpago,
-                'FECHA_ULIMOPAGO'=> $pagor,
-                'MONTO_INSCRIPCION'=> $montoins,
-                'MONTO_RECUPERACION'=> $montomen,
-                'MONTO_MENSUAL'=> $montorecu,
-                'MONTO_DESCUENTO'=> $montodes,
-                'ESTADO'=> $estado=1,
-
-            ]);
-            if($cuentas){
-                DB::commit();
-                $this->reset();
-                $this->mensaje='Insertado correctamente';
-            }
-            else{
-                DB::rollback();
-                unset($this->mensaje);
-                $this->mensaje1='No fue posible insertar correctamente';
-            }
-        }
-    }
-    public function edit($id){
-        $id_cuenta=$id;
-        $sql='SELECT * FROM cuentaestudiante WHERE ID_CUENTA=?';
-        $cuentas=DB::select($sql,array($id_cuenta));
-
-        if($cuentas!=null){
-            foreach($cuentas as $cue)
-            {
-                $this->preinscripcion=$cue->ID_PRE;
-                $this->grado=$cue->ID_GR;
-                $this->mes=$cue->ID_MES;
-                $this->fpago=$cue->FECHA_PAGO;
-                $this->pagor=$cue->FECHA_ULIMOPAGO;
-                $this->montoins=$cue->MONTO_INSCRIPCION;
-                $this->montomen=$cue->MONTO_MENSUAL;
-                $this->montodes=$cue->MONTO_DESCUENTO;
-                $this->montorecu=$cue->MONTO_RECUPERACION;
-            }
-        }
-        $this->op=2;
-
-        $this->edit=1;
-    }
-    public function update_c_p(){
-        $id_cuenta=$this->id_cuenta;
-        /* $preinscripcion=$this->preinscripcion; 
-        $grado=$this->grado; 
-        $mes=$this->mes;
-        $fpago=$this->fpago;
-        $pagor=$this->pagor; 
-        $montoins=$this->montoins; */ 
-        $montomen=$this->montomen;
-        $montodes=$this->montodes;
-   /*      $montorecu=$this->montorecu;
-        $estado=$this->estado;
-        $montocan=$this->montocan;
-        $estadocan=$this->estadocan; */
-
-        DB::beginTransaction();
-
-        $cuentas=DB::table('cuentaestudiante')
+        $cuenta=DB::table('cuentaestudiante')
         ->where('ID_CUENTA',$id_cuenta)
         ->update(
             [
-               /*  'ID_PRE'=> $preinscripcion,
-                'ID_GR'=> $grado,
-                'ID_MES'=> $mes,
-                'FECHA_PAGO'=> $fpago,
-                'FECHA_ULIMOPAGO'=> $pagor,
-                'MONTO_INSCRIPCION'=> $montoins, */
-                'MONTO_RECUPERACION'=> $montomen,
-              /*   'MONTO_MENSUAL'=> $montorecu, */
-                'MONTO_DESCUENTO'=> $montodes,
-                /* 'ESTADO'=> $estado=1,
-                'MONTO_CANCELADO'=>$montocan,
-                'ESTADO_CANCELADO'=>$estadocan, */
+                'ID_PRE'=>$this->preinscripcion,
+                'ID_GR'=>$this->grado,
+                'ID_MES'=>$this->mes,
+                'MONTO_INSCRIPCION'=>$this->montoins,
+                'MONTO_MENSUAL'=>$this->montomen,
+                'MONTO_RECUPERACION'=>$this->montorecu,
+                'MONTO_DESCUENTO'=>$this->montodes,
             ]
             );
 
-            if($cuentas){
+            if($cuenta){
                 DB::commit();
                 $this->reset();
+                unset($this->mensaje4);
                 $this->mensaje3='Editado correctamente';
             }
             else{
@@ -170,9 +101,9 @@ class CuentasEstudiantesComponent extends Component
 
         DB::beginTransaction();
 
-        $cuentas=DB::table('cuentaestudiante')->where('ID_CUENTA','=', $id_cuenta)->delete();
+        $cuenta=DB::table('cuentaestudiante')->where('ID_CUENTA','=', $id_cuenta)->delete();
 
-        if($cuentas){
+        if($cuenta){
             DB::commit();
             $this->reset();
             $this->mensajeeliminar='Eliminado correctamente';
