@@ -264,6 +264,12 @@ class AdminisionesComponet extends Component
             }elseif($this->fpago==2){
                 $mespagado=1;
                 $estado_cance=1;
+            }elseif($this->fpago==3){
+                $mespagado=2;
+                $estado_cance=3;
+            }elseif($this->fpago==4){
+                $mespagado=1;
+                $estado_cance=4;
             }
 
             $cambio_pre=DB::table('cuentaestudiante')

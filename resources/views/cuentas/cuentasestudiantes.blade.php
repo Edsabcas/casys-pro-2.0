@@ -98,12 +98,26 @@
                                 <td>Q. {{$cuenta->MONTO_INSCRIPCION+($cuenta->CUOTA_ANUAL)}}</td>
                                 <td>Q. {{$cuenta->MONTO_MENSUAL}}</td>
 
-                                @if ($cuenta->ESTADO_CANCELADO==1)
-                                  <td>Q. {{$cuenta->MONTO_MENSUAL*10}}</td>  
-                                                
-                                @elseif($cuenta->ESTADO_CANCELADO==2)
-                                  <td>Q. {{$cuenta->MONTO_MENSUAL*9}}</td>  
+                                {{-- Inscripción --}}
 
+                                @if ($cuenta->ESTADO_CANCELADO==1)
+                                  <td>Q. {{$cuenta->MONTO_MENSUAL*10+($cuenta->CUOTA_ANUAL)}}</td>   
+                                  
+                                  {{-- Inscripción + mensualidad --}}
+                      
+                                @elseif($cuenta->ESTADO_CANCELADO==2)
+                                  <td>Q. {{$cuenta->MONTO_MENSUAL*9+($cuenta->CUOTA_ANUAL)}}</td>
+
+                                  {{--Inscripción + cuota anual + mensualidad  --}}
+
+                                @elseif($cuenta->ESTADO_CANCELADO==3)
+                                  <td>Q. {{$cuenta->MONTO_MENSUAL*9}}</td>
+
+                                  {{-- Inscripción + cuota anual --}}
+
+                                  @elseif($cuenta->ESTADO_CANCELADO==4)
+                                  <td>Q. {{$cuenta->MONTO_MENSUAL*10}}</td>  
+                                  
                                 @else
                                   <td>Q. {{$cuenta->MONTO_MENSUAL*10+($cuenta->MONTO_INSCRIPCION)+($cuenta->CUOTA_ANUAL)}}</td>  
                                 @endif
