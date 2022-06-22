@@ -31,6 +31,9 @@ class AdminisionesComponet extends Component
     public $alimento, $vacunas, $alumno_asegurado, $solo_alumno, $encargado_alumno, $bus_colegio, $bus_no_colegio, $nombre_aseguradora, $no_gest;
     public $tipo2,$correo_en2,$preciopre,$preciovir,$id_gr,$id_nvl;
     public $quien_encargado1, $nombre_encargado, $nacimientoencargado,$nacionalidadencargado,$lugarnacimientoencargado,$estadocivilencargado,$DPIencargado,$telefonoencargado,$celularencargado,$direccionresidenciaencargado,$correoencargado,$profesionencargado,$lugar_profesion_encargado ,$religion_encargado,$NIT_encargado,$vive_con_elencargado;
+
+    public $can1,$can2,$tipo_ins;
+
     public function render()
     {
 
@@ -79,9 +82,11 @@ class AdminisionesComponet extends Component
         if($this->search0!=null && $this->search0!=""){
             $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.NO_GESTION, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE ESTADO_PRE_INS=0 and (NO_GESTION like '%".$this->search0."%' or NOMBRE_ES like '%".$this->search0."%') ";
             $estado_cero=DB::select($sql);
+            
         }else{
             $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.NO_GESTION, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE ESTADO_PRE_INS=0 order by TB_PRE_INS.FECHA_REGISTRO";
             $estado_cero=DB::select($sql);
+            $this->can1=count($estado_cero);
         }
 
         if($this->search1!=null && $this->search1!=""){
@@ -203,6 +208,8 @@ class AdminisionesComponet extends Component
                             foreach($academico as $acade){
                                 $this->totalpre=$acade->TOTAL_PRESENCIAL;
                                 $this->totalvir=$acade->TOTAL_VIRTUAL;
+                                $this->cuotare=$acade->CUOTA_ANUAL_RE;
+                                $this->cuotan=$acade->CUOTA_ANUAL_N;
                             }
 
                         $varpre=0;
@@ -216,6 +223,13 @@ class AdminisionesComponet extends Component
                     $varmenvir=$this->preciovir;
                 }        
             
+                $cuota_r=0;
+                if($this->tipo_ins==1){
+                    $cuota_r=$this->cuotare;
+                }elseif($this->tipo_ins==2){
+                    $cuota_r=$this->cuotan;
+                }
+
             $cuentaestudiante=DB::table('cuentaestudiante')->insert(  
                 [          
                     'ID_PRE'=> $this->id_ges_cambio,
@@ -227,7 +241,8 @@ class AdminisionesComponet extends Component
                     'MONTO_MENSUAL'=>$varmenvir,
                     'MONTO_RECUPERACION'=>0,
                     'MONTO_DESCUENTO'=>0,
-                    'ESTADO'=>1,                      
+                    'ESTADO'=>1,   
+                    'CUOTA_ANUAL'=>$cuota_r,                
                 ]
             );
         }
@@ -252,6 +267,12 @@ class AdminisionesComponet extends Component
             }elseif($this->fpago==2){
                 $mespagado=1;
                 $estado_cance=1;
+            }elseif($this->fpago==3){
+                $mespagado=2;
+                $estado_cance=3;
+            }elseif($this->fpago==4){
+                $mespagado=1;
+                $estado_cance=4;
             }
 
             $cambio_pre=DB::table('cuentaestudiante')
@@ -331,6 +352,7 @@ class AdminisionesComponet extends Component
             $this->fecha_ultimo_cambio=$pre->FECHA_CAMBIOS_REG;
             $this->correo_en2=$pre->CORREO_EN_ES2;
             $this->profesion_en=$pre->PROFESION_EN_ES;
+            $this->tipo_ins=$pre->TIPO_INS;
 
         }
 
@@ -378,6 +400,7 @@ class AdminisionesComponet extends Component
             $this->fecha_ultimo_cambio=$pre->FECHA_CAMBIOS_REG;
             $this->correo_en2=$pre->CORREO_EN_ES2;
             $this->profesion_en=$pre->PROFESION_EN_ES;
+            $this->tipo_ins=$pre->TIPO_INS;
         }
 
 
@@ -443,6 +466,7 @@ class AdminisionesComponet extends Component
                     'MODALIDAD_EST'=>$this->tipo2,
                    'CORREO_EN_ES2'=> $this->correo_en2,
                    'PROFESION_EN_ES'=>$this->profesion_en,
+                   'TIPO_INS'=>$this->tipo_ins,
                     //'FECHA_REGISTRO'=>$this->fingreso_gestion,
                     //''=>,
                     //'FORMA_PAGO'=>$metodo,
@@ -614,6 +638,7 @@ class AdminisionesComponet extends Component
                     'NO_GESTION'=>$this->gestion,
                     'MODALIDAD_EST'=>$this->tipo2,
                     'CORREO_EN_ES2'=> $this->correo_en2,
+                    'TIPO_INS'=>$this->tipo_ins,
                     /* INFORMACIÓN PAGO */
 
                     'TIPO_PAGO'=>$this->fpago,

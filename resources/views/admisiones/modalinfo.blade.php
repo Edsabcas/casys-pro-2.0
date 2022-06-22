@@ -3,14 +3,14 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header text-center" style="background:#a4cb39;color:rgb(255, 255, 255)">
-          <h3 class="modal-title text-center" style="color:rgb(255, 255, 255)" >Proceso Pre-Inscripción</h3>
+          <h3 class="modal-title text-center" style="color:rgb(255, 255, 255)" >Proceso de Inscripción</h3>
           <button type="button" class="btn btn-warning btn-close" style="color:rgb(255, 255, 255)"  data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
         <div class="modal-body">
             <div class="container-sm">
 
-              <h4 class="form-label text text-center" style="font-size:25px">Gestion: #{{$gestion}}
+              <h4 class="form-label text text-center" style="font-size:25px">Gestión: #{{$gestion}}
               
               </h4> 
               <p  class="text text-center">Fecha de solicitud: <b>{{$fingreso_gestion}}</b></p>
@@ -114,7 +114,7 @@
                               </div>
                               @enderror
                               <div class="col-md">
-                                <label for="inputInstitucion" style="font-size: 15px; color:#000000;">Lugar Nacimiento (País):</label>
+                                <label for="inputInstitucion" style="font-size: 15px; color:#000000;">Lugar de Nacimiento (País):</label>
                                 <input type='text' placeholder="" wire:model="lug_nac_es" class="form-control " required>
                             </div>
                             @error('lug_nac_es')
@@ -201,9 +201,38 @@
                                         <div class="alert alert-danger d-flex align-items-center" role="alert">
                                           <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
                                           
-                                            <span>Debe de seleccionar</span>
+                                            <span>Seleccione:</span>
                                            </div> @enderror
                         </div>
+                        <div class="mb-3">
+                          <option></option>
+                          <label for="lastname" style="color: #3a3e7b">
+                              <b>Inscripción:</b></label>
+                              <br>
+                              <br>
+                              <li class="list-group-item list-group-item-action">
+                               
+                                  <input class="form-check-input me-1"  type="radio" wire:model="tipo_ins" value="1" aria-label="..."  id="flexRadioGradopre1">
+                                  <label class="form-check-label" for="flexRadioGradopre1" style="font-size: 15px; color:#000000;">
+                                    Re-ingreso 
+                                    </label>
+                                  
+                                </li>
+                                <li class="list-group-item list-group-item-action">
+                                  <input class="form-check-input me-1"  type="radio"  wire:model="tipo_ins" value="2" aria-label="..."  id="flexRadioGradvir2">
+                                  <label class="form-check-label" for="flexRadioGradvir2" style="font-size: 15px; color:#000000;">
+                                    Nuevo ingreso
+                                    </label>
+                                
+                                </li>
+                                @error('tipo_ins') 
+                                      <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                                        
+                                          <span>Seleccionar: </span>
+                                         </div> @enderror
+                      </div>
+                        
 
                         </div>
                       </form>
@@ -236,7 +265,7 @@
                         @enderror
                         <div class="row g-3">
                           <div class="col-md">
-                          <label for="fnacimiento_en" style="font-size: 15px; color:#000000;">Fecha Nacimiento:</label>
+                          <label for="fnacimiento_en" style="font-size: 15px; color:#000000;">Fecha de Nacimiento:</label>
                           <input type="date" placeholder=""   wire:model="fnacimiento_en" class="form-control " required>
                       </div>
                       @error('fnacimiento_en')
@@ -283,7 +312,7 @@
                         <div class="form-check form-check-inline">
                           <input class="form-check-input" type="radio" wire:model="es_civil_en"  value="Viuda" id="flexRadioEstado3">
                           <label class="form-check-label" for="flexRadioEstado3" style="font-size: 15px; color:#000000;">
-                            Viuda/o
+                            Viuda(o)
                           </label>
                         </div>
                       </div>
@@ -306,7 +335,7 @@
                       </div>
                       <div class="row g-3">
                       <div class="form-group col-xs-12">
-                        <label for="inputApellidos" style="font-size: 15px; color:#000000;">Direccion de domicilio:</label>
+                        <label for="inputApellidos" style="font-size: 15px; color:#000000;">Dirección de domicilio:</label>
                         <input type="text" placeholder="" type="email" wire:model="direccion_en" class="form-control " required>
                     </div>
                     @error('direccion_en')
@@ -317,7 +346,7 @@
                   </div>
                     <div class="row g-3">
                       <div class="col-md">
-                      <label for="inputApellidos" style="font-size: 15px; color:#000000;">Telefono de casa:</label>
+                      <label for="inputApellidos" style="font-size: 15px; color:#000000;">Teléfono de casa:</label>
                       <input placeholder="" type="number"  wire:model="tel_casa_en" class="form-control " required>
                   </div>
                   @error('tel_casa_en')
@@ -326,7 +355,7 @@
                   </div>
                   @enderror
                     <div class="col-md">
-                    <label for="inputApellidos" style="font-size: 15px; color:#000000;">Telefono celular:</label>
+                    <label for="inputApellidos" style="font-size: 15px; color:#000000;">Teléfono celular:</label>
                     <input placeholder="" type="number"  wire:model="cel_en" class="form-control " required>
                   </div>
                   @error('cel_en')
@@ -338,7 +367,7 @@
                   
                   <div class="row g-3">
                   <div class="col-md">
-                            <label for="inputApellidos" style="font-size: 15px; color:#000000;">Correo electronico:</label>
+                            <label for="inputApellidos" style="font-size: 15px; color:#000000;">Correo electrónico:</label>
                             <input placeholder="" type="email"  wire:model="correo_en" class="form-control " required>
                         </div>
                         @error('correo_en')
@@ -347,7 +376,7 @@
                         </div>
                         @enderror
                         <div class="col-md">
-                          <label for="inputApellidos" style="font-size: 15px; color:#000000;">Correo electronico (opcional):</label>
+                          <label for="inputApellidos" style="font-size: 15px; color:#000000;">Correo electrónico (opcional):</label>
                           <input placeholder="" type="email"  wire:model="correo_en2" class="form-control " required>
                       </div>
                       @error('correo_en')
@@ -388,9 +417,9 @@
       @endif
         <div class="modal-footer">
 
-          <a  wire:click="actualizar_info()" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-warning">Actualizar Info.</a>
+          <a  wire:click="actualizar_info()" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-pre2">Actualizar</a>
                 
-            <a  id="valpedido" wire:click="tipo_cambio(1)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-editb" data-bs-dismiss="modal">Validar Información</a>
+            <a  id="valpedido" wire:click="tipo_cambio(1)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-editb" data-bs-dismiss="modal">Sig. estado</a>
 
         </div>
       </div>

@@ -2,13 +2,13 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header text-center" style="background:#3a3e7b;color:rgba(255, 255, 255, 0.703)">
-          <h3 class="modal-title text-center" style="color:rgba(255, 255, 255, 0.703)" >Proceso Contrato</h3>
+          <h3 class="modal-title text-center" style="color:rgba(255, 255, 255, 0.703)" >Proceso de Contrato</h3>
           <button type="button" class="btn btn-warning" style="color:rgba(22, 21, 21, 0.703)"  data-bs-dismiss="modal" aria-label="Close">X</button>
         </div>
 
         <div class="modal-body">
             <div class="container-sm">
-              <h4 class="form-label text text-center" style="font-size:25px">Gestion: #{{$id_gest}}
+              <h4 class="form-label text text-center" style="font-size:25px">Gestión: #{{$id_gest}}
               
               </h4> 
               <form action="/update_diaco" method="POST" wire:submit.prevent=''>

@@ -58,7 +58,7 @@
     <div class="card shadow rounded">
         <div class="text-center">
           <br>
-          <h1 style="color: #3a3e7b"><strong>Pre-Inscripción @php echo date('Y'); @endphp</strong></h1>
+          <h1 style="color: #3a3e7b"><strong>Inscripción @php echo date('Y'); @endphp</strong></h1>
           <br>
         </div>
       </div>
@@ -90,7 +90,7 @@
         <div class="accordion-item" style="border-radius: 60px 60px 60px 60px;" >
           <h2 class="accordion-header" style="border-radius: 60px 60px 60px 60px; color: #3a3e7b"  id="flush-headingOne">
             <button class="accordion-button collapsed"  style="border-radius: 60px 60px 60px 60px; color: #3a3e7b"  type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                Estado 0 | Validación Datos
+                Estado 0 | Validación Datos &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="badge rounded-pill bg-warning text-dark">@php echo count($estado_cero);@endphp</span>
             </button>
           </h2>
           <div wire:ignore.self id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
@@ -147,7 +147,7 @@
         <div class="accordion-item" style="border-radius: 60px 60px 60px 60px;" >
           <h2 class="accordion-header" style="border-radius: 60px 60px 60px 60px;"  style="" id="flush-headingTwo">
             <button class="accordion-button collapsed" style="border-radius: 60px 60px 60px 60px; color: #3a3e7b" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                Estado 1 | Pendiente de Pago
+                Estado 1 | Pendiente de Pago  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="badge rounded-pill bg-warning text-dark">@php echo count($estado_uno);@endphp</span>
             </button>
           </h2>
           <div  wire:ignore.self  id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
@@ -209,7 +209,7 @@
         <div class="accordion-item" style="border-radius: 60px 60px 60px 60px;" >
           <h2 class="accordion-header" style="border-radius: 60px 60px 60px 60px;"  style="" id="flush-headingTwo2">
             <button class="accordion-button collapsed" style="border-radius: 60px 60px 60px 60px; color: #3a3e7b" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo2" aria-expanded="false" aria-controls="flush-collapseTwo2">
-                Estado 2 | Validación de Pago 
+                Estado 2 | Validación de Pago  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="badge rounded-pill bg-warning text-dark">@php echo count($estado_uno2);@endphp</span>
             </button>
           </h2>
           <div  wire:ignore.self  id="flush-collapseTwo2" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo2" data-bs-parent="#accordionFlushExample">
@@ -271,7 +271,7 @@
         <div class="accordion-item" style="border-radius: 60px 60px 60px 60px;" >
           <h2 class="accordion-header" style="border-radius: 60px 60px 60px 60px;"  style="color: #3a3e7b" id="flush-headingThree">
             <button class="accordion-button collapsed" style="border-radius: 60px 60px 60px 60px; color: #3a3e7b"  type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                Estado 3 | Datos Inscripción
+                Estado 3 | Datos Inscripción   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="badge rounded-pill bg-warning text-dark">@php echo count($estado_dos);@endphp</span>
             </button>
           </h2>
           <div   wire:ignore.self id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
@@ -338,7 +338,7 @@
         <div class="accordion-item" style="border-radius: 60px 60px 60px 60px;" >
           <h2 class="accordion-header" style="border-radius: 60px 60px 60px 60px;"  style="color: #3a3e7b" id="flush-headingThree2">
             <button class="accordion-button collapsed" style="border-radius: 60px 60px 60px 60px; color: #3a3e7b"  type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree2" aria-expanded="false" aria-controls="flush-collapseThree2">
-                Estado 4 | Validacion Datos Inscripción
+                Estado 4 | Validacion Datos Inscripción  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;<span class="badge rounded-pill bg-warning text-dark">@php echo count($estado_dos2);@endphp</span>
             </button>
           </h2>
           <div   wire:ignore.self id="flush-collapseThree2" class="accordion-collapse collapse" aria-labelledby="flush-headingThree2" data-bs-parent="#accordionFlushExample">
@@ -405,7 +405,7 @@
         <div class="accordion-item" style="border-radius: 60px 60px 60px 60px;" >
             <h2 class="accordion-header"  style="border-radius: 60px 60px 60px 60px;"  style="color: #3a3e7b" id="flush-headingThree20" >
               <button class="accordion-button collapsed" style="border-radius: 60px 60px 60px 60px; color: #3a3e7b" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree20" aria-expanded="false" aria-controls="flush-collapseThree20">
-                Estado 5 | Contrato DIACO
+                Estado 5 | Contrato DIACO  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;<span class="badge rounded-pill bg-warning text-dark">@php echo count($estado_tres);@endphp</span>
               </button>
             </h2>
             <div   wire:ignore.self  id="flush-collapseThree20" class="accordion-collapse collapse" aria-labelledby="flush-headingThree20" data-bs-parent="#accordionFlushExample">
@@ -472,7 +472,7 @@
           <div class="accordion-item" style="border-radius: 60px 60px 60px 60px;" >
               <h2 class="accordion-header"  style="border-radius: 60px 60px 60px 60px;"  style="color: #3a3e7b" id="flush-headingThree21" >
                 <button class="accordion-button collapsed" style="border-radius: 60px 60px 60px 60px; color: #3a3e7b" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree21" aria-expanded="false" aria-controls="flush-collapseThree21">
-                  Estado 6 | Validación Contrato DIACO
+                  Estado 6 | Validación Contrato DIACO  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; <span class="badge rounded-pill bg-warning text-dark">@php echo count($estado_tres3);@endphp</span>
                 </button>
               </h2>
               <div   wire:ignore.self  id="flush-collapseThree21" class="accordion-collapse collapse" aria-labelledby="flush-headingThree21" data-bs-parent="#accordionFlushExample">
@@ -539,8 +539,8 @@
           <div class="accordion-item" style="border-radius: 60px 60px 60px 60px;" >
             <h2 class="accordion-header"  style="border-radius: 60px 60px 60px 60px;"  style="color: #3a3e7b" id="flush-headingThree3" >
               <button class="accordion-button collapsed" style="border-radius: 60px 60px 60px 60px; color: #3a3e7b" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree3" aria-expanded="false" aria-controls="flush-collapseThree3">
-                Estado 7 | Usuarios
-              </button>
+                Estado 7 | Usuarios  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="badge rounded-pill bg-warning text-dark">{{-- @php echo count($estado_uno2);@endphp --}}</span>
+              </button> 
             </h2>
             <div  wire:ignore.self  id="flush-collapseThree3" class="accordion-collapse collapse" aria-labelledby="flush-headingThree3" data-bs-parent="#accordionFlushExample">
               <div  wire:ignore.self  class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
@@ -553,7 +553,7 @@
           <div class="accordion-item" style="border-radius: 60px 60px 60px 60px;" >
             <h2 class="accordion-header"  style="border-radius: 60px 60px 60px 60px;"  style="color: #3a3e7b" id="flush-headingThree4" >
               <button class="accordion-button collapsed" style="border-radius: 60px 60px 60px 60px; color: #3a3e7b" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree4" aria-expanded="false" aria-controls="flush-collapseThree4">
-                Estado 8 | Finalizados
+                Estado 8 | Finalizados  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="badge rounded-pill bg-warning text-dark">{{-- @php echo count($estado_uno2);@endphp --}}</span>
               </button>
             </h2>
             <div  wire:ignore.self  id="flush-collapseThree4" class="accordion-collapse collapse" aria-labelledby="flush-headingThree4" data-bs-parent="#accordionFlushExample">
