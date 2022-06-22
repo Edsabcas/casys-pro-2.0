@@ -1044,6 +1044,337 @@
              </div>
            </div> 
       <br>
+      <div wire:ignore.self class="accordion" id="accordionDatosdelencargado">
+        <div style="border-radius: 60px 60px 60px 60px;" class="accordion-item">
+          <h2 style="border-radius: 60px 60px 60px 60px;" class="accordion-header" id="panelsStayOpen-headingOnedatosencargado">
+            <button class="accordion-button collapsed" type="button" style="background-color:#d6e7a6; border:6px solid #a4cb39; border-radius: 60px 60px 60px 60px;" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-encargado" aria-expanded="false" aria-controls="panelsStayOpen-encargado">
+                <h4 class="font-weight-bolder">
+                    DATOS DEL ENCARGADO
+                  </h4>
+                </button>
+          </h2>
+          
+          <div  wire:ignore.self id="panelsStayOpen-encargado" style="border-radius: 60px 60px 60px 60px;" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingOne">
+            <div  wire:ignore.self class="accordion-body" style="border-radius: 60px 60px 60px 60px;">
+              <div class="tab">
+                <div class="row">
+                  <div class="row">
+                      <strong><label  for="Labelnombrepadre" class="form-label">¿Quien es el encargado?</label></strong>
+                      <div class="col-md-4">
+                          <div class="form-check">
+                              <input class="form-check-input" type="radio" Wire.model="quien_encargado1"  value="1" wire:click="quien_encargado('1')">
+                              <label class="form-check-label" for="qencargado1">
+                                El padre
+                              </label>
+                            </div>
+                      </div>
+                      <div class="col-md-4">
+                          <div class="form-check">
+                              <input class="form-check-input" type="radio" Wire.model="quien_encargado1" value="2" wire:click="quien_encargado('2')">
+                              <label class="form-check-label" for="qencargado1">
+                                La madre      
+                              </label>
+                            </div>
+                      </div>
+                      <div class="col-md-4">
+                          <div class="form-check">
+                              <input class="form-check-input" type="radio" Wire.model="quien_encargado1"  value="3" wire:click="quien_encargado('3')">
+                              <label class="form-check-label" for="qencargado1">
+                                Otro encargado
+                              </label>
+                            </div>
+                      </div>  
+                  </div>
+                  <br>
+                  
+              </div>
+              @if($quien_encargado1==3)
+                <div class="row">
+                    <div class="col-md-6">
+                        <strong><label  for="Labelnombreencargado" class="form-label">Nombre completo</label></strong>
+                        <input  type="text" class="form-control"  wire:model="nombre_encargado">
+                      </div>
+                      
+                      <div class="col-md-6">
+                        <strong><label  for="Labelnombreencargado" class="form-label">Fecha de nacimiento</label></strong>
+                        <input  type="date" class="form-control"  wire:model="nacimiento_encargado">
+                      </div>
+                      @error('nombre_encargado')
+                      <div class="col-md-6">
+                      <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                        <div>
+                            Es necesario que llenes este campo para envíar la información
+                        </div>
+                      </div>
+                      </div>
+                      @enderror
+                      @error('nacimiento_encargado')
+                      <div class="col-md-6">
+                      <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                        <div>
+                            Es necesario que llenes este campo para envíar la información
+                        </div>
+                      </div>
+                      </div>
+                      @enderror    
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <strong><label  for="Labelnombreencargado" class="form-label">Nacionalidad</label></strong>
+                        <input  type="text" class="form-control"  wire:model="nacionalidad_encargado">
+                      </div>
+                      
+                    <div class="col-md-6">
+                        <strong><label  for="Labelnombreencargado" class="form-label">Lugar de nacimiento</label></strong>
+                        <input  type="text" class="form-control"  wire:model="lugar_nacimiento_encargado">
+                      </div>
+                      @error('nacionalidad_encargado')
+                      <div class="col-md-6">
+                      <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                        <div>
+                            Es necesario que llenes este campo para envíar la información
+                        </div>
+                      </div>
+                      </div>
+                      @enderror
+                      @error('lugar_nacimiento_encargado')
+                      <div class="col-md-6">
+                      <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                        <div>
+                            Es necesario que llenes este campo para envíar la información
+                        </div>
+                      </div>
+                      </div>
+                      @enderror
+                </div>
+                <div class="row">
+                    <div class="row">
+                        <strong><label  for="Labelnombreencargado" class="form-label">Estado civil</label></strong>
+                        <div class="col-md-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" Wire.model="estadocivilencargado" value="1" wire:click="estado_civil_encargado('1')">
+                                <label class="form-check-label" for="estadocivilencargado">
+                                  Casado(a)
+                                </label>
+                              </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" Wire.model="estadocivilencargado" value="2"  wire:click="estado_civil_encargado('2')">
+                                <label class="form-check-label" for="estadocivilencargado">
+                                  Separado(a)
+                                </label>
+                              </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" Wire.model="estadocivilencargado" value="3" wire:click="estado_civil_encargado('3')">
+                                <label class="form-check-label" for="estadocivilencargado">
+                                  Soltero(a)
+                                </label>
+                              </div>
+                        </div>  
+                    </div>
+                    <br>
+                    
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-6">
+                        <strong><label  for="Labelnombreencargado" class="form-label">Número de DPI</label></strong>
+                        <input  type="number" class="form-control"  wire:model="DPI_encargado">
+                      </div>
+      
+                    <div class="col-md-6">
+                        <strong><label  for="Labelnombreencargado" class="form-label">Número de celular</label></strong>
+                        <input  type="number" class="form-control"  wire:model="celular_encargado">
+                      </div>
+    
+                      @error('DPI_encargado')
+                      <div class="col-md-6">
+                      <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                        <div>
+                            Es necesario que llenes este campo para envíar la información
+                        </div>
+                      </div>
+                      </div> 
+                      @enderror
+                      @error('celular_encargado')
+                      <div class="col-md-6">
+                      <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                        <div>
+                            Es necesario que llenes este campo para envíar la información
+                        </div>
+                      </div>
+                      </div>
+                      @enderror
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <strong><label  for="Labelnombreencargado" class="form-label">Número de casa</label></strong>
+                        <input  type="number" class="form-control"  wire:model="telefono_encargado">
+                      </div>
+                 
+                    <div class="col-md-6">
+                        <strong><label  for="Labelnombreencargado" class="form-label">Dirección de la residencia</label></strong>
+                        <input  type="text" class="form-control"  wire:model="direccion_residencia_encargado">
+                      </div>
+                      @error('telefono_encargado')
+                      <div class="col-md-6">
+                      <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                        <div>
+                            Es necesario que llenes este campo para envíar la información
+                        </div>
+                      </div>
+                      </div>
+                      @enderror
+                      @error('direccion_residencia_encargado')
+                      <div class="col-md-6">
+                      <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                        <div>
+                            Es necesario que llenes este campo para envíar la información
+                        </div>
+                      </div>
+                      </div>
+                      @enderror
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <strong><label  for="Labelnombreencargado" class="form-label">Correo electrónico</label></strong>
+                        <input  type="text" class="form-control"  wire:model="correo_encargado">
+                      </div>
+                      
+                      <div class="col-md-6">
+                        <strong><label  for="Labelprofesionencargado" class="form-label">Profesión</label></strong>
+                        <input  type="text" class="form-control"  wire:model="profesion_encargado">
+                      </div>
+                      @error('correo_encargado')
+                      <div class="col-md-6">
+                      <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                        <div>
+                            Es necesario que llenes este campo para envíar la información
+                        </div>
+                      </div>
+                      </div>
+                      @enderror
+                      @error('profesion_encargado')
+                      <div class="col-md-6">
+                      <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                        <div>
+                          Es necesario que llenes este campo para envíar la información
+                        </div>
+                      </div>
+                      </div>
+                      @enderror
+                    <div class="col-md-6">
+                        <strong><label  for="Labelnombreencargado" class="form-label">Lugar de trabajo</label></strong>
+                        <input  type="text" class="form-control"  wire:model="lugar_profesion_encargado">
+                      </div>
+                      
+                      <div class="col-md-6">
+                        <strong><label  for="Labelnombreencargado" class="form-label">Cargo de trabajo que ocupa</label></strong>
+                        <input  type="text" class="form-control"  wire:model="cargo_profesion_encargado">
+                      </div>
+    
+                      @error('lugar_profesion_encargado')
+                      <div class="col-md-6">
+                      <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                        <div>
+                          Es necesario que llenes este campo para envíar la información
+                        </div>
+                      </div>
+                      </div>
+                      @enderror
+                      @error('cargo_profesion_encargado')
+                      <div class="col-md-6">
+                      <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                        <div>
+                          Es necesario que llenes este campo para envíar la información
+                        </div>
+                      </div>
+                      </div>
+                      @enderror
+                      <div class="col-md-6">
+                        <strong><label  for="Labelnombreencargado" class="form-label">Religión que profesa</label></strong>
+                        <input  type="text" class="form-control"  wire:model="religion_encargado">
+                      </div>
+                      
+                      <div class="col-md-6">
+                        <strong><label  for="Labelnombreencargado" class="form-label">NIT (no utilice guion)</label></strong>
+                        <input  type="number" class="form-control"  wire:model="NIT_encargado">
+    
+                      @error('religion_encargado')
+                      <div class="col-md-6">
+                      <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                        <div>
+                          Es necesario que llenes este campo para envíar la información
+                        </div>
+                      </div>
+                      </div>
+                      @enderror
+                      @error('NIT_encargado')
+                      <div class="col-md-6">
+                      <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                        <div>
+                          Es necesario que llenes este campo para envíar la información
+                        </div>
+                      </div>
+                      </div>
+                      @enderror
+                    </div>
+                      <center>
+                        <div class="col-md-6">
+                       <strong><label  for="Labelnombreencargado" class="form-label">¿Que relacion tiene el encargado con el alumno?</label></strong>
+                       <input  type="text" class="form-control"  wire:model="Especifique_rel">
+                       </div>
+                       </center>
+                      <center>
+                      <div class="row">
+                          <strong><label  for="Labelnombreencargado" class="form-label">¿El alumno vive con el encargado?</label></strong>
+                          <center>
+                            <div style="width: 12rem;">
+                          <div class="col-md-7">
+                              <div class="form-check">
+                                  <input class="form-check-input" type="radio" Wire.model="vive_con_el_encargado"  wire:click="vive_con_el_encargado('1')">
+                                  <label class="form-check-label" for="viveen1">
+                                    Si
+                                  </label>
+                                </div>
+                          </div>
+                          <div class="col-md-7">
+                              <div class="form-check">
+                                  <input class="form-check-input" type="radio" Wire.model="viveen"  wire:click="vive_con_el_encargado('2')">
+                                  <label class="form-check-label" for="viveen1">
+                                    No
+                                  </label>
+                                </div>
+                          </div>
+                      </div>
+                          </center>
+                          
+                    </div>
+                  </center>
+                    @endif
+              </div>
+            </div>   
+            </div>
+          </div>
+          </div>
+       <br>
  
    <div wire:ignore.self class="accordion" id="accordiondatosmedicos">
      <div style="border-radius: 60px 60px 60px 60px;" class="accordion-item">

@@ -30,6 +30,7 @@ class AdminisionesComponet extends Component
     public $poliza, $carne_seguro, $codigo_fam, $nombre_fam, $Especifique_medi, $Especifique_ali, $medicamento, $grados_mostrar,$estadocivil;
     public $alimento, $vacunas, $alumno_asegurado, $solo_alumno, $encargado_alumno, $bus_colegio, $bus_no_colegio, $nombre_aseguradora, $no_gest;
     public $tipo2,$correo_en2,$preciopre,$preciovir,$id_gr,$id_nvl;
+    public $quien_encargado1, $nombre_encargado, $nacimientoencargado,$nacionalidadencargado,$lugarnacimientoencargado,$estadocivilencargado,$DPIencargado,$telefonoencargado,$celularencargado,$direccionresidenciaencargado,$correoencargado,$profesionencargado,$lugar_profesion_encargado ,$religion_encargado,$NIT_encargado,$vive_con_elencargado;
     public function render()
     {
 
@@ -706,6 +707,22 @@ class AdminisionesComponet extends Component
     $this->nombre_aseguradora=$estac->ASEGURADORA;
     $this->nombreencargado=$estac->NOMBRE_ENCARGADO;
     $this->matricula_bus_aj=$estac->Matricula_bus_aj;
+    $this->quien_encargado1=$estac->ENCARGADO;
+    $this->nombre_encargado=$estac->NOMB_ENCARGADO;        
+    $this->nacimientoencargado=$estac->FECHA_N_ENCARGADO;
+    $this->nacionalidadencargado=$estac->NACIONALIDAD_ENCARGADO;
+    $this->lugarnacimientoencargado=$estac->LUGAR_NACIMIENTO_ENCARGADO;
+    $this->estadocivilencargado=$estac->ESTADO_CIVIL_E;
+    $this->DPIencargado=$estac->DPI_ENCARGADO;
+    $this->telefonoencargado=$estac->TELEFONO_ENCARGADO;
+    $this->celularencargado=$estac->CELULAR_ENCARGADO;
+    $this->direccionresidenciaencargado=$estac->DIRECCION_RECIDENCIA_ENCARGADO;
+    $this->correoencargado=$estac->CORREO_ENCARGADO;
+    $this->profesionencargado=$estac->CARGO_ENCARGADO;
+    $this->lugar_profesion_encargado=$estac->LUGAR_TRABAJO_E ;
+    $this->religion_encargado=$estac->RELIGION_ENCARGADO;
+    $this->NIT_encargado=$estac->NIT_ENCARGADO;
+    $this->vive_con_elencargado=$estac->VIVE_CON_EL_ENCARGADO;
             }
             
         }
@@ -762,6 +779,9 @@ class AdminisionesComponet extends Component
     public function bus_no_colegio($bus_no_colegio){
         $this->bus_no_colegio=$bus_no_colegio;
     }
+    public function quien_encargado($quien_encargado1){
+        $this->quien_encargado1=$quien_encargado1;
+    }
 
     public function update_datos_ins(){
         $this->actualizar_validacion_pago();
@@ -814,6 +834,23 @@ $nombre_fam=$this->nombre_fam;
 $Especifique_medi=$this->Especifique_medi;
 $Especifique_ali=$this->Especifique_ali; 
 $matricula_bus_aj=$this->matricula_bus_aj; 
+$quien_encargado1=$this->quien_encargado1;
+    $nombre_encargado=$this->nombre_encargado;        
+    $nacimientoencargado=$this->nacimientoencargado;
+    $nacionalidadencargado=$this->nacionalidadencargado;
+    $lugarnacimientoencargado=$this->lugarnacimientoencargado;
+    $estadocivilencargado=$this->estadocivilencargado;
+    $DPIencargado=$this->DPIencargado;
+    $telefonoencargado=$this->telefonoencargado;
+    $celularencargado=$this->celularencargado;
+    $direccionresidenciaencargado=$this->direccionresidenciaencargado;
+    $correoencargado=$this->correoencargado;
+    $profesionencargado=$this->profesionencargado;
+    $lugar_profesion_encargado=$this->lugar_profesion_encargado ;
+    $religion_encargado=$this->religion_encargado;
+    $NIT_encargado=$this->NIT_encargado;
+    $vive_con_elencargado=$this->vive_con_elencargado;
+
 
     
     DB::beginTransaction();
@@ -871,12 +908,28 @@ $matricula_bus_aj=$this->matricula_bus_aj;
             'NO_CARNET_SEGURO'=>$this->carne_seguro,
             'SALIDA_SOLO'=>$this->solo_alumno,
             'SALIDA_CON_ENCARGADO'=>$this->encargado_alumno,
-            'NOMBRE_ENCARGADO'=>$this->nombreencargado,
+            'NOMBRE_ENCARGADO'=>$this->nombre_encargado,
             'SALIDA_BUS_COLEGIO'=>$this->bus_colegio,
             'SALIDA_BUS_AJENO'=>$this->bus_no_colegio,
             'CODIGO_FAMILIA'=>$this->codigo_fam,
             'NOMBRE_FAMILIA'=>$this->nombre_fam,
             'Matricula_bus_aj'=>$matricula_bus_aj,
+            'ENCARGADO'=> $this->quien_encargado1,
+            'NOMB_ENCARGADO'=>$this->nombreencargado,
+            'FECHA_N_ENCARGADO'=>$this->nacimientoencargado,
+            'NACIONALIDAD_ENCARGADO '=>$this->nacionalidadencargado,
+            'LUGAR_NACIMIENTO_ENCARGADO '=>$this->lugarnacimientoencargado,
+            'ESTADO_CIVIL_E'=>$this->estadocivilencargado,
+            'DPI_ENCARGADO'=>$this->DPIencargado,
+            'TELEFONO_ENCARGADO'=>$this->telefonoencargado,
+            'CELULAR_ENCARGADO'=>$this->celularencargado,
+            'DIRECCION_RECIDENCIA_ENCARGADO'=>$this->direccionresidenciaencargado,
+            'CORREO_ENCARGADO'=>$this->correoencargado,
+            'CARGO_ENCARGADO'=>$this->profesionencargado,
+            'LUGAR_TRABAJO_E '=>$this->lugar_profesion_encargado,
+            'RELIGION_ENCARGADO'=>$this->religion_encargado,
+            'NIT_ENCARGADO'=>$this->NIT_encargado,
+            'VIVE_CON_EL_ENCARGADO'=>$this->vive_con_elencargado,
         
             ]
         );
@@ -966,6 +1019,38 @@ $matricula_bus_aj=$this->matricula_bus_aj;
                     ]);
                     if($elevar){
                         $this->mensaje_diaco='Editado correctamente';
+                        if(false !== strpos($this->correo_en, "@") && false !== strpos($this->correo_en, ".")){
+                            $subject = "Notificación Pre-Ins.Castaño (No responder)";
+                            $for = $this->correo_en;
+                            $arreglo= array($this->id_no_gest_ins);
+                            Mail::send('admisiones.correo.vista1',compact('arreglo'), function($msj) use($subject,$for){
+                            $msj->from("ingresos@colegioelcastano.edu.gt","ColegioElCastaño");
+                            $msj->subject($subject);
+                            $msj->to($for);        
+                        });
+                        }
+                        if(false !== strpos($this->correo_padre, "@") && false !== strpos($this->correo_padre, ".")){
+                        $subject = "Notificación Pre-Ins.Castaño (No responder)";
+                        $for2 = $this->correo_padre;
+                        $arreglo= array($this->id_no_gest_ins);
+                        Mail::send('admisiones.correo.vista1',compact('arreglo'), function($msj) use($subject,$for2){
+                            $msj->from("ingresos@colegioelcastano.edu.gt","ColegioElCastaño");
+                            $msj->subject($subject);
+                            $msj->to($for2);        
+                        });
+                        }
+                        if(false !== strpos($this->correo_madre, "@") && false !== strpos($this->correo_madre, ".")){
+                        $subject = "Notificación Pre-Ins.Castaño (No responder)";
+                        $for3 = $this->correo_madre;
+                        $arreglo= array($this->id_no_gest_ins);
+                        Mail::send('admisiones.correo.vista1',compact('arreglo'), function($msj) use($subject,$for3){
+                            $msj->from("ingresos@colegioelcastano.edu.gt","ColegioElCastaño");
+                            $msj->subject($subject);
+                            $msj->to($for3);        
+                        });
+                        }
+                        unset($this->mensaje);
+                        $this->mensaje="Se actualizo el estado y se envio correo correctamente";
                     }
                     else{
                         $this->mensaje_diaco1='No se logro editar correctamente';
@@ -986,11 +1071,44 @@ $matricula_bus_aj=$this->matricula_bus_aj;
                     ]);
                     if($elevar){
                         $this->mensaje_diaco='Editado correctamente';
+                        DB::commit();
+                        if(false !== strpos($this->correo_en, "@") && false !== strpos($this->correo_en, ".")){
+                        $subject = "Notificación Pre-Ins.Castaño (No responder)";
+                        $for = $this->correo_en;
+                        $arreglo= array($this->id_no_gest_ins);
+                        Mail::send('admisiones.correo.vista1',compact('arreglo'), function($msj) use($subject,$for){
+                        $msj->from("ingresos@colegioelcastano.edu.gt","ColegioElCastaño");
+                        $msj->subject($subject);
+                        $msj->to($for);        
+                    });
+                    }
+                    if(false !== strpos($this->correo_padre, "@") && false !== strpos($this->correo_padre, ".")){
+                    $subject = "Notificación Pre-Ins.Castaño (No responder)";
+                    $for2 = $this->correo_padre;
+                    $arreglo= array($this->id_no_gest_ins);
+                    Mail::send('admisiones.correo.vista1',compact('arreglo'), function($msj) use($subject,$for2){
+                        $msj->from("ingresos@colegioelcastano.edu.gt","ColegioElCastaño");
+                        $msj->subject($subject);
+                        $msj->to($for2);        
+                    });
+                    }
+                    if(false !== strpos($this->correo_madre, "@") && false !== strpos($this->correo_madre, ".")){
+                    $subject = "Notificación Pre-Ins.Castaño (No responder)";
+                    $for3 = $this->correo_madre;
+                    $arreglo= array($this->id_no_gest_ins);
+                    Mail::send('admisiones.correo.vista1',compact('arreglo'), function($msj) use($subject,$for3){
+                        $msj->from("ingresos@colegioelcastano.edu.gt","ColegioElCastaño");
+                        $msj->subject($subject);
+                        $msj->to($for3);        
+                    });
+                    }
+                    unset($this->mensaje);
+                    $this->mensaje="Se actualizo el estado y se envio correo correctamente";
                     }
                     else{
                         $this->mensaje_diaco1='No se logro editar correctamente';
+                        unset($this->mensaje1);
+                        $this->mensaje1="No fue posible enviar correo y actualizar";
                     }
          }
-
-
 }
