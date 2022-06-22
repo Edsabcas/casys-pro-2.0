@@ -30,7 +30,7 @@ class AdminisionesComponet extends Component
     public $poliza, $carne_seguro, $codigo_fam, $nombre_fam, $Especifique_medi, $Especifique_ali, $medicamento, $grados_mostrar,$estadocivil;
     public $alimento, $vacunas, $alumno_asegurado, $solo_alumno, $encargado_alumno, $bus_colegio, $bus_no_colegio, $nombre_aseguradora, $no_gest;
     public $tipo2,$correo_en2,$preciopre,$preciovir,$id_gr,$id_nvl;
-    public $can1,$can2;
+    public $can1,$can2,$tipo_ins;
     public function render()
     {
 
@@ -333,7 +333,8 @@ class AdminisionesComponet extends Component
             $this->fecha_ultimo_cambio=$pre->FECHA_CAMBIOS_REG;
             $this->correo_en2=$pre->CORREO_EN_ES2;
             $this->profesion_en=$pre->PROFESION_EN_ES;
-
+            $this->tipo_ins=$pre->TIPO_INS;
+            
         }
 
 
@@ -380,6 +381,7 @@ class AdminisionesComponet extends Component
             $this->fecha_ultimo_cambio=$pre->FECHA_CAMBIOS_REG;
             $this->correo_en2=$pre->CORREO_EN_ES2;
             $this->profesion_en=$pre->PROFESION_EN_ES;
+            $this->tipo_ins=$pre->TIPO_INS;
         }
 
 
@@ -445,6 +447,7 @@ class AdminisionesComponet extends Component
                     'MODALIDAD_EST'=>$this->tipo2,
                    'CORREO_EN_ES2'=> $this->correo_en2,
                    'PROFESION_EN_ES'=>$this->profesion_en,
+                   'TIPO_INS'=>$this->tipo_ins,
                     //'FECHA_REGISTRO'=>$this->fingreso_gestion,
                     //''=>,
                     //'FORMA_PAGO'=>$metodo,
@@ -616,6 +619,7 @@ class AdminisionesComponet extends Component
                     'NO_GESTION'=>$this->gestion,
                     'MODALIDAD_EST'=>$this->tipo2,
                     'CORREO_EN_ES2'=> $this->correo_en2,
+                    'TIPO_INS'=>$this->tipo_ins,
                     /* INFORMACIÓN PAGO */
 
                     'TIPO_PAGO'=>$this->fpago,

@@ -157,6 +157,63 @@
                           </div>
                           @enderror 
                         </div>
+
+                        <div class="mb-3">
+                          <option></option>
+                          <label for="lastname" style="color: #3a3e7b">
+                              <b>¿Cómo prefiere que sus hijos estudien el ciclo escolar 2023?</b></label>
+                              <br>
+                              <br>
+                              <li class="list-group-item list-group-item-action">
+                               
+                                  <input class="form-check-input me-1"  type="radio" wire:model="tipo2" value="Presencial" aria-label="..."  id="flexRadioGradopre">
+                                  <label class="form-check-label" for="flexRadioGradopre" style="font-size: 15px; color:#000000;">
+                                      Presencial 
+                                    </label>
+                                  
+                                </li>
+                                <li class="list-group-item list-group-item-action">
+                                  <input class="form-check-input me-1"  type="radio"  wire:model="tipo2" value="Virtual" aria-label="..."  id="flexRadioGradvir">
+                                  <label class="form-check-label" for="flexRadioGradvir" style="font-size: 15px; color:#000000;">
+                                    Virtual
+                                    </label>
+                                
+                                </li>
+                                @error('tipo') 
+                                      <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                                        
+                                          <span>Debe de seleccionar</span>
+                                         </div> @enderror
+                      </div>
+                      <div class="mb-3">
+                        <option></option>
+                        <label for="lastname" style="color: #3a3e7b">
+                            <b>Inscripción:</b></label>
+                            <br>
+                            <br>
+                            <li class="list-group-item list-group-item-action">
+                             
+                                <input class="form-check-input me-1"  type="radio" wire:model="tipo_ins" value="1" aria-label="..."  id="flexRadioGradopre1">
+                                <label class="form-check-label" for="flexRadioGradopre1" style="font-size: 15px; color:#000000;">
+                                  Re-ingreso 
+                                  </label>
+                                
+                              </li>
+                              <li class="list-group-item list-group-item-action">
+                                <input class="form-check-input me-1"  type="radio"  wire:model="tipo_ins" value="2" aria-label="..."  id="flexRadioGradvir2">
+                                <label class="form-check-label" for="flexRadioGradvir2" style="font-size: 15px; color:#000000;">
+                                  Nuevo ingreso
+                                  </label>
+                              
+                              </li>
+                              @error('tipo_ins') 
+                                    <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                                      
+                                        <span>Debe de seleccionar</span>
+                                       </div> @enderror
+                    </div>
                       </form>
                     </div>
                   </div>
