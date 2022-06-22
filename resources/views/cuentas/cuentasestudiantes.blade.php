@@ -95,7 +95,7 @@
                                 <td>{{$cuenta->DESCRIPCION}}</td>
                                 {{-- <td>{{$cuenta->FECHA_PAGO}}</td>
                                 <td>{{$cuenta->FECHA_ULIMOPAGO}}</td> --}}
-                                <td>Q. {{$cuenta->MONTO_INSCRIPCION}}</td>
+                                <td>Q. {{$cuenta->MONTO_INSCRIPCION+($cuenta->CUOTA_ANUAL)}}</td>
                                 <td>Q. {{$cuenta->MONTO_MENSUAL}}</td>
 
                                 @if ($cuenta->ESTADO_CANCELADO==1)
@@ -105,7 +105,7 @@
                                   <td>Q. {{$cuenta->MONTO_MENSUAL*9}}</td>  
 
                                 @else
-                                  <td>Q. {{$cuenta->MONTO_MENSUAL*10+($cuenta->MONTO_INSCRIPCION)}}</td>  
+                                  <td>Q. {{$cuenta->MONTO_MENSUAL*10+($cuenta->MONTO_INSCRIPCION)+($cuenta->CUOTA_ANUAL)}}</td>  
                                 @endif
 
                                 {{-- <td>Q. {{$cuenta->MONTO_RECUPERACION}}</td>
