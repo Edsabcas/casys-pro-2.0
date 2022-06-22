@@ -292,6 +292,17 @@
                        Pendiente
                       </div>
                       @enderror
+                      <div class="col-md">
+                      <div class="form-group col-xs-12">
+                        <label for="inputApellidos" style="font-size: 15px; color:#000000;">Profesión:</label>
+                        <input type="text" placeholder="" type="email" wire:model="profesion_en" class="form-control " required>
+                    </div>
+                    @error('profesion_en')
+                    <div class="alert alert-warning" role="alert">
+                     Pendiente
+                    </div>
+                    @enderror
+                  </div>
                       </div>
                       <div class="row g-3">
                       <div class="form-group col-xs-12">

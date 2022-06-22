@@ -18,8 +18,8 @@ class AdminisionesComponet extends Component
     public $a,$mensaje,$gradose,$fingreso_gestion,$id_ges_cambio,$tipo_cambio1;
     public $id_pre,$metodo,$archivo_comprobante,$img,$tipo,$mensaje24,$mensaje25,$fotos,$fpago,$no_gest_con;
     public $val,$val1,$gestion,$errorfecha;
-    public $estado_ges,$archivo_comprobante2,$fecha_ultimo_cambio,$mensajeins,$mensajeins1,$id_pre_boton,$estado_pre_boton;
-    public $mensaje1,$id2;
+    public $estado_ges,$archivo_comprobante2,$fecha_ultimo_cambio,$mensajeins,$mensajeins1,$id_pre_boton,$estado_pre_boton,$matricula_bus_aj;
+    public $mensaje1,$id2,$profesion_en;
     public $observacion, $id_pre_ins_arch, $id_no_gest_arch, $archivo_cdiaco, $archivo, $formato,$id_gest,$nuevo_estado,$id_no_gest_ins;
     public $mensajeup,$mensajeup1;
     public $id_pre_info, $id_pre_i, $confi, $grados_selecionados, $año_ingreso, $grado_primer_ingreso, $nombre_padre, $nacimiento_padre, $nacionalidad_padre;
@@ -30,6 +30,7 @@ class AdminisionesComponet extends Component
     public $poliza, $carne_seguro, $codigo_fam, $nombre_fam, $Especifique_medi, $Especifique_ali, $medicamento, $grados_mostrar,$estadocivil;
     public $alimento, $vacunas, $alumno_asegurado, $solo_alumno, $encargado_alumno, $bus_colegio, $bus_no_colegio, $nombre_aseguradora, $no_gest;
     public $tipo2,$correo_en2,$preciopre,$preciovir,$id_gr,$id_nvl;
+    public $can1,$can2;
     public function render()
     {
 
@@ -78,9 +79,11 @@ class AdminisionesComponet extends Component
         if($this->search0!=null && $this->search0!=""){
             $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.NO_GESTION, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE ESTADO_PRE_INS=0 and (NO_GESTION like '%".$this->search0."%' or NOMBRE_ES like '%".$this->search0."%') ";
             $estado_cero=DB::select($sql);
+            
         }else{
             $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.NO_GESTION, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE ESTADO_PRE_INS=0 order by TB_PRE_INS.FECHA_REGISTRO";
             $estado_cero=DB::select($sql);
+            $this->can1=count($estado_cero);
         }
 
         if($this->search1!=null && $this->search1!=""){
@@ -329,6 +332,7 @@ class AdminisionesComponet extends Component
             $this->fingreso_gestion=$pre->FECHA_REGISTRO;
             $this->fecha_ultimo_cambio=$pre->FECHA_CAMBIOS_REG;
             $this->correo_en2=$pre->CORREO_EN_ES2;
+            $this->profesion_en=$pre->PROFESION_EN_ES;
 
         }
 
@@ -375,6 +379,7 @@ class AdminisionesComponet extends Component
             $this->tipo2=$pre->MODALIDAD_EST;
             $this->fecha_ultimo_cambio=$pre->FECHA_CAMBIOS_REG;
             $this->correo_en2=$pre->CORREO_EN_ES2;
+            $this->profesion_en=$pre->PROFESION_EN_ES;
         }
 
 
@@ -439,6 +444,7 @@ class AdminisionesComponet extends Component
                     'NO_GESTION'=>$this->gestion,
                     'MODALIDAD_EST'=>$this->tipo2,
                    'CORREO_EN_ES2'=> $this->correo_en2,
+                   'PROFESION_EN_ES'=>$this->profesion_en,
                     //'FECHA_REGISTRO'=>$this->fingreso_gestion,
                     //''=>,
                     //'FORMA_PAGO'=>$metodo,
@@ -603,6 +609,7 @@ class AdminisionesComponet extends Component
                     'CEL_EN_ES'=>$this->cel_en,
                     'CORREO_EN_ES'=>$this->correo_en,
                     'RELIGION_EN_ES'=>$this->religion_en,
+                    'PROFESION_EN_ES'=>$this->profesion_en,
 
                     'FECHA_REGISTRO'=>$this->fingreso_gestion,
                     'GRADO_ING_ES'=>$this->gradoin,
@@ -701,6 +708,7 @@ class AdminisionesComponet extends Component
     $this->Especifique_medi=$estac->ESPECIFICAR_ALERG_ME;
     $this->nombre_aseguradora=$estac->ASEGURADORA;
     $this->nombreencargado=$estac->NOMBRE_ENCARGADO;
+    $this->matricula_bus_aj=$estac->Matricula_bus_aj;
             }
             
         }
@@ -808,6 +816,7 @@ $codigo_fam=$this->codigo_fam;
 $nombre_fam=$this->nombre_fam;
 $Especifique_medi=$this->Especifique_medi;
 $Especifique_ali=$this->Especifique_ali; 
+$matricula_bus_aj=$this->matricula_bus_aj; 
 
     
     DB::beginTransaction();
@@ -870,6 +879,7 @@ $Especifique_ali=$this->Especifique_ali;
             'SALIDA_BUS_AJENO'=>$this->bus_no_colegio,
             'CODIGO_FAMILIA'=>$this->codigo_fam,
             'NOMBRE_FAMILIA'=>$this->nombre_fam,
+            'Matricula_bus_aj'=>$matricula_bus_aj,
         
             ]
         );
