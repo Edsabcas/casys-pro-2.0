@@ -1,9 +1,9 @@
 <div wire:ignore.self id="infodata3" style="border-radius: 60px 60px 60px 60px;" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="infodata3" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
-        <div class="modal-header text-center" style="background:#3a3e7b;color:rgba(255, 255, 255, 0.703)">
-          <h3 class="modal-title text-center" style="color:rgba(255, 255, 255, 0.703)" >Proceso Pre-Inscripción</h3>
-          <button type="button" class="btn btn-warning" style="color:rgba(22, 21, 21, 0.703)"  data-bs-dismiss="modal" aria-label="Close">X</button>
+        <div class="modal-header text-center" style="background:#a4cb39;color:rgb(255, 255, 255)">
+          <h3 class="modal-title text-center" style="color:rgb(255, 255, 255)" >Proceso de Inscripción</h3>
+          <button type="button" class="btn btn-close btn-warning" style="color:rgb(255, 255, 255)"  data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
         <div class="modal-body">
@@ -11,7 +11,7 @@
               <h4 class="form-label text text-center" style="font-size:25px">Gestion: #{{$no_gest}}
               
               </h4>
-              <p  class="text text-center">Fecha de ultimo cambio: <b>{{$fecha_ultimo_cambio}}</b></p>
+              <p  class="text text-center">Fecha de último cambio: <b>{{$fecha_ultimo_cambio}}</b></p>
               <br>
               <div wire:ignore.self class="accordion" id="accordionPanelsStayOpenExample2">
                 <div style="border-radius: 60px 60px 60px 60px;" class="accordion-item">
@@ -183,7 +183,7 @@
                                       <div class="alert alert-danger d-flex align-items-center" role="alert">
                                         <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
                                         
-                                          <span>Debe de seleccionar</span>
+                                          <span>seleccionar: </span>
                                          </div> @enderror
                       </div>
                       <div class="mb-3">
@@ -211,7 +211,7 @@
                                     <div class="alert alert-danger d-flex align-items-center" role="alert">
                                       <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
                                       
-                                        <span>Debe de seleccionar</span>
+                                        <span>Seleccionar: </span>
                                        </div> @enderror
                     </div>
                       </form>
@@ -291,7 +291,7 @@
                         <div class="form-check form-check-inline">
                           <input class="form-check-input" type="radio" wire:model="es_civil_en"  value="Viuda" id="flexRadioEstado3">
                           <label class="form-check-label" for="flexRadioEstado3" style="font-size: 15px; color:#000000;">
-                            Viuda/o
+                            Viuda(o)
                           </label>
                         </div>
                       </div>
@@ -314,7 +314,7 @@
                       </div>
                       <div class="row g-3">
                       <div class="form-group col-xs-12">
-                        <label for="inputApellidos" style="font-size: 15px; color:#000000;">Direccion de domicilio:</label>
+                        <label for="inputApellidos" style="font-size: 15px; color:#000000;">Dirección de domicilio:</label>
                         <input type="text" placeholder="" type="email" wire:model="direccion_en" class="form-control " required>
                     </div>
                     @error('direccion_en')
@@ -325,7 +325,7 @@
                   </div>
                     <div class="row g-3">
                       <div class="col-md">
-                      <label for="inputApellidos" style="font-size: 15px; color:#000000;">Telefono de casa:</label>
+                      <label for="inputApellidos" style="font-size: 15px; color:#000000;">Teléfono de casa:</label>
                       <input placeholder="" type="number"  wire:model="tel_casa_en" class="form-control " required>
                   </div>
                   @error('tel_casa_en')
@@ -334,7 +334,7 @@
                   </div>
                   @enderror
                     <div class="col-md">
-                    <label for="inputApellidos" style="font-size: 15px; color:#000000;">Telefono celular:</label>
+                    <label for="inputApellidos" style="font-size: 15px; color:#000000;">Teléfono celular:</label>
                     <input placeholder="" type="number"  wire:model="cel_en" class="form-control " required>
                   </div>
                   @error('cel_en')
@@ -346,7 +346,7 @@
                   
                   <div class="row g-3">
                   <div class="col-md">
-                            <label for="inputApellidos" style="font-size: 15px; color:#000000;">Correo electronico:</label>
+                            <label for="inputApellidos" style="font-size: 15px; color:#000000;">Correo electrónico:</label>
                             <input placeholder="" type="email"  wire:model="correo_en" class="form-control " required>
                         </div>
                         @error('correo_en')
@@ -406,7 +406,7 @@
                       </div>
                       @enderror
                       <div class="col-md">
-                        <label for="exampleInputEmail1" class="form-label">Metodo de pago:</label>
+                        <label for="exampleInputEmail1" class="form-label">Método de pago:</label>
                             <select class="form-select" aria-label="Default select example" wire:model="metodo" required>
                               <option selected>Seleccionar:</option>
                               @isset($metododepago)
@@ -544,7 +544,7 @@
                          <div class="alert alert-danger d-flex align-items-center" role="alert">
                            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
                            
-                             <span>Debe seleccionar un grado</span>
+                             <span>Seleccione: </span>
                             </div> @enderror
                          
                          <ul class="list-group" style="border-radius: 60px 60px 60px 60px;">
@@ -561,28 +561,28 @@
                          </ul>
                          <br>
                         
-                         <h5>Grados escogidos {{$grados_mostrar}}</h5>
+                         <h5>Grados seleccionados: {{$grados_mostrar}}</h5>
                         
                          @endif  
                          
                          <br>
                          <div class="row">
                              <div class="col-md-6">
-                                 <strong><label  for="labelañoingreso" class="form-label">Coloque el año de primer ingreso</label></strong>
+                                 <strong><label  for="labelañoingreso" class="form-label">Año de primer ingreso</label></strong>
                                  <input  type="number" class="form-control"  wire:model="año_ingreso">
                                </div>
                                @error('año_ingreso')
                                <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
                                  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
                                  <div>
-                                     Es necesario que llenes este campo para envíar la información
+                                  Es necesario que llene este campo para el envío de la información.
                                  </div>
                                </div>
                                @enderror
                                <div class="col-md-6">
-                                 <strong><label for="exampleInputPassword1" class="form-label" >Coloque el grado de primer ingreso</label></strong>
+                                 <strong><label for="exampleInputPassword1" class="form-label" >Grado de primer ingreso</label></strong>
                                  <select class="form-select" aria-label="Default select example" wire:model="grado_primer_ingreso">
-                                   <option selected >Elige el grado de primer ingreso</option>
+                                   <option selected >Seleccione el grado de primer ingreso</option>
                                    @foreach($grados as $grado)
                                    <option value="{{$grado->ID_GR}}">{{$grado->GRADO}}</option>
                                    @endforeach
@@ -592,7 +592,7 @@
                                <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
                                  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
                                  <div>
-                                     Es necesario que llenes este campo para envíar la información
+                                  Es necesario que llene este campo para el envío de la información.
                                  </div>
                                </div>
                                @enderror
@@ -620,27 +620,28 @@
                        <div class="tab">
                          <div class="row">
                              <div class="col-md-6">
-                                 <strong><label  for="Labelnombrepadre" class="form-label"> nombre del padre</label></strong>
+                                 <strong><label  for="Labelnombrepadre" class="form-label"> Nombre del padre</label></strong>
                                  <input  type="text" class="form-control"  wire:model="nombre_padre">
                                </div>
                                @error('nombre_padre')
                                <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
                                  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
                                  <div>
-                                     Es necesario que llenes este campo para envíar la información
+                                  Es necesario que llene este campo para el envío de la información.
                                  </div>
                                </div>
                                @enderror
                                <div class="col-md-6">
-                                 <strong><label  for="Labelnombrepadre" class="form-label"> fecha de nacimiento del padre</label></strong>
+                                 <strong><label  for="Labelnombrepadre" class="form-label"> Fecha de nacimiento del padre</label></strong>
                                  <input  type="date" class="form-control"  wire:model="nacimiento_padre">
                                </div>
                                @error('nacimiento_padre')
                                <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
                                  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
                                  <div>
-                                     Es necesario que llenes este campo para envíar la información
-                                 </div>
+                                  Es necesario que llene este campo para el envío de la información.
+                                
+                                </div>
                                </div>
                                @enderror    
                          </div>
@@ -653,8 +654,9 @@
                                <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
                                  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
                                  <div>
-                                     Es necesario que llenes este campo para envíar la información
-                                 </div>
+                                  Es necesario que llene este campo para el envío de la información.
+                                
+                                </div>
                                </div>
                                @enderror
                              <div class="col-md-6">
@@ -665,14 +667,15 @@
                                <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
                                  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
                                  <div>
-                                     Es necesario que llenes este campo para envíar la información
-                                 </div>
+                                  Es necesario que llene este campo para el envío de la información.
+                                
+                                </div>
                                </div>
                                @enderror
                          </div>
                          <div class="row">
                              <div class="row">
-                                 <strong><label  for="Labelnombrepadre" class="form-label"> estado civil del padre</label></strong>
+                                 <strong><label  for="Labelnombrepadre" class="form-label"> Estado civil del padre</label></strong>
                                  <div class="col-md-4">
                                      <div class="form-check">
                                          <input class="form-check-input" type="radio" wire:model="estadocivilp" value="1" wire:click="estado_civil_padre('1')">
@@ -704,132 +707,142 @@
                          <br>
                          <div class="row">
                              <div class="col-md-6">
-                                 <strong><label  for="Labelnombrepadre" class="form-label"> número de DPI del padre</label></strong>
+                                 <strong><label  for="Labelnombrepadre" class="form-label">DPI del padre</label></strong>
                                  <input  type="text" class="form-control"  wire:model="DPI_padre">
                                </div>
                                @error('DPI_padre')
                                <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
                                  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
                                  <div>
-                                     Es necesario que llenes este campo para envíar la información
-                                 </div>
+                                  Es necesario que llene este campo para el envío de la información.
+                                
+                                </div>
                                </div>
                                @enderror
                              <div class="col-md-6">
-                                 <strong><label  for="Labelnombrepadre" class="form-label"> número de celular del padre</label></strong>
+                                 <strong><label  for="Labelnombrepadre" class="form-label"> Número de celular del padre</label></strong>
                                  <input  type="number" class="form-control"  wire:model="celular_padre">
                                </div>
                                @error('celular_padre')
                                <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
                                  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
                                  <div>
-                                     Es necesario que llenes este campo para envíar la información
-                                 </div>
+                                  Es necesario que llene este campo para el envío de la información.
+                                
+                                </div>
                                </div>
                                @enderror
                          </div>
                          <div class="row">
                              <div class="col-md-6">
-                                 <strong><label  for="Labelnombrepadre" class="form-label"> número de casa del padre</label></strong>
+                                 <strong><label  for="Labelnombrepadre" class="form-label"> Teléfono de casa del padre</label></strong>
                                  <input  type="number" class="form-control"  wire:model="telefono_padre">
                                </div>
                                @error('telefono_padre')
                                <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
                                  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
                                  <div>
-                                     Es necesario que llenes este campo para envíar la información
-                                 </div>
+                                  Es necesario que llene este campo para el envío de la información.
+                                
+                                </div>
                                </div>
                                @enderror
                              <div class="col-md-6">
-                                 <strong><label  for="Labelnombrepadre" class="form-label"> dirección de la residencia del padre</label></strong>
+                                 <strong><label  for="Labelnombrepadre" class="form-label"> Dirección de residencia del padre</label></strong>
                                  <input  type="text" class="form-control"  wire:model="direccion_residencia">
                                </div>
                                @error('direccion_residencia')
                                <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
                                  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
                                  <div>
-                                     Es necesario que llenes este campo para envíar la información
-                                 </div>
+                                  Es necesario que llene este campo para el envío de la información.
+                                
+                                </div>
                                </div>
                                @enderror
                          </div>
                          <div class="row">
                              <div class="col-md-6">
-                                 <strong><label  for="Labelnombrepadre" class="form-label"> correo electrónico del padre</label></strong>
+                                 <strong><label  for="Labelnombrepadre" class="form-label"> Correo electrónico del padre</label></strong>
                                  <input  type="text" class="form-control"  wire:model="correo_padre">
                                </div>
                                @error('correo_padre')
                                <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
                                  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
                                  <div>
-                                     Es necesario que llenes este campo para envíar la información
-                                 </div>
+                                  Es necesario que llene este campo para el envío de la información.
+                                
+                                </div>
                                </div>
                                @enderror
                                <div class="col-md-6">
-                                 <strong><label  for="Labelprofesionpadre" class="form-label"> profesion del padre</label></strong>
+                                 <strong><label  for="Labelprofesionpadre" class="form-label"> Profesión del padre</label></strong>
                                  <input  type="text" class="form-control"  wire:model="profesion_padre">
                                </div>
                                @error('profesion_padre')
                                <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
                                  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
                                  <div>
-                                   Es necesario que llenes este campo para envíar la información
-                                 </div>
+                                  Es necesario que llene este campo para el envío de la información.
+                                
+                                </div>
                                </div>
                                @enderror
                              <div class="col-md-6">
-                                 <strong><label  for="Labelnombrepadre" class="form-label"> lugar de trabajo del padre</label></strong>
+                                 <strong><label  for="Labelnombrepadre" class="form-label"> Dirección de trabajo del padre</label></strong>
                                  <input  type="text" class="form-control"  wire:model="lugar_profesion_padre">
                                </div>
                                @error('lugar_profesion_padre')
                                <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
                                  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
                                  <div>
-                                   Es necesario que llenes este campo para envíar la información
-                                 </div>
+                                  Es necesario que llene este campo para el envío de la información.
+                                
+                                </div>
                                </div>
                                @enderror
                                <div class="col-md-6">
-                                 <strong><label  for="Labelnombrepadre" class="form-label"> cargo de trabajo que ocupa el padre</label></strong>
+                                 <strong><label  for="Labelnombrepadre" class="form-label"> Cargo laboral del padre</label></strong>
                                  <input  type="text" class="form-control"  wire:model="cargo_profesion_padre">
                                </div>
                                @error('cargo_profesion_padre')
                                <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
                                  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
                                  <div>
-                                   Es necesario que llenes este campo para envíar la información
-                                 </div>
+                                  Es necesario que llene este campo para el envío de la información.
+                                
+                                </div>
                                </div>
                                @enderror
                                <div class="col-md-6">
-                                 <strong><label  for="Labelnombrepadre" class="form-label"> religion que profesa el padre</label></strong>
+                                 <strong><label  for="Labelnombrepadre" class="form-label"> Religión que profesa el padre</label></strong>
                                  <input  type="text" class="form-control"  wire:model="religion_padre">
                                </div>
                                @error('religion_padre')
                                <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
                                  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
                                  <div>
-                                   Es necesario que llenes este campo para envíar la información
-                                 </div>
+                                  Es necesario que llene este campo para el envío de la información.
+                                
+                                </div>
                                </div>
                                @enderror
                                <div class="col-md-6">
-                                 <strong><label  for="Labelnombrepadre" class="form-label"> NIT del padre(por favor no utilice ningun signo solo ingerese números)</label></strong>
+                                 <strong><label  for="Labelnombrepadre" class="form-label"> NIT del padre(sin guión)</label></strong>
                                  <input  type="number" class="form-control"  wire:model="NIT_padre">
                                </div>
                                @error('NIT_padre')
                                <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
                                  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
                                  <div>
-                                   Es necesario que llenes este campo para envíar la información
-                                 </div>
+                                  Es necesario que llene este campo para el envío de la información.
+                                
+                                </div>
                                </div>
                                @enderror
                                <div class="row">
                                  <div class="row">
-                                     <strong><label  for="Labelnombrepadre" class="form-label">¿Vive con el padre?</label></strong>
+                                     <strong><label  for="Labelnombrepadre" class="form-label">¿El alumno vive con el padre?</label></strong>
                                      <center>
                                      <div style="width: 12rem;">
                                      <div class="col-md-7">
@@ -875,56 +888,60 @@
                    <div class="tab">
                      <div class="row">
                      <div class="col-md-6">
-                       <strong><label  for="Labelnombrepadre" class="form-label"> nombre de la madre</label></strong>
+                       <strong><label  for="Labelnombrepadre" class="form-label"> Nombre de la madre</label></strong>
                        <input  type="text" class="form-control"  wire:model="nombre_madre">
                      </div>
                      @error('nombre_madre')
                      <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
                        <div>
-                         Es necesario que llenes este campo para envíar la información
-                       </div>
+                        Es necesario que llene este campo para el envío de la información.
+                      
+                      </div>
                      </div>
                      @enderror
                      <div class="col-md-6">
-                       <strong><label  for="Labelnombrepadre" class="form-label"> fecha de nacimiento de la madre</label></strong>
+                       <strong><label  for="Labelnombrepadre" class="form-label"> Fecha de nacimiento de la madre</label></strong>
                        <input  type="date" class="form-control"  wire:model="fechana_madre">
                      </div>
                      @error('fechana_madre')
                      <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
                        <div>
-                         Es necesario que llenes este campo para envíar la información
-                       </div>
+                        Es necesario que llene este campo para el envío de la información.
+                      
+                      </div>
                      </div>
                      @enderror
                      <div class="col-md-6">
-                       <strong><label  for="Labelnombrepadre" class="form-label"> nacionalidad de la madre</label></strong>
+                       <strong><label  for="Labelnombrepadre" class="form-label"> Nacionalidad de la madre</label></strong>
                        <input  type="text" class="form-control"  wire:model="nacionalidad_madre">
                      </div>
                      @error('nacionalidad_madre')
                      <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
                        <div>
-                         Es necesario que llenes este campo para envíar la información
-                       </div>
+                        Es necesario que llene este campo para el envío de la información.
+                      
+                      </div>
                      </div>
                      @enderror
                      <div class="col-md-6">
-                       <strong><label  for="Labelnombrepadre" class="form-label"> lugar de nacimiento de la madre</label></strong>
+                       <strong><label  for="Labelnombrepadre" class="form-label"> Lugar de nacimiento de la madre</label></strong>
                        <input  type="text" class="form-control"  wire:model="lugar_nacimiento_madre">
                      </div>
                      @error('lugar_nacimiento_madre')
                      <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
                        <div>
-                         Es necesario que llenes este campo para envíar la información
-                       </div>
+                        Es necesario que llene este campo para el envío de la información.
+                      
+                      </div>
                      </div>
                      @enderror
                      <div class="row">
                        <div class="row">
-                           <strong><label  for="Labelnombrepadre" class="form-label"> estado civil de la madre</label></strong>
+                           <strong><label  for="Labelnombrepadre" class="form-label"> Estado civil de la madre</label></strong>
                            <div class="col-md-4">
                                <div class="form-check">
                                    <input class="form-check-input" type="radio" wire:model="estadocivilma" value="1"  wire:click="estado_civil_madre('1')">
@@ -962,118 +979,128 @@
                    <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
                      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
                      <div>
-                       Es necesario que llenes este campo para envíar la información
-                     </div>
+                      Es necesario que llene este campo para el envío de la información.
+                    
+                    </div>
                    </div>
                    @enderror
                    <div class="col-md-6">
-                     <strong><label  for="Labelnombrepadre" class="form-label"> telefono de la madre</label></strong>
+                     <strong><label  for="Labelnombrepadre" class="form-label"> Teléfono de la madre</label></strong>
                      <input  type="number" class="form-control"  wire:model="telefono_madre">
                    </div>
                    @error('telefono_madre')
                    <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
                      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
                      <div>
-                       Es necesario que llenes este campo para envíar la información
-                     </div>
+                      Es necesario que llene este campo para el envío de la información.
+                    
+                    </div>
                    </div>
                    @enderror
                    <div class="col-md-6">
-                     <strong><label  for="Labelnombrepadre" class="form-label"> celular de la madre</label></strong>
+                     <strong><label  for="Labelnombrepadre" class="form-label"> Número de celular de la madre</label></strong>
                      <input  type="number" class="form-control"  wire:model="celular_madre">
                    </div>
                    @error('celular_madre')
                    <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
                      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
                      <div>
-                       Es necesario que llenes este campo para envíar la información
-                     </div>
+                      Es necesario que llene este campo para el envío de la información.
+                    
+                    </div>
                    </div>
                    @enderror
  
                    <div class="col-md-6">
-                     <strong><label  for="Labelnombremadre" class="form-label"> dirección de la residencia de la madre</label></strong>
+                     <strong><label  for="Labelnombremadre" class="form-label"> Dirección de residencia de la madre</label></strong>
                      <input  type="text" class="form-control"  wire:model="direccion_residenciamadre">
                    </div>
                    @error('direccion_residenciamadre')
                    <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
                      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
                      <div>
-                         Es necesario que llenes este campo para envíar la información
-                     </div>
+                      Es necesario que llene este campo para el envío de la información.
+                    
+                    </div>
                    </div>
                    @enderror
                  <div class="col-md-6">
-                     <strong><label  for="Labelnombremadre" class="form-label"> correo electrónico de la madre</label></strong>
+                     <strong><label  for="Labelnombremadre" class="form-label"> Correo electrónico de la madre</label></strong>
                      <input  type="text" class="form-control"  wire:model="correo_madre">
                    </div>
                    @error('correo_madre')
                    <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
                      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
                      <div>
-                         Es necesario que llenes este campo para envíar la información
-                     </div>
+                      Es necesario que llene este campo para el envío de la información.
+                    
+                    </div>
                    </div>
                    @enderror
                  <div class="col-md-6">
-                     <strong><label  for="Labelnombremadre" class="form-label"> profesión a la que se decica la madre <label></strong>
+                     <strong><label  for="Labelnombremadre" class="form-label"> Profesión de la madre <label></strong>
                      <input  type="text" class="form-control"  wire:model="profesion_madre">
                    </div>
                    @error('profesion_madre')
                    <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
                      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
                      <div>
-                       Es necesario que llenes este campo para envíar la información
-                     </div>
+                      Es necesario que llene este campo para el envío de la información.
+                    
+                    </div>
                    </div>
                    @enderror
  
                    <div class="col-md-6">
-                     <strong><label  for="Labelnombremadre" class="form-label"> lugar donde la madre ejerce su profesion <label></strong>
+                     <strong><label  for="Labelnombremadre" class="form-label"> Dirección de trabajo de la madre <label></strong>
                      <input  type="text" class="form-control"  wire:model="lugar_prof_madre">
                    </div>
                    @error('lugar_prof_madre')
                    <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
                      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
                      <div>
-                       Es necesario que llenes este campo para envíar la información
-                     </div>
+                      Es necesario que llene este campo para el envío de la información.
+                    
+                    </div>
                    </div>
                    @enderror
                    <div class="col-md-6">
-                     <strong><label  for="Labelnombremadre" class="form-label">Ingrese cual es el cargo que la madre ocupa en su profesion <label></strong>
+                     <strong><label  for="Labelnombremadre" class="form-label">Cargo laboral de la madre <label></strong>
                      <input  type="text" class="form-control"  wire:model="cargo_madre">
                    </div>
                    @error('cargo_madre')
                    <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
                      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
                      <div>
-                       Es necesario que llenes este campo para envíar la información
-                     </div>
+                      Es necesario que llene este campo para el envío de la información.
+                    
+                    </div>
                    </div>
                    @enderror
                    <div class="col-md-6">
-                     <strong><label  for="Labelnombremadre" class="form-label">Ingrese cual es la religion que la madre profesa<label></strong>
+                     <strong><label  for="Labelnombremadre" class="form-label">Religión que profesa la madre<label></strong>
                      <input  type="text" class="form-control"  wire:model="religion_madre">
                    </div>
                    @error('religion_madre')
                    <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
                      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
                      <div>
-                       Es necesario que llenes este campo para envíar la información
-                     </div>
+                      Es necesario que llene este campo para el envío de la información.
+                    
+                    </div>
                    </div>
                    @enderror
                    <div class="col-md-6">
-                     <strong><label  for="Labelnombremadre" class="form-label"> NIT de la madre(por favor no utilice ningun signo solo ingerese números)<label></strong>
+                     <strong><label  for="Labelnombremadre" class="form-label"> NIT de la madre(sin guión)<label></strong>
                      <input  type="number" class="form-control"  wire:model="NIT_madre">
                    </div>
                    @error('NIT_madre')
                    <div class="alert alert-danger d-flex align-items-center rounded-pill" role="alert">
                      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
                      <div>
-                       Es necesario que llenes este campo para envíar la información
-                     </div>
+                      Es necesario que llene este campo para el envío de la información.
+                    
+                    </div>
                    </div>
                    @enderror
                          <strong><label  for="Labelnombremadre" class="form-label">¿El alumno vive con la madre?</label></strong>
@@ -1136,7 +1163,7 @@
                @if($tiene_alergia==1)
               <center>
              <div class="col-md-6">
-              <strong><label  for="Labelnombreaseguradora" class="form-label">IEspecifique cuales</label></strong>
+              <strong><label  for="Labelnombreaseguradora" class="form-label">Especifique cuales</label></strong>
               <input  type="text" class="form-control"  wire:model="Especifique_alerg">
              </div>
               </center>
@@ -1147,7 +1174,7 @@
                  
              <div class="tab">
                <div class="row">
-               <strong><label for="exampleInputPassword1" class="form-label">¿El alumno es alergico a un medicamento?</label></strong>
+               <strong><label for="exampleInputPassword1" class="form-label">¿El alumno es alérgico a un medicamento?</label></strong>
                <center>
                <div style="width: 12rem;">
                <div class="form-check">
@@ -1177,7 +1204,7 @@
        
          <div class="tab">
            <div class="row">
-           <strong><label for="exampleInputPassword1" class="form-label">¿El alumno es alergico a un alimento?</label></strong>
+           <strong><label for="exampleInputPassword1" class="form-label">¿El alumno es alérgico a un alimento?</label></strong>
            <center>
            <div style="width: 12rem;">
            <div class="form-check">
@@ -1227,7 +1254,7 @@
              
        
            <div class="tab">
-             <strong><label for="exampleInputPassword1" class="form-label">¿El alumno esta asegurado?</label></strong>
+             <strong><label for="exampleInputPassword1" class="form-label">¿El alumno está asegurado?</label></strong>
                <center>
                  <div style="width: 12rem;">
                    <div class="form-check">
@@ -1247,7 +1274,7 @@
                    @if($alumno_asegurado==1)
                  <center>
                    <div class="col-md-6">
-                     <strong><label  for="Labelnombreaseguradora" class="form-label"> nombre de la aseguradora</label></strong>
+                     <strong><label  for="Labelnombreaseguradora" class="form-label">Nombre de la aseguradora</label></strong>
                        <input  type="text" class="form-control"  wire:model="nombre_aseguradora">
                    </div>
                  </center>
@@ -1258,12 +1285,12 @@
                
        <div class="row">
          <div class="col-md-6">
-           <strong><label  for="Labelpoliza" class="form-label"> poliza de seguro</label></strong>
+           <strong><label  for="Labelpoliza" class="form-label">Póliza de seguro</label></strong>
              <input  type="text" class="form-control"  wire:model="poliza">
          </div>
                    
          <div class="col-md-6">
-             <strong><label  for="Labelcarneseguro" class="form-label"> número del carné de seguro</label></strong>
+             <strong><label  for="Labelcarneseguro" class="form-label"> Número de carné de seguro</label></strong>
                <input  type="number" class="form-control"  wire:model="carne_seguro">
          </div>
                    
@@ -1361,7 +1388,7 @@
         @if($bus_colegio==2)
         <center>
           <div class="col-md-6">
-            <strong><label  for="Labelnombrepadre" class="form-label">Número de la matrícula del bus ajeno al Colegio</label></strong>
+            <strong><label  for="Labelnombrepadre" class="form-label">Número de matrícula del bus en el que su hijo(a) se retira.</label></strong>
             <input  type="text" class="form-control"  wire:model="matricula_bus_aj">
           </div>
          </center>
@@ -1384,13 +1411,13 @@
             @if($mensajeins!=null && $mensajeins==1)
             <br>
             <div class="alert alert-success" role="alert">
-                Editado Correctamente!
+                ¡Editado Correctamente!
               </div>
             @endif
               @if($mensajeins1!=null && $mensajeins1==1)
               <br>
               <div class="alert alert-Danger" role="alert">
-                No fue Editado Correctamente!
+                ¡No fue Editado Correctamente!
               </div>
               @endif
                     
@@ -1400,19 +1427,19 @@
           <div>
           @if($estado_ges==4)
           
-          <a  id="valestadoinfo4" wire:click="cambio_estado(3)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-success" data-bs-dismiss="modal">Reg. Estado</a>
+          <a  id="valestadoinfo4" wire:click="cambio_estado(3)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-pre2" data-bs-dismiss="modal">Reg. Estado</a>
               
             <a  id="valestadoinfo4" wire:click="cambio_estado(5)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-warning" data-bs-dismiss="modal">Sig. Estado</a>
 
-            <a  type="button"  wire:click="update_datos_ins()" style="border-radius: 60px 60px 60px 60px;" class="btn btn-primary" >Actualizar</a>
+            <a  type="button"  wire:click="update_datos_ins()" style="border-radius: 60px 60px 60px 60px;" class="btn btn-editb" >Actualizar</a>
           
             @elseif($estado_ges==3)
             
-            <a  id="valestadoinfo4" wire:click="cambio_estado(2)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-success" data-bs-dismiss="modal">Reg. Estado</a>
+            <a  id="valestadoinfo4" wire:click="cambio_estado(2)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-pre2" data-bs-dismiss="modal">Reg. Estado</a>
               
             <a  id="valestadoinfo4" wire:click="cambio_estado(4)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-warning" data-bs-dismiss="modal">Sig. Estado</a>
 
-            <a  type="button"  wire:click="update_datos_ins()" style="border-radius: 60px 60px 60px 60px;" class="btn btn-primary" >Actualizar</a>
+            <a  type="button"  wire:click="update_datos_ins()" style="border-radius: 60px 60px 60px 60px;" class="btn btn-editb" >Actualizar</a>
             
             @endif
           </div>

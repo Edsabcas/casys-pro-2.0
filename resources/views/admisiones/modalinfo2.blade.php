@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header text-center" style="background:#a4cb39;color:rgb(255, 255, 255)">
-          <h3 class="modal-title text-center" style="color:rgb(255, 255, 255)" >Proceso Pre-Inscripción</h3>
+          <h3 class="modal-title text-center" style="color:rgb(255, 255, 255)" >Proceso de Inscripción</h3>
           <button type="button" class="btn btn-close btn-warning" style="color:rgb(255, 255, 255)"  data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
@@ -13,14 +13,14 @@
               <h4 class="form-label text text-center" style="font-size:25px">Gestion: #{{$gestion}}
               
               </h4> 
-              <p  class="text text-center">Fecha de ultimo cambio: <b>{{$fecha_ultimo_cambio}}</b></p>
+              <p  class="text text-center">Fecha de último cambio: <b>{{$fecha_ultimo_cambio}}</b></p>
               <br>
 
                 <div wire:ignore.self class="accordion" id="accordionPanelsStayOpenExample2">
                   <div style="border-radius: 60px 60px 60px 60px;" class="accordion-item">
                     <h2 style="border-radius: 60px 60px 60px 60px;" class="accordion-header" id="panelsStayOpen-headingTwo">
                       <button class="accordion-button collapsed" style="background-color:#d6e7a6; border:6px solid #a4cb39; border-radius: 60px 60px 60px 60px;"  type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-                      <h4 class="font-weight-bolder">  <b>Datos del Estudiante:</b>   </h4>
+                      <h4 class="font-weight-bolder">  <b>Datos Estudiante:</b>   </h4>
                       </button>
                      
                     </h2>
@@ -202,7 +202,7 @@
                                           <div class="alert alert-danger d-flex align-items-center" role="alert">
                                             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
                                             
-                                              <span>Debe de seleccionar</span>
+                                              <span>Seleccionar: </span>
                                              </div> @enderror
                           </div>
                           <div class="mb-3">
@@ -230,7 +230,7 @@
                                         <div class="alert alert-danger d-flex align-items-center" role="alert">
                                           <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
                                           
-                                            <span>Debe de seleccionar</span>
+                                            <span>seleccionar:</span>
                                            </div> @enderror
                         </div>
                           </div>
@@ -311,7 +311,7 @@
                           <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" wire:model="es_civil_en"  value="Viuda" id="flexRadioEstado3">
                             <label class="form-check-label" for="flexRadioEstado3" style="font-size: 15px; color:#000000;">
-                              Viuda/o
+                              Viuda(o)
                             </label>
                           </div>
                         </div>
@@ -334,7 +334,7 @@
                         </div>
                         <div class="row g-3">
                         <div class="form-group col-xs-12">
-                          <label for="inputApellidos" style="font-size: 15px; color:#000000;">Direccion de domicilio:</label>
+                          <label for="inputApellidos" style="font-size: 15px; color:#000000;">Dirección de domicilio:</label>
                           <input type="text" placeholder="" type="email" wire:model="direccion_en" class="form-control " required>
                       </div>
                       @error('direccion_en')
@@ -345,7 +345,7 @@
                     </div>
                       <div class="row g-3">
                         <div class="col-md">
-                        <label for="inputApellidos" style="font-size: 15px; color:#000000;">Telefono de casa:</label>
+                        <label for="inputApellidos" style="font-size: 15px; color:#000000;">Teléfono de casa:</label>
                         <input placeholder="" type="number"  wire:model="tel_casa_en" class="form-control " required>
                     </div>
                     @error('tel_casa_en')
@@ -354,7 +354,7 @@
                     </div>
                     @enderror
                       <div class="col-md">
-                      <label for="inputApellidos" style="font-size: 15px; color:#000000;">Telefono celular:</label>
+                      <label for="inputApellidos" style="font-size: 15px; color:#000000;">Teléfono celular:</label>
                       <input placeholder="" type="number"  wire:model="cel_en" class="form-control " required>
                     </div>
                     @error('cel_en')
@@ -366,7 +366,7 @@
                     
                     <div class="row g-3">
                     <div class="col-md">
-                              <label for="inputApellidos" style="font-size: 15px; color:#000000;">Correo electronico:</label>
+                              <label for="inputApellidos" style="font-size: 15px; color:#000000;">Correo electrónico:</label>
                               <input placeholder="" type="email"  wire:model="correo_en" class="form-control " required>
                           </div>
                           @error('correo_en')
@@ -375,7 +375,7 @@
                           </div>
                           @enderror
                           <div class="col-md">
-                            <label for="inputApellidos" style="font-size: 15px; color:#000000;">Correo electronico (opcional):</label>
+                            <label for="inputApellidos" style="font-size: 15px; color:#000000;">Correo electrónico (opcional):</label>
                             <input placeholder="" type="email"  wire:model="correo_en2" class="form-control " required>
                         </div>
                         @error('correo_en')
@@ -435,7 +435,7 @@
                       </div>
                       @enderror
                       <div class="col-md">
-                        <label for="exampleInputEmail1" class="form-label">Metodo de pago:</label>
+                        <label for="exampleInputEmail1" class="form-label">Método de pago:</label>
                             <select class="form-select" aria-label="Default select example" wire:model="metodo" required>
                               <option selected>Seleccionar:</option>
                               @isset($metododepago)
@@ -534,7 +534,7 @@
                         @isset($mensajeup)
                       @if ($mensajeup!=null)
                       <div class="alert alert-success" role="alert">
-                        Editado correctamente!
+                        ¡Editado correctamente!
                       </div>
                       @endif
                       @endisset
@@ -542,7 +542,7 @@
                       @isset($mensajeup1)
                       @if($mensajeup1!=null)
                       <div class="alert alert-danger" role="alert">
-                        No se logro editar correctamente!
+                        ¡No se logro editar correctamente!
                       </div>
                       @endif
                       @endisset
@@ -558,10 +558,10 @@
 
           <button class="btn btn-pre2" style="border-radius: 60px 60px 60px 60px;" wire:click="actualizar_validacion_pago()">Actualizar</button>
 
-          <a  id="valpedido" wire:click="tipo_cambio(0)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-success" data-bs-dismiss="modal">Reg. Estado</a>
+          <a  id="valpedido" wire:click="tipo_cambio(0)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-warning" data-bs-dismiss="modal">Reg. Estado</a>
               
           @if($estado_ges==2)
-            <a  id="valpedido"  wire:click="tipo_cambio(3)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-warning" data-bs-dismiss="modal">Sig. Estado</a>
+            <a  id="valpedido"  wire:click="tipo_cambio(3)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-editb" data-bs-dismiss="modal">Sig. Estado</a>
             @endif
  
         </div>

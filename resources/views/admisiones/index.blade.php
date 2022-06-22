@@ -58,7 +58,7 @@
     <div class="card shadow rounded">
         <div class="text-center">
           <br>
-          <h1 style="color: #3a3e7b"><strong>Pre-Inscripción @php echo date('Y'); @endphp</strong></h1>
+          <h1 style="color: #3a3e7b"><strong>Inscripción @php echo date('Y'); @endphp</strong></h1>
           <br>
         </div>
       </div>
