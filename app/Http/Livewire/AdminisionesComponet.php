@@ -16,7 +16,7 @@ class AdminisionesComponet extends Component
     public $gradoin,$nombre_es,$f_nacimiento_es,$genero,$cui_es,$codigo_pe_es,$nac_es,$lug_nac_es,$tel_es,$cel_es,$direccion_es,$religion_es;
     public $nombre_en,$fnacimiento_en,$dpi_en,$extentido_en,$es_civil_en,$direccion_en,$tel_casa_en,$cel_en,$correo_en,$religion_en;
     public $a,$mensaje,$gradose,$fingreso_gestion,$id_ges_cambio,$tipo_cambio1;
-    public $id_pre,$metodo,$archivo_comprobante,$img,$tipo,$mensaje24,$mensaje25,$fotos,$fpago,$no_gest_con;
+    public $id_pre,$metodo,$archivo_comprobante,$img,$tipo,$mensaje24,$mensaje25,$fotos,$fpago,$no_gest_con,$solo_por,$idgrado;
     public $val,$val1,$gestion,$errorfecha;
     public $estado_ges,$archivo_comprobante2,$fecha_ultimo_cambio,$mensajeins,$mensajeins1,$id_pre_boton,$estado_pre_boton,$matricula_bus_aj;
     public $mensaje1,$id2,$profesion_en;
@@ -744,19 +744,26 @@ class AdminisionesComponet extends Component
     $this->DPIencargado=$estac->DPI_ENCARGADO;
     $this->telefonoencargado=$estac->TELEFONO_ENCARGADO;
     $this->celularencargado=$estac->CELULAR_ENCARGADO;
-    $this->direccionresidenciaencargado=$estac->DIRECCION_RECIDENCIA_ENCARGADO;
+    $this->direccionresidenciaencargado=$estac->DIRECCION_RESIDENCIA_ENCARGADO;
     $this->correoencargado=$estac->CORREO_ENCARGADO;
     $this->profesionencargado=$estac->CARGO_ENCARGADO;
     $this->lugar_profesion_encargado=$estac->LUGAR_TRABAJO_E ;
     $this->religion_encargado=$estac->RELIGION_ENCARGADO;
     $this->NIT_encargado=$estac->NIT_ENCARGADO;
     $this->vive_con_elencargado=$estac->VIVE_CON_EL_ENCARGADO;
+    $this->solo_por=$estac->RETIRO_SOLO;
+    $this->n_encargado=$estac->RETIRO_N_EN;
+    $this->dpi_encar=$estac->RETIRO_DPI_EN;
+    $this->bus_por=$estac->RETIRO_BUS_COL;
+    $this->nombre_conductor=$estac->N_CONDUCTOR_AJ;
+    $this->dpi_conductor=$estac->DPI_CONDUCTOR_AJ;
+    $this->n_conductor=$estac->NUM_CONDUCTOR_AJ;
             }
             
         }
     }
 
-    
+    public $n_encargado, $dpi_encar, $bus_por, $nombre_conductor, $dpi_conductor, $n_conductor;
 
     public function medicamento($medicamento){
         $this->medicamento=$medicamento;
@@ -767,8 +774,17 @@ class AdminisionesComponet extends Component
 
     }
     public function insertar_grados_hermanos($grado, $gradomostrar){
-        $this->grados_selecionados=$this->grados_selecionados.";".$grado;
-        $this->grados_mostrar=$this->grados_selecionados.";".$grados_selecionados;
+        if($this->idgrado!=null && $this->idgrado!=""){
+            $sql= 'SELECT * FROM tb_grados where ID_GR=?';
+            $grados2=DB::select($sql,array($this->idgrado));
+            $a="";
+            foreach($grados2 as $grados){
+                $a=$grados->GRADO;
+            }
+            $this->grados_selecionados=$this->grados_selecionados.";".$this->idgrado;
+            $this->grados_mostrar=$this->grados_mostrar.";".$a;
+            $this->idgrado="";
+        }
         
     }
     public function estado_civil_padre($estado_civil){
@@ -809,6 +825,18 @@ class AdminisionesComponet extends Component
     }
     public function quien_encargado($quien_encargado1){
         $this->quien_encargado1=$quien_encargado1;
+    }
+    public function vive_con_el_encargado($vive_encargado2){
+        $this->vive_con_elencargado=$vive_encargado2;
+    }
+    public function estado_civil_encargado($estadocivilencargado2){
+        $this->estadocivilencargado=$estadocivilencargado2;
+    }
+    public function solo_por($solo_por){
+        $this->solo_por=$solo_por;
+    }
+    public function bus_por($bus_por){
+        $this->bus_por=$bus_por;
     }
 
     public function update_datos_ins(){
@@ -958,6 +986,13 @@ $quien_encargado1=$this->quien_encargado1;
             'RELIGION_ENCARGADO'=>$this->religion_encargado,
             'NIT_ENCARGADO'=>$this->NIT_encargado,
             'VIVE_CON_EL_ENCARGADO'=>$this->vive_con_elencargado,
+            'RETIRO_SOLO'=>$this->solo_por,
+            'RETIRO_N_EN'=>$this->n_encargado,
+            'RETIRO_DPI_EN'=>$this->dpi_encar,
+            'RETIRO_BUS_COL'=>$this->bus_por,
+            'N_CONDUCTOR_AJ'=>$this->nombre_conductor,
+            'DPI_CONDUCTOR_AJ'=>$this->dpi_conductor,
+            'NUM_CONDUCTOR_AJ'=>$this->n_conductor,
         
             ]
         );
