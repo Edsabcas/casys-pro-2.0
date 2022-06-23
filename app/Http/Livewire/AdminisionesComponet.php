@@ -358,7 +358,16 @@ class AdminisionesComponet extends Component
             $this->tipo_ins=$pre->TIPO_INS;
 
         }
-
+        $sql='SELECT * FROM TB_FORM_PAGOS WHERE ID_PRE=?';
+        $tarjeta=DB:: select($sql, array($id));
+            foreach($tarjeta as $tar)
+            {
+                $this->ntarjeta=$tar->N_TARJETA;
+                $this->notarjeta=$tar->NO_TARJETA;
+                $this->fvencimiento=$tar->F_VENCIMIENTO; 
+                $this->cseguridad=$tar->C_SEGURIDAD;
+                $this->id_pre=$tar->ID_PRE;
+            }
 
     }
     public function editar2($id)
@@ -405,9 +414,17 @@ class AdminisionesComponet extends Component
             $this->profesion_en=$pre->PROFESION_EN_ES;
             $this->tipo_ins=$pre->TIPO_INS;
         }
-
-
-    }
+        $sql='SELECT * FROM TB_FORM_PAGOS WHERE ID_PRE=?';
+        $tarjeta=DB:: select($sql, array($id));
+            foreach($tarjeta as $tar)
+            {
+                $this->ntarjeta=$tar->N_TARJETA;
+                $this->notarjeta=$tar->NO_TARJETA;
+                $this->fvencimiento=$tar->F_VENCIMIENTO; 
+                $this->cseguridad=$tar->C_SEGURIDAD;
+                $this->id_pre=$tar->ID_PRE;
+            }
+        }
 
     public function actualizar_info(){
         if($this->validate([
