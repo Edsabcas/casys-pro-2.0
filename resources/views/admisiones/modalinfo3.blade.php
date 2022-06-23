@@ -160,7 +160,7 @@
 
                         <div class="mb-3">
                           <option></option>
-                          <label for="lastname" style="color: #3a3e7b">
+                          <label for="lastwire:model" style="color: #3a3e7b">
                               <b>¿Cómo prefiere que sus hijos estudien el ciclo escolar 2023?</b></label>
                               <br>
                               <br>
@@ -188,7 +188,7 @@
                       </div>
                       <div class="mb-3">
                         <option></option>
-                        <label for="lastname" style="color: #3a3e7b">
+                        <label for="lastwire:model" style="color: #3a3e7b">
                             <b>Inscripción:</b></label>
                             <br>
                             <br>
@@ -512,7 +512,7 @@
                 <div wire:ignore.self class="accordion" id="accordionDatosVarios">
                  <div style="border-radius: 60px 60px 60px 60px;" class="accordion-item">
                    <h2 style="border-radius: 60px 60px 60px 60px;" class="accordion-header" id="panelsStayOpen-headingOnedatosvarios">
-                     <button class="accordion-button" type="button" style="background-color:#d6e7a6; border:6px solid #a4cb39; border-radius: 60px 60px 60px 60px;" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-datosvarios" aria-expanded="true" aria-controls="panelsStayOpen-datosvarios">
+                     <button class="accordion-button"  type="button" style="background-color:#d6e7a6; border:6px solid #a4cb39; border-radius: 60px 60px 60px 60px;" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-datosvarios" aria-expanded="true" aria-controls="panelsStayOpen-datosvarios">
                          <h4 class="font-weight-bolder">
                              DATOS VARIOS
                            </h4>
@@ -541,28 +541,30 @@
                      </center>
                            @if($confi==1)
                          @error('gradoin') 
-                         <div class="alert alert-danger d-flex align-items-center" role="alert">
-                           <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
-                           
-                             <span>Seleccione: </span>
-                            </div> @enderror
+                         <div class="col-md-6">
+                          <div class="alert alert-danger d-flex align-items-center" role="alert">
+                            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                            
+                              <span>Seleccione un grado</span>
+                             </div> 
+                             </div> @enderror
                          
-                         <ul class="list-group" style="border-radius: 60px 60px 60px 60px;">
-                           @foreach($grados as $grado)
-                           <li class="list-group-item list-group-item-action"  for="flexRadioGrado{{$grado->ID_GR}}">
-                             <input class="form-check-input me-1" type="radio" wire:click='insertar_grados_hermanos("{{$grado->ID_GR}}","{{$grado->GRADO}}")' wire:model="grados_selecionados" value="{{$grado->ID_GR}}" aria-label="..." id="flexRadioGrado{{$grado->ID_GR}}">
-                             <label class="form-check-label" for="flexRadioGrado{{$grado->ID_GR}}" style="font-size: 15px; color:#000000;">
-                           {{$grado->GRADO}}
-                             </label>
-                           </li>
-                           
-                           @endforeach
-                         
-                         </ul>
+                             <div class="mb-3">
+                              <label for="" class="form-label" style="font-size:20px; color: #3a3e7b"><strong>• Seleccione el grado </strong></label>
+                              <select class="form-select rounded-pill shadow-sm rounded" wire:model="idgrado" wire:click='insertar_grados_hermanos()'  style="border-radius: 70px 70px 70px 70px; border-color: #a4cb39" aria-label="Default select example" >
+                                <option selected >Grados</option>
+                                @isset($grados)
+                                @foreach($grados as $grado)
+                              <option value="{{$grado->ID_GR}}">{{$grado->GRADO}}"</option> 
+                              @endforeach
+                              @endisset
+                      
+                              </select>
+                            </div>
                          <br>
                         
-                         <h5>Grados seleccionados: {{$grados_mostrar}}</h5>
-                        
+                         <h5>Grados selecionados:{{$grados_mostrar}}</h5>
+                         
                          @endif  
                          
                          <br>
@@ -1146,7 +1148,7 @@
                       <strong><label  for="Labelnombrepadre" class="form-label">¿Quien es el encargado?</label></strong>
                       <div class="col-md-4">
                           <div class="form-check">
-                              <input class="form-check-input" type="radio" Wire.model="quien_encargado1"  value="1" wire:click="quien_encargado('1')">
+                              <input class="form-check-input" type="radio" wire:model="quien_encargado1"  value="1" wire:click="quien_encargado('1')">
                               <label class="form-check-label" for="qencargado1">
                                 El padre
                               </label>
@@ -1154,7 +1156,7 @@
                       </div>
                       <div class="col-md-4">
                           <div class="form-check">
-                              <input class="form-check-input" type="radio" Wire.model="quien_encargado1" value="2" wire:click="quien_encargado('2')">
+                              <input class="form-check-input" type="radio" wire:model="quien_encargado1" value="2" wire:click="quien_encargado('2')">
                               <label class="form-check-label" for="qencargado1">
                                 La madre      
                               </label>
@@ -1162,7 +1164,7 @@
                       </div>
                       <div class="col-md-4">
                           <div class="form-check">
-                              <input class="form-check-input" type="radio" Wire.model="quien_encargado1"  value="3" wire:click="quien_encargado('3')">
+                              <input class="form-check-input" type="radio" wire:model="quien_encargado1"  value="3" wire:click="quien_encargado('3')">
                               <label class="form-check-label" for="qencargado1">
                                 Otro encargado
                               </label>
@@ -1240,7 +1242,7 @@
                         <strong><label  for="Labelnombreencargado" class="form-label">Estado civil</label></strong>
                         <div class="col-md-4">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" Wire.model="estadocivilencargado" value="1" wire:click="estado_civil_encargado('1')">
+                                <input class="form-check-input" type="radio" wire:model="estadocivilencargado" value="1" wire:click="estado_civil_encargado('1')">
                                 <label class="form-check-label" for="estadocivilencargado">
                                   Casado(a)
                                 </label>
@@ -1248,7 +1250,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" Wire.model="estadocivilencargado" value="2"  wire:click="estado_civil_encargado('2')">
+                                <input class="form-check-input" type="radio" wire:model="estadocivilencargado" value="2"  wire:click="estado_civil_encargado('2')">
                                 <label class="form-check-label" for="estadocivilencargado">
                                   Separado(a)
                                 </label>
@@ -1256,7 +1258,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" Wire.model="estadocivilencargado" value="3" wire:click="estado_civil_encargado('3')">
+                                <input class="form-check-input" type="radio" wire:model="estadocivilencargado" value="3" wire:click="estado_civil_encargado('3')">
                                 <label class="form-check-label" for="estadocivilencargado">
                                   Soltero(a)
                                 </label>
@@ -1433,7 +1435,7 @@
                             <div style="width: 12rem;">
                           <div class="col-md-7">
                               <div class="form-check">
-                                  <input class="form-check-input" type="radio" Wire.model="vive_con_el_encargado"  wire:click="vive_con_el_encargado('1')">
+                                  <input class="form-check-input" type="radio" wire:model="vive_con_el_encargado"  wire:click="vive_con_el_encargado('1')">
                                   <label class="form-check-label" for="viveen1">
                                     Si
                                   </label>
@@ -1441,7 +1443,7 @@
                           </div>
                           <div class="col-md-7">
                               <div class="form-check">
-                                  <input class="form-check-input" type="radio" Wire.model="viveen"  wire:click="vive_con_el_encargado('2')">
+                                  <input class="form-check-input" type="radio" wire:model="viveen"  wire:click="vive_con_el_encargado('2')">
                                   <label class="form-check-label" for="viveen1">
                                     No
                                   </label>
@@ -1645,6 +1647,8 @@
   
         <div  wire:ignore.self id="panelsStayOpen-salida" style="border-radius: 60px 60px 60px 60px;" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingOne">
           <div  wire:ignore.self class="accordion-body" style="border-radius: 60px 60px 60px 60px;">
+            <strong><p class="card-title" style="color:#3a3e7b;" >
+              Autorizo que mi hij@ se retire de la siguiente manera:</p></strong>
             <div class="tab">
               <strong><label for="exampleInputPassword1" class="form-label">¿El alumno se retira solo?</label></strong>
                 <center>
@@ -1663,6 +1667,28 @@
             </div>
             </center>
           </div>
+  
+          @if($solo_alumno==1)
+            <div class="tab">
+              <strong><label for="exampleInputPassword1" class="form-label">Se retira por:</label></strong>
+              <center>
+              <div style="width: 12rem;">
+              <div class="form-check">
+                  <input class="form-check-input" type="radio" wire:model="solo_por" value="1" id="retirapor1" wire:click="solo_por('1')">
+                  <label class="form-check-label" for="retirapor1">
+                    Florida
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" wire:model="solo_por" value="2" id="retirapor2" wire:click="solo_por('2')">
+                  <label class="form-check-label" for="retirapor1">
+                    Monserrat
+                  </label>
+                </div>
+              </div>
+           </center>  
+            </div>
+          @endif
   
       @if($solo_alumno==2)
             <div class="tab">
@@ -1685,9 +1711,21 @@
            </center>
            @if($encargado_alumno==1)
            <center>
+          <div class="row">
+            <div class="col-md-6">
+              <strong><label  for="Labelnombremadre" class="form-label">Nombre del encargado<label></strong>
+              <input  type="text" class="form-control"  wire:model="nombre_encargado">
+            </div>
+            
+            <div class="col-md-6">
+              <strong><label  for="Labelnombremadre" class="form-label">Número del encargado<label></strong>
+              <input  type="number" class="form-control"  wire:model="n_encargado">
+            </div>
+          </div>
+  
           <div class="col-md-6">
-            <strong><label  for="Labelnombrepadre" class="form-label">Nombre del encargado</label></strong>
-            <input  type="text" class="form-control"  wire:model="nombreencargado">
+            <strong><label  for="Labelnombrepadre" class="form-label">DPI del encargado</label></strong>
+            <input  type="number" class="form-control"  wire:model="dpi_encar">
           </div>
          </center>
           @endif
@@ -1716,12 +1754,52 @@
         </center>
         </div>
   
+        @if($bus_colegio==1)
+            <div class="tab">
+              <strong><label for="exampleInputPassword1" class="form-label">Se retira por:</label></strong>
+              <center>
+              <div style="width: 12rem;">
+              <div class="form-check">
+                  <input class="form-check-input" type="radio" value="1" wire:model="bus_por" value="1" id="buspor1" wire:click="bus_por('1')">
+                  <label class="form-check-label" for="buspor1">
+                    Florida
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" value="2" wire:model="bus_por" value="2" id="buspor2" wire:click="bus_por('2')">
+                  <label class="form-check-label" for="buspor1">
+                    Monserrat
+                  </label>
+                </div>
+              </div>
+           </center>  
+            </div>
+          @endif
+  
         @if($bus_colegio==2)
         <center>
+          <div class="row">
+            <div class="col-md-6">
+              <strong><label  for="Labelnombremadre" class="form-label">Nombre del conductor del bus ajeno al colegio<label></strong>
+              <input  type="text" class="form-control"  wire:model="nombre_conductor">
+            </div>
+  
+            <div class="col-md-6">
+              <strong><label  for="Labelnombremadre" class="form-label">DPI del conductor del bus ajeno al colegio<label></strong>
+              <input  type="text" class="form-control"  wire:model="dpi_conductor">
+            </div>
+            
+            <div class="col-md-6">
+              <strong><label  for="Labelnombremadre" class="form-label">Número del conductor del bus ajeno al colegio<label></strong>
+              <input  type="number" class="form-control"  wire:model="n_conductor">
+            </div>
+  
           <div class="col-md-6">
             <strong><label  for="Labelnombrepadre" class="form-label">Número de matrícula del bus en el que su hijo(a) se retira.</label></strong>
             <input  type="text" class="form-control"  wire:model="matricula_bus_aj">
           </div>
+        </div>
+  
          </center>
         @endif
       @endif
