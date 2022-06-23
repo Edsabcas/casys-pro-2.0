@@ -264,13 +264,16 @@ class AdminisionesComponet extends Component
             if($this->fpago==1){
                 $mespagado=2;
                 $estado_cance=2;
-            }elseif($this->fpago==2){
+            }
+            if($this->fpago==2){
                 $mespagado=1;
                 $estado_cance=1;
-            }elseif($this->fpago==3){
+            }
+            if($this->fpago==3){
                 $mespagado=2;
                 $estado_cance=3;
-            }elseif($this->fpago==4){
+            }
+            if($this->fpago==4){
                 $mespagado=1;
                 $estado_cance=4;
             }
