@@ -11,7 +11,10 @@
             </h4> 
         </div>
         <div class="modal-footer">
-            <a wire:click='cambio_estadoins({{$no_gest}})' type="button" style="border-radius: 60px 60px 60px 60px;" data-bs-dismiss="modal" class="btn btn-warning">Si</a>
+          @if($nuevo_estado==5)
+          <a id="numerocorrelativo" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-warning" data-bs-dismiss="modal">Asignar numero correlativo</a>
+          @endif
+          <a wire:click='cambio_estadoins({{$no_gest}})' type="button" style="border-radius: 60px 60px 60px 60px;" data-bs-dismiss="modal" class="btn btn-warning">Si</a>
           <button type="button" class="btn btn-secondary"  style="border-radius: 60px 60px 60px 60px;"  id="info4"  data-bs-dismiss="modal">Cancelar</button>
           
         </div>
