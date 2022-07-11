@@ -12,16 +12,16 @@ class AdminisionesComponet extends Component
 {
     use WithFileUploads;
 
-    public $search0,$search1,$search11,$search2,$search22,$search3,$search33,$search4,$search44,$search5,$search55;
+    public $search0,$search1,$search11,$search2,$search22,$search3,$search33,$search4,$search44,$search5,$search55,$usuario,$usuario2,$pass2,$correoed2;
     public $gradoin,$nombre_es,$f_nacimiento_es,$genero,$cui_es,$codigo_pe_es,$nac_es,$lug_nac_es,$tel_es,$cel_es,$direccion_es,$religion_es;
     public $nombre_en,$fnacimiento_en,$dpi_en,$extentido_en,$es_civil_en,$direccion_en,$tel_casa_en,$cel_en,$correo_en,$religion_en;
     public $a,$mensaje,$gradose,$fingreso_gestion,$id_ges_cambio,$tipo_cambio1;
     public $id_pre,$metodo,$archivo_comprobante,$img,$tipo,$mensaje24,$mensaje25,$fotos,$fpago,$no_gest_con,$solo_por,$idgrado;
-    public $val,$val1,$gestion,$errorfecha;
+    public $val,$val1,$gestion,$errorfecha,$nomb,$fvencimiento,$cseguridad;
     public $estado_ges,$archivo_comprobante2,$fecha_ultimo_cambio,$mensajeins,$mensajeins1,$id_pre_boton,$estado_pre_boton,$matricula_bus_aj;
-    public $mensaje1,$id2,$profesion_en;
+    public $mensaje1,$id2,$profesion_en,$ntarjeta,$notarjeta;
     public $observacion, $id_pre_ins_arch, $id_no_gest_arch, $archivo_cdiaco, $archivo, $formato,$id_gest,$nuevo_estado,$id_no_gest_ins;
-    public $mensajeup,$mensajeup1;
+    public $mensajeup,$mensajeup1,$pass,$correoed;
     public $id_pre_info, $id_pre_i, $confi, $grados_selecionados, $año_ingreso, $grado_primer_ingreso, $nombre_padre, $nacimiento_padre, $nacionalidad_padre;
     public $lugar_nacimiento_padre, $estadocivilp, $DPI_padre, $celular_padre, $telefono_padre, $direccion_residencia, $correo_padre, $profesion_padre;
     public $lugar_profesion_padre, $cargo_profesion_padre, $religion_padre, $NIT_padre, $vive_con_elpadre, $nombre_madre, $fechana_madre, $nacionalidad_madre;
@@ -136,15 +136,6 @@ class AdminisionesComponet extends Component
             $estado_tres3=DB::select($sql);
         }
 
-
-        if($this->search4!=null && $this->search4!=""){
-            $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.ESTADO_PRE_INS,TB_PRE_INS.NO_GESTION, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE ESTADO_PRE_INS=7 and (NO_GESTION like '%".$this->search4."%' or NOMBRE_ES like '%".$this->search4."%')";
-            $estado_cuatro=DB::select($sql);
-        }else{
-            $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.ESTADO_PRE_INS,TB_PRE_INS.NO_GESTION, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE ESTADO_PRE_INS=7 order by TB_PRE_INS.FECHA_CAMBIOS_REG  DESC";
-            $estado_cuatro=DB::select($sql);
-        }
-
         if($this->search44!=null && $this->search44!=""){
             $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.ESTADO_PRE_INS,TB_PRE_INS.NO_GESTION, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE ESTADO_PRE_INS=7 and (NO_GESTION like '%".$this->search44."%' or NOMBRE_ES like '%".$this->search44."%')";
             $estado_cuatro4=DB::select($sql);
@@ -169,7 +160,7 @@ class AdminisionesComponet extends Component
         $sql="SELECT * FROM tb_nvlacademico";
         $academico=DB::select($sql);
 
-        return view('livewire.adminisiones-componet', compact('estado_cuatro4','estado_tres3','estado_dos2','estado_uno2','metododepago','formasdepago','academico','grados','estado_cero','estado_uno','estado_dos','estado_tres','estado_cuatro','estado_cinco','diaco'));
+        return view('livewire.adminisiones-componet', compact('estado_cuatro4','estado_tres3','estado_dos2','estado_uno2','metododepago','formasdepago','academico','grados','estado_cero','estado_uno','estado_dos','estado_tres','estado_cinco','diaco'));
     }
 
     public function tipo_cambio($tipo){
@@ -1191,4 +1182,186 @@ $quien_encargado1=$this->quien_encargado1;
                         $this->mensaje1="No fue posible enviar correo y actualizar";
                     }
          }
+
+
+         public function editarusuarios($id,$no_gest,$nombre_es){
+            $this->editar2($id);
+            $this->nombre_es=$nombre_es;
+            $id=$id;
+            $this->no_gest=$no_gest;
+            $sql='SELECT * FROM TB_PRE_INFO WHERE ID_PRE=?';
+            $encarg=DB:: select($sql, array($id));
+            foreach($encarg as $encac)
+            {
+    
+                $this->quien_encargado1=$encac->ENCARGADO;
+                $this->nombre_padre=$encac->NOMB_PADRE;    
+                $this->nombre_madre=$encac->NOMB_MADRE;
+                $this->nombre_encargado=$encac->NOMB_ENCARGADO;    
+    
+                /* $this->nacimientoencargado=$encac->FECHA_N_ENCARGADO;
+                $this->nacionalidadencargado=$encac->NACIONALIDAD_ENCARGADO;
+                $this->lugarnacimientoencargado=$encac->LUGAR_NACIMIENTO_ENCARGADO;
+                $this->encadocivilencargado=$encac->encaDO_CIVIL_E;
+                $this->DPIencargado=$encac->DPI_ENCARGADO;
+                $this->telefonoencargado=$encac->TELEFONO_ENCARGADO;
+                $this->celularencargado=$encac->CELULAR_ENCARGADO;
+                $this->direccionresidenciaencargado=$encac->DIRECCION_RESIDENCIA_ENCARGADO;
+                $this->correoencargado=$encac->CORREO_ENCARGADO;
+                $this->profesionencargado=$encac->CARGO_ENCARGADO;
+                $this->lugar_profesion_encargado=$encac->LUGAR_TRABAJO_E;
+                $this->religion_encargado=$encac->RELIGION_ENCARGADO;
+                $this->NIT_encargado=$encac->NIT_ENCARGADO;
+                $this->vive_con_elencargado=$encac->VIVE_CON_EL_ENCARGADO; */
+            }
+
+         }
+         public function usuario_aluenca(){
+
+            $sql='SELECT * FROM user_alumnos WHERE USUARIO=?';
+            $maes=DB::select($sql,array($this->usuario));
+    
+            if($maes !=null){
+    
+                $inicial=substr($this->nombre_es,0,1);
+                $iniciales=explode(" ", $this->nombre_es);
+                $inicial2=substr($iniciales[1],0,1);
+                $apellido=$iniciales[2];
+                $apellido2=substr($iniciales[3],0,1);
+                
+    
+                $this->usuario=$this->usuario.$inicial2;
+    
+                $this->correoed=$inicial.$inicial2.$apellido.$apellido2.$inicial2.'@colegioelcastano.edu.gt';
+                $this->usuario = strtolower($this->usuario);
+                $this->correoed = strtolower($this->correoed);
+            }
+
+            $sql='SELECT * FROM user_encargados WHERE USUARIO=?';
+            $maes=DB::select($sql,array($this->usuario2));
+    
+            if($maes !=null){
+    
+                $inicial=substr($this->nombre_encargado,0,1);
+                $iniciales=explode(" ", $this->nombre_encargado);
+                $inicial2=substr($iniciales[1],0,1);
+                $apellido=$iniciales[2];
+                $apellido2=substr($iniciales[3],0,1);
+                
+    
+                $this->usuario2=$this->usuario2.$inicial2;
+    
+                $this->correoed2=$inicial.$inicial2.$apellido.$apellido2.$inicial2.'@colegioelcastano.edu.gt';
+                $this->usuario2 = strtolower($this->usuario2);
+                $this->correoed2 = strtolower($this->correoed2);
+            }
+
+            $usuario=$this->usuario;
+            $correoed=$this->correoed;
+            $pass=bcrypt($this->pass);
+
+            $usuario2=$this->usuario2;
+            $correoed2=$this->correoed2;
+            $pass2=bcrypt($this->pass2);
+            $id_pre=$this->id_pre;
+
+            $id=0;
+    
+            $sql='SELECT MAX(ID_USERALUMNO+1) AS ID_USERALUMNO FROM user_alumnos;';
+            $valor=DB::select($sql);
+    
+            foreach($valor as $val){
+    
+                $id=$val->ID_USERALUMNO;
+            }  
+
+            $usua=DB::table('user_alumnos')->insert(
+                [
+                    'NOMBRE'=>$usuario,
+                    'CORREO'=>$correoed,  
+                    'USUARIO'=>$usuario,
+                    'CONTRASENA'=>$pass, 
+                    'ID_PRE'=>$id_pre, 
+                ]);
+
+                $id_rol=4;
+
+                $rolusuario=DB::table('rol_usuario')->insert(
+                    [
+                        'ID_ROL'=>$id_rol,
+                        'ID_USUARIO'=>$id,  
+                    ]);
+
+                $encar=DB::table('user_encargados')->insert(
+                    [
+                        'NOMBRE'=>$usuario2,
+                        'CORREO'=>$correoed2,  
+                        'USUARIO'=>$usuario2,
+                        'CONTRASENA'=>$pass2, 
+                        'ID_PRE'=>$id_pre, 
+                    ]);
+
+                $id_rol=5;
+    
+                $rolusuario=DB::table('rol_usuario')->insert(
+                    [
+                        'ID_ROL'=>$id_rol,
+                        'ID_USUARIO'=>$id,  
+                    ]);
+    
+
+            if($usua && $rolusuario && $encar){
+                DB::commit();
+                $this->reset();
+                $this->mensaje1='Insertado correctamente';
+            }
+            else{
+                DB::rollback();
+                unset($this->mensaje1);
+                $this->mensaje2='No fue posible insertar correctamente';
+            }
+         }
+
+        public function generar_use(){
+
+        
+            $this->nomb=$this->nombre_es;
+    
+            $primerNombre = explode(" ",$this->nomb);
+            $iniciales=explode(" ", $this->nombre_es);
+            $this->usuario = substr($primerNombre[0],0,10) . '.' . $primerNombre[2];
+            $this->usuario = strtolower($this->usuario);
+    
+            $inicial=substr($this->nombre_es,0,1);
+            $iniciales=explode(" ", $this->nombre_es);
+            $inicial2=substr($iniciales[1],0,1);
+            $apellido=$iniciales[2];
+            $apellido2=substr($iniciales[3],0,1);
+            
+            $this->correoed=$inicial.$inicial2.$apellido.$apellido2.'@colegioelcastano.edu.gt';
+            $this->correoed=strtolower($this->correoed);
+
+            $this->pass='Cole2023';
+
+
+
+            $this->nomb=$this->nombre_encargado;
+    
+            $primerNombre = explode(" ",$this->nomb);
+            $iniciales=explode(" ", $this->nombre_encargado);
+            $this->usuario2 = substr($primerNombre[0],0,10) . '.' . $primerNombre[2];
+            $this->usuario2 = strtolower($this->usuario2);
+    
+            $inicial=substr($this->nombre_encargado,0,1);
+            $iniciales=explode(" ", $this->nombre_encargado);
+            $inicial2=substr($iniciales[1],0,1);
+            $apellido=$iniciales[2];
+            $apellido2=substr($iniciales[3],0,1);
+            
+            $this->correoed2=$inicial.$inicial2.$apellido.$apellido2.'@colegioelcastano.edu.gt';
+            $this->correoed2=strtolower($this->correoed2);
+
+            $this->pass2='Cole2023';
+            
+        }
 }
