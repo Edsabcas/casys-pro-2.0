@@ -8,12 +8,10 @@
 
         <div class="modal-body">
             <div class="container-sm">
-              <h4 class="form-label text text-center" style="font-size:25px">Gestion: #{{$no_gest}}
-              
-              </h4>
+              <h4 class="form-label text text-center" style="font-size:25px">Gestion: #{{$no_gest}}</h4>
+              <p  class="text text-center">Fecha de registro: <b>{{$fecha_ultimo_cambio}}</b></p>
               <hr>
       <br>
-
       <div wire:ignore.self class="accordion" id="accordionPanelsStayOpenExample2">
         <div style="border-radius: 60px 60px 60px 60px;" class="accordion-item">
           <h2 style="border-radius: 60px 60px 60px 60px;" class="accordion-header" id="panelsStayOpen-headingTwo">
@@ -25,10 +23,38 @@
           <div  wire:ignore.self id="panelsStayOpen-collapseTwo"style="border-radius: 60px 60px 60px 60px;" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
             <div  wire:ignore.self class="accordion-body" style="border-radius: 60px 60px 60px 60px;">
                 <form wire:submit.prevent="" class="form-floating">
-                   <div class="col-md">
+                  <div class="row g-3">
+                    <div class="col-md">
                         <label for="inputNombres" style="font-size: 15px; color:#000000;">Nombre del Estudiante:</label>
-                        <input type="text" wire:model="nombre_es" class="form-control " required>                           
+                        <input type="text" wire:model="nombre_es" class="form-control" disabled>                           
                     </div>
+                    <div class="col-md">
+                      <label for="inputApellidos" style="font-size: 15px; color:#000000;">Fecha de Nacimiento:</label>
+                      <input type="date"  wire:model="f_nacimiento_es" class="form-control " min="2000-01-01" max="2020-12-31" disabled>
+                    </div>
+                  </div>
+                  <div class="row g-3">
+                    <div class="col-md">
+                      <label for="inputDireccion" style="font-size: 15px; color:#000000;">CUI:</label>
+                      <input type='number' placeholder=""  wire:model="cui_es" class="form-control " disabled>
+                    </div>
+                    <div class="col-md">
+                      <label for="inputInstitucion" style="font-size: 15px; color:#000000;">Código Personal (Mineduc):</label>
+                      <input type='text' placeholder=""  wire:model="codigo_pe_es" class="form-control " disabled>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                        <strong><label  for="Labelnombrepadre" class="form-label"> Nombre del padre</label></strong>
+                        <input  type="text" class="form-control"  wire:model="nombre_padre" disabled>
+                    </div>
+
+                    <div class="col-md-6">
+                        <strong><label  for="Labelnombrepadre" class="form-label">Nombre de la madre</label></strong>
+                        <input  type="text" class="form-control"  wire:model="nombre_madre" disabled>
+                    </div>
+                </div>
                 </form>
             </div>
           </div>
@@ -46,22 +72,76 @@
           <div  wire:ignore.self id="panelsStayOpen-encargado" style="border-radius: 60px 60px 60px 60px;" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingOne">
             <div  wire:ignore.self class="accordion-body" style="border-radius: 60px 60px 60px 60px;">
                 <form wire:submit.prevent="" class="form-floating">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <strong><label  for="Labelnombrepadre" class="form-label"> Nombre del padre</label></strong>
-                            <input  type="text" class="form-control"  wire:model="nombre_padre">
-                        </div>
-
-                        <div class="col-md-6">
-                            <strong><label  for="Labelnombrepadre" class="form-label">Nombre de la madre</label></strong>
-                            <input  type="text" class="form-control"  wire:model="nombre_madre">
-                        </div>
-
-                        <div class="col-md-6">
-                            <strong><label  for="Labelnombreencargado" class="form-label">Nombre del Encargado</label></strong>
-                            <input  type="text" class="form-control"  wire:model="nombre_encargado">
-                        </div>   
+                    @if ($quien_encargado1==1)
+                    <div class="row g-3">
+                      <div class="col-md-6">
+                        <strong><label  for="Labelnombrepadre" class="form-label"> Nombre del padre</label></strong>
+                        <input  type="text" class="form-control"  wire:model="nombre_padre" disabled>
+                      </div>
+                      <div class="col-md-6">
+                        <strong><label  for="Labelnombrepadre" class="form-label"> Fecha de nacimiento del padre</label></strong>
+                        <input  type="date" class="form-control"  wire:model="nacimiento_padre" disabled>
+                      </div>
+                      <div class="col-md-6">
+                        <strong><label  for="Labelnombrepadre" class="form-label">DPI del padre</label></strong>
+                        <input  type="text" class="form-control"  wire:model="DPI_padre" disabled>
+                      </div>
+                      <div class="col-md-6">
+                        <strong><label  for="Labelnombrepadre" class="form-label"> Grado:</label></strong>
+                        <select class="form-select form-select-lg mb-3" wire:model="gradoin" aria-label=".form-select-lg example"  disabled>
+                          @foreach($grados as $grado)
+                            <option value="{{$grado->ID_GR}}">{{$grado->GRADO}}</option>
+                          @endforeach
+                        </select>
+                      </div>
                     </div>
+                  @elseif($quien_encargado1==2)
+                      <div class="row g-3">
+                        <div class="col-md-6">
+                          <strong><label  for="Labelnombrepadre" class="form-label"> Nombre de la madre</label></strong>
+                          <input  type="text" class="form-control"  wire:model="nombre_madre" disabled>
+                        </div>   
+                        <div class="col-md-6">
+                          <strong><label  for="Labelnombrepadre" class="form-label"> Fecha de nacimiento de la madre</label></strong>
+                          <input  type="date" class="form-control"  wire:model="fechana_madre" disabled>
+                        </div>
+                        <div class="col-md-6">
+                          <strong><label  for="Labelnombrepadre" class="form-label"> DPI de la madre</label></strong>
+                          <input  type="number" class="form-control"  wire:model="DPI_madre" disabled>
+                        </div>
+                        <div class="col-md-6">
+                          <strong><label  for="Labelnombrepadre" class="form-label"> Grado:</label></strong>
+                          <select class="form-select form-select-lg mb-3" wire:model="gradoin" aria-label=".form-select-lg example"  disabled>
+                            @foreach($grados as $grado)
+                              <option value="{{$grado->ID_GR}}">{{$grado->GRADO}}</option>
+                            @endforeach
+                          </select>
+                        </div>
+                      </div>
+                  @elseif($quien_encargado1==3)
+                      <div class="row g-3">
+                        <div class="col-md-6">
+                          <strong><label  for="Labelnombrepadre" class="form-label"> Nombre de la madre</label></strong>
+                          <input  type="text" class="form-control"  wire:model="nombre_encargado" disabled>
+                        </div>   
+                        <div class="col-md-6">
+                          <strong><label  for="Labelnombrepadre" class="form-label"> Fecha de nacimiento de la madre</label></strong>
+                          <input  type="date" class="form-control"  wire:model="nacimientoencargado" disabled>
+                        </div>
+                        <div class="col-md-6">
+                          <strong><label  for="Labelnombrepadre" class="form-label"> DPI de la madre</label></strong>
+                          <input  type="number" class="form-control"  wire:model="DPIencargado" disabled>
+                        </div>
+                        <div class="col-md-6">
+                          <strong><label  for="Labelnombrepadre" class="form-label"> Grado:</label></strong>
+                          <select class="form-select form-select-lg mb-3" wire:model="gradoin" aria-label=".form-select-lg example"  disabled>
+                            @foreach($grados as $grado)
+                              <option value="{{$grado->ID_GR}}">{{$grado->GRADO}}</option>
+                            @endforeach
+                          </select>
+                        </div>
+                      </div>
+                  @endif
                 </form>
               </div>   
             </div>
