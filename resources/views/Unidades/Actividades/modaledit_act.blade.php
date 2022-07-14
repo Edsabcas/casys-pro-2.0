@@ -99,7 +99,7 @@
                 <div class="col-sm-3">
                   <label for="inputState" class="form-label" style="font-size:20px">Seleccione un tema</label>
                   <div class="input-group">
-                    @include('Unidades.Temas.tcr_edit')
+                    @include('Unidades.Temas.Tcr_edit')
                     <button class="btn btn-outline-primary" id="val1"  data-bs-dismiss="modal" type="button"><img src="https://img.icons8.com/material-two-tone/24/000000/add.png"/></button>                   
                      <select id="inputZip" class="form-select " wire:model="temasb" aria-label=".form-select-sm example"  style="border:2px solid rgba(86, 95, 76, 0.466);">
                       <option selected>seleccione un tema</option>
