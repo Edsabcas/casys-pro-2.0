@@ -7,6 +7,8 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
+          <h4>{{session('id_usuariopdf')}}</h4>
+          <h4 class="form-label text text-center" style="font-size:25px">Gestión: #{{$datosusuario4}}
             <iframe src="/Usuario_pdf" width="100%" height="300" style="border:none;">
             </iframe>
         </div>
