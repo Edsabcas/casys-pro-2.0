@@ -1260,6 +1260,18 @@ $quien_encargado1=$this->quien_encargado1;
                 $this->correoed2 = strtolower($this->correoed2);
             }
 
+
+            $nombre_es=$this->nombre_es;
+            $f_nacimiento_es=$this->f_nacimiento_es;
+            $cui_es=$this->cui_es;
+            $codigo_pe_es=$this->codigo_pe_es;
+            $gradoin=$this->gradoin;
+            $fecha_ultimo_cambio=$this->fecha_ultimo_cambio;
+
+            $nombre_encargado=$this->nombre_encargado;
+            $nacimientoencargado=$this->nacimientoencargado;
+            $DPIencargado=$this->DPIencargado;
+
             $usuario=$this->usuario;
             $correoed=$this->correoed;
             $pass=bcrypt($this->pass);
@@ -1269,19 +1281,19 @@ $quien_encargado1=$this->quien_encargado1;
             $pass2=bcrypt($this->pass2);
             $id_pre=$this->id_pre;
 
-            $id=0;
-    
+            $id_estudiante=0;
+            $id_encargado=0;
             $sql='SELECT MAX(id+1) AS id FROM users;';
             $valor=DB::select($sql);
     
             foreach($valor as $val){
     
-                $id=$val->id;
+                $id_estudiante=$val->id;
             }  
 
             $usua=DB::table('users')->insert(
                 [
-                    'id'=>$id,
+                    'id'=>$id_estudiante,
                     'name'=>$usuario,
                     'email'=>$correoed,  
                     'usuario'=>$usuario,
@@ -1293,7 +1305,7 @@ $quien_encargado1=$this->quien_encargado1;
                 $rolusuario=DB::table('rol_usuario')->insert(
                     [
                         'ID_ROL'=>$id_rol,
-                        'ID_USUARIO'=>$id,  
+                        'ID_USUARIO'=>$id_estudiante,  
                     ]);
 
             $sql='SELECT MAX(id+1) AS id FROM users;';
@@ -1301,12 +1313,12 @@ $quien_encargado1=$this->quien_encargado1;
     
             foreach($valore as $vale){
     
-                $id=$vale->id;
+                $id_encargado=$vale->id;
             }  
 
                 $encar=DB::table('users')->insert(
                     [
-                        'id'=>$id,
+                        'id'=>$id_encargado,
                         'name'=>$usuario2,
                         'email'=>$correoed2,  
                         'usuario'=>$usuario2,
@@ -1318,10 +1330,10 @@ $quien_encargado1=$this->quien_encargado1;
                 $rolusuario=DB::table('rol_usuario')->insert(
                     [
                         'ID_ROL'=>$id_rol,
-                        'ID_USUARIO'=>$id,  
+                        'ID_USUARIO'=>$id_encargado,  
                     ]);
 
-/*             $datos=DB::table('user_alumnos')->insert(
+            $datos=DB::table('tb_alumnos')->insert(
                 [
                     'NOMBRE'=>$nombre_es,
                     'FECHA_NACIMIENTO'=>$f_nacimiento_es,
@@ -1330,10 +1342,10 @@ $quien_encargado1=$this->quien_encargado1;
                     'GRADO_INGRESO'=>$gradoin,
                     'FECHA_REGISTRO'=>$fecha_ultimo_cambio,
                     'ID_PRE'=>$id_pre,
-                    'ID_USER'=>$id,
+                    'ID_USER'=>$id_estudiante,
                 ]);
 
-            $datos2=DB::table('user_encargados')->insert(
+            $datos2=DB::table('tb_encargados')->insert(
                 [
                     'NOMBRE'=>$nombre_encargado,
                     'FECHA_NACIMIENTO'=>$nacimientoencargado,
@@ -1341,11 +1353,11 @@ $quien_encargado1=$this->quien_encargado1;
                     'GRADO_INGRESO'=>$gradoin,
                     'FECHA_REGISTRO'=>$fecha_ultimo_cambio,
                     'ID_PRE'=>$id_pre,
-                    'ID_USER'=>$id,
+                    'ID_USER'=>$id_encargado,
                 ]
-                ); */
+                );
 
-            if($usua && $rolusuario && $encar /* && $datos && $datos2 */){
+            if($usua && $rolusuario && $encar && $datos && $datos2){
                 DB::commit();
                 $this->reset();
                 $this->mensaje1='Insertado correctamente';
@@ -1568,6 +1580,10 @@ public function Desactivacion($id,$estado,$gest){
             else{
                 $this->mensaje_diaco1='No se logro editar correctamente';
             }
+ }
+
+ public function usuario_pdf($id_usuario){
+    session(['id_usuariopdf' => $id_usuario]);
  }
 
 }

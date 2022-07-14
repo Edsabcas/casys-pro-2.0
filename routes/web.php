@@ -40,6 +40,7 @@ use App\Http\Controllers\RolesdeusuarioController;
 use App\Http\Controllers\AdminisionesController;
 use App\Http\Livewire\RolesdeusuarioComponent;
 
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\CuentasEstudiantesControllers;
 /*
 |--------------------------------------------------------------------------
@@ -109,6 +110,8 @@ Route::get('/Anuncios_nuevos', [FormMaestrosController::class, 'edicionmaestro']
 Route::get('/Publicaciones', [AnunciosNoAdController::class, 'vistanoadmin'])->middleware('auth');
 
 
+
+Route::get('/Usuario_pdf', [PDFController::class, 'pdf_nuevo']);
 
 //Grupo #4
 

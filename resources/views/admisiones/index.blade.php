@@ -614,12 +614,65 @@
           @if (Session::get('rol_usuario_activo')==1 or Session::get('rol_usuario_activo')==2)
           <div class="accordion-item" style="border-radius: 60px 60px 60px 60px;" >
             <h2 class="accordion-header"  style="border-radius: 60px 60px 60px 60px;"  style="color: #3a3e7b" id="flush-headingThree4" >
-              <button class="accordion-button collapsed" style="border-radius: 60px 60px 60px 60px; color: #3a3e7b" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree4" aria-expanded="false" aria-controls="flush-collapseThree4">
+              <button class="accordion-button collapsed" style="border-radius: 60px 60px 60px 60px; color: #3a3e7b" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree22" aria-expanded="false" aria-controls="flush-collapseThree22">
                 Estado 8 | Finalizados  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="badge rounded-pill bg-warning text-dark">{{-- @php echo count($estado_uno2);@endphp --}}</span>
               </button>
             </h2>
             <div  wire:ignore.self  id="flush-collapseThree4" class="accordion-collapse collapse" aria-labelledby="flush-headingThree4" data-bs-parent="#accordionFlushExample">
               <div  wire:ignore.self  class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
+            </div>
+            <div   wire:ignore.self  id="flush-collapseThree22" class="accordion-collapse collapse" aria-labelledby="flush-headingThree21" data-bs-parent="#accordionFlushExample">
+              <div  wire:ignore.self  class="accordion-body">
+                <div class="input-group justify-content">
+                  <div class="form-outline">
+                    <input type="search" wire:model="search2" id="form1" class="form-control" placeholder="Buscar:" />
+                  </div>
+                  <button type="button" class="btn btn-pre2">
+                    <i class="fas fa-search"></i>
+                  </button>
+                </div>
+                <div class="table-responsive">
+                  <table class="table table-light table-bordered">
+                      <thead>
+                        <tr>
+                          <th scope="col"># Gestión</th>
+                          <th scope="col">Estudiante</th>
+                          <th scope="col">Grado Ingreso</th>
+                          <th scope="col">Estado</th>
+                          <th scope="col">Acción</th>
+                        </tr>
+                      </thead>
+              <tbody>
+                  @foreach ($estado_cinco as $estado_cin)
+                  <tr>
+                      <th scope="row">{{ $estado_cin->NO_GESTION}}</th>
+                      <td>{{ $estado_cin->NOMBRE_ES}}</td>
+                      <td>{{ $estado_cin->GRADO}}</td>
+                      @if($estado_cin->ESTADO_PRE_INS==8)
+                      <td><span class="badge rounded-pill bg-warning text-dark">Pendiente R.</span></td>
+                      @elseif($estado_cin->ESTADO_PRE_INS==6)
+                      <td><span class="badge rounded-pill bg-danger">Validar C.</span></td>
+                      @endif
+                    
+                      <span>
+                          <td>
+                            <button type="button" class="btn btn-primary" wire:click="usuario_pdf('{{ $estado_cin->ID_PRE}}')" data-bs-toggle="modal" data-bs-target="#modal8">
+                              Generar PDF 
+                            </button>      
+                         
+                       
+                          
+                                
+                          </td>
+                      </span> 
+                    
+                    </tr>                        
+                  @endforeach
+              
+              </tbody>
+          </table>
+          </div>
+              </div>
             </div>
           </div>
           @endif
@@ -638,5 +691,6 @@
       @include('admisiones.modalestado5')
       @include('admisiones.modalcorrelativo')
       @include('admisiones.desactivar')
+      @include('admisiones.modalinfo8pdf')
       
 </div>
