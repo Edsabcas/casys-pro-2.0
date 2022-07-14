@@ -26,8 +26,8 @@
   $('#cambioestadoinfo5').modal('show');
   });
 
-  $(document).on('click', '#valestadoinfo4', function() {
-  $('#cambioestadoinfo4').modal('show');
+  $(document).on('click', '#valiestadoinfo4', function() {
+  $('#cambiodestadoinfo4').modal('show');
   });
 
   $(document).on('click', '#numerocorrelativo', function() {
