@@ -1582,4 +1582,8 @@ public function Desactivacion($id,$estado,$gest){
             }
  }
 
+ public function usuario_pdf($id_usuario){
+    session(['id_usuariopdf' => $id_usuario]);
+ }
+
 }
