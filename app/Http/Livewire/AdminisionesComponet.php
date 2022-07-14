@@ -1586,4 +1586,38 @@ public function Desactivacion($id,$estado,$gest){
     session(['id_usuariopdf' => $id_usuario]);
  }
 
+
+ public function correo_datos() {
+    if(false !== strpos($this->correo_en, "@") && false !== strpos($this->correo_en, ".")){
+        $subject = "Notificación Pre-Ins.Castaño (No responder)";
+        $for = $this->correo_en;
+        $arreglo= array($this->id_no_gest_ins);
+        Mail::send('admisiones.correo.vista1',compact('arreglo'), function($msj) use($subject,$for){
+        $msj->from("ingresos@colegioelcastano.edu.gt","ColegioElCastaño");
+        $msj->subject($subject);
+        $msj->to($for);        
+    });
+    }
+    if(false !== strpos($this->correo_padre, "@") && false !== strpos($this->correo_padre, ".")){
+    $subject = "Notificación Pre-Ins.Castaño (No responder)";
+    $for2 = $this->correo_padre;
+    $arreglo= array($this->id_no_gest_ins);
+    Mail::send('admisiones.correo.vista1',compact('arreglo'), function($msj) use($subject,$for2){
+        $msj->from("ingresos@colegioelcastano.edu.gt","ColegioElCastaño");
+        $msj->subject($subject);
+        $msj->to($for2);        
+    });
+    }
+    if(false !== strpos($this->correo_madre, "@") && false !== strpos($this->correo_madre, ".")){
+    $subject = "Notificación Pre-Ins.Castaño (No responder)";
+    $for3 = $this->correo_madre;
+    $arreglo= array($this->id_no_gest_ins);
+    Mail::send('admisiones.correo.vista1',compact('arreglo'), function($msj) use($subject,$for3){
+        $msj->from("ingresos@colegioelcastano.edu.gt","ColegioElCastaño");
+        $msj->subject($subject);
+        $msj->to($for3);        
+    });
+    }
+ }
+
 }
