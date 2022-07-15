@@ -14,7 +14,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" wire:click='correo_datos({{$datosusuario4}})' class="btn btn-primary">Enviar</button>
+          <button type="button" wire:click='correo_datos({{$datosusuario4}})' data-bs-dismiss="modal" class="btn btn-primary">Enviar</button>
         </div>
       </div>
     </div>
