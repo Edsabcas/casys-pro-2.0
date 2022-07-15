@@ -1635,7 +1635,7 @@ public function Desactivacion($id,$estado,$gest){
         $subject = "Notificación Pre-Ins.Castaño (No responder)";
         $for = $this->correoencargado;
         $arreglo= array($this->id_no_gest_arch);
-        Mail::send('admisiones.PDFusuarios',compact('arreglo'), function($msj) use($subject,$for){
+        Mail::send('admisiones.PDFusuarios',compact('arreglo','datos_usuario'), function($msj) use($subject,$for){
         $msj->from("ingresos@colegioelcastano.edu.gt","ColegioElCastaño");
         $msj->subject($subject);
         $msj->to($for);        
@@ -1645,7 +1645,7 @@ public function Desactivacion($id,$estado,$gest){
     $subject = "Notificación Pre-Ins.Castaño (No responder)";
     $for2 = $this->correo_padre;
     $arreglo= array($this->id_no_gest_arch);
-    Mail::send('admisiones.PDFusuarios',compact('arreglo'), function($msj) use($subject,$for2){
+    Mail::send('admisiones.PDFusuarios',compact('arreglo','datos_usuario'), function($msj) use($subject,$for2){
         $msj->from("ingresos@colegioelcastano.edu.gt","ColegioElCastaño");
         $msj->subject($subject);
         $msj->to($for2);        
@@ -1655,7 +1655,7 @@ public function Desactivacion($id,$estado,$gest){
     $subject = "Notificación Pre-Ins.Castaño (No responder)";
     $for3 = $this->correo_madre;
     $arreglo= array($this->id_no_gest_arch);
-    Mail::send('admisiones.PDFusuarios',compact('arreglo'), function($msj) use($subject,$for3){
+    Mail::send('admisiones.PDFusuarios',compact('arreglo','datos_usuario'), function($msj) use($subject,$for3){
         $msj->from("ingresos@colegioelcastano.edu.gt","ColegioElCastaño");
         $msj->subject($subject);
         $msj->to($for3);        
