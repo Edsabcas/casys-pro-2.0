@@ -6,6 +6,7 @@ use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Livewire\WithFileUploads;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 
 class AdminisionesComponet extends Component
@@ -1674,36 +1675,112 @@ public function Desactivacion($id,$estado,$gest){
         $correo_padre=$this->correo_padre;
         $correo_madre=$this->correo_madre;
         $correoencargado=$this->correoencargado;
-    if(false !== strpos($this->correoencargado, "@") && false !== strpos($this->correoencargado, ".")){
-        $subject = "Notificación Pre-Ins.Castaño (No responder)";
-        $for = $this->correoencargado;
-        $arreglo= array($this->id_no_gest_arch);
-        Mail::send('admisiones.PDFusuarios',compact('arreglo'), function($msj) use($subject,$for){
-        $msj->from("ingresos@colegioelcastano.edu.gt","ColegioElCastaño");
-        $msj->subject($subject);
-        $msj->to($for);        
-    });
-    }
+    
     if(false !== strpos($this->correo_padre, "@") && false !== strpos($this->correo_padre, ".")){
     $subject = "Notificación Pre-Ins.Castaño (No responder)";
     $for2 = $this->correo_padre;
     $arreglo= array($this->id_no_gest_arch);
-    Mail::send('admisiones.PDFusuarios',compact('arreglo'), function($msj) use($subject,$for2){
+    Mail::send('admisiones.correo.vistacredenciales',compact('arreglo'), function($msj) use($subject,$for2){
+        $id_usuario = session('id_usuariopdf');
+        $sql='SELECT * FROM  users WHERE id=?';
+        $usuario=DB::select($sql, array($id_usuario));
+        $sql='SELECT * FROM  TB_PRE_INS WHERE ID_PRE=?';
+        $usuario_gestion=DB::select($sql, array($id_usuario));
+        $año_en_curso=date('Y-m-d');
+        $fecha_separada=explode("-", $año_en_curso);
+        $fecha_titulo=$fecha_separada[0]+1;
+        if($usuario!=null){
+            foreach($usuario as $usu){
+                $datousuario1 = $usu->usuario;
+                $datousuario2 = $usu->email;
+                $datousuario3 = $usu->password;
+            }
+        }
+    
+        if($usuario_gestion!=null){
+            foreach($usuario_gestion as $usua){
+                $datosusuario4= $usua->NO_GESTION;
+            }
+        }
+        $datos_usuario=array($fecha_titulo, $datousuario1, $datousuario2, $datousuario3, $datosusuario4);
+        $pdfcredenciales = PDF::loadView('admisiones.PDFusuarios', compact('datos_usuario'));
         $msj->from("ingresos@colegioelcastano.edu.gt","ColegioElCastaño");
         $msj->subject($subject);
+        $msj->attachData($pdfcredenciales->output(), "Credenciales2023.pdf");
         $msj->to($for2);        
     });
     }
-    if(false !== strpos($this->correo_madre, "@") && false !== strpos($this->correo_madre, ".")){
-    $subject = "Notificación Pre-Ins.Castaño (No responder)";
-    $for3 = $this->correo_madre;
-    $arreglo= array($this->id_no_gest_arch);
-    Mail::send('admisiones.PDFusuarios',compact('arreglo'), function($msj) use($subject,$for3){
-        $msj->from("ingresos@colegioelcastano.edu.gt","ColegioElCastaño");
-        $msj->subject($subject);
-        $msj->to($for3);        
-    });
-    }
+
+    if(false !== strpos($this->correoencargado, "@") && false !== strpos($this->correoencargado, ".")){
+        $subject = "Notificación Pre-Ins.Castaño (No responder)";
+        $for = $this->correoencargado;
+        $arreglo= array($this->id_no_gest_arch);
+        Mail::send('admisiones.correo.vistacredenciales',compact('arreglo'), function($msj) use($subject,$for){
+            $id_usuario = session('id_usuariopdf');
+            $sql='SELECT * FROM  users WHERE id=?';
+            $usuario=DB::select($sql, array($id_usuario));
+            $sql='SELECT * FROM  TB_PRE_INS WHERE ID_PRE=?';
+            $usuario_gestion=DB::select($sql, array($id_usuario));
+            $año_en_curso=date('Y-m-d');
+            $fecha_separada=explode("-", $año_en_curso);
+            $fecha_titulo=$fecha_separada[0]+1;
+            if($usuario!=null){
+                foreach($usuario as $usu){
+                    $datousuario1 = $usu->usuario;
+                    $datousuario2 = $usu->email;
+                    $datousuario3 = $usu->password;
+                }
+            }
+        
+            if($usuario_gestion!=null){
+                foreach($usuario_gestion as $usua){
+                    $datosusuario4= $usua->NO_GESTION;
+                }
+            }
+            $datos_usuario=array($fecha_titulo, $datousuario1, $datousuario2, $datousuario3, $datosusuario4);
+            $pdfcredenciales = PDF::loadView('admisiones.PDFusuarios', compact('datos_usuario'));
+            $msj->from("ingresos@colegioelcastano.edu.gt","ColegioElCastaño");
+            $msj->subject($subject);
+            $msj->attachData($pdfcredenciales->output(), "Credenciales2023.pdf");
+            $msj->to($for);        
+        });
+        }
+
+        if(false !== strpos($this->correo_madre, "@") && false !== strpos($this->correo_madre, ".")){
+            $subject = "Notificación Pre-Ins.Castaño (No responder)";
+            $for3 = $this->correo_madre;
+            $arreglo= array($this->id_no_gest_arch);
+            Mail::send('admisiones.correo.vistacredenciales',compact('arreglo'), function($msj) use($subject,$for3){
+                $id_usuario = session('id_usuariopdf');
+                $sql='SELECT * FROM  users WHERE id=?';
+                $usuario=DB::select($sql, array($id_usuario));
+                $sql='SELECT * FROM  TB_PRE_INS WHERE ID_PRE=?';
+                $usuario_gestion=DB::select($sql, array($id_usuario));
+                $año_en_curso=date('Y-m-d');
+                $fecha_separada=explode("-", $año_en_curso);
+                $fecha_titulo=$fecha_separada[0]+1;
+                if($usuario!=null){
+                    foreach($usuario as $usu){
+                        $datousuario1 = $usu->usuario;
+                        $datousuario2 = $usu->email;
+                        $datousuario3 = $usu->password;
+                    }
+                }
+            
+                if($usuario_gestion!=null){
+                    foreach($usuario_gestion as $usua){
+                        $datosusuario4= $usua->NO_GESTION;
+                    }
+                }
+                $datos_usuario=array($fecha_titulo, $datousuario1, $datousuario2, $datousuario3, $datosusuario4);
+                $pdfcredenciales = PDF::loadView('admisiones.PDFusuarios', compact('datos_usuario'));
+                $msj->from("ingresos@colegioelcastano.edu.gt","ColegioElCastaño");
+                $msj->subject($subject);
+                $msj->attachData($pdfcredenciales->output(), "Credenciales2023.pdf");
+                $msj->to($for3);        
+            });
+            }
+    
  }
 
 }

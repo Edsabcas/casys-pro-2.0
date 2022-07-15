@@ -32,7 +32,7 @@ class PDFController extends Controller
             }
         }
 
-        if($usuario == null){
+        /*if($usuario == null){
             $sql='SELECT * FROM  users WHERE id=?';
             $usuario2=DB::select($sql, array($id_usuario));
             if($usuario2!=null){
@@ -46,8 +46,8 @@ class PDFController extends Controller
         }
         else{
             $datos_usuario=array($fecha_titulo, $datousuario1, $datousuario2, $datousuario3, $datosusuario4);
-        }
-        
+        }*/
+        $datos_usuario=array($fecha_titulo, $datousuario1, $datousuario2, $datousuario3, $datosusuario4);
         session(['datos_usuarios' => $datos_usuario]);
         $pdf = PDF::loadView('admisiones.PDFusuarios', compact('datos_usuario'));
         return $pdf->stream();
