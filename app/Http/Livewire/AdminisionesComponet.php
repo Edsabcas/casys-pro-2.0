@@ -15,7 +15,7 @@ class AdminisionesComponet extends Component
     public $search0,$search1,$search11,$search2,$search22,$search3,$search33,$search4,$search44,$search5,$search55,$usuario,$usuario2,$pass2,$correoed2;
     public $gradoin,$nombre_es,$f_nacimiento_es,$genero,$cui_es,$codigo_pe_es,$nac_es,$lug_nac_es,$tel_es,$cel_es,$direccion_es,$religion_es;
     public $nombre_en,$fnacimiento_en,$dpi_en,$extentido_en,$es_civil_en,$direccion_en,$tel_casa_en,$cel_en,$correo_en,$religion_en,$mensaje_diaco;
-    public $a,$mensaje,$gradose,$fingreso_gestion,$id_ges_cambio,$tipo_cambio1,$id_pre_corre,$DPI_encargado,$nacimiento_encargado;
+    public $a,$mensaje,$gradose,$fingreso_gestion,$id_ges_cambio,$tipo_cambio1,$id_pre_corre,$DPI_encargado,$nacimiento_encargado,$id_relacion;
     public $id_pre,$metodo,$archivo_comprobante,$img,$tipo,$mensaje24,$mensaje25,$fotos,$fpago,$no_gest_con,$solo_por,$idgrado;
     public $val,$val1,$gestion,$errorfecha,$upnocorre1,$upnocorre2,$nomb,$fvencimiento,$cseguridad,$ntarjeta,$notarjeta;
     public $estado_ges,$archivo_comprobante2,$fecha_ultimo_cambio,$mensajeins,$mensajeins1,$id_pre_boton,$estado_pre_boton,$matricula_bus_aj;
@@ -1210,6 +1210,7 @@ $quien_encargado1=$this->quien_encargado1;
                 $this->nacimiento_padre=$encac->FECHA_N_PADRE;
                 $this->DPI_padre=$encac->DPI_PADRE;
 
+                $this->codigo_fam=$encac->CODIGO_FAMILIA;
                 $this->nombre_madre=$encac->NOMB_MADRE;
                 $this->fechana_madre=$encac->FECHA_N_MADRE;
                 $this->DPI_madre=$encac->DPI_MADRE;       
@@ -1270,7 +1271,6 @@ $quien_encargado1=$this->quien_encargado1;
                 $this->correoed2 = strtolower($this->correoed2);
             }
 
-
             $nombre_es=$this->nombre_es;
             $f_nacimiento_es=$this->f_nacimiento_es;
             $cui_es=$this->cui_es;
@@ -1278,9 +1278,11 @@ $quien_encargado1=$this->quien_encargado1;
             $gradoin=$this->gradoin;
             $fecha_ultimo_cambio=$this->fecha_ultimo_cambio;
 
+            $codigo_fam=$this->codigo_fam;
             $nombre_encargado=$this->nombre_encargado;
             $nacimientoencargado=$this->nacimientoencargado;
             $DPIencargado=$this->DPIencargado;
+            $id_relacion=$this->id_relacion;
 
             $usuario=$this->usuario;
             $correoed=$this->correoed;
@@ -1318,65 +1320,106 @@ $quien_encargado1=$this->quien_encargado1;
                         'ID_USUARIO'=>$id_estudiante,  
                     ]);
 
-            $sql='SELECT MAX(id+1) AS id FROM users;';
-            $valore=DB::select($sql);
-    
-            foreach($valore as $vale){
-    
-                $id_encargado=$vale->id;
-            }  
+                    $datos=DB::table('tb_alumnos')->insert(
+                        [
+                            'NOMBRE'=>$nombre_es,
+                            'FECHA_NACIMIENTO'=>$f_nacimiento_es,
+                            'CUI'=>$cui_es,
+                            'CODIGO_PERSONAL'=>$codigo_pe_es,
+                            'GRADO_INGRESO'=>$gradoin,
+                            'FECHA_REGISTRO'=>$fecha_ultimo_cambio,
+                            'ID_PRE'=>$id_pre,
+                            'ID_USER'=>$id_estudiante,
+                        ]);
 
-                $encar=DB::table('users')->insert(
-                    [
-                        'id'=>$id_encargado,
-                        'name'=>$usuario2,
-                        'email'=>$correoed2,  
-                        'usuario'=>$usuario2,
-                        'password'=>$pass2, 
-                    ]);
+                        $sql='SELECT * FROM tb_encargados WHERE DPI=?';
+                        $validacion=DB::select($sql,array($this->DPIencargado));
+                
+                        $id_userencargado=0;
+            
+                        if($validacion !=null){
+            
+                            foreach($validacion as $val){
+            
+                            $id_userencargado=$val->ID_USER;
+            
+                            }
+                            $relacion_tabla=DB::table('tb_relacion_encargado')->insert(
+                                [
+                                    'ID_RELACION'=>$id_relacion,
+                                    'ID_USERALUMNO'=>$id_estudiante,
+                                    'ID_USERENCARGADO'=>$id_userencargado,
+                                    'ESTADO'=>1,
+                                ]);
 
-                $id_rol=5;
-    
-                $rolusuario=DB::table('rol_usuario')->insert(
-                    [
-                        'ID_ROL'=>$id_rol,
-                        'ID_USUARIO'=>$id_encargado,  
-                    ]);
+                        }else{
+            
+                            $sql='SELECT MAX(id+1) AS id FROM users;';
+                            $valore=DB::select($sql);
+                    
+                            foreach($valore as $vale){
+                    
+                                $id_encargado=$vale->id;
+                            }  
+            
+                                $encar=DB::table('users')->insert(
+                                    [
+                                        'id'=>$id_encargado,
+                                        'name'=>$usuario2,
+                                        'email'=>$correoed2,  
+                                        'usuario'=>$usuario2,
+                                        'password'=>$pass2, 
+                                    ]);
+            
+                                $id_rol=5;
+                    
+                                $rolusuario=DB::table('rol_usuario')->insert(
+                                    [
+                                        'ID_ROL'=>$id_rol,
+                                        'ID_USUARIO'=>$id_encargado,  
+                                    ]);
+                                    
+                                    $datos2=DB::table('tb_encargados')->insert(
+                                        [
+                                            'NOMBRE'=>$nombre_encargado,
+                                            'FECHA_NACIMIENTO'=>$nacimientoencargado,
+                                            'DPI'=>$DPIencargado,
+                                            'GRADO_INGRESO'=>$gradoin,
+                                            'FECHA_REGISTRO'=>$fecha_ultimo_cambio,
+                                            'ID_PRE'=>$id_pre,
+                                            'ID_USER'=>$id_encargado,
+                                            'CODIGO_FAM'=>$codigo_fam,
+                                        ]
+                                        );
+                                        $relacion_tabla=DB::table('tb_relacion_encargado')->insert(
+                                            [
+                                                'ID_RELACION'=>$id_relacion,
+                                                'ID_USERALUMNO'=>$id_estudiante,
+                                                'ID_USERENCARGADO'=>$id_encargado,
+                                                'ESTADO'=>1,
+                                            ]);
+                                            if($relacion_tabla && $datos2 && $encar){
+                                                DB::commit();
+                                                $this->reset();
+                                                $this->mensaje1='Insertado correctamente';
+                                            }
+                                            else{
+                                                DB::rollback();
+                                                unset($this->mensaje1);
+                                                $this->mensaje2='No fue posible insertar correctamente';
+                                            }
+                        }
 
-            $datos=DB::table('tb_alumnos')->insert(
-                [
-                    'NOMBRE'=>$nombre_es,
-                    'FECHA_NACIMIENTO'=>$f_nacimiento_es,
-                    'CUI'=>$cui_es,
-                    'CODIGO_PERSONAL'=>$codigo_pe_es,
-                    'GRADO_INGRESO'=>$gradoin,
-                    'FECHA_REGISTRO'=>$fecha_ultimo_cambio,
-                    'ID_PRE'=>$id_pre,
-                    'ID_USER'=>$id_estudiante,
-                ]);
-
-            $datos2=DB::table('tb_encargados')->insert(
-                [
-                    'NOMBRE'=>$nombre_encargado,
-                    'FECHA_NACIMIENTO'=>$nacimientoencargado,
-                    'DPI'=>$DPIencargado,
-                    'GRADO_INGRESO'=>$gradoin,
-                    'FECHA_REGISTRO'=>$fecha_ultimo_cambio,
-                    'ID_PRE'=>$id_pre,
-                    'ID_USER'=>$id_encargado,
-                ]
-                );
-
-            if($usua && $rolusuario && $encar && $datos && $datos2){
-                DB::commit();
-                $this->reset();
-                $this->mensaje1='Insertado correctamente';
-            }
-            else{
-                DB::rollback();
-                unset($this->mensaje1);
-                $this->mensaje2='No fue posible insertar correctamente';
-            }
+                        if($usua && $rolusuario && $datos){
+                            DB::commit();
+                            $this->reset();
+                            $this->mensaje1='Insertado correctamente';
+                        }
+                        else{
+                            DB::rollback();
+                            unset($this->mensaje1);
+                            $this->mensaje2='No fue posible insertar correctamente';
+                        }
          }
 
         public function generar_use(){

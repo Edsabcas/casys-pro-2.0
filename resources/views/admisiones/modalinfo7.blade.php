@@ -43,13 +43,22 @@
                       <input type='text' placeholder=""  wire:model="codigo_pe_es" class="form-control " disabled>
                     </div>
                   </div>
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <strong><label  for="Labelnombrepadre" class="form-label"> Grado:</label></strong>
+                      <select class="form-select form-select-lg mb-3" wire:model="gradoin" aria-label=".form-select-lg example"  disabled>
+                        @foreach($grados as $grado)
+                          <option value="{{$grado->ID_GR}}">{{$grado->GRADO}}</option>
+                        @endforeach
+                      </select>
+                    </div>
+                  </div>
                   <hr>
                   <div class="row g-3">
                     <div class="col-md-6">
                         <strong><label  for="Labelnombrepadre" class="form-label"> Nombre del padre</label></strong>
                         <input  type="text" class="form-control"  wire:model="nombre_padre" disabled>
                     </div>
-
                     <div class="col-md-6">
                         <strong><label  for="Labelnombrepadre" class="form-label">Nombre de la madre</label></strong>
                         <input  type="text" class="form-control"  wire:model="nombre_madre" disabled>
@@ -85,15 +94,11 @@
                       <div class="col-md-6">
                         <strong><label  for="Labelnombrepadre" class="form-label">DPI del padre</label></strong>
                         <input  type="text" class="form-control"  wire:model="DPI_padre" disabled>
-                      </div>
+                      </div> 
                       <div class="col-md-6">
-                        <strong><label  for="Labelnombrepadre" class="form-label"> Grado:</label></strong>
-                        <select class="form-select form-select-lg mb-3" wire:model="gradoin" aria-label=".form-select-lg example"  disabled>
-                          @foreach($grados as $grado)
-                            <option value="{{$grado->ID_GR}}">{{$grado->GRADO}}</option>
-                          @endforeach
-                        </select>
-                      </div>
+                        <strong><label  for="Labelnombrepadre" class="form-label">Codigo de Familia:</label></strong>
+                        <input  type="text" class="form-control"  wire:model="codigo_fam" disabled>
+                      </div>                     
                     </div>
                   @elseif($quien_encargado1==2)
                       <div class="row g-3">
@@ -110,14 +115,10 @@
                           <input  type="number" class="form-control"  wire:model="DPI_madre" disabled>
                         </div>
                         <div class="col-md-6">
-                          <strong><label  for="Labelnombrepadre" class="form-label"> Grado:</label></strong>
-                          <select class="form-select form-select-lg mb-3" wire:model="gradoin" aria-label=".form-select-lg example"  disabled>
-                            @foreach($grados as $grado)
-                              <option value="{{$grado->ID_GR}}">{{$grado->GRADO}}</option>
-                            @endforeach
-                          </select>
+                          <strong><label  for="Labelnombrepadre" class="form-label">Codigo de Familia:</label></strong>
+                          <input  type="text" class="form-control"  wire:model="codigo_fam" disabled>
                         </div>
-                      </div>
+                      </div>                        
                   @elseif($quien_encargado1==3)
                       <div class="row g-3">
                         <div class="col-md-6">
@@ -133,12 +134,8 @@
                           <input  type="number" class="form-control"  wire:model="DPIencargado" disabled>
                         </div>
                         <div class="col-md-6">
-                          <strong><label  for="Labelnombrepadre" class="form-label"> Grado:</label></strong>
-                          <select class="form-select form-select-lg mb-3" wire:model="gradoin" aria-label=".form-select-lg example"  disabled>
-                            @foreach($grados as $grado)
-                              <option value="{{$grado->ID_GR}}">{{$grado->GRADO}}</option>
-                            @endforeach
-                          </select>
+                          <strong><label  for="Labelnombrepadre" class="form-label">Codigo de Familia:</label></strong>
+                          <input  type="text" class="form-control"  wire:model="codigo_fam" disabled>
                         </div>
                       </div>
                   @endif
@@ -267,8 +264,6 @@
         <div class="modal-footer">
             <a class="btn btn-pre2" style="border-radius: 60px 60px 60px 60px;" wire:click="usuario_aluenca(8)" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Guardar</a>
           </div>
-
-
   </div>     
 </div>
 </div>
