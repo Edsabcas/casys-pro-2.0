@@ -32,8 +32,23 @@ class PDFController extends Controller
             }
         }
 
-        $datos_usuario=array($fecha_titulo, $datousuario1, $datousuario2, $datousuario3, $datosusuario4);
-
+        if($usuario == null){
+            $sql='SELECT * FROM  users WHERE id=?';
+            $usuario2=DB::select($sql, array($id_usuario));
+            if($usuario2!=null){
+                foreach($usuario2 as $usu2){
+                    $datousuario1 = $usu2->usuario;
+                    $datousuario2 = $usu2->email;
+                    $datousuario3 = $usu2->password;
+                }
+            }
+            $datos_usuario=array($fecha_titulo, $datousuario1, $datousuario2, $datousuario3, $datosusuario4);
+        }
+        else{
+            $datos_usuario=array($fecha_titulo, $datousuario1, $datousuario2, $datousuario3, $datosusuario4);
+        }
+        
+        session(['datos_usuarios' => $datos_usuario]);
         $pdf = PDF::loadView('admisiones.PDFusuarios', compact('datos_usuario'));
         return $pdf->stream();
         return view('admisiones.PDFusuarios');

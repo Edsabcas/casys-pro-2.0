@@ -265,9 +265,8 @@
         </div>
     </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button class="btn btn-pre2" style="border-radius: 60px 60px 60px 60px;" wire:click="usuario_aluenca()" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Guardar</button>
-        </div>
+            <a class="btn btn-pre2" style="border-radius: 60px 60px 60px 60px;" wire:click="usuario_aluenca(8)" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Guardar</a>
+          </div>
 
 
   </div>     

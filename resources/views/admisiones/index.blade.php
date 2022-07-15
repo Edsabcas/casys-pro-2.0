@@ -689,7 +689,7 @@
       @include('admisiones.eliminar.modaleliminar')
       @include('admisiones.modalestado4')
       @include('admisiones.modalestado5')
-      @include('admisiones.modalcorrelativo')
+      @include('admisiones.Modalcorrelativo')
       @include('admisiones.desactivar')
       @include('admisiones.modalinfo8pdf')
       

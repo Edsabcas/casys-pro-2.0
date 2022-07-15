@@ -15,13 +15,13 @@ class AdminisionesComponet extends Component
     public $search0,$search1,$search11,$search2,$search22,$search3,$search33,$search4,$search44,$search5,$search55,$usuario,$usuario2,$pass2,$correoed2;
     public $gradoin,$nombre_es,$f_nacimiento_es,$genero,$cui_es,$codigo_pe_es,$nac_es,$lug_nac_es,$tel_es,$cel_es,$direccion_es,$religion_es;
     public $nombre_en,$fnacimiento_en,$dpi_en,$extentido_en,$es_civil_en,$direccion_en,$tel_casa_en,$cel_en,$correo_en,$religion_en,$mensaje_diaco;
-    public $a,$mensaje,$gradose,$fingreso_gestion,$id_ges_cambio,$tipo_cambio1,$id_pre_corre;
+    public $a,$mensaje,$gradose,$fingreso_gestion,$id_ges_cambio,$tipo_cambio1,$id_pre_corre,$DPI_encargado,$nacimiento_encargado;
     public $id_pre,$metodo,$archivo_comprobante,$img,$tipo,$mensaje24,$mensaje25,$fotos,$fpago,$no_gest_con,$solo_por,$idgrado;
     public $val,$val1,$gestion,$errorfecha,$upnocorre1,$upnocorre2,$nomb,$fvencimiento,$cseguridad,$ntarjeta,$notarjeta;
     public $estado_ges,$archivo_comprobante2,$fecha_ultimo_cambio,$mensajeins,$mensajeins1,$id_pre_boton,$estado_pre_boton,$matricula_bus_aj;
-    public $mensaje1,$id2,$profesion_en,$id_desact,$nuevo_estadodesact,$no_gest_desact;
+    public $mensaje1,$id2,$profesion_en,$id_desact,$nuevo_estadodesact,$no_gest_desact,$tipo_cambio8;
     public $observacion, $id_pre_ins_arch, $id_no_gest_arch, $archivo_cdiaco, $archivo, $formato,$id_gest,$nuevo_estado,$id_no_gest_ins;
-    public $mensajeup,$mensajeup1,$correlativon,$pass,$correoed;
+    public $mensajeup,$mensajeup1,$correlativon,$pass,$correoed,$mensaje_diaco1;
     public $id_pre_info, $id_pre_i, $confi, $grados_selecionados, $año_ingreso, $grado_primer_ingreso, $nombre_padre, $nacimiento_padre, $nacionalidad_padre;
     public $lugar_nacimiento_padre, $estadocivilp, $DPI_padre, $celular_padre, $telefono_padre, $direccion_residencia, $correo_padre, $profesion_padre;
     public $lugar_profesion_padre, $cargo_profesion_padre, $religion_padre, $NIT_padre, $vive_con_elpadre, $nombre_madre, $fechana_madre, $nacionalidad_madre;
@@ -1220,7 +1220,17 @@ $quien_encargado1=$this->quien_encargado1;
                 $this->DPIencargado=$encac->DPI_ENCARGADO;
             }
          }
-         public function usuario_aluenca(){
+         public function usuario_aluenca($tipos){
+            $this->tipo_cambio8=$tipos;
+
+
+            $cambio=DB::table('TB_PRE_INS')
+            ->where('ID_PRE',  $this->id_ges_cambio)
+            ->update(
+                [
+                 'ESTADO_PRE_INS' => $this->tipo_cambio8,
+                 'FECHA_CAMBIOS_REG'=>  date("Y-m-d H:i:s"),
+                ]);
 
             $sql='SELECT * FROM users WHERE usuario=?';
             $maes=DB::select($sql,array($this->usuario));

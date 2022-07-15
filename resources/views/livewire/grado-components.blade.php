@@ -1,8 +1,8 @@
 <div class="container">
-    @include('grados.formulario')
+    @include('Grados.formulario')
  
     <div>
-        @include('grados.listar')
+        @include('Grados.listar')
      </div>
  </div>
  
