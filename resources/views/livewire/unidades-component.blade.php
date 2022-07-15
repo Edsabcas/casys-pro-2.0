@@ -1,6 +1,6 @@
 <div class='container'>
     @include('CrudUni.form')
     <div>
-        @include('CrudUni.Listar')
+        @include('CrudUni.listar')
     </div>
 </div>

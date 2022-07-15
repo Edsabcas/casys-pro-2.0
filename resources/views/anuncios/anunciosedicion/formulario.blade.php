@@ -22,7 +22,7 @@
     <br>
     <br>
     <h1 class="text-center" style="color: #3a3e7b"><strong>CREAR ANUNCIO</strong></h1>
-    <p style="color:black"><strong>Llene los siguientes campos que se le solicitan para crear un anuncio.</strong></p>
+    <p style="color:black"><strong>Llene los siguientes campos para crear un anuncio.</strong></p>
     <br>
   </div>
   <div class="container-sm">
@@ -39,7 +39,7 @@
       <div><br></div>
       @if($tanuncio == 1)
       <div class="mb-3">
-        <label for="" class="form-label" style="font-size:20px; color: #3a3e7b"><strong>• Seleccione el público que visualizará el anuncio</strong></label>
+        <label for="" class="form-label" style="font-size:20px; color: #3a3e7b"><strong>• Público que visualizará el anuncio</strong></label>
         <select class="form-select rounded-pill shadow-sm rounded" style="border-radius: 70px 70px 70px 70px; border-color: #a4cb39" aria-label="Default select example" wire:model="publico_anuncio">
           <option selected >Elige el público</option>
           @isset($rol)
@@ -58,7 +58,7 @@
       </div>
       @if($publico_anuncio==4 or $publico_anuncio==5)
       <div class="mb-3">
-        <label for="" class="form-label" style="font-size:20px; color: #3a3e7b"><strong>• Seleccione el grado que visualizará el anuncio</strong></label>
+        <label for="" class="form-label" style="font-size:20px; color: #3a3e7b"><strong>• Grado que visualizará el anuncio</strong></label>
         <select class="form-select rounded-pill shadow-sm rounded" style="border-radius: 70px 70px 70px 70px; border-color: #a4cb39" aria-label="Default select example" wire:model="grado_anuncio">
           <option selected >Elige el grado para que vea el anuncio</option>
           <option value="0">Todos</option>
@@ -73,7 +73,7 @@
       @endif
        @if($publico_anuncio==3)
        <div class="mb-3">
-        <label for="" class="form-label" style="font-size:20px; color: #3a3e7b"><strong>• Seleccione el idioma en específico de maestros</strong></label>
+        <label for="" class="form-label" style="font-size:20px; color: #3a3e7b"><strong>• Idioma en específico de maestros</strong></label>
         <select class="form-select rounded-pill shadow-sm rounded" style="border-radius: 70px 70px 70px 70px; border-color: #a4cb39" aria-label="Default select example" wire:model="idioma_maestro">
           <option selected>Escoge el idioma</option>
           @isset($idiomas)
@@ -84,7 +84,7 @@
         </select>
       </div>
        
-      <label for="" class="form-label" style="font-size:20px; color: #3a3e7b"><strong>• Seleccione el grado que visualizará el anuncio</strong></label>
+      <label for="" class="form-label" style="font-size:20px; color: #3a3e7b"><strong>• Grado que visualizará el anuncio</strong></label>
         <select class="form-select rounded-pill shadow-sm rounded" style="border-radius: 70px 70px 70px 70px; border-color: #a4cb39" aria-label="Default select example" wire:model="grado_anuncio">
           <option selected >Seleccione el grado</option>
           <option value="0">Todos</option>
@@ -107,7 +107,7 @@
         </div>
           
         <br>
-        <label for="" class="form-label" style="font-size:20px; color: #3a3e7b"><strong>• Adjunte el archivo a compartir en el anuncio</strong></label>
+        <label for="" class="form-label" style="font-size:20px; color: #3a3e7b"><strong>• Adjunte el archivo/imagen a compartir en el anuncio</strong></label>
           <div class="mb-3">
             <input type="file" id="archivo"  wire:model="archivo_anuncio">
           </div>
@@ -135,7 +135,7 @@
           
           
           <div class="mb-3">
-            <label for="" class="form-label" style="font-size:30p; color: #3a3e7b"><strong>• Seleccione la categoría del anuncio</strong></label>
+            <label for="" class="form-label" style="font-size:30p; color: #3a3e7b"><strong>• Tipo de anuncio</strong></label>
             <select class="form-select rounded-pill shadow-sm rounded" style="border-radius: 70px 70px 70px 70px; border-color: #a4cb39" aria-label="Default select example" wire:model="calidad_anuncio" required>
               <option selected >Elige una categoría</option>
               <option value="1">Informativo</option>

@@ -1,9 +1,9 @@
 <div class="container">
-    @include('maestros.formulario')
+    @include('Maestros.formulario')
    
     <br>
 
     <div>
-        @include('maestros.listar')
+        @include('Maestros.listar')
     </div>
 </div>
