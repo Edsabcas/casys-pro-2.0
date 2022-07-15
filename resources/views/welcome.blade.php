@@ -143,6 +143,13 @@
           background-size: auto auto;
         }
         </style>
+        <script>
+            function loadPage(){
+        var frame = $('#iframe_pdf');
+        var url = '';
+        frame.attr('src',url).show();
+    }
+        </script>
       
     @livewireStyles
 </head>
@@ -406,7 +413,7 @@
      <script>
        CKEDITOR.replace( 'summary-ckeditor' );
        </script>
-
+<script src='https://code.jquery.com/jquery-1.12.4.min.js'></script>
     @livewireScripts
 </body>
 
