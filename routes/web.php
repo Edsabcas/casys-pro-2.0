@@ -116,6 +116,7 @@ Route::get('/Usuario_pdf', [PDFController::class, 'pdf_nuevo']);
 
 //Vista Alumnos desde perfil de Padres
 Route::get('/Vista_Alumno/{id_alumno}', [VistaAlumnoController::class, 'panel_general']);
+Route::get('/Vista_Anuncios_Alumno', [VistaAlumnoController::class, 'anuncios_alumnos']);
 
 //Grupo #4
 
