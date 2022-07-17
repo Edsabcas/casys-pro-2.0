@@ -11,7 +11,7 @@ class AnunciosNoAdmin extends Component
     public $id_megusta, $valorlike, $idusuario, $idcomparacion, $mensaje3, $mensaje4;
     public $ver_ocultos1, $ocultarc, $ver_oculto, $admin_rol, $id_publicacion, $mensaje5, $mensaje6, $usuario_id;
     public $vistas_totales_id, $rol_activo, $grado_activo_estudiante, $mensaje9, $mensaje10, $usuario_publicacion2;
-    public $filtros, $filt, $cero;
+    public $filtros, $filt, $cero, $filtros_alumnos, $filtros_encargado, $rol_u, $rol_usuario, $alumnos_asignados;
     public function render()
     {
         $usuario_activo = auth()->user()->id;
@@ -40,6 +40,9 @@ class AnunciosNoAdmin extends Component
         $this->usuario_publicacion2=DB::select($sql);
         $sql="SELECT * FROM rol_usuario";
         $this->rol_publicado=DB::select($sql);
+        $sql="SELECT ID_ROL FROM rol_usuario WHERE ID_USUARIO=$usuario_activo";
+        $this->rol_u=DB::select($sql);
+
         $sql="SELECT tb_anuncios.ID_ANUNCIOS,tb_anuncios.TEXTO_PUBLICACION, tb_anuncios.MULTIMEDIA, tb_anuncios.FECHA_HORA, tb_anuncios.TIPO_ANUNCIO, tb_anuncios.PUBLICO_ANUNCIO, 
         tb_anuncios.GRADO_ANUNCIO, tb_anuncios.IDIOMA_MAESTRO, tb_anuncios.CALIDAD_ANUNCIO, tb_anuncios.ESTADO_ANUNCIO, tb_anuncios.ID_USUARIO FROM tb_anuncios 
         INNER JOIN rol_usuario on (tb_anuncios.PUBLICO_ANUNCIO=rol_usuario.ID_ROL AND rol_usuario.ID_USUARIO=37) OR (tb_anuncios.TIPO_ANUNCIO=0 AND rol_usuario.ID_USUARIO=37)
@@ -47,8 +50,28 @@ class AnunciosNoAdmin extends Component
         INNER JOIN tb_rel on (tb_anuncios.GRADO_ANUNCIO=tb_rel.ID_GR OR tb_anuncios.GRADO_ANUNCIO=0) AND tb_docentes.ID_DOCENTE=tb_rel.ID_DOCENTE 
         ORDER BY tb_anuncios.FECHA_HORA DESC;";
         $this->filtros=DB::select($sql);
-
         
+        $sql="SELECT tb_anuncios.ID_ANUNCIOS,tb_anuncios.TEXTO_PUBLICACION, tb_anuncios.MULTIMEDIA, tb_anuncios.FECHA_HORA, tb_anuncios.TIPO_ANUNCIO, tb_anuncios.PUBLICO_ANUNCIO, 
+        tb_anuncios.GRADO_ANUNCIO, tb_anuncios.IDIOMA_MAESTRO, tb_anuncios.CALIDAD_ANUNCIO, tb_anuncios.ESTADO_ANUNCIO, tb_anuncios.ID_USUARIO FROM tb_anuncios
+        INNER JOIN rol_usuario on (tb_anuncios.PUBLICO_ANUNCIO=rol_usuario.ID_ROL AND rol_usuario.ID_USUARIO=87) OR (tb_anuncios.TIPO_ANUNCIO=0 AND rol_usuario.ID_USUARIO=87)
+        INNER JOIN tb_alumnos on tb_alumnos.ID_USER=87
+        INNER JOIN TB_PRE_INS on (tb_anuncios.GRADO_ANUNCIO=TB_PRE_INS.GRADO_ING_ES OR tb_anuncios.GRADO_ANUNCIO=0) AND tb_alumnos.ID_PRE=TB_PRE_INS.ID_PRE 
+        ORDER BY tb_anuncios.FECHA_HORA DESC;";
+        $this->filtros_alumnos=DB::select($sql);
+        
+        $sql="SELECT tb_anuncios.ID_ANUNCIOS,tb_anuncios.TEXTO_PUBLICACION, tb_anuncios.MULTIMEDIA, tb_anuncios.FECHA_HORA, tb_anuncios.TIPO_ANUNCIO, tb_anuncios.PUBLICO_ANUNCIO, 
+        tb_anuncios.GRADO_ANUNCIO, tb_anuncios.IDIOMA_MAESTRO, tb_anuncios.CALIDAD_ANUNCIO, tb_anuncios.ESTADO_ANUNCIO, tb_anuncios.ID_USUARIO FROM tb_anuncios
+        INNER JOIN rol_usuario on (tb_anuncios.PUBLICO_ANUNCIO=rol_usuario.ID_ROL AND rol_usuario.ID_USUARIO=86) OR (tb_anuncios.TIPO_ANUNCIO=0 AND rol_usuario.ID_USUARIO=86)
+        INNER JOIN tb_encargados on tb_encargados.ID_USER=86
+        INNER JOIN TB_PRE_INS on (tb_anuncios.GRADO_ANUNCIO=TB_PRE_INS.GRADO_ING_ES OR tb_anuncios.GRADO_ANUNCIO=0) AND tb_encargados.ID_PRE=TB_PRE_INS.ID_PRE 
+        ORDER BY tb_anuncios.FECHA_HORA DESC;";
+        $this->filtros_encargado=DB::select($sql);
+
+        $sql="SELECT tb_alumnos.ID_USERALUMNO, tb_alumnos.NOMBRE, tb_alumnos.ID_PRE, tb_alumnos.ID_USER, tb_relacion_encargado.ID_RELACION, 
+        tb_relacion_encargado.ID_USERALUMNO, tb_relacion_encargado.ID_USERENCARGADO, tb_relacion_encargado.ESTADO, users.img_users FROM tb_relacion_encargado
+        INNER JOIN tb_alumnos on tb_alumnos.ID_USER=tb_relacion_encargado.ID_USERALUMNO AND tb_relacion_encargado.ID_USERENCARGADO = 91
+        INNER JOIN users on tb_alumnos.ID_USER=users.id;";
+        $this->alumnos_asignados=DB::select($sql);
 
         $this->cero=0;
         $this->admin_rol = 2;
@@ -58,7 +81,12 @@ class AnunciosNoAdmin extends Component
         $this->vistas_totales_id=5;
         
         //en el where id_usuario después del signo igual va el id del usuario logeado en ese momento y en el inserte de id_usuario.
-        
+
+        foreach($this->rol_u as $rol){
+            $this->rol_usuario = $rol->ID_ROL;
+        }
+
+
         foreach($anuncios as $anuncio){
             $sql="SELECT * FROM tb_vistas WHERE ID_USUARIO=$usuario_activo AND ID_ANUNCIO = ".$anuncio->ID_ANUNCIOS;
             $vistos=DB::select($sql);

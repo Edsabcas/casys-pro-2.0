@@ -50,13 +50,13 @@
                                   <label for="inputApellidos" style="font-size: 15px; color:#000000;">Género:</label>
                                   <br>
                                   <div class="form-check form-check-inline ">
-                                    <input class="form-check-input"  wire:model='genero' value="Masculino" type="radio" id="flexRadioDefault1">
+                                    <input class="form-check-input"  wire:model='genero' value="Masculino" type="radio" value="1" id="flexRadioDefault1">
                                     <label class="form-check-label" for="flexRadioDefault1" style="font-size: 15px; color:#000000;">
                                       Masculino
                                     </label>
                                   </div>
                                   <div class="form-check form-check-inline " >
-                                    <input class="form-check-input"  wire:model='genero' value="Femenino" type="radio"  id="flexRadioDefault2">
+                                    <input class="form-check-input"  wire:model='genero' value="Femenino" type="radio" value="2" id="flexRadioDefault2">
                                     <label class="form-check-label" for="flexRadioDefault2" style="font-size: 15px; color:#000000;">
                                       Femenino
                                     </label>
@@ -166,14 +166,14 @@
                               <br>
                               <li class="list-group-item list-group-item-action">
                                
-                                  <input class="form-check-input me-1"  type="radio" wire:model="tipo2" value="Presencial" aria-label="..."  id="flexRadioGradopre">
+                                  <input class="form-check-input me-1"  type="radio" value="1" wire:model="tipo2" value="Presencial" aria-label="..."  id="flexRadioGradopre">
                                   <label class="form-check-label" for="flexRadioGradopre" style="font-size: 15px; color:#000000;">
                                       Presencial 
                                     </label>
                                   
                                 </li>
                                 <li class="list-group-item list-group-item-action">
-                                  <input class="form-check-input me-1"  type="radio"  wire:model="tipo2" value="Virtual" aria-label="..."  id="flexRadioGradvir">
+                                  <input class="form-check-input me-1"  type="radio" value="2" wire:model="tipo2" value="Virtual" aria-label="..."  id="flexRadioGradvir">
                                   <label class="form-check-label" for="flexRadioGradvir" style="font-size: 15px; color:#000000;">
                                     Virtual
                                     </label>
@@ -194,14 +194,14 @@
                             <br>
                             <li class="list-group-item list-group-item-action">
                              
-                                <input class="form-check-input me-1"  type="radio" wire:model="tipo_ins" value="1" aria-label="..."  id="flexRadioGradopre1">
+                                <input class="form-check-input me-1"  type="radio" value="1" wire:model="tipo_ins" value="1" aria-label="..."  id="flexRadioGradopre1">
                                 <label class="form-check-label" for="flexRadioGradopre1" style="font-size: 15px; color:#000000;">
                                   Re-ingreso 
                                   </label>
                                 
                               </li>
                               <li class="list-group-item list-group-item-action">
-                                <input class="form-check-input me-1"  type="radio"  wire:model="tipo_ins" value="2" aria-label="..."  id="flexRadioGradvir2">
+                                <input class="form-check-input me-1"  type="radio"  value="2" wire:model="tipo_ins" value="2" aria-label="..."  id="flexRadioGradvir2">
                                 <label class="form-check-label" for="flexRadioGradvir2" style="font-size: 15px; color:#000000;">
                                   Nuevo ingreso
                                   </label>
@@ -277,19 +277,19 @@
                         <label for="inputApellidos" style="font-size: 15px; color:#000000;">Estado Civil:</label>
                         <br>
                         <div class="form-check form-check-inline">
-                          <input class="form-check-input"  type="radio" wire:model="es_civil_en" value="Casado" id="flexRadioEstado1">
+                          <input class="form-check-input"  type="radio" value="1" wire:model="es_civil_en" value="Casado" id="flexRadioEstado1">
                           <label class="form-check-label" for="flexRadioEstado1" style="font-size: 15px; color:#000000;">
                           Casado
                           </label>
                         </div>
                         <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" wire:model="es_civil_en" value="Soltero" id="flexRadioEstado2">
+                          <input class="form-check-input" type="radio" value="2" wire:model="es_civil_en" value="Soltero" id="flexRadioEstado2">
                           <label class="form-check-label" for="flexRadioEstado2" style="font-size: 15px; color:#000000;">
                             Soltero
                           </label>
                         </div>
                         <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" wire:model="es_civil_en"  value="Viuda" id="flexRadioEstado3">
+                          <input class="form-check-input" type="radio" value="3" wire:model="es_civil_en"  value="Viuda" id="flexRadioEstado3">
                           <label class="form-check-label" for="flexRadioEstado3" style="font-size: 15px; color:#000000;">
                             Viuda(o)
                           </label>
@@ -526,13 +526,13 @@
                          <center>
                          <div style="width: 12rem;">
                          <div class="form-check">
-                             <input class="form-check-input" type="radio" wire:model="confi" value="1" id="hermano1" wire:click="confirmar_hermano('1')">
+                             <input class="form-check-input" type="radio"  wire:model="confi" value="1" id="hermano1" wire:click="confirmar_hermano('1')">
                              <label class="form-check-label" for="hermano1">
                                Si
                              </label>
                            </div>
                            <div class="form-check">
-                             <input class="form-check-input" type="radio" wire:model="confi" value="0" id="hermano2" wire:click="confirmar_hermano('0')">
+                             <input class="form-check-input" type="radio"  wire:model="confi" value="0" id="hermano2" wire:click="confirmar_hermano('0')">
                              <label class="form-check-label" for="hermano1">
                                No
                              </label>
@@ -696,7 +696,7 @@
                                  </div>
                                  <div class="col-md-4">
                                      <div class="form-check">
-                                         <input class="form-check-input" type="radio" wire:model="estadocivilp" value="3"  wire:click="estado_civil_padre('3')">
+                                         <input class="form-check-input" type="radio"  wire:model="estadocivilp" value="3"  wire:click="estado_civil_padre('3')">
                                          <label class="form-check-label" for="estadocivilp1">
                                            Soltero(a)
                                          </label>
@@ -1435,7 +1435,7 @@
                             <div style="width: 12rem;">
                           <div class="col-md-7">
                               <div class="form-check">
-                                  <input class="form-check-input" type="radio" wire:model="vive_con_el_encargado"  wire:click="vive_con_el_encargado('1')">
+                                  <input class="form-check-input" type="radio" value="1" wire:model="vive_con_el_encargado"  wire:click="vive_con_el_encargado('1')">
                                   <label class="form-check-label" for="viveen1">
                                     Si
                                   </label>
@@ -1443,7 +1443,7 @@
                           </div>
                           <div class="col-md-7">
                               <div class="form-check">
-                                  <input class="form-check-input" type="radio" wire:model="viveen"  wire:click="vive_con_el_encargado('2')">
+                                  <input class="form-check-input" type="radio" value="2" wire:model="viveen"  wire:click="vive_con_el_encargado('2')">
                                   <label class="form-check-label" for="viveen1">
                                     No
                                   </label>

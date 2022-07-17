@@ -42,6 +42,7 @@ use App\Http\Livewire\RolesdeusuarioComponent;
 
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\CuentasEstudiantesControllers;
+use App\Http\Controllers\VistaAlumnoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -112,6 +113,9 @@ Route::get('/Publicaciones', [AnunciosNoAdController::class, 'vistanoadmin'])->m
 
 
 Route::get('/Usuario_pdf', [PDFController::class, 'pdf_nuevo']);
+
+//Vista Alumnos desde perfil de Padres
+Route::get('/Vista_Alumno/{id_alumno}', [VistaAlumnoController::class, 'panel_general']);
 
 //Grupo #4
 
