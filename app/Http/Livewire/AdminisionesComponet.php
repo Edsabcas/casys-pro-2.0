@@ -1222,17 +1222,17 @@ $quien_encargado1=$this->quien_encargado1;
                 $this->DPIencargado=$encac->DPI_ENCARGADO;
             }
          }
-         public function usuario_aluenca($tipos){
-            $this->tipo_cambio8=$tipos;
-
-
-            $cambio=DB::table('TB_PRE_INS')
-            ->where('ID_PRE',  $this->id_ges_cambio)
-            ->update(
-                [
-                 'ESTADO_PRE_INS' => $this->tipo_cambio8,
-                 'FECHA_CAMBIOS_REG'=>  date("Y-m-d H:i:s"),
-                ]);
+         public function usuario_aluenca($id){
+            $this->no_gest_con=$id; 
+            $nuevo_estado=$this->nuevo_estado;
+            $elevar=DB::table('TB_PRE_INS')
+                ->where('NO_GESTION', $this->no_gest_con)
+                ->update(
+                    [
+ 
+                     'ESTADO_PRE_INS' =>$nuevo_estado,
+ 
+                    ]);
 
             $sql='SELECT * FROM users WHERE usuario=?';
             $maes=DB::select($sql,array($this->usuario));
