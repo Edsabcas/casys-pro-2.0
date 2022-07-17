@@ -11,7 +11,7 @@ class AnunciosNoAdmin extends Component
     public $id_megusta, $valorlike, $idusuario, $idcomparacion, $mensaje3, $mensaje4;
     public $ver_ocultos1, $ocultarc, $ver_oculto, $admin_rol, $id_publicacion, $mensaje5, $mensaje6, $usuario_id;
     public $vistas_totales_id, $rol_activo, $grado_activo_estudiante, $mensaje9, $mensaje10, $usuario_publicacion2;
-    public $filtros, $filt, $cero, $filtros_alumnos, $filtros_encargado, $rol_u, $rol_usuario;
+    public $filtros, $filt, $cero, $filtros_alumnos, $filtros_encargado, $rol_u, $rol_usuario, $alumnos_asignados;
     public function render()
     {
         $usuario_activo = auth()->user()->id;
@@ -66,6 +66,12 @@ class AnunciosNoAdmin extends Component
         INNER JOIN TB_PRE_INS on (tb_anuncios.GRADO_ANUNCIO=TB_PRE_INS.GRADO_ING_ES OR tb_anuncios.GRADO_ANUNCIO=0) AND tb_encargados.ID_PRE=TB_PRE_INS.ID_PRE 
         ORDER BY tb_anuncios.FECHA_HORA DESC;";
         $this->filtros_encargado=DB::select($sql);
+
+        $sql="SELECT tb_alumnos.ID_USERALUMNO, tb_alumnos.NOMBRE, tb_alumnos.ID_PRE, tb_alumnos.ID_USER, tb_relacion_encargado.ID_RELACION, 
+        tb_relacion_encargado.ID_USERALUMNO, tb_relacion_encargado.ID_USERENCARGADO, tb_relacion_encargado.ESTADO, users.img_users FROM tb_relacion_encargado
+        INNER JOIN tb_alumnos on tb_alumnos.ID_USER=tb_relacion_encargado.ID_USERALUMNO AND tb_relacion_encargado.ID_USERENCARGADO = 91
+        INNER JOIN users on tb_alumnos.ID_USER=users.id;";
+        $this->alumnos_asignados=DB::select($sql);
 
         $this->cero=0;
         $this->admin_rol = 2;

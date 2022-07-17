@@ -5,6 +5,9 @@
 @if($op=='addanuncio')
 @livewire('anuncios-components')
 
+@elseif($op=='alumnosupervisado')
+@livewire('vista-alumno-component')
+
 @elseif($op=='vistaadanuncios')
 @livewire('anuncios-admin');
 

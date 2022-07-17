@@ -222,6 +222,12 @@ $('#exampleModal1').modal('show');
 
 <!-- Encargado-->
 @if($rol_usuario==5)
+@foreach($alumnos_asignados as $alumnos)
+<div class="col">
+  <a href="/Vista_Alumno/{{$alumnos->ID_USER}}">{{$alumnos->NOMBRE}}</a>
+</div>
+
+@endforeach
 @foreach($filtros_encargado as $filtro_encargado)
 <div class="offset-3 col-10">
   <br>
