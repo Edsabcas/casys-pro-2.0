@@ -11,43 +11,47 @@ class PDFController extends Controller
     //
     public function pdf_nuevo(){
         $id_usuario = session('id_usuariopdf');
-        $sql='SELECT * FROM  users WHERE id=?';
-        $usuario=DB::select($sql, array($id_usuario));
-        $sql='SELECT * FROM  TB_PRE_INS WHERE ID_PRE=?';
-        $usuario_gestion=DB::select($sql, array($id_usuario));
+        $sql='SELECT * FROM  tb_encargados WHERE ID_PRE=?';
+        $relacion=DB::select($sql, array($id_usuario));  
+        $sql='SELECT * FROM  tb_alumnos WHERE ID_PRE=?';
+        $relacion2=DB::select($sql, array($id_usuario));
         $año_en_curso=date('Y-m-d');
         $fecha_separada=explode("-", $año_en_curso);
         $fecha_titulo=$fecha_separada[0]+1;
-        if($usuario!=null){
-            foreach($usuario as $usu){
-                $datousuario1 = $usu->usuario;
-                $datousuario2 = $usu->email;
-                $datousuario3 = $usu->password;
+        if($relacion!=null){     
+            foreach($relacion as $usu){
+                $datos_encargado = $usu->ID_USER;
             }
-        }
-
-        if($usuario_gestion!=null){
-            foreach($usuario_gestion as $usua){
-                $datosusuario4= $usua->NO_GESTION;
-            }
-        }
-
-        /*if($usuario == null){
+            $ideusu=$datos_encargado;
             $sql='SELECT * FROM  users WHERE id=?';
-            $usuario2=DB::select($sql, array($id_usuario));
-            if($usuario2!=null){
-                foreach($usuario2 as $usu2){
-                    $datousuario1 = $usu2->usuario;
-                    $datousuario2 = $usu2->email;
-                    $datousuario3 = $usu2->password;
-                }
+            $usuarioencarado=DB::select($sql, array($ideusu));
+            foreach($usuarioencarado as $usu1){
+                $datousuario1 = $usu1->name;
+                $datousuario2 = $usu1->email;
+
             }
-            $datos_usuario=array($fecha_titulo, $datousuario1, $datousuario2, $datousuario3, $datosusuario4);
+            
         }
-        else{
-            $datos_usuario=array($fecha_titulo, $datousuario1, $datousuario2, $datousuario3, $datosusuario4);
-        }*/
-        $datos_usuario=array($fecha_titulo, $datousuario1, $datousuario2, $datousuario3, $datosusuario4);
+
+        if($relacion2!=null){     
+            foreach($relacion2 as $usualmuno){
+                $datos_alumno = $usualmuno->ID_USER;
+            }
+            $ideusu2=$datos_alumno;
+            $sql='SELECT * FROM  users WHERE id=?';
+            $usuarioalumno=DB::select($sql, array($ideusu2));
+            foreach($usuarioalumno as $usu2){
+                $datousuario3 = $usu2->name;
+                $datousuario4 = $usu2->email;
+
+            }
+            
+        }
+
+        
+
+
+        $datos_usuario=array($fecha_titulo, $datousuario1, $datousuario2, $datousuario3, $datousuario4);
         session(['datos_usuarios' => $datos_usuario]);
         $pdf = PDF::loadView('admisiones.PDFusuarios', compact('datos_usuario'));
         return $pdf->stream();
