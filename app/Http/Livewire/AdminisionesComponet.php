@@ -1222,15 +1222,15 @@ $quien_encargado1=$this->quien_encargado1;
                 $this->DPIencargado=$encac->DPI_ENCARGADO;
             }
          }
-         public function usuario_aluenca($id){
-            $this->no_gest_con=$id; 
-            $nuevo_estado=$this->nuevo_estado;
+         public function usuario_aluenca($id,$est){
+            $this->no_gest_con=$id;
+            $this->nuevo_estado=$est;
             $elevar=DB::table('TB_PRE_INS')
                 ->where('NO_GESTION', $this->no_gest_con)
                 ->update(
                     [
  
-                     'ESTADO_PRE_INS' =>$nuevo_estado,
+                     'ESTADO_PRE_INS' =>$this->nuevo_estado,
  
                     ]);
 

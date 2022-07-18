@@ -262,7 +262,7 @@
         </div>
     </div>
         <div class="modal-footer">
-            <a class="btn btn-pre2" style="border-radius: 60px 60px 60px 60px;" wire:click="usuario_aluenca(8)" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Guardar</a>
+            <a class="btn btn-pre2" style="border-radius: 60px 60px 60px 60px;" wire:click="usuario_aluenca('{{$no_gest}}', '8')" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Guardar</a>
           </div>
   </div>     
 </div>
