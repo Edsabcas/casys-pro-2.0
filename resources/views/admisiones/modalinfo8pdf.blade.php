@@ -8,7 +8,6 @@
         </div>
         <div class="modal-body">
           <h4 class="form-label text text-center" style="font-size:25px">Gestión: #{{$datosusuario4}}
-            <a href="javascript:document.location.reload();">TEXTO</a>
             <iframe id="iframe_pdf" src="/Usuario_pdf" width="100%" height="300" style="border:none;">
             </iframe>
         </div>

@@ -1682,27 +1682,48 @@ public function Desactivacion($id,$estado,$gest){
     $arreglo= array($this->id_no_gest_arch);
     Mail::send('admisiones.correo.vistacredenciales',compact('arreglo'), function($msj) use($subject,$for2){
         $id_usuario = session('id_usuariopdf');
-        $sql='SELECT * FROM  users WHERE id=?';
-        $usuario=DB::select($sql, array($id_usuario));
-        $sql='SELECT * FROM  TB_PRE_INS WHERE ID_PRE=?';
-        $usuario_gestion=DB::select($sql, array($id_usuario));
+        $sql='SELECT * FROM  tb_encargados WHERE ID_PRE=?';
+        $relacion=DB::select($sql, array($id_usuario));  
+        $sql='SELECT * FROM  tb_alumnos WHERE ID_PRE=?';
+        $relacion2=DB::select($sql, array($id_usuario));
         $año_en_curso=date('Y-m-d');
         $fecha_separada=explode("-", $año_en_curso);
         $fecha_titulo=$fecha_separada[0]+1;
-        if($usuario!=null){
-            foreach($usuario as $usu){
-                $datousuario1 = $usu->usuario;
-                $datousuario2 = $usu->email;
-                $datousuario3 = $usu->password;
+        if($relacion!=null){     
+            foreach($relacion as $usu){
+                $datos_encargado = $usu->ID_USER;
             }
-        }
-    
-        if($usuario_gestion!=null){
-            foreach($usuario_gestion as $usua){
-                $datosusuario4= $usua->NO_GESTION;
+            $ideusu=$datos_encargado;
+            $sql='SELECT * FROM  users WHERE id=?';
+            $usuarioencarado=DB::select($sql, array($ideusu));
+            foreach($usuarioencarado as $usu1){
+                $datousuario1 = $usu1->name;
+                $datousuario2 = $usu1->email;
+
             }
+            
         }
-        $datos_usuario=array($fecha_titulo, $datousuario1, $datousuario2, $datousuario3, $datosusuario4);
+
+        if($relacion2!=null){     
+            foreach($relacion2 as $usualmuno){
+                $datos_alumno = $usualmuno->ID_USER;
+            }
+            $ideusu2=$datos_alumno;
+            $sql='SELECT * FROM  users WHERE id=?';
+            $usuarioalumno=DB::select($sql, array($ideusu2));
+            foreach($usuarioalumno as $usu2){
+                $datousuario3 = $usu2->name;
+                $datousuario4 = $usu2->email;
+
+            }
+            
+        }
+
+        
+
+
+        $datos_usuario=array($fecha_titulo, $datousuario1, $datousuario2, $datousuario3, $datousuario4);
+        session(['datos_usuarios' => $datos_usuario]);
         $pdfcredenciales = PDF::loadView('admisiones.PDFusuarios', compact('datos_usuario'));
         $msj->from("ingresos@colegioelcastano.edu.gt","ColegioElCastaño");
         $msj->subject($subject);
@@ -1717,28 +1738,49 @@ public function Desactivacion($id,$estado,$gest){
         $arreglo= array($this->id_no_gest_arch);
         Mail::send('admisiones.correo.vistacredenciales',compact('arreglo'), function($msj) use($subject,$for){
             $id_usuario = session('id_usuariopdf');
+        $sql='SELECT * FROM  tb_encargados WHERE ID_PRE=?';
+        $relacion=DB::select($sql, array($id_usuario));  
+        $sql='SELECT * FROM  tb_alumnos WHERE ID_PRE=?';
+        $relacion2=DB::select($sql, array($id_usuario));
+        $año_en_curso=date('Y-m-d');
+        $fecha_separada=explode("-", $año_en_curso);
+        $fecha_titulo=$fecha_separada[0]+1;
+        if($relacion!=null){     
+            foreach($relacion as $usu){
+                $datos_encargado = $usu->ID_USER;
+            }
+            $ideusu=$datos_encargado;
             $sql='SELECT * FROM  users WHERE id=?';
-            $usuario=DB::select($sql, array($id_usuario));
-            $sql='SELECT * FROM  TB_PRE_INS WHERE ID_PRE=?';
-            $usuario_gestion=DB::select($sql, array($id_usuario));
-            $año_en_curso=date('Y-m-d');
-            $fecha_separada=explode("-", $año_en_curso);
-            $fecha_titulo=$fecha_separada[0]+1;
-            if($usuario!=null){
-                foreach($usuario as $usu){
-                    $datousuario1 = $usu->usuario;
-                    $datousuario2 = $usu->email;
-                    $datousuario3 = $usu->password;
-                }
+            $usuarioencarado=DB::select($sql, array($ideusu));
+            foreach($usuarioencarado as $usu1){
+                $datousuario1 = $usu1->name;
+                $datousuario2 = $usu1->email;
+
             }
+            
+        }
+
+        if($relacion2!=null){     
+            foreach($relacion2 as $usualmuno){
+                $datos_alumno = $usualmuno->ID_USER;
+            }
+            $ideusu2=$datos_alumno;
+            $sql='SELECT * FROM  users WHERE id=?';
+            $usuarioalumno=DB::select($sql, array($ideusu2));
+            foreach($usuarioalumno as $usu2){
+                $datousuario3 = $usu2->name;
+                $datousuario4 = $usu2->email;
+
+            }
+            
+        }
+
         
-            if($usuario_gestion!=null){
-                foreach($usuario_gestion as $usua){
-                    $datosusuario4= $usua->NO_GESTION;
-                }
-            }
-            $datos_usuario=array($fecha_titulo, $datousuario1, $datousuario2, $datousuario3, $datosusuario4);
-            $pdfcredenciales = PDF::loadView('admisiones.PDFusuarios', compact('datos_usuario'));
+
+
+        $datos_usuario=array($fecha_titulo, $datousuario1, $datousuario2, $datousuario3, $datousuario4);
+        session(['datos_usuarios' => $datos_usuario]);
+        $pdfcredenciales = PDF::loadView('admisiones.PDFusuarios', compact('datos_usuario'));
             $msj->from("ingresos@colegioelcastano.edu.gt","ColegioElCastaño");
             $msj->subject($subject);
             $msj->attachData($pdfcredenciales->output(), "Credenciales2023.pdf");
@@ -1752,28 +1794,49 @@ public function Desactivacion($id,$estado,$gest){
             $arreglo= array($this->id_no_gest_arch);
             Mail::send('admisiones.correo.vistacredenciales',compact('arreglo'), function($msj) use($subject,$for3){
                 $id_usuario = session('id_usuariopdf');
-                $sql='SELECT * FROM  users WHERE id=?';
-                $usuario=DB::select($sql, array($id_usuario));
-                $sql='SELECT * FROM  TB_PRE_INS WHERE ID_PRE=?';
-                $usuario_gestion=DB::select($sql, array($id_usuario));
-                $año_en_curso=date('Y-m-d');
-                $fecha_separada=explode("-", $año_en_curso);
-                $fecha_titulo=$fecha_separada[0]+1;
-                if($usuario!=null){
-                    foreach($usuario as $usu){
-                        $datousuario1 = $usu->usuario;
-                        $datousuario2 = $usu->email;
-                        $datousuario3 = $usu->password;
-                    }
-                }
+        $sql='SELECT * FROM  tb_encargados WHERE ID_PRE=?';
+        $relacion=DB::select($sql, array($id_usuario));  
+        $sql='SELECT * FROM  tb_alumnos WHERE ID_PRE=?';
+        $relacion2=DB::select($sql, array($id_usuario));
+        $año_en_curso=date('Y-m-d');
+        $fecha_separada=explode("-", $año_en_curso);
+        $fecha_titulo=$fecha_separada[0]+1;
+        if($relacion!=null){     
+            foreach($relacion as $usu){
+                $datos_encargado = $usu->ID_USER;
+            }
+            $ideusu=$datos_encargado;
+            $sql='SELECT * FROM  users WHERE id=?';
+            $usuarioencarado=DB::select($sql, array($ideusu));
+            foreach($usuarioencarado as $usu1){
+                $datousuario1 = $usu1->name;
+                $datousuario2 = $usu1->email;
+
+            }
             
-                if($usuario_gestion!=null){
-                    foreach($usuario_gestion as $usua){
-                        $datosusuario4= $usua->NO_GESTION;
-                    }
-                }
-                $datos_usuario=array($fecha_titulo, $datousuario1, $datousuario2, $datousuario3, $datosusuario4);
-                $pdfcredenciales = PDF::loadView('admisiones.PDFusuarios', compact('datos_usuario'));
+        }
+
+        if($relacion2!=null){     
+            foreach($relacion2 as $usualmuno){
+                $datos_alumno = $usualmuno->ID_USER;
+            }
+            $ideusu2=$datos_alumno;
+            $sql='SELECT * FROM  users WHERE id=?';
+            $usuarioalumno=DB::select($sql, array($ideusu2));
+            foreach($usuarioalumno as $usu2){
+                $datousuario3 = $usu2->name;
+                $datousuario4 = $usu2->email;
+
+            }
+            
+        }
+
+        
+
+
+        $datos_usuario=array($fecha_titulo, $datousuario1, $datousuario2, $datousuario3, $datousuario4);
+        session(['datos_usuarios' => $datos_usuario]);
+        $pdfcredenciales = PDF::loadView('admisiones.PDFusuarios', compact('datos_usuario'));
                 $msj->from("ingresos@colegioelcastano.edu.gt","ColegioElCastaño");
                 $msj->subject($subject);
                 $msj->attachData($pdfcredenciales->output(), "Credenciales2023.pdf");
