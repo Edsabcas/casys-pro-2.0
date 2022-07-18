@@ -1260,9 +1260,9 @@ $quien_encargado1=$this->quien_encargado1;
     
                 $inicial=substr($this->nombre_encargado,0,1);
                 $iniciales=explode(" ", $this->nombre_encargado);
-                $inicial2=substr($iniciales[1],0,1);
+                $inicial2=substr ($iniciales[1],0,1);
                 $apellido=$iniciales[2];
-                $apellido2=substr($iniciales[3],0,1);
+                $apellido2=substr ($iniciales[3],0,1);
                 
     
                 $this->usuario2=$this->usuario2.$inicial2;
