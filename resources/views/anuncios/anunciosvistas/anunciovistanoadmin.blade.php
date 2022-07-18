@@ -220,29 +220,31 @@ $('#exampleModal1').modal('show');
 @endforeach
 @endif
 
-<!-- Encargado-->
-@if($rol_usuario==5)
-@foreach($alumnos_asignados as $alumnos)
+<!--ENCARGADO-->
 <div class="row">
-  <div class="col-xl-4 col-sm-7 col-13 mb-5">
-    <div class="card shadow rounded">
-      <div class="card-body">
-        <div class="text-center">
-          <div class="align-self-center">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" style="color: #3a3e7b" class="bi bi-person-fill" viewBox="0 0 16 16">
-              <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-            </svg>
-            <br>
-          <a href="/Vista_Alumno/{{$alumnos->ID_USER}}" style="color: #000000">{{$alumnos->NOMBRE}}</a>
+  @if($rol_usuario==5)
+  @foreach($alumnos_asignados as $alumnos)
+    <div class="col-xl-4 col-sm-7 col-13 mb-5">
+      <div class="card shadow rounded">
+        <div class="card-body">
+          <div class="text-center">
+            <div class="align-self-center">
+              <br>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" style="color: #3a3e7b" class="bi bi-person-fill" viewBox="0 0 16 16">
+                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+              </svg>
+            </div>    
+            <div class="text-center">
+              <a href="/Vista_Alumno/{{$alumnos->ID_USER}}" style="color: #000000">
+                {{$alumnos->NOMBRE}}
+              </a>
+            </div>
           </div>
         </div>
-      <br>
       </div>
     </div>
-  </div>
-</div>
+    @endforeach
 
-@endforeach
 @foreach($filtros_encargado as $filtro_encargado)
 <div class="offset-3 col-10">
   <br>
