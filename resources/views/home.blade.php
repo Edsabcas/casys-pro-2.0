@@ -8,6 +8,21 @@
 @elseif($op=='alumnosupervisado')
 @livewire('vista-alumno-component')
 
+@elseif($op=='alumnosupervisadoanuncios')
+@livewire('vista-alumno-component')
+
+@elseif($op=='alumnosupervisadocalificaiones')
+@livewire('vista-alumno-component')
+
+@elseif($op=='alumnosupervisadocalendario')
+@livewire('vista-alumno-component')
+
+@elseif($op=='alumnosupervisadoreportes')
+@livewire('vista-alumno-component')
+
+@elseif($op=='alumnosupervisadopagos')
+@livewire('vista-alumno-component')
+
 @elseif($op=='vistaadanuncios')
 @livewire('anuncios-admin');
 
