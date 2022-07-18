@@ -1,4 +1,4 @@
-  <div class="row">
+<div class="row">
     <div class="col-xl-4 col-sm-7 col-13 mb-5">
       <div class="card shadow rounded">
         <div class="card-body">
@@ -9,7 +9,7 @@
                 <path d="M3 8.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zm0-5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-1z"/>
               </svg>
               <br>
-            <a href="/Vista_Anuncios_Alumno" style="color: #000000">Anuncios</a>
+            <a href="/Vista_Anuncios_Alumno" style="color: #000000">Anuncios {{Session::get('idalumnosupervisado')}}</a>
             </div>
           </div>
         <br>

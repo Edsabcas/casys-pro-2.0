@@ -235,7 +235,7 @@ $('#exampleModal1').modal('show');
               </svg>
             </div>    
             <div class="text-center">
-              <a href="/Vista_Alumno/{{$alumnos->ID_USER}}" style="color: #000000">
+              <a href="Vista_Alumno/{{$alumnos->ID_USER}}" style="color: #000000">
                 {{$alumnos->NOMBRE}}
               </a>
             </div>

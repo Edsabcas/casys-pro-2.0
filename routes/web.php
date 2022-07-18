@@ -115,7 +115,7 @@ Route::get('/Publicaciones', [AnunciosNoAdController::class, 'vistanoadmin'])->m
 Route::get('/Usuario_pdf', [PDFController::class, 'pdf_nuevo']);
 
 //Vista Alumnos desde perfil de Padres
-Route::get('/Vista_Alumno/{id_alumno}', [VistaAlumnoController::class, 'panel_general']);
+Route::get('/Vista_Alumno/{id}', [VistaAlumnoController::class, 'panel_general']);
 Route::get('/Vista_Anuncios_Alumno', [VistaAlumnoController::class, 'anuncios_alumnos']);
 Route::get('/Vista_Calificaiones', [VistaAlumnoController::class, 'calificaciones_alumnos']);
 Route::get('/Vista_Calendario', [VistaAlumnoController::class, 'calendario_alumnos']);
