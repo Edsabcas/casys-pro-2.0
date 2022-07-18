@@ -13,17 +13,17 @@ class VistaAlumnoComponent extends Component
     public $idcomparacion, $mensaje9, $mensaje10, $mora, $id_publicacion, $mensaje5, $mensaje6;
     public function render()
     {
-        $id_alumno=session('id_alumno_supervisado');
+        //$id_alumno=session('idalumnosupervisado');
         $usuario_activo = auth()->user()->id;
         $sql="SELECT * FROM tb_anuncios ORDER BY FECHA_HORA DESC";
         $anuncios=DB::select($sql);
         $sql="SELECT tb_anuncios.ID_ANUNCIOS,tb_anuncios.TEXTO_PUBLICACION, tb_anuncios.MULTIMEDIA, tb_anuncios.FECHA_HORA, tb_anuncios.TIPO_ANUNCIO, tb_anuncios.PUBLICO_ANUNCIO, 
         tb_anuncios.GRADO_ANUNCIO, tb_anuncios.IDIOMA_MAESTRO, tb_anuncios.CALIDAD_ANUNCIO, tb_anuncios.ESTADO_ANUNCIO, tb_anuncios.ID_USUARIO FROM tb_anuncios
-        INNER JOIN rol_usuario on (tb_anuncios.PUBLICO_ANUNCIO=rol_usuario.ID_ROL AND rol_usuario.ID_USUARIO=90) OR (tb_anuncios.TIPO_ANUNCIO=0 AND rol_usuario.ID_USUARIO=90)
-        INNER JOIN tb_alumnos on tb_alumnos.ID_USER=90
+        INNER JOIN rol_usuario on (tb_anuncios.PUBLICO_ANUNCIO=rol_usuario.ID_ROL AND rol_usuario.ID_USUARIO=?) OR (tb_anuncios.TIPO_ANUNCIO=0 AND rol_usuario.ID_USUARIO=?)
+        INNER JOIN tb_alumnos on tb_alumnos.ID_USER=?
         INNER JOIN TB_PRE_INS on (tb_anuncios.GRADO_ANUNCIO=TB_PRE_INS.GRADO_ING_ES OR tb_anuncios.GRADO_ANUNCIO=0) AND tb_alumnos.ID_PRE=TB_PRE_INS.ID_PRE 
         ORDER BY tb_anuncios.FECHA_HORA DESC";
-        $this->filtros_alumnos=DB::select($sql);
+        $this->filtros_alumnos=DB::select($sql, array(session('idalumnosupervisado'), session('idalumnosupervisado'), session('idalumnosupervisado')));
         $sql="SELECT * FROM tb_oculto";
         $ocultos=DB::select($sql);
         $sql="SELECT * FROM users";
