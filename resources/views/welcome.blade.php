@@ -346,8 +346,6 @@
 
             </nav>
                 <!-- End of Topbar -->
-
-    
                 @yield('content')
             </div>
             
