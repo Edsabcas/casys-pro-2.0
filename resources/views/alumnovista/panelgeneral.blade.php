@@ -9,7 +9,7 @@
                 <path d="M3 8.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zm0-5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-1z"/>
               </svg>
               <br>
-            <a href="/Vista_Anuncios_Alumno" style="color: #000000">Anuncios {{Session::get('idalumnosupervisado')}}</a>
+            <a href="/Vista_Anuncios_Alumno" style="color: #000000">Anuncios {{Session::get('id_alumno_supervisado')}}</a>
             </div>
           </div>
         <br>

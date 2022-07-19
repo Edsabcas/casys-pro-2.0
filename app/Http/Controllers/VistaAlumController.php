@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 
 class VistaAlumController extends Controller
 {
-    public function panelgeneral($id){
-        $op="alumnosupervisado";
-        session(['id_alumno_supervisado' => $id]);
+    public function panelgeneral(){
+        $op="alumnosupervisado";        
+        session()->forget('op');
         session(['op' => $op]);
         return view('home', compact('op'));
 

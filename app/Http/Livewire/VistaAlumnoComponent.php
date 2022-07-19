@@ -23,7 +23,7 @@ class VistaAlumnoComponent extends Component
         INNER JOIN tb_alumnos on tb_alumnos.ID_USER=?
         INNER JOIN TB_PRE_INS on (tb_anuncios.GRADO_ANUNCIO=TB_PRE_INS.GRADO_ING_ES OR tb_anuncios.GRADO_ANUNCIO=0) AND tb_alumnos.ID_PRE=TB_PRE_INS.ID_PRE 
         ORDER BY tb_anuncios.FECHA_HORA DESC";
-        $this->filtros_alumnos=DB::select($sql, array(session('idalumnosupervisado'), session('idalumnosupervisado'), session('idalumnosupervisado')));
+        $this->filtros_alumnos=DB::select($sql, array(session('id_alumno_supervisado'), session('id_alumno_supervisado'), session('id_alumno_supervisado')));
         $sql="SELECT * FROM tb_oculto";
         $ocultos=DB::select($sql);
         $sql="SELECT * FROM users";

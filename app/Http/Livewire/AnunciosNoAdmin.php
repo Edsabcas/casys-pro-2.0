@@ -288,9 +288,9 @@ class AnunciosNoAdmin extends Component
         
     }
 
-    public function vistas(){
-        
-
+    public function ver_estu($id){
+        session()->forget('id_alumno_supervisado');
+        session(['id_alumno_supervisado' =>$id]);
     }
 
 }

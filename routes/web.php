@@ -115,7 +115,7 @@ Route::get('/Publicaciones', [AnunciosNoAdController::class, 'vistanoadmin'])->m
 Route::get('/Usuario_pdf', [PDFController::class, 'pdf_nuevo']);
 
 //Vista Alumnos desde perfil de Padres
-Route::get('/Vista_Alumno/{id}', [VistaAlumController::class, 'panelgeneral'])->middleware('auth');
+Route::get('/vistagen', [VistaAlumController::class, 'panelgeneral'])->middleware('auth');
 Route::get('/Vista_Anuncios_Alumno', [VistaAlumController::class, 'anuncios_alumnos'])->middleware('auth');
 Route::get('/Vista_Calificaiones', [VistaAlumController::class, 'calificaciones_alumnos'])->middleware('auth');
 Route::get('/Vista_Calendario', [VistaAlumController::class, 'calendario_alumnos'])->middleware('auth');
