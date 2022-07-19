@@ -69,9 +69,9 @@ class AnunciosNoAdmin extends Component
 
         $sql="SELECT tb_alumnos.ID_USERALUMNO, tb_alumnos.NOMBRE, tb_alumnos.ID_PRE, tb_alumnos.ID_USER, tb_relacion_encargado.ID_RELACION, 
         tb_relacion_encargado.ID_USERALUMNO, tb_relacion_encargado.ID_USERENCARGADO, tb_relacion_encargado.ESTADO, users.img_users FROM tb_relacion_encargado
-        INNER JOIN tb_alumnos on tb_alumnos.ID_USER=tb_relacion_encargado.ID_USERALUMNO AND tb_relacion_encargado.ID_USERENCARGADO = 91
+        INNER JOIN tb_alumnos on tb_alumnos.ID_USER=tb_relacion_encargado.ID_USERALUMNO AND tb_relacion_encargado.ID_USERENCARGADO=?
         INNER JOIN users on tb_alumnos.ID_USER=users.id;";
-        $this->alumnos_asignados=DB::select($sql);
+        $this->alumnos_asignados=DB::select($sql, array(auth()->user()->id));
 
         $this->cero=0;
         $this->admin_rol = 2;
