@@ -10,7 +10,8 @@ class VistaAlumnoComponent extends Component
     public $filtros_alumnos, $usuario_publicacion2, $usuario_publicacion, $rol_publicado, $cero, $admin_rol;
     public $usuario_id, $vistas_totales, $rol_u, $rol_usuario, $mensaje3, $mensaje4, $id_com, $texto_comentario;
     public $mensaje1, $mensaje2, $op, $op2, $id_megusta, $valorlike, $idusuario, $can, $mensaje;
-    public $idcomparacion, $mensaje9, $mensaje10, $mora, $id_publicacion, $mensaje5, $mensaje6;
+    public $idcomparacion, $mensaje9, $mensaje10, $mora, $id_publicacion, $mensaje5, $mensaje6, $usuario_panel;
+    public $nombre_panel;
     public function render()
     {
         //$id_alumno=session('idalumnosupervisado');
@@ -41,6 +42,12 @@ class VistaAlumnoComponent extends Component
         $me_gusta=DB::select($sql);
         $sql="SELECT * FROM tb_guardados";
         $guardar=DB::select($sql);
+        //nombre del niño
+        $sql="SELECT * FROM tb_alumnos WHERE ID_USER=?";
+        $this->usuario_panel=DB::select($sql, array(session('id_alumno_supervisado')));
+        foreach($this->usuario_panel as $usu_panel){
+            $this->nombre_panel=$usu_panel->NOMBRE;
+        }
 
         //componentes nuevos 
         $this->cero=0;

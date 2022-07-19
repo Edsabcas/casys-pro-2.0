@@ -1,3 +1,8 @@
+<div>
+  <center><h2><strong>Panel de supervisión de <i>{{$nombre_panel}}</i></strong></h2></center>
+</div>
+<br>
+<hr>
 <div class="row">
     <div class="col-xl-4 col-sm-7 col-13 mb-5">
       <div class="card shadow rounded">
