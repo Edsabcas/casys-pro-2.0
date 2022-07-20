@@ -1,5 +1,7 @@
 <div>
-  <center><h2><strong>Panel de supervisión de <i>{{$nombre_panel}}</i></strong></h2></center>
+  <center>
+    <p style="color:#3a3e7b; font-size:30px"class="text-center"><strong>Panel de supervisión de <i>{{$nombre_panel}}</i></strong></p>
+  </center>
 </div>
 <br>
 <hr>
@@ -14,7 +16,7 @@
                 <path d="M3 8.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zm0-5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-1z"/>
               </svg>
               <br>
-            <a href="/Vista_Anuncios_Alumno" style="color: #000000">Anuncios {{Session::get('id_alumno_supervisado')}}</a>
+            <a href="/Vista_Anuncios_Alumno" style="color: #000000"><strong>Anuncios {{Session::get('id_alumno_supervisado')}}</strong></a>
             </div>
           </div>
         <br>
@@ -32,7 +34,7 @@
                 <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0zM7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z"/>
               </svg>
               <br>
-            <a href="/Vista_Calificaiones" style="color: #000000">Calificaciones</a>
+            <a href="/Vista_Calificaiones" style="color: #000000"><strong>Calificaciones</strong></a>
             </div>
           </div>
         <br>
@@ -50,7 +52,7 @@
                 <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zm9.954 3H2.545c-.3 0-.545.224-.545.5v1c0 .276.244.5.545.5h10.91c.3 0 .545-.224.545-.5v-1c0-.276-.244-.5-.546-.5zm-4.118 9.79c1.258 0 2-1.067 2-2.872 0-1.934-.781-2.668-1.953-2.668-.926 0-1.797.672-1.797 1.809 0 1.16.824 1.77 1.676 1.77.746 0 1.23-.376 1.383-.79h.027c-.004 1.316-.461 2.164-1.305 2.164-.664 0-1.008-.45-1.05-.82h-.684c.047.64.594 1.406 1.703 1.406zm-2.89-5.435h-.633A12.6 12.6 0 0 0 4.5 8.16v.695c.375-.257.969-.62 1.258-.777h.012v4.61h.675V7.354z"/>
               </svg>
               <br>
-            <a href="/Vista_Calendario" style="color: #000000">Calendario</a>
+            <a href="/Vista_Calendario" style="color: #000000"><strong>Calendario</strong></a>
             </div>
           </div>
         <br>
@@ -68,7 +70,7 @@
                 <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
               </svg>
               <br>
-            <a href="/Vista_Reportes" style="color: #000000">Reportes</a>
+            <a href="/Vista_Reportes" style="color: #000000"><strong>Reportes</strong></a>
             </div>
           </div>
         <br>
@@ -86,7 +88,7 @@
                 <path d="M3 8.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zm0-5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-1z"/>
               </svg>
               <br>
-            <a href="/Vista_Pagos" style="color: #000000">Pagos</a>
+            <a href="/Vista_Pagos" style="color: #000000"><strong>Pagos</strong></a>
             </div>
           </div>
         <br>
