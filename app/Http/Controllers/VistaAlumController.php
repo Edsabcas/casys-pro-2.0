@@ -7,6 +7,15 @@ use Illuminate\Http\Request;
 class VistaAlumController extends Controller
 {
     public function panelgeneral(){
+        //$op="alumnosupervisado";        
+        //session()->forget('op');
+        //session(['op' => $op]);
+        //return redirect()->route('vistageneral');
+        return redirect ('/vistageneral');
+
+    }
+
+    public function panelgeneral2(){
         $op="alumnosupervisado";        
         session()->forget('op');
         session(['op' => $op]);
