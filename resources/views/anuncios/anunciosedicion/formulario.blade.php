@@ -96,6 +96,7 @@
         </select>
         
         @endif
+        
         @if($op_grado==1)
         @endif
         @endif
@@ -103,7 +104,7 @@
         <br>
         <div class="mb-3">
           <label for="" class="form-label" style="font-size:20px; color: #3a3e7b"><strong>• Redacte una descripción para el anuncio</strong></label>
-          <textarea class="form-control shadow-sm rounded" style="border-color: #a4cb39" id="summary-ckeditor" name="summary-ckeditor" rows="4" wire:model="texto_anuncio"></textarea>
+          <textarea class="form-control shadow-sm rounded" style="border-color: #a4cb39" id="edit-area" rows="4" wire:model="texto_anuncio"></textarea>
         </div>
           
         <br>
