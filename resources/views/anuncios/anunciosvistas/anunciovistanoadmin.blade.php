@@ -230,12 +230,23 @@ $('#exampleModal1').modal('show');
           <div class="text-center">
             <div class="align-self-center">
               <br>
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" style="color: #3a3e7b" class="bi bi-person-fill" viewBox="0 0 16 16">
-                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-              </svg>
+              <!--Foto de perfil de cada alumno en el feed-->
+              @php
+          $foto=0;
+          if (strpos($alumnos->img_users, '.jpg' ) !== false || strpos($alumnos->img_users, '.png' ) !== false || strpos($alumnos->img_users, '.jpeg' ) !== false) 
+                 { $foto=1; }
+          @endphp
+          @if($foto==1)
+          <img class="rounded-circle"  src="imagen/perfil/{{$alumnos->img_users}}" width="60" height="60" alt="...">
+          @elseif($foto==0)
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" style="color: #3a3e7b" class="bi bi-person-fill" viewBox="0 0 16 16">
+            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+          </svg>
+          @endif
+              <!--Fin recuperación de Foto de perfil de cada alumno en el feed-->
             </div>    
             <div class="text-center">
-              <a href="Vista_Alumno/{{$alumnos->ID_USER}}" style="color: #000000">
+              <a wire:click="ver_estu({{$alumnos->ID_USER}})" href="/vistagen" style="color: #000000">
                 {{$alumnos->NOMBRE}}
               </a>
             </div>

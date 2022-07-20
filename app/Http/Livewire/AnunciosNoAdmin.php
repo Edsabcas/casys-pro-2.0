@@ -67,16 +67,21 @@ class AnunciosNoAdmin extends Component
         ORDER BY tb_anuncios.FECHA_HORA DESC;";
         $this->filtros_encargado=DB::select($sql);
 
-        $sql="SELECT users.img_users, tb_alumnos.ID_USERALUMNO, tb_alumnos.NOMBRE, tb_alumnos.ID_PRE, tb_alumnos.ID_USER, tb_relacion_encargado.ID_RELACION, 
+       /*  $sql="SELECT users.img_users, tb_alumnos.ID_USERALUMNO, tb_alumnos.NOMBRE, tb_alumnos.ID_PRE, tb_alumnos.ID_USER, tb_relacion_encargado.ID_RELACION, 
         tb_relacion_encargado.ID_USERALUMNO, tb_relacion_encargado.ID_USERENCARGADO, tb_relacion_encargado.ESTADO  FROM tb_relacion_encargado
 		INNER JOIN users on users.id=tb_relacion_encargado.ID_USERALUMNO
              INNER JOIN tb_alumnos on tb_alumnos.ID_USER=tb_relacion_encargado.ID_USERALUMNO WHERE tb_relacion_encargado.ID_USERENCARGADO=$usuario_activo";
-        $this->alumnos_asignados=DB::select($sql);
+        $this->alumnos_asignados=DB::select($sql); */
+        $sql="SELECT tb_alumnos.ID_USERALUMNO, tb_alumnos.NOMBRE, tb_alumnos.ID_PRE, tb_alumnos.ID_USER, tb_relacion_encargado.ID_RELACION, 
+        tb_relacion_encargado.ID_USERALUMNO, tb_relacion_encargado.ID_USERENCARGADO, tb_relacion_encargado.ESTADO, users.img_users FROM tb_relacion_encargado
+        INNER JOIN tb_alumnos on tb_alumnos.ID_USER=tb_relacion_encargado.ID_USERALUMNO AND tb_relacion_encargado.ID_USERENCARGADO=?
+        INNER JOIN users on tb_alumnos.ID_USER=users.id;";
+        $this->alumnos_asignados=DB::select($sql, array(auth()->user()->id));
 
         $this->cero=0;
         $this->admin_rol = 2;
         $fecha_vista=date("Y-m-d H:i:s");
-        $estado_vista=1;
+        $estado_vista=1; 
         $this->usuario_id = auth()->user()->id;
         $this->vistas_totales_id=5;
         
@@ -288,9 +293,9 @@ class AnunciosNoAdmin extends Component
         
     }
 
-    public function vistas(){
-        
-
+    public function ver_estu($id){
+        session()->forget('id_alumno_supervisado');
+        session(['id_alumno_supervisado' =>$id]);
     }
 
 }

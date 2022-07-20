@@ -4,11 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class VistaAlumnoController extends Controller
+class VistaAlumController extends Controller
 {
-    public function panel_general($id_alumno){
-        $op="alumnosupervisado";
-        session(['id_alumno_supervisado' => $id_alumno]);
+    public function panelgeneral(){
+        //$op="alumnosupervisado";        
+        //session()->forget('op');
+        //session(['op' => $op]);
+        //return redirect()->route('vistageneral');
+        return redirect ('/vistageneral');
+
+    }
+
+    public function panelgeneral2(){
+        $op="alumnosupervisado";        
+        session()->forget('op');
         session(['op' => $op]);
         return view('home', compact('op'));
 
