@@ -33,21 +33,21 @@ class AdminisionesComponet extends Component
     public $tipo2,$correo_en2,$preciopre,$preciovir,$id_gr,$id_nvl;
     public $quien_encargado1, $nombre_encargado, $nacimientoencargado,$nacionalidadencargado,$lugarnacimientoencargado,$estadocivilencargado,$DPIencargado,$telefonoencargado,$celularencargado,$direccionresidenciaencargado,$correoencargado,$profesionencargado,$lugar_profesion_encargado ,$religion_encargado,$NIT_encargado,$vive_con_elencargado;
     public $img2, $img3, $archivo_perfil, $archivo_perfil2;
-    public $can1,$can2,$tipo_ins, $datosusuario4;
+    public $can1,$can2,$tipo_ins, $datosusuario4,$tipo3,$tipo4;
 
     public function render()
     {
 
-       /*  if($this->archivo_perfil!=null){
+        if($this->archivo_perfil!=null){
             if($this->archivo_perfil->getClientOriginalExtension()=="jpg" or $this->archivo_perfil->getClientOriginalExtension()=="png" or $this->archivo_perfil->getClientOriginalExtension()=="jpeg"){
-                $this->tipo=1;
+                $this->tipo=4;
             }
         }
         if($this->archivo_perfil2!=null){
             if($this->archivo_perfil2->getClientOriginalExtension()=="jpg" or $this->archivo_perfil2->getClientOriginalExtension()=="png" or $this->archivo_perfil2->getClientOriginalExtension()=="jpeg"){
-                $this->tipo=1;
+                $this->tipo=2;
             }
-        } */
+        }
         if($this->archivo!=null){
             if($this->archivo->getClientOriginalExtension()=="pdf"){
                 $archivo = "pdf".time().".".$this->archivo->getClientOriginalExtension();
@@ -188,7 +188,7 @@ class AdminisionesComponet extends Component
         DB::beginTransaction();
         
         $cambio_pre=DB::table('TB_PRE_INS')
-               ->where('NO_GESTION',  $this->gestion)
+               ->where('ID_PRE',  $this->id_ges_cambio)
                ->update(
                    [
                     'ESTADO_PRE_INS' => $this->tipo_cambio1,
@@ -1430,10 +1430,10 @@ $quien_encargado1=$this->quien_encargado1;
                     if($this->archivo_perfil->getClientOriginalExtension()=="jpg" or $this->archivo_perfil->getClientOriginalExtension()=="png" or $this->archivo_perfil->getClientOriginalExtension()=="jpeg"){
                         $archivo_perfil = "img".time().".".$this->archivo_perfil->getClientOriginalExtension();
                         $this->img2=$archivo_perfil;
-                        $ruta="C:/xampp/htdocs/repo_clon_casys/casys-pro-2.0/public/imagen/perfil/";
-                        copy($this->archivo_perfil->getRealPath(), $ruta.$archivo_perfil);
-                        /* $this->archivo_perfil->storeAS('imagen/perfil/', $this->img2,'public_up'); */
-                        $this->tipo=1;
+                        /* $ruta="C:/xampp/htdocs/repo_clon_casys/casys-pro-2.0/public/imagen/perfil/";
+                        copy($this->archivo_perfil->getRealPath(), $ruta.$archivo_perfil); */
+                        $this->archivo_perfil->storeAS('imagen/perfil/', $this->img2,'public_up');
+                        $this->tipo4=1;
     
                         DB::beginTransaction();
                         $estudiantefoto=DB::table('users')
@@ -1452,10 +1452,10 @@ $quien_encargado1=$this->quien_encargado1;
                     if($this->archivo_perfil2->getClientOriginalExtension()=="jpg" or $this->archivo_perfil2->getClientOriginalExtension()=="png" or $this->archivo_perfil2->getClientOriginalExtension()=="jpeg"){
                         $archivo_perfil2 = "img".time().".".$this->archivo_perfil2->getClientOriginalExtension();
                         $this->img3=$archivo_perfil2;
-                        $ruta2="C:/xampp/htdocs/repo_clon_casys/casys-pro-2.0/public/imagen/perfil/";
-                        copy($this->archivo_perfil2->getRealPath(), $ruta2.$archivo_perfil2);
-                       /*  $this->archivo_perfil2->storeAS('imagen/perfil/', $this->img3,'public_up'); */
-                        $this->tipo=1;
+                        /* $ruta2="C:/xampp/htdocs/repo_clon_casys/casys-pro-2.0/public/imagen/perfil/";
+                        copy($this->archivo_perfil2->getRealPath(), $ruta2.$archivo_perfil2); */
+                        $this->archivo_perfil2->storeAS('imagen/perfil/', $this->img3,'public_up'); 
+                        $this->tipo3=1;
     
                         DB::beginTransaction();
                         $encargadofoto=DB::table('users')
@@ -1909,60 +1909,6 @@ public function Desactivacion($id,$estado,$gest){
             });
             }
     
- }
-
- public function reg_estado_usuario($gest,$id){
-    $this->id_no_gest_ins=$gest;
-    $nuevo_estado=$id;
-    $reg=DB::table('TB_PRE_INS')
-        ->where('NO_GESTION', $this->id_no_gest_ins)
-        ->update(
-            [
-
-             'ESTADO_PRE_INS' => $nuevo_estado,
-
-            ]);
-            if($reg){
-                $this->mensaje_diaco='Editado correctamente';
-                DB::commit();
-                if(false !== strpos($this->correo_en, "@") && false !== strpos($this->correo_en, ".")){
-                $subject = "Notificación Pre-Ins.Castaño (No responder)";
-                $for = $this->correo_en;
-                $arreglo= array($this->id_no_gest_ins);
-                Mail::send('admisiones.correo.vista1',compact('arreglo'), function($msj) use($subject,$for){
-                $msj->from("ingresos@colegioelcastano.edu.gt","ColegioElCastaño");
-                $msj->subject($subject);
-                $msj->to($for);        
-            });
-            }
-            if(false !== strpos($this->correo_padre, "@") && false !== strpos($this->correo_padre, ".")){
-            $subject = "Notificación Pre-Ins.Castaño (No responder)";
-            $for2 = $this->correo_padre;
-            $arreglo= array($this->id_no_gest_ins);
-            Mail::send('admisiones.correo.vista1',compact('arreglo'), function($msj) use($subject,$for2){
-                $msj->from("ingresos@colegioelcastano.edu.gt","ColegioElCastaño");
-                $msj->subject($subject);
-                $msj->to($for2);        
-            });
-            }
-            if(false !== strpos($this->correo_madre, "@") && false !== strpos($this->correo_madre, ".")){
-            $subject = "Notificación Pre-Ins.Castaño (No responder)";
-            $for3 = $this->correo_madre;
-            $arreglo= array($this->id_no_gest_ins);
-            Mail::send('admisiones.correo.vista1',compact('arreglo'), function($msj) use($subject,$for3){
-                $msj->from("ingresos@colegioelcastano.edu.gt","ColegioElCastaño");
-                $msj->subject($subject);
-                $msj->to($for3);        
-            });
-            }
-            unset($this->mensaje);
-            $this->mensaje="Se actualizo el estado y se envio correo correctamente";
-            }
-            else{
-                $this->mensaje_diaco1='No se logro editar correctamente';
-                unset($this->mensaje1);
-                $this->mensaje1="No fue posible enviar correo y actualizar";
-            }
  }
 
 }

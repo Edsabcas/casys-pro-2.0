@@ -72,6 +72,7 @@ class AnunciosNoAdmin extends Component
 		INNER JOIN users on users.id=tb_relacion_encargado.ID_USERALUMNO
              INNER JOIN tb_alumnos on tb_alumnos.ID_USER=tb_relacion_encargado.ID_USERALUMNO WHERE tb_relacion_encargado.ID_USERENCARGADO=$usuario_activo";
         $this->alumnos_asignados=DB::select($sql); */
+        
         $sql="SELECT tb_alumnos.ID_USERALUMNO, tb_alumnos.NOMBRE, tb_alumnos.ID_PRE, tb_alumnos.ID_USER, tb_relacion_encargado.ID_RELACION, 
         tb_relacion_encargado.ID_USERALUMNO, tb_relacion_encargado.ID_USERENCARGADO, tb_relacion_encargado.ESTADO, users.img_users FROM tb_relacion_encargado
         INNER JOIN tb_alumnos on tb_alumnos.ID_USER=tb_relacion_encargado.ID_USERALUMNO AND tb_relacion_encargado.ID_USERENCARGADO=?
