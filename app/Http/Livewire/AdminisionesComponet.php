@@ -32,12 +32,22 @@ class AdminisionesComponet extends Component
     public $alimento, $vacunas, $alumno_asegurado, $solo_alumno, $encargado_alumno, $bus_colegio, $bus_no_colegio, $nombre_aseguradora, $no_gest;
     public $tipo2,$correo_en2,$preciopre,$preciovir,$id_gr,$id_nvl;
     public $quien_encargado1, $nombre_encargado, $nacimientoencargado,$nacionalidadencargado,$lugarnacimientoencargado,$estadocivilencargado,$DPIencargado,$telefonoencargado,$celularencargado,$direccionresidenciaencargado,$correoencargado,$profesionencargado,$lugar_profesion_encargado ,$religion_encargado,$NIT_encargado,$vive_con_elencargado;
-
+    public $img2, $img3, $archivo_perfil, $archivo_perfil2;
     public $can1,$can2,$tipo_ins, $datosusuario4;
 
     public function render()
     {
 
+       /*  if($this->archivo_perfil!=null){
+            if($this->archivo_perfil->getClientOriginalExtension()=="jpg" or $this->archivo_perfil->getClientOriginalExtension()=="png" or $this->archivo_perfil->getClientOriginalExtension()=="jpeg"){
+                $this->tipo=1;
+            }
+        }
+        if($this->archivo_perfil2!=null){
+            if($this->archivo_perfil2->getClientOriginalExtension()=="jpg" or $this->archivo_perfil2->getClientOriginalExtension()=="png" or $this->archivo_perfil2->getClientOriginalExtension()=="jpeg"){
+                $this->tipo=1;
+            }
+        } */
         if($this->archivo!=null){
             if($this->archivo->getClientOriginalExtension()=="pdf"){
                 $archivo = "pdf".time().".".$this->archivo->getClientOriginalExtension();
@@ -1288,14 +1298,16 @@ $quien_encargado1=$this->quien_encargado1;
             $usuario=$this->usuario;
             $correoed=$this->correoed;
             $pass=bcrypt($this->pass);
+            $img2=$this->archivo_perfil;
 
             $usuario2=$this->usuario2;
             $correoed2=$this->correoed2;
             $pass2=bcrypt($this->pass2);
             $id_pre=$this->id_pre;
+            $img3=$this->archivo_perfil2;
 
             $id_estudiante=0;
-            $id_encargado=0;
+            
             $sql='SELECT MAX(id+1) AS id FROM users;';
             $valor=DB::select($sql);
     
@@ -1311,6 +1323,7 @@ $quien_encargado1=$this->quien_encargado1;
                     'email'=>$correoed,  
                     'usuario'=>$usuario,
                     'password'=>$pass,
+                    'img_users'=>$img2,
                 ]);
 
                 $id_rol=4;
@@ -1355,6 +1368,7 @@ $quien_encargado1=$this->quien_encargado1;
 
                         }else{
             
+                            $id_encargado=0;
                             $sql='SELECT MAX(id+1) AS id FROM users;';
                             $valore=DB::select($sql);
                     
@@ -1370,6 +1384,7 @@ $quien_encargado1=$this->quien_encargado1;
                                         'email'=>$correoed2,  
                                         'usuario'=>$usuario2,
                                         'password'=>$pass2, 
+                                        'img_users'=>$img3,
                                     ]);
             
                                 $id_rol=5;
@@ -1410,8 +1425,49 @@ $quien_encargado1=$this->quien_encargado1;
                                                 $this->mensaje2='No fue posible insertar correctamente';
                                             }
                         }
+                        $archivo_perfil="";
+                if($this->archivo_perfil!=null){
+                    if($this->archivo_perfil->getClientOriginalExtension()=="jpg" or $this->archivo_perfil->getClientOriginalExtension()=="png" or $this->archivo_perfil->getClientOriginalExtension()=="jpeg"){
+                        $archivo_perfil = "img".time().".".$this->archivo_perfil->getClientOriginalExtension();
+                        $this->img2=$archivo_perfil;
+                        $ruta="C:/xampp/htdocs/repo_clon_casys/casys-pro-2.0/public/imagen/perfil/";
+                        copy($this->archivo_perfil->getRealPath(), $ruta.$archivo_perfil);
+                        /* $this->archivo_perfil->storeAS('imagen/perfil/', $this->img2,'public_up'); */
+                        $this->tipo=1;
+    
+                        DB::beginTransaction();
+                        $estudiantefoto=DB::table('users')
+                        ->where('id',$id)
+                        ->update ([ 
+                            
+                            'img_users'=>$this->img2
+                         ]);
 
-                        if($usua && $rolusuario && $datos){
+                    }
+                
+                }
+            
+            $archivo_perfil2="";
+                if($this->archivo_perfil2!=null){
+                    if($this->archivo_perfil2->getClientOriginalExtension()=="jpg" or $this->archivo_perfil2->getClientOriginalExtension()=="png" or $this->archivo_perfil2->getClientOriginalExtension()=="jpeg"){
+                        $archivo_perfil2 = "img".time().".".$this->archivo_perfil2->getClientOriginalExtension();
+                        $this->img3=$archivo_perfil2;
+                        $ruta2="C:/xampp/htdocs/repo_clon_casys/casys-pro-2.0/public/imagen/perfil/";
+                        copy($this->archivo_perfil2->getRealPath(), $ruta2.$archivo_perfil2);
+                       /*  $this->archivo_perfil2->storeAS('imagen/perfil/', $this->img3,'public_up'); */
+                        $this->tipo=1;
+    
+                        DB::beginTransaction();
+                        $encargadofoto=DB::table('users')
+                        ->where('id',$id)
+                        ->update ([ 
+                            
+                            'img_users'=>$this->img3
+                         ]);
+                
+                }
+
+                        if($usua && $rolusuario && $datos && $encargadofoto && $estudiantefoto){
                             DB::commit();
                             $this->reset();
                             $this->mensaje1='Insertado correctamente';
@@ -1422,6 +1478,7 @@ $quien_encargado1=$this->quien_encargado1;
                             $this->mensaje2='No fue posible insertar correctamente';
                         }
          }
+        }
 
         public function generar_use(){
 
@@ -1465,6 +1522,14 @@ $quien_encargado1=$this->quien_encargado1;
             $this->pass2='Cole2023';
             
         }
+        public function cambiofotolist($id){
+
+            
+            }
+
+
+
+
          public function cambio_estadocorre($no_gest){
             if($this->validate([
                 'correlativon' => 'required',

@@ -198,6 +198,15 @@
                             <input style="margin-left:20px;" type="checkbox" id="mostrar_contrasena" title="clic para mostrar contraseña"/>
                             &nbsp;&nbsp;Mostrar Contraseña
                         </div>
+                        <div class="col-md">
+                          <div class="form-group row">
+                            <label for="exampleInputPassword1" class="form-label" style="font-size:20px">Elegir foto de perfil:</label>
+                            <p class="fs-8 danger">(Opcional)</p>
+                            <div class="mb-3">
+                              <input type="file" id="archivo"  wire:model="archivo_perfil">
+                            </div> 
+                          </div>
+                        </div>
                     </div>
                 </form>
                 <script>
@@ -242,6 +251,15 @@
                             <input style="margin-left:20px;" type="checkbox" id="mostrar_contrasena1" title="clic para mostrar contraseña"/>
                             &nbsp;&nbsp;Mostrar Contraseña
                         </div>
+                      <div class="col-md">
+                        <div class="form-group row">
+                          <label for="exampleInputPassword1" class="form-label" style="font-size:20px">Elegir foto de perfil:</label>
+                          <p class="fs-8 danger">(Opcional)</p>
+                          <div class="mb-3">
+                            <input type="file" id="archivo"  wire:model="archivo_perfil2">
+                          </div> 
+                        </div>
+                      </div>
                     </div>
                 </form>
                 <script>
