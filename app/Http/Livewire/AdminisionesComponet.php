@@ -178,7 +178,7 @@ class AdminisionesComponet extends Component
         DB::beginTransaction();
         
         $cambio_pre=DB::table('TB_PRE_INS')
-               ->where('ID_PRE',  $this->id_ges_cambio)
+               ->where('NO_GESTION',  $this->gestion)
                ->update(
                    [
                     'ESTADO_PRE_INS' => $this->tipo_cambio1,
