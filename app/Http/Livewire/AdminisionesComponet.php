@@ -1846,4 +1846,58 @@ public function Desactivacion($id,$estado,$gest){
     
  }
 
+ public function reg_estado_usuario($gest,$id){
+    $this->id_no_gest_ins=$gest;
+    $nuevo_estado=$id;
+    $reg=DB::table('TB_PRE_INS')
+        ->where('NO_GESTION', $this->id_no_gest_ins)
+        ->update(
+            [
+
+             'ESTADO_PRE_INS' => $nuevo_estado,
+
+            ]);
+            if($reg){
+                $this->mensaje_diaco='Editado correctamente';
+                DB::commit();
+                if(false !== strpos($this->correo_en, "@") && false !== strpos($this->correo_en, ".")){
+                $subject = "Notificación Pre-Ins.Castaño (No responder)";
+                $for = $this->correo_en;
+                $arreglo= array($this->id_no_gest_ins);
+                Mail::send('admisiones.correo.vista1',compact('arreglo'), function($msj) use($subject,$for){
+                $msj->from("ingresos@colegioelcastano.edu.gt","ColegioElCastaño");
+                $msj->subject($subject);
+                $msj->to($for);        
+            });
+            }
+            if(false !== strpos($this->correo_padre, "@") && false !== strpos($this->correo_padre, ".")){
+            $subject = "Notificación Pre-Ins.Castaño (No responder)";
+            $for2 = $this->correo_padre;
+            $arreglo= array($this->id_no_gest_ins);
+            Mail::send('admisiones.correo.vista1',compact('arreglo'), function($msj) use($subject,$for2){
+                $msj->from("ingresos@colegioelcastano.edu.gt","ColegioElCastaño");
+                $msj->subject($subject);
+                $msj->to($for2);        
+            });
+            }
+            if(false !== strpos($this->correo_madre, "@") && false !== strpos($this->correo_madre, ".")){
+            $subject = "Notificación Pre-Ins.Castaño (No responder)";
+            $for3 = $this->correo_madre;
+            $arreglo= array($this->id_no_gest_ins);
+            Mail::send('admisiones.correo.vista1',compact('arreglo'), function($msj) use($subject,$for3){
+                $msj->from("ingresos@colegioelcastano.edu.gt","ColegioElCastaño");
+                $msj->subject($subject);
+                $msj->to($for3);        
+            });
+            }
+            unset($this->mensaje);
+            $this->mensaje="Se actualizo el estado y se envio correo correctamente";
+            }
+            else{
+                $this->mensaje_diaco1='No se logro editar correctamente';
+                unset($this->mensaje1);
+                $this->mensaje1="No fue posible enviar correo y actualizar";
+            }
+ }
+
 }

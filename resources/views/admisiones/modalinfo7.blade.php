@@ -147,6 +147,7 @@
         </div>
     </div>
         <div class="modal-footer">
+          <a class="btn btn-pre2" style="border-radius: 60px 60px 60px 60px;" wire:click="reg_estado_usuario('{{$no_gest}}','7')" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Regresar Estado</a>
             <button class="btn btn-pre2" style="border-radius: 60px 60px 60px 60px;" wire:click="generar_use()" data-bs-target="#infodata7_1" data-bs-toggle="modal" data-bs-dismiss="modal">Siguiente</button>
         </div>
 
