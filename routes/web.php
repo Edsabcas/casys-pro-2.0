@@ -43,6 +43,7 @@ use App\Http\Livewire\RolesdeusuarioComponent;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\CuentasEstudiantesControllers;
 use App\Http\Controllers\VistaAlumController;
+use App\Http\Controllers\PanelAnunciosController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -104,6 +105,8 @@ Route::get('/Cuentas_estudiantes', [CuentasEstudiantesControllers::class, 'monto
 //Grupo #2
 
 Route::get('/Crear_publicación', [EdicionAnuncioController::class, 'edicion'])->middleware('auth');
+Route::get('/panel_anuncios', [PanelAnunciosController::class, 'panel_anuncios'])->middleware('auth');
+
 
 Route::get('/Vista_publicación', [AnunciosAdController::class, 'vistaadmin'])->middleware('auth');
 Route::get('/Publicaciones_guardadas', [GuardarController::class, 'guardar'])->middleware('auth');

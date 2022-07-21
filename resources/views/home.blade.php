@@ -8,6 +8,9 @@
 @elseif($op=='alumnosupervisado')
 @livewire('vista-alumno-component')
 
+@elseif($op=='panelanuncios')
+@livewire('panel-anuncios-component')
+
 @elseif($op=='alumnosupervisadoanuncios')
 @livewire('vista-alumno-component')
 
