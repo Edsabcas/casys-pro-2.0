@@ -45,7 +45,7 @@
                     <!-- Nested Row within Card Body -->
                     <div class="row">
                         <div class="col-lg-5 d-none d-lg-block">
-                            <img src="img/logocastano.png" class="rounded mx-auto d-block" width="450" height="445" alt="...">
+                            <img src="img/logofusion.gif" class="rounded mx-auto d-block" width="450" height="445" alt="...">
                         </div>
                         <div class="col-lg-6">
                             <div class="p-5">
