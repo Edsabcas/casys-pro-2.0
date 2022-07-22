@@ -767,11 +767,13 @@ class AdminisionesComponet extends Component
     $this->celularencargado=$estac->CELULAR_ENCARGADO;
     $this->direccionresidenciaencargado=$estac->DIRECCION_RESIDENCIA_ENCARGADO;
     $this->correoencargado=$estac->CORREO_ENCARGADO;
-    $this->profesionencargado=$estac->CARGO_ENCARGADO;
+    $this->profesionencargado=$estac->PROFECION_ENCARGADO;
+    $this->cargoencargado=$estac->CARGO_ENCARGADO;
     $this->lugar_profesion_encargado=$estac->LUGAR_TRABAJO_E ;
     $this->religion_encargado=$estac->RELIGION_ENCARGADO;
     $this->NIT_encargado=$estac->NIT_ENCARGADO;
-    $this->vive_con_elencargado=$estac->VIVE_CON_EL_ENCARGADO;
+    $this->Especifique_rel=$estac->REL_ENCARGADO;
+    $this->vive_con_el_encargado=$estac->VIVE_CON_EL_ENCARGADO;
     $this->solo_por=$estac->RETIRO_SOLO;
     $this->n_encargado=$estac->RETIRO_N_EN;
     $this->dpi_encar=$estac->RETIRO_DPI_EN;

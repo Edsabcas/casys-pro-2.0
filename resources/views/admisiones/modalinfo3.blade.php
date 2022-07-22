@@ -166,17 +166,17 @@
                               <br>
                               <li class="list-group-item list-group-item-action">
                                
-                                  <input class="form-check-input me-1"  type="radio" value="1" wire:model="tipo2" value="Presencial" aria-label="..."  id="flexRadioGradopre">
-                                  <label class="form-check-label" for="flexRadioGradopre" style="font-size: 15px; color:#000000;">
-                                      Presencial 
-                                    </label>
+                                <input class="form-check-input me-1"  type="radio" wire:model="tipo2" value="Presencial" aria-label="..."  id="flexRadioGradopre">
+                                <label class="form-check-label" for="flexRadioGradopre" style="font-size: 15px; color:#000000;">
+                                    Presencial 
+                                  </label>
                                   
                                 </li>
                                 <li class="list-group-item list-group-item-action">
-                                  <input class="form-check-input me-1"  type="radio" value="2" wire:model="tipo2" value="Virtual" aria-label="..."  id="flexRadioGradvir">
-                                  <label class="form-check-label" for="flexRadioGradvir" style="font-size: 15px; color:#000000;">
-                                    Virtual
-                                    </label>
+                                  <input class="form-check-input me-1"  type="radio"  wire:model="tipo2" value="Virtual" aria-label="..."  id="flexRadioGradvir">
+                                    <label class="form-check-label" for="flexRadioGradvir" style="font-size: 15px; color:#000000;">
+                                      Virtual
+                                      </label>
                                 
                                 </li>
                                 @error('tipo') 
@@ -277,19 +277,19 @@
                         <label for="inputApellidos" style="font-size: 15px; color:#000000;">Estado Civil:</label>
                         <br>
                         <div class="form-check form-check-inline">
-                          <input class="form-check-input"  type="radio" value="1" wire:model="es_civil_en" value="Casado" id="flexRadioEstado1">
+                          <input class="form-check-input"  type="radio" wire:model="es_civil_en" value="Casado" id="flexRadioEstado1">
                           <label class="form-check-label" for="flexRadioEstado1" style="font-size: 15px; color:#000000;">
                           Casado
                           </label>
                         </div>
                         <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" value="2" wire:model="es_civil_en" value="Soltero" id="flexRadioEstado2">
+                          <input class="form-check-input" type="radio" wire:model="es_civil_en" value="Soltero" id="flexRadioEstado2">
                           <label class="form-check-label" for="flexRadioEstado2" style="font-size: 15px; color:#000000;">
                             Soltero
                           </label>
                         </div>
                         <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" value="3" wire:model="es_civil_en"  value="Viuda" id="flexRadioEstado3">
+                          <input class="form-check-input" type="radio" wire:model="es_civil_en"  value="Viuda" id="flexRadioEstado3">
                           <label class="form-check-label" for="flexRadioEstado3" style="font-size: 15px; color:#000000;">
                             Viuda(o)
                           </label>
@@ -1192,7 +1192,7 @@
                       
                       <div class="col-md-6">
                         <strong><label  for="Labelnombreencargado" class="form-label">Fecha de nacimiento</label></strong>
-                        <input  type="date" class="form-control"  wire:model="nacimiento_encargado">
+                        <input  type="date" class="form-control"  wire:model="nacimientoencargado">
                       </div>
                       @error('nombre_encargado')
                       <div class="col-md-6">
@@ -1218,12 +1218,12 @@
                 <div class="row">
                     <div class="col-md-6">
                         <strong><label  for="Labelnombreencargado" class="form-label">Nacionalidad</label></strong>
-                        <input  type="text" class="form-control"  wire:model="nacionalidad_encargado">
+                        <input  type="text" class="form-control"  wire:model="nacionalidadencargado">
                       </div>
                       
                     <div class="col-md-6">
                         <strong><label  for="Labelnombreencargado" class="form-label">Lugar de nacimiento</label></strong>
-                        <input  type="text" class="form-control"  wire:model="lugar_nacimiento_encargado">
+                        <input  type="text" class="form-control"  wire:model="lugarnacimientoencargado">
                       </div>
                       @error('nacionalidad_encargado')
                       <div class="col-md-6">
@@ -1281,12 +1281,12 @@
                 <div class="row">
                     <div class="col-md-6">
                         <strong><label  for="Labelnombreencargado" class="form-label">Número de DPI</label></strong>
-                        <input  type="number" class="form-control"  wire:model="DPI_encargado">
+                        <input  type="number" class="form-control"  wire:model="DPIencargado">
                       </div>
       
                     <div class="col-md-6">
                         <strong><label  for="Labelnombreencargado" class="form-label">Número de celular</label></strong>
-                        <input  type="number" class="form-control"  wire:model="celular_encargado">
+                        <input  type="number" class="form-control"  wire:model="celularencargado">
                       </div>
     
                       @error('DPI_encargado')
@@ -1312,13 +1312,13 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <strong><label  for="Labelnombreencargado" class="form-label">Número de casa</label></strong>
-                        <input  type="number" class="form-control"  wire:model="telefono_encargado">
+                        <strong><label  for="Labelnombreencargado" class="form-label">Teléfono o celular de casa</label></strong>
+                        <input  type="number" class="form-control"  wire:model="telefonoencargado">
                       </div>
                  
                     <div class="col-md-6">
                         <strong><label  for="Labelnombreencargado" class="form-label">Dirección de la residencia</label></strong>
-                        <input  type="text" class="form-control"  wire:model="direccion_residencia_encargado">
+                        <input  type="text" class="form-control"  wire:model="direccionresidenciaencargado">
                       </div>
                       @error('telefono_encargado')
                       <div class="col-md-6">
@@ -1344,12 +1344,12 @@
                 <div class="row">
                     <div class="col-md-6">
                         <strong><label  for="Labelnombreencargado" class="form-label">Correo electrónico</label></strong>
-                        <input  type="text" class="form-control"  wire:model="correo_encargado">
+                        <input  type="text" class="form-control"  wire:model="correoencargado">
                       </div>
                       
                       <div class="col-md-6">
                         <strong><label  for="Labelprofesionencargado" class="form-label">Profesión</label></strong>
-                        <input  type="text" class="form-control"  wire:model="profesion_encargado">
+                        <input  type="text" class="form-control"  wire:model="profesionencargado">
                       </div>
                       @error('correo_encargado')
                       <div class="col-md-6">
@@ -1378,7 +1378,7 @@
                       
                       <div class="col-md-6">
                         <strong><label  for="Labelnombreencargado" class="form-label">Cargo de trabajo que ocupa</label></strong>
-                        <input  type="text" class="form-control"  wire:model="cargo_profesion_encargado">
+                        <input  type="text" class="form-control"  wire:model="cargoencargado">
                       </div>
     
                       @error('lugar_profesion_encargado')
@@ -1444,7 +1444,7 @@
                             <div style="width: 12rem;">
                           <div class="col-md-7">
                               <div class="form-check">
-                                  <input class="form-check-input" type="radio" value="1" wire:model="vive_con_el_encargado"  wire:click="vive_con_el_encargado('1')">
+                                  <input class="form-check-input" type="radio" value="1" wire:model="vive_con_el_encargado"  wire:click="vive_con_elencargado('1')">
                                   <label class="form-check-label" for="viveen1">
                                     Si
                                   </label>
@@ -1452,7 +1452,7 @@
                           </div>
                           <div class="col-md-7">
                               <div class="form-check">
-                                  <input class="form-check-input" type="radio" value="2" wire:model="viveen"  wire:click="vive_con_el_encargado('2')">
+                                  <input class="form-check-input" type="radio" value="2" wire:model="vive_con_el_encargado"  wire:click="vive_con_elencargado('2')">
                                   <label class="form-check-label" for="viveen1">
                                     No
                                   </label>
