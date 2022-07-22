@@ -1,4 +1,4 @@
-<div  wire:ignore.self class="modal fade" id="eliminaranuncio" role="dialog" tabindex="-1" aria-labelledby="eliminaranuncio" aria-hidden="true">
+<div  wire:ignore.self class="modal fade" id="eliminaranuncio" data-bs-toggle="modal" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" tabindex="-1" aria-labelledby="eliminaranuncio" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header"  style="background:#a4cb39;color:rgba(255, 255, 255, 255.255)">
@@ -9,20 +9,25 @@
             <table class="table table-striped">
                 <thead>
                   <tr>
-                    <th scope="col">Texto de la publicación</th>
+                    <th style="width:50px" scope="col">Texto de la publicación</th>
                     <th scope="col">Multimedia usada</th>
                     <th scope="col">Fecha y hora de la publicación</th>
-                    <th scope="col">Calidad del anuncio</th>
                     <th scope="col">Publicador por...</th>
+                    <th scope="col">Calidad del anuncio</th>
+                    
                   </tr>
                 </thead>
                 <tbody>
                     @foreach($anuncios2 as $anuncio)
                   <tr>
-                    <th>{{$anuncio->TEXTO_PUBLICACION}}</th>
+                    <th style="width:50px">{{$anuncio->TEXTO_PUBLICACION}}</th>
                     <td>{{$anuncio->MULTIMEDIA}}</td>
                     <td>{{$anuncio->FECHA_HORA}}</td>
-                    <td>{{$anuncio->TEXTO_PUBLICACION}}</td>
+                    @foreach($usuario_publicacion as $usu_publicacion)
+                      @if($anuncio->ID_USUARIO == $usu_publicacion->id)
+                       <td>{{$usu_publicacion->name}}</td>
+                     @endif
+                   @endforeach
                     @if($anuncio->CALIDAD_ANUNCIO==1)
                         <td>Informativo</td>
                         @elseif($anuncio->CALIDAD_ANUNCIO==2)
@@ -36,8 +41,8 @@
               </table>     
         </div>
         <div class="modal-footer">
-            <a  type="button" data-bs-dismiss="modal" class="btn btn-editb">Si</a>
-          <button type="button" class="btn btn-secondary"  style="border-radius: 12px;"  id="info"  data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-editb"  style="border-radius: 12px;" wire:click='eliminar_anuncio({{$id_eliminar}})'  data-bs-dismiss="modal">Si {{$id_eliminar}}</button>
+          <button type="button" class="btn btn-secondary"  style="border-radius: 12px;"  id="info"  data-bs-dismiss="modal">No</button>
           
         </div>
       </div>
