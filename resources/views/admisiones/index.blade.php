@@ -615,7 +615,7 @@
           <div class="accordion-item" style="border-radius: 60px 60px 60px 60px;" >
             <h2 class="accordion-header"  style="border-radius: 60px 60px 60px 60px;"  style="color: #3a3e7b" id="flush-headingThree4" >
               <button class="accordion-button collapsed" style="border-radius: 60px 60px 60px 60px; color: #3a3e7b" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree22" aria-expanded="false" aria-controls="flush-collapseThree22">
-                Estado 8 | Finalizados  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="badge rounded-pill bg-warning text-dark">{{-- @php echo count($estado_uno2);@endphp --}}</span>
+                Estado 8 | Finalizados  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="badge rounded-pill bg-warning text-dark">@php echo count($estado_cinco);@endphp</span>
               </button>
             </h2>
             <div  wire:ignore.self  id="flush-collapseThree4" class="accordion-collapse collapse" aria-labelledby="flush-headingThree4" data-bs-parent="#accordionFlushExample">
