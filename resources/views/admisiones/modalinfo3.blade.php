@@ -325,7 +325,7 @@
                   </div>
                     <div class="row g-3">
                       <div class="col-md">
-                      <label for="inputApellidos" style="font-size: 15px; color:#000000;">Teléfono de casa:</label>
+                      <label for="inputApellidos" style="font-size: 15px; color:#000000;">Teléfono o celular de casa:</label>
                       <input placeholder="" type="number"  wire:model="tel_casa_en" class="form-control " required>
                   </div>
                   @error('tel_casa_en')
@@ -737,7 +737,7 @@
                          </div>
                          <div class="row">
                              <div class="col-md-6">
-                                 <strong><label  for="Labelnombrepadre" class="form-label"> Teléfono de casa del padre</label></strong>
+                                 <strong><label  for="Labelnombrepadre" class="form-label"> Teléfono o celular de casa del padre</label></strong>
                                  <input  type="number" class="form-control"  wire:model="telefono_padre">
                                </div>
                                @error('telefono_padre')
@@ -844,8 +844,9 @@
                                @enderror
                                <div class="row">
                                  <div class="row">
+                                  <center>
                                      <strong><label  for="Labelnombrepadre" class="form-label">¿El alumno vive con el padre?</label></strong>
-                                     <center>
+
                                      <div style="width: 12rem;">
                                      <div class="col-md-7">
                                          <div class="form-check">
@@ -987,7 +988,7 @@
                    </div>
                    @enderror
                    <div class="col-md-6">
-                     <strong><label  for="Labelnombrepadre" class="form-label"> Teléfono de la madre</label></strong>
+                     <strong><label  for="Labelnombrepadre" class="form-label"> Teléfono o celular de casa de la madre</label></strong>
                      <input  type="number" class="form-control"  wire:model="telefono_madre">
                    </div>
                    @error('telefono_madre')
@@ -1105,24 +1106,32 @@
                     </div>
                    </div>
                    @enderror
-                         <strong><label  for="Labelnombremadre" class="form-label">¿El alumno vive con la madre?</label></strong>
-                         <div class="col-md">
-                             <div class="form-check">
-                                 <input class="form-check form-check-inline"type="radio" wire:model="vive_madre" value="1" wire:click="vive_con_la_madre('1')">
-                                 <label class="form-check-label" for="flexRadioDefault1">
-                                   Si
-                                 </label>
-                               </div>
-                         <div class="col-md">
-                           <div class="form-check">
-                               <input class="form-check form-check-inline" type="radio" wire:model="vive_madre" value="2" wire:click="vive_con_la_madre('2')">
-                               <label class="form-check-label" for="flexRadioDefault1">
-                                 No
-                               </label>
-                             </div>
-                       </div>
-                     <br>                          
-             </div>
+                   <div class="row">
+                    <div class="row">
+                     <center>
+                        <strong><label  for="Labelnombremadre" class="form-label">¿El alumno vive con la madre?</label></strong>
+
+                        <div style="width: 12rem;">
+                        <div class="col-md-7">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" wire:model="vive_madre" id="vivem1" value="1" wire:click="vive_con_la_madre('1')">
+                                <label class="form-check-label" for="vivem1">
+                                  Si
+                                </label>
+                              </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" wire:model="vive_madre" id="vivem2" value="2" wire:click="vive_con_la_madre('2')">
+                                <label class="form-check-label" for="vivem2">
+                                  No
+                                </label>
+                              </div>
+                        </div>
+                    </div>
+                  </center>
+                  </div>
+                </div>
                    </div>
                  </div>
                  </div>
@@ -1587,7 +1596,7 @@
              
        
            <div class="tab">
-             <strong><label for="exampleInputPassword1" class="form-label">¿El alumno está asegurado?</label></strong>
+             <strong><label for="exampleInputPassword1" class="form-label">¿El alumno cuenta con seguro médico?</label></strong>
                <center>
                  <div style="width: 12rem;">
                    <div class="form-check">
