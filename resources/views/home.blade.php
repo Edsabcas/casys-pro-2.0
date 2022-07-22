@@ -11,6 +11,9 @@
 @elseif($op=='panelanuncios')
 @livewire('panel-anuncios-component')
 
+@elseif($op=='paneleditar')
+@livewire('panel-anuncios-component')
+
 @elseif($op=='alumnosupervisadoanuncios')
 @livewire('vista-alumno-component')
 
