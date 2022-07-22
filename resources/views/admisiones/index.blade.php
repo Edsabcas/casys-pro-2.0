@@ -656,7 +656,7 @@
                     
                       <span>
                           <td>
-                            <button onclick='loadPage()' type="button" class="btn btn-primary" wire:click="usuario_pdf('{{ $estado_cin->ID_PRE}}')" data-bs-toggle="modal" data-bs-target="#modal8">
+                            <button onclick='loadPage()' type="button" class="btn btn-pre2" wire:click="usuario_pdf('{{ $estado_cin->ID_PRE}}')" data-bs-toggle="modal" data-bs-target="#modal8">
                               Generar PDF 
                             </button>      
                          
