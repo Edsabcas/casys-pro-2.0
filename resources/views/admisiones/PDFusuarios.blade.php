@@ -19,24 +19,26 @@ margin-bottom: 35px;
     </div>
     <br>
     <hr>
-    <p style="text-align: justify; font-size: 11px">Estimado encargado(a) por medio de la presente se le hace entrega
+    <p style="text-align: justify; font-size: 12px">Estimado encargado(a) por medio de la presente se le hace entrega
     de sus respectivas credenciales para el acceso a su perfil de CASYS: </p>
     <ul>
-        <h4>Usuario del ENCARGADO::</h4>
-        <li style="text-align: justify; font-size: 11px">Usuario: {{$datos_usuario[1]}}</li>
-        <li style="text-align: justify; font-size: 11px">Contraseña: Cole2023</li>
-        <li style="text-align: justify; font-size: 11px">Correo electrónico: {{$datos_usuario[2]}}</li>
+        <h4>Usuario del ENCARGADO: </h4>
+        <li style="color:#a4cb39;" style="text-align: justify; font-size: 12;">Usuario: {{$datos_usuario[1]}}</li>
+        <li style="text-align: justify; font-size: 12">Contraseña: Cole2023</li>
+        <li style="text-align: justify; font-size: 12">Correo electrónico: {{$datos_usuario[2]}}</li>
     </ul>
     <br>
     <hr>
     <ul>
-        <h4>Usuario del ALUMNO::</h4>
-        <li style="text-align: justify; font-size: 11px">Usuario: {{$datos_usuario[3]}}</li>
-        <li style="text-align: justify; font-size: 11px">Contraseña: Cole2023</li>
-        <li style="text-align: justify; font-size: 11px">Correo electrónico: {{$datos_usuario[4]}}</li>
+        <h4>Usuario del ALUMNO: </h4>
+        <li style="text-align: justify; font-size: 12px">Usuario: {{$datos_usuario[3]}}</li>
+        <li style="text-align: justify; font-size: 12px">Contraseña: Cole2023</li>
+        <li style="text-align: justify; font-size: 12px">Correo electrónico: {{$datos_usuario[4]}}</li>
     </ul>
+    <br>
+    <br>
 
-    <p style="text-align: center; font-size: 13px"><strong>"Formando Mentes Brillantes"</strong></p>
+    <p style="text-align: center; font-size: 15"><strong>"Formando Mentes Brillantes"</strong></p>
     
 
 </body>
