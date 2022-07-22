@@ -562,9 +562,16 @@
                               </select>
                             </div>
                          <br>
-                        
-                         <h5>Grados selecionados:{{$grados_mostrar}}</h5>
                          
+                         
+                         <h5>Grados selecionados:
+                          @foreach ($grados as $grado)
+                          @if($grados_selecionados3==$grado->ID_GR or $grados_selecionados4==$grado->ID_GR or $grados_selecionados5==$grado->ID_GR or $grados_selecionados6==$grado->ID_GR or $grados_selecionados7==$grado->ID_GR or $grados_selecionados8==$grado->ID_GR )   
+                          {{$grado->GRADO}},
+                          @endif
+                          @endforeach</h5>
+                         
+                          
                          @endif  
                          
                          <br>

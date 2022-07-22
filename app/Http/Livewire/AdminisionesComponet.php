@@ -34,6 +34,7 @@ class AdminisionesComponet extends Component
     public $quien_encargado1, $nombre_encargado, $nacimientoencargado,$nacionalidadencargado,$lugarnacimientoencargado,$estadocivilencargado,$DPIencargado,$telefonoencargado,$celularencargado,$direccionresidenciaencargado,$correoencargado,$profesionencargado,$lugar_profesion_encargado ,$religion_encargado,$NIT_encargado,$vive_con_elencargado;
     public $img2, $img3, $archivo_perfil, $archivo_perfil2;
     public $can1,$can2,$tipo_ins, $datosusuario4,$tipo3,$tipo4;
+    public $grados_selecionados3, $grados_selecionados4, $grados_selecionados5, $grados_selecionados6, $grados_selecionados7, $grados_selecionados8, $grados_selecionados9;
 
     public function render()
     {
@@ -702,6 +703,54 @@ class AdminisionesComponet extends Component
                 $this->id_pre_i=$estac->ID_PRE;
                 $this->confi=$estac->HERMANOS_COLE;
                 $this->grados_selecionados=$estac->GRADO_HERMANOS_COLE;
+                $grados_selecionados1=explode(";", $this->grados_selecionados);
+                $grados_selecionados2= count($grados_selecionados1);
+                
+                if($grados_selecionados2==1){
+                    $this->grados_selecionados3=$grados_selecionados1[0];
+                    
+                    
+                }
+                if($grados_selecionados2==2){
+                    $this->grados_selecionados3=$grados_selecionados1[0];
+                    $this->grados_selecionados4=$grados_selecionados1[1];
+                    
+                    
+                }
+                if($grados_selecionados2==3){
+                    $this->grados_selecionados3=$grados_selecionados1[0];
+                    $this->grados_selecionados4=$grados_selecionados1[1];
+                    $this->grados_selecionados5=$grados_selecionados1[2];
+                    
+                    
+                }
+                if($grados_selecionados2==4){
+                    $this->grados_selecionados3=$grados_selecionados1[0];
+                    $this->grados_selecionados4=$grados_selecionados1[1];
+                    $this->grados_selecionados5=$grados_selecionados1[2];
+                    $this->grados_selecionados6=$grados_selecionados1[3];
+                    
+                    
+                }
+                if($grados_selecionados2==5){
+                    $this->grados_selecionados3=$grados_selecionados1[0];
+                    $this->grados_selecionados4=$grados_selecionados1[1];
+                    $this->grados_selecionados5=$grados_selecionados1[2];
+                    $this->grados_selecionados6=$grados_selecionados1[3];
+                    $this->grados_selecionados7=$grados_selecionados1[4];
+                    
+                    
+                }
+                if($grados_selecionados2==6){
+                    $this->grados_selecionados3=$grados_selecionados1[0];
+                    $this->grados_selecionados4=$grados_selecionados1[1];
+                    $this->grados_selecionados5=$grados_selecionados1[2];
+                    $this->grados_selecionados6=$grados_selecionados1[3];
+                    $this->grados_selecionados7=$grados_selecionados1[4];
+                    $this->grados_selecionados8=$grados_selecionados1[5];
+                    
+                }
+                
     $this->año_ingreso=$estac->AÑO_1R_INGRESO;
     $this->grado_primer_ingreso=$estac->GRADO_1R_INGRESO;
     $this->nombre_padre=$estac->NOMB_PADRE;
