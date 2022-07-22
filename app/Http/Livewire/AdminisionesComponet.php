@@ -745,7 +745,7 @@ class AdminisionesComponet extends Component
     $this->codigo_fam=$estac->CODIGO_FAMILIA;
     $this->nombre_fam=$estac->NOMBRE_FAMILIA;
     $this->medicamento=$estac->ALERG_MEDICAMENTO;
-    $this->Especifique_ali=$estac->ESPECIFICAR_ALERG_ME;
+    $this->Especifique_ali=$estac->ESPECIFICACION_ALERG_AL;
     $this->alimento=$estac->ALERG_ALIMENTO;
     $this->vacunas=$estac->VACUNAS;
     $this->solo_alumno=$estac->SALIDA_SOLO;
