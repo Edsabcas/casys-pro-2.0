@@ -43,6 +43,8 @@ use App\Http\Livewire\RolesdeusuarioComponent;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\CuentasEstudiantesControllers;
 use App\Http\Controllers\VistaAlumController;
+use App\Http\Controllers\PanelAnunciosController;
+use App\Http\Controllers\EditarAnunciosController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -104,6 +106,8 @@ Route::get('/Cuentas_estudiantes', [CuentasEstudiantesControllers::class, 'monto
 //Grupo #2
 
 Route::get('/Crear_publicación', [EdicionAnuncioController::class, 'edicion'])->middleware('auth');
+Route::get('/panel_anuncios', [PanelAnunciosController::class, 'panel_anuncios'])->middleware('auth');
+Route::get('/panel_editar_anuncios', [PanelAnunciosController::class, 'panel_editar'])->middleware('auth');
 
 Route::get('/Vista_publicación', [AnunciosAdController::class, 'vistaadmin'])->middleware('auth');
 Route::get('/Publicaciones_guardadas', [GuardarController::class, 'guardar'])->middleware('auth');
@@ -116,6 +120,7 @@ Route::get('/Usuario_pdf', [PDFController::class, 'pdf_nuevo']);
 
 //Vista Alumnos desde perfil de Padres
 Route::get('/vistagen', [VistaAlumController::class, 'panelgeneral'])->middleware('auth');
+Route::get('/vistageneral', [VistaAlumController::class, 'panelgeneral2'])->middleware('auth');
 Route::get('/Vista_Anuncios_Alumno', [VistaAlumController::class, 'anuncios_alumnos'])->middleware('auth');
 Route::get('/Vista_Calificaiones', [VistaAlumController::class, 'calificaciones_alumnos'])->middleware('auth');
 Route::get('/Vista_Calendario', [VistaAlumController::class, 'calendario_alumnos'])->middleware('auth');

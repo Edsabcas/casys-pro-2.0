@@ -96,6 +96,7 @@
         </select>
         
         @endif
+        
         @if($op_grado==1)
         @endif
         @endif
@@ -103,7 +104,7 @@
         <br>
         <div class="mb-3">
           <label for="" class="form-label" style="font-size:20px; color: #3a3e7b"><strong>• Redacte una descripción para el anuncio</strong></label>
-          <textarea class="form-control shadow-sm rounded" style="border-color: #a4cb39" id="summary-ckeditor" name="summary-ckeditor" rows="4" wire:model="texto_anuncio"></textarea>
+          <textarea class="form-control shadow-sm rounded" style="border-color: #a4cb39" id="edit-area" rows="4" wire:model="texto_anuncio"></textarea>
         </div>
           
         <br>
@@ -112,6 +113,13 @@
             <input type="file" id="archivo"  wire:model="archivo_anuncio">
           </div>
           @error('file') <span class="error form-label text-white">{{ $message }}</span> @enderror
+          
+          <div wire:loading wire:target="archivo_anuncio" class="alert alert-warning" role="alert">
+            <strong class="font-bold">¡Imagen cargando!</strong>
+              <span class="block sm:inlone">Espere un momento hasta que la imagen se haya procesado completamente.</span>
+            <div class="spinner-border text-warning" role="status">
+            </div>
+          </div>
           <br>
 
           <div class="mb-3">
@@ -166,15 +174,17 @@
     @isset($mensaje)
 @if($mensaje!=null)
 
-<div class="alert alert-success" role="alert">
+<div class="alert alert-success alert-dismissible fade show" role="alert">
     Agregado Correctamente!
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
 @endif
 @endisset
 @isset($mensaje1)
   @if($mensaje1!=null)
-  <div class="alert alert-success" role="alert">
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
     No fue agregado Correctamente!
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
   @endif
 @endisset
