@@ -1194,7 +1194,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <strong><label  for="Labelnombreencargado" class="form-label">Nombre completo</label></strong>
-                        <input  type="text" class="form-control"  wire:model="nombre_encargado">
+                        <input  type="text" class="form-control"  wire:model="nombreencargado">
                       </div>
                       
                       <div class="col-md-6">
@@ -1451,7 +1451,7 @@
                             <div style="width: 12rem;">
                           <div class="col-md-7">
                               <div class="form-check">
-                                  <input class="form-check-input" type="radio" value="1" wire:model="vive_con_el_encargado"  wire:click="vive_con_elencargado('1')">
+                                  <input class="form-check-input" type="radio" value="1" wire:model="vive_con_el_encargado"  wire:click="vive_con_el_encargado('1')">
                                   <label class="form-check-label" for="viveen1">
                                     Si
                                   </label>
@@ -1459,7 +1459,7 @@
                           </div>
                           <div class="col-md-7">
                               <div class="form-check">
-                                  <input class="form-check-input" type="radio" value="2" wire:model="vive_con_el_encargado"  wire:click="vive_con_elencargado('2')">
+                                  <input class="form-check-input" type="radio" value="2" wire:model="vive_con_el_encargado"  wire:click="vive_con_el_encargado('2')">
                                   <label class="form-check-label" for="viveen1">
                                     No
                                   </label>

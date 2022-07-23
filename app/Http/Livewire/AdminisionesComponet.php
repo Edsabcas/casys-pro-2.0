@@ -31,9 +31,9 @@ class AdminisionesComponet extends Component
     public $poliza, $carne_seguro, $codigo_fam, $nombre_fam, $Especifique_medi, $Especifique_ali, $medicamento, $grados_mostrar,$estadocivil;
     public $alimento, $vacunas, $alumno_asegurado, $solo_alumno, $encargado_alumno, $bus_colegio, $bus_no_colegio, $nombre_aseguradora, $no_gest;
     public $tipo2,$correo_en2,$preciopre,$preciovir,$id_gr,$id_nvl;
-    public $quien_encargado1, $nombre_encargado, $nacimientoencargado,$nacionalidadencargado,$lugarnacimientoencargado,$estadocivilencargado,$DPIencargado,$telefonoencargado,$celularencargado,$direccionresidenciaencargado,$correoencargado,$profesionencargado,$lugar_profesion_encargado ,$religion_encargado,$NIT_encargado,$vive_con_elencargado;
-    public $img2, $img3, $archivo_perfil, $archivo_perfil2;
-    public $can1,$can2,$tipo_ins, $datosusuario4,$tipo3,$tipo4;
+    public $quien_encargado1, $nombre_encargado, $nacimientoencargado,$nacionalidadencargado,$lugarnacimientoencargado,$estadocivilencargado,$DPIencargado,$telefonoencargado,$celularencargado,$direccionresidenciaencargado,$correoencargado,$profesionencargado,$lugar_profesion_encargado ,$religion_encargado,$NIT_encargado;
+    public $img2, $img3, $archivo_perfil, $archivo_perfil2, $vive_con_el_encargado, $Especifique_rel;
+    public $can1,$can2,$tipo_ins, $datosusuario4,$tipo3,$tipo4, $cargoencargado;
     public $grados_selecionados3, $grados_selecionados4, $grados_selecionados5, $grados_selecionados6, $grados_selecionados7, $grados_selecionados8, $grados_selecionados9;
 
     public function render()
@@ -803,10 +803,10 @@ class AdminisionesComponet extends Component
     $this->bus_no_colegio=$estac->SALIDA_BUS_AJENO;
     $this->Especifique_medi=$estac->ESPECIFICAR_ALERG_ME;
     $this->nombre_aseguradora=$estac->ASEGURADORA;
-    $this->nombreencargado=$estac->NOMBRE_ENCARGADO;
+    $this->nombre_encargado=$estac->NOMBRE_ENCARGADO;
     $this->matricula_bus_aj=$estac->Matricula_bus_aj;
     $this->quien_encargado1=$estac->ENCARGADO;
-    $this->nombre_encargado=$estac->NOMB_ENCARGADO;        
+    $this->nombreencargado=$estac->NOMB_ENCARGADO;        
     $this->nacimientoencargado=$estac->FECHA_N_ENCARGADO;
     $this->nacionalidadencargado=$estac->NACIONALIDAD_ENCARGADO;
     $this->lugarnacimientoencargado=$estac->LUGAR_NACIMIENTO_ENCARGADO;
@@ -899,7 +899,7 @@ class AdminisionesComponet extends Component
         $this->quien_encargado1=$quien_encargado1;
     }
     public function vive_con_el_encargado($vive_encargado2){
-        $this->vive_con_elencargado=$vive_encargado2;
+        $this->vive_con_el_encargado=$vive_encargado2;
     }
     public function estado_civil_encargado($estadocivilencargado2){
         $this->estadocivilencargado=$estadocivilencargado2;
@@ -977,7 +977,9 @@ $quien_encargado1=$this->quien_encargado1;
     $lugar_profesion_encargado=$this->lugar_profesion_encargado ;
     $religion_encargado=$this->religion_encargado;
     $NIT_encargado=$this->NIT_encargado;
-    $vive_con_elencargado=$this->vive_con_elencargado;
+    $vive_con_el_encargado=$this->vive_con_el_encargado;
+    $Especifique_rel=$this->Especifique_rel;
+    $cargoencargado=$this->cargoencargado;
 
 
     
@@ -1053,11 +1055,12 @@ $quien_encargado1=$this->quien_encargado1;
             'CELULAR_ENCARGADO'=>$this->celularencargado,
             'DIRECCION_RESIDENCIA_ENCARGADO'=>$this->direccionresidenciaencargado,
             'CORREO_ENCARGADO'=>$this->correoencargado,
-            'CARGO_ENCARGADO'=>$this->profesionencargado,
+            'PROFECION_ENCARGADO'=>$this->profesionencargado,
+            'CARGO_ENCARGADO'=>$this->cargoencargado,
             'LUGAR_TRABAJO_E'=>$this->lugar_profesion_encargado,
             'RELIGION_ENCARGADO'=>$this->religion_encargado,
             'NIT_ENCARGADO'=>$this->NIT_encargado,
-            'VIVE_CON_EL_ENCARGADO'=>$this->vive_con_elencargado,
+            'VIVE_CON_EL_ENCARGADO'=>$this->vive_con_el_encargado,
             'RETIRO_SOLO'=>$this->solo_por,
             'RETIRO_N_EN'=>$this->n_encargado,
             'RETIRO_DPI_EN'=>$this->dpi_encar,
@@ -1065,7 +1068,7 @@ $quien_encargado1=$this->quien_encargado1;
             'N_CONDUCTOR_AJ'=>$this->nombre_conductor,
             'DPI_CONDUCTOR_AJ'=>$this->dpi_conductor,
             'NUM_CONDUCTOR_AJ'=>$this->n_conductor,
-        
+            'REL_ENCARGADO'=>$this->Especifique_rel,        
             ]
         );
         if($inscripcion_datos){
