@@ -27,6 +27,7 @@ use App\Http\Controllers\Conusltarcontroller;
 use App\Http\Controllers\CalendarizacionController;
 use App\Http\Controllers\AsignarPrecioController;
 use App\Http\Controllers\FormMaestrosController;
+use App\Http\Controllers\ContenidosEstudianteController;
 
 use App\Http\Livewire\PerfilComponent;
 use App\Http\Controllers\PerfilController;
@@ -216,7 +217,7 @@ Route::post('/update_datos_ins',[AdminisionesController::class, 'update_datos_in
 
 Route::post('/update_diaco',[AdminisionesController::class, 'update_diaco']);
 
-
+Route::get('/Actividades',[ContenidosEstudianteController::class, 'Actividades']);
 
 
 //Rutas Pre-Inscribir_estudiantes

@@ -72,6 +72,9 @@
 @elseif ($op=='addunidades')
 @livewire('unidades-component')   
 
+@elseif ($op=='addcontenidosest')
+@livewire('contenidos-estudiante-component')
+
 @elseif ($op=='addcontenidos')
 @livewire('contenido-component')   
 
