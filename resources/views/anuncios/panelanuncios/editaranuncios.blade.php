@@ -23,7 +23,7 @@
       </svg>
       <br>
       <br>
-      <h1 class="text-center" style="color: #3a3e7b"><strong>EDITAR ANUNCIO {{$mensaje_random}}</strong></h1>
+      <h1 class="text-center" style="color: #3a3e7b"><strong>EDITAR ANUNCIO {{$mensaje_random}}{{$anuncio_dato1}}</strong></h1>
       @if($anuncio_dato1==null)
       <h5>HOLA {{$probando}}</h5>
       @endif
@@ -34,7 +34,7 @@
       <br>
       <form wire:submit.prevent='' enctype="multipart/form-data">
         @csrf
-        <input type="hidden" value='{{$anuncio_dato1}}' wire:model="id_anuncio">
+        <input type="hidden"  wire:model="anuncio_dato1">
         <label for="" class="form-label" style="font-size:20px; color: #3a3e7b"><strong>• Personzalización de un anuncio</strong></label>
         <div class="form-check">
           <input class="form-check-input" type="radio" wire:click="tipo_anuncio()" id="flexRadioDefault1">
@@ -51,7 +51,7 @@
         @if($tanuncio == 1)
         <div class="mb-3">
           <label for="" class="form-label" style="font-size:20px; color: #3a3e7b"><strong>• Público que visualizará el anuncio</strong></label>
-          <select class="form-select rounded-pill shadow-sm rounded" $value='{{$anuncio_dato6}}' style="border-radius: 70px 70px 70px 70px; border-color: #a4cb39" aria-label="Default select example" wire:model="publico_anuncio">
+          <select class="form-select rounded-pill shadow-sm rounded" style="border-radius: 70px 70px 70px 70px; border-color: #a4cb39" aria-label="Default select example" wire:model="anuncio_dato6">
             <option selected >Elige el público</option>
             @isset($rol)
             @foreach($rol as $role)
@@ -70,8 +70,7 @@
         @if($publico_anuncio==4 or $publico_anuncio==5)
         <div class="mb-3">
           <label for="" class="form-label" style="font-size:20px; color: #3a3e7b"><strong>• Grado que visualizará el anuncio</strong></label>
-          <select class="form-select rounded-pill shadow-sm rounded" $value='{{$anuncio_dato7}}' style="border-radius: 70px 70px 70px 70px; border-color: #a4cb39" aria-label="Default select example" wire:model="grado_anuncio">
-            <option selected >Elige el grado para que vea el anuncio</option>
+          <select class="form-select rounded-pill shadow-sm rounded"  style="border-radius: 70px 70px 70px 70px; border-color: #a4cb39" aria-label="Default select example" wire:model="anuncio_dato7">
             <option value="0">Todos</option>
             @isset($grado_objetivo)
             @foreach($grado_objetivo as $g_objetivo)
@@ -85,8 +84,7 @@
          @if($publico_anuncio==3)
          <div class="mb-3">
           <label for="" class="form-label" style="font-size:20px; color: #3a3e7b"><strong>• Idioma en específico de maestros</strong></label>
-          <select class="form-select rounded-pill shadow-sm rounded" $value='{{$anuncio_dato8}}' style="border-radius: 70px 70px 70px 70px; border-color: #a4cb39" aria-label="Default select example" wire:model="idioma_maestro">
-            <option selected>Escoge el idioma</option>
+          <select class="form-select rounded-pill shadow-sm rounded" style="border-radius: 70px 70px 70px 70px; border-color: #a4cb39" aria-label="Default select example" wire:model="anuncio_dato8">
             @isset($idiomas)
             @foreach($idiomas as $idioma)
             <option value="{{$idioma->ID_IDIOMA}}">{{$idioma->DESCRIPCION_IDIOMA}}</option>
@@ -96,8 +94,7 @@
         </div>
          
         <label for="" class="form-label" style="font-size:20px; color: #3a3e7b"><strong>• Grado que visualizará el anuncio</strong></label>
-          <select class="form-select rounded-pill shadow-sm rounded" $value='{{$anuncio_dato7}}' style="border-radius: 70px 70px 70px 70px; border-color: #a4cb39" aria-label="Default select example" wire:model="grado_anuncio">
-            <option selected >Seleccione el grado</option>
+          <select class="form-select rounded-pill shadow-sm rounded"  style="border-radius: 70px 70px 70px 70px; border-color: #a4cb39" aria-label="Default select example" wire:model="anuncio_dato7">
             <option value="0">Todos</option>
             @isset($grado_objetivo)
             @foreach($grado_objetivo as $g_objetivo)
@@ -115,7 +112,7 @@
           <br>
           <div class="mb-3">
             <label for="" class="form-label" style="font-size:20px; color: #3a3e7b"><strong>• Redacte una descripción para el anuncio</strong></label>
-            <textarea class="form-control shadow-sm rounded" style="border-color: #a4cb39" $value='{{$anuncio_dato2}}' id="edit-area" rows="4" wire:model="texto_anuncio"></textarea>
+            <textarea class="form-control shadow-sm rounded" style="border-color: #a4cb39" id="edit-area" rows="4" wire:model="anuncio_dato2"></textarea>
           </div>
             
           <br>
@@ -181,8 +178,7 @@
             
             <div class="mb-3">
               <label for="" class="form-label" style="font-size:30p; color: #3a3e7b"><strong>• Tipo de anuncio</strong></label>
-              <select class="form-select rounded-pill shadow-sm rounded" $value='{{$anuncio_dato9}}' style="border-radius: 70px 70px 70px 70px; border-color: #a4cb39" aria-label="Default select example" wire:model="calidad_anuncio" required>
-                <option selected >Elige una categoría</option>
+              <select class="form-select rounded-pill shadow-sm rounded"  style="border-radius: 70px 70px 70px 70px; border-color: #a4cb39" aria-label="Default select example" wire:model="anuncio_dato9" required>
                 <option value="1">Informativo</option>
                 <option value="2">Importante</option>
                 <option value="3">Urgente</option>

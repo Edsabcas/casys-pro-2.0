@@ -9,6 +9,13 @@ use Illuminate\Http\Request;
 class AsignacionesEsComponents extends Component
 {
     public $nombres_e,$apellidos_e,$grado_e,$seccion_e,$estado_e,$op,$mensaje,$mensaje1,$id_e,$mensaje2,$mensaje3,$mensajeeliminar,$mensajeeliminar1,$edit;
+    //Grados
+    public $estudiantesprekinder, $estudianteskinder, $estudiantesprepa, $estudiantesprimero;
+    public $estudiantessegundo, $estudiantestercero, $estudiantescuarto, $estudiantesquinto;
+    public $estudiantessexto, $estudiantesseptimo, $estudiantesoctavo, $estudiantesnoveno;
+    public $estudiantesdecimo, $estudiantesonceavo;
+    //editar seccion 
+    public $estudianteeditar, $id_alumno, $seccion_asig;
     public function render()
     {
         $estudiante= DB::table('tb_asignaciones_e')
@@ -30,6 +37,52 @@ class AsignacionesEsComponents extends Component
         $secciones=DB::select($sql);
         $sql="SELECT * FROM tb_estudiantes";
         $estudiantes=DB::select($sql);
+        //prekinder
+        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=1";
+        $this->estudiantesprekinder=DB::select($sql);
+        //kinder
+        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=3";
+        $this->estudianteskinder=DB::select($sql);
+        //preparatoria
+        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=5";
+        $this->estudiantesprepa=DB::select($sql);
+        //primero
+        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=7";
+        $this->estudiantesprimero=DB::select($sql);
+        //segundo
+        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=8";
+        $this->estudiantessegundo=DB::select($sql);
+        //tercero
+        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=9";
+        $this->estudiantestercero=DB::select($sql);
+        //cuarto
+        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=10";
+        $this->estudiantescuarto=DB::select($sql);
+        //quinto
+        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=11";
+        $this->estudiantesquinto=DB::select($sql);
+        //sexto
+        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=12";
+        $this->estudiantessexto=DB::select($sql);
+        //septimo
+        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=13";
+        $this->estudiantesseptimo=DB::select($sql);
+        //octavo
+        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=14";
+        $this->estudiantesoctavo=DB::select($sql);
+        //noveno
+        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=15";
+        $this->estudiantesnoveno=DB::select($sql);
+        //decimo
+        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=23";
+        $this->estudiantesdecimo=DB::select($sql);
+        //onceavo
+        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=25";
+        $this->estudiantesonceavo=DB::select($sql);
+        //tomar datos
+        $sql="SELECT * FROM tb_alumnos WHERE ID_USER=?";
+        $this->estudianteeditar=DB::select($sql, array($this->id_alumno));
+        //
         return view('livewire.asignaciones-es-components', compact('estudiante','grados','secciones','estudiantes'));
     }
     public function guardar_e(){
@@ -150,5 +203,46 @@ class AsignacionesEsComponents extends Component
             $this->mensajeeliminar1='No fue posible eliminar correctamente';
         }
     }  
+
+    public function editar_seccion($id){
+        $this->id_alumno = $id;   
+    }
+
+    public function asignar_seccion(){
+
+        if($this->validate([
+            'seccion_asig' => 'required',
+    
+        ])==false)
+        {
+            $mensaje="no encontrado";
+            session(['message' => 'no encontrado']);
+            return back()->withErrors(['mensaje' =>'Validar el input vacio']);
+        }
+        else
+        {
+        $asignado=$this->seccion_asig;
+        $fecha_asignacion=date("Y-m-d H:i:s");
+
+        DB::beginTransaction();
+
+        $estudianteasignado=DB::table('tb_alumnos')->where('ID_USER', $this->id_alumno)
+        ->update(
+            [
+                'SECCION_ASIGNADA'=> $asignado,
+                'FECHA_ASIGNACION'=> $fecha_asignacion,
+            ]);
+            if($estudianteasignado){
+                DB::commit();
+                unset($this->mensaje);
+                $this->mensaje=1;
+            }
+            else{
+                DB::rollback();
+                unset($this->mensaje);
+                $this->mensaje=0;
+            }
+        }
+    }
 }
 

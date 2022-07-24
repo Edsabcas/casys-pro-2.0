@@ -1,9 +1,3 @@
 <div class="container">
-    @include('asignaciones.Asignación Estudiantes.formulario')
-   
-    <br>
-
-    <div>
-        @include('asignaciones.Asignación Estudiantes.listar')
-    </div>
+    @include('asignaciones.Asignación Estudiantes.asignaciones')
 </div>

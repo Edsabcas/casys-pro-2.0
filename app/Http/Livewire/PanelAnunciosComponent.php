@@ -3,10 +3,12 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\DB;
 
 class PanelAnunciosComponent extends Component
 {
+    use WithFileUploads;
     public $anuncios, $id_eliminar, $usuario_publicacion, $rol, $grado_objetivo, $tipoanuncio, $tanuncio;
     public $idiomas, $tipo, $img, $mensaje_random, $probando, $fecha_guia, $mensaje_eliminacion;
     //variables editar
@@ -88,10 +90,12 @@ class PanelAnunciosComponent extends Component
 
     //funciones de editar directamente
     public function editar_anuncio($id){
-        $id_anuncio=$id;
-        $sql="SELECT * FROM tb_anuncios WHERE ID_ANUNCIO=? ORDER BY FECHA_HORA DESC";
-        $anunciosss=DB::select($sql, array($id_anuncios));
+        $this->id_anuncio=$id;
+        $this->anuncio_dato1 = $id;
+        $sql="SELECT * FROM tb_anuncios WHERE ID_ANUNCIOS=?";
+        $anunciosss=DB::select($sql, array($this->id_anuncio));
 
+        if($anunciosss!=null){
         foreach($anunciosss as $anuncioss){
             $this->anuncio_dato1 = $anuncioss->ID_ANUNCIOS;
             $this->anuncio_dato2 = $anuncioss->TEXTO_PUBLICACION;
@@ -105,10 +109,13 @@ class PanelAnunciosComponent extends Component
             $this->anuncio_dato10 = $anuncioss->ESTADO_ANUNCIO;
             $this->anuncio_dato11 = $anuncioss->ID_USUARIO;
         }
-
+    }
+    else{
         if($this->anuncios_dato1 == null){
             $this->probando = 890;
         }
+    }
+        
 
         $this->mensaje_random=75;
     }
@@ -124,12 +131,11 @@ class PanelAnunciosComponent extends Component
         }
         else{
             $idanuncio = $this->id_anuncio;
-            $textoanuncio = $this->texto_anuncio;
+            $textoanuncio = $anuncio_dato2;
         
-        $calidadanuncio = $this->calidad_anuncio;
-        $publicoanuncio = $this->publico_anuncio;
-        $gradoanuncio = $this->grado_anuncio;
-        $idiomamaestro = $this->idioma_maestro;
+        $calidadanuncio = $anuncio_dato9;
+        $publicoanuncio = $anuncio_dato6;
+        $gradoanuncio = $anuncio_dato7;
         $opgrado=$this->op_grado;
         $this->prueba=$calidadanuncio;
         $estadoanuncio =1;
