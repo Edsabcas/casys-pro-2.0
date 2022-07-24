@@ -66,14 +66,14 @@
         <ul class="nav nav-pills card-header-pills">
           <br>
           <li class="nav-item">
-            <button wire:click="validar_u('5')" class="btn btn-unib" value="5">Planificación Anual</button>
+            <button wire:click="mostrar_u_a('5')" class="btn btn-unib" value="5">Planificación Anual</button>
   
             @foreach($unidadesf as $unidadf)
-            <button wire:click='validar_u("{{$unidadf->ID_UNIDADES_FIJAS}}")' class="btn btn-unib">{{$unidadf->NOMBRE_DE_UNIDAD}}</button>
+            <button wire:click='validar_u_a("{{$unidadf->ID_UNIDADES_FIJAS}}")' class="btn btn-unib">{{$unidadf->NOMBRE_DE_UNIDAD}}</button>
             @endforeach
   
             @foreach($unidades as $uni)
-            <button wire:click='validar_u2("{{$uni->ID_UNIDADES}}","{{$uni->NOMNBRE_UNIDAD}}")' class="btn btn-unib">{{$uni->NOMNBRE_UNIDAD}}</button>
+            <button wire:click='validar_u2_a("{{$uni->ID_UNIDADES}}","{{$uni->NOMNBRE_UNIDAD}}")' class="btn btn-unib">{{$uni->NOMNBRE_UNIDAD}}</button>
             @endforeach
           </li>
           <br>
@@ -81,23 +81,23 @@
       </div>
       <div class="card-body text-center">
         @if($vista==1)
-        @include('Unidades.Primer_Unidad')
+        @include('alumnovista.contenidos.Unidades_a.Unidad1_a')
         @endif
         
         @if($vista==2)
-        @include('Unidades.Unidad2')
+        @include('alumnovista.contenidos.Unidades_a.Unidad2_a')
         @endif
         
         @if($vista==3)
-        @include('Unidades.Unidad3')
+        @include('alumnovista.contenidos.Unidades_a.Unidad3_a')
         @endif
         
         @if($vista==4)
-        @include('Unidades.Unidad4')
+        @include('alumnovista.contenidos.Unidades_a.Unidad4_a')
         @endif
   
         @if($vista==5)
-        @include('Unidades.PlanificacionA')
+        @include('alumnovista.contenidos.Unidades_a.Planificacion_a')
         @endif
         
         @if($vista2==6)
