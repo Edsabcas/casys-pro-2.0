@@ -17,7 +17,7 @@ class ContenidosEstudianteComponent extends Component
     public $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, $grado2, $idsecc2, $arch2,$tema2, $unidad2, $descripciont2, $nombreu,$id_tem, $edita,$id_plan,$edita2;
     public $prueba2, $idas, $nombress,$opf;
     public $option1, $option2, $option3, $option4, $option5, $option6,$materia_revi;
-    public $validation1, $validation2, $validation3, $validation4, $validation5,$validation6;
+    public $validation1, $validation2, $validation3, $validation4, $validation5,$validation6,$nombre_act, $descripact;
     public $vistar,$vistar2;
     public $texto_advertencia, $prioridad_advertencia, $fecha_inicio, $fecha_fin, $invalido, $advertencia_adver, $advertenciass, $advertenciasss;
     public $blockadvertencia, $dia_exacto, $mensaje_eliminar, $mensaje_eliminar2,$editrevisar,$comentario_r,$comentario_d_r,$id_estado_act, $editaadv;
@@ -63,13 +63,15 @@ class ContenidosEstudianteComponent extends Component
         return view('livewire.contenidos-estudiante-component', compact('uniones','materias','relaciones','unidadesf','unidades', 'actividades'));
     }
 
-    public function mostrar_u_a($id,$nombm,$nombrem,$num)
+    public function mostrar_u_a($id,$nombm,$nombrem,$num,$gr,$secc)
     {
         unset($this->unidad1);
         $this->unidad1=$id;
         $this->NOMBRE_MATERIA=$nombm;
         $this->ID_DOCENTE=$nombrem;
         $this->op2=$num;
+        $this->grado=$gr;
+        $this->idsecc=$secc;
         
     }
 
@@ -135,6 +137,12 @@ class ContenidosEstudianteComponent extends Component
                 $this->vista=5;
             }
         }  
+    }
+
+    public function modalsubact($nomb, $descp){
+        $this->nombre_act=$nomb;
+        $this->descripact=$descp;
+
     }
 
 }
