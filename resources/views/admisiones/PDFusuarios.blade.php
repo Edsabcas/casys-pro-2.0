@@ -15,25 +15,24 @@ margin-bottom: 35px;
     <div class="row">
         <img align="left" src="imagen/actividades/img1651798574.png" height="80" weight="80" alt="...">
         <center>
-            <strong><p style="font-size: 14px">CREDENCIALES DE ACCESO PARA CASYS {{$datos_usuario[0]}}</p></strong></center>
+            <br>
+            <strong><p style="text-align: center; font-size: 20px; color:#a4cb39;">CREDENCIALES DE ACCESO PARA CASYS {{$datos_usuario[0]}}</p></strong></center>
     </div>
-    <br>
-    <hr>
-    <p style="text-align: justify; font-size: 12px">Estimado encargado(a) por medio de la presente se le hace entrega
+    <p style="text-align: justify; font-size: 14px">Estimado encargado(a) por medio de la presente se le hace entrega
     de sus respectivas credenciales para el acceso a su perfil de CASYS: </p>
     <ul>
-        <h4>Usuario del ENCARGADO: </h4>
-        <li style="color:#a4cb39;" style="text-align: justify; font-size: 12;">Usuario: {{$datos_usuario[1]}}</li>
-        <li style="text-align: justify; font-size: 12">Contraseña: Cole2023</li>
-        <li style="text-align: justify; font-size: 12">Correo electrónico: {{$datos_usuario[2]}}</li>
+        <h4 style="color:#a4cb39">Usuario del ENCARGADO: </h4>
+        <li style="text-align: justify; font-size: 12px;"><strong>Usuario:</strong> {{$datos_usuario[1]}}</li>
+        <li style="text-align: justify; font-size: 12px;"><strong>Contraseña:</strong> Cole2023</li>
+        <li style="text-align: justify; font-size: 12px;"><strong>Correo electrónico:</strong> {{$datos_usuario[2]}}</li>
     </ul>
     <br>
     <hr>
     <ul>
-        <h4>Usuario del ALUMNO: </h4>
-        <li style="text-align: justify; font-size: 12px">Usuario: {{$datos_usuario[3]}}</li>
-        <li style="text-align: justify; font-size: 12px">Contraseña: Cole2023</li>
-        <li style="text-align: justify; font-size: 12px">Correo electrónico: {{$datos_usuario[4]}}</li>
+        <h4 style="color:#a4cb39">Usuario del ALUMNO: </h4>
+        <li style="text-align: justify; font-size: 12px"><strong>Usuario:</strong> {{$datos_usuario[3]}}</li>
+        <li style="text-align: justify; font-size: 12px"><strong>Contraseña:</strong> Cole2023</li>
+        <li style="text-align: justify; font-size: 12px"><strong>Correo electrónico:</strong> {{$datos_usuario[4]}}</li>
     </ul>
     <br>
     <br>

@@ -1194,7 +1194,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <strong><label  for="Labelnombreencargado" class="form-label">Nombre completo</label></strong>
-                        <input  type="text" class="form-control"  wire:model="nombre_encargado">
+                        <input  type="text" class="form-control"  wire:model="nombreencargado">
                       </div>
                       
                       <div class="col-md-6">
@@ -1451,7 +1451,7 @@
                             <div style="width: 12rem;">
                           <div class="col-md-7">
                               <div class="form-check">
-                                  <input class="form-check-input" type="radio" value="1" wire:model="vive_con_el_encargado"  wire:click="vive_con_elencargado('1')">
+                                  <input class="form-check-input" type="radio" value="1" wire:model="vive_con_el_encargado"  wire:click="vive_con_el_encargado('1')">
                                   <label class="form-check-label" for="viveen1">
                                     Si
                                   </label>
@@ -1459,7 +1459,7 @@
                           </div>
                           <div class="col-md-7">
                               <div class="form-check">
-                                  <input class="form-check-input" type="radio" value="2" wire:model="vive_con_el_encargado"  wire:click="vive_con_elencargado('2')">
+                                  <input class="form-check-input" type="radio" value="2" wire:model="vive_con_el_encargado"  wire:click="vive_con_el_encargado('2')">
                                   <label class="form-check-label" for="viveen1">
                                     No
                                   </label>
@@ -1851,20 +1851,24 @@
         <div class="modal-footer">
           <div>
           @if($estado_ges==4)
+
+            <a  type="button"  wire:click="update_datos_ins()" style="border-radius: 60px 60px 60px 60px;" class="btn btn-editb" >Actualizar</a>
           
             <a id="valiestadoinfo4" wire:click="cambio_estado(3)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-pre2" data-bs-dismiss="modal">Reg. Estado</a>
               
             <a  id="valiestadoinfo4" wire:click="cambio_estado(5)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-warning" data-bs-dismiss="modal">Sig. Estado</a>
 
-            <a  type="button"  wire:click="update_datos_ins()" style="border-radius: 60px 60px 60px 60px;" class="btn btn-editb" >Actualizar</a>
+            
           
             @elseif($estado_ges==3)
+
+            <a  type="button"  wire:click="update_datos_ins()" style="border-radius: 60px 60px 60px 60px;" class="btn btn-editb" >Actualizar</a>
             
             <a  id="valiestadoinfo4" wire:click="cambio_estado(2)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-pre2" data-bs-dismiss="modal">Reg. Estado</a>
               
             <a  id="valiestadoinfo4" wire:click="cambio_estado(4)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-warning" data-bs-dismiss="modal">Sig. Estado</a>
 
-            <a  type="button"  wire:click="update_datos_ins()" style="border-radius: 60px 60px 60px 60px;" class="btn btn-editb" >Actualizar</a>
+            
             
           @endif
           </div>
