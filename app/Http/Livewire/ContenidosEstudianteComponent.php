@@ -50,6 +50,19 @@ class ContenidosEstudianteComponent extends Component
             ->get();
         }
 
+        $PlanUnion="";
+        if($this->grado!=null){
+            $PlanUnion=DB::table('tb_planificacionanual')
+        ->join('tb_materias','tb_planificacionanual.ID_MATERIA','=','tb_materias.ID_MATERIA')
+        ->join('tb_grados', 'tb_planificacionanual.ID_GR', '=', 'tb_grados.ID_GR')
+        ->join('tb_seccions', 'tb_planificacionanual.ID_SC', '=', 'tb_seccions.ID_SC')
+        ->select('tb_planificacionanual.ID_PLAN', 'tb_planificacionanual.DESCRIPCION', 'tb_materias.NOMBRE_MATERIA', 'tb_grados.GRADO', 'tb_seccions.SECCION','tb_materias.ID_MATERIA')
+        ->where('tb_planificacionanual.ID_GR','=',$this->grado)
+        ->where('tb_planificacionanual.ID_SC','=',$this->idsecc)
+        ->where('tb_planificacionanual.ID_MATERIA','=',$this->unidad1)
+        ->get();
+        }
+
 
 
         $sql="SELECT SECCION_ASIGNADA, GRADO_INGRESO FROM tb_alumnos WHERE ID_USER=$usuario_activo";
@@ -62,7 +75,7 @@ class ContenidosEstudianteComponent extends Component
         $unidadesf=DB::select($sql);
         $sql= 'SELECT * FROM tb_docentes';
         $maestros=DB::select($sql);
-        return view('livewire.contenidos-estudiante-component', compact('maestros','uniones','materias','relaciones','unidadesf','unidades', 'actividades'));
+        return view('livewire.contenidos-estudiante-component', compact('maestros','uniones','materias','relaciones','unidadesf','unidades', 'actividades','PlanUnion'));
     }
 
     public function mostrar_u_a($id,$nombm,$nombrem,$nombrem2,$num,$gr,$secc)

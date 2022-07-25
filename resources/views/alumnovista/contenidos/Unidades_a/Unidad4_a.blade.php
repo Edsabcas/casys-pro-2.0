@@ -81,8 +81,13 @@ $('#modalsubiractividades').modal('show');
             <button class="btn btn-editb" type="button" id=subir wire:click='modalsubact("{{$actividad->NOMBRE_ACTIVIDAD}}","{{$actividad->descripcion}}")'>Entregar Actividad</button></center>
             <br>
           </div>
-          
           @endforeach
+          @if($actividades==[])
+          <div class="alert alert-currentColor alert-dismissible fade show text-light rounded" role="alert" style="background-color: #89b315" >
+            Todavia no hay material de apoyo compartido en este momento
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          @endif
           
         </td>
         <br>
