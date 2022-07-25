@@ -1285,6 +1285,15 @@ $quien_encargado1=$this->quien_encargado1;
                 $this->nacimientoencargado=$encac->FECHA_N_ENCARGADO;
                 $this->DPIencargado=$encac->DPI_ENCARGADO;
             }
+            $sql='SELECT * FROM TB_PRE_INS WHERE ID_PRE=?';
+            $cambiodeestado=DB:: select($sql, array($id));
+            if($cambiodeestado !=null){
+            foreach($cambiodeestado as $cambioes)
+            {
+                $this->id_pre_boton=$cambioes->ID_PRE;
+                $this->estado_pre_boton=$cambioes->ESTADO_PRE_INS;
+            }
+        }
          }
          public function usuario_aluenca($id,$est){
             $this->no_gest_con=$id;

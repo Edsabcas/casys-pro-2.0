@@ -146,9 +146,21 @@
     </div>
         </div>
     </div>
+
+  {{-- encontrar donde esta el modal este:) --}}
         <div class="modal-footer">
-          <a class="btn btn-pre2" style="border-radius: 60px 60px 60px 60px;" wire:click="reg_estado_usuario('{{$no_gest}}','7')" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Regresar Estado</a>
+          @if($estado_pre_boton==7)
+          <a  id="valestado" wire:click="cambio_estado(6)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-pre2" data-bs-dismiss="modal">Reg. Estado</a>
+                          
             <button class="btn btn-pre2" style="border-radius: 60px 60px 60px 60px;" wire:click="generar_use()" data-bs-target="#infodata7_1" data-bs-toggle="modal" data-bs-dismiss="modal">Siguiente</button>
+
+            @elseif($estado_pre_boton==6)
+            <a  id="valestado" wire:click="cambio_estado(4)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-pre2" data-bs-dismiss="modal">Reg. Estado</a>
+              
+            <a  id="valestado" wire:click="cambio_estado(6)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-warning" data-bs-dismiss="modal">Sig. Estado</a>
+          
+            <a class="btn btn-pre2" style="border-radius: 60px 60px 60px 60px;" wire:click="cambio_estado(6)" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Regresar Estado</a>
+          @endif
         </div>
 
 
@@ -283,6 +295,7 @@
         </div>
     </div>
         <div class="modal-footer">
+
             <a class="btn btn-pre2" style="border-radius: 60px 60px 60px 60px;" wire:click="usuario_aluenca('{{$no_gest}}', '8')" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Guardar</a>
           </div>
   </div>     

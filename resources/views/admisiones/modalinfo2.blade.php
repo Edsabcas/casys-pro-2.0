@@ -659,7 +659,7 @@
                       <source src="imagen/comprobantes2022/{{$archivo_comprobante}}"  type="video/ogg">
                   </video>
                   @endif
-                  @if($pdf==1)
+                  @if($Ñ==1)
                   <iframe style="width: 43rem; text-align:center" width="350" height="350" src="imagen/comprobantes2022/{{$archivo_comprobante}}" frameborder="0"></iframe>
                     @endif
                     {{-- <img class="img-profile rounded-circle" style="float: center;" width="80" height="80" src="imagen/comprobantes2022/{{$archivo_comprobante}}">
@@ -810,14 +810,15 @@
 
           <button class="btn btn-pre2" style="border-radius: 60px 60px 60px 60px;" wire:click="actualizar_validacion_pago()">Actualizar</button>
           @if($estado_ges==1)
+          <a  id="valpedido" wire:click="tipo_cambio(0)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-warning" data-bs-dismiss="modal">Reg. Estado</a>
+
           <a  id="valpedido"  wire:click="tipo_cambio(2)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-editb" data-bs-dismiss="modal">Sig. Estado</a>
 
-          <a  id="valpedido" wire:click="tipo_cambio(0)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-warning" data-bs-dismiss="modal">Reg. Estado</a>
           @endif  
           @if($estado_ges==2)
-            <a  id="valpedido"  wire:click="tipo_cambio(3)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-editb" data-bs-dismiss="modal">Sig. Estado</a>
+          <a  id="valpedido" wire:click="tipo_cambio(1)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-warning" data-bs-dismiss="modal">Reg. Estado</a>
 
-            <a  id="valpedido" wire:click="tipo_cambio(1)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-warning" data-bs-dismiss="modal">Reg. Estado</a>
+          <a  id="valpedido"  wire:click="tipo_cambio(3)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-editb" data-bs-dismiss="modal">Sig. Estado</a>
             @endif
  
         </div>
