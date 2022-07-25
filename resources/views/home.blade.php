@@ -11,6 +11,9 @@
 @elseif($op=='panelanuncios')
 @livewire('panel-anuncios-component')
 
+@elseif($op=='paneleditar')
+@livewire('panel-anuncios-component')
+
 @elseif($op=='alumnosupervisadoanuncios')
 @livewire('vista-alumno-component')
 
@@ -57,6 +60,12 @@
 @elseif ($op=='asignacionestudiantes')
 @livewire('asignaciones-es-components')
 
+@elseif ($op=='asignacionestudiantespresencial')
+@livewire('asignaciones-es-components')
+
+@elseif ($op=='asignacionestudiantesvirtual')
+@livewire('asignaciones-es-components')
+
 @elseif ($op=='addmaterias')
 @livewire('materiacomponent')  
 
@@ -68,6 +77,9 @@
 
 @elseif ($op=='addunidades')
 @livewire('unidades-component')   
+
+@elseif ($op=='addcontenidosest')
+@livewire('contenidos-estudiante-component')
 
 @elseif ($op=='addcontenidos')
 @livewire('contenido-component')   

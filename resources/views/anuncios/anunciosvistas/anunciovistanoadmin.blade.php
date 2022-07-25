@@ -38,7 +38,7 @@ $('#exampleModal1').modal('show');
   <br>
     <div  class="row">
       <br>
-        <div class="shadow-lg card" style="background-color: #53ff73; width: 50rem">
+        <div class="shadow-lg card" style="background-color: #c4c4c4; width: 50rem">
             <br>
             <p style="font-size:15px" class="d-grid gap-2 d-md-flex justify-content-md-end">Publicado el {{$filtro_alumnos->FECHA_HORA}}</p>
         <div class="input-group mb-3">
@@ -221,47 +221,60 @@ $('#exampleModal1').modal('show');
 @endif
 
 <!--ENCARGADO-->
-<div class="row">
+<div class="accordion-item">
   @if($rol_usuario==5)
-  @foreach($alumnos_asignados as $alumnos)
-    <div class="col-xl-4 col-sm-7 col-13 mb-5">
-      <div class="card shadow rounded">
-        <div class="card-body">
-          <div class="text-center">
-            <div class="align-self-center">
-              <br>
-              <!--Foto de perfil de cada alumno en el feed-->
-              @php
-          $foto=0;
-          if (strpos($alumnos->img_users, '.jpg' ) !== false || strpos($alumnos->img_users, '.png' ) !== false || strpos($alumnos->img_users, '.jpeg' ) !== false) 
-                 { $foto=1; }
-          @endphp
-          @if($foto==1)
-          <img class="rounded-circle"  src="imagen/perfil/{{$alumnos->img_users}}" width="60" height="60" alt="...">
-          @elseif($foto==0)
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" style="color: #3a3e7b" class="bi bi-person-fill" viewBox="0 0 16 16">
-            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-          </svg>
-          @endif
-              <!--Fin recuperación de Foto de perfil de cada alumno en el feed-->
-            </div>    
-            <div class="text-center">
-              <a wire:click="ver_estu({{$alumnos->ID_USER}})" href="/vistagen" style="color: #000000">
-                {{$alumnos->NOMBRE}}
-              </a>
+  <h2 class="accordion-header rounded-pill" id="headingTwo" style="border-radius: 5%">
+    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+      <strong style="color: #3a3e7b">SELECCIONE UN PERFIL</strong>
+    </button>
+  </h2>
+  <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample" style="">
+    <div class="accordion-body">
+      <div class="row">
+        @foreach($alumnos_asignados as $alumnos)
+          <div class="col-xl-4 col-sm-7 col-13 mb-5">
+            <div class="card shadow rounded">
+              <div class="card-body">
+                <div class="text-center">
+                  <div class="align-self-center">
+                    <br>
+                    <!--Foto de perfil de cada alumno en el feed-->
+                    @php
+                $foto=0;
+                if (strpos($alumnos->img_users, '.jpg' ) !== false || strpos($alumnos->img_users, '.png' ) !== false || strpos($alumnos->img_users, '.jpeg' ) !== false) 
+                       { $foto=1; }
+                @endphp
+                @if($foto==1)
+                <img class="rounded-circle"  src="imagen/perfil/{{$alumnos->img_users}}" width="60" height="60" alt="...">
+                @elseif($foto==0)
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#a4cb39" class="bi bi-person-circle" viewBox="0 0 16 16">
+                  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                </svg>
+                @endif
+                    <!--Fin recuperación de Foto de perfil de cada alumno en el feed-->
+                  </div>    
+                  <div class="text-center">
+                    <a wire:click="ver_estu({{$alumnos->ID_USER}})" href="/vistagen" style="color: #000000">
+                      {{$alumnos->NOMBRE}}
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+        @endforeach
     </div>
-    @endforeach
+  </div>
+</div>
+<hr>
 
 @foreach($filtros_encargado as $filtro_encargado)
 <div class="offset-3 col-10">
   <br>
     <div  class="row">
       <br>
-        <div class="shadow-lg card" style="background-color: #429aff; width: 50rem">
+        <div class="shadow-lg card" style="background-color: #c4c4c4; width: 50rem">
             <br>
             <p style="font-size:15px" class="d-grid gap-2 d-md-flex justify-content-md-end">Publicado el {{$filtro_encargado->FECHA_HORA}}</p>
         <div class="input-group mb-3">
@@ -449,7 +462,7 @@ $('#exampleModal1').modal('show');
   <br>
     <div  class="row">
       <br>
-        <div class="shadow-lg card" style="background-color: #ff6161; width: 50rem">
+        <div class="shadow-lg card" style="background-color: #c4c4c4; width: 50rem">
             <br>
             <p style="font-size:15px" class="d-grid gap-2 d-md-flex justify-content-md-end">Publicado el {{$filtro->FECHA_HORA}}</p>
         <div class="input-group mb-3">

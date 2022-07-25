@@ -31,9 +31,10 @@ class AdminisionesComponet extends Component
     public $poliza, $carne_seguro, $codigo_fam, $nombre_fam, $Especifique_medi, $Especifique_ali, $medicamento, $grados_mostrar,$estadocivil;
     public $alimento, $vacunas, $alumno_asegurado, $solo_alumno, $encargado_alumno, $bus_colegio, $bus_no_colegio, $nombre_aseguradora, $no_gest;
     public $tipo2,$correo_en2,$preciopre,$preciovir,$id_gr,$id_nvl;
-    public $quien_encargado1, $nombre_encargado, $nacimientoencargado,$nacionalidadencargado,$lugarnacimientoencargado,$estadocivilencargado,$DPIencargado,$telefonoencargado,$celularencargado,$direccionresidenciaencargado,$correoencargado,$profesionencargado,$lugar_profesion_encargado ,$religion_encargado,$NIT_encargado,$vive_con_elencargado;
-    public $img2, $img3, $archivo_perfil, $archivo_perfil2;
-    public $can1,$can2,$tipo_ins, $datosusuario4,$tipo3,$tipo4;
+    public $quien_encargado1, $nombre_encargado, $nacimientoencargado,$nacionalidadencargado,$lugarnacimientoencargado,$estadocivilencargado,$DPIencargado,$telefonoencargado,$celularencargado,$direccionresidenciaencargado,$correoencargado,$profesionencargado,$lugar_profesion_encargado ,$religion_encargado,$NIT_encargado;
+    public $img2, $img3, $archivo_perfil, $archivo_perfil2, $vive_con_el_encargado, $Especifique_rel;
+    public $can1,$can2,$tipo_ins, $datosusuario4,$tipo3,$tipo4, $cargoencargado;
+    public $grados_selecionados3, $grados_selecionados4, $grados_selecionados5, $grados_selecionados6, $grados_selecionados7, $grados_selecionados8, $grados_selecionados9;
 
     public function render()
     {
@@ -702,6 +703,54 @@ class AdminisionesComponet extends Component
                 $this->id_pre_i=$estac->ID_PRE;
                 $this->confi=$estac->HERMANOS_COLE;
                 $this->grados_selecionados=$estac->GRADO_HERMANOS_COLE;
+                $grados_selecionados1=explode(";", $this->grados_selecionados);
+                $grados_selecionados2= count($grados_selecionados1);
+                
+                if($grados_selecionados2==1){
+                    $this->grados_selecionados3=$grados_selecionados1[0];
+                    
+                    
+                }
+                if($grados_selecionados2==2){
+                    $this->grados_selecionados3=$grados_selecionados1[0];
+                    $this->grados_selecionados4=$grados_selecionados1[1];
+                    
+                    
+                }
+                if($grados_selecionados2==3){
+                    $this->grados_selecionados3=$grados_selecionados1[0];
+                    $this->grados_selecionados4=$grados_selecionados1[1];
+                    $this->grados_selecionados5=$grados_selecionados1[2];
+                    
+                    
+                }
+                if($grados_selecionados2==4){
+                    $this->grados_selecionados3=$grados_selecionados1[0];
+                    $this->grados_selecionados4=$grados_selecionados1[1];
+                    $this->grados_selecionados5=$grados_selecionados1[2];
+                    $this->grados_selecionados6=$grados_selecionados1[3];
+                    
+                    
+                }
+                if($grados_selecionados2==5){
+                    $this->grados_selecionados3=$grados_selecionados1[0];
+                    $this->grados_selecionados4=$grados_selecionados1[1];
+                    $this->grados_selecionados5=$grados_selecionados1[2];
+                    $this->grados_selecionados6=$grados_selecionados1[3];
+                    $this->grados_selecionados7=$grados_selecionados1[4];
+                    
+                    
+                }
+                if($grados_selecionados2==6){
+                    $this->grados_selecionados3=$grados_selecionados1[0];
+                    $this->grados_selecionados4=$grados_selecionados1[1];
+                    $this->grados_selecionados5=$grados_selecionados1[2];
+                    $this->grados_selecionados6=$grados_selecionados1[3];
+                    $this->grados_selecionados7=$grados_selecionados1[4];
+                    $this->grados_selecionados8=$grados_selecionados1[5];
+                    
+                }
+                
     $this->año_ingreso=$estac->AÑO_1R_INGRESO;
     $this->grado_primer_ingreso=$estac->GRADO_1R_INGRESO;
     $this->nombre_padre=$estac->NOMB_PADRE;
@@ -745,7 +794,7 @@ class AdminisionesComponet extends Component
     $this->codigo_fam=$estac->CODIGO_FAMILIA;
     $this->nombre_fam=$estac->NOMBRE_FAMILIA;
     $this->medicamento=$estac->ALERG_MEDICAMENTO;
-    $this->Especifique_ali=$estac->ESPECIFICAR_ALERG_ME;
+    $this->Especifique_ali=$estac->ESPECIFICACION_ALERG_AL;
     $this->alimento=$estac->ALERG_ALIMENTO;
     $this->vacunas=$estac->VACUNAS;
     $this->solo_alumno=$estac->SALIDA_SOLO;
@@ -754,10 +803,10 @@ class AdminisionesComponet extends Component
     $this->bus_no_colegio=$estac->SALIDA_BUS_AJENO;
     $this->Especifique_medi=$estac->ESPECIFICAR_ALERG_ME;
     $this->nombre_aseguradora=$estac->ASEGURADORA;
-    $this->nombreencargado=$estac->NOMBRE_ENCARGADO;
+    $this->nombre_encargado=$estac->NOMBRE_ENCARGADO;
     $this->matricula_bus_aj=$estac->Matricula_bus_aj;
     $this->quien_encargado1=$estac->ENCARGADO;
-    $this->nombre_encargado=$estac->NOMB_ENCARGADO;        
+    $this->nombreencargado=$estac->NOMB_ENCARGADO;        
     $this->nacimientoencargado=$estac->FECHA_N_ENCARGADO;
     $this->nacionalidadencargado=$estac->NACIONALIDAD_ENCARGADO;
     $this->lugarnacimientoencargado=$estac->LUGAR_NACIMIENTO_ENCARGADO;
@@ -767,11 +816,13 @@ class AdminisionesComponet extends Component
     $this->celularencargado=$estac->CELULAR_ENCARGADO;
     $this->direccionresidenciaencargado=$estac->DIRECCION_RESIDENCIA_ENCARGADO;
     $this->correoencargado=$estac->CORREO_ENCARGADO;
-    $this->profesionencargado=$estac->CARGO_ENCARGADO;
+    $this->profesionencargado=$estac->PROFECION_ENCARGADO;
+    $this->cargoencargado=$estac->CARGO_ENCARGADO;
     $this->lugar_profesion_encargado=$estac->LUGAR_TRABAJO_E ;
     $this->religion_encargado=$estac->RELIGION_ENCARGADO;
     $this->NIT_encargado=$estac->NIT_ENCARGADO;
-    $this->vive_con_elencargado=$estac->VIVE_CON_EL_ENCARGADO;
+    $this->Especifique_rel=$estac->REL_ENCARGADO;
+    $this->vive_con_el_encargado=$estac->VIVE_CON_EL_ENCARGADO;
     $this->solo_por=$estac->RETIRO_SOLO;
     $this->n_encargado=$estac->RETIRO_N_EN;
     $this->dpi_encar=$estac->RETIRO_DPI_EN;
@@ -848,7 +899,7 @@ class AdminisionesComponet extends Component
         $this->quien_encargado1=$quien_encargado1;
     }
     public function vive_con_el_encargado($vive_encargado2){
-        $this->vive_con_elencargado=$vive_encargado2;
+        $this->vive_con_el_encargado=$vive_encargado2;
     }
     public function estado_civil_encargado($estadocivilencargado2){
         $this->estadocivilencargado=$estadocivilencargado2;
@@ -926,7 +977,9 @@ $quien_encargado1=$this->quien_encargado1;
     $lugar_profesion_encargado=$this->lugar_profesion_encargado ;
     $religion_encargado=$this->religion_encargado;
     $NIT_encargado=$this->NIT_encargado;
-    $vive_con_elencargado=$this->vive_con_elencargado;
+    $vive_con_el_encargado=$this->vive_con_el_encargado;
+    $Especifique_rel=$this->Especifique_rel;
+    $cargoencargado=$this->cargoencargado;
 
 
     
@@ -1002,11 +1055,12 @@ $quien_encargado1=$this->quien_encargado1;
             'CELULAR_ENCARGADO'=>$this->celularencargado,
             'DIRECCION_RESIDENCIA_ENCARGADO'=>$this->direccionresidenciaencargado,
             'CORREO_ENCARGADO'=>$this->correoencargado,
-            'CARGO_ENCARGADO'=>$this->profesionencargado,
+            'PROFECION_ENCARGADO'=>$this->profesionencargado,
+            'CARGO_ENCARGADO'=>$this->cargoencargado,
             'LUGAR_TRABAJO_E'=>$this->lugar_profesion_encargado,
             'RELIGION_ENCARGADO'=>$this->religion_encargado,
             'NIT_ENCARGADO'=>$this->NIT_encargado,
-            'VIVE_CON_EL_ENCARGADO'=>$this->vive_con_elencargado,
+            'VIVE_CON_EL_ENCARGADO'=>$this->vive_con_el_encargado,
             'RETIRO_SOLO'=>$this->solo_por,
             'RETIRO_N_EN'=>$this->n_encargado,
             'RETIRO_DPI_EN'=>$this->dpi_encar,
@@ -1014,7 +1068,7 @@ $quien_encargado1=$this->quien_encargado1;
             'N_CONDUCTOR_AJ'=>$this->nombre_conductor,
             'DPI_CONDUCTOR_AJ'=>$this->dpi_conductor,
             'NUM_CONDUCTOR_AJ'=>$this->n_conductor,
-        
+            'REL_ENCARGADO'=>$this->Especifique_rel,        
             ]
         );
         if($inscripcion_datos){

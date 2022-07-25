@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Generar PDF de datos de usuario</h5>
+          <h5 class="modal-title" id="exampleModalLabel" style="color: #a4cb39;font-size:25px"><strong>Generar PDF de datos de usuario</strong></h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -12,8 +12,8 @@
             </iframe>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" wire:click='correo_datos({{$datosusuario4}})' data-bs-dismiss="modal" class="btn btn-primary">Enviar</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="border-radius: 12px;">Cancelar</button>
+          <button type="button" wire:click='correo_datos({{$datosusuario4}})' data-bs-dismiss="modal" class="btn btn-pre2">Enviar</button>
         </div>
       </div>
     </div>

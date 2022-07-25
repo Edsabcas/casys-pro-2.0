@@ -27,6 +27,7 @@ use App\Http\Controllers\Conusltarcontroller;
 use App\Http\Controllers\CalendarizacionController;
 use App\Http\Controllers\AsignarPrecioController;
 use App\Http\Controllers\FormMaestrosController;
+use App\Http\Controllers\ContenidosEstudianteController;
 
 use App\Http\Livewire\PerfilComponent;
 use App\Http\Controllers\PerfilController;
@@ -44,6 +45,7 @@ use App\Http\Controllers\PDFController;
 use App\Http\Controllers\CuentasEstudiantesControllers;
 use App\Http\Controllers\VistaAlumController;
 use App\Http\Controllers\PanelAnunciosController;
+use App\Http\Controllers\EditarAnunciosController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -106,7 +108,7 @@ Route::get('/Cuentas_estudiantes', [CuentasEstudiantesControllers::class, 'monto
 
 Route::get('/Crear_publicación', [EdicionAnuncioController::class, 'edicion'])->middleware('auth');
 Route::get('/panel_anuncios', [PanelAnunciosController::class, 'panel_anuncios'])->middleware('auth');
-
+Route::get('/panel_editar_anuncios', [PanelAnunciosController::class, 'panel_editar'])->middleware('auth');
 
 Route::get('/Vista_publicación', [AnunciosAdController::class, 'vistaadmin'])->middleware('auth');
 Route::get('/Publicaciones_guardadas', [GuardarController::class, 'guardar'])->middleware('auth');
@@ -135,8 +137,12 @@ Route::get('/Secciones', [SeccionController::class, 'agregar_sec']);
 Route::get('/Maestros', [MaestrosController::class, 'agregar_docentes']);
 
 Route::get('/Maestros_guías', [AsignacionController::class, 'agregar_a']);
-
+//panel
 Route::get('/Estudiantes', [AsignacionesEsController::class, 'agregar_e']);
+//presencial
+Route::get('/Estudiantes_presencial', [AsignacionesEsController::class, 'agregar_e_presencial']);
+//virtual
+Route::get('/Estudiantes_virtual', [AsignacionesEsController::class, 'agregar_e_virtual']);
 
 Route::get('/Nivel_Academico', [NivelAcademicoController::class, 'agregar_nivelacedemico']);
 
@@ -215,7 +221,7 @@ Route::post('/update_datos_ins',[AdminisionesController::class, 'update_datos_in
 
 Route::post('/update_diaco',[AdminisionesController::class, 'update_diaco']);
 
-
+Route::get('/Actividades',[ContenidosEstudianteController::class, 'Actividades']);
 
 
 //Rutas Pre-Inscribir_estudiantes

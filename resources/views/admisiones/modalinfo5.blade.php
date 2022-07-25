@@ -59,14 +59,14 @@
               
             <a  id="valestado" wire:click="cambio_estado(7)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-warning" data-bs-dismiss="modal">Sig. Estado</a>
 
-            <a  type="button"  wire:click="update_diaco()" style="border-radius: 60px 60px 60px 60px;" class="btn btn-editb" >Actualizar</a>
+            
             
             @elseif($estado_pre_boton==5)
             <a  id="valestado" wire:click="cambio_estado(4)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-pre2" data-bs-dismiss="modal">Reg. Estado</a>
               
             <a  id="valestado" wire:click="cambio_estado(6)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-warning" data-bs-dismiss="modal">Sig. Estado</a>
 
-            <a  type="button"  wire:click="update_diaco()" style="border-radius: 60px 60px 60px 60px;" class="btn btn-editb" >Actualizar</a>
+        
           @endif
           
         </div>
