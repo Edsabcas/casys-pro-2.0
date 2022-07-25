@@ -107,7 +107,7 @@
                       </div>
                         
                       <br>
-                      <h4 style="font-size:20px; color: #3a3e7b"><strong>• Archivo/Imagen de la publicación a editar {{$anuncio_dato1}}</strong></h4>
+                      <h4 style="font-size:20px; color: #3a3e7b"><strong>• Archivo/Imagen de la publicación a editar</strong></h4>
                       @php
                       //colocar la imagen anterior y que vuelva a cargar una
                             $foo = 0;
