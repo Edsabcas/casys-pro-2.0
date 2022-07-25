@@ -33,6 +33,22 @@
   @endif
 @endisset
 
+@isset($mensaje)
+@if($mensaje==1)
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    Publicación editada correctamente!
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  @endif
+@endisset
+@isset($mensaje1)
+@elseif($mensaje1==1)
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    La publicación no fue editada correctamente!
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+@endisset
+
 <center><h2><strong><i>Panel de Anuncios</i></strong></h2></center>
 
 <table class="table table-striped">

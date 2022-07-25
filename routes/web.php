@@ -137,8 +137,12 @@ Route::get('/Secciones', [SeccionController::class, 'agregar_sec']);
 Route::get('/Maestros', [MaestrosController::class, 'agregar_docentes']);
 
 Route::get('/Maestros_guías', [AsignacionController::class, 'agregar_a']);
-
+//panel
 Route::get('/Estudiantes', [AsignacionesEsController::class, 'agregar_e']);
+//presencial
+Route::get('/Estudiantes_presencial', [AsignacionesEsController::class, 'agregar_e_presencial']);
+//virtual
+Route::get('/Estudiantes_virtual', [AsignacionesEsController::class, 'agregar_e_virtual']);
 
 Route::get('/Nivel_Academico', [NivelAcademicoController::class, 'agregar_nivelacedemico']);
 

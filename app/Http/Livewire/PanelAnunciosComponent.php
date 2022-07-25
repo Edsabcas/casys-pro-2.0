@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 class PanelAnunciosComponent extends Component
 {
     use WithFileUploads;
-    public $anuncios, $id_eliminar, $usuario_publicacion, $rol, $grado_objetivo, $tipoanuncio, $tanuncio;
+    public $anuncios, $anuncios2, $id_eliminar, $usuario_publicacion, $rol, $grado_objetivo, $tipoanuncio, $tanuncio;
     public $idiomas, $tipo, $img, $mensaje_random, $probando, $fecha_guia, $mensaje_eliminacion;
     //variables editar
     public $anuncio_dato1, $anuncio_dato2, $anuncio_dato3, $anuncio_dato4, $anuncio_dato5, $anuncio_dato6;
@@ -94,6 +94,9 @@ class PanelAnunciosComponent extends Component
         $this->anuncio_dato1 = $id;
         $sql="SELECT * FROM tb_anuncios WHERE ID_ANUNCIOS=?";
         $anunciosss=DB::select($sql, array($this->id_anuncio));
+        unset($this->mensaje_eliminacion);
+        unset($this->mensaje);
+        unset($this->mensaje1);
 
         if($anunciosss!=null){
         foreach($anunciosss as $anuncioss){
@@ -122,7 +125,7 @@ class PanelAnunciosComponent extends Component
 
     public function update_anuncio(){
         if($this->validate([
-            'calidad_anuncio' => 'required',
+            'anuncio_dato9' => 'required',
         ])==false){
             $advertencia="no encontrado";
             session(['message'=>'no encontrado']);
@@ -131,19 +134,27 @@ class PanelAnunciosComponent extends Component
         }
         else{
             $idanuncio = $this->id_anuncio;
-            $textoanuncio = $anuncio_dato2;
+            $textoanuncio = $this->anuncio_dato2;
         
-        $calidadanuncio = $anuncio_dato9;
-        $publicoanuncio = $anuncio_dato6;
-        $gradoanuncio = $anuncio_dato7;
+        $calidadanuncio = $this->anuncio_dato9;
+        $publicoanuncio = $this->anuncio_dato6;
+        $gradoanuncio = $this->anuncio_dato7;
         $opgrado=$this->op_grado;
         $this->prueba=$calidadanuncio;
         $estadoanuncio =1;
+        $idiomamaestro=0;
 
         if($this->tanuncio==null){
-            $gradoanuncio=0;
             $this->tanuncio=0;
         }
+        
+        if($this->anuncio_dato6!=null){
+            $this->tanuncio=1;
+        }
+        elseif($this->anuncio_dato6==null){
+            $gradoanuncio=0;
+        }
+
 
         $archivo_anuncio="";
             if($this->archivo_anuncio!=null){
@@ -169,7 +180,6 @@ class PanelAnunciosComponent extends Component
                     $this->tipo=3;
                 }
             }
-             
             else{
                 $this->message = "error al subir";
             }
@@ -178,8 +188,10 @@ class PanelAnunciosComponent extends Component
 
         
         $fechaanuncio = $this->dia2 = date("Y-m-d H:i:s");
-        
-        DB::beginTransaction();
+
+        //por si, si suben nueva multimedia
+        if($this->archivo_anuncio!=""){
+            DB::beginTransaction();
 
         $anuncio=DB::table('tb_anuncios')->where('ID_ANUNCIOS', $idanuncio)
         ->update(
@@ -202,15 +214,65 @@ class PanelAnunciosComponent extends Component
                 
                 DB::commit();
                 $this->op=2;
-                $this->mensaje='insertado correctamente';
+                unset($this->mensaje_eliminacion);
+                unset($this->mensaje);
+                unset($this->mensaje1);
+                $this->mensaje=1;
                
 
             }
             else{
                 DB::rollback();
                 $this->op=2;
-                $this->mensaje1='No fue insertado correctamente';
+                unset($this->mensaje_eliminacion);
+                unset($this->mensaje1);
+                unset($this->mensaje);
+                $this->mensaje1=1;
             }
+        }
+        
+        //por si es no suben nueva multimedia, se dej ala que estaba antes
+            if($archivo_anuncio==""){
+                DB::beginTransaction();
+
+        $anuncio=DB::table('tb_anuncios')->where('ID_ANUNCIOS', $idanuncio)
+        ->update(
+            [
+                'TEXTO_PUBLICACION'=>$textoanuncio,
+                'CALIDAD_ANUNCIO'=>$calidadanuncio,
+                'FECHA_HORA'=>$fechaanuncio,
+                'TIPO_ANUNCIO'=>$this->tanuncio,
+                'PUBLICO_ANUNCIO'=>$publicoanuncio,
+                'IDIOMA_MAESTRO'=>$idiomamaestro,
+                'GRADO_ANUNCIO'=>$gradoanuncio,
+                'ESTADO_ANUNCIO'=>$estadoanuncio,
+                'ID_USUARIO'=>auth()->user()->id,
+
+            ]
+            );
+            if($anuncio){
+                $this->reset();
+                
+                DB::commit();
+                $this->op=2;
+                unset($this->mensaje_eliminacion);
+                unset($this->mensaje);
+                unset($this->mensaje1);
+                $this->mensaje=1;
+               
+
+            }
+            else{
+                DB::rollback();
+                $this->op=2;
+                unset($this->mensaje_eliminacion);
+                unset($this->mensaje1);
+                unset($this->mensaje);
+                $this->mensaje1=1;
+            }
+            }
+            
+            
         }
         
           

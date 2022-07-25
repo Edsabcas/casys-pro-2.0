@@ -60,6 +60,12 @@
 @elseif ($op=='asignacionestudiantes')
 @livewire('asignaciones-es-components')
 
+@elseif ($op=='asignacionestudiantespresencial')
+@livewire('asignaciones-es-components')
+
+@elseif ($op=='asignacionestudiantesvirtual')
+@livewire('asignaciones-es-components')
+
 @elseif ($op=='addmaterias')
 @livewire('materiacomponent')  
 

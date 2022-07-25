@@ -26,9 +26,9 @@
                   </svg>
                   <br>
                   <br>
-                  <h1 class="text-center" style="color: #3a3e7b"><strong>EDITAR ANUNCIO {{$mensaje_random}}{{$anuncio_dato1}}</strong></h1>
+                  <h1 class="text-center" style="color: #3a3e7b"><strong>EDITAR ANUNCIO</strong></h1>
                   @if($anuncio_dato1==null)
-                  <h5>HOLA {{$probando}}</h5>
+                  <h5 style="color: #3a3e7b">Cargando... {{$probando}}</h5>
                   @endif
                   <p style="color:black"><strong>Llene los siguientes campos para editar un anuncio.</strong></p>
                   <br>
@@ -37,7 +37,7 @@
                   <br>
                   <form wire:submit.prevent='' enctype="multipart/form-data">
                     @csrf
-                    <input type="hidden"  wire:model="anuncio_dato1">
+                    <input type="hidden" wire:model="anuncio_dato1">
                     <label for="" class="form-label" style="font-size:20px; color: #3a3e7b"><strong>• Personzalización de un anuncio</strong></label>
                     <div class="form-check">
                       <input class="form-check-input" type="radio" wire:click="tipo_anuncio()" id="flexRadioDefault1">
@@ -103,7 +103,7 @@
                       <br>
                       <div class="mb-3">
                         <label for="" class="form-label" style="font-size:20px; color: #3a3e7b"><strong>• Redacte una descripción para el anuncio</strong></label>
-                        <textarea class="form-control shadow-sm rounded" style="border-color: #a4cb39" id="edit-area" rows="4" wire:model="anuncio_dato2"></textarea>
+                        <textarea class="form-control shadow-sm rounded" style="border-color: #a4cb39" rows="4" wire:model="anuncio_dato2"></textarea>
                       </div>
                         
                       <br>
@@ -186,7 +186,7 @@
                         <br>
                         <div class="card-footer text-center" style="background-color: #ffffff">
                           <br>
-                          <button type="submit" class="btn btn-pre2 text-center btn-lg" wire:click="update_anuncio()"><strong>Editar</strong></button>
+                          <button type="submit" data-bs-dismiss="modal" class="btn btn-pre2 text-center btn-lg" wire:click="update_anuncio()"><strong>Editar</strong></button>
                         </div>
                         @isset($mensaje)
                         @if($mensaje!=null)
@@ -195,21 +195,6 @@
                         @endisset
                         <br>
                   </form>
-                  @isset($mensaje)
-              @if($mensaje!=null)
-              
-              <div class="alert alert-success" role="alert">
-                  Agregado Correctamente!
-                </div>
-              @endif
-              @endisset
-              @isset($mensaje1)
-                @if($mensaje1!=null)
-                <div class="alert alert-success" role="alert">
-                  No fue agregado Correctamente!
-                </div>
-                @endif
-              @endisset
               
               </div>
               </div>
@@ -219,7 +204,7 @@
         <div class="modal-footer">
             
           
-          <button type="button" class="btn btn-secondary"  style="border-radius: 12px;"  data-bs-dismiss="modal">No asignar</button>
+          <button type="button" class="btn btn-secondary"  style="border-radius: 12px;"  data-bs-dismiss="modal">Cancelar</button>
           
         </div>
       </div>

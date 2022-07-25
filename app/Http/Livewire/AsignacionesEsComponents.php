@@ -9,11 +9,16 @@ use Illuminate\Http\Request;
 class AsignacionesEsComponents extends Component
 {
     public $nombres_e,$apellidos_e,$grado_e,$seccion_e,$estado_e,$op,$mensaje,$mensaje1,$id_e,$mensaje2,$mensaje3,$mensajeeliminar,$mensajeeliminar1,$edit;
-    //Grados
+    //Grados presencial
     public $estudiantesprekinder, $estudianteskinder, $estudiantesprepa, $estudiantesprimero;
     public $estudiantessegundo, $estudiantestercero, $estudiantescuarto, $estudiantesquinto;
     public $estudiantessexto, $estudiantesseptimo, $estudiantesoctavo, $estudiantesnoveno;
     public $estudiantesdecimo, $estudiantesonceavo;
+    //Grados presencial
+    public $estudiantesprekinder2, $estudianteskinder2, $estudiantesprepa2, $estudiantesprimero2;
+    public $estudiantessegundo2, $estudiantestercero2, $estudiantescuarto2, $estudiantesquinto2;
+    public $estudiantessexto2, $estudiantesseptimo2, $estudiantesoctavo2, $estudiantesnoveno2;
+    public $estudiantesdecimo2, $estudiantesonceavo2;
     //editar seccion 
     public $estudianteeditar, $id_alumno, $seccion_asig;
     public function render()
@@ -38,50 +43,94 @@ class AsignacionesEsComponents extends Component
         $sql="SELECT * FROM tb_estudiantes";
         $estudiantes=DB::select($sql);
         //prekinder
-        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=1";
+        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=1 AND SECCION_ASIGNADA IS NULL";
         $this->estudiantesprekinder=DB::select($sql);
         //kinder
-        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=3";
+        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=3 AND SECCION_ASIGNADA IS NULL";
         $this->estudianteskinder=DB::select($sql);
         //preparatoria
-        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=5";
+        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=5 AND SECCION_ASIGNADA IS NULL";
         $this->estudiantesprepa=DB::select($sql);
         //primero
-        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=7";
+        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=7 AND SECCION_ASIGNADA IS NULL";
         $this->estudiantesprimero=DB::select($sql);
         //segundo
-        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=8";
+        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=8 AND SECCION_ASIGNADA IS NULL";
         $this->estudiantessegundo=DB::select($sql);
         //tercero
-        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=9";
+        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=9 AND SECCION_ASIGNADA IS NULL";
         $this->estudiantestercero=DB::select($sql);
         //cuarto
-        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=10";
+        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=10 AND SECCION_ASIGNADA IS NULL";
         $this->estudiantescuarto=DB::select($sql);
         //quinto
-        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=11";
+        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=11 AND SECCION_ASIGNADA IS NULL";
         $this->estudiantesquinto=DB::select($sql);
         //sexto
-        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=12";
+        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=12 AND SECCION_ASIGNADA IS NULL";
         $this->estudiantessexto=DB::select($sql);
         //septimo
-        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=13";
+        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=13 AND SECCION_ASIGNADA IS NULL";
         $this->estudiantesseptimo=DB::select($sql);
         //octavo
-        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=14";
+        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=14 AND SECCION_ASIGNADA IS NULL";
         $this->estudiantesoctavo=DB::select($sql);
         //noveno
-        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=15";
+        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=15 AND SECCION_ASIGNADA IS NULL";
         $this->estudiantesnoveno=DB::select($sql);
         //decimo
-        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=23";
+        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=23 AND SECCION_ASIGNADA IS NULL";
         $this->estudiantesdecimo=DB::select($sql);
         //onceavo
-        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=25";
+        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=25 AND SECCION_ASIGNADA IS NULL";
         $this->estudiantesonceavo=DB::select($sql);
         //tomar datos
         $sql="SELECT * FROM tb_alumnos WHERE ID_USER=?";
         $this->estudianteeditar=DB::select($sql, array($this->id_alumno));
+        //VIRTUAL
+        //VIRTUAL
+        //prekinder
+        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=26 AND SECCION_ASIGNADA IS NULL";
+        $this->estudiantesprekinder2=DB::select($sql);
+        //kinder
+        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=27 AND SECCION_ASIGNADA IS NULL";
+        $this->estudianteskinder2=DB::select($sql);
+        //preparatoria
+        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=28 AND SECCION_ASIGNADA IS NULL";
+        $this->estudiantesprepa2=DB::select($sql);
+        //primero
+        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=29 AND SECCION_ASIGNADA IS NULL";
+        $this->estudiantesprimero2=DB::select($sql);
+        //segundo
+        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=30 AND SECCION_ASIGNADA IS NULL";
+        $this->estudiantessegundo2=DB::select($sql);
+        //tercero
+        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=31 AND SECCION_ASIGNADA IS NULL";
+        $this->estudiantestercero2=DB::select($sql);
+        //cuarto
+        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=32 AND SECCION_ASIGNADA IS NULL";
+        $this->estudiantescuarto2=DB::select($sql);
+        //quinto
+        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=33 AND SECCION_ASIGNADA IS NULL";
+        $this->estudiantesquinto2=DB::select($sql);
+        //sexto
+        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=34 AND SECCION_ASIGNADA IS NULL";
+        $this->estudiantessexto2=DB::select($sql);
+        //septimo
+        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=35 AND SECCION_ASIGNADA IS NULL";
+        $this->estudiantesseptimo2=DB::select($sql);
+        //octavo
+        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=36 AND SECCION_ASIGNADA IS NULL";
+        $this->estudiantesoctavo2=DB::select($sql);
+        //noveno
+        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=37 AND SECCION_ASIGNADA IS NULL";
+        $this->estudiantesnoveno2=DB::select($sql);
+        //decimo
+        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=38 AND SECCION_ASIGNADA IS NULL";
+        $this->estudiantesdecimo2=DB::select($sql);
+        //onceavo
+        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=39 AND SECCION_ASIGNADA IS NULL";
+        $this->estudiantesonceavo2=DB::select($sql);
         //
         return view('livewire.asignaciones-es-components', compact('estudiante','grados','secciones','estudiantes'));
     }
