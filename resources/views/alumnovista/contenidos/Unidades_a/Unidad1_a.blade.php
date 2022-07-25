@@ -41,9 +41,9 @@ $('#modalsubiractividades').modal('show');
                   </button>
                 </h2>
                 <div id="flush-collapse{{$actividad->ID_ACTIVIDADES}}" class="accordion-collapse collapse" aria-labelledby="flush-heading{{$actividad->ID_ACTIVIDADES}}" data-bs-parent="#accordionFlush{{$actividad->ID_ACTIVIDADES}}">
-                  <h6 class="accordion-body"> Maestro: <strong>{{$ID_DOCENTE}}</strong>  <br> Materia: <strong>{{$NOMBRE_MATERIA}}</strong></h6>
+                  <h6 class="accordion-body"> Maestro: <strong>{{$NOMBRE_DOCENTE}}</strong>  <br> Materia: <strong>{{$NOMBRE_MATERIA}}</strong></h6>
                   
-                  <div class="accordion-body">Descripcion: {{$actividad->descripcion}} <br> <br> Creado por: <strong>{{$NOMBRE_DOCENTE}}</strong> 
+                  <div class="accordion-body">Descripcion: {{$actividad->descripcion}} <br> <br> Creado por: <strong>{{$actividad->name}}</strong> 
                   <br> <br>
                   @php
                         $foo = 0;

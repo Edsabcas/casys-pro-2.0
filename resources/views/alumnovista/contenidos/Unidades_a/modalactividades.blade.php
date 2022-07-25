@@ -32,7 +32,8 @@
             </div>
         </div>
         <div class="modal-footer">
-          <a type="submit" type="button" style="border-radius: 60px 60px 60px 60px;" data-bs-dismiss="modal" class="btn btn-warning">Enviar</a> 
+          <a type="submit" type="button" style="border-radius: 60px 60px 60px 60px;" data-bs-dismiss="modal" class="btn btn-warning">Enviar</a>
+          <button type="button" class="btn btn-secondary"  style="border-radius: 60px 60px 60px 60px;"  data-bs-dismiss="modal">Cancelar</button>
         </div>
       </div>
     </div>

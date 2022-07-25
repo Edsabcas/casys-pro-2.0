@@ -66,7 +66,7 @@
         <ul class="nav nav-pills card-header-pills">
           <br>
           <li class="nav-item">
-            <button wire:click="mostrar_u_a('5')" class="btn btn-unib" value="5">Planificación Anual</button>
+            <button wire:click="validar_u_a('5')" class="btn btn-unib" value="5">Planificación Anual</button>
   
             @foreach($unidadesf as $unidadf)
             <button wire:click='validar_u_a("{{$unidadf->ID_UNIDADES_FIJAS}}")' class="btn btn-unib">{{$unidadf->NOMBRE_DE_UNIDAD}}</button>
@@ -100,7 +100,7 @@
         @include('alumnovista.contenidos.Unidades_a.Planificacion_a')
         @endif
         
-        @if($vista2==6)
+        @if($vista==6)
         @include('Unidades.Unidades_n')
         @endif
       </div>
