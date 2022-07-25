@@ -60,15 +60,18 @@ class ContenidosEstudianteComponent extends Component
         $materias=DB::select($sql);
         $sql= 'SELECT * FROM tb_unidades_fijas';
         $unidadesf=DB::select($sql);
-        return view('livewire.contenidos-estudiante-component', compact('uniones','materias','relaciones','unidadesf','unidades', 'actividades'));
+        $sql= 'SELECT * FROM tb_docentes';
+        $maestros=DB::select($sql);
+        return view('livewire.contenidos-estudiante-component', compact('maestros','uniones','materias','relaciones','unidadesf','unidades', 'actividades'));
     }
 
-    public function mostrar_u_a($id,$nombm,$nombrem,$num,$gr,$secc)
+    public function mostrar_u_a($id,$nombm,$nombrem,$nombrem2,$num,$gr,$secc)
     {
         unset($this->unidad1);
         $this->unidad1=$id;
         $this->NOMBRE_MATERIA=$nombm;
         $this->ID_DOCENTE=$nombrem;
+        $this->NOMBRE_DOCENTE=$nombrem2;
         $this->op2=$num;
         $this->grado=$gr;
         $this->idsecc=$secc;

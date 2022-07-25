@@ -11,13 +11,13 @@ $('#modalsubiractividades').modal('show');
 </script>
 <div class="card ">
   <br>
-  <h1 style="color: #a4cb39"><strong>UNIDAD 3</strong></h1>
+  <h1 style="color: #a4cb39"><strong>UNIDAD 1</strong></h1>
   <hr>
       <div class="card-body">
         <div class="container">
           <div class="row">
             <div class="col">
-              <h5 class="card-text">Maestro: <strong>{{$ID_DOCENTE}}</strong></h5>
+              <h5 class="card-text">Maestro: <strong>{{$NOMBRE_DOCENTE}}</strong></h5>
             </div>
             <div class="col">
               <h5 class="card-title">Materia: <strong>{{$NOMBRE_MATERIA}}</strong></h5>
@@ -34,7 +34,8 @@ $('#modalsubiractividades').modal('show');
                 <h2 class="accordion-header" id="flush-heading{{$actividad->ID_ACTIVIDADES}}">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{$actividad->ID_ACTIVIDADES}}" aria-expanded="false" aria-controls="flush-collapse{{$actividad->ID_ACTIVIDADES}}">
                     {{$actividad->NOMBRE_ACTIVIDAD}}
-                    <br> <br>
+                    <br>
+                    <br>
                     
                     Fecha de Creación:{{$actividad->fecha_cr}} <br> <br> Fecha de Entrega:{{$actividad->fecha_entr}}
                   </button>
@@ -42,7 +43,7 @@ $('#modalsubiractividades').modal('show');
                 <div id="flush-collapse{{$actividad->ID_ACTIVIDADES}}" class="accordion-collapse collapse" aria-labelledby="flush-heading{{$actividad->ID_ACTIVIDADES}}" data-bs-parent="#accordionFlush{{$actividad->ID_ACTIVIDADES}}">
                   <h6 class="accordion-body"> Maestro: <strong>{{$ID_DOCENTE}}</strong>  <br> Materia: <strong>{{$NOMBRE_MATERIA}}</strong></h6>
                   
-                  <div class="accordion-body">Descripcion: {{$actividad->descripcion}} <br> <br> Creado por: <strong>{{$actividad->name}}</strong> 
+                  <div class="accordion-body">Descripcion: {{$actividad->descripcion}} <br> <br> Creado por: <strong>{{$NOMBRE_DOCENTE}}</strong> 
                   <br> <br>
                   @php
                         $foo = 0;
