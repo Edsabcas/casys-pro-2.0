@@ -159,6 +159,16 @@
 @elseif($op=='amontos')
 @livewire('cuentas-estudiantes-component')
 
+@elseif($op=='gest_pendi')
+@livewire('gestiones-component')
+
+@elseif($op=='gest_aten')
+@livewire('gestiones-component')
+
+@elseif($op=='gest_repo')
+@livewire('gestiones-component')
+
+
 @endif
 @endif
 @endsection
