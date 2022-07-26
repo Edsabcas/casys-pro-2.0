@@ -159,10 +159,8 @@
 @elseif($op=='amontos')
 @livewire('cuentas-estudiantes-component')
 
-<<<<<<< HEAD
 @elseif($op=='ingreso_pagos')
 @livewire('ingreso-pago-component')
-=======
 @elseif($op=='gest_pendi')
 @livewire('gestiones-component')
 
@@ -171,7 +169,6 @@
 
 @elseif($op=='gest_repo')
 @livewire('gestiones-component')
->>>>>>> ea4c7718496745a298293508fc4e49d8e614af8d
 
 
 @endif
