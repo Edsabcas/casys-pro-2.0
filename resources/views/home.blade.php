@@ -150,6 +150,10 @@
 @elseif($op=='amontos')
 @livewire('cuentas-estudiantes-component')
 
+@elseif($op=='ingreso_pagos')
+@livewire('ingreso-pago-component')
+
+
 @endif
 @endif
 @endsection

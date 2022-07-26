@@ -28,6 +28,8 @@ use App\Http\Controllers\CalendarizacionController;
 use App\Http\Controllers\AsignarPrecioController;
 use App\Http\Controllers\FormMaestrosController;
 use App\Http\Controllers\ContenidosEstudianteController;
+use App\Http\Controllers\Ingreso_PagoController;
+use App\Http\Controllers\Ingreso_PagoComponent;
 
 use App\Http\Livewire\PerfilComponent;
 use App\Http\Controllers\PerfilController;
@@ -231,3 +233,8 @@ Route::get('/Admisiones', [AdminisionesController::class, 'adm'])->middleware('a
 
 
 Route::get('/Precios', [AsignarPrecioController::class, 'precios'])->middleware('auth');
+
+
+//Contabilidad
+
+Route::get('/Ingreso_de_pagos',[Ingreso_PagoController::class, 'Pagos']);
