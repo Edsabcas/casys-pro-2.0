@@ -48,6 +48,8 @@ use App\Http\Controllers\CuentasEstudiantesControllers;
 use App\Http\Controllers\VistaAlumController;
 use App\Http\Controllers\PanelAnunciosController;
 use App\Http\Controllers\EditarAnunciosController;
+use App\Http\Controllers\GestionesController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -145,6 +147,12 @@ Route::get('/Estudiantes', [AsignacionesEsController::class, 'agregar_e']);
 Route::get('/Estudiantes_presencial', [AsignacionesEsController::class, 'agregar_e_presencial']);
 //virtual
 Route::get('/Estudiantes_virtual', [AsignacionesEsController::class, 'agregar_e_virtual']);
+//estudiantes asignados presencial
+Route::get('/ver_Estudiantes_presencial', [AsignacionesEsController::class, 'ver_e_presencial']);
+//estudiantes asignados virtual
+Route::get('/ver_Estudiantes_virtual', [AsignacionesEsController::class, 'ver_e_virtual']);
+//estudiantes asignados virtual
+Route::get('/ver_estudiantes_asignados', [AsignacionesEsController::class, 'ver_e_asignados']);
 
 Route::get('/Nivel_Academico', [NivelAcademicoController::class, 'agregar_nivelacedemico']);
 
@@ -230,6 +238,10 @@ Route::get('/Actividades',[ContenidosEstudianteController::class, 'Actividades']
 
 Route::get('/Admisiones', [AdminisionesController::class, 'adm'])->middleware('auth');
 
+//RutaGestiones
+Route::get('/Pendientes', [GestionesController::class, 'pendientes'])->middleware('auth');
+Route::get('/Atendidas', [GestionesController::class, 'atendidas'])->middleware('auth');
+Route::get('/Reportes', [GestionesController::class, 'repor'])->middleware('auth');
 
 
 Route::get('/Precios', [AsignarPrecioController::class, 'precios'])->middleware('auth');

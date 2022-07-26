@@ -24,4 +24,22 @@ class AsignacionesEsController extends Controller
         session(['op' => $op]);
         return view('home', compact('op'));
     }
+
+    public function ver_e_presencial(){
+        $op='verestudiantespresencial';
+        session(['op' => $op]);
+        return view('home', compact('op'));
+    }
+
+    public function ver_e_virtual(){
+        $op='verestudiantesvirtual';
+        session(['op' => $op]);
+        return view('home', compact('op'));
+    }
+
+    public function ver_e_asignados(){
+        $op='verestudiantesasignados';
+        session(['op' => $op]);
+        return view('home', compact('op'));
+    }
 }

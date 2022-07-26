@@ -45,7 +45,7 @@
               </div>
               <div class="text-center">
                 <a type="button">
-                  <p><a href="/Estudiantes_presencial" style="color: #3a3e7b"><strong>Ver alumnos asignados de forma presencial</strong></a></p>
+                  <p><a href="/ver_Estudiantes_presencial" style="color: #3a3e7b"><strong>Ver alumnos asignados de forma presencial</strong></a></p>
                 </a>
               </div>
             </div>
@@ -62,7 +62,7 @@
               </div>
               <div class="text-center">
                 <a type="button">
-                  <p><a href="/Estudiantes_virtual" style="color: #3a3e7b"><strong>Ver alumnos asignados de forma virtual</strong></a></p>
+                  <p><a href="/ver_Estudiantes_virtual" style="color: #3a3e7b"><strong>Ver alumnos asignados de forma virtual</strong></a></p>
                 </a>
               </div>
             </div>
