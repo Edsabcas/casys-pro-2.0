@@ -46,6 +46,8 @@ use App\Http\Controllers\CuentasEstudiantesControllers;
 use App\Http\Controllers\VistaAlumController;
 use App\Http\Controllers\PanelAnunciosController;
 use App\Http\Controllers\EditarAnunciosController;
+use App\Http\Controllers\GestionesController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -234,6 +236,10 @@ Route::get('/Actividades',[ContenidosEstudianteController::class, 'Actividades']
 
 Route::get('/Admisiones', [AdminisionesController::class, 'adm'])->middleware('auth');
 
+//RutaGestiones
+Route::get('/Pendientes', [GestionesController::class, 'pendientes'])->middleware('auth');
+Route::get('/Atendidas', [GestionesController::class, 'atendidas'])->middleware('auth');
+Route::get('/Reportes', [GestionesController::class, 'repor'])->middleware('auth');
 
 
 Route::get('/Precios', [AsignarPrecioController::class, 'precios'])->middleware('auth');
