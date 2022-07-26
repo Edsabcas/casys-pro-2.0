@@ -1,4 +1,5 @@
 @if($op2==null)
+<center>
 <div class="card" style="width: 69rem;">
     <div class="card-body">
         <nav class="navbar navbar-light">
@@ -104,6 +105,7 @@
         </div>
     </div>
 </div>
+</center>
 
 @elseif($op2!=null && $op2==1)
 @include('pagos.vistapagos2')
