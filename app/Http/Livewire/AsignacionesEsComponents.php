@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 class AsignacionesEsComponents extends Component
 {
     public $nombres_e,$apellidos_e,$grado_e,$seccion_e,$estado_e,$op,$mensaje,$mensaje1,$id_e,$mensaje2,$mensaje3,$mensajeeliminar,$mensajeeliminar1,$edit;
+    public $mensajeeditado;
     //Grados presencial
     public $estudiantesprekinder, $estudianteskinder, $estudiantesprepa, $estudiantesprimero;
     public $estudiantessegundo, $estudiantestercero, $estudiantescuarto, $estudiantesquinto;
@@ -20,7 +21,15 @@ class AsignacionesEsComponents extends Component
     public $estudiantessexto2, $estudiantesseptimo2, $estudiantesoctavo2, $estudiantesnoveno2;
     public $estudiantesdecimo2, $estudiantesonceavo2;
     //editar seccion 
-    public $estudianteeditar, $id_alumno, $seccion_asig;
+    public $estudianteeditar, $id_alumno, $seccion_asig, $id_alumno2, $seccionasignada, $estudianteeditar2;
+    public $estudianteeditar3;
+    //listar grados
+    public $gradospresencial, $gradosvirtual;
+    //listar alumnos y secciones
+    public $alumnos_seccionA, $alumnos_seccionB, $alumnos_seccionC, $alumnos_seccionD;
+    public $alumnos_seccionE;
+    //grados para listar
+    public $grados_listar;
     public function render()
     {
         $estudiante= DB::table('tb_asignaciones_e')
@@ -87,6 +96,9 @@ class AsignacionesEsComponents extends Component
         //tomar datos
         $sql="SELECT * FROM tb_alumnos WHERE ID_USER=?";
         $this->estudianteeditar=DB::select($sql, array($this->id_alumno));
+        //tomar datos en asignar seccion otra vez
+        $sql="SELECT * FROM tb_alumnos WHERE ID_USER=?";
+        $this->estudianteeditar3=DB::select($sql, array($this->id_alumno2));
         //VIRTUAL
         //VIRTUAL
         //prekinder
@@ -131,7 +143,30 @@ class AsignacionesEsComponents extends Component
         //onceavo
         $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=39 AND SECCION_ASIGNADA IS NULL";
         $this->estudiantesonceavo2=DB::select($sql);
-        //
+        //GRADOS DE PRESENCIAL
+        $sql="SELECT * FROM tb_grados WHERE JORNADA=1";
+        $this->gradospresencial=DB::select($sql);
+        //GRADOS DE  VIRTUAL
+        $sql="SELECT * FROM tb_grados WHERE JORNADA=4";
+        $this->gradosvirtual=DB::select($sql);
+        //Conseguir alumnos en seccion A
+        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=? AND SECCION_ASIGNADA=1";
+        $this->alumnos_seccionA=DB::select($sql, array(session('id_grado')));
+        //Conseguir alumnos en seccion B
+        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=? AND SECCION_ASIGNADA=2";
+        $this->alumnos_seccionB=DB::select($sql, array(session('id_grado')));
+        //Conseguir alumnos en seccion C
+        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=? AND SECCION_ASIGNADA=3";
+        $this->alumnos_seccionC=DB::select($sql, array(session('id_grado')));
+        //Conseguir alumnos en seccion D
+        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=? AND SECCION_ASIGNADA=4";
+        $this->alumnos_seccionD=DB::select($sql, array(session('id_grado')));
+        //Conseguir alumnos en seccion E
+        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=? AND SECCION_ASIGNADA=5";
+        $this->alumnos_seccionE=DB::select($sql, array(session('id_grado')));
+        //obtener grado en listar
+        $sql="SELECT * FROM tb_grados WHERE ID_GR=?";
+        $this->grados_listar=DB::select($sql, array(session('id_grado')));
         return view('livewire.asignaciones-es-components', compact('estudiante','grados','secciones','estudiantes'));
     }
     public function guardar_e(){
@@ -257,6 +292,16 @@ class AsignacionesEsComponents extends Component
         $this->id_alumno = $id;   
     }
 
+    public function editar_seccion2($id_alum){
+        $this->id_alumno2 = $id_alum;  
+        //toma de seccion
+        $sql="SELECT * FROM tb_alumnos WHERE ID_USER=?";
+        $this->estudianteeditar2=DB::select($sql, array($this->id_alumno2)); 
+        foreach($this->estudianteeditar2 as $editar_estu){
+            $this->seccionasignada=$editar_estu->SECCION_ASIGNADA;
+        }
+    }
+
     public function asignar_seccion(){
 
         if($this->validate([
@@ -292,6 +337,48 @@ class AsignacionesEsComponents extends Component
                 $this->mensaje=0;
             }
         }
+    }
+
+    public function editar_la_seccion(){
+
+        if($this->validate([
+            'seccionasignada' => 'required',
+    
+        ])==false)
+        {
+            $mensaje="no encontrado";
+            session(['message' => 'no encontrado']);
+            return back()->withErrors(['mensaje' =>'Validar el input vacio']);
+        }
+        else
+        {
+        $asignado2=$this->seccionasignada;
+        $fecha_asignacion=date("Y-m-d H:i:s");
+
+        DB::beginTransaction();
+
+        $estudianteasignado=DB::table('tb_alumnos')->where('ID_USER', $this->id_alumno2)
+        ->update(
+            [
+                'SECCION_ASIGNADA'=> $asignado2,
+                'FECHA_ASIGNACION'=> $fecha_asignacion,
+            ]);
+            if($estudianteasignado){
+                DB::commit();
+                unset($this->mensajeeditado);
+                $this->mensajeeditado=1;
+            }
+            else{
+                DB::rollback();
+                unset($this->mensajeeditado);
+                $this->mensajeeditado=0;
+            }
+        }
+    }
+
+
+    public function tomargrado($id_grado){
+        session(['id_grado' => $id_grado]);
     }
 }
 

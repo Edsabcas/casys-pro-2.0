@@ -66,6 +66,15 @@
 @elseif ($op=='asignacionestudiantesvirtual')
 @livewire('asignaciones-es-components')
 
+@elseif ($op=='verestudiantespresencial')
+@livewire('asignaciones-es-components')
+
+@elseif ($op=='verestudiantesvirtual')
+@livewire('asignaciones-es-components')
+
+@elseif ($op=='verestudiantesasignados')
+@livewire('asignaciones-es-components')
+
 @elseif ($op=='addmaterias')
 @livewire('materiacomponent')  
 
