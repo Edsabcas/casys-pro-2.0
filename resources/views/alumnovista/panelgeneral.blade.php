@@ -1,10 +1,34 @@
-<div>
-  <center>
-    <p style="color:#3a3e7b; font-size:30px"class="text-center"><strong>Panel de supervisión de <i>{{$nombre_panel}}</i></strong></p>
-  </center>
+<div class="container-fluid">
+  <div class="card text-white">
+      <img src="img/imginicio.png" class="img-fluid rounded" alt="banner">
+      <div class="card-img-overlay">
+          <h5 class="card-title"></h5>
+          <p class="card-text"></p>
+          <p class="card-text"></p>
+      </div>
+  </div>  
+  <div>
+    <br>
+  </div>
+<div class="card shadow rounded">
+  <div class="text-center">
+    <br>
+    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#a4cb39" class="bi bi-person-video2" viewBox="0 0 16 16">
+      <path d="M10 9.05a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
+      <path d="M2 1a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2ZM1 3a1 1 0 0 1 1-1h2v2H1V3Zm4 10V2h9a1 1 0 0 1 1 1v9c0 .285-.12.543-.31.725C14.15 11.494 12.822 10 10 10c-3.037 0-4.345 1.73-4.798 3H5Zm-4-2h3v2H2a1 1 0 0 1-1-1v-1Zm3-1H1V8h3v2Zm0-3H1V5h3v2Z"/>
+    </svg>
+    <br>
+    <br>
+    <h1 style="color: #3a3e7b"><strong>PANEL DE SUPERVISIÓN</strong></h1>
+    <p style="color:black"><strong><i>{{$nombre_panel}}</i></strong></p>
+    <br>
+  </div>
 </div>
-<br>
-<hr>
+
+<div>
+  <br>
+</div>
+
 <div class="row">
     <div class="col-xl-4 col-sm-7 col-13 mb-5">
       <div class="card border-left-warning shadow h-100 py-2">
