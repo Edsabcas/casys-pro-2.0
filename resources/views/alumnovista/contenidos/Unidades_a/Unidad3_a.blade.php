@@ -25,6 +25,20 @@ $('#modalsubiractividades').modal('show');
           </div>
           <br>
         <td>
+          @isset($mensaje)
+          @if($mensaje!=null)         
+          <div class="alert alert-success"  role="alert">
+              Agregado Correctamente!
+            </div>
+          @endif
+          @endisset
+          @isset($mensaje1)
+            @if($mensaje1!=null)
+            <div class="alert alert-success" role="alert">
+              No fue agregado Correctamente!
+            </div>
+            @endif
+          @endisset
           @foreach ($actividades as $actividad)
           <div class="card border-primary mb-3" style="max-width: 70rem;" >
               <div class="card-body">
@@ -37,7 +51,11 @@ $('#modalsubiractividades').modal('show');
                     <br>
                     <br>
                     
-                    Fecha de Creación:{{$actividad->fecha_cr}} <br> <br> Fecha de Entrega:{{$actividad->fecha_entr}}
+                    Fecha de Creación:{{$actividad->fecha_cr}}
+                     <br> 
+                     <br> 
+                     Fecha de Entrega:{{$actividad->fecha_entr}}
+                     
                   </button>
                 </h2>
                 <div id="flush-collapse{{$actividad->ID_ACTIVIDADES}}" class="accordion-collapse collapse" aria-labelledby="flush-heading{{$actividad->ID_ACTIVIDADES}}" data-bs-parent="#accordionFlush{{$actividad->ID_ACTIVIDADES}}">
@@ -77,8 +95,14 @@ $('#modalsubiractividades').modal('show');
               </div>
             </div>
           </div>
-          <center>@include('alumnovista.contenidos.Unidades_a.modalactividades')
-            <button class="btn btn-editb" type="button" id=subir wire:click='modalsubact("{{$actividad->NOMBRE_ACTIVIDAD}}","{{$actividad->descripcion}}")'>Entregar Actividad</button></center>
+         @if($actividad->ESTADO==0)
+         <center>@include('alumnovista.contenidos.Unidades_a.modalactividades')
+          <button class="btn btn-editb" type="button" name="{{$actividad->ID_ACTIVIDADES}}" id=subir wire:click='modalsubact("{{$actividad->NOMBRE_ACTIVIDAD}}","{{$actividad->descripcion}}","{{$actividad->ID_ACTIVIDADES}}")'>{{$actividad->NOMBRE_ACTIVIDAD}}</button></center>
+          @elseif($actividad->ESTADO==1)
+          <a href="/Archivoact" wire:click='archivos_t("{{$actividad->DOCUMENTO1}}","{{$actividad->DOCUMENTO2}}","{{$actividad->DOCUMENTO3}}","{{$actividad->DOCUMENTO4}}","{{$actividad->DOCUMENTO5}}")' target="_blank" type="button" class="btn btn-editb">Sus Archivos</a>
+         @endif
+        
+
             <br>
           </div>
           @endforeach

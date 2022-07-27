@@ -233,6 +233,8 @@ Route::post('/update_diaco',[AdminisionesController::class, 'update_diaco']);
 
 Route::get('/Actividades',[ContenidosEstudianteController::class, 'Actividades']);
 
+Route::get('/Archivoact',[ContenidosEstudianteController::class, 'Archivoact']);
+
 
 //Rutas Pre-Inscribir_estudiantes
 

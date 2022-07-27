@@ -90,6 +90,9 @@
 @elseif ($op=='addcontenidosest')
 @livewire('contenidos-estudiante-component')
 
+@elseif ($op=='addarchivosest')
+@livewire('contenidos-estudiante-component')
+
 @elseif ($op=='addcontenidos')
 @livewire('contenido-component')   
 
