@@ -128,7 +128,7 @@
                         @foreach ($estado_cero as $estado_cer)
                         <tr>
                             <th scope="row">{{ $estado_cer->NO_GESTION}}</th>
-                            <td>{{ $estado_cer->NOMBRE_ES}}</td>
+                            <td>{{ $estado_cer->NOMBRE_ES}}  {{$estado_un->APELLIDOS_EST}}</td>
                             <td>{{ $estado_cer->GRADO}}</td>
                             <span>
                                 <td>
@@ -187,7 +187,7 @@
                     @foreach ($estado_uno as $estado_un)
                     <tr>
                         <th scope="row">{{ $estado_un->NO_GESTION}}</th>
-                        <td>{{ $estado_un->NOMBRE_ES}}</td>
+                        <td>{{ $estado_un->NOMBRE_ES}}  {{$estado_un->APELLIDOS_EST}}</td>
                         <td>{{ $estado_un->GRADO}}</td>
                         @if($estado_un->ESTADO_PRE_INS==1)
                         <td><span class="badge rounded-pill bg-warning text-dark">Pendiente R.</span></td>
