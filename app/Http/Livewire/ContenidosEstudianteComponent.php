@@ -23,7 +23,11 @@ class ContenidosEstudianteComponent extends Component
     public $blockadvertencia, $dia_exacto, $mensaje_eliminar, $mensaje_eliminar2,$editrevisar,$comentario_r,$comentario_d_r,$id_estado_act, $editaadv;
     public function render()
     {
+        
+
         $usuario_activo = auth()->user()->id;
+        
+        session('id_alumno_supervisado');
         
         $unidades="";
         if($this->unidad1!=null){
@@ -65,8 +69,8 @@ class ContenidosEstudianteComponent extends Component
 
 
 
-        $sql="SELECT SECCION_ASIGNADA, GRADO_INGRESO FROM tb_alumnos WHERE ID_USER=$usuario_activo";
-        $uniones=DB::select($sql);
+        $sql="SELECT SECCION_ASIGNADA, GRADO_INGRESO FROM tb_alumnos WHERE ID_USER=$usuario_activo OR ID_USER=?";
+        $uniones=DB::select($sql, array(session('id_alumno_supervisado')));
         $sql= 'SELECT * FROM tb_rel';
         $relaciones=DB::select($sql);
         $sql= 'SELECT * FROM tb_materias';
