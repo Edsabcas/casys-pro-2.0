@@ -30,6 +30,18 @@ class AsignacionesEsComponents extends Component
     public $alumnos_seccionE;
     //grados para listar
     public $grados_listar;
+    //buscadores de presencial
+    public $searchprekinderpresencial, $searchkinderpresencial, $searchprepapresencial;
+    public $searchprimeropresencial, $searchsegundopresencial, $searchterceropresencial;
+    public $searchcuartopresencial, $searchquintopresencial, $searchsextopresencial;
+    public $searchseptimopresencial, $searchoctavopresencial, $searchnovenopresencial;
+    public $searchdecimopresencial, $searchonceavopresencial;
+    //buscadores de virtual
+    public $searchprekinderpresencial2, $searchkinderpresencial2, $searchprepapresencial2;
+    public $searchprimeropresencial2, $searchsegundopresencial2, $searchterceropresencial2;
+    public $searchcuartopresencial2, $searchquintopresencial2, $searchsextopresencial2;
+    public $searchseptimopresencial2, $searchoctavopresencial2, $searchnovenopresencial2;
+    public $searchdecimopresencial2, $searchonceavopresencial2;
     public function render()
     {
         $estudiante= DB::table('tb_asignaciones_e')
@@ -52,47 +64,138 @@ class AsignacionesEsComponents extends Component
         $sql="SELECT * FROM tb_estudiantes";
         $estudiantes=DB::select($sql);
         //prekinder
-        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=1 AND SECCION_ASIGNADA IS NULL";
-        $this->estudiantesprekinder=DB::select($sql);
+        if($this->searchprekinderpresencial!=null && $this->searchprekinderpresencial!=""){
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=1 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchprekinderpresencial."%'";
+            $this->estudiantesprekinder=DB::select($sql);
+        }
+        else{
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=1 AND SECCION_ASIGNADA IS NULL";
+            $this->estudiantesprekinder=DB::select($sql);
+        }
         //kinder
-        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=3 AND SECCION_ASIGNADA IS NULL";
-        $this->estudianteskinder=DB::select($sql);
+        if($this->searchkinderpresencial!=null && $this->searchkinderpresencial!=""){
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=3 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchprepapresencial."%'";
+            $this->estudianteskinder=DB::select($sql);
+        }
+        else{
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=3 AND SECCION_ASIGNADA IS NULL";
+            $this->estudianteskinder=DB::select($sql);
+        }
         //preparatoria
-        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=5 AND SECCION_ASIGNADA IS NULL";
-        $this->estudiantesprepa=DB::select($sql);
+        if($this->searchprepapresencial!=null && $this->searchprepapresencial!=""){
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=5 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchprepapresencial."%'";
+            $this->estudiantesprepa=DB::select($sql);
+        }
+        else{
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=5 AND SECCION_ASIGNADA IS NULL";
+            $this->estudiantesprepa=DB::select($sql);
+        }
         //primero
-        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=7 AND SECCION_ASIGNADA IS NULL";
-        $this->estudiantesprimero=DB::select($sql);
+        if($this->searchprimeropresencial!=null && $this->searchprimeropresencial!=""){
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=7 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchprimeropresencial."%'";
+            $this->estudiantesprimero=DB::select($sql);
+        }
+        else{
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=7 AND SECCION_ASIGNADA IS NULL";
+            $this->estudiantesprimero=DB::select($sql);
+        }
         //segundo
-        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=8 AND SECCION_ASIGNADA IS NULL";
-        $this->estudiantessegundo=DB::select($sql);
+        if($this->searchsegundopresencial!=null && $this->searchsegundopresencial!=""){
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=8 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchsegundopresencial."%'";
+            $this->estudiantessegundo=DB::select($sql);
+        }
+        else{
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=8 AND SECCION_ASIGNADA IS NULL";
+            $this->estudiantessegundo=DB::select($sql);
+        }
         //tercero
-        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=9 AND SECCION_ASIGNADA IS NULL";
-        $this->estudiantestercero=DB::select($sql);
+        if($this->searchterceropresencial!=null && $this->searchterceropresencial!=""){
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=9 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchterceropresencial."%'";
+            $this->estudiantestercero=DB::select($sql);
+        }
+        else{
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=9 AND SECCION_ASIGNADA IS NULL";
+            $this->estudiantestercero=DB::select($sql);
+        }
         //cuarto
-        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=10 AND SECCION_ASIGNADA IS NULL";
-        $this->estudiantescuarto=DB::select($sql);
+        if($this->searchcuartopresencial!=null && $this->searchcuartopresencial!=""){
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=10 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchcuartopresencial."%'";
+            $this->estudiantescuarto=DB::select($sql);
+        }
+        else{
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=10 AND SECCION_ASIGNADA IS NULL";
+            $this->estudiantescuarto=DB::select($sql); 
+        }
         //quinto
-        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=11 AND SECCION_ASIGNADA IS NULL";
-        $this->estudiantesquinto=DB::select($sql);
+        if($this->searchquintopresencial!=null && $this->searchquintopresencial!=""){
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=11 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchquintopresencial."%'";
+            $this->estudiantesquinto=DB::select($sql);
+        }
+        else{
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=11 AND SECCION_ASIGNADA IS NULL";
+            $this->estudiantesquinto=DB::select($sql);
+        }
+        
         //sexto
-        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=12 AND SECCION_ASIGNADA IS NULL";
-        $this->estudiantessexto=DB::select($sql);
+        if($this->searchsextopresencial!=null && $this->searchsextopresencial!=""){
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=12 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchsextopresencial."%'";
+            $this->estudiantessexto=DB::select($sql);
+        }
+        else{
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=12 AND SECCION_ASIGNADA IS NULL";
+            $this->estudiantessexto=DB::select($sql);
+        }
+        
         //septimo
-        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=13 AND SECCION_ASIGNADA IS NULL";
+        if($this->searchseptimopresencial!=null && $this->searchseptimopresencial!=""){
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=13 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchseptimopresencial."%'";
         $this->estudiantesseptimo=DB::select($sql);
+        }
+        else{
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=13 AND SECCION_ASIGNADA IS NULL";
+        $this->estudiantesseptimo=DB::select($sql);
+        }
+        
         //octavo
-        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=14 AND SECCION_ASIGNADA IS NULL";
+        if($this->searchoctavopresencial!=null && $this->searchoctavopresencial!=""){
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=14 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchoctavopresencial."%'";
         $this->estudiantesoctavo=DB::select($sql);
+        }
+        else{
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=14 AND SECCION_ASIGNADA IS NULL";
+        $this->estudiantesoctavo=DB::select($sql);
+        }
+        
         //noveno
-        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=15 AND SECCION_ASIGNADA IS NULL";
+        if($this->searchnovenopresencial!=null && $this->searchnovenopresencial!=""){
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=15 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchnovenopresencial."%'";
         $this->estudiantesnoveno=DB::select($sql);
+        }
+        else{
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=15 AND SECCION_ASIGNADA IS NULL";
+        $this->estudiantesnoveno=DB::select($sql);
+        }
+        
         //decimo
-        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=23 AND SECCION_ASIGNADA IS NULL";
+        if($this->searchdecimopresencial!=null && $this->searchdecimopresencial!=""){
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=23 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchdecimopresencial."%'";
         $this->estudiantesdecimo=DB::select($sql);
+        }
+        else{
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=23 AND SECCION_ASIGNADA IS NULL";
+        $this->estudiantesdecimo=DB::select($sql);
+        }
+        
         //onceavo
-        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=25 AND SECCION_ASIGNADA IS NULL";
+        if($this->searchonceavopresencial!=null && $this->searchonceavopresencial!=""){
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=25 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchonceavopresencial."%'";
         $this->estudiantesonceavo=DB::select($sql);
+        }
+        else{
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=25 AND SECCION_ASIGNADA IS NULL";
+        $this->estudiantesonceavo=DB::select($sql);
+        }
+        
         //tomar datos
         $sql="SELECT * FROM tb_alumnos WHERE ID_USER=?";
         $this->estudianteeditar=DB::select($sql, array($this->id_alumno));
@@ -102,47 +205,143 @@ class AsignacionesEsComponents extends Component
         //VIRTUAL
         //VIRTUAL
         //prekinder
-        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=26 AND SECCION_ASIGNADA IS NULL";
+        if($this->searchprekinderpresencial2!=null && $this->searchprekinderpresencial2!=""){
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=26 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchprekinderpresencial2."%'";
         $this->estudiantesprekinder2=DB::select($sql);
+        }
+        else{
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=26 AND SECCION_ASIGNADA IS NULL";
+        $this->estudiantesprekinder2=DB::select($sql);
+        }
+
         //kinder
-        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=27 AND SECCION_ASIGNADA IS NULL";
+        if($this->searchkinderpresencial2!=null && $this->searchkinderpresencial2!=""){
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=27 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchkinderpresencial2."%'";
         $this->estudianteskinder2=DB::select($sql);
+        }
+        else{
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=27 AND SECCION_ASIGNADA IS NULL";
+        $this->estudianteskinder2=DB::select($sql);
+        }
+        
         //preparatoria
-        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=28 AND SECCION_ASIGNADA IS NULL";
+        if($this->searchprepapresencial2!=null && $this->searchprepapresencial2!=""){
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=28 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchprepapresencial2."%'";
         $this->estudiantesprepa2=DB::select($sql);
+        }
+        else{
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=28 AND SECCION_ASIGNADA IS NULL";
+        $this->estudiantesprepa2=DB::select($sql);
+        }
+        
         //primero
-        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=29 AND SECCION_ASIGNADA IS NULL";
+        if($this->searchprimeropresencial2!=null && $this->searchprimeropresencial2!=""){
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=29 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchprimeropresencial2."%'";
         $this->estudiantesprimero2=DB::select($sql);
+        }
+        else{
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=29 AND SECCION_ASIGNADA IS NULL";
+        $this->estudiantesprimero2=DB::select($sql);
+        }
+        
         //segundo
-        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=30 AND SECCION_ASIGNADA IS NULL";
+        if($this->searchsegundopresencial2!=null && $this->searchsegundopresencial2!=""){
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=30 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchsegundopresencial2."%'";
         $this->estudiantessegundo2=DB::select($sql);
+        }
+        else{
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=30 AND SECCION_ASIGNADA IS NULL";
+        $this->estudiantessegundo2=DB::select($sql);
+        }
+        
         //tercero
-        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=31 AND SECCION_ASIGNADA IS NULL";
+        if($this->searchterceropresencial2!=null && $this->searchterceropresencial2!=""){
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=31 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchterceropresencial2."%'";
         $this->estudiantestercero2=DB::select($sql);
+        }
+        else{
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=31 AND SECCION_ASIGNADA IS NULL";
+        $this->estudiantestercero2=DB::select($sql);
+        }
+        
         //cuarto
-        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=32 AND SECCION_ASIGNADA IS NULL";
+        if($this->searchcuartopresencial2!=null && $this->searchcuartopresencial2!=""){
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=32 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchcuartopresencial2."%'";
         $this->estudiantescuarto2=DB::select($sql);
+        }
+        else{
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=32 AND SECCION_ASIGNADA IS NULL";
+        $this->estudiantescuarto2=DB::select($sql);
+        }
+        
         //quinto
-        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=33 AND SECCION_ASIGNADA IS NULL";
+        if($this->searchquintopresencial2!=null && $this->searchquintopresencial2!=""){
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=33 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchquintopresencial2."%'";
         $this->estudiantesquinto2=DB::select($sql);
+        }
+        else{
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=33 AND SECCION_ASIGNADA IS NULL";
+        $this->estudiantesquinto2=DB::select($sql);
+        }
+        
         //sexto
-        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=34 AND SECCION_ASIGNADA IS NULL";
+        if($this->searchsextopresencial2!=null && $this->searchsextopresencial2!=""){
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=34 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchsextopresencial2."%'";
         $this->estudiantessexto2=DB::select($sql);
+        }
+        else{
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=34 AND SECCION_ASIGNADA IS NULL";
+        $this->estudiantessexto2=DB::select($sql);
+        }
+        
         //septimo
-        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=35 AND SECCION_ASIGNADA IS NULL";
+        if($this->searchseptimopresencial2!=null && $this->searchseptimopresencial2!=""){
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=35 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchseptimopresencial2."%'";
         $this->estudiantesseptimo2=DB::select($sql);
+        }
+        else{
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=35 AND SECCION_ASIGNADA IS NULL";
+        $this->estudiantesseptimo2=DB::select($sql);
+        }
+        
         //octavo
-        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=36 AND SECCION_ASIGNADA IS NULL";
+        if($this->searchoctavopresencial2!=null && $this->searchoctavopresencial2!=""){
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=36 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchoctavopresencial2."%'";
         $this->estudiantesoctavo2=DB::select($sql);
+        }
+        else{$sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=36 AND SECCION_ASIGNADA IS NULL";
+            $this->estudiantesoctavo2=DB::select($sql);}
+        
         //noveno
-        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=37 AND SECCION_ASIGNADA IS NULL";
+        if($this->searchnovenopresencial2!=null && $this->searchnovenopresencial2!=""){
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=37 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchnovenopresencial2."%'";
         $this->estudiantesnoveno2=DB::select($sql);
+        }
+        else{
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=37 AND SECCION_ASIGNADA IS NULL";
+        $this->estudiantesnoveno2=DB::select($sql);
+        }
+        
         //decimo
-        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=38 AND SECCION_ASIGNADA IS NULL";
+        if($this->searchdecimopresencial2!=null && $this->searchdecimopresencial2!=""){
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=38 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchdecimopresencial2."%'";
         $this->estudiantesdecimo2=DB::select($sql);
+        }
+        else{
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=38 AND SECCION_ASIGNADA IS NULL";
+        $this->estudiantesdecimo2=DB::select($sql);
+        }
+        
         //onceavo
-        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=39 AND SECCION_ASIGNADA IS NULL";
+        if($this->searchonceavopresencial2!=null && $this->searchonceavopresencial2!=""){
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=39 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchonceavopresencial2."%'";
         $this->estudiantesonceavo2=DB::select($sql);
+        }
+        else{
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=39 AND SECCION_ASIGNADA IS NULL";
+        $this->estudiantesonceavo2=DB::select($sql);
+        }
+        
         //GRADOS DE PRESENCIAL
         $sql="SELECT * FROM tb_grados WHERE JORNADA=1";
         $this->gradospresencial=DB::select($sql);

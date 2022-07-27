@@ -29,7 +29,7 @@
       <div wire:ignore.self class="accordion-body">
           <div class="input-group justify-content">
               <div class="form-outline">
-                <input type="search" wire:model="search2" id="form1" class="form-control" placeholder="Buscar:" />
+                <input type="search" wire:model="searchprekinderpresencial" id="searchprekinderpresencial" class="form-control" placeholder="Buscar:" />
               </div>
               <button type="button" class="btn btn-pre2">
                 <i class="fas fa-search"></i>
@@ -89,7 +89,7 @@
       <div wire:ignore.self class="accordion-body">
           <div class="input-group justify-content">
               <div class="form-outline">
-                <input type="search" wire:model="search2" id="form1" class="form-control" placeholder="Buscar:" />
+                <input type="search" wire:model="searchkinderpresencial" id="searchkinderpresencial" class="form-control" placeholder="Buscar:" />
               </div>
               <button type="button" class="btn btn-pre2">
                 <i class="fas fa-search"></i>
@@ -149,7 +149,7 @@
       <div wire:ignore.self class="accordion-body">
           <div class="input-group justify-content">
               <div class="form-outline">
-                <input type="search" wire:model="search2" id="form1" class="form-control" placeholder="Buscar:" />
+                <input type="search" wire:model="searchprepapresencial" id="searchprepapresencial" class="form-control" placeholder="Buscar:" />
               </div>
               <button type="button" class="btn btn-pre2">
                 <i class="fas fa-search"></i>
@@ -209,7 +209,7 @@
       <div wire:ignore.self class="accordion-body">
           <div class="input-group justify-content">
               <div class="form-outline">
-                <input type="search" wire:model="search2" id="form1" class="form-control" placeholder="Buscar:" />
+                <input type="search" wire:model="searchprimeropresencial" id="searchprimeropresencial" class="form-control" placeholder="Buscar:" />
               </div>
               <button type="button" class="btn btn-pre2">
                 <i class="fas fa-search"></i>
@@ -268,7 +268,7 @@
       <div wire:ignore.self class="accordion-body">
           <div class="input-group justify-content">
               <div class="form-outline">
-                <input type="search" wire:model="search2" id="form1" class="form-control" placeholder="Buscar:" />
+                <input type="search" wire:model="searchsegundopresencial" id="searchsegundopresencial" class="form-control" placeholder="Buscar:" />
               </div>
               <button type="button" class="btn btn-pre2">
                 <i class="fas fa-search"></i>
@@ -327,7 +327,7 @@
       <div wire:ignore.self class="accordion-body">
           <div class="input-group justify-content">
               <div class="form-outline">
-                <input type="search" wire:model="search2" id="form1" class="form-control" placeholder="Buscar:" />
+                <input type="search" wire:model="searchterceropresencial" id="searchterceropresencial" class="form-control" placeholder="Buscar:" />
               </div>
               <button type="button" class="btn btn-pre2">
                 <i class="fas fa-search"></i>
@@ -386,7 +386,7 @@
       <div wire:ignore.self class="accordion-body">
           <div class="input-group justify-content">
               <div class="form-outline">
-                <input type="search" wire:model="search2" id="form1" class="form-control" placeholder="Buscar:" />
+                <input type="search" wire:model="searchcuartopresencial" id="searchcuartopresencial" class="form-control" placeholder="Buscar:" />
               </div>
               <button type="button" class="btn btn-pre2">
                 <i class="fas fa-search"></i>
@@ -445,7 +445,7 @@
       <div wire:ignore.self class="accordion-body">
           <div class="input-group justify-content">
               <div class="form-outline">
-                <input type="search" wire:model="search2" id="form1" class="form-control" placeholder="Buscar:" />
+                <input type="search" wire:model="searchquintopresencial" id="searchquintopresencial" class="form-control" placeholder="Buscar:" />
               </div>
               <button type="button" class="btn btn-pre2">
                 <i class="fas fa-search"></i>
@@ -504,7 +504,7 @@
       <div wire:ignore.self class="accordion-body">
           <div class="input-group justify-content">
               <div class="form-outline">
-                <input type="search" wire:model="search2" id="form1" class="form-control" placeholder="Buscar:" />
+                <input type="search" wire:model="searchsextopresencial" id="searchsextopresencial" class="form-control" placeholder="Buscar:" />
               </div>
               <button type="button" class="btn btn-pre2">
                 <i class="fas fa-search"></i>
@@ -563,7 +563,7 @@
       <div wire:ignore.self class="accordion-body">
           <div class="input-group justify-content">
               <div class="form-outline">
-                <input type="search" wire:model="search2" id="form1" class="form-control" placeholder="Buscar:" />
+                <input type="search" wire:model="searchseptimopresencial" id="searchseptimopresencial" class="form-control" placeholder="Buscar:" />
               </div>
               <button type="button" class="btn btn-pre2">
                 <i class="fas fa-search"></i>
@@ -622,7 +622,7 @@
       <div wire:ignore.self class="accordion-body">
           <div class="input-group justify-content">
               <div class="form-outline">
-                <input type="search" wire:model="search2" id="form1" class="form-control" placeholder="Buscar:" />
+                <input type="search" wire:model="searchoctavopresencial" id="searchoctavopresencial" class="form-control" placeholder="Buscar:" />
               </div>
               <button type="button" class="btn btn-pre2">
                 <i class="fas fa-search"></i>
@@ -681,7 +681,7 @@
       <div wire:ignore.self class="accordion-body">
           <div class="input-group justify-content">
               <div class="form-outline">
-                <input type="search" wire:model="search2" id="form1" class="form-control" placeholder="Buscar:" />
+                <input type="search" wire:model="searchnovenopresencial" id="searchnovenopresencial" class="form-control" placeholder="Buscar:" />
               </div>
               <button type="button" class="btn btn-pre2">
                 <i class="fas fa-search"></i>
@@ -740,7 +740,7 @@
       <div wire:ignore.self class="accordion-body">
           <div class="input-group justify-content">
               <div class="form-outline">
-                <input type="search" wire:model="search2" id="form1" class="form-control" placeholder="Buscar:" />
+                <input type="search" wire:model="searchdecimopresencial" id="searchdecimopresencial" class="form-control" placeholder="Buscar:" />
               </div>
               <button type="button" class="btn btn-pre2">
                 <i class="fas fa-search"></i>
@@ -799,7 +799,7 @@
       <div wire:ignore.self class="accordion-body">
           <div class="input-group justify-content">
               <div class="form-outline">
-                <input type="search" wire:model="search2" id="form1" class="form-control" placeholder="Buscar:" />
+                <input type="search" wire:model="searchonceavopresencial" id="searchonceavopresencial" class="form-control" placeholder="Buscar:" />
               </div>
               <button type="button" class="btn btn-pre2">
                 <i class="fas fa-search"></i>
