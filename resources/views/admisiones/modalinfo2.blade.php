@@ -619,13 +619,13 @@
                             <label for="inputApellidos" style="font-size: 20px; color:#000000;"><strong>Validación si efectuó completo el pago:</strong></label>
                             <br>
                             <div class="form-check form-check-inline">
-                              <input class="form-check-input"  type="radio" wire:model="validacion_comp" wire:click="validacion(1)" value="1" id="flexRadioEstado1">
+                              <input class="form-check-input"  type="radio" {{-- wire:model="validacion_comp" --}} wire:click="validacion(1)" value="1" id="flexRadioEstado1">
                               <label class="form-check-label" for="flexRadioEstado1" style="font-size: 15px; color:#000000;">
                               Aceptar
                               </label>
                             </div>
                             <div class="form-check form-check-inline">
-                              <input class="form-check-input" type="radio" wire:model="validacion_comp" value="2" wire:click="validacion(2)" id="flexRadioEstado2">
+                              <input class="form-check-input" type="radio"{{--  wire:model="validacion_comp" --}} value="2" wire:click="validacion(2)" id="flexRadioEstado2">
                               <label class="form-check-label" for="flexRadioEstado2" style="font-size: 15px; color:#000000;">
                               Rechazar
                               </label>
