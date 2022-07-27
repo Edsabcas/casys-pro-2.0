@@ -478,7 +478,7 @@
                             </svg>
                               <span>¡Pendiente de ingresar!</span>
                           </div> 
-                        @enderror
+                        @enderror 
 
                   {{-- NO. DE CEDULA DOCENTE --}}
 

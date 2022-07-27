@@ -1,42 +1,38 @@
+<center><div class="card" style="width: 69rem;">
+    <table class="table table-borderless">
+            <tbody>
+              <tr>
+                <th scope="row"></th>
+                <td>ESTADO:</td>
+                <td>ACTIVO</td>
+              </tr>
+              <tr>
+                <th scope="row"></th>
+                <td>CÓDIGO DE FAMILIA:</td>
+                <td></td>
+              </tr>
+              <tr>
+                <th scope="row"></th>
+                <td>SALDO DE CUOTAS MENSUALES E INSCRIPCIÓN:</td>
+                <td></td>
+              </tr>
+              <tr>
+                <th scope="row"></th>
+                <td>SALDOS DE COMPLEMENTOS:</td>
+                <td></td>
+              </tr>
+              <tr>
+                <th scope="row"></th>
+                <td>SALDO DEL CICLO 2023:</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table></center>
+
 <center>
-<div class="card" style="width: 40rem;">
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-light table-bordered">
-                <thead>
-                <tr>
-                    <th>ESTADO</th>                   
-                    <th>ACTIVO</th>
-                </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">CÓDIGO DE FAMILIA:</th>
-                        <th></th>
-                    </tr>
-                    <tr>
-                        <th scope="row">SALDO DE CUOTAS MENSAULES E INSCRIPCIÓN:</th>
-                        <th></th>
-                    </tr>
-                    <tr>
-                        <th scope="row">SALDO DE COMPLEMENTOS:</th>
-                        <th></th>
-                    </tr>
-                    <tr>
-                        <th scope="row">SALDO DEL CICLO 2023:</th>
-                        <th></th>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-</center>
-
-
 <div class="card" style="width: 69rem;">
     <div class="card-body">
-        <nav class="navbar navbar-light">
+        <strong><nav class="navbar navbar-light">
             <div class="container-fluid">
                     <div class="col">
                       Usuario:
@@ -51,7 +47,7 @@
                       Sección:
                     </div>
             </div>
-        </nav>
+        </nav> </strong>
               <br>
                 <center>
                     <button class="btn btn-pre2" style="border-radius: 60px 60px 60px 60px;" {{-- wire:click="" --}}>Pagos Varios</button>
@@ -95,3 +91,4 @@
         </div>
     </div>
 </div>
+</center>
