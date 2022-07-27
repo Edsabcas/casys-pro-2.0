@@ -17,7 +17,7 @@ class AdminisionesComponet extends Component
     public $gradoin,$nombre_es,$f_nacimiento_es,$genero,$cui_es,$codigo_pe_es,$nac_es,$lug_nac_es,$tel_es,$cel_es,$direccion_es,$religion_es;
     public $nombre_en,$fnacimiento_en,$dpi_en,$extentido_en,$es_civil_en,$direccion_en,$tel_casa_en,$cel_en,$correo_en,$religion_en,$mensaje_diaco;
     public $a,$mensaje,$gradose,$fingreso_gestion,$id_ges_cambio,$tipo_cambio1,$id_pre_corre,$DPI_encargado,$nacimiento_encargado,$id_relacion;
-    public $id_pre,$metodo,$archivo_comprobante,$img,$tipo,$mensaje24,$mensaje25,$fotos,$fpago,$no_gest_con,$solo_por,$idgrado;
+    public $id_pre,$metodo,$archivo_comprobante,$validacion_comp,$validacion_com,$observacion2,$img,$tipo,$mensaje24,$mensaje25,$fotos,$fpago,$no_gest_con,$solo_por,$idgrado;
     public $val,$val1,$gestion,$errorfecha,$upnocorre1,$upnocorre2,$nomb,$fvencimiento,$cseguridad,$ntarjeta,$notarjeta;
     public $estado_ges,$archivo_comprobante2,$fecha_ultimo_cambio,$mensajeins,$mensajeins1,$id_pre_boton,$estado_pre_boton,$matricula_bus_aj;
     public $mensaje1,$id2,$profesion_en,$id_desact,$nuevo_estadodesact,$no_gest_desact,$tipo_cambio8;
@@ -402,6 +402,8 @@ class AdminisionesComponet extends Component
             $this->observacion=$pre->OBSERVACION_COMP;
             $this->fpago=$pre->FORMA_PAGO;
             $this->metodo=$pre->TIPO_PAGO;
+            $this->validacion_comp=$pre->VALIDACION_COMP;
+            $this->observacion2=$pre->OBSERVACION_COMP2;
             $this->es_civil_en=$pre->ESTADO_CIVIL_EN_ES;
             $this->direccion_en=$pre->DIRECCION_EN_ES;
             $this->tel_casa_en=$pre->TEL_EN_ES;
@@ -1973,5 +1975,8 @@ public function Desactivacion($id,$estado,$gest){
             }
     
  }
+        public function validacion($val){
 
+        $this->validacion_com=$val;
+    }
 }

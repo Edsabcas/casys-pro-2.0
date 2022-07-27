@@ -10,7 +10,7 @@
           <br>
           <hr>
           <div class="table-responsive">
-            <table class="table table-light table-bordered">
+            <table class="table table-borderless">
               <tbody>
                 <tr>
                   <th scope="row"></th>
