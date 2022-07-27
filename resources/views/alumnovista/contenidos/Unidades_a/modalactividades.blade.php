@@ -27,7 +27,13 @@
                         <iframe width="400" height="400" src="/imagen/temporalpdf/{{$arch}}" frameborder="0"></iframe>
                       @endif
                      </div>
-                  </div>    </center>
+                  </div>    </center> <br>
+                  <div wire:loading wire:target="archivo" class="alert alert-warning" role="alert">
+                    <strong class="font-bold">¡Documento cargando!</strong>
+                      <span class="block sm:inlone">Espere un momento hasta que el documento se haya procesado completamente.</span>
+                    <div class="spinner-border text-warning" role="status">
+                    </div>
+                  </div>
                 </div>
             </div>
         </div>
