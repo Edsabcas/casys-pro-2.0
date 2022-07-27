@@ -236,7 +236,8 @@ Route::get('/Actividades',[ContenidosEstudianteController::class, 'Actividades']
 
 //Rutas Pre-Inscribir_estudiantes
 
-Route::get('/Admisiones', [AdminisionesController::class, 'adm'])->middleware('auth');
+Route::get('/Inscripciones', [AdminisionesController::class, 'adm'])->middleware('auth');
+Route::get('/Admisiones', [AdminisionesController::class, 'admisiones'])->middleware('auth');
 
 //RutaGestiones
 Route::get('/Pendientes', [GestionesController::class, 'pendientes'])->middleware('auth');
