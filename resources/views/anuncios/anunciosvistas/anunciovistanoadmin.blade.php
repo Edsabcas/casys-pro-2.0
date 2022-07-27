@@ -38,7 +38,7 @@ $('#exampleModal1').modal('show');
   <br>
     <div  class="row">
       <br>
-        <div class="shadow-lg card" style="background-color: #c4c4c4; width: 50rem">
+        <div class="shadow-lg card" style="background-color: #f4f4f4; width: 50rem">
             <br>
             <p style="font-size:15px" class="d-grid gap-2 d-md-flex justify-content-md-end">Publicado el {{$filtro_alumnos->FECHA_HORA}}</p>
         <div class="input-group mb-3">
@@ -274,7 +274,7 @@ $('#exampleModal1').modal('show');
   <br>
     <div  class="row">
       <br>
-        <div class="shadow-lg card" style="background-color: #c4c4c4; width: 50rem">
+        <div class="shadow-lg card" style="background-color: #f4f4f4; width: 50rem">
             <br>
             <p style="font-size:15px" class="d-grid gap-2 d-md-flex justify-content-md-end">Publicado el {{$filtro_encargado->FECHA_HORA}}</p>
         <div class="input-group mb-3">
@@ -462,7 +462,7 @@ $('#exampleModal1').modal('show');
   <br>
     <div  class="row">
       <br>
-        <div class="shadow-lg card" style="background-color: #c4c4c4; width: 50rem">
+        <div class="shadow-lg card" style="background-color: #f4f4f4; width: 50rem">
             <br>
             <p style="font-size:15px" class="d-grid gap-2 d-md-flex justify-content-md-end">Publicado el {{$filtro->FECHA_HORA}}</p>
         <div class="input-group mb-3">

@@ -8,7 +8,7 @@
         <div class="modal-body">
             <div class="card border-Secondary mb-3" style="max-width: 90rem;" >
                 <div class="card-body">
-                 <Center> <label style="color:#3a3e7b">Suba sus archivos aqui</label> </Center>
+                 <Center> <label style="color:#3a3e7b">Suba sus archivos aquí</label> </Center>
                  <center><div class="col-sm-12">
                     <input type="file" class="form-control " wire:model='archivo'  style="border:2px solid rgba(86, 95, 76, 0.466);" id="exampleInputPassword1">
                      <div class="col-sm-10">
@@ -27,7 +27,13 @@
                         <iframe width="400" height="400" src="/imagen/temporalpdf/{{$arch}}" frameborder="0"></iframe>
                       @endif
                      </div>
-                  </div>    </center>
+                  </div>    </center> <br>
+                  <div wire:loading wire:target="archivo" class="alert alert-warning" role="alert">
+                    <strong class="font-bold">¡Documento cargando!</strong>
+                      <span class="block sm:inlone">Espere un momento hasta que el documento se haya procesado completamente.</span>
+                    <div class="spinner-border text-warning" role="status">
+                    </div>
+                  </div>
                 </div>
             </div>
         </div>
