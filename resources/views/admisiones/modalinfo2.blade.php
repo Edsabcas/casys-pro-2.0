@@ -29,8 +29,8 @@
                                  <form wire:submit.prevent="" class="form-floating">
                                   <div class="row g-3">
                                     <div class="col-md">
-                                      <label for="inputNombres" style="font-size: 15px; color:#000000;">Nombre Completo:
-                                      </label>
+                                      <label for="inputNombres" style="font-size: 15px; color:#000000;">Nombres:
+                                      </label> 
                                       <input  wire:model="nombre_es" class="form-control " required>
                                       @error('nombre_es')
                                       <div class="alert alert-warning" role="alert">
@@ -38,7 +38,16 @@
                                       </div>
                                       @enderror
                                   </div>
+                                  <div class="col-md">
+                                    <label for="inputApellidos" style="font-size: 15px; color:#000000;">Apellidos:</label>
+                                    <input  wire:model="apellidos_est" class="form-control " required>
+                                    @error('apellidos_est')
+                                    <div class="alert alert-warning" role="alert">
+                                     Pendiente
+                                    </div>
+                                    @enderror
                                 </div>
+                              </div>
                                   <div class="row g-3">
                                     <div class="col-md">
                                       <label for="inputApellidos" style="font-size: 15px; color:#000000;">Fecha de Nacimiento:</label>

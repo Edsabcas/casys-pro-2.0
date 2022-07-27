@@ -1,8 +1,7 @@
-<center>
   <div class="card shadow rounded">
     <div class="card-body">
 <br>
-          <div class="d-grid gap-5 d-md-flex justify-content-md-center">
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <button class="btn btn-pre2" style="border-radius: 60px 60px 60px 60px;" {{-- wire:click="" --}}>Pagos Varios</button>
             <button class="btn btn-pre2" style="border-radius: 60px 60px 60px 60px;" wire:click="vista_pagos3(2)">Pagos Mensuales</button>
             <button class="btn btn-pre2" style="border-radius: 60px 60px 60px 60px;" {{-- wire:click="" --}}>Ir A Buscador De Pagos</button>
@@ -10,6 +9,7 @@
           <br>
           <hr>
           <div class="table-responsive">
+            <center>
             <table class="table table-light table-bordered">
               <tbody>
                 <tr>
