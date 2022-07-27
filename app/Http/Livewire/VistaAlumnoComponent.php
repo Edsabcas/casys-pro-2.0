@@ -18,6 +18,7 @@ class VistaAlumnoComponent extends Component
         $usuario_activo = auth()->user()->id;
         $sql="SELECT * FROM tb_anuncios ORDER BY FECHA_HORA DESC";
         $anuncios=DB::select($sql);
+        //join de anuncios
         $sql="SELECT tb_anuncios.ID_ANUNCIOS,tb_anuncios.TEXTO_PUBLICACION, tb_anuncios.MULTIMEDIA, tb_anuncios.FECHA_HORA, tb_anuncios.TIPO_ANUNCIO, tb_anuncios.PUBLICO_ANUNCIO, 
         tb_anuncios.GRADO_ANUNCIO, tb_anuncios.IDIOMA_MAESTRO, tb_anuncios.CALIDAD_ANUNCIO, tb_anuncios.ESTADO_ANUNCIO, tb_anuncios.ID_USUARIO FROM tb_anuncios
         INNER JOIN rol_usuario on (tb_anuncios.PUBLICO_ANUNCIO=rol_usuario.ID_ROL AND rol_usuario.ID_USUARIO=?) OR (tb_anuncios.TIPO_ANUNCIO=0 AND rol_usuario.ID_USUARIO=?)
