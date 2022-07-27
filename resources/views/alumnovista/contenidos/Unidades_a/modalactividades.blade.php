@@ -8,7 +8,7 @@
         <div class="modal-body">
             <div class="card border-Secondary mb-3" style="max-width: 90rem;" >
                 <div class="card-body">
-                 <Center> <label style="color:#3a3e7b">Suba sus archivos aqui</label> </Center>
+                 <Center> <label style="color:#3a3e7b">Suba sus archivos aquí</label> </Center>
                  <center><div class="col-sm-12">
                     <input type="file" class="form-control " wire:model='archivo'  style="border:2px solid rgba(86, 95, 76, 0.466);" id="exampleInputPassword1">
                      <div class="col-sm-10">
