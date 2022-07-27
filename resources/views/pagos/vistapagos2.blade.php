@@ -67,6 +67,21 @@
             <br>
         <div class="table-responsive">
             <br>
+            <div class="card text-center">
+                <div class="card-header">
+                  <ul class="nav nav-tabs card-header-tabs">
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="true" href="#">Emitidos</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Anulados</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Comentarios</a>
+                    </li>
+                  </ul>
+              
+                <br>
             <center><h4 style="color: #3a3e7b"><strong>RECIBOS VARIOS EMITIDOS</strong></h4></center>
             <br>
             <table class="table table-light table-bordered">
@@ -91,6 +106,7 @@
                 </tbody>
             </table>
         </div>
+    </div>
     </div>
 </div>
 </center>
