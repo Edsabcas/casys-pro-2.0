@@ -57,4 +57,11 @@ class VistaAlumController extends Controller
         return view('home', compact('op'));
 
     }
+
+    public function credenciales_alumnos(){
+        $op="alumnosupervisadocredenciales";
+        session(['op' => $op]);
+        return view('home', compact('op'));
+
+    }
 }

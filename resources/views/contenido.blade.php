@@ -1,7 +1,7 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
     <div class="card text-white">
-        <img src="img/banner-casys.png" class="img-fluid rounded" alt="banner">
+        <img src="img/imginicio.png" class="img-fluid rounded" alt="banner">
         <div class="card-img-overlay">
             <h5 class="card-title"></h5>
             <p class="card-text"></p>

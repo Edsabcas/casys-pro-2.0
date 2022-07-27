@@ -131,6 +131,7 @@ Route::get('/Vista_Calificaiones', [VistaAlumController::class, 'calificaciones_
 Route::get('/Vista_Calendario', [VistaAlumController::class, 'calendario_alumnos'])->middleware('auth');
 Route::get('/Vista_Reportes', [VistaAlumController::class, 'reportes_alumnos'])->middleware('auth');
 Route::get('/Vista_Pagos', [VistaAlumController::class, 'pagos_alumnos'])->middleware('auth');
+Route::get('/Vista_Credenciales', [VistaAlumController::class, 'credenciales_alumnos'])->middleware('auth');
 
 //Grupo #4
 
