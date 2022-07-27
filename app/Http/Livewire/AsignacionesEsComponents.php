@@ -30,6 +30,8 @@ class AsignacionesEsComponents extends Component
     public $alumnos_seccionE;
     //grados para listar
     public $grados_listar;
+    //buscadores de presencial
+    public $searchprepapresencial;
     public function render()
     {
         $estudiante= DB::table('tb_asignaciones_e')
@@ -58,8 +60,15 @@ class AsignacionesEsComponents extends Component
         $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=3 AND SECCION_ASIGNADA IS NULL";
         $this->estudianteskinder=DB::select($sql);
         //preparatoria
-        $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=5 AND SECCION_ASIGNADA IS NULL";
-        $this->estudiantesprepa=DB::select($sql);
+        if($this->searchprepapresencial!=null && $this->searchprepapresencial!=""){
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=5 AND SECCION_ASIGNADA IS NULL AND NOMBRE='%".$this->searchprepapresencial."%'";
+            $this->estudiantesprepa=DB::select($sql);
+        }
+        else{
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=5 AND SECCION_ASIGNADA IS NULL";
+            $this->estudiantesprepa=DB::select($sql);
+        }
+        
         //primero
         $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=7 AND SECCION_ASIGNADA IS NULL";
         $this->estudiantesprimero=DB::select($sql);

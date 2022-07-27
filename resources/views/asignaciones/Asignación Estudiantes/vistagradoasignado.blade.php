@@ -30,12 +30,7 @@
     <div   wire:ignore.self id="seccionA" class="accordion-collapse collapse" aria-labelledby="seccionA" data-bs-parent="#accordionFlushExample">
       <div wire:ignore.self class="accordion-body">
           <div class="input-group justify-content">
-              <div class="form-outline">
-                <input type="search" wire:model="search2" id="form1" class="form-control" placeholder="Buscar:" />
-              </div>
-              <button type="button" class="btn btn-pre2">
-                <i class="fas fa-search"></i>
-              </button>
+            <!--acá iba el buscador-->
             </div>
             <div class="table-responsive">
               <table class="table table-light table-bordered">
@@ -94,12 +89,7 @@
     <div   wire:ignore.self id="seccionB" class="accordion-collapse collapse" aria-labelledby="seccionB" data-bs-parent="#accordionFlushExample">
       <div wire:ignore.self class="accordion-body">
           <div class="input-group justify-content">
-              <div class="form-outline">
-                <input type="search" wire:model="search2" id="form1" class="form-control" placeholder="Buscar:" />
-              </div>
-              <button type="button" class="btn btn-pre2">
-                <i class="fas fa-search"></i>
-              </button>
+              
             </div>
             <div class="table-responsive">
               <table class="table table-light table-bordered">
@@ -158,12 +148,7 @@
     <div   wire:ignore.self id="seccionC" class="accordion-collapse collapse" aria-labelledby="flush-headingThree2" data-bs-parent="#accordionFlushExample">
       <div wire:ignore.self class="accordion-body">
           <div class="input-group justify-content">
-              <div class="form-outline">
-                <input type="search" wire:model="search2" id="form1" class="form-control" placeholder="Buscar:" />
-              </div>
-              <button type="button" class="btn btn-pre2">
-                <i class="fas fa-search"></i>
-              </button>
+              
             </div>
             <div class="table-responsive">
               <table class="table table-light table-bordered">
@@ -222,12 +207,7 @@
     <div   wire:ignore.self id="seccionD" class="accordion-collapse collapse" aria-labelledby="flush-headingThree2" data-bs-parent="#accordionFlushExample">
       <div wire:ignore.self class="accordion-body">
           <div class="input-group justify-content">
-              <div class="form-outline">
-                <input type="search" wire:model="search2" id="form1" class="form-control" placeholder="Buscar:" />
-              </div>
-              <button type="button" class="btn btn-pre2">
-                <i class="fas fa-search"></i>
-              </button>
+              
             </div>
             <div class="table-responsive">
               <table class="table table-light table-bordered">
@@ -286,12 +266,7 @@
     <div   wire:ignore.self id="seccionE" class="accordion-collapse collapse" aria-labelledby="flush-headingThree2" data-bs-parent="#accordionFlushExample">
       <div wire:ignore.self class="accordion-body">
           <div class="input-group justify-content">
-              <div class="form-outline">
-                <input type="search" wire:model="search2" id="form1" class="form-control" placeholder="Buscar:" />
-              </div>
-              <button type="button" class="btn btn-pre2">
-                <i class="fas fa-search"></i>
-              </button>
+              
             </div>
             <div class="table-responsive">
               <table class="table table-light table-bordered">

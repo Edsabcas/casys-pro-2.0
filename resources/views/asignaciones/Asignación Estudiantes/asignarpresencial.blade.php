@@ -149,7 +149,7 @@
       <div wire:ignore.self class="accordion-body">
           <div class="input-group justify-content">
               <div class="form-outline">
-                <input type="search" wire:model="search2" id="form1" class="form-control" placeholder="Buscar:" />
+                <input type="search" wire:model="searchprepapresencial" id="searchprepapresencial" class="form-control" placeholder="Buscar:" />
               </div>
               <button type="button" class="btn btn-pre2">
                 <i class="fas fa-search"></i>
