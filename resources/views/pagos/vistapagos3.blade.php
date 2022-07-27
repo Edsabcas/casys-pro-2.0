@@ -194,7 +194,7 @@
                         <div class="row">
                             <div class="col-md">
                                 <label for="message-text" class="col-form-label"><strong>Observación:</strong></label>
-                                <textarea class="form-control" id="message-text" wire:model="observacion"></textarea>
+                                <textarea class="form-control" id="message-text" {{-- wire:model="" --}}></textarea>
                             </div>
                         </div>
                     </div>
