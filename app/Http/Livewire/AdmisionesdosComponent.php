@@ -4,11 +4,10 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 
-class GestionesComponent extends Component
+class AdmisionesdosComponent extends Component
 {
     public function render()
     {
-        
-        return view('livewire.gestiones-component');
+        return view('livewire.admisionesdos-component');
     }
 }

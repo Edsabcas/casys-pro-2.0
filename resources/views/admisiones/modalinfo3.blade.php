@@ -522,6 +522,49 @@
                    <div  wire:ignore.self id="panelsStayOpen-datosvarios" style="border-radius: 60px 60px 60px 60px;" class="accordion-collapse collapse " aria-labelledby="panelsStayOpen-headingOne">
                      <div  wire:ignore.self class="accordion-body" style="border-radius: 60px 60px 60px 60px;">
                        <div class="tab">
+                        <strong><label for="exampleInputPassword1" class="form-label">Foto de estudiante</label></strong>
+                      <div class="card-body center">
+                        <br>
+                        <input type="file" accept="image/*" class="form-control w-85 p-3 center" wire:model='fotoest'  style="border:2px solid #a4cb29;" id="exampleInputPassword1">
+                      </div>
+                      <div class="mb-3">
+                        <div wire:loading wire:target="fotoest" class="alert alert-warning" role="alert">
+                          <strong class="font-bold">¡IMAGEN cargando!</strong>
+                            <span class="block sm:inlone">Espere un momento hasta que el documento se haya procesado completamente.</span>
+                          <div class="spinner-border text-warning" role="status">
+                        </div>
+                    </div>
+                    @if($formato==1)
+                    <div class="center">
+                    <div class="col-xl-6 col-sm-6" >
+                    <div class="card-header" style="background-color: #a4cb29" height="250" weight="175">
+                        <br>
+                        <h4 style="color: #ffff"><strong>VISUALIZACIÓN DE LA IMAGEN</strong></h4>
+                    </div>
+                    <div class="card-body center">
+                      <img src="{{$fotoest->temporaryURL()}}" height="250" weight="175"  alt="...">
+                    </div>
+                    </div>
+                    </div>
+                    @endif
+                  <div class="center">
+                  <div class="col-xl-8 col-sm-8" >
+                    <div class="card-header" style="background-color: #a4cb29">
+                          <br>
+                          <h4 style="color: #ffff"><strong>VISUALIZACIÓN DE LA IMAGEN</strong></h4>
+                    </div>
+                    <div class="card-body center">
+                    @php        
+                    $foo = 0;
+                    if (strpos($fotoest, '.jpg' ) !== false || strpos($fotoest, '.png' ) !== false || strpos($fotoest, '.jpeg' ) !== false) 
+                    { $foo=1; }
+                    @endphp
+                    @if($foo==1)
+                    <img src="imagen/fotoestperf/{{$fotoest}}" height="250" weight="175" alt="...">
+                    @endif
+                    </div>
+                  </div>
+                  </div>
                          <strong><label for="exampleInputPassword1" class="form-label">¿Tiene hermanos en colegio?</label></strong>
                          <center>
                          <div style="width: 12rem;">

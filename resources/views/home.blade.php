@@ -29,6 +29,9 @@
 @elseif($op=='alumnosupervisadopagos')
 @livewire('vista-alumno-component')
 
+@elseif($op=='alumnosupervisadocredenciales')
+@livewire('vista-alumno-component')
+
 @elseif($op=='vistaadanuncios')
 @livewire('anuncios-admin');
 
@@ -147,8 +150,11 @@
 @elseif($op=='aMostrarRoles')
 @livewire('rolesdeusuario-component')
 
-@elseif($op=='admisiones')
+@elseif($op=='inscripcion')
 @livewire('adminisiones-componet')
+
+@elseif($op=='admisiones')
+@livewire('admisionesdos-component')
 
 @elseif($op=='addvertencias')
 @livewire('contenido-componet')
