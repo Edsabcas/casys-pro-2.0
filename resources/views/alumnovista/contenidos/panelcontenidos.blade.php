@@ -1,4 +1,118 @@
 <style>
+  ul.breadcrumbs {
+    margin: 25px 0px 0px;
+    padding: 0px;
+    font-size: 0px;
+    line-height: 0px;
+    display: inline-block;
+    display: inline;
+    zoom: 1;
+    vertical-align: top;
+    height: 40px;
+  }
+  
+  ul.breadcrumbs li {
+    position: relative;
+    margin: 0px 0px;
+    padding: 0px;
+    list-style: none;
+    list-style-image: none;
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+    vertical-align: top;
+    border-left: 1px solid #ccc;
+    transition: 0.3s ease;
+  }
+  
+  ul.breadcrumbs li:hover:before {
+    border-left: 10px solid #a4cb39;
+  }
+  
+  ul.breadcrumbs li:hover a {
+    color: #fff;
+    background: #a4cb39;
+  }
+  
+  ul.breadcrumbs li:before {
+    content: "";
+    position: absolute;
+    right: -9px;
+    top: -1px;
+    z-index: 20;
+    border-left: 10px solid #fff;
+    border-top: 22px solid transparent;
+    border-bottom: 22px solid transparent;
+    transition: 0.3s ease;
+  }
+  
+  ul.breadcrumbs li:after {
+    content: "";
+    position: absolute;
+    right: -10px;
+    top: -1px;
+    z-index: 10;
+    border-left: 10px solid #ccc;
+    border-top: 22px solid transparent;
+    border-bottom: 22px solid transparent;
+  }
+  
+  ul.breadcrumbs li.active a {
+    color: #000;
+    background: #a4cb39;
+  }
+  
+  ul.breadcrumbs li.first {
+    border-left: none;
+  }
+  
+  ul.breadcrumbs li.first a {
+    font-size: 18px;
+    padding-left: 20px;
+    border-radius: 5px 0px 0px 5px;
+  }
+  
+  ul.breadcrumbs li.last:before {
+    display: none;
+  }
+  
+  ul.breadcrumbs li.last:after {
+    display: none;
+  }
+  
+  ul.breadcrumbs li.last a {
+    padding-right: 20px;
+    border-radius: 0px 40px 40px 0px;
+  }
+  ul.breadcrumbs li a {
+    display: block;
+    font-size: 12px;
+    line-height: 40px;
+    color: #757575;
+    padding: 0px 15px 0px 25px;
+    text-decoration: none;
+    background: #fff;
+    border: 1px solid #ddd;
+    white-space: nowrap;
+    overflow: hidden;
+    transition: 0.3s ease;
+  }
+  </style>
+  
+  <ul class="breadcrumbs">
+    @if($op2==null)
+    <li><a href="/Actividades"><strong>Materias</strong></a></li>
+    @elseif($op2==1)
+    <li><a href="/Actividades"><strong>Materias</strong></a></li>
+    <li><a href="#" wire:click='paginacion("1")'><strong>Unidades</strong></a></li>
+    @endif
+  </ul>
+
+  <div>
+    <br>
+  </div>  
+
+<style>
     .badge{
       position: absolute;
       background-color: #a4cb39;
