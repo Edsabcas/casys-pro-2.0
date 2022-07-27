@@ -246,10 +246,10 @@
                           </tr>
                         </thead>
                 <tbody>
-                    @foreach ($estado_uno2 as $estado_un)
+                    @foreach ($estado_uno2 as $estado_un) 
                     <tr>
                         <th scope="row">{{ $estado_un->NO_GESTION}}</th>
-                        <td>{{ $estado_un->NOMBRE_ES}}</td>
+                        <td>{{ $estado_un->NOMBRE_ES}} {{$estado_un->APELLIDOS_EST}}</td>
                         <td>{{ $estado_un->GRADO}}</td>
                         @if($estado_un->ESTADO_PRE_INS==1)
                         <td><span class="badge rounded-pill bg-warning text-dark">Pendiente R.</span></td>
