@@ -92,24 +92,24 @@ class AdminisionesComponet extends Component
         }
 
         if($this->search0!=null && $this->search0!=""){
-            $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.NO_GESTION, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE ESTADO_PRE_INS=0 and (NO_GESTION like '%".$this->search0."%' or NOMBRE_ES like '%".$this->search0."%') ";
+            $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.NO_GESTION,TB_PRE_INS.APELLIDOS_EST, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE ESTADO_PRE_INS=0 and (NO_GESTION like '%".$this->search0."%' or NOMBRE_ES like '%".$this->search0."%') ";
             $estado_cero=DB::select($sql);
             
         }else{
-            $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.NO_GESTION, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE ESTADO_PRE_INS=0 order by TB_PRE_INS.FECHA_REGISTRO";
+            $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.NO_GESTION,TB_PRE_INS.APELLIDOS_EST, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE ESTADO_PRE_INS=0 order by TB_PRE_INS.FECHA_REGISTRO";
             $estado_cero=DB::select($sql);
             $this->can1=count($estado_cero);
         }
 
         if($this->search1!=null && $this->search1!=""){
-            $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.ESTADO_PRE_INS,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.NO_GESTION,TB_PRE_INS.COMPROBANTE_PAGO, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE ESTADO_PRE_INS=1 and (NO_GESTION like '%".$this->search1."%' or NOMBRE_ES like '%".$this->search1."%')";
+            $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.ESTADO_PRE_INS,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.APELLIDOS_EST,TB_PRE_INS.NO_GESTION,TB_PRE_INS.COMPROBANTE_PAGO, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE ESTADO_PRE_INS=1 and (NO_GESTION like '%".$this->search1."%' or NOMBRE_ES like '%".$this->search1."%')";
             $estado_uno=DB::select($sql);
         }else{
-            $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.ESTADO_PRE_INS,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.NO_GESTION,TB_PRE_INS.COMPROBANTE_PAGO, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE ESTADO_PRE_INS=1 order by TB_PRE_INS.ESTADO_PRE_INS DESC";
+            $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.ESTADO_PRE_INS,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.APELLIDOS_EST,TB_PRE_INS.NO_GESTION,TB_PRE_INS.COMPROBANTE_PAGO, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE ESTADO_PRE_INS=1 order by TB_PRE_INS.ESTADO_PRE_INS DESC";
             $estado_uno=DB::select($sql);
         }
         if($this->search11!=null && $this->search11!=""){
-            $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.ESTADO_PRE_INS,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.NO_GESTION,TB_PRE_INS.COMPROBANTE_PAGO, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE ESTADO_PRE_INS=2 and (NO_GESTION like '%".$this->search11."%' or NOMBRE_ES like '%".$this->search11."%')";
+            $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.ESTADO_PRE_INS,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.APELLIDOS_EST,TB_PRE_INS.NO_GESTION,TB_PRE_INS.COMPROBANTE_PAGO, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE ESTADO_PRE_INS=2 and (NO_GESTION like '%".$this->search11."%' or NOMBRE_ES like '%".$this->search11."%')";
             $estado_uno2=DB::select($sql);
         }else{
             $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.ESTADO_PRE_INS,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.NO_GESTION,TB_PRE_INS.COMPROBANTE_PAGO,TB_PRE_INS.APELLIDOS_EST, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE ESTADO_PRE_INS=2 order by TB_PRE_INS.ESTADO_PRE_INS DESC";
@@ -332,6 +332,7 @@ class AdminisionesComponet extends Component
 
         foreach($preinsp as $pre){
             $this->id_ges_cambio=$pre->ID_PRE;
+            $this->apellidos_est=$pre->APELLIDOS_EST;
             $this->nombre_es=$pre->NOMBRE_ES;
             $this->f_nacimiento_es=$pre->FEC_NAC;
             $this->genero=$pre->GENERO;
