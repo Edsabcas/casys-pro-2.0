@@ -492,7 +492,9 @@ class AsignacionesEsComponents extends Component
     }
 
     public function editar_seccion2($id_alum){
-        $this->id_alumno2 = $id_alum;  
+        $this->id_alumno2 = $id_alum; 
+        unset($this->mensajeeditado); 
+        unset($this->mensaje);
         //toma de seccion
         $sql="SELECT * FROM tb_alumnos WHERE ID_USER=?";
         $this->estudianteeditar2=DB::select($sql, array($this->id_alumno2)); 
