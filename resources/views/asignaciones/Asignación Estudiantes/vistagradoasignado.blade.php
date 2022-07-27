@@ -1,3 +1,114 @@
+<style>
+  ul.breadcrumbs {
+    margin: 25px 0px 0px;
+    padding: 0px;
+    font-size: 0px;
+    line-height: 0px;
+    display: inline-block;
+    display: inline;
+    zoom: 1;
+    vertical-align: top;
+    height: 40px;
+  }
+  
+  ul.breadcrumbs li {
+    position: relative;
+    margin: 0px 0px;
+    padding: 0px;
+    list-style: none;
+    list-style-image: none;
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+    vertical-align: top;
+    border-left: 1px solid #ccc;
+    transition: 0.3s ease;
+  }
+  
+  ul.breadcrumbs li:hover:before {
+    border-left: 10px solid #a4cb39;
+  }
+  
+  ul.breadcrumbs li:hover a {
+    color: #fff;
+    background: #a4cb39;
+  }
+  
+  ul.breadcrumbs li:before {
+    content: "";
+    position: absolute;
+    right: -9px;
+    top: -1px;
+    z-index: 20;
+    border-left: 10px solid #fff;
+    border-top: 22px solid transparent;
+    border-bottom: 22px solid transparent;
+    transition: 0.3s ease;
+  }
+  
+  ul.breadcrumbs li:after {
+    content: "";
+    position: absolute;
+    right: -10px;
+    top: -1px;
+    z-index: 10;
+    border-left: 10px solid #ccc;
+    border-top: 22px solid transparent;
+    border-bottom: 22px solid transparent;
+  }
+  
+  ul.breadcrumbs li.active a {
+    color: #000;
+    background: #a4cb39;
+  }
+  
+  ul.breadcrumbs li.first {
+    border-left: none;
+  }
+  
+  ul.breadcrumbs li.first a {
+    font-size: 18px;
+    padding-left: 20px;
+    border-radius: 5px 0px 0px 5px;
+  }
+  
+  ul.breadcrumbs li.last:before {
+    display: none;
+  }
+  
+  ul.breadcrumbs li.last:after {
+    display: none;
+  }
+  
+  ul.breadcrumbs li.last a {
+    padding-right: 20px;
+    border-radius: 0px 40px 40px 0px;
+  }
+  ul.breadcrumbs li a {
+    display: block;
+    font-size: 12px;
+    line-height: 40px;
+    color: #757575;
+    padding: 0px 15px 0px 25px;
+    text-decoration: none;
+    background: #fff;
+    border: 1px solid #ddd;
+    white-space: nowrap;
+    overflow: hidden;
+    transition: 0.3s ease;
+  }
+  </style>
+
+<ul class="breadcrumbs">
+  <li><a href="/Estudiantes"><strong>Selección</strong></a></li>
+  <li><a href="#"><strong>Alumnos asignados</strong></a></li>
+  <li><a href="#"><strong>Seciones existentes</strong></a></li>
+</ul>
+
+<div>
+  <br>
+</div>
+
 <center>
   @foreach($grados_listar as $grado_listar)
   <h2><strong><i>Secciones existentes de {{$grado_listar->GRADO}}</i></strong></h2>
@@ -30,12 +141,7 @@
     <div   wire:ignore.self id="seccionA" class="accordion-collapse collapse" aria-labelledby="seccionA" data-bs-parent="#accordionFlushExample">
       <div wire:ignore.self class="accordion-body">
           <div class="input-group justify-content">
-              <div class="form-outline">
-                <input type="search" wire:model="search2" id="form1" class="form-control" placeholder="Buscar:" />
-              </div>
-              <button type="button" class="btn btn-pre2">
-                <i class="fas fa-search"></i>
-              </button>
+            <!--acá iba el buscador-->
             </div>
             <div class="table-responsive">
               <table class="table table-light table-bordered">
@@ -94,12 +200,7 @@
     <div   wire:ignore.self id="seccionB" class="accordion-collapse collapse" aria-labelledby="seccionB" data-bs-parent="#accordionFlushExample">
       <div wire:ignore.self class="accordion-body">
           <div class="input-group justify-content">
-              <div class="form-outline">
-                <input type="search" wire:model="search2" id="form1" class="form-control" placeholder="Buscar:" />
-              </div>
-              <button type="button" class="btn btn-pre2">
-                <i class="fas fa-search"></i>
-              </button>
+              
             </div>
             <div class="table-responsive">
               <table class="table table-light table-bordered">
@@ -158,12 +259,7 @@
     <div   wire:ignore.self id="seccionC" class="accordion-collapse collapse" aria-labelledby="flush-headingThree2" data-bs-parent="#accordionFlushExample">
       <div wire:ignore.self class="accordion-body">
           <div class="input-group justify-content">
-              <div class="form-outline">
-                <input type="search" wire:model="search2" id="form1" class="form-control" placeholder="Buscar:" />
-              </div>
-              <button type="button" class="btn btn-pre2">
-                <i class="fas fa-search"></i>
-              </button>
+              
             </div>
             <div class="table-responsive">
               <table class="table table-light table-bordered">
@@ -222,12 +318,7 @@
     <div   wire:ignore.self id="seccionD" class="accordion-collapse collapse" aria-labelledby="flush-headingThree2" data-bs-parent="#accordionFlushExample">
       <div wire:ignore.self class="accordion-body">
           <div class="input-group justify-content">
-              <div class="form-outline">
-                <input type="search" wire:model="search2" id="form1" class="form-control" placeholder="Buscar:" />
-              </div>
-              <button type="button" class="btn btn-pre2">
-                <i class="fas fa-search"></i>
-              </button>
+              
             </div>
             <div class="table-responsive">
               <table class="table table-light table-bordered">
@@ -286,12 +377,7 @@
     <div   wire:ignore.self id="seccionE" class="accordion-collapse collapse" aria-labelledby="flush-headingThree2" data-bs-parent="#accordionFlushExample">
       <div wire:ignore.self class="accordion-body">
           <div class="input-group justify-content">
-              <div class="form-outline">
-                <input type="search" wire:model="search2" id="form1" class="form-control" placeholder="Buscar:" />
-              </div>
-              <button type="button" class="btn btn-pre2">
-                <i class="fas fa-search"></i>
-              </button>
+              
             </div>
             <div class="table-responsive">
               <table class="table table-light table-bordered">

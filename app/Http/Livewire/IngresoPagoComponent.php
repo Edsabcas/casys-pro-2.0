@@ -38,4 +38,25 @@ class IngresoPagoComponent extends Component
     {
         $this->op2=$num;
     }
+    public function paginacion($num)
+    {
+        if($num==1){
+            $this->op2=1;
+        }
+        elseif($num==2){
+            $this->op2=2;
+        }
+        /* elseif($num==3){
+            $this->op2=3;
+        }
+        elseif($num==4){
+            $this->op2=4;
+        }
+        elseif($num==5){
+            $this->op2=5;
+        }
+        elseif($num==6){
+            $this->op2=6;
+        } */
+    }
 } 

@@ -29,6 +29,8 @@ class ContenidosEstudianteComponent extends Component
     public $DOCUMENTO1, $DOCUMENTO2, $DOCUMENTO3, $DOCUMENTO4, $DOCUMENTO5;  
     public function render()
     {
+        
+
         $usuario_activo = auth()->user()->id;
         
         if($this->archivo!=null){
@@ -48,6 +50,7 @@ class ContenidosEstudianteComponent extends Component
             }
 
         }
+
 
         $unidades="";
         if($this->unidad1!=null){
@@ -92,8 +95,8 @@ class ContenidosEstudianteComponent extends Component
 
 
 
-        $sql="SELECT SECCION_ASIGNADA, GRADO_INGRESO FROM tb_alumnos WHERE ID_USER=$usuario_activo";
-        $uniones=DB::select($sql);
+        $sql="SELECT SECCION_ASIGNADA, GRADO_INGRESO FROM tb_alumnos WHERE ID_USER=$usuario_activo OR ID_USER=?";
+        $uniones=DB::select($sql, array(session('id_alumno_supervisado')));
         $sql= 'SELECT * FROM tb_rel';
         $relaciones=DB::select($sql);
         $sql= 'SELECT * FROM tb_materias';

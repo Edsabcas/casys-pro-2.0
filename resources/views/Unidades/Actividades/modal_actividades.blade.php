@@ -175,8 +175,13 @@
                      </div>
                   </div>           
                   <br>
-                  
-
+                  <div wire:loading wire:target="archivo" class="alert alert-warning" role="alert">
+                    <strong class="font-bold">¡Documento cargando!</strong>
+                      <span class="block sm:inlone">Espere un momento hasta que el documento se haya procesado completamente.</span>
+                    <div class="spinner-border text-warning" role="status">
+                    </div>
+                  </div>
+                  <br>
                   <button type="submit" class="btn btn-primary" wire:click='Subir_Act()' >Publicar</button>
                 </form>
                 <div class="modal-body">
