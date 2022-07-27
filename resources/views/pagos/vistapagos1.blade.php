@@ -109,4 +109,7 @@
 
 @elseif($op2!=null && $op2==1)
 @include('pagos.vistapagos2')
+@elseif($op2!=null && $op2==2)
+@include('pagos.vistapagos3')
 @endif 
+

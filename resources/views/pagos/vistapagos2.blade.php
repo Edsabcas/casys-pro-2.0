@@ -55,7 +55,7 @@
               <br>
                 <center>
                     <button class="btn btn-pre2" style="border-radius: 60px 60px 60px 60px;" {{-- wire:click="" --}}>Pagos Varios</button>
-                    <button class="btn btn-pre2" style="border-radius: 60px 60px 60px 60px;" {{-- wire:click="" --}}>Pagos Mensuales</button>
+                    <button class="btn btn-pre2" style="border-radius: 60px 60px 60px 60px;" wire:click="vista_pagos3(2)">Pagos Mensuales</button>
                     <button class="btn btn-pre2" style="border-radius: 60px 60px 60px 60px;" {{-- wire:click="" --}}>Ir A Buscador De Pagos</button>
                 </center>
             
@@ -95,3 +95,5 @@
         </div>
     </div>
 </div>
+
+

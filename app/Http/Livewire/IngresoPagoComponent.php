@@ -34,4 +34,8 @@ class IngresoPagoComponent extends Component
     {
         $this->op2=$num;
     }
+    public function vista_pagos3($num)
+    {
+        $this->op2=$num;
+    }
 } 
