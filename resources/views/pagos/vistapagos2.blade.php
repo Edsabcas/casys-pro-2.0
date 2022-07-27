@@ -51,19 +51,19 @@
             </div>
         </nav> </strong>
               <br>
-                <center>
+              <div class="d-grid gap-5 d-md-flex justify-content-md-center">
                     <button class="btn btn-pre2" style="border-radius: 60px 60px 60px 60px;" {{-- wire:click="" --}}>Pagos Varios</button>
                     <button class="btn btn-pre2" style="border-radius: 60px 60px 60px 60px;" wire:click="vista_pagos3(2)">Pagos Mensuales</button>
                     <button class="btn btn-pre2" style="border-radius: 60px 60px 60px 60px;" {{-- wire:click="" --}}>Ir A Buscador De Pagos</button>
-                </center>
-            
+              </div>
             <hr>
             <br>
 
-
+          <div class="d-grid gap-5 d-md-flex justify-content-md-center">
             <button class="btn btn-pre2" style="border-radius: 60px 60px 60px 60px;" {{-- wire:click="" --}}>Programa anual de pagos</button>
             <button class="btn btn-pre2" style="border-radius: 60px 60px 60px 60px;" {{-- wire:click="" --}}>Estado de cuenta del almuno</button>
             <button class="btn btn-pre2" style="border-radius: 60px 60px 60px 60px;" {{-- wire:click="" --}}>Estado de cuenta de la familia</button>
+          </div>
             <br>
         <div class="table-responsive">
             <br>
