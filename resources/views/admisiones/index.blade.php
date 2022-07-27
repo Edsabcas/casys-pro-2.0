@@ -128,7 +128,7 @@
                         @foreach ($estado_cero as $estado_cer)
                         <tr>
                             <th scope="row">{{ $estado_cer->NO_GESTION}}</th>
-                            <td>{{ $estado_cer->NOMBRE_ES}}  {{$estado_un->APELLIDOS_EST}}</td>
+                            <td>{{ $estado_cer->NOMBRE_ES}}  {{$estado_cer->APELLIDOS_EST}}</td>
                             <td>{{ $estado_cer->GRADO}}</td>
                             <span>
                                 <td>
