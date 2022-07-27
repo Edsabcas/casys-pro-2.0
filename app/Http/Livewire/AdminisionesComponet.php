@@ -332,6 +332,7 @@ class AdminisionesComponet extends Component
 
         foreach($preinsp as $pre){
             $this->id_ges_cambio=$pre->ID_PRE;
+            $this->apellidos_est=$pre->APELLIDOS_EST;
             $this->nombre_es=$pre->NOMBRE_ES;
             $this->f_nacimiento_es=$pre->FEC_NAC;
             $this->genero=$pre->GENERO;
