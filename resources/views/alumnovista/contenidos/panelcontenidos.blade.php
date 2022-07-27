@@ -129,10 +129,7 @@
     <div class="card shadow rounded">
       <div class="text-center">
         <br>  
-
-        <h1 style="color: #3a3e7b"><strong>Materias</strong></h1>          
-
-        
+        <h1 style="color: #3a3e7b"><strong>MATERIAS</strong></h1>          
         <p style="color:black"><strong>Seleccione un curso para ver el material de apoyo compartido por el maestro o maestra. </strong></p>
         <br>
       </div>
