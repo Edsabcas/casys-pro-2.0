@@ -65,7 +65,7 @@ class AsignacionesEsComponents extends Component
         $estudiantes=DB::select($sql);
         //prekinder
         if($this->searchprekinderpresencial!=null && $this->searchprekinderpresencial!=""){
-            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=1 AND SECCION_ASIGNADA IS NULL AND NOMBRE='%".$this->searchprekinderpresencial."%'";
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=1 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchprekinderpresencial."%'";
             $this->estudiantesprekinder=DB::select($sql);
         }
         else{
@@ -74,7 +74,7 @@ class AsignacionesEsComponents extends Component
         }
         //kinder
         if($this->searchkinderpresencial!=null && $this->searchkinderpresencial!=""){
-            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=3 AND SECCION_ASIGNADA IS NULL AND NOMBRE='%".$this->searchprepapresencial."%'";
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=3 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchprepapresencial."%'";
             $this->estudianteskinder=DB::select($sql);
         }
         else{
@@ -83,7 +83,7 @@ class AsignacionesEsComponents extends Component
         }
         //preparatoria
         if($this->searchprepapresencial!=null && $this->searchprepapresencial!=""){
-            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=5 AND SECCION_ASIGNADA IS NULL AND NOMBRE='%".$this->searchprepapresencial."%'";
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=5 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchprepapresencial."%'";
             $this->estudiantesprepa=DB::select($sql);
         }
         else{
@@ -92,7 +92,7 @@ class AsignacionesEsComponents extends Component
         }
         //primero
         if($this->searchprimeropresencial!=null && $this->searchprimeropresencial!=""){
-            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=7 AND SECCION_ASIGNADA IS NULL AND NOMBRE='%".$this->searchprimeropresencial."%'";
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=7 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchprimeropresencial."%'";
             $this->estudiantesprimero=DB::select($sql);
         }
         else{
@@ -101,7 +101,7 @@ class AsignacionesEsComponents extends Component
         }
         //segundo
         if($this->searchsegundopresencial!=null && $this->searchsegundopresencial!=""){
-            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=8 AND SECCION_ASIGNADA IS NULL AND NOMBRE='%".$this->searchsegundopresencial."%'";
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=8 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchsegundopresencial."%'";
             $this->estudiantessegundo=DB::select($sql);
         }
         else{
@@ -110,7 +110,7 @@ class AsignacionesEsComponents extends Component
         }
         //tercero
         if($this->searchterceropresencial!=null && $this->searchterceropresencial!=""){
-            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=9 AND SECCION_ASIGNADA IS NULL AND NOMBRE='%".$this->searchterceropresencial."%'";
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=9 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchterceropresencial."%'";
             $this->estudiantestercero=DB::select($sql);
         }
         else{
@@ -119,7 +119,7 @@ class AsignacionesEsComponents extends Component
         }
         //cuarto
         if($this->searchcuartopresencial!=null && $this->searchcuartopresencial!=""){
-            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=10 AND SECCION_ASIGNADA IS NULL AND NOMBRE='%".$this->searchcuartopresencial."%'";
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=10 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchcuartopresencial."%'";
             $this->estudiantescuarto=DB::select($sql);
         }
         else{
@@ -128,7 +128,7 @@ class AsignacionesEsComponents extends Component
         }
         //quinto
         if($this->searchquintopresencial!=null && $this->searchquintopresencial!=""){
-            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=11 AND SECCION_ASIGNADA IS NULL AND NOMBRE='%".$this->searchquintopresencial."%'";
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=11 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchquintopresencial."%'";
             $this->estudiantesquinto=DB::select($sql);
         }
         else{
@@ -138,7 +138,7 @@ class AsignacionesEsComponents extends Component
         
         //sexto
         if($this->searchsextopresencial!=null && $this->searchsextopresencial!=""){
-            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=12 AND SECCION_ASIGNADA IS NULL AND NOMBRE='%".$this->searchsextopresencial."%'";
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=12 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchsextopresencial."%'";
             $this->estudiantessexto=DB::select($sql);
         }
         else{
@@ -148,7 +148,7 @@ class AsignacionesEsComponents extends Component
         
         //septimo
         if($this->searchseptimopresencial!=null && $this->searchseptimopresencial!=""){
-            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=13 AND SECCION_ASIGNADA IS NULL AND NOMBRE='%".$this->searchseptimopresencial."%'";
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=13 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchseptimopresencial."%'";
         $this->estudiantesseptimo=DB::select($sql);
         }
         else{
@@ -158,7 +158,7 @@ class AsignacionesEsComponents extends Component
         
         //octavo
         if($this->searchoctavopresencial!=null && $this->searchoctavopresencial!=""){
-            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=14 AND SECCION_ASIGNADA IS NULL AND NOMBRE='%".$this->searchoctavopresencial."%'";
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=14 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchoctavopresencial."%'";
         $this->estudiantesoctavo=DB::select($sql);
         }
         else{
@@ -168,7 +168,7 @@ class AsignacionesEsComponents extends Component
         
         //noveno
         if($this->searchnovenopresencial!=null && $this->searchnovenopresencial!=""){
-            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=15 AND SECCION_ASIGNADA IS NULL AND NOMBRE='%".$this->searchnovenopresencial."%'";
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=15 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchnovenopresencial."%'";
         $this->estudiantesnoveno=DB::select($sql);
         }
         else{
@@ -178,7 +178,7 @@ class AsignacionesEsComponents extends Component
         
         //decimo
         if($this->searchdecimopresencial!=null && $this->searchdecimopresencial!=""){
-            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=23 AND SECCION_ASIGNADA IS NULL AND NOMBRE='%".$this->searchdecimopresencial."%'";
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=23 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchdecimopresencial."%'";
         $this->estudiantesdecimo=DB::select($sql);
         }
         else{
@@ -188,7 +188,7 @@ class AsignacionesEsComponents extends Component
         
         //onceavo
         if($this->searchonceavopresencial!=null && $this->searchonceavopresencial!=""){
-            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=25 AND SECCION_ASIGNADA IS NULL AND NOMBRE='%".$this->searchonceavopresencial."%'";
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=25 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchonceavopresencial."%'";
         $this->estudiantesonceavo=DB::select($sql);
         }
         else{
@@ -206,7 +206,7 @@ class AsignacionesEsComponents extends Component
         //VIRTUAL
         //prekinder
         if($this->searchprekinderpresencial2!=null && $this->searchprekinderpresencial2!=""){
-            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=26 AND SECCION_ASIGNADA IS NULL AND NOMBRE='%".$this->searchprekinderpresencial2."%'";
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=26 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchprekinderpresencial2."%'";
         $this->estudiantesprekinder2=DB::select($sql);
         }
         else{
@@ -216,7 +216,7 @@ class AsignacionesEsComponents extends Component
 
         //kinder
         if($this->searchkinderpresencial2!=null && $this->searchkinderpresencial2!=""){
-            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=27 AND SECCION_ASIGNADA IS NULL AND NOMBRE='%".$this->searchkinderpresencial2."%'";
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=27 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchkinderpresencial2."%'";
         $this->estudianteskinder2=DB::select($sql);
         }
         else{
@@ -226,7 +226,7 @@ class AsignacionesEsComponents extends Component
         
         //preparatoria
         if($this->searchprepapresencial2!=null && $this->searchprepapresencial2!=""){
-            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=28 AND SECCION_ASIGNADA IS NULL AND NOMBRE='%".$this->searchprepapresencial2."%'";
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=28 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchprepapresencial2."%'";
         $this->estudiantesprepa2=DB::select($sql);
         }
         else{
@@ -236,7 +236,7 @@ class AsignacionesEsComponents extends Component
         
         //primero
         if($this->searchprimeropresencial2!=null && $this->searchprimeropresencial2!=""){
-            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=29 AND SECCION_ASIGNADA IS NULL AND NOMBRE='%".$this->searchprimeropresencial2."%'";
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=29 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchprimeropresencial2."%'";
         $this->estudiantesprimero2=DB::select($sql);
         }
         else{
@@ -246,7 +246,7 @@ class AsignacionesEsComponents extends Component
         
         //segundo
         if($this->searchsegundopresencial2!=null && $this->searchsegundopresencial2!=""){
-            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=30 AND SECCION_ASIGNADA IS NULL AND NOMBRE='%".$this->searchsegundopresencial2."%'";
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=30 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchsegundopresencial2."%'";
         $this->estudiantessegundo2=DB::select($sql);
         }
         else{
@@ -256,7 +256,7 @@ class AsignacionesEsComponents extends Component
         
         //tercero
         if($this->searchterceropresencial2!=null && $this->searchterceropresencial2!=""){
-            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=31 AND SECCION_ASIGNADA IS NULL AND NOMBRE='%".$this->searchterceropresencial2."%'";
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=31 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchterceropresencial2."%'";
         $this->estudiantestercero2=DB::select($sql);
         }
         else{
@@ -266,7 +266,7 @@ class AsignacionesEsComponents extends Component
         
         //cuarto
         if($this->searchcuartopresencial2!=null && $this->searchcuartopresencial2!=""){
-            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=32 AND SECCION_ASIGNADA IS NULL AND NOMBRE='%".$this->searchcuartopresencial2."%'";
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=32 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchcuartopresencial2."%'";
         $this->estudiantescuarto2=DB::select($sql);
         }
         else{
@@ -276,7 +276,7 @@ class AsignacionesEsComponents extends Component
         
         //quinto
         if($this->searchquintopresencial2!=null && $this->searchquintopresencial2!=""){
-            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=33 AND SECCION_ASIGNADA IS NULL AND NOMBRE='%".$this->searchquintopresencial2."%'";
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=33 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchquintopresencial2."%'";
         $this->estudiantesquinto2=DB::select($sql);
         }
         else{
@@ -286,7 +286,7 @@ class AsignacionesEsComponents extends Component
         
         //sexto
         if($this->searchsextopresencial2!=null && $this->searchsextopresencial2!=""){
-            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=34 AND SECCION_ASIGNADA IS NULL AND NOMBRE='%".$this->searchsextopresencial2."%'";
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=34 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchsextopresencial2."%'";
         $this->estudiantessexto2=DB::select($sql);
         }
         else{
@@ -296,7 +296,7 @@ class AsignacionesEsComponents extends Component
         
         //septimo
         if($this->searchseptimopresencial2!=null && $this->searchseptimopresencial2!=""){
-            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=35 AND SECCION_ASIGNADA IS NULL AND NOMBRE='%".$this->searchseptimopresencial2."%'";
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=35 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchseptimopresencial2."%'";
         $this->estudiantesseptimo2=DB::select($sql);
         }
         else{
@@ -306,7 +306,7 @@ class AsignacionesEsComponents extends Component
         
         //octavo
         if($this->searchoctavopresencial2!=null && $this->searchoctavopresencial2!=""){
-            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=36 AND SECCION_ASIGNADA IS NULL AND NOMBRE='%".$this->searchoctavopresencial2."%'";
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=36 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchoctavopresencial2."%'";
         $this->estudiantesoctavo2=DB::select($sql);
         }
         else{$sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=36 AND SECCION_ASIGNADA IS NULL";
@@ -314,7 +314,7 @@ class AsignacionesEsComponents extends Component
         
         //noveno
         if($this->searchnovenopresencial2!=null && $this->searchnovenopresencial2!=""){
-            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=37 AND SECCION_ASIGNADA IS NULL AND NOMBRE='%".$this->searchnovenopresencial2."%'";
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=37 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchnovenopresencial2."%'";
         $this->estudiantesnoveno2=DB::select($sql);
         }
         else{
@@ -324,7 +324,7 @@ class AsignacionesEsComponents extends Component
         
         //decimo
         if($this->searchdecimopresencial2!=null && $this->searchdecimopresencial2!=""){
-            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=38 AND SECCION_ASIGNADA IS NULL AND NOMBRE='%".$this->searchdecimopresencial2."%'";
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=38 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchdecimopresencial2."%'";
         $this->estudiantesdecimo2=DB::select($sql);
         }
         else{
@@ -334,7 +334,7 @@ class AsignacionesEsComponents extends Component
         
         //onceavo
         if($this->searchonceavopresencial2!=null && $this->searchonceavopresencial2!=""){
-            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=39 AND SECCION_ASIGNADA IS NULL AND NOMBRE='%".$this->searchonceavopresencial2."%'";
+            $sql="SELECT * FROM tb_alumnos WHERE GRADO_INGRESO=39 AND SECCION_ASIGNADA IS NULL AND NOMBRE like '%".$this->searchonceavopresencial2."%'";
         $this->estudiantesonceavo2=DB::select($sql);
         }
         else{
