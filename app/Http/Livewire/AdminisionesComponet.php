@@ -1083,9 +1083,9 @@ $quien_encargado1=$this->quien_encargado1;
             'RETIRO_N_EN'=>$n_encargado,
             'RETIRO_DPI_EN'=>$dpi_encar,
             'RETIRO_BUS_COL'=>$this->bus_por,
-            'N_CONDUCTOR_AJ'=>$this->nombre_conductor,
-            'DPI_CONDUCTOR_AJ'=>$this->dpi_conductor,
-            'NUM_CONDUCTOR_AJ'=>$this->n_conductor,
+            'N_CONDUCTOR_AJ'=>$nombre_conductor,
+            'DPI_CONDUCTOR_AJ'=>$dpi_conductor,
+            'NUM_CONDUCTOR_AJ'=>$n_conductor,
             'REL_ENCARGADO'=>$this->Especifique_rel,        
             ]
         );
