@@ -1748,8 +1748,8 @@
                 </div>
                 <div class="col align-self-center">
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" value="2" wire:model="retiro" id="buscolegio1" wire:click="retiro('2')">
-                  <label class="form-check-label" for="buscolegio1">
+                  <input class="form-check-input" type="radio" value="2" wire:model="retiro" id="bus1" wire:click="retiro('2')">
+                  <label class="form-check-label" for="bus1">
                     Bus
                   </label>
                 </div>
