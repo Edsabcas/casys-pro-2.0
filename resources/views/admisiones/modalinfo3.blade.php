@@ -548,13 +548,11 @@
                    <div  wire:ignore.self id="panelsStayOpen-datosvarios" style="border-radius: 60px 60px 60px 60px;" class="accordion-collapse collapse " aria-labelledby="panelsStayOpen-headingOne">
                      <div  wire:ignore.self class="accordion-body" style="border-radius: 60px 60px 60px 60px;">
                        <div class="tab">
-                        <strong><label for="exampleInputPassword1" class="form-label">Foto de estudiante</label></strong>
-                      <div class="card-body center">
-                        <br>
+                        <strong><label for="exampleInputPassword1" class="form-label">Foto de estudiante</label></strong> 
                         <input type="file" accept="image/*" class="form-control w-85 p-3 center" wire:model='fotoest2'  style="border:2px solid #a4cb29;" id="exampleInputPassword1">
-                      </div>
+                        <br>
                       <div class="mb-3">
-                        <div wire:loading wire:target="fotoest" class="alert alert-warning" role="alert">
+                        <div wire:loading wire:target="fotoest2" class="alert alert-warning" role="alert">
                           <strong class="font-bold">¡IMAGEN cargando!</strong>
                             <span class="block sm:inlone">Espere un momento hasta que el documento se haya procesado completamente.</span>
                           <div class="spinner-border text-warning" role="status">
@@ -562,7 +560,7 @@
                     </div>
                     @if($formato2==1)
                     <div class="center">
-                    <div class="col-xl-6 col-sm-6" >
+                    <div class="col-xl-8 col-sm-8" >
                     <div class="card-header" style="background-color: #a4cb29" height="250" weight="175">
                         <br>
                         <h4 style="color: #ffff"><strong>VISUALIZACIÓN DE LA IMAGEN</strong></h4>

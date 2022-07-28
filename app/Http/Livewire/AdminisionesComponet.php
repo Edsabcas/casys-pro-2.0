@@ -714,6 +714,7 @@ class AdminisionesComponet extends Component
             {
                 $this->id_pre_info=$estac->ID_PRE_INFO;
                 $this->id_pre_i=$estac->ID_PRE;
+                $this->fotoest=$estac->FOTO_ALUMNO;
                 $this->confi=$estac->HERMANOS_COLE;
                 $this->grados_selecionados=$estac->GRADO_HERMANOS_COLE;
                 $grados_selecionados1=explode(";", $this->grados_selecionados);
@@ -1009,12 +1010,12 @@ $quien_encargado1=$this->quien_encargado1;
     $fotoest2=$this->fotoest2;
 
 
-    $fotoest2="";      
+         
     if($this->fotoest2!=null){
         if($this->fotoest2->getClientOriginalExtension()=="jpg" or $this->fotoest2->getClientOriginalExtension()=="png" or $this->fotoest2->getClientOriginalExtension()=="jpeg"){
             $fotoest2 = "img".time().".".$this->fotoest2->getClientOriginalExtension();
             $this->arch=$fotoest2;
-            $this->fotoest2->storeAS('imagen/actividades/', $this->arch,'public_up');
+            $this->fotoest2->storeAS('imagen/fotoestperf/', $this->arch,'public_up');
             $this->formato2=1;
         }
     }
