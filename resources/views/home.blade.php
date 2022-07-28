@@ -29,6 +29,9 @@
 @elseif($op=='alumnosupervisadopagos')
 @livewire('vista-alumno-component')
 
+@elseif($op=='alumnosupervisadocredenciales')
+@livewire('vista-alumno-component')
+
 @elseif($op=='vistaadanuncios')
 @livewire('anuncios-admin');
 
