@@ -1698,7 +1698,7 @@
                        <input  type="text" class="form-control"  wire:model="nombre_aseguradora">
                    </div>
                  </center>
-                   @endif
+                 
  
            </div>
  
@@ -1715,6 +1715,7 @@
          </div>
                    
        </div>
+       @endif
      </div>
     </div>
    </div>
@@ -1869,7 +1870,7 @@
             </div>
             
             <div class="col-md-6">
-              <strong><label  for="Labelnombremadre" class="form-label">Número del conductor del bus ajeno al colegio<label></strong>
+              <strong><label  for="Labelnombremadre" class="form-label">Número de celular del conductor del bus ajeno al colegio<label></strong>
               <input  type="number" class="form-control"  wire:model="n_conductor">
             </div>
   
