@@ -17,7 +17,7 @@
                 <div style="border-radius: 60px 60px 60px 60px;" class="accordion-item">
                   <h2 style="border-radius: 60px 60px 60px 60px;" class="accordion-header" id="panelsStayOpen-headingTwo">
                     <button class="accordion-button collapsed" style="background-color:#d6e7a6; border:6px solid #a4cb39; border-radius: 60px 60px 60px 60px;"  type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-                    <h4 class="font-weight-bolder">  <b>Datos Estudiante:</b>   </h4>
+                    <h4 class="font-weight-bolder">  <b>Datos Estudiante</b>   </h4>
                     </button>
                    
                   </h2>
@@ -251,7 +251,7 @@
                 <div style="border-radius: 60px 60px 60px 60px;" class="accordion-item">
                   <h2  style="border-radius: 60px 60px 60px 60px;" class="accordion-header" id="panelsStayOpen-headingThree">
                     <button class="accordion-button collapsed" style="background-color:#d6e7a6; border:6px solid #a4cb39; border-radius: 60px 60px 60px 60px;"  type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-                    <h4 class="font-weight-bolder">  <b>Datos Encargado:</b>   </h4>
+                    <h4 class="font-weight-bolder">  <b>Datos Encargado</b>   </h4>
                     </button>
                 
                   </h2>
@@ -540,7 +540,7 @@
                    <h2 style="border-radius: 60px 60px 60px 60px;" class="accordion-header" id="panelsStayOpen-headingOnedatosvarios">
                      <button class="accordion-button"  type="button" style="background-color:#d6e7a6; border:6px solid #a4cb39; border-radius: 60px 60px 60px 60px;" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-datosvarios" aria-expanded="true" aria-controls="panelsStayOpen-datosvarios">
                          <h4 class="font-weight-bolder">
-                             DATOS VARIOS
+                             Datos Varios
                            </h4>
                          </button>
                    </h2>
@@ -548,31 +548,30 @@
                    <div  wire:ignore.self id="panelsStayOpen-datosvarios" style="border-radius: 60px 60px 60px 60px;" class="accordion-collapse collapse " aria-labelledby="panelsStayOpen-headingOne">
                      <div  wire:ignore.self class="accordion-body" style="border-radius: 60px 60px 60px 60px;">
                        <div class="tab">
-                        <strong><label for="exampleInputPassword1" class="form-label">Foto de estudiante</label></strong>
-                      <div class="card-body center">
+                        <strong><label for="exampleInputPassword1" class="form-label">Foto de estudiante</label></strong> 
+                        <input type="file" accept="image/*" class="form-control w-85 p-3 center" wire:model='fotoest2'  style="border:2px solid #a4cb29;" id="exampleInputPassword1">
                         <br>
-                        <input type="file" accept="image/*" class="form-control w-85 p-3 center" wire:model='fotoest'  style="border:2px solid #a4cb29;" id="exampleInputPassword1">
-                      </div>
                       <div class="mb-3">
-                        <div wire:loading wire:target="fotoest" class="alert alert-warning" role="alert">
+                        <div wire:loading wire:target="fotoest2" class="alert alert-warning" role="alert">
                           <strong class="font-bold">¡IMAGEN cargando!</strong>
                             <span class="block sm:inlone">Espere un momento hasta que el documento se haya procesado completamente.</span>
                           <div class="spinner-border text-warning" role="status">
                         </div>
                     </div>
-                    @if($formato==1)
+                    @if($formato2==1)
                     <div class="center">
-                    <div class="col-xl-6 col-sm-6" >
+                    <div class="col-xl-8 col-sm-8" >
                     <div class="card-header" style="background-color: #a4cb29" height="250" weight="175">
                         <br>
                         <h4 style="color: #ffff"><strong>VISUALIZACIÓN DE LA IMAGEN</strong></h4>
                     </div>
                     <div class="card-body center">
-                      <img src="{{$fotoest->temporaryURL()}}" height="250" weight="175"  alt="...">
+                      <img src="{{$fotoest2->temporaryURL()}}" height="250" weight="175"  alt="...">
                     </div>
                     </div>
                     </div>
                     @endif
+                  @if($formato2==null or $formato2=="")
                   <div class="center">
                   <div class="col-xl-8 col-sm-8" >
                     <div class="card-header" style="background-color: #a4cb29">
@@ -591,6 +590,7 @@
                     </div>
                   </div>
                   </div>
+                  @endif
                          <strong><label for="exampleInputPassword1" class="form-label">¿Tiene hermanos en colegio?</label></strong>
                          <center>
                          <div style="width: 12rem;">
@@ -688,7 +688,7 @@
                    <h2 style="border-radius: 60px 60px 60px 60px;" class="accordion-header" id="panelsStayOpen-headingOnedatospadre">
                      <button class="accordion-button" type="button" style="background-color:#d6e7a6; border:6px solid #a4cb39; border-radius: 60px 60px 60px 60px;" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-padre" aria-expanded="true" aria-controls="panelsStayOpen-padre">
                          <h4 class="font-weight-bolder">
-                             DATOS DEL PADRE
+                             Datos del Padre
                            </h4>
                          </button>
                    </h2>
@@ -958,7 +958,7 @@
                    <h2 style="border-radius: 60px 60px 60px 60px;" class="accordion-header" id="panelsStayOpen-headingOneDatosdelamadre">
                      <button class="accordion-button" type="button" style="background-color:#d6e7a6; border:6px solid #a4cb39; border-radius: 60px 60px 60px 60px;" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-madre" aria-expanded="true" aria-controls="panelsStayOpen-madre">
                          <h4 class="font-weight-bolder">
-                             DATOS DE LA MADRE
+                             Datos de la Madre
                            </h4>
                          </button>
                    </h2>
@@ -1220,7 +1220,7 @@
           <h2 style="border-radius: 60px 60px 60px 60px;" class="accordion-header" id="panelsStayOpen-headingOnedatosencargado">
             <button class="accordion-button collapsed" type="button" style="background-color:#d6e7a6; border:6px solid #a4cb39; border-radius: 60px 60px 60px 60px;" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-encargado" aria-expanded="false" aria-controls="panelsStayOpen-encargado">
                 <h4 class="font-weight-bolder">
-                    DATOS DEL ENCARGADO
+                    Datos del Encargado
                   </h4>
                 </button>
           </h2>
@@ -1552,7 +1552,7 @@
        <h2 style="border-radius: 60px 60px 60px 60px;" class="accordion-header" id="panelsStayOpen-headingOnedatosmedicos  ">
          <button class="accordion-button" type="button" style="background-color:#d6e7a6; border:6px solid #a4cb39; border-radius: 60px 60px 60px 60px;" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-medicos" aria-expanded="true" aria-controls="panelsStayOpen-medicos">
            <h4 class="font-weight-bolder">
-             DATOS MEDICOS
+             Datos Médicos
            </h4>
          </button>
        </h2>
@@ -1696,7 +1696,7 @@
                        <input  type="text" class="form-control"  wire:model="nombre_aseguradora">
                    </div>
                  </center>
-                   @endif
+                 
  
            </div>
  
@@ -1713,6 +1713,7 @@
          </div>
                    
        </div>
+       @endif
      </div>
     </div>
    </div>
@@ -1725,7 +1726,7 @@
         <h2 style="border-radius: 60px 60px 60px 60px;" class="accordion-header" id="panelsStayOpen-headingOnedatossalida">
           <button class="accordion-button collapsed" type="button" style="background-color:#d6e7a6; border:6px solid #a4cb39; border-radius: 60px 60px 60px 60px;" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-salida" aria-expanded="false" aria-controls="panelsStayOpen-salida">
             <h4 class="font-weight-bolder">
-            DATOS DE SALIDA
+            Datos de Salida
             </h4>
           </button>
         </h2>
@@ -1747,8 +1748,8 @@
                 </div>
                 <div class="col align-self-center">
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" value="2" wire:model="retiro" id="buscolegio1" wire:click="retiro('2')">
-                  <label class="form-check-label" for="buscolegio1">
+                  <input class="form-check-input" type="radio" value="2" wire:model="retiro" id="bus1" wire:click="retiro('2')">
+                  <label class="form-check-label" for="bus1">
                     Bus
                   </label>
                 </div>
@@ -1772,13 +1773,13 @@
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" wire:model="solo_por" value="1" id="retirapor1" wire:click="solo_por('1')">
                     <label class="form-check-label" for="retirapor1">
-                      Florida solo 
+                      Florida
                     </label>
                   </div>
                   <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" wire:model="solo_por" value="2" id="retirapor2" wire:click="solo_por('2')">
                     <label class="form-check-label" for="retirapor2">
-                      Monserrat solo 
+                      Monserrat 
                     </label>
                   </div>
                 </div>
@@ -1867,7 +1868,7 @@
             </div>
             
             <div class="col-md-6">
-              <strong><label  for="Labelnombremadre" class="form-label">Número del conductor del bus ajeno al colegio<label></strong>
+              <strong><label  for="Labelnombremadre" class="form-label">Número de celular del conductor del bus ajeno al colegio<label></strong>
               <input  type="number" class="form-control"  wire:model="n_conductor">
             </div>
   
