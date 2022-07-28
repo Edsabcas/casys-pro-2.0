@@ -20,9 +20,9 @@ class AdminisionesComponet extends Component
     public $id_pre,$metodo,$archivo_comprobante,$img,$tipo,$mensaje24,$mensaje25,$fotos,$fpago,$no_gest_con, $solo_por, $idgrado;
     public $val,$val1,$gestion,$errorfecha,$upnocorre1,$upnocorre2,$nomb,$fvencimiento,$cseguridad,$ntarjeta,$notarjeta;
     public $estado_ges,$archivo_comprobante2,$fecha_ultimo_cambio,$mensajeins,$mensajeins1,$id_pre_boton,$estado_pre_boton,$matricula_bus_aj;
-    public $mensaje1,$id2,$profesion_en,$id_desact,$nuevo_estadodesact,$no_gest_desact,$tipo_cambio8;
+    public $mensaje1,$id2,$profesion_en,$id_desact,$nuevo_estadodesact,$no_gest_desact,$tipo_cambio8,$fotoest2;
     public $observacion, $id_pre_ins_arch, $id_no_gest_arch, $archivo_cdiaco, $archivo, $formato,$id_gest,$nuevo_estado,$id_no_gest_ins;
-    public $mensajeup,$mensajeup1,$correlativon,$pass,$correoed,$mensaje_diaco1,$fotoest;
+    public $mensajeup,$mensajeup1,$correlativon,$pass,$correoed,$mensaje_diaco1,$fotoest,$formato2;
     public $id_pre_info, $id_pre_i, $confi, $grados_selecionados, $año_ingreso, $grado_primer_ingreso, $nombre_padre, $nacimiento_padre, $nacionalidad_padre;
     public $lugar_nacimiento_padre, $estadocivilp, $DPI_padre, $celular_padre, $telefono_padre, $direccion_residencia, $correo_padre, $profesion_padre;
     public $lugar_profesion_padre, $cargo_profesion_padre, $religion_padre, $NIT_padre, $vive_con_elpadre, $nombre_madre, $fechana_madre, $nacionalidad_madre;
@@ -64,6 +64,14 @@ class AdminisionesComponet extends Component
             elseif($this->archivo->getClientOriginalExtension()=="pdf"){
                 $this->formato=3;
             }
+
+        }
+
+        if($this->fotoest2!=null){
+            if($this->fotoest2->getClientOriginalExtension()=="jpg" or $this->fotoest2->getClientOriginalExtension()=="png" or $this->fotoest2->getClientOriginalExtension()=="jpeg"){
+                $this->formato2=1;
+            }
+            
 
         }
 
@@ -997,17 +1005,25 @@ $quien_encargado1=$this->quien_encargado1;
     $nombre_conductor=$this->nombre_conductor;
     $dpi_conductor=$this->dpi_conductor;
     $n_conductor=$this->n_conductor;
+    $fotoest2=$this->fotoest2;
 
 
-
-    
+    $fotoest2="";      
+    if($this->fotoest2!=null){
+        if($this->fotoest2->getClientOriginalExtension()=="jpg" or $this->fotoest2->getClientOriginalExtension()=="png" or $this->fotoest2->getClientOriginalExtension()=="jpeg"){
+            $fotoest2 = "img".time().".".$this->fotoest2->getClientOriginalExtension();
+            $this->arch=$fotoest2;
+            $this->fotoest2->storeAS('imagen/actividades/', $this->arch,'public_up');
+            $this->formato2=1;
+        }
+    }
     DB::beginTransaction();
 
     $inscripcion_datos=DB::table('TB_PRE_INFO')
             ->where('ID_PRE',$this->id_pre_i)
             ->update(
         [
-            'FOTO_ALUMNO'=>$fotoest,
+            'FOTO_ALUMNO'=>$fotoest2,
             'HERMANOS_COLE'=>$this->confi,
             'GRADO_HERMANOS_COLE'=>$this->grados_selecionados,
             'AÑO_1R_INGRESO'=>$año_ingreso,
