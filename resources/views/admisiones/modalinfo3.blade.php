@@ -1683,7 +1683,7 @@
                    
          <div class="col-md-6">
              <strong><label  for="Labelcarneseguro" class="form-label"> Número de carné de seguro</label></strong>
-               <input  type="number" class="form-control"  wire:model="carne_seguro">
+               <input  type="text" class="form-control"  wire:model="carne_seguro">
          </div>
                    
        </div>
@@ -1708,67 +1708,59 @@
           <div  wire:ignore.self class="accordion-body" style="border-radius: 60px 60px 60px 60px;">
             <strong><p class="card-title" style="color:#3a3e7b;" >
               Autorizo que mi hij@ se retire de la siguiente manera:</p></strong>
-            <div class="tab">
-              <strong><label for="exampleInputPassword1" class="form-label">¿El alumno se retira solo?</label></strong>
+              <div class="row align-items-center">
+                <div class="row">
+                  <strong><label for="exampleInputPassword1" class="form-label">¿Cómo se retira el alumno?</label></strong>
+                <div class="col align-self-center">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="1" wire:model="retiro" id="solo1" wire:click="retiro('1')">
+                    <label class="form-check-label" for="solo1">
+                     Solo
+                    </label>
+                </div>
+                </div>
+                <div class="col align-self-center">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="2" wire:model="retiro" id="buscolegio1" wire:click="retiro('2')">
+                  <label class="form-check-label" for="buscolegio1">
+                    Bus
+                  </label>
+                </div>
+                </div>
+                <div class="col align-self-center">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="3" wire:model="retiro" id="encargado1" wire:click="retiro('3')">
+                  <label class="form-check-label" for="encargado1">
+                    Encargado
+                  </label>
+                </div>
+                </div>
+              </div>
+              </div>
+  
+              @if($retiro==1)
+              <div class="tab">
+                <strong><label for="exampleInputPassword1" class="form-label">Se retira por:</label></strong>
                 <center>
-            <div style="width: 12rem;">
-            <div class="form-check">
-              <input class="form-check-input" type="radio" value="1" wire:model="solo_alumno" id="solo1" wire:click="solo_alumno('1')">
-                <label class="form-check-label" for="solo1">
-                 Si
-                </label>
-            </div>
-            <div class="form-check">
-            <input class="form-check-input" type="radio" value="2" wire:model="solo_alumno" id="solo2" wire:click="solo_alumno('2')">
-              <label class="form-check-label" for="solo1">
-                No
-              </label>
-            </div>
-            </center>
-          </div>
-  
-          @if($solo_alumno==1)
-            <div class="tab">
-              <strong><label for="exampleInputPassword1" class="form-label">Se retira por:</label></strong>
-              <center>
-              <div style="width: 12rem;">
-              <div class="form-check">
-                  <input class="form-check-input" type="radio" wire:model="solo_por" value="1" id="retirapor1" wire:click="solo_por('1')">
-                  <label class="form-check-label" for="retirapor1">
-                    Florida
-                  </label>
+                <div style="width: 12rem;">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" wire:model="solo_por" value="1" id="retirapor1" wire:click="solo_por('1')">
+                    <label class="form-check-label" for="retirapor1">
+                      Florida solo 
+                    </label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" wire:model="solo_por" value="2" id="retirapor2" wire:click="solo_por('2')">
+                    <label class="form-check-label" for="retirapor2">
+                      Monserrat solo 
+                    </label>
+                  </div>
                 </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" wire:model="solo_por" value="2" id="retirapor2" wire:click="solo_por('2')">
-                  <label class="form-check-label" for="retirapor1">
-                    Monserrat
-                  </label>
-                </div>
+             </center>  
               </div>
-           </center>  
-            </div>
-          @endif
+            @endif
   
-      @if($solo_alumno==2)
-            <div class="tab">
-              <strong><label for="exampleInputPassword1" class="form-label">¿El alumno se retira con un encargado?</label></strong>
-              <center>
-              <div style="width: 12rem;">
-              <div class="form-check">
-                  <input class="form-check-input" type="radio" value="1" wire:model="encargado_alumno" id="encargado1" wire:click="encargado_alumno('1')">
-                  <label class="form-check-label" for="encargado1">
-                    Si
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" value="2" wire:model="encargado_alumno" id="encargado2" wire:click="encargado_alumno('2')">
-                  <label class="form-check-label" for="encargado1">
-                    No
-                  </label>
-                </div>
-              </div>
-           </center>
-           @if($encargado_alumno==1)
+            @if($retiro==3)
            <center>
           <div class="row">
             <div class="col-md-6">
@@ -1792,7 +1784,7 @@
           
           </div>
   
-          @if($encargado_alumno==2)
+          @if($retiro==2)
           <div class="tab">
             <strong><label for="exampleInputPassword1" class="form-label">¿El alumno se retira en bus del colegio?</label></strong>
             <center>
@@ -1806,7 +1798,7 @@
               <div class="form-check">
                 <input class="form-check-input" type="radio" value="2" wire:model="bus_colegio" id="buscolegio2" wire:click="bus_colegio('2')">
                 <label class="form-check-label" for="buscolegio1">
-                  No
+                  Bus ajeno 
                 </label>
               </div>
             </div>
@@ -1819,13 +1811,13 @@
               <center>
               <div style="width: 12rem;">
               <div class="form-check">
-                  <input class="form-check-input" type="radio" value="1" wire:model="bus_por" value="1" id="buspor1" wire:click="bus_por('1')">
+                  <input class="form-check-input" type="radio" wire:model="bus_por" value="1" id="buspor1" wire:click="bus_por('1')">
                   <label class="form-check-label" for="buspor1">
                     Florida
                   </label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" value="2" wire:model="bus_por" value="2" id="buspor2" wire:click="bus_por('2')">
+                  <input class="form-check-input" type="radio" wire:model="bus_por" value="2" id="buspor2" wire:click="bus_por('2')">
                   <label class="form-check-label" for="buspor1">
                     Monserrat
                   </label>
@@ -1862,7 +1854,6 @@
          </center>
         @endif
       @endif
-      @endif
         </div>
         </div>
   </div>
@@ -1879,13 +1870,13 @@
             @if($mensajeins!=null && $mensajeins==1)
             <br>
             <div class="alert alert-success" role="alert">
-                ¡Editado Correctamente!
+                ¡Editado Correctamente! 
               </div>
             @endif
               @if($mensajeins1!=null && $mensajeins1==1)
               <br>
               <div class="alert alert-Danger" role="alert">
-                ¡No fue Editado Correctamente!
+                ¡No fue Editado Correctamente! 
               </div>
               @endif
                     
