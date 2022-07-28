@@ -17,7 +17,7 @@
                 <div style="border-radius: 60px 60px 60px 60px;" class="accordion-item">
                   <h2 style="border-radius: 60px 60px 60px 60px;" class="accordion-header" id="panelsStayOpen-headingTwo">
                     <button class="accordion-button collapsed" style="background-color:#d6e7a6; border:6px solid #a4cb39; border-radius: 60px 60px 60px 60px;"  type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-                    <h4 class="font-weight-bolder">  <b>Datos del Estudiante:</b>   </h4>
+                    <h4 class="font-weight-bolder">  <b>Datos Estudiante:</b>   </h4>
                     </button>
                    
                   </h2>
@@ -26,8 +26,8 @@
                                <form wire:submit.prevent="" class="form-floating">
                                 <div class="row g-3">
                                   <div class="col-md">
-                                    <label for="inputNombres" style="font-size: 15px; color:#000000;">Nombre Completo:
-                                    </label>
+                                    <label for="inputNombres" style="font-size: 15px; color:#000000;">Nombres:
+                                    </label> 
                                     <input  wire:model="nombre_es" class="form-control " required>
                                     @error('nombre_es')
                                     <div class="alert alert-warning" role="alert">
@@ -35,7 +35,16 @@
                                     </div>
                                     @enderror
                                 </div>
+                                <div class="col-md">
+                                  <label for="inputApellidos" style="font-size: 15px; color:#000000;">Apellidos:</label>
+                                  <input  wire:model="apellidos_est" class="form-control " required>
+                                  @error('apellidos_est')
+                                  <div class="alert alert-warning" role="alert">
+                                   Pendiente
+                                  </div>
+                                  @enderror
                               </div>
+                            </div>
                                 <div class="row g-3">
                                   <div class="col-md">
                                     <label for="inputApellidos" style="font-size: 15px; color:#000000;">Fecha de Nacimiento:</label>
@@ -50,17 +59,17 @@
                                   <label for="inputApellidos" style="font-size: 15px; color:#000000;">Género:</label>
                                   <br>
                                   <div class="form-check form-check-inline ">
-                                    <input class="form-check-input"  wire:model='genero' value="Masculino" type="radio" value="1" id="flexRadioDefault1">
+                                    <input class="form-check-input"  wire:model='genero' value="Masculino" type="radio" wire:model="genero_es" id="flexRadioDefault1">
                                     <label class="form-check-label" for="flexRadioDefault1" style="font-size: 15px; color:#000000;">
                                       Masculino
                                     </label>
                                   </div>
                                   <div class="form-check form-check-inline " >
-                                    <input class="form-check-input"  wire:model='genero' value="Femenino" type="radio" value="2" id="flexRadioDefault2">
+                                    <input class="form-check-input"  wire:model='genero' value="Femenino" type="radio" wire:model="genero_es" id="flexRadioDefault2">
                                     <label class="form-check-label" for="flexRadioDefault2" style="font-size: 15px; color:#000000;">
                                       Femenino
                                     </label>
-                                    @error('genero')
+                                    @error('genero_es')
                                     <div class="alert alert-warning" role="alert">
                                       Pendiente
                                     </div>
@@ -157,63 +166,80 @@
                           </div>
                           @enderror 
                         </div>
+                        
+                        <div class="row g-3">
+                          <div class="col-md">
+                            <label for="inputApellidos" style="font-size: 15px; color:#000000;">Grado ingreso:</label>
+                            <br>
+                            <select class="form-select form-select-lg mb-3" wire:model="gradoin" aria-label=".form-select-lg example">
+                              @foreach($grados as $grado)
+                              <option value="{{$grado->ID_GR}}">{{$grado->GRADO}}</option>
+                              @endforeach
+                            </select>
+                            @error('gradoin')
+                            <div class="alert alert-warning" role="alert">
+                            Pendiente
+                            </div>
+                            @enderror 
+                          </div>
 
+                          <div class="mb-3">
+                            <option></option>
+                            <label for="lastname" style="color: #3a3e7b">
+                                <b>¿Cómo prefiere que sus hijos estudien el ciclo escolar 2023?</b></label>
+                                <br>
+                                <br>
+                                <li class="list-group-item list-group-item-action">
+                                 
+                                    <input class="form-check-input me-1"  type="radio" wire:model="tipo2" value="Presencial" aria-label="..."  id="flexRadioGradopre">
+                                    <label class="form-check-label" for="flexRadioGradopre" style="font-size: 15px; color:#000000;">
+                                        Presencial 
+                                      </label>
+                                    
+                                  </li>
+                                  <li class="list-group-item list-group-item-action">
+                                    <input class="form-check-input me-1"  type="radio"  wire:model="tipo2" value="Virtual" aria-label="..."  id="flexRadioGradvir">
+                                    <label class="form-check-label" for="flexRadioGradvir" style="font-size: 15px; color:#000000;">
+                                      Virtual
+                                      </label>
+                                  
+                                  </li>
+                                  @error('tipo') 
+                                        <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                          <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                                          
+                                            <span>Seleccionar: </span>
+                                           </div> @enderror
+                        </div>
                         <div class="mb-3">
                           <option></option>
-                          <label for="lastwire:model" style="color: #3a3e7b">
-                              <b>¿Cómo prefiere que sus hijos estudien el ciclo escolar 2023?</b></label>
+                          <label for="lastname" style="color: #3a3e7b">
+                              <b>Inscripción:</b></label>
                               <br>
                               <br>
                               <li class="list-group-item list-group-item-action">
                                
-                                <input class="form-check-input me-1"  type="radio" wire:model="tipo2" value="Presencial" aria-label="..."  id="flexRadioGradopre">
-                                <label class="form-check-label" for="flexRadioGradopre" style="font-size: 15px; color:#000000;">
-                                    Presencial 
-                                  </label>
+                                  <input class="form-check-input me-1"  type="radio" wire:model="tipo_ins" value="1" aria-label="..."  id="flexRadioGradopre1">
+                                  <label class="form-check-label" for="flexRadioGradopre1" style="font-size: 15px; color:#000000;">
+                                    Re-ingreso 
+                                    </label>
                                   
                                 </li>
                                 <li class="list-group-item list-group-item-action">
-                                  <input class="form-check-input me-1"  type="radio"  wire:model="tipo2" value="Virtual" aria-label="..."  id="flexRadioGradvir">
-                                    <label class="form-check-label" for="flexRadioGradvir" style="font-size: 15px; color:#000000;">
-                                      Virtual
-                                      </label>
+                                  <input class="form-check-input me-1"  type="radio"  wire:model="tipo_ins" value="2" aria-label="..."  id="flexRadioGradvir2">
+                                  <label class="form-check-label" for="flexRadioGradvir2" style="font-size: 15px; color:#000000;">
+                                    Nuevo ingreso
+                                    </label>
                                 
                                 </li>
-                                @error('tipo') 
+                                @error('tipo_ins') 
                                       <div class="alert alert-danger d-flex align-items-center" role="alert">
                                         <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
                                         
-                                          <span>seleccionar: </span>
+                                          <span>seleccionar:</span>
                                          </div> @enderror
                       </div>
-                      <div class="mb-3">
-                        <option></option>
-                        <label for="lastwire:model" style="color: #3a3e7b">
-                            <b>Inscripción:</b></label>
-                            <br>
-                            <br>
-                            <li class="list-group-item list-group-item-action">
-                             
-                                <input class="form-check-input me-1"  type="radio" value="1" wire:model="tipo_ins" value="1" aria-label="..."  id="flexRadioGradopre1">
-                                <label class="form-check-label" for="flexRadioGradopre1" style="font-size: 15px; color:#000000;">
-                                  Re-ingreso 
-                                  </label>
-                                
-                              </li>
-                              <li class="list-group-item list-group-item-action">
-                                <input class="form-check-input me-1"  type="radio"  value="2" wire:model="tipo_ins" value="2" aria-label="..."  id="flexRadioGradvir2">
-                                <label class="form-check-label" for="flexRadioGradvir2" style="font-size: 15px; color:#000000;">
-                                  Nuevo ingreso
-                                  </label>
-                              
-                              </li>
-                              @error('tipo_ins') 
-                                    <div class="alert alert-danger d-flex align-items-center" role="alert">
-                                      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
-                                      
-                                        <span>Seleccionar: </span>
-                                       </div> @enderror
-                    </div>
+                        </div>
                       </form>
                     </div>
                   </div>
@@ -1683,7 +1709,7 @@
                    
          <div class="col-md-6">
              <strong><label  for="Labelcarneseguro" class="form-label"> Número de carné de seguro</label></strong>
-               <input  type="number" class="form-control"  wire:model="carne_seguro">
+               <input  type="text" class="form-control"  wire:model="carne_seguro">
          </div>
                    
        </div>
@@ -1708,67 +1734,59 @@
           <div  wire:ignore.self class="accordion-body" style="border-radius: 60px 60px 60px 60px;">
             <strong><p class="card-title" style="color:#3a3e7b;" >
               Autorizo que mi hij@ se retire de la siguiente manera:</p></strong>
-            <div class="tab">
-              <strong><label for="exampleInputPassword1" class="form-label">¿El alumno se retira solo?</label></strong>
+              <div class="row align-items-center">
+                <div class="row">
+                  <strong><label for="exampleInputPassword1" class="form-label">¿Cómo se retira el alumno?</label></strong>
+                <div class="col align-self-center">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="1" wire:model="retiro" id="solo1" wire:click="retiro('1')">
+                    <label class="form-check-label" for="solo1">
+                     Solo
+                    </label>
+                </div>
+                </div>
+                <div class="col align-self-center">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="2" wire:model="retiro" id="buscolegio1" wire:click="retiro('2')">
+                  <label class="form-check-label" for="buscolegio1">
+                    Bus
+                  </label>
+                </div>
+                </div>
+                <div class="col align-self-center">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="3" wire:model="retiro" id="encargado1" wire:click="retiro('3')">
+                  <label class="form-check-label" for="encargado1">
+                    Encargado
+                  </label>
+                </div>
+                </div>
+              </div>
+              </div>
+  
+              @if($retiro==1)
+              <div class="tab">
+                <strong><label for="exampleInputPassword1" class="form-label">Se retira por:</label></strong>
                 <center>
-            <div style="width: 12rem;">
-            <div class="form-check">
-              <input class="form-check-input" type="radio" value="1" wire:model="solo_alumno" id="solo1" wire:click="solo_alumno('1')">
-                <label class="form-check-label" for="solo1">
-                 Si
-                </label>
-            </div>
-            <div class="form-check">
-            <input class="form-check-input" type="radio" value="2" wire:model="solo_alumno" id="solo2" wire:click="solo_alumno('2')">
-              <label class="form-check-label" for="solo1">
-                No
-              </label>
-            </div>
-            </center>
-          </div>
-  
-          @if($solo_alumno==1)
-            <div class="tab">
-              <strong><label for="exampleInputPassword1" class="form-label">Se retira por:</label></strong>
-              <center>
-              <div style="width: 12rem;">
-              <div class="form-check">
-                  <input class="form-check-input" type="radio" wire:model="solo_por" value="1" id="retirapor1" wire:click="solo_por('1')">
-                  <label class="form-check-label" for="retirapor1">
-                    Florida
-                  </label>
+                <div style="width: 12rem;">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" wire:model="solo_por" value="1" id="retirapor1" wire:click="solo_por('1')">
+                    <label class="form-check-label" for="retirapor1">
+                      Florida solo 
+                    </label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" wire:model="solo_por" value="2" id="retirapor2" wire:click="solo_por('2')">
+                    <label class="form-check-label" for="retirapor2">
+                      Monserrat solo 
+                    </label>
+                  </div>
                 </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" wire:model="solo_por" value="2" id="retirapor2" wire:click="solo_por('2')">
-                  <label class="form-check-label" for="retirapor1">
-                    Monserrat
-                  </label>
-                </div>
+             </center>  
               </div>
-           </center>  
-            </div>
-          @endif
+            @endif
   
-      @if($solo_alumno==2)
-            <div class="tab">
-              <strong><label for="exampleInputPassword1" class="form-label">¿El alumno se retira con un encargado?</label></strong>
-              <center>
-              <div style="width: 12rem;">
-              <div class="form-check">
-                  <input class="form-check-input" type="radio" value="1" wire:model="encargado_alumno" id="encargado1" wire:click="encargado_alumno('1')">
-                  <label class="form-check-label" for="encargado1">
-                    Si
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" value="2" wire:model="encargado_alumno" id="encargado2" wire:click="encargado_alumno('2')">
-                  <label class="form-check-label" for="encargado1">
-                    No
-                  </label>
-                </div>
-              </div>
-           </center>
-           @if($encargado_alumno==1)
+            @if($retiro==3)
            <center>
           <div class="row">
             <div class="col-md-6">
@@ -1792,7 +1810,7 @@
           
           </div>
   
-          @if($encargado_alumno==2)
+          @if($retiro==2)
           <div class="tab">
             <strong><label for="exampleInputPassword1" class="form-label">¿El alumno se retira en bus del colegio?</label></strong>
             <center>
@@ -1806,7 +1824,7 @@
               <div class="form-check">
                 <input class="form-check-input" type="radio" value="2" wire:model="bus_colegio" id="buscolegio2" wire:click="bus_colegio('2')">
                 <label class="form-check-label" for="buscolegio1">
-                  No
+                  Bus ajeno 
                 </label>
               </div>
             </div>
@@ -1819,13 +1837,13 @@
               <center>
               <div style="width: 12rem;">
               <div class="form-check">
-                  <input class="form-check-input" type="radio" value="1" wire:model="bus_por" value="1" id="buspor1" wire:click="bus_por('1')">
+                  <input class="form-check-input" type="radio" wire:model="bus_por" value="1" id="buspor1" wire:click="bus_por('1')">
                   <label class="form-check-label" for="buspor1">
                     Florida
                   </label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" value="2" wire:model="bus_por" value="2" id="buspor2" wire:click="bus_por('2')">
+                  <input class="form-check-input" type="radio" wire:model="bus_por" value="2" id="buspor2" wire:click="bus_por('2')">
                   <label class="form-check-label" for="buspor1">
                     Monserrat
                   </label>
@@ -1862,7 +1880,6 @@
          </center>
         @endif
       @endif
-      @endif
         </div>
         </div>
   </div>
@@ -1879,13 +1896,13 @@
             @if($mensajeins!=null && $mensajeins==1)
             <br>
             <div class="alert alert-success" role="alert">
-                ¡Editado Correctamente!
+                ¡Editado Correctamente! 
               </div>
             @endif
               @if($mensajeins1!=null && $mensajeins1==1)
               <br>
               <div class="alert alert-Danger" role="alert">
-                ¡No fue Editado Correctamente!
+                ¡No fue Editado Correctamente! 
               </div>
               @endif
                     
