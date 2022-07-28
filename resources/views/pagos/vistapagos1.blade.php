@@ -101,34 +101,34 @@
   
   <ul class="breadcrumbs">
     @if($op2==null)
-    <li><a href="/Ingreso_de_pagos"><strong>Buscador</strong></a></li>
+    <li><a href="/Ingreso_de_pagos"><strong>Buscar Alumnos</strong></a></li>
     @elseif($op2==1)
-    <li><a href="/Ingreso_de_pagos"><strong>Buscador</strong></a></li>
+    <li><a href="/Ingreso_de_pagos"><strong>Buscar Alumnos</strong></a></li>
     <li><a href="#" wire:click='paginacion("1")'><strong>Estado de Cuenta</strong></a></li>
     @elseif($op2==2)
-    <li><a href="/Ingreso_de_pagos"><strong>Buscador</strong></a></li>
+    <li><a href="/Ingreso_de_pagos"><strong>Buscar Alumnos</strong></a></li>
     <li><a href="#" wire:click='paginacion("1")'><strong>Estado de Cuenta</strong></a></li>
     <li><a href="#" wire:click='paginacion("2")'><strong>Pagos Mensuales</strong></a></li>
     @endif
     {{-- @elseif($op2==3)
-    <li><a href="/Ingreso_de_pagos"><strong>Buscador</strong></a></li>
+    <li><a href="/Ingreso_de_pagos"><strong>Buscar Alumnos</strong></a></li>
     <li><a href="#" wire:click='paginacion("1")'><strong>Estado de Cuenta</strong></a></li>
     <li><a href="#" wire:click='paginacion("2")'><strong>Pagos Mensuales</strong></a></li>
     <li><a href="#" wire:click='paginacion("3")'><strong>Unidades</strong></a></li>
     @elseif($op2==4)
-    <li><a href="/Ingreso_de_pagos"><strong>Buscador</strong></a></li>
+    <li><a href="/Ingreso_de_pagos"><strong>Buscar Alumnos</strong></a></li>
     <li><a href="#" wire:click='paginacion("1")'><strong>Estado de Cuenta</strong></a></li>
     <li><a href="#" wire:click='paginacion("2")'><strong>Pagos Mensuales</strong></a></li>
     <li><a href="#" wire:click='paginacion("3")'><strong>Unidades</strong></a></li>
     <li><a href="#" wire:click='paginacion("4")'><strong>Actividades</strong></a></li>
     @elseif($op2==5)
-    <li><a href="/Ingreso_de_pagos"><strong>Buscador</strong></a></li>
+    <li><a href="/Ingreso_de_pagos"><strong>Buscar Alumnos</strong></a></li>
     <li><a href="#" wire:click='paginacion("1")'><strong>Estado de Cuenta</strong></a></li>
     <li><a href="#" wire:click='paginacion("2")'><strong>Pagos Mensuales</strong></a></li>
     <li><a href="#" wire:click='paginacion("3")'><strong>Unidades</strong></a></li>
     <li><a href="#" wire:click='paginacion("5")'><strong>Pagos Mensuales</strong></a></li>
     @elseif($op2==6)
-    <li><a href="/Ingreso_de_pagos"><strong>Buscador</strong></a></li>
+    <li><a href="/Ingreso_de_pagos"><strong>Buscar Alumnos</strong></a></li>
     <li><a href="#" wire:click='paginacion("1")'><strong>Estado de Cuenta</strong></a></li>
     <li><a href="#" wire:click='paginacion("6")'><strong>Revisión</strong></a></li>
     @endif --}}
