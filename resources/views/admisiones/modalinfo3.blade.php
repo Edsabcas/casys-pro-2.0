@@ -551,7 +551,7 @@
                         <strong><label for="exampleInputPassword1" class="form-label">Foto de estudiante</label></strong>
                       <div class="card-body center">
                         <br>
-                        <input type="file" accept="image/*" class="form-control w-85 p-3 center" wire:model='fotoest'  style="border:2px solid #a4cb29;" id="exampleInputPassword1">
+                        <input type="file" accept="image/*" class="form-control w-85 p-3 center" wire:model='fotoest2'  style="border:2px solid #a4cb29;" id="exampleInputPassword1">
                       </div>
                       <div class="mb-3">
                         <div wire:loading wire:target="fotoest" class="alert alert-warning" role="alert">
@@ -560,7 +560,7 @@
                           <div class="spinner-border text-warning" role="status">
                         </div>
                     </div>
-                    @if($formato==1)
+                    @if($formato2==1)
                     <div class="center">
                     <div class="col-xl-6 col-sm-6" >
                     <div class="card-header" style="background-color: #a4cb29" height="250" weight="175">
@@ -568,11 +568,12 @@
                         <h4 style="color: #ffff"><strong>VISUALIZACIÓN DE LA IMAGEN</strong></h4>
                     </div>
                     <div class="card-body center">
-                      <img src="{{$fotoest->temporaryURL()}}" height="250" weight="175"  alt="...">
+                      <img src="{{$fotoest2->temporaryURL()}}" height="250" weight="175"  alt="...">
                     </div>
                     </div>
                     </div>
                     @endif
+                  @if($formato2==null or $formato2=="")
                   <div class="center">
                   <div class="col-xl-8 col-sm-8" >
                     <div class="card-header" style="background-color: #a4cb29">
@@ -591,6 +592,7 @@
                     </div>
                   </div>
                   </div>
+                  @endif
                          <strong><label for="exampleInputPassword1" class="form-label">¿Tiene hermanos en colegio?</label></strong>
                          <center>
                          <div style="width: 12rem;">
