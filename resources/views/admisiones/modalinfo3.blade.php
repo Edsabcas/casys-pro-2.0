@@ -17,7 +17,7 @@
                 <div style="border-radius: 60px 60px 60px 60px;" class="accordion-item">
                   <h2 style="border-radius: 60px 60px 60px 60px;" class="accordion-header" id="panelsStayOpen-headingTwo">
                     <button class="accordion-button collapsed" style="background-color:#d6e7a6; border:6px solid #a4cb39; border-radius: 60px 60px 60px 60px;"  type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-                    <h4 class="font-weight-bolder">  <b>Datos Estudiante:</b>   </h4>
+                    <h4 class="font-weight-bolder">  <b>Datos Estudiante</b>   </h4>
                     </button>
                    
                   </h2>
@@ -251,7 +251,7 @@
                 <div style="border-radius: 60px 60px 60px 60px;" class="accordion-item">
                   <h2  style="border-radius: 60px 60px 60px 60px;" class="accordion-header" id="panelsStayOpen-headingThree">
                     <button class="accordion-button collapsed" style="background-color:#d6e7a6; border:6px solid #a4cb39; border-radius: 60px 60px 60px 60px;"  type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-                    <h4 class="font-weight-bolder">  <b>Datos Encargado:</b>   </h4>
+                    <h4 class="font-weight-bolder">  <b>Datos Encargado</b>   </h4>
                     </button>
                 
                   </h2>
@@ -540,7 +540,7 @@
                    <h2 style="border-radius: 60px 60px 60px 60px;" class="accordion-header" id="panelsStayOpen-headingOnedatosvarios">
                      <button class="accordion-button"  type="button" style="background-color:#d6e7a6; border:6px solid #a4cb39; border-radius: 60px 60px 60px 60px;" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-datosvarios" aria-expanded="true" aria-controls="panelsStayOpen-datosvarios">
                          <h4 class="font-weight-bolder">
-                             DATOS VARIOS
+                             Datos Varios
                            </h4>
                          </button>
                    </h2>
@@ -688,7 +688,7 @@
                    <h2 style="border-radius: 60px 60px 60px 60px;" class="accordion-header" id="panelsStayOpen-headingOnedatospadre">
                      <button class="accordion-button" type="button" style="background-color:#d6e7a6; border:6px solid #a4cb39; border-radius: 60px 60px 60px 60px;" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-padre" aria-expanded="true" aria-controls="panelsStayOpen-padre">
                          <h4 class="font-weight-bolder">
-                             DATOS DEL PADRE
+                             Datos del Padre
                            </h4>
                          </button>
                    </h2>
@@ -958,7 +958,7 @@
                    <h2 style="border-radius: 60px 60px 60px 60px;" class="accordion-header" id="panelsStayOpen-headingOneDatosdelamadre">
                      <button class="accordion-button" type="button" style="background-color:#d6e7a6; border:6px solid #a4cb39; border-radius: 60px 60px 60px 60px;" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-madre" aria-expanded="true" aria-controls="panelsStayOpen-madre">
                          <h4 class="font-weight-bolder">
-                             DATOS DE LA MADRE
+                             Datos de la Madre
                            </h4>
                          </button>
                    </h2>
@@ -1220,7 +1220,7 @@
           <h2 style="border-radius: 60px 60px 60px 60px;" class="accordion-header" id="panelsStayOpen-headingOnedatosencargado">
             <button class="accordion-button collapsed" type="button" style="background-color:#d6e7a6; border:6px solid #a4cb39; border-radius: 60px 60px 60px 60px;" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-encargado" aria-expanded="false" aria-controls="panelsStayOpen-encargado">
                 <h4 class="font-weight-bolder">
-                    DATOS DEL ENCARGADO
+                    Datos del Encargado
                   </h4>
                 </button>
           </h2>
@@ -1552,7 +1552,7 @@
        <h2 style="border-radius: 60px 60px 60px 60px;" class="accordion-header" id="panelsStayOpen-headingOnedatosmedicos  ">
          <button class="accordion-button" type="button" style="background-color:#d6e7a6; border:6px solid #a4cb39; border-radius: 60px 60px 60px 60px;" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-medicos" aria-expanded="true" aria-controls="panelsStayOpen-medicos">
            <h4 class="font-weight-bolder">
-             DATOS MEDICOS
+             Datos Médicos
            </h4>
          </button>
        </h2>
@@ -1726,7 +1726,7 @@
         <h2 style="border-radius: 60px 60px 60px 60px;" class="accordion-header" id="panelsStayOpen-headingOnedatossalida">
           <button class="accordion-button collapsed" type="button" style="background-color:#d6e7a6; border:6px solid #a4cb39; border-radius: 60px 60px 60px 60px;" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-salida" aria-expanded="false" aria-controls="panelsStayOpen-salida">
             <h4 class="font-weight-bolder">
-            DATOS DE SALIDA
+            Datos de Salida
             </h4>
           </button>
         </h2>
@@ -1773,13 +1773,13 @@
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" wire:model="solo_por" value="1" id="retirapor1" wire:click="solo_por('1')">
                     <label class="form-check-label" for="retirapor1">
-                      Florida solo 
+                      Florida
                     </label>
                   </div>
                   <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" wire:model="solo_por" value="2" id="retirapor2" wire:click="solo_por('2')">
                     <label class="form-check-label" for="retirapor2">
-                      Monserrat solo 
+                      Monserrat 
                     </label>
                   </div>
                 </div>
