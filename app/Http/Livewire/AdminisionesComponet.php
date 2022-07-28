@@ -17,7 +17,7 @@ class AdminisionesComponet extends Component
     public $gradoin,$nombre_es,$f_nacimiento_es,$genero,$cui_es,$codigo_pe_es,$nac_es,$lug_nac_es,$tel_es,$cel_es,$direccion_es,$religion_es;
     public $nombre_en,$fnacimiento_en,$dpi_en,$extentido_en,$es_civil_en,$direccion_en,$tel_casa_en,$cel_en,$correo_en,$religion_en,$mensaje_diaco;
     public $a,$mensaje,$gradose,$fingreso_gestion,$id_ges_cambio,$tipo_cambio1,$id_pre_corre,$DPI_encargado,$nacimiento_encargado,$id_relacion;
-    public $id_pre,$metodo,$archivo_comprobante,$img,$tipo,$mensaje24,$mensaje25,$fotos,$fpago,$no_gest_con, $solo_por, $idgrado;
+    public $id_pre,$metodo,$archivo_comprobante,$validacion_comp,$validacion_com,$observacion2,$img,$tipo,$mensaje24,$mensaje25,$fotos,$fpago,$no_gest_con,$solo_por,$idgrado;
     public $val,$val1,$gestion,$errorfecha,$upnocorre1,$upnocorre2,$nomb,$fvencimiento,$cseguridad,$ntarjeta,$notarjeta;
     public $estado_ges,$archivo_comprobante2,$fecha_ultimo_cambio,$mensajeins,$mensajeins1,$id_pre_boton,$estado_pre_boton,$matricula_bus_aj;
     public $mensaje1,$id2,$profesion_en,$id_desact,$nuevo_estadodesact,$no_gest_desact,$tipo_cambio8;
@@ -112,23 +112,23 @@ class AdminisionesComponet extends Component
             $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.ESTADO_PRE_INS,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.APELLIDOS_EST,TB_PRE_INS.NO_GESTION,TB_PRE_INS.COMPROBANTE_PAGO, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE ESTADO_PRE_INS=2 and (NO_GESTION like '%".$this->search11."%' or NOMBRE_ES like '%".$this->search11."%')";
             $estado_uno2=DB::select($sql);
         }else{
-            $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.ESTADO_PRE_INS,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.APELLIDOS_EST, TB_PRE_INS.NO_GESTION,TB_PRE_INS.COMPROBANTE_PAGO, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE ESTADO_PRE_INS=2 order by TB_PRE_INS.ESTADO_PRE_INS DESC";
+            $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.ESTADO_PRE_INS,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.NO_GESTION,TB_PRE_INS.COMPROBANTE_PAGO,TB_PRE_INS.APELLIDOS_EST, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE ESTADO_PRE_INS=2 order by TB_PRE_INS.ESTADO_PRE_INS DESC";
             $estado_uno2=DB::select($sql);
         }
 
         if($this->search2!=null && $this->search2!=""){
-            $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.ESTADO_PRE_INS,TB_PRE_INS.NO_GESTION, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE ESTADO_PRE_INS=3 and (NO_GESTION like '%".$this->search2."%' or NOMBRE_ES like '%".$this->search2."%')";
+            $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.APELLIDOS_EST,TB_PRE_INS.ESTADO_PRE_INS,TB_PRE_INS.NO_GESTION, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE ESTADO_PRE_INS=3 and (NO_GESTION like '%".$this->search2."%' or NOMBRE_ES like '%".$this->search2."%')";
             $estado_dos=DB::select($sql);
         }else{
-            $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.ESTADO_PRE_INS,TB_PRE_INS.NO_GESTION, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE ESTADO_PRE_INS=3 order by TB_PRE_INS.FECHA_CAMBIOS_REG  DESC";
+            $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.APELLIDOS_EST,TB_PRE_INS.ESTADO_PRE_INS,TB_PRE_INS.NO_GESTION, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE ESTADO_PRE_INS=3 order by TB_PRE_INS.FECHA_CAMBIOS_REG  DESC";
             $estado_dos=DB::select($sql);
         }
 
         if($this->search22!=null && $this->search22!=""){
-            $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.ESTADO_PRE_INS,TB_PRE_INS.NO_GESTION, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE ESTADO_PRE_INS=4 and (NO_GESTION like '%".$this->search22."%' or NOMBRE_ES like '%".$this->search22."%')";
+            $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.APELLIDOS_EST,TB_PRE_INS.ESTADO_PRE_INS,TB_PRE_INS.NO_GESTION, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE ESTADO_PRE_INS=4 and (NO_GESTION like '%".$this->search22."%' or NOMBRE_ES like '%".$this->search22."%')";
             $estado_dos2=DB::select($sql);
         }else{
-            $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.ESTADO_PRE_INS,TB_PRE_INS.NO_GESTION, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE  ESTADO_PRE_INS=4 order by TB_PRE_INS.FECHA_CAMBIOS_REG  DESC";
+            $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.APELLIDOS_EST,TB_PRE_INS.ESTADO_PRE_INS,TB_PRE_INS.NO_GESTION, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE  ESTADO_PRE_INS=4 order by TB_PRE_INS.FECHA_CAMBIOS_REG  DESC";
             $estado_dos2=DB::select($sql);
         }
 
@@ -386,7 +386,6 @@ class AdminisionesComponet extends Component
         foreach($preinsp as $pre){
             $this->id_ges_cambio=$pre->ID_PRE;
             $this->nombre_es=$pre->NOMBRE_ES;
-            $this->apellidos_est=$pre->APELLIDOS_EST;
             $this->f_nacimiento_es=$pre->FEC_NAC;
             $this->genero=$pre->GENERO;
             $this->cui_es=$pre->CUI_ES;
@@ -404,6 +403,8 @@ class AdminisionesComponet extends Component
             $this->observacion=$pre->OBSERVACION_COMP;
             $this->fpago=$pre->FORMA_PAGO;
             $this->metodo=$pre->TIPO_PAGO;
+            $this->validacion_comp=$pre->VALIDACION_COMP;
+            $this->observacion2=$pre->OBSERVACION_COMP2;
             $this->es_civil_en=$pre->ESTADO_CIVIL_EN_ES;
             $this->direccion_en=$pre->DIRECCION_EN_ES;
             $this->tel_casa_en=$pre->TEL_EN_ES;
@@ -702,8 +703,7 @@ class AdminisionesComponet extends Component
             foreach($estactr as $estac)
             {
                 $this->id_pre_info=$estac->ID_PRE_INFO;
-                $this->fotoest=$estac->FOTO_ALUMNO;
-                $this->confi=$estac->HERMANOS_COLE;
+                $this->id_pre_i=$estac->ID_PRE;
                 $this->confi=$estac->HERMANOS_COLE;
                 $this->grados_selecionados=$estac->GRADO_HERMANOS_COLE;
                 $grados_selecionados1=explode(";", $this->grados_selecionados);
@@ -924,7 +924,6 @@ class AdminisionesComponet extends Component
         $id_pre_info=$this->id_pre_info;
         $id_pre_i=$this->id_pre_i;
         $confi=$this->confi;
-        $fotoest=$this->fotoest;
         $grados_selecionados=$this->grados_selecionados;
 $año_ingreso=$this->año_ingreso;
 $grado_primer_ingreso=$this->grado_primer_ingreso;
@@ -1007,7 +1006,6 @@ $quien_encargado1=$this->quien_encargado1;
             ->where('ID_PRE',$this->id_pre_i)
             ->update(
         [
-            'FOTO_ALUMNO'=>$fotoest,
             'HERMANOS_COLE'=>$this->confi,
             'GRADO_HERMANOS_COLE'=>$this->grados_selecionados,
             'AÑO_1R_INGRESO'=>$año_ingreso,
@@ -1993,5 +1991,8 @@ public function Desactivacion($id,$estado,$gest){
             }
     
  }
+        public function validacion($val){
 
+        $this->validacion_com=$val;
+    }
 }

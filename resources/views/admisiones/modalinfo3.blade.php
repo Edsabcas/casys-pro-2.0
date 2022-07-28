@@ -17,7 +17,7 @@
                 <div style="border-radius: 60px 60px 60px 60px;" class="accordion-item">
                   <h2 style="border-radius: 60px 60px 60px 60px;" class="accordion-header" id="panelsStayOpen-headingTwo">
                     <button class="accordion-button collapsed" style="background-color:#d6e7a6; border:6px solid #a4cb39; border-radius: 60px 60px 60px 60px;"  type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-                    <h4 class="font-weight-bolder">  <b>Datos del Estudiante:</b>   </h4>
+                    <h4 class="font-weight-bolder">  <b>Datos Estudiante:</b>   </h4>
                     </button>
                    
                   </h2>
@@ -26,8 +26,8 @@
                                <form wire:submit.prevent="" class="form-floating">
                                 <div class="row g-3">
                                   <div class="col-md">
-                                    <label for="inputNombres" style="font-size: 15px; color:#000000;">Nombre Completo:
-                                    </label>
+                                    <label for="inputNombres" style="font-size: 15px; color:#000000;">Nombres:
+                                    </label> 
                                     <input  wire:model="nombre_es" class="form-control " required>
                                     @error('nombre_es')
                                     <div class="alert alert-warning" role="alert">
@@ -35,7 +35,16 @@
                                     </div>
                                     @enderror
                                 </div>
+                                <div class="col-md">
+                                  <label for="inputApellidos" style="font-size: 15px; color:#000000;">Apellidos:</label>
+                                  <input  wire:model="apellidos_est" class="form-control " required>
+                                  @error('apellidos_est')
+                                  <div class="alert alert-warning" role="alert">
+                                   Pendiente
+                                  </div>
+                                  @enderror
                               </div>
+                            </div>
                                 <div class="row g-3">
                                   <div class="col-md">
                                     <label for="inputApellidos" style="font-size: 15px; color:#000000;">Fecha de Nacimiento:</label>
@@ -50,17 +59,17 @@
                                   <label for="inputApellidos" style="font-size: 15px; color:#000000;">Género:</label>
                                   <br>
                                   <div class="form-check form-check-inline ">
-                                    <input class="form-check-input"  wire:model='genero' value="Masculino" type="radio" value="1" id="flexRadioDefault1">
+                                    <input class="form-check-input"  wire:model='genero' value="Masculino" type="radio" wire:model="genero_es" id="flexRadioDefault1">
                                     <label class="form-check-label" for="flexRadioDefault1" style="font-size: 15px; color:#000000;">
                                       Masculino
                                     </label>
                                   </div>
                                   <div class="form-check form-check-inline " >
-                                    <input class="form-check-input"  wire:model='genero' value="Femenino" type="radio" value="2" id="flexRadioDefault2">
+                                    <input class="form-check-input"  wire:model='genero' value="Femenino" type="radio" wire:model="genero_es" id="flexRadioDefault2">
                                     <label class="form-check-label" for="flexRadioDefault2" style="font-size: 15px; color:#000000;">
                                       Femenino
                                     </label>
-                                    @error('genero')
+                                    @error('genero_es')
                                     <div class="alert alert-warning" role="alert">
                                       Pendiente
                                     </div>
@@ -157,63 +166,80 @@
                           </div>
                           @enderror 
                         </div>
+                        
+                        <div class="row g-3">
+                          <div class="col-md">
+                            <label for="inputApellidos" style="font-size: 15px; color:#000000;">Grado ingreso:</label>
+                            <br>
+                            <select class="form-select form-select-lg mb-3" wire:model="gradoin" aria-label=".form-select-lg example">
+                              @foreach($grados as $grado)
+                              <option value="{{$grado->ID_GR}}">{{$grado->GRADO}}</option>
+                              @endforeach
+                            </select>
+                            @error('gradoin')
+                            <div class="alert alert-warning" role="alert">
+                            Pendiente
+                            </div>
+                            @enderror 
+                          </div>
 
+                          <div class="mb-3">
+                            <option></option>
+                            <label for="lastname" style="color: #3a3e7b">
+                                <b>¿Cómo prefiere que sus hijos estudien el ciclo escolar 2023?</b></label>
+                                <br>
+                                <br>
+                                <li class="list-group-item list-group-item-action">
+                                 
+                                    <input class="form-check-input me-1"  type="radio" wire:model="tipo2" value="Presencial" aria-label="..."  id="flexRadioGradopre">
+                                    <label class="form-check-label" for="flexRadioGradopre" style="font-size: 15px; color:#000000;">
+                                        Presencial 
+                                      </label>
+                                    
+                                  </li>
+                                  <li class="list-group-item list-group-item-action">
+                                    <input class="form-check-input me-1"  type="radio"  wire:model="tipo2" value="Virtual" aria-label="..."  id="flexRadioGradvir">
+                                    <label class="form-check-label" for="flexRadioGradvir" style="font-size: 15px; color:#000000;">
+                                      Virtual
+                                      </label>
+                                  
+                                  </li>
+                                  @error('tipo') 
+                                        <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                          <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                                          
+                                            <span>Seleccionar: </span>
+                                           </div> @enderror
+                        </div>
                         <div class="mb-3">
                           <option></option>
-                          <label for="lastwire:model" style="color: #3a3e7b">
-                              <b>¿Cómo prefiere que sus hijos estudien el ciclo escolar 2023?</b></label>
+                          <label for="lastname" style="color: #3a3e7b">
+                              <b>Inscripción:</b></label>
                               <br>
                               <br>
                               <li class="list-group-item list-group-item-action">
                                
-                                <input class="form-check-input me-1"  type="radio" wire:model="tipo2" value="Presencial" aria-label="..."  id="flexRadioGradopre">
-                                <label class="form-check-label" for="flexRadioGradopre" style="font-size: 15px; color:#000000;">
-                                    Presencial 
-                                  </label>
+                                  <input class="form-check-input me-1"  type="radio" wire:model="tipo_ins" value="1" aria-label="..."  id="flexRadioGradopre1">
+                                  <label class="form-check-label" for="flexRadioGradopre1" style="font-size: 15px; color:#000000;">
+                                    Re-ingreso 
+                                    </label>
                                   
                                 </li>
                                 <li class="list-group-item list-group-item-action">
-                                  <input class="form-check-input me-1"  type="radio"  wire:model="tipo2" value="Virtual" aria-label="..."  id="flexRadioGradvir">
-                                    <label class="form-check-label" for="flexRadioGradvir" style="font-size: 15px; color:#000000;">
-                                      Virtual
-                                      </label>
+                                  <input class="form-check-input me-1"  type="radio"  wire:model="tipo_ins" value="2" aria-label="..."  id="flexRadioGradvir2">
+                                  <label class="form-check-label" for="flexRadioGradvir2" style="font-size: 15px; color:#000000;">
+                                    Nuevo ingreso
+                                    </label>
                                 
                                 </li>
-                                @error('tipo') 
+                                @error('tipo_ins') 
                                       <div class="alert alert-danger d-flex align-items-center" role="alert">
                                         <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
                                         
-                                          <span>seleccionar: </span>
+                                          <span>seleccionar:</span>
                                          </div> @enderror
                       </div>
-                      <div class="mb-3">
-                        <option></option>
-                        <label for="lastwire:model" style="color: #3a3e7b">
-                            <b>Inscripción:</b></label>
-                            <br>
-                            <br>
-                            <li class="list-group-item list-group-item-action">
-                             
-                                <input class="form-check-input me-1"  type="radio" value="1" wire:model="tipo_ins" value="1" aria-label="..."  id="flexRadioGradopre1">
-                                <label class="form-check-label" for="flexRadioGradopre1" style="font-size: 15px; color:#000000;">
-                                  Re-ingreso 
-                                  </label>
-                                
-                              </li>
-                              <li class="list-group-item list-group-item-action">
-                                <input class="form-check-input me-1"  type="radio"  value="2" wire:model="tipo_ins" value="2" aria-label="..."  id="flexRadioGradvir2">
-                                <label class="form-check-label" for="flexRadioGradvir2" style="font-size: 15px; color:#000000;">
-                                  Nuevo ingreso
-                                  </label>
-                              
-                              </li>
-                              @error('tipo_ins') 
-                                    <div class="alert alert-danger d-flex align-items-center" role="alert">
-                                      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
-                                      
-                                        <span>Seleccionar: </span>
-                                       </div> @enderror
-                    </div>
+                        </div>
                       </form>
                     </div>
                   </div>

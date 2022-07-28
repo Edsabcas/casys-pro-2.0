@@ -310,7 +310,7 @@
                     @foreach ($estado_dos as $estado_do)
                     <tr>
                         <th scope="row">{{ $estado_do->NO_GESTION}}</th>
-                        <td>{{ $estado_do->NOMBRE_ES}}</td>
+                        <td>{{ $estado_do->NOMBRE_ES}} {{$estado_do->APELLIDOS_EST}}</td>
                         <td>{{ $estado_do->GRADO}}</td>
                         @if($estado_do->ESTADO_PRE_INS==3)
                         <td><span class="badge rounded-pill bg-warning text-dark">Pendiente R.</span></td>
@@ -377,7 +377,7 @@
                     @foreach ($estado_dos2 as $estado_do)
                     <tr>
                         <th scope="row">{{ $estado_do->NO_GESTION}}</th>
-                        <td>{{ $estado_do->NOMBRE_ES}}</td>
+                        <td>{{$estado_do->NOMBRE_ES}} {{$estado_do->APELLIDOS_EST}}</td>
                         <td>{{ $estado_do->GRADO}}</td>
                         @if($estado_do->ESTADO_PRE_INS==3)
                         <td><span class="badge rounded-pill bg-warning text-dark">Pendiente R.</span></td>
