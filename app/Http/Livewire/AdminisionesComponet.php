@@ -12,17 +12,17 @@ use Barryvdh\DomPDF\Facade\Pdf;
 class AdminisionesComponet extends Component
 {
     use WithFileUploads;
-
+    public $n_encargado, $dpi_encar, $bus_por, $nombre_conductor, $dpi_conductor, $n_conductor;
     public $search0,$search1,$search11,$search2,$search22,$search3,$search33,$search4,$search44,$search5,$search55,$usuario,$usuario2,$pass2,$correoed2;
     public $gradoin,$nombre_es,$f_nacimiento_es,$genero,$cui_es,$codigo_pe_es,$nac_es,$lug_nac_es,$tel_es,$cel_es,$direccion_es,$religion_es;
     public $nombre_en,$fnacimiento_en,$dpi_en,$extentido_en,$es_civil_en,$direccion_en,$tel_casa_en,$cel_en,$correo_en,$religion_en,$mensaje_diaco;
     public $a,$mensaje,$gradose,$fingreso_gestion,$id_ges_cambio,$tipo_cambio1,$id_pre_corre,$DPI_encargado,$nacimiento_encargado,$id_relacion;
-    public $id_pre,$metodo,$archivo_comprobante,$img,$tipo,$mensaje24,$mensaje25,$fotos,$fpago,$no_gest_con,$solo_por,$idgrado;
+    public $id_pre,$metodo,$archivo_comprobante,$validacion_comp,$observacion2,$img,$tipo,$mensaje24,$mensaje25,$fotos,$fpago,$no_gest_con,$solo_por,$idgrado;
     public $val,$val1,$gestion,$errorfecha,$upnocorre1,$upnocorre2,$nomb,$fvencimiento,$cseguridad,$ntarjeta,$notarjeta;
     public $estado_ges,$archivo_comprobante2,$fecha_ultimo_cambio,$mensajeins,$mensajeins1,$id_pre_boton,$estado_pre_boton,$matricula_bus_aj;
-    public $mensaje1,$id2,$profesion_en,$id_desact,$nuevo_estadodesact,$no_gest_desact,$tipo_cambio8;
+    public $mensaje1,$id2,$profesion_en,$id_desact,$nuevo_estadodesact,$no_gest_desact,$tipo_cambio8,$fotoest2;
     public $observacion, $id_pre_ins_arch, $id_no_gest_arch, $archivo_cdiaco, $archivo, $formato,$id_gest,$nuevo_estado,$id_no_gest_ins;
-    public $mensajeup,$mensajeup1,$correlativon,$pass,$correoed,$mensaje_diaco1;
+    public $mensajeup,$mensajeup1,$correlativon,$pass,$correoed,$mensaje_diaco1,$fotoest,$formato2,$apellido_es;
     public $id_pre_info, $id_pre_i, $confi, $grados_selecionados, $año_ingreso, $grado_primer_ingreso, $nombre_padre, $nacimiento_padre, $nacionalidad_padre;
     public $lugar_nacimiento_padre, $estadocivilp, $DPI_padre, $celular_padre, $telefono_padre, $direccion_residencia, $correo_padre, $profesion_padre;
     public $lugar_profesion_padre, $cargo_profesion_padre, $religion_padre, $NIT_padre, $vive_con_elpadre, $nombre_madre, $fechana_madre, $nacionalidad_madre;
@@ -30,7 +30,7 @@ class AdminisionesComponet extends Component
     public $lugar_prof_madre, $cargo_madre, $religion_madre, $vive_madre, $NIT_madre, $tiene_alergia, $Especifique_alerg, $nombreaseguradora, $nombreencargado;
     public $poliza, $carne_seguro, $codigo_fam, $nombre_fam, $Especifique_medi, $Especifique_ali, $medicamento, $grados_mostrar,$estadocivil;
     public $alimento, $vacunas, $alumno_asegurado, $solo_alumno, $encargado_alumno, $bus_colegio, $bus_no_colegio, $nombre_aseguradora, $no_gest;
-    public $tipo2,$correo_en2,$preciopre,$preciovir,$id_gr,$id_nvl;
+    public $tipo2,$correo_en2,$preciopre,$preciovir,$id_gr,$id_nvl, $retiro;
     public $quien_encargado1, $nombre_encargado, $nacimientoencargado,$nacionalidadencargado,$lugarnacimientoencargado,$estadocivilencargado,$DPIencargado,$telefonoencargado,$celularencargado,$direccionresidenciaencargado,$correoencargado,$profesionencargado,$lugar_profesion_encargado ,$religion_encargado,$NIT_encargado;
     public $img2, $img3, $archivo_perfil, $archivo_perfil2, $vive_con_el_encargado, $Especifique_rel;
     public $can1,$can2,$tipo_ins, $datosusuario4,$tipo3,$tipo4, $cargoencargado;
@@ -67,6 +67,14 @@ class AdminisionesComponet extends Component
 
         }
 
+        if($this->fotoest2!=null){
+            if($this->fotoest2->getClientOriginalExtension()=="jpg" or $this->fotoest2->getClientOriginalExtension()=="png" or $this->fotoest2->getClientOriginalExtension()=="jpeg"){
+                $this->formato2=1;
+            }
+            
+
+        }
+
         $diaco="";
             $diaco=DB::table('tb_pre_diaco')
             ->join('TB_PRE_INS','tb_pre_diaco.ID_PRE','=','TB_PRE_INS.ID_PRE')
@@ -92,43 +100,43 @@ class AdminisionesComponet extends Component
         }
 
         if($this->search0!=null && $this->search0!=""){
-            $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.NO_GESTION, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE ESTADO_PRE_INS=0 and (NO_GESTION like '%".$this->search0."%' or NOMBRE_ES like '%".$this->search0."%') ";
+            $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.NO_GESTION,TB_PRE_INS.APELLIDOS_EST, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE ESTADO_PRE_INS=0 and (NO_GESTION like '%".$this->search0."%' or NOMBRE_ES like '%".$this->search0."%') ";
             $estado_cero=DB::select($sql);
             
         }else{
-            $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.NO_GESTION, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE ESTADO_PRE_INS=0 order by TB_PRE_INS.FECHA_REGISTRO";
+            $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.NO_GESTION,TB_PRE_INS.APELLIDOS_EST, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE ESTADO_PRE_INS=0 order by TB_PRE_INS.FECHA_REGISTRO";
             $estado_cero=DB::select($sql);
             $this->can1=count($estado_cero);
         }
 
         if($this->search1!=null && $this->search1!=""){
-            $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.ESTADO_PRE_INS,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.NO_GESTION,TB_PRE_INS.COMPROBANTE_PAGO, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE ESTADO_PRE_INS=1 and (NO_GESTION like '%".$this->search1."%' or NOMBRE_ES like '%".$this->search1."%')";
+            $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.ESTADO_PRE_INS,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.APELLIDOS_EST,TB_PRE_INS.NO_GESTION,TB_PRE_INS.COMPROBANTE_PAGO, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE ESTADO_PRE_INS=1 and (NO_GESTION like '%".$this->search1."%' or NOMBRE_ES like '%".$this->search1."%')";
             $estado_uno=DB::select($sql);
         }else{
-            $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.ESTADO_PRE_INS,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.NO_GESTION,TB_PRE_INS.COMPROBANTE_PAGO, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE ESTADO_PRE_INS=1 order by TB_PRE_INS.ESTADO_PRE_INS DESC";
+            $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.ESTADO_PRE_INS,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.APELLIDOS_EST,TB_PRE_INS.NO_GESTION,TB_PRE_INS.COMPROBANTE_PAGO, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE ESTADO_PRE_INS=1 order by TB_PRE_INS.ESTADO_PRE_INS DESC";
             $estado_uno=DB::select($sql);
         }
         if($this->search11!=null && $this->search11!=""){
-            $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.ESTADO_PRE_INS,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.NO_GESTION,TB_PRE_INS.COMPROBANTE_PAGO, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE ESTADO_PRE_INS=2 and (NO_GESTION like '%".$this->search11."%' or NOMBRE_ES like '%".$this->search11."%')";
+            $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.ESTADO_PRE_INS,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.APELLIDOS_EST,TB_PRE_INS.NO_GESTION,TB_PRE_INS.COMPROBANTE_PAGO, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE ESTADO_PRE_INS=2 and (NO_GESTION like '%".$this->search11."%' or NOMBRE_ES like '%".$this->search11."%')";
             $estado_uno2=DB::select($sql);
         }else{
-            $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.ESTADO_PRE_INS,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.NO_GESTION,TB_PRE_INS.COMPROBANTE_PAGO, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE ESTADO_PRE_INS=2 order by TB_PRE_INS.ESTADO_PRE_INS DESC";
+            $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.ESTADO_PRE_INS,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.NO_GESTION,TB_PRE_INS.COMPROBANTE_PAGO,TB_PRE_INS.APELLIDOS_EST, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE ESTADO_PRE_INS=2 order by TB_PRE_INS.ESTADO_PRE_INS DESC";
             $estado_uno2=DB::select($sql);
         }
 
         if($this->search2!=null && $this->search2!=""){
-            $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.ESTADO_PRE_INS,TB_PRE_INS.NO_GESTION, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE ESTADO_PRE_INS=3 and (NO_GESTION like '%".$this->search2."%' or NOMBRE_ES like '%".$this->search2."%')";
+            $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.APELLIDOS_EST,TB_PRE_INS.ESTADO_PRE_INS,TB_PRE_INS.NO_GESTION, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE ESTADO_PRE_INS=3 and (NO_GESTION like '%".$this->search2."%' or NOMBRE_ES like '%".$this->search2."%')";
             $estado_dos=DB::select($sql);
         }else{
-            $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.ESTADO_PRE_INS,TB_PRE_INS.NO_GESTION, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE ESTADO_PRE_INS=3 order by TB_PRE_INS.FECHA_CAMBIOS_REG  DESC";
+            $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.APELLIDOS_EST,TB_PRE_INS.ESTADO_PRE_INS,TB_PRE_INS.NO_GESTION, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE ESTADO_PRE_INS=3 order by TB_PRE_INS.FECHA_CAMBIOS_REG  DESC";
             $estado_dos=DB::select($sql);
         }
 
         if($this->search22!=null && $this->search22!=""){
-            $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.ESTADO_PRE_INS,TB_PRE_INS.NO_GESTION, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE ESTADO_PRE_INS=4 and (NO_GESTION like '%".$this->search22."%' or NOMBRE_ES like '%".$this->search22."%')";
+            $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.APELLIDOS_EST,TB_PRE_INS.ESTADO_PRE_INS,TB_PRE_INS.NO_GESTION, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE ESTADO_PRE_INS=4 and (NO_GESTION like '%".$this->search22."%' or NOMBRE_ES like '%".$this->search22."%')";
             $estado_dos2=DB::select($sql);
         }else{
-            $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.ESTADO_PRE_INS,TB_PRE_INS.NO_GESTION, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE  ESTADO_PRE_INS=4 order by TB_PRE_INS.FECHA_CAMBIOS_REG  DESC";
+            $sql="SELECT TB_PRE_INS.ID_PRE,TB_PRE_INS.NOMBRE_ES,TB_PRE_INS.APELLIDOS_EST,TB_PRE_INS.ESTADO_PRE_INS,TB_PRE_INS.NO_GESTION, tb_grados.GRADO FROM TB_PRE_INS INNER JOIN tb_grados ON TB_PRE_INS.GRADO_ING_ES= tb_grados.ID_GR WHERE  ESTADO_PRE_INS=4 order by TB_PRE_INS.FECHA_CAMBIOS_REG  DESC";
             $estado_dos2=DB::select($sql);
         }
 
@@ -332,6 +340,7 @@ class AdminisionesComponet extends Component
 
         foreach($preinsp as $pre){
             $this->id_ges_cambio=$pre->ID_PRE;
+            $this->apellidos_est=$pre->APELLIDOS_EST;
             $this->nombre_es=$pre->NOMBRE_ES;
             $this->f_nacimiento_es=$pre->FEC_NAC;
             $this->genero=$pre->GENERO;
@@ -385,6 +394,7 @@ class AdminisionesComponet extends Component
         foreach($preinsp as $pre){
             $this->id_ges_cambio=$pre->ID_PRE;
             $this->nombre_es=$pre->NOMBRE_ES;
+            $this->apellidos_est=$pre->APELLIDOS_EST;
             $this->f_nacimiento_es=$pre->FEC_NAC;
             $this->genero=$pre->GENERO;
             $this->cui_es=$pre->CUI_ES;
@@ -402,6 +412,8 @@ class AdminisionesComponet extends Component
             $this->observacion=$pre->OBSERVACION_COMP;
             $this->fpago=$pre->FORMA_PAGO;
             $this->metodo=$pre->TIPO_PAGO;
+            $this->validacion_comp=$pre->VALIDACION_COMP;
+            $this->observacion2=$pre->OBSERVACION_COMP2;
             $this->es_civil_en=$pre->ESTADO_CIVIL_EN_ES;
             $this->direccion_en=$pre->DIRECCION_EN_ES;
             $this->tel_casa_en=$pre->TEL_EN_ES;
@@ -492,14 +504,13 @@ class AdminisionesComponet extends Component
                    'CORREO_EN_ES2'=> $this->correo_en2,
                    'PROFESION_EN_ES'=>$this->profesion_en,
                    'TIPO_INS'=>$this->tipo_ins,
-                    //'FECHA_REGISTRO'=>$this->fingreso_gestion,
-                    //''=>,
-                    //'FORMA_PAGO'=>$metodo,
-                   // 'FORMA_PAGO'=>$metodo,
-                    //'COMPROBANTE_PAGO'=>$archivo_comprobante,
+                    'COMPROBANTE_PAGO'=>$archivo_comprobante,
                     'FECHA_CAMBIOS_REG'=> date('y-m-d:h:m:s'),
-                    /* 'ESTADO_PRE_INS'=>2, */
-                   // 'OBSERVACION_COMP'=>$observacion,
+                    'OBSERVACION_COMP'=>$this->observacion,
+                    'FORMA_PAGO'=>$this->fpago,
+                    'TIPO_PAGO'=>$this->metodo,
+                    'VALIDACION_COMP'=>$this->validacion_comp,
+                    'OBSERVACION_COMP2'=>$this->observacion2,
                 ]
                 );
             if($comprobantes){
@@ -634,6 +645,7 @@ class AdminisionesComponet extends Component
                     /* DATOS DEL ESTUDIANTE */
 
                     'NOMBRE_ES'=>$this->nombre_es,
+                    'APELLIDOS_EST'=>$this->apellidos_est,
                     'FEC_NAC'=>$this->f_nacimiento_es,
                     'GENERO'=>$this->genero,
                     'CUI_ES'=>$this->cui_es,
@@ -701,6 +713,7 @@ class AdminisionesComponet extends Component
             {
                 $this->id_pre_info=$estac->ID_PRE_INFO;
                 $this->id_pre_i=$estac->ID_PRE;
+                $this->fotoest=$estac->FOTO_ALUMNO;
                 $this->confi=$estac->HERMANOS_COLE;
                 $this->grados_selecionados=$estac->GRADO_HERMANOS_COLE;
                 $grados_selecionados1=explode(";", $this->grados_selecionados);
@@ -797,10 +810,9 @@ class AdminisionesComponet extends Component
     $this->Especifique_ali=$estac->ESPECIFICACION_ALERG_AL;
     $this->alimento=$estac->ALERG_ALIMENTO;
     $this->vacunas=$estac->VACUNAS;
-    $this->solo_alumno=$estac->SALIDA_SOLO;
-    $this->encargado_alumno=$estac->SALIDA_CON_ENCARGADO;
+    $this->retiro=$estac->RETIRO;
     $this->bus_colegio=$estac->SALIDA_BUS_COLEGIO;
-    $this->bus_no_colegio=$estac->SALIDA_BUS_AJENO;
+    $this->bus_colegio=$estac->SALIDA_BUS_AJENO;
     $this->Especifique_medi=$estac->ESPECIFICAR_ALERG_ME;
     $this->nombre_aseguradora=$estac->ASEGURADORA;
     $this->nombre_encargado=$estac->NOMBRE_ENCARGADO;
@@ -835,7 +847,7 @@ class AdminisionesComponet extends Component
         }
     }
 
-    public $n_encargado, $dpi_encar, $bus_por, $nombre_conductor, $dpi_conductor, $n_conductor;
+    
 
     public function medicamento($medicamento){
         $this->medicamento=$medicamento;
@@ -910,6 +922,10 @@ class AdminisionesComponet extends Component
     public function bus_por($bus_por){
         $this->bus_por=$bus_por;
     }
+    public function retiro($retiro){
+        $this->retiro=$retiro;
+    }
+
 
     public function update_datos_ins(){
         $this->actualizar_validacion_pago();
@@ -980,15 +996,37 @@ $quien_encargado1=$this->quien_encargado1;
     $vive_con_el_encargado=$this->vive_con_el_encargado;
     $Especifique_rel=$this->Especifique_rel;
     $cargoencargado=$this->cargoencargado;
-
-
+    $retiro=$this->retiro;
+    $solo_por=$this->solo_por;
+    $n_encargado=$this->n_encargado;
+    $dpi_encar=$this->dpi_encar;
+    $bus_colegio=$this->bus_colegio;
+    $nombre_conductor=$this->nombre_conductor;
+    $dpi_conductor=$this->dpi_conductor;
+    $n_conductor=$this->n_conductor;
+    $fotoest2=$this->fotoest2;
+    if($fotoest2=="" or $fotoest2==null){
+      $fotoest2=$this->fotoest;
+    }
     
+
+
+         
+    if($this->fotoest2!=null){
+        if($this->fotoest2->getClientOriginalExtension()=="jpg" or $this->fotoest2->getClientOriginalExtension()=="png" or $this->fotoest2->getClientOriginalExtension()=="jpeg"){
+            $fotoest2 = "img".time().".".$this->fotoest2->getClientOriginalExtension();
+            $this->arch=$fotoest2;
+            $this->fotoest2->storeAS('imagen/fotoestperf/', $this->arch,'public_up');
+            $this->formato2=1;
+        }
+    }
     DB::beginTransaction();
 
     $inscripcion_datos=DB::table('TB_PRE_INFO')
             ->where('ID_PRE',$this->id_pre_i)
             ->update(
         [
+            'FOTO_ALUMNO'=>$fotoest2,
             'HERMANOS_COLE'=>$this->confi,
             'GRADO_HERMANOS_COLE'=>$this->grados_selecionados,
             'AÑO_1R_INGRESO'=>$año_ingreso,
@@ -1036,11 +1074,10 @@ $quien_encargado1=$this->quien_encargado1;
             'ASEGURADORA'=>$this->nombre_aseguradora,
             'POLIZA_SEGURO'=>$poliza,
             'NO_CARNET_SEGURO'=>$this->carne_seguro,
-            'SALIDA_SOLO'=>$this->solo_alumno,
-            'SALIDA_CON_ENCARGADO'=>$this->encargado_alumno,
-            'NOMBRE_ENCARGADO'=>$this->nombre_encargado,
+            'RETIRO'=>$this->retiro,
+            'NOMBRE_ENCARGADO'=>$nombre_encargado,
             'SALIDA_BUS_COLEGIO'=>$this->bus_colegio,
-            'SALIDA_BUS_AJENO'=>$this->bus_no_colegio,
+            'SALIDA_BUS_AJENO'=>$this->bus_colegio,
             'CODIGO_FAMILIA'=>$this->codigo_fam,
             'NOMBRE_FAMILIA'=>$this->nombre_fam,
             'Matricula_bus_aj'=>$matricula_bus_aj,
@@ -1062,12 +1099,12 @@ $quien_encargado1=$this->quien_encargado1;
             'NIT_ENCARGADO'=>$this->NIT_encargado,
             'VIVE_CON_EL_ENCARGADO'=>$this->vive_con_el_encargado,
             'RETIRO_SOLO'=>$this->solo_por,
-            'RETIRO_N_EN'=>$this->n_encargado,
-            'RETIRO_DPI_EN'=>$this->dpi_encar,
+            'RETIRO_N_EN'=>$n_encargado,
+            'RETIRO_DPI_EN'=>$dpi_encar,
             'RETIRO_BUS_COL'=>$this->bus_por,
-            'N_CONDUCTOR_AJ'=>$this->nombre_conductor,
-            'DPI_CONDUCTOR_AJ'=>$this->dpi_conductor,
-            'NUM_CONDUCTOR_AJ'=>$this->n_conductor,
+            'N_CONDUCTOR_AJ'=>$nombre_conductor,
+            'DPI_CONDUCTOR_AJ'=>$dpi_conductor,
+            'NUM_CONDUCTOR_AJ'=>$n_conductor,
             'REL_ENCARGADO'=>$this->Especifique_rel,        
             ]
         );
@@ -1590,10 +1627,7 @@ $quien_encargado1=$this->quien_encargado1;
             
             }
 
-
-
-
-         public function cambio_estadocorre($no_gest){
+        public function cambio_estadocorre($no_gest){
             if($this->validate([
                 'correlativon' => 'required',
                 ])==false){
@@ -1973,5 +2007,7 @@ public function Desactivacion($id,$estado,$gest){
             }
     
  }
-
+        public function validacion_comp($validacion_comp){
+        $this->validacion_comp=$validacion_comp;
+    }
 }
