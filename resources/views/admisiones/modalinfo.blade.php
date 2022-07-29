@@ -424,6 +424,12 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
       @endif
+      @if($mensajeup1!=null)
+      <div id="cerrar"class="alert alert-danger alert-dismissible fade show cerrar" role="alert">
+        <strong> No fue posible actualizar.</strong> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      @endif
         <div class="modal-footer">
 
           <a  wire:click="actualizar_info()" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-pre2">Actualizar</a>

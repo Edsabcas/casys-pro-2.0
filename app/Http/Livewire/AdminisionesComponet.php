@@ -466,7 +466,7 @@ class AdminisionesComponet extends Component
             'cel_en' => 'required',
             'correo_en' => 'required',
             'religion_en' => 'required',
-            'observacion2' => 'required',
+            //'observacion2' => 'required',
             ])==false){
             $mensaje="no encontrado";
            session(['message' => 'no encontrado']);
@@ -479,6 +479,7 @@ class AdminisionesComponet extends Component
             ->update(
                 [
                     'NOMBRE_ES'=>$this->nombre_es,
+                    'APELLIDOS_EST'=>$this->apellidos_est,
                     'FEC_NAC'=>$this->f_nacimiento_es,
                     'GENERO'=>$this->genero,
                     'CUI_ES'=>$this->cui_es,
