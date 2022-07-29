@@ -156,7 +156,7 @@ table, td { color: #000000; } a { color: #0000ee; text-decoration: underline; } 
       <td style="overflow-wrap:break-word;word-break:break-word;padding:20px 10px 10px;font-family:arial,helvetica,sans-serif;" align="left">
         
   <h1 style="margin: 0px; color: #3a3e7b; line-height: 120%; text-align: center; word-wrap: break-word; font-weight: normal; font-family: trebuchet ms,geneva; font-size: 27px;">
-   Hola, le informamos que se ha actualizado su proceso de Inscripci&oacute;n
+   Se ha rechazado su comprobante de pago por el siguiente motivo:
   </h1>
 
       </td>
@@ -174,9 +174,18 @@ table, td { color: #000000; } a { color: #0000ee; text-decoration: underline; } 
   
     Gestión:
     <b > # {{$arreglo[0]}}</b>
+
 </h1>
   </div>
 
+  <div>
+    <h1 style="font-size:140%;">
+  
+    Motivo del rechazo:
+    <b > {{$arreglo[1]}}</b>
+    
+</h1>
+  </div>
       </td>
     </tr>
   </tbody>
@@ -211,7 +220,8 @@ table, td { color: #000000; } a { color: #0000ee; text-decoration: underline; } 
       <td style="overflow-wrap:break-word;word-break:break-word;padding:10px 10px 30px;font-family:arial,helvetica,sans-serif;" align="left">
         
   <h1 style="margin: 0px; color: #3a3e7b; line-height: 140%; text-align: center; word-wrap: break-word; font-weight: normal; font-family: 'Open Sans',sans-serif; font-size: 20px;">
-    Para validar el estado de su procerso de inscripci&oacute;n; <br /> realice los siguientes pasos:
+
+    Para volver a insertar su comprobante de pago; <br /> realice los siguientes pasos:
   </h1>
 
       </td>
@@ -271,7 +281,7 @@ table, td { color: #000000; } a { color: #0000ee; text-decoration: underline; } 
   <tbody>
     <tr>
         <td>
-            <p style="font-size: 14px; line-height: 140%;"> <b>2.</b>  Busque la opci&oacute;n "Validar Gesti&oacute;n" y presione "Pre-Inscripci&oacute;n"</p>
+            <p style="font-size: 14px; line-height: 140%;"> <b>2.</b>  Busque la opci&oacute;n "Gestiones" y presione "Inscripci&oacute;n"</p>
 
         </td>
     </tr>

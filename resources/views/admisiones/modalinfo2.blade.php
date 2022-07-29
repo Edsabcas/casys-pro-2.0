@@ -20,7 +20,7 @@
                   <div style="border-radius: 60px 60px 60px 60px;" class="accordion-item">
                     <h2 style="border-radius: 60px 60px 60px 60px;" class="accordion-header" id="panelsStayOpen-headingTwo">
                       <button class="accordion-button collapsed" style="background-color:#d6e7a6; border:6px solid #a4cb39; border-radius: 60px 60px 60px 60px;"  type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-                      <h4 class="font-weight-bolder">  <b>Datos Estudiante:</b>   </h4>
+                      <h4 class="font-weight-bolder">  <b>Datos Del Estudiante:</b>   </h4>
                       </button>
                      
                     </h2>
@@ -254,7 +254,7 @@
                   <div style="border-radius: 60px 60px 60px 60px;" class="accordion-item">
                     <h2  style="border-radius: 60px 60px 60px 60px;" class="accordion-header" id="panelsStayOpen-headingThree">
                       <button class="accordion-button collapsed" style="background-color:#d6e7a6; border:6px solid #a4cb39; border-radius: 60px 60px 60px 60px;"  type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-                      <h4 class="font-weight-bolder">  <b>Datos Encargado:</b>   </h4>
+                      <h4 class="font-weight-bolder">  <b>Datos Del Encargado:</b>   </h4>
                       </button>
                   
                     </h2>
@@ -418,7 +418,7 @@
                 <div style="border-radius: 60px 60px 60px 60px;" class="accordion-item">
                   <h2  style="border-radius: 60px 60px 60px 60px;" class="accordion-header" id="panelsStayOpen-headingThreePago">
                     <button class="accordion-button collapsed" style="background-color:#d6e7a6; border:6px solid #a4cb39; border-radius: 60px 60px 60px 60px;"  type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThreePago" aria-expanded="false" aria-controls="panelsStayOpen-collapseThreePago">
-                    <h4 class="font-weight-bolder">   <b>Información Pago</b>   </h4>
+                    <h4 class="font-weight-bolder">   <b>Información Sobre El Pago</b>   </h4>
                     </button>
                 
                   </h2>
@@ -454,95 +454,26 @@
                             @endisset
                             </select>
                       </div>
-                      @error('metodo')
-                        <div class="alert alert-warning" role="alert">
-                        Pendiente
-                        </div>
-                      @enderror
-                      
-                      <br>
-                  {{-- EFECTIVO --}}
-                      @if($metodo==1)
+                        @error('metodo')
+                          <div class="alert alert-warning" role="alert">
+                            Pendiente
+                          </div>
+                        @enderror
+                        <br>
+                        {{-- EFECTIVO --}}
+                        @if($metodo==1)
 
-                                <div class="mb-3">
-                                  <label for="message-text" class="col-form-label">Observación:</label>
-                                  <textarea class="form-control" id="message-text" wire:model="observacion" required></textarea>
-                                </div>
-                              @error('observacion')
-                              <div class="alert alert-warning" role="alert">
+                          <div class="mb-3">
+                            <label for="message-text" class="col-form-label">Observación:</label>
+                              <textarea class="form-control" id="message-text" wire:model="observacion" required></textarea>
+                          </div>
+                          @error('observacion')
+                            <div class="alert alert-warning" role="alert">
                               Pendiente
-                              </div>
-                              @enderror
-                            <div class="col-md">
-
-                              <div class="col-md">
-                                <label for="inputDPI" style="font-size: 15px; color:#000000;">Comprobante de Pago:</label>
-                                <br>
-                                  @if ($archivo_comprobante=="" or $archivo_comprobante==null )
-                                  <img class="rounded-circle" src="img/undraw_profile_1.svg" width="80" height="80" alt="...">        
-                                  <button type="button" class="btn btn-editb" style="float:" data-bs-toggle="modal" data-bs-target="#subirimagen{{$id_ges_cambio}}">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                      <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                                      <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                                    </svg>  
-                                  </button>      
-                                  @else
-                                  @php
-                                  $foo = 0;
-                                  $vid = 0;
-                                  $pdf = 0;
-                                    if (strpos($archivo_comprobante, '.jpg' ) !== false || strpos($archivo_comprobante, '.png' ) !== false || strpos($archivo_comprobante, '.jpeg' ) !== false) 
-                                    { $foo=1; }
-                                    elseif(strpos($archivo_comprobante, '.mp4' ) !== false || strpos($archivo_comprobante, '.mpeg' ) !== false)
-                                    {$vid=1;}
-                                    elseif(strpos($archivo_comprobante, '.pdf' ) !== false)
-                                    {$pdf=1;}
-                              @endphp
-                              @if($foo==1)
-                              <img src="imagen/comprobantes2022/{{$archivo_comprobante}}" height="400" weight="400" class="card-img-top" alt="...">
-                              @endif
-                              @if($vid==1)
-                              <video height="400" weight="400" class="card-img-top" alt="..." controls>
-                                <source src="imagen/comprobantes2022/{{$archivo_comprobante}}"  type="video/mp4">
-                                  <source src="imagen/comprobantes2022/{{$archivo_comprobante}}"  type="video/ogg">
-                              </video>
-                              @endif
-                              @if($pdf==1)
-                              <iframe style="width: 43rem; text-align:center" width="350" height="350" src="imagen/comprobantes2022/{{$archivo_comprobante}}" frameborder="0"></iframe>
-                                @endif
-                                {{-- <img class="img-profile rounded-circle" style="float: center;" width="80" height="80" src="imagen/comprobantes2022/{{$archivo_comprobante}}">
-                                --}}
-                                <button type="button" class="btn btn-editb" style="float:" data-bs-dismiss="modal"  id="updtatecompro">
-                                  <svg xmlns="http://www.w3.org/2000/svg" style="float: center;" width="10" height="10" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                                  </svg>  
-                                </button> 
-                                @endif
-                                <!-- Button trigger modal -->
-                                <a class="btn" type="button" data-bs-toggle="modal"  data-bs-dismiss="modal" id="vercompro">
-                                  <b><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
-                                    <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
-                                    <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
-                                  </svg></b>  
-                                </a>
-                                @if($mensaje24 != null)
-                          <div class="alert alert-success d-flex align-items-center" role="alert">
-                            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
-                                <div>{{$mensaje24}}
-                                </div>
-                              </div>
-                            @endif
-                          @if($mensaje25 != null)
-                          <div class="alert alert-danger d-flex align-items-center" role="alert">
-                            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
-                                <div>{{$mensaje25}}
-                                </div>
-                              </div>
-                            @endif
-                        </div>
-                        </div> 
-                  {{-- TRANSFERENCIA --}}
+                            </div>
+                          @enderror
+                            
+                        {{-- TRANSFERENCIA --}}
                         @elseif($metodo==2)
 
                                     <div class="mb-3">
@@ -622,33 +553,35 @@
                                   </div>
                                 @endif
                             </div>
-                          </div>                        
-                        <center>
-                          <div class="col-md">
-                            <label for="inputApellidos" style="font-size: 20px; color:#000000;"><strong>Validación si efectuó completo el pago:</strong></label>
-                            <br>
-                            <div class="form-check form-check-inline">
-                              <input class="form-check-input"  type="radio" name="1" id="val1" wire:click="validacion_comp('1')">
-                              <label class="form-check-label" for="val1" style="font-size: 15px; color:#000000;">
-                              Aceptar
-                              </label>
+                          </div>    
+                                              
+                          <center>
+                            <hr>
+                            <div class="col-md">
+                              <label for="inputApellidos" style="font-size: 20px; color:#000000;"><strong>Se realizo transacción completa:</strong></label>
+                              <br>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input"  type="radio" wire:model="validacion_comp" value="1" wire:click="validacion_comp('1')">
+                                <label class="form-check-label" for="val1" style="font-size: 15px; color:#000000;">
+                                Si
+                                </label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" wire:model="validacion_comp" value="2" wire:click="validacion_comp('2')">
+                                <label class="form-check-label" for="val1" style="font-size: 15px; color:#000000;">
+                                No
+                                </label>
+                              </div>
+                              @if($validacion_comp==2)
+                                <div class="mb-3">
+                                  <label for="message-text" class="col-form-label">Observación:</label>
+                                  <textarea class="form-control" id="rechazo" wire:model="observacion2"></textarea>
+                                </div>                            
+                              @endif
                             </div>
-                            <div class="form-check form-check-inline">
-                              <input class="form-check-input" type="radio" name="2" id="val2" wire:click="validacion_comp('2')">
-                              <label class="form-check-label" for="val2" style="font-size: 15px; color:#000000;">
-                              Rechazar
-                              </label>
-                            </div>
-                            @if($validacion_comp==2)
-                              <div class="mb-3">
-                                <label for="message-text" class="col-form-label">Observación:</label>
-                                <textarea class="form-control" id="rechazo" wire:model="observacion2" required></textarea>
-                              </div>                            
-                            @endif
-                          </div>
-                        </center>    
+                          </center>    
 
-                  {{-- PAGO EN LINEA TARJETA DE CREDITO --}}        
+                        {{-- PAGO EN LINEA TARJETA DE CREDITO --}}        
                         @elseif($metodo==4)
 
                               <form>
@@ -734,19 +667,23 @@
                         
                         @endif
                       </form>
+
+                      {{-- Mensajes --}}
+
                         @isset($mensajeup)
                           @if ($mensajeup!=null)
-                          <div class="alert alert-success" role="alert">
-                            ¡Editado correctamente!
-                          </div>
+                            <div id="cerrar"class="alert alert-success alert-dismissible fade show cerrar" role="alert">
+                                <strong>¡Editado correctamente!</strong> 
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
                           @endif
-                          @endisset
-
-                          @isset($mensajeup1)
+                        @endisset
+                        @isset($mensajeup1)
                           @if($mensajeup1!=null)
-                          <div class="alert alert-danger" role="alert">
-                            ¡No se logro editar correctamente!
-                          </div>
+                            <div id="cerrar"class="alert alert-danger alert-dismissible fade show cerrar" role="alert">
+                                ¡No se logro editar correctamente!
+                              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
                           @endif
                         @endisset
                       </div>
@@ -760,18 +697,35 @@
 <br>
         <div class="modal-footer">
 
+          @if ($validacion_comp==2)
+
+          <button class="btn btn-pre2" style="border-radius: 60px 60px 60px 60px;"  wire:click="rechazar_comprobante()" data-bs-dismiss="modal">Rechazar</button>
+          
+          @else
+          
           <button class="btn btn-pre2" style="border-radius: 60px 60px 60px 60px;" wire:click="actualizar_validacion_pago()">Actualizar</button>
-          @if($estado_ges==1)
+
+          <a  id="valpedido" wire:click="tipo_cambio(1)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-warning" data-bs-dismiss="modal">Reg. Estado</a>
+
+          <a  id="valpedido"  wire:click="tipo_cambio(3)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-editb" data-bs-dismiss="modal">Sig. Estado</a>          
+          @endif
+
+         {{--  @if($estado_ges==1)
+
+          <button class="btn btn-pre2" style="border-radius: 60px 60px 60px 60px;" wire:click="actualizar_validacion_pago()">Actualizar</button>
+
           <a  id="valpedido" wire:click="tipo_cambio(0)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-warning" data-bs-dismiss="modal">Reg. Estado</a>
 
           <a  id="valpedido"  wire:click="tipo_cambio(2)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-editb" data-bs-dismiss="modal">Sig. Estado</a>
 
           @endif  
           @if($estado_ges==2)
+          <button class="btn btn-pre2" style="border-radius: 60px 60px 60px 60px;" wire:click="actualizar_validacion_pago()">Actualizar</button>
+
           <a  id="valpedido" wire:click="tipo_cambio(1)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-warning" data-bs-dismiss="modal">Reg. Estado</a>
 
           <a  id="valpedido"  wire:click="tipo_cambio(3)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-editb" data-bs-dismiss="modal">Sig. Estado</a>
-            @endif
+            @endif --}}
  
         </div>
       </div>

@@ -12,7 +12,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 class AdminisionesComponet extends Component
 {
     use WithFileUploads;
-
+    public $n_encargado, $dpi_encar, $bus_por, $nombre_conductor, $dpi_conductor, $n_conductor;
     public $search0,$search1,$search11,$search2,$search22,$search3,$search33,$search4,$search44,$search5,$search55,$usuario,$usuario2,$pass2,$correoed2;
     public $gradoin,$nombre_es,$f_nacimiento_es,$genero,$cui_es,$codigo_pe_es,$nac_es,$lug_nac_es,$tel_es,$cel_es,$direccion_es,$religion_es;
     public $nombre_en,$fnacimiento_en,$dpi_en,$extentido_en,$es_civil_en,$direccion_en,$tel_casa_en,$cel_en,$correo_en,$religion_en,$mensaje_diaco;
@@ -33,7 +33,7 @@ class AdminisionesComponet extends Component
     public $tipo2,$correo_en2,$preciopre,$preciovir,$id_gr,$id_nvl, $retiro;
     public $quien_encargado1, $nombre_encargado, $nacimientoencargado,$nacionalidadencargado,$lugarnacimientoencargado,$estadocivilencargado,$DPIencargado,$telefonoencargado,$celularencargado,$direccionresidenciaencargado,$correoencargado,$profesionencargado,$lugar_profesion_encargado ,$religion_encargado,$NIT_encargado;
     public $img2, $img3, $archivo_perfil, $archivo_perfil2, $vive_con_el_encargado, $Especifique_rel;
-    public $can1,$can2,$tipo_ins, $datosusuario4,$tipo3,$tipo4, $cargoencargado;
+    public $can1,$can2,$tipo_ins, $datosusuario4,$tipo3,$tipo4, $cargoencargado,$mensajerechazo,$mensajerechazo2;
     public $grados_selecionados3, $grados_selecionados4, $grados_selecionados5, $grados_selecionados6, $grados_selecionados7, $grados_selecionados8, $grados_selecionados9;
 
     public function render()
@@ -466,6 +466,7 @@ class AdminisionesComponet extends Component
             'cel_en' => 'required',
             'correo_en' => 'required',
             'religion_en' => 'required',
+            'observacion2' => 'required',
             ])==false){
             $mensaje="no encontrado";
            session(['message' => 'no encontrado']);
@@ -598,6 +599,7 @@ class AdminisionesComponet extends Component
         if($this->validate([
 
             /* DATOS DEL ESTUDIANTE */
+
             'gradoin' => 'required',
             'nombre_es' => 'required',
             'f_nacimiento_es' => 'required',
@@ -683,6 +685,8 @@ class AdminisionesComponet extends Component
                     'COMPROBANTE_PAGO'=>$this->archivo_comprobante,
                     'FECHA_CAMBIOS_REG'=> date('y-m-d:h:m:s'),
                     'OBSERVACION_COMP'=>$this->observacion,
+                    'VALIDACION_COMP'=>$this->validacion_comp,
+                    'OBSERVACION_COMP2'=>$this->observacion2,   
                 ]
                 );
             if($validacion_pagos){
@@ -811,8 +815,6 @@ class AdminisionesComponet extends Component
     $this->alimento=$estac->ALERG_ALIMENTO;
     $this->vacunas=$estac->VACUNAS;
     $this->retiro=$estac->RETIRO;
-    //$this->solo_alumno=$estac->SALIDA_SOLO;
-    //$this->encargado_alumno=$estac->SALIDA_CON_ENCARGADO;
     $this->bus_colegio=$estac->SALIDA_BUS_COLEGIO;
     $this->bus_colegio=$estac->SALIDA_BUS_AJENO;
     $this->Especifique_medi=$estac->ESPECIFICAR_ALERG_ME;
@@ -849,7 +851,7 @@ class AdminisionesComponet extends Component
         }
     }
 
-    public $n_encargado, $dpi_encar, $bus_por, $nombre_conductor, $dpi_conductor, $n_conductor;
+    
 
     public function medicamento($medicamento){
         $this->medicamento=$medicamento;
@@ -1007,6 +1009,10 @@ $quien_encargado1=$this->quien_encargado1;
     $dpi_conductor=$this->dpi_conductor;
     $n_conductor=$this->n_conductor;
     $fotoest2=$this->fotoest2;
+    if($fotoest2=="" or $fotoest2==null){
+      $fotoest2=$this->fotoest;
+    }
+    
 
 
          
@@ -1072,8 +1078,6 @@ $quien_encargado1=$this->quien_encargado1;
             'ASEGURADORA'=>$this->nombre_aseguradora,
             'POLIZA_SEGURO'=>$poliza,
             'NO_CARNET_SEGURO'=>$this->carne_seguro,
-            //'SALIDA_SOLO'=>$this->solo_alumno,
-            //'SALIDA_CON_ENCARGADO'=>$this->encargado_alumno,
             'RETIRO'=>$this->retiro,
             'NOMBRE_ENCARGADO'=>$nombre_encargado,
             'SALIDA_BUS_COLEGIO'=>$this->bus_colegio,
@@ -2010,4 +2014,40 @@ public function Desactivacion($id,$estado,$gest){
         public function validacion_comp($validacion_comp){
         $this->validacion_comp=$validacion_comp;
     }
+
+        public function rechazar_comprobante(){
+
+            $rechazar=DB::table('TB_PRE_INS')
+            ->where('ID_PRE',$this->id_ges_cambio)
+            ->update(
+                [
+                    'ESTADO_PRE_INS'=>1,
+                    'VALIDACION_COMP'=>$this->validacion_comp,
+                    'OBSERVACION_COMP2'=>$this->observacion2,
+                ]);
+
+                if($rechazar){
+                    DB::commit();
+                   if(false !== strpos($this->correo_en, "@") && false !== strpos($this->correo_en, ".")){
+                    $subject = "Notificación Inscripción Castaño (No responder)";
+                    $for3 = $this->correo_en;
+                    $arreglo= array($this->id_no_gest_ins,$this->observacion2);
+                    Mail::send('admisiones.correo.vista2',compact('arreglo'), function($msj) use($subject,$for3){
+                        $msj->from("ingresos@colegioelcastano.edu.gt","ColegioElCastaño");
+                        $msj->subject($subject);
+                        $msj->to($for3);        
+                    });
+                }
+
+                    unset($this->mensajerechazo);
+                    $this->mensajerechazo='Se ha enviado el correo electrónico y se le ha regresado de estado correctamente';
+
+                }
+                else{
+                    DB::rollback();
+                    unset($this->mensajerechazo2);
+                    $this->mensajerechazo2='No fue posible enviar correo electrónico';
+                }
+                
+        }
 }

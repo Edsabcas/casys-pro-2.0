@@ -95,6 +95,18 @@
         </div>
       </div>
       @endif
+        @if ($mensajerechazo!=null)
+          <div id="cerrar"class="alert alert-success alert-dismissible fade show cerrar" role="alert">
+             <strong>{{$mensajerechazo}}</strong> 
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        @endif
+        @if($mensajerechazo2!=null)
+          <div id="cerrar"class="alert alert-danger alert-dismissible fade show cerrar" role="alert">
+            <strong>{{$mensajerechazo2}}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        @endif
 
       <div class="accordion accordion-flush rounded" id="accordionFlushExample">
       @if (Session::get('rol_usuario_activo')==1 or Session::get('rol_usuario_activo')==2)  

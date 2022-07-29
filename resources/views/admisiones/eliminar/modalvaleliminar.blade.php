@@ -5,7 +5,7 @@
         Confirme Eliminar gestión
         </div>
         <div class="modal-body">
-           <h4 class="form-label text text-center" style="font-size:25px">Gestion: #{{$gestion}}
+           <h4 class="form-label text text-center" style="font-size:25px">Gestión: #{{$gestion}}
             </h4>
             <div>
                 <h5 style="font-size: 18px; color:#000000;">Motivo eliminar: {{$observacion}}</h5>
