@@ -432,7 +432,7 @@
       @endif
         <div class="modal-footer">
 
-          <a  wire:click="actualizar_info()" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-pre2">Actualizar</a>
+          <a  wire:click="actualizar_inf()" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-pre2">Actualizar</a>
                 
             <a  id="valpedido" wire:click="tipo_cambio(1)" type="button" style="border-radius: 60px 60px 60px 60px;" class="btn btn-editb" data-bs-dismiss="modal">Sig. estado</a>
 
