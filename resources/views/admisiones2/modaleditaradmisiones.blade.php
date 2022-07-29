@@ -5,7 +5,33 @@
         
         </div>
         <div class="modal-body">
-            <h5 class="modal-title text-center" id="staticBackdropLabel" style="color:#3a3e7b"><b>¿Está seguro de eliminar esta gestión?, esta acción será irreversible.</b></h5>    
+            @isset($mensaje)
+@if($mensaje==1)
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    Datos editados correctamente!
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  @elseif($mensaje==0)
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    Los datos no fueron asignados correctamente!
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  @endif
+@endisset
+@isset($mensajeadmin)
+@if($mensajeadmin==1)
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    Comentario agregado correctamente!
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  @elseif($mensajeadmin==0)
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    El comentario no fue agregado correctamente!
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  @endif
+@endisset
+            <h5 class="modal-title text-center" id="staticBackdropLabel" style="color:#3a3e7b"><b>Formulario de aspirante al colegio.</b></h5>    
             <form wire:submit.prevent='' style= "float:right; max-width:5000px; margin-top: -7px;" class="formulario formulario-eliminar">
                 @csrf
                 <div class="row">
@@ -71,9 +97,9 @@
                         <option></option>
                         <label for="correo" style="color: #3a3e7b" data-aos="fade"><b>Correo Contacto</b></label>
                         <input class="form-control me-2 input100 rounded-pill" id="correo" wire:model="email" type="email" class="validate" required>
-                    </div>
+                    </div><br>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
-                        <span class="text-black" style="font-size: 15px; color:#2e117e;" data-aos="fade">Seleccione el dia y hora agendar su inicio de admisión.</span>
+                        <option></option>
                         <label for="dia_ev" style="color: #3a3e7b" data-aos="fade"><b>Dias de evaluación</b></label>           
                         <select class="form-control me-2 input100 rounded-pill" id='dia_ev'wire:model="dia_evaluacion" type="select" class="validate" required>
                           <option selected style="color: #000000"></option>
@@ -83,8 +109,7 @@
                         </select>
                     </div>
                       <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
-                        <span class="text-black" style="font-size: 15px; color:#2e117e;" data-aos="fade">&nbsp;&nbsp;&nbsp;</span>    
-                         <option></option>                   
+                        <option></option>
                         <label for="horario_p" style="color: #3a3e7b" data-aos="fade"><b>Horarios de inicio:</b></label>           
                         <select class="form-control me-2 input100 rounded-pill" id='horario_p' wire:model="horario_evaluacion" type="select" class="validate" required>
                           <option selected style="color: #000000"></option>
@@ -93,28 +118,111 @@
                           <option value="10:00" style="color: #000000">10:00</option>
                           <option value="11:00" style="color: #000000">11:00</option>
                         </select>
-                      </div>
-                      <span class="text-black" style="font-size: 15px; color:#2e117e;" data-aos="fade">* Horario pendiente de confirmar vía correo.</span>
+                      </div><br>
                        
-                      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                      <div>
                         <option></option>
-                        <label for="mensaje" style="color: #3a3e7b" data-aos="fade"><b>Observación</b></label>        
-                        <textarea class="form-control me-2 input100" id="mensaje" rows="20" wire:model="mensaje" data-length="240"></textarea>
+                        <label for="mensaje" style="color: #3a3e7b" data-aos="fade"><b>Observación</b></label>
+                        <p><Strong></Strong>{{$mensaje}}</p> 
                     </div>
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                    <form wire:submit.prevent="" enctype="multipart/form-data">
+                      <div>
+                        <option></option>
+                        <label for="mensaje" style="color: #3a3e7b" data-aos="fade"><b>Observación de administración sobre el número de gestión</b></label>        
+                        <textarea class="form-control me-2 input100" id="mensaje" rows="5" wire:model="mensajeadministracion" data-length="240"></textarea>
+                    </div>
+                    </form>
+                    <br>
+                    
+                    <div>
                         <option></option>  <option></option>
-                    <input type="submit"class="btn enjoy-css input100 rounded-pill" value="Enviar">
-                    <p style= "float:right; max-width:5000px; margin-top: -7px;" class="green-text" id="enviado"></p>
+                        <button type="submit" class="btn btn-pre2 text-center btn-lg"  style="border-radius: 12px;" wire:click="comentario_administracion()">Agregar observación</button>
                 </div>
                 </div>
              
                 </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-editb"  style="border-radius: 12px;" wire:click='eliminar_la_gestion({{$eliminar_no_gestion}})'  data-bs-dismiss="modal">Si</button>
-          <button type="button" class="btn btn-secondary"  style="border-radius: 12px;"  id="info"  data-bs-dismiss="modal">No</button>
+            @if($estado==1)
+            <button type="button" class="btn btn-secondary"  style="border-radius: 12px;"  id="info"  data-bs-dismiss="modal">Salir</button>
+            <button type="button" class="btn btn-editb"  style="border-radius: 12px;" wire:click='update_admision({{$id_gestion}})'>Actualizar</button>
+          <button class="btn btn-warning" style="border-radius: 12px;" data-bs-target="#confirmacionelevar" data-bs-toggle="modal" wire:click='siguienteestado({{1}})' data-bs-dismiss="modal">Siguiente estado</button>
+            @elseif($estado==2)
+            <button type="button" class="btn btn-secondary"  style="border-radius: 12px;"  id="info"  data-bs-dismiss="modal">Salir</button>
+            <button type="button" class="btn btn-editb"  style="border-radius: 12px;" wire:click='update_admision({{$id_gestion}})'>Actualizar</button>
+          <button type="button" class="btn btn-pre2"  style="border-radius: 12px;" data-bs-target="#confirmacionelevar"  data-bs-toggle="modal" wire:click='siguienteestado({{2}})'  data-bs-dismiss="modal">Regresar estado</button>
+          <button type="button" class="btn btn-warning" style="border-radius: 12px;" data-bs-target="#confirmacionelevar" data-bs-toggle="modal" wire:click='siguienteestado({{1}})' data-bs-dismiss="modal">Siguiente estado</button>
+            @elseif($estado==3)
+            <button type="button" class="btn btn-secondary"  style="border-radius: 12px;"  id="info"  data-bs-dismiss="modal">Salir</button>
+            <button type="button" class="btn btn-editb"  style="border-radius: 12px;" wire:click='update_admision({{$id_gestion}})'>Actualizar</button>
+            <button type="button" class="btn btn-pre2"  style="border-radius: 12px;" data-bs-target="#confirmacionelevar"  data-bs-toggle="modal" wire:click='siguienteestado({{2}})'  data-bs-dismiss="modal">Regresar estado</button>
+            @endif
+            
+          
           
         </div>
       </div>
     </div>
+    </div>
+    <!--otro modal-->
+    <div wire:ignore.self class="modal fade" id="confirmacionelevar" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header" style="background:#a4cb39;color:rgba(255, 255, 255, 255.255)">
+            <h5 class="modal-title" id="exampleModalToggleLabel2">Continuar o detener el proceso de admisión</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            @if($botonsiguiente==1)
+            <p><Strong>Está seguro de continuar con el proceso de este número de gestión?</Strong></p>
+            @elseif($botonsiguiente==2)
+            <p><Strong>Está seguro de pausar con el proceso de este número de gestión?</Strong></p>
+            @endif
+            
+            <br>
+            <div class="row">
+                <div class="col-md-6">
+                    <p><Strong>Nombre:</Strong> {{$nombres}}</p>
+                </div>
+                <div class="col-md-6">
+                    <p><Strong>Nombre del encargado :</Strong> {{$nombres_en}}</p>
+                </div>
+            </div> 
+            <div class="row">
+                <div class="col-md-6">
+                    <p><Strong>Ciclo escolar:</Strong> {{$ciclo_escolar}}</p>
+                </div>
+                  <div class="col-md-6">
+                    <p><Strong>Grado Ingreso:</Strong> {{$grado}}</p>
+                 </div>
+                
+            </div> 
+            <div class="row">
+              <div class="col-md-6">
+                <p><Strong>Teléfono:</Strong> {{$telefono}}</p>
+            </div>
+              <div class="col-md-6">
+                <p><Strong>Email:</Strong> {{$email}}</p>
+             </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <p><Strong>Día de evaluación:</Strong> {{$dia_evaluacion}}</p>
+            </div>
+              <div class="col-md-6">
+                <p><Strong>Horario de evaluación:</Strong> {{$horario_evaluacion}}</p>
+             </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            @if($botonsiguiente==1)
+            <button type="button" class="btn btn-editb"  style="border-radius: 12px;" wire:click='update_estado()' data-bs-dismiss="modal">Confirmar</button>
+            <button type="button" class="btn btn-secondary"  style="border-radius: 12px;"  id="info"  data-bs-dismiss="modal">No</button>
+            @elseif($botonsiguiente==2)
+            <button type="button" class="btn btn-editb"  style="border-radius: 12px;" wire:click='lower_estado()' data-bs-dismiss="modal">Confirmar</button>
+            <button type="button" class="btn btn-secondary"  style="border-radius: 12px;"  id="info"  data-bs-dismiss="modal">No</button>
+            @endif
+          </div>
+        </div>
+      </div>
     </div>

@@ -1,6 +1,6 @@
 <div>
     <center>
-        <h1><strong><i>Etapas de admisiones</i></strong></h1>
+        <h1><strong><i>Etapas de admisiones{{$estadovalor}}</i></strong></h1>
     </center>
     @isset($mensaje_eliminacion)
 @if($mensaje_eliminacion==1)
@@ -10,8 +10,22 @@
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
   @elseif($mensaje_eliminacion==0)
-  <div class="alert alert-success alert-dismissible fade show" role="alert">
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
     La gestión no fue eliminada correctamente!
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  @endif
+@endisset
+@isset($mensajeelevar)
+@if($mensajeelevar==1)
+
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    Gestión continuada correctamente!
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  @elseif($mensajeelevar==0)
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    La gestión no fue continuada correctamente!
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
   @endif
@@ -41,7 +55,6 @@
                       <th scope="col">NOMBRES</th>
                       <th scope="col">CUI</th>
                       <th scope="col">GRADO</th>
-                      <th scope="col">DPI</th>
                       <th scope="col">ESTADO</th>
                       <th scope="col">ACCIONES</th>
                     </tr>
@@ -53,7 +66,7 @@
                   <td>{{ $estuaspirantes1->NOMBRES}}</td>
                   <td>{{ $estuaspirantes1->CUI}}</td>
                   <td>{{ $estuaspirantes1->GRADO}}</td>
-                  <td>{{ $estuaspirantes1->DPI}}</td>
+                  
                   @if($estuaspirantes1->ESTADO==1)
                         <td><span class="badge rounded-pill bg-warning text-dark">Pendiente R.</span></td>
                         @elseif($estuaspirantes1->ESTADO==4)
@@ -63,12 +76,12 @@
                   <span>
                       <td>
                         
-                        <button class="btn btn-editb" wire:click='editar_admision({{$estuaspirantes1->NO_GESTION}})' type="button" data-bs-toggle="modal" data-bs-target="#editaradmision"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                        <button class="btn btn-editb" wire:click='editar_admision({{$estuaspirantes1->ID_GESTION}})' type="button" data-bs-toggle="modal" data-bs-target="#editaradmision"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                             <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                             <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                           </svg></button> 
                           
-                          <button class="btn btn-secondary"  style="border-radius: 12px;" wire:click='eliminar({{$estuaspirantes1->NO_GESTION}})' data-bs-toggle="modal" data-bs-target="#eliminaradmision"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                          <button class="btn btn-secondary"  style="border-radius: 12px;" wire:click='eliminar({{$estuaspirantes1->ID_GESTION}})' data-bs-toggle="modal" data-bs-target="#eliminaradmision"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
                             <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
                           </svg>
                           </button>
@@ -110,7 +123,6 @@
                       <th scope="col">NOMBRES</th>
                       <th scope="col">CUI</th>
                       <th scope="col">GRADO</th>
-                      <th scope="col">DPI</th>
                       <th scope="col">ESTADO</th>
                       <th scope="col">ACCIONES</th>
                     </tr>
@@ -122,8 +134,7 @@
                   <td>{{ $estuaspirantes2->NOMBRES}}</td>
                   <td>{{ $estuaspirantes2->CUI}}</td>
                   <td>{{ $estuaspirantes2->GRADO}}</td>
-                  <td>{{ $estuaspirantes2->DPI}}</td>
-                  @if($estuaspirantes2->ESTADO==1)
+                  @if($estuaspirantes2->ESTADO==2)
                         <td><span class="badge rounded-pill bg-warning text-dark">Pendiente R.</span></td>
                         @elseif($estuaspirantes2->ESTADO==4)
                         <td><span class="badge rounded-pill bg-danger">Validar C.</span></td>
@@ -132,12 +143,12 @@
                   <span>
                       <td>
                         
-                        <button class="btn btn-editb" wire:click='editar_admision({{$estuaspirantes2->NO_GESTION}})' type="button" data-bs-toggle="modal" data-bs-target="#editaradmision"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                        <button class="btn btn-editb" wire:click='editar_admision({{$estuaspirantes2->ID_GESTION}})' type="button" data-bs-toggle="modal" data-bs-target="#editaradmision"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                             <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                             <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                           </svg></button>  
 
-                          <button class="btn btn-secondary"  style="border-radius: 12px;" wire:click='eliminar({{$estuaspirantes2->NO_GESTION}})' data-bs-toggle="modal" data-bs-target="#eliminaradmision"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                          <button class="btn btn-secondary"  style="border-radius: 12px;" wire:click='eliminar({{$estuaspirantes2->ID_GESTION}})' data-bs-toggle="modal" data-bs-target="#eliminaradmision"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
                             <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
                           </svg>
                           </button>
@@ -179,7 +190,6 @@
                       <th scope="col">NOMBRES</th>
                       <th scope="col">CUI</th>
                       <th scope="col">GRADO</th>
-                      <th scope="col">DPI</th>
                       <th scope="col">ESTADO</th>
                       <th scope="col">ACCIONES</th>
                     </tr>
@@ -191,8 +201,7 @@
                   <td>{{ $estuaspirantes3->NOMBRES}}</td>
                   <td>{{ $estuaspirantes3->CUI}}</td>
                   <td>{{ $estuaspirantes3->GRADO}}</td>
-                  <td>{{ $estuaspirantes3->DPI}}</td>
-                  @if($estuaspirantes3->ESTADO==1)
+                  @if($estuaspirantes3->ESTADO==3)
                         <td><span class="badge rounded-pill bg-warning text-dark">Pendiente R.</span></td>
                         @elseif($estuaspirantes3->ESTADO==4)
                         <td><span class="badge rounded-pill bg-danger">Validar C.</span></td>
@@ -201,12 +210,12 @@
                   <span>
                       <td>
                         
-                        <button class="btn btn-editb" wire:click='editar_admision({{$estuaspirantes3->NO_GESTION}})' type="button" data-bs-toggle="modal" data-bs-target="#editaradmision"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                        <button class="btn btn-editb" wire:click='editar_admision({{$estuaspirantes3->ID_GESTION}})' type="button" data-bs-toggle="modal" data-bs-target="#editaradmision"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                             <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                             <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                           </svg></button>  
 
-                          <button class="btn btn-secondary"  style="border-radius: 12px;" wire:click='eliminar({{$estuaspirantes3->NO_GESTION}})' data-bs-toggle="modal" data-bs-target="#eliminaradmision"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                          <button class="btn btn-secondary"  style="border-radius: 12px;" wire:click='eliminar({{$estuaspirantes3->ID_GESTION}})' data-bs-toggle="modal" data-bs-target="#eliminaradmision"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
                             <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
                           </svg>
                           </button>
