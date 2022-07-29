@@ -12,7 +12,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 class AdminisionesComponet extends Component
 {
     use WithFileUploads;
-
+    public $n_encargado, $dpi_encar, $bus_por, $nombre_conductor, $dpi_conductor, $n_conductor;
     public $search0,$search1,$search11,$search2,$search22,$search3,$search33,$search4,$search44,$search5,$search55,$usuario,$usuario2,$pass2,$correoed2;
     public $gradoin,$nombre_es,$f_nacimiento_es,$genero,$cui_es,$codigo_pe_es,$nac_es,$lug_nac_es,$tel_es,$cel_es,$direccion_es,$religion_es;
     public $nombre_en,$fnacimiento_en,$dpi_en,$extentido_en,$es_civil_en,$direccion_en,$tel_casa_en,$cel_en,$correo_en,$religion_en,$mensaje_diaco;
@@ -812,8 +812,6 @@ class AdminisionesComponet extends Component
     $this->alimento=$estac->ALERG_ALIMENTO;
     $this->vacunas=$estac->VACUNAS;
     $this->retiro=$estac->RETIRO;
-    //$this->solo_alumno=$estac->SALIDA_SOLO;
-    //$this->encargado_alumno=$estac->SALIDA_CON_ENCARGADO;
     $this->bus_colegio=$estac->SALIDA_BUS_COLEGIO;
     $this->bus_colegio=$estac->SALIDA_BUS_AJENO;
     $this->Especifique_medi=$estac->ESPECIFICAR_ALERG_ME;
@@ -850,7 +848,7 @@ class AdminisionesComponet extends Component
         }
     }
 
-    public $n_encargado, $dpi_encar, $bus_por, $nombre_conductor, $dpi_conductor, $n_conductor;
+    
 
     public function medicamento($medicamento){
         $this->medicamento=$medicamento;
@@ -1073,8 +1071,6 @@ $quien_encargado1=$this->quien_encargado1;
             'ASEGURADORA'=>$this->nombre_aseguradora,
             'POLIZA_SEGURO'=>$poliza,
             'NO_CARNET_SEGURO'=>$this->carne_seguro,
-            //'SALIDA_SOLO'=>$this->solo_alumno,
-            //'SALIDA_CON_ENCARGADO'=>$this->encargado_alumno,
             'RETIRO'=>$this->retiro,
             'NOMBRE_ENCARGADO'=>$nombre_encargado,
             'SALIDA_BUS_COLEGIO'=>$this->bus_colegio,
