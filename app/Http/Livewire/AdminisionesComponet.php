@@ -1020,14 +1020,6 @@ $quien_encargado1=$this->quien_encargado1;
             $this->formato2=1;
         }
     }
-    if($this->fotoest!=null){
-        if($this->fotoest->getClientOriginalExtension()=="jpg" or $this->fotoest->getClientOriginalExtension()=="png" or $this->fotoest->getClientOriginalExtension()=="jpeg"){
-            $fotoest = "img".time().".".$this->fotoest->getClientOriginalExtension();
-            $this->arch=$fotoest;
-            $this->fotoest->storeAS('imagen/fotoestperf/', $this->arch,'public_up');
-            $this->formato=1;
-        }
-    }
     DB::beginTransaction();
 
     $inscripcion_datos=DB::table('TB_PRE_INFO')
