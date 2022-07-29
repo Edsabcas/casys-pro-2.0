@@ -681,7 +681,8 @@
                      </div>
                    </div>
                  </div>
-               </div> 
+               </div>
+              </div> 
                <br>
                <div wire:ignore.self class="accordion" id="accordionDatosdelpadre">
                  <div style="border-radius: 60px 60px 60px 60px;" class="accordion-item">
@@ -1545,6 +1546,7 @@
             </div>
           </div>
           </div>
+      </div> 
        <br>
  
    <div wire:ignore.self class="accordion" id="accordiondatosmedicos">
