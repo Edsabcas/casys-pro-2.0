@@ -156,7 +156,7 @@ table, td { color: #000000; } a { color: #0000ee; text-decoration: underline; } 
       <td style="overflow-wrap:break-word;word-break:break-word;padding:20px 10px 10px;font-family:arial,helvetica,sans-serif;" align="left">
         
   <h1 style="margin: 0px; color: #3a3e7b; line-height: 120%; text-align: center; word-wrap: break-word; font-weight: normal; font-family: trebuchet ms,geneva; font-size: 27px;">
-   Hola, Se ha actualizado su proceso de Pre-inscripci&oacute;n
+   Hola, le informamos que se ha actualizado su proceso de Inscripci&oacute;n
   </h1>
 
       </td>
