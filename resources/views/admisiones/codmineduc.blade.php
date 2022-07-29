@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title text-center" id="staticBackdropLabel" style="color:rgb(0, 0, 0)"><b>Validar Codigo MINEDUC</b></h5>
+          <h5 class="modal-title text-center" id="staticBackdropLabel" style="color:rgb(0, 0, 0)"><b>Validar Código MINEDUC</b></h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">

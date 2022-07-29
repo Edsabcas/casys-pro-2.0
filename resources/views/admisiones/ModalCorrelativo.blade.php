@@ -5,7 +5,7 @@
         
         </div>
         <div class="modal-body">
-            <h5 class="modal-title text-center" id="staticBackdropLabel" style="color:#3a3e7b"><b>¿Está seguro de cambiar el numero correlativo?, esta acción es irrebersible.</b></h5>
+            <h5 class="modal-title text-center" id="staticBackdropLabel" style="color:#3a3e7b"><b>¿Está seguro de cambiar el número correlativo? Esta acción es irreversible.</b></h5>
             <h4 class="form-label text text-center" style="font-size:25px">Gestión: #{{$no_gest}}
               
             </h4>
