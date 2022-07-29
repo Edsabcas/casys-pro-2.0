@@ -23,7 +23,7 @@ class ContenidosEstudianteComponent extends Component
     public $prueba2, $idas, $nombress,$opf, $estado_tarea;
     public $option1, $option2, $option3, $option4, $option5, $option6,$materia_revi;
     public $validation1, $validation2, $validation3, $validation4, $validation5,$validation6,$nombre_act, $descripact;
-    public $vistar,$vistar2, $unidadfija_t,$actib, $nombre_alum;
+    public $vistar,$vistar2, $unidadfija_t,$actib, $nombre_alum, $ejemploaaaaa;
     public $texto_advertencia, $prioridad_advertencia, $fecha_inicio, $fecha_fin, $invalido, $advertencia_adver, $advertenciass, $advertenciasss;
     public $blockadvertencia, $dia_exacto, $mensaje_eliminar, $mensaje_eliminar2,$editrevisar,$comentario_r,$comentario_d_r,$id_estado_act, $editaadv;
     public $DOCUMENTO1, $DOCUMENTO2, $DOCUMENTO3, $DOCUMENTO4, $DOCUMENTO5;  
@@ -276,6 +276,11 @@ class ContenidosEstudianteComponent extends Component
             }        
     
 
+    }
+
+    public function subir_mas_arch(){
+        $this->ejemploaaaaa==1;
+        
     }
 
 }

@@ -9,7 +9,8 @@
             <div class="card border-Secondary mb-3" style="max-width: 90rem;" >
                 <div class="card-body">
                  <Center> <label style="color:#3a3e7b">Suba sus archivos aquí</label> </Center>
-                 <center><div class="col-sm-12">
+                  @if($ejemploaaaaa==0 )
+                  <center><div class="col-sm-12">
                     <input type="file" class="form-control " wire:model='archivo'  style="border:2px solid rgba(86, 95, 76, 0.466);" id="exampleInputPassword1">
                      <div class="col-sm-10">
                       @if($formato==1)
@@ -27,6 +28,7 @@
                         <iframe width="400" height="400" src="/imagen/temporalpdf/{{$arch}}" frameborder="0"></iframe>
                       @endif
                      </div>
+
                   </div>    </center> <br>
                   <div wire:loading wire:target="archivo" class="alert alert-warning" role="alert">
                     <strong class="font-bold">¡Documento cargando!</strong>
@@ -35,10 +37,25 @@
                     </div>
                   </div>
                 </div>
-            </div>
+                <center> <a type="submit" type="button" wire:click='subir_mas_arch()' style="border-radius: 60px 60px 60px 60px;"  class="btn btn-warning">Subir otro archivo</a></center> 
+              </div>
+
+
+
+
+               @elseif($ejemploaaaaa==0 )
+           
+                   <h1>nuevos archivos</h1>
+                @endif          
         </div>
         <div class="modal-footer">
+       @if($ejemploaaaaa==1)
           <a type="submit" type="button" wire:click='Subir_T()' style="border-radius: 60px 60px 60px 60px;" data-bs-dismiss="modal" class="btn btn-warning">Enviar</a>
+          
+          @elseif($ejemploaaaaa==1 )
+          <h1>nuevos archivos</h1>
+
+      @endif
           <button type="button" class="btn btn-secondary"  style="border-radius: 60px 60px 60px 60px;"  data-bs-dismiss="modal">Cancelar</button>
         </div>
       </div>
