@@ -10,7 +10,7 @@
         <div class="modal-body">
             <div class="container-sm">
 
-              <h4 class="form-label text text-center" style="font-size:25px">Gestion: #{{$gestion}}
+              <h4 class="form-label text text-center" style="font-size:25px">Gestión: #{{$gestion}}
               
               </h4> 
               <p  class="text text-center">Fecha de último cambio: <b>{{$fecha_ultimo_cambio}}</b></p>
@@ -675,7 +675,7 @@
                                       {{-- Número de la tarjeta --}}
                                       <div class="col">
                                         <div class="mb-3">
-                                          <label for="notarjeta" class="col-form-label">Numero de la tarjeta:</label>
+                                          <label for="notarjeta" class="col-form-label">Nuúmero de la tarjeta:</label>
                                           <input type="number" class="form-control" id="notarjeta" wire:model="notarjeta">
                                         </div>
                                       </div>
@@ -714,7 +714,7 @@
                                       {{-- Número de la tarjeta --}}
                                       <div class="col">
                                         <div class="mb-3">
-                                          <label for="cseguridad" class="col-form-label">Codigo de seguridad:</label>
+                                          <label for="cseguridad" class="col-form-label">Código de seguridad:</label>
                                           <input type="number" class="form-control" id="cseguridad" wire:model="cseguridad">
                                         </div>
                                       </div>
@@ -745,7 +745,7 @@
                           @isset($mensajeup1)
                           @if($mensajeup1!=null)
                           <div class="alert alert-danger" role="alert">
-                            ¡No se logro editar correctamente!
+                            ¡No se logró editar correctamente!
                           </div>
                           @endif
                         @endisset
