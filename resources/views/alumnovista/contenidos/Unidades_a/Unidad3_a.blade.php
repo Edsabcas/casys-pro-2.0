@@ -99,9 +99,10 @@ $('#modalsubiractividades').modal('show');
          <center>@include('alumnovista.contenidos.Unidades_a.modalactividades')
           <button class="btn btn-editb" type="button" name="{{$actividad->ID_ACTIVIDADES}}" id=subir wire:click='modalsubact("{{$actividad->NOMBRE_ACTIVIDAD}}","{{$actividad->descripcion}}","{{$actividad->ID_ACTIVIDADES}}")'>Subir tarea</button></center>
           @elseif($actividad->ESTADO==1)
-         <center>  <a href="/Archivoact" wire:click='archivos_t("{{$actividad->DOCUMENTO1}}","{{$actividad->DOCUMENTO2}}","{{$actividad->DOCUMENTO3}}","{{$actividad->DOCUMENTO4}}","{{$actividad->DOCUMENTO5}}")' target="_blank" type="button" class="btn btn-editb">Sus Archivos</a></center>
+         <center>  <a href="/imagen/pdf_tareas/{{$actividad->DOCUMENTO1}}"  target="_blank" type="button" class="btn btn-editb">Sus Archivos</a></center>
          @endif
-        
+         
+
 
             <br>
           </div>
