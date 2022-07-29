@@ -17,7 +17,7 @@ class AdminisionesComponet extends Component
     public $gradoin,$nombre_es,$f_nacimiento_es,$genero,$cui_es,$codigo_pe_es,$nac_es,$lug_nac_es,$tel_es,$cel_es,$direccion_es,$religion_es;
     public $nombre_en,$fnacimiento_en,$dpi_en,$extentido_en,$es_civil_en,$direccion_en,$tel_casa_en,$cel_en,$correo_en,$religion_en,$mensaje_diaco;
     public $a,$mensaje,$gradose,$fingreso_gestion,$id_ges_cambio,$tipo_cambio1,$id_pre_corre,$DPI_encargado,$nacimiento_encargado,$id_relacion;
-    public $id_pre,$metodo,$archivo_comprobante,$validacion_comp,$validacion_com,$observacion2,$img,$tipo,$mensaje24,$mensaje25,$fotos,$fpago,$no_gest_con,$solo_por,$idgrado;
+    public $id_pre,$metodo,$archivo_comprobante,$validacion_comp,$observacion2,$img,$tipo,$mensaje24,$mensaje25,$fotos,$fpago,$no_gest_con,$solo_por,$idgrado;
     public $val,$val1,$gestion,$errorfecha,$upnocorre1,$upnocorre2,$nomb,$fvencimiento,$cseguridad,$ntarjeta,$notarjeta;
     public $estado_ges,$archivo_comprobante2,$fecha_ultimo_cambio,$mensajeins,$mensajeins1,$id_pre_boton,$estado_pre_boton,$matricula_bus_aj;
     public $mensaje1,$id2,$profesion_en,$id_desact,$nuevo_estadodesact,$no_gest_desact,$tipo_cambio8,$fotoest2;
@@ -504,14 +504,13 @@ class AdminisionesComponet extends Component
                    'CORREO_EN_ES2'=> $this->correo_en2,
                    'PROFESION_EN_ES'=>$this->profesion_en,
                    'TIPO_INS'=>$this->tipo_ins,
-                    //'FECHA_REGISTRO'=>$this->fingreso_gestion,
-                    //''=>,
-                    //'FORMA_PAGO'=>$metodo,
-                   // 'FORMA_PAGO'=>$metodo,
-                    //'COMPROBANTE_PAGO'=>$archivo_comprobante,
+                    'COMPROBANTE_PAGO'=>$archivo_comprobante,
                     'FECHA_CAMBIOS_REG'=> date('y-m-d:h:m:s'),
-                    /* 'ESTADO_PRE_INS'=>2, */
-                   // 'OBSERVACION_COMP'=>$observacion,
+                    'OBSERVACION_COMP'=>$this->observacion,
+                    'FORMA_PAGO'=>$this->fpago,
+                    'TIPO_PAGO'=>$this->metodo,
+                    'VALIDACION_COMP'=>$this->validacion_comp,
+                    'OBSERVACION_COMP2'=>$this->observacion2,
                 ]
                 );
             if($comprobantes){
@@ -1624,10 +1623,7 @@ $quien_encargado1=$this->quien_encargado1;
             
             }
 
-
-
-
-         public function cambio_estadocorre($no_gest){
+        public function cambio_estadocorre($no_gest){
             if($this->validate([
                 'correlativon' => 'required',
                 ])==false){
@@ -2007,8 +2003,7 @@ public function Desactivacion($id,$estado,$gest){
             }
     
  }
-        public function validacion($val){
-
-        $this->validacion_com=$val;
+        public function validacion_comp($validacion_comp){
+        $this->validacion_comp=$validacion_comp;
     }
 }

@@ -181,7 +181,7 @@
                               <div style="line-height: 160%; text-align: left; word-wrap: break-word;">
                                 <p style="font-size: 14px; line-height: 160%;"><strong>Hola, </strong></p>
                                 <p style="font-size: 14px; line-height: 160%;"> </p>
-                                <p style="font-size: 14px; line-height: 160%;">El pdf adjunto contiene sus credenciales de acceso para la plataforma casys.</p>
+                                <p style="font-size: 14px; line-height: 160%;">El pdf adjunto contiene sus credenciales de acceso para la plataforma CASYS.</p>
                               </div>
 
                             </td>

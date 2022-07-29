@@ -628,21 +628,21 @@
                             <label for="inputApellidos" style="font-size: 20px; color:#000000;"><strong>Validación si efectuó completo el pago:</strong></label>
                             <br>
                             <div class="form-check form-check-inline">
-                              <input class="form-check-input"  type="radio" {{-- wire:model="validacion_comp" --}} wire:click="validacion(1)" value="1" id="flexRadioEstado1">
-                              <label class="form-check-label" for="flexRadioEstado1" style="font-size: 15px; color:#000000;">
+                              <input class="form-check-input"  type="radio" name="1" id="val1" wire:click="validacion_comp('1')">
+                              <label class="form-check-label" for="val1" style="font-size: 15px; color:#000000;">
                               Aceptar
                               </label>
                             </div>
                             <div class="form-check form-check-inline">
-                              <input class="form-check-input" type="radio"{{--  wire:model="validacion_comp" --}} value="2" wire:click="validacion(2)" id="flexRadioEstado2">
-                              <label class="form-check-label" for="flexRadioEstado2" style="font-size: 15px; color:#000000;">
+                              <input class="form-check-input" type="radio" name="2" id="val2" wire:click="validacion_comp('2')">
+                              <label class="form-check-label" for="val2" style="font-size: 15px; color:#000000;">
                               Rechazar
                               </label>
                             </div>
-                            @if ($validacion_com==2)
+                            @if($validacion_comp==2)
                               <div class="mb-3">
                                 <label for="message-text" class="col-form-label">Observación:</label>
-                                <textarea class="form-control" id="message-text" wire:model="observacion2" required></textarea>
+                                <textarea class="form-control" id="rechazo" wire:model="observacion2" required></textarea>
                               </div>                            
                             @endif
                           </div>
