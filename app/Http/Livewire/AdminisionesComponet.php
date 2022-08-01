@@ -33,7 +33,7 @@ class AdminisionesComponet extends Component
     public $tipo2,$correo_en2,$preciopre,$preciovir,$id_gr,$id_nvl, $retiro;
     public $quien_encargado1, $nombre_encargado, $nacimientoencargado,$nacionalidadencargado,$lugarnacimientoencargado,$estadocivilencargado,$DPIencargado,$telefonoencargado,$celularencargado,$direccionresidenciaencargado,$correoencargado,$profesionencargado,$lugar_profesion_encargado ,$religion_encargado,$NIT_encargado;
     public $img2, $img3, $archivo_perfil, $archivo_perfil2, $vive_con_el_encargado, $Especifique_rel;
-    public $can1,$can2,$tipo_ins, $datosusuario4,$tipo3,$tipo4, $cargoencargado;
+    public $can1,$can2,$tipo_ins, $datosusuario4,$tipo3,$tipo4, $cargoencargado,$mensajerechazo,$mensajerechazo2;
     public $grados_selecionados3, $grados_selecionados4, $grados_selecionados5, $grados_selecionados6, $grados_selecionados7, $grados_selecionados8, $grados_selecionados9;
 
     public function render()
@@ -443,6 +443,95 @@ class AdminisionesComponet extends Component
             }
         }
 
+        public function actualizar_inf(){
+            if($this->validate([
+                'gradoin' => 'required',
+                'nombre_es' => 'required',
+                'f_nacimiento_es' => 'required',
+                'genero' => 'required',
+                'cui_es' => 'required',
+                'codigo_pe_es' => 'required',
+                'nac_es' => 'required',
+                'lug_nac_es' => 'required',
+                'cel_es' => 'required',
+                'direccion_es' => 'required',
+                'religion_es' => 'required',
+                'nombre_en' => 'required',
+                'fnacimiento_en' => 'required',
+                'dpi_en' => 'required',
+                'extentido_en' => 'required',
+                'es_civil_en' => 'required',
+                'direccion_en' => 'required',
+                'tel_casa_en' => 'required',
+                'cel_en' => 'required',
+                'correo_en' => 'required',
+                'religion_en' => 'required',
+                //'observacion2' => 'required',
+                ])==false){
+                $mensaje="no encontrado";
+               session(['message' => 'no encontrado']);
+                return  back()->withErrors(['mensaje'=>'Validar el input vacio']);
+            }else{
+                DB::beginTransaction();
+        
+                $comprobantes=DB::table('TB_PRE_INS')
+                ->where('ID_PRE',$this->id_ges_cambio)
+                ->update(
+                    [
+                        'NOMBRE_ES'=>$this->nombre_es,
+                        'APELLIDOS_EST'=>$this->apellidos_est,
+                        'FEC_NAC'=>$this->f_nacimiento_es,
+                        'GENERO'=>$this->genero,
+                        'CUI_ES'=>$this->cui_es,
+                        'CODIGO_PER'=> $this->codigo_pe_es,
+                        'NACIONALIDAD_ES'=>$this->nac_es,
+                        'LUGAR_NAC_ES'=>$this->lug_nac_es,
+                        'CELULAR_ES'=>$this->cel_es,
+                        'DIRECCION_RES_ES'=>$this->direccion_es,
+                        'RELIGION_ES'=>$this->religion_es,
+                        'NOMBRE_ENCARGADO_ES'=>$this->nombre_en,
+                        'FEC_NAC_EN_ES'=>$this->fnacimiento_en,
+                        'DPI_EN_ES'=>$this->dpi_en,
+                        'EXTENDIDO_DPI_EN_ES'=> $this->extentido_en,
+                        'ESTADO_CIVIL_EN_ES'=>$this->es_civil_en,
+                        'DIRECCION_EN_ES'=>$this->direccion_en,
+                        'TEL_EN_ES'=>$this->tel_casa_en,
+                        'CEL_EN_ES'=>$this->cel_en,
+                        'CORREO_EN_ES'=>$this->correo_en,
+                        'RELIGION_EN_ES'=>$this->religion_en,
+                        'FECHA_REGISTRO'=>$this->fingreso_gestion,
+                        'GRADO_ING_ES'=>$this->gradoin,
+                        'NO_GESTION'=>$this->gestion,
+                        'MODALIDAD_EST'=>$this->tipo2,
+                       'CORREO_EN_ES2'=> $this->correo_en2,
+                       'PROFESION_EN_ES'=>$this->profesion_en,
+                       'TIPO_INS'=>$this->tipo_ins,
+                 /*        'COMPROBANTE_PAGO'=>$archivo_comprobante, */
+                        'FECHA_CAMBIOS_REG'=> date('y-m-d:h:m:s'),
+                        'OBSERVACION_COMP'=>$this->observacion,
+                        'FORMA_PAGO'=>$this->fpago,
+                        'TIPO_PAGO'=>$this->metodo,
+                        'VALIDACION_COMP'=>$this->validacion_comp,
+                        'OBSERVACION_COMP2'=>$this->observacion2,
+                    ]
+                    );
+                if($comprobantes){
+        
+                    DB::commit();
+                   // $this->reset();
+                    unset($this->mensajeup);
+                    $this->mensajeup='Actualizado correctamente';
+                }
+                else{
+                    DB::rollback();
+                    unset($this->mensajeup1);
+                    $this->mensajeup1='No fue posible actualizar correctamente';
+                }
+        
+            }
+          
+        }
+
     public function actualizar_info(){
         if($this->validate([
             'gradoin' => 'required',
@@ -466,6 +555,7 @@ class AdminisionesComponet extends Component
             'cel_en' => 'required',
             'correo_en' => 'required',
             'religion_en' => 'required',
+            'observacion2' => 'required',
             ])==false){
             $mensaje="no encontrado";
            session(['message' => 'no encontrado']);
@@ -478,6 +568,7 @@ class AdminisionesComponet extends Component
             ->update(
                 [
                     'NOMBRE_ES'=>$this->nombre_es,
+                    'APELLIDOS_EST'=>$this->apellidos_est,
                     'FEC_NAC'=>$this->f_nacimiento_es,
                     'GENERO'=>$this->genero,
                     'CUI_ES'=>$this->cui_es,
@@ -598,6 +689,7 @@ class AdminisionesComponet extends Component
         if($this->validate([
 
             /* DATOS DEL ESTUDIANTE */
+
             'gradoin' => 'required',
             'nombre_es' => 'required',
             'f_nacimiento_es' => 'required',
@@ -683,6 +775,8 @@ class AdminisionesComponet extends Component
                     'COMPROBANTE_PAGO'=>$this->archivo_comprobante,
                     'FECHA_CAMBIOS_REG'=> date('y-m-d:h:m:s'),
                     'OBSERVACION_COMP'=>$this->observacion,
+                    'VALIDACION_COMP'=>$this->validacion_comp,
+                    'OBSERVACION_COMP2'=>$this->observacion2,   
                 ]
                 );
             if($validacion_pagos){
@@ -2010,4 +2104,40 @@ public function Desactivacion($id,$estado,$gest){
         public function validacion_comp($validacion_comp){
         $this->validacion_comp=$validacion_comp;
     }
+
+        public function rechazar_comprobante(){
+
+            $rechazar=DB::table('TB_PRE_INS')
+            ->where('ID_PRE',$this->id_ges_cambio)
+            ->update(
+                [
+                    'ESTADO_PRE_INS'=>1,
+                    'VALIDACION_COMP'=>$this->validacion_comp,
+                    'OBSERVACION_COMP2'=>$this->observacion2,
+                ]);
+
+                if($rechazar){
+                    DB::commit();
+                   if(false !== strpos($this->correo_en, "@") && false !== strpos($this->correo_en, ".")){
+                    $subject = "Notificación Inscripción Castaño (No responder)";
+                    $for3 = $this->correo_en;
+                    $arreglo= array($this->id_no_gest_ins,$this->observacion2);
+                    Mail::send('admisiones.correo.vista2',compact('arreglo'), function($msj) use($subject,$for3){
+                        $msj->from("ingresos@colegioelcastano.edu.gt","ColegioElCastaño");
+                        $msj->subject($subject);
+                        $msj->to($for3);        
+                    });
+                }
+
+                    unset($this->mensajerechazo);
+                    $this->mensajerechazo='Se ha enviado el correo electrónico y se le ha regresado de estado correctamente';
+
+                }
+                else{
+                    DB::rollback();
+                    unset($this->mensajerechazo2);
+                    $this->mensajerechazo2='No fue posible enviar correo electrónico';
+                }
+                
+        }
 }

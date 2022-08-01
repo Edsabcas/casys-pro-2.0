@@ -99,9 +99,30 @@ $('#modalsubiractividades').modal('show');
          <center>@include('alumnovista.contenidos.Unidades_a.modalactividades')
           <button class="btn btn-editb" type="button" name="{{$actividad->ID_ACTIVIDADES}}" id=subir wire:click='modalsubact("{{$actividad->NOMBRE_ACTIVIDAD}}","{{$actividad->descripcion}}","{{$actividad->ID_ACTIVIDADES}}")'>Subir tarea</button></center>
           @elseif($actividad->ESTADO==1)
-         <center>  <a href="/Archivoact" wire:click='archivos_t("{{$actividad->DOCUMENTO1}}","{{$actividad->DOCUMENTO2}}","{{$actividad->DOCUMENTO3}}","{{$actividad->DOCUMENTO4}}","{{$actividad->DOCUMENTO5}}")' target="_blank" type="button" class="btn btn-editb">Sus Archivos</a></center>
+          @if($actividad->DOCUMENTO1!=null && $actividad->DOCUMENTO2!=null && $actividad->DOCUMENTO3!=null && $actividad->DOCUMENTO4!=null && $actividad->DOCUMENTO5!=null)
+          <center>  <a href="/imagen/tareas/{{$actividad->DOCUMENTO1}}"  target="_blank" type="button" class="btn btn-editb">Archivo1</a></center>
+          <center>  <a href="/imagen/tareas/{{$actividad->DOCUMENTO2}}"  target="_blank" type="button" class="btn btn-editb">Archivo2</a></center>
+          <center>  <a href="/imagen/tareas/{{$actividad->DOCUMENTO3}}"  target="_blank" type="button" class="btn btn-editb">Archivo3</a></center>
+          <center>  <a href="/imagen/tareas/{{$actividad->DOCUMENTO4}}"  target="_blank" type="button" class="btn btn-editb">Archivo4</a></center>
+          <center>  <a href="/imagen/tareas/{{$actividad->DOCUMENTO5}}"  target="_blank" type="button" class="btn btn-editb">Archivo5</a></center>
+          @elseif($actividad->DOCUMENTO1!=null && $actividad->DOCUMENTO2!=null && $actividad->DOCUMENTO3!=null && $actividad->DOCUMENTO4!=null)
+          <center>  <a href="/imagen/tareas/{{$actividad->DOCUMENTO1}}"  target="_blank" type="button" class="btn btn-editb">Archivo1</a></center>
+          <center>  <a href="/imagen/tareas/{{$actividad->DOCUMENTO2}}"  target="_blank" type="button" class="btn btn-editb">Archivo2</a></center>
+          <center>  <a href="/imagen/tareas/{{$actividad->DOCUMENTO3}}"  target="_blank" type="button" class="btn btn-editb">Archivo3</a></center>
+          <center>  <a href="/imagen/tareas/{{$actividad->DOCUMENTO4}}"  target="_blank" type="button" class="btn btn-editb">Archivo4</a></center>
+          @elseif($actividad->DOCUMENTO1!=null && $actividad->DOCUMENTO2!=null && $actividad->DOCUMENTO3!=null)
+          <center>  <a href="/imagen/tareas/{{$actividad->DOCUMENTO1}}"  target="_blank" type="button" class="btn btn-editb">Archivo1</a></center>
+          <center>  <a href="/imagen/tareas/{{$actividad->DOCUMENTO2}}"  target="_blank" type="button" class="btn btn-editb">Archivo2</a></center>
+          <center>  <a href="/imagen/tareas/{{$actividad->DOCUMENTO3}}"  target="_blank" type="button" class="btn btn-editb">Archivo3</a></center>
+          @elseif($actividad->DOCUMENTO1!=null && $actividad->DOCUMENTO2!=null)
+          <center>  <a href="/imagen/tareas/{{$actividad->DOCUMENTO1}}"  target="_blank" type="button" class="btn btn-editb">Archivo1</a></center>
+          <center>  <a href="/imagen/tareas/{{$actividad->DOCUMENTO2}}"  target="_blank" type="button" class="btn btn-editb">Archivo2</a></center>
+          @elseif($actividad->DOCUMENTO1!=null)
+          <center>  <a href="/imagen/tareas/{{$actividad->DOCUMENTO1}}"  target="_blank" type="button" class="btn btn-editb">Archivo1</a></center>
+          @endif
          @endif
-        
+         
+
 
             <br>
           </div>

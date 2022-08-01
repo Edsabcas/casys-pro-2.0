@@ -538,7 +538,7 @@
                 <div wire:ignore.self class="accordion" id="accordionDatosVarios">
                  <div style="border-radius: 60px 60px 60px 60px;" class="accordion-item">
                    <h2 style="border-radius: 60px 60px 60px 60px;" class="accordion-header" id="panelsStayOpen-headingOnedatosvarios">
-                     <button class="accordion-button"  type="button" style="background-color:#d6e7a6; border:6px solid #a4cb39; border-radius: 60px 60px 60px 60px;" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-datosvarios" aria-expanded="true" aria-controls="panelsStayOpen-datosvarios">
+                     <button class="accordion-button collapsed"  type="button" style="background-color:#d6e7a6; border:6px solid #a4cb39; border-radius: 60px 60px 60px 60px;" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-datosvarios" aria-expanded="false" aria-controls="panelsStayOpen-datosvarios">
                          <h4 class="font-weight-bolder">
                              Datos Varios
                            </h4>
@@ -681,12 +681,13 @@
                      </div>
                    </div>
                  </div>
-               </div> 
+               </div>
+              </div> 
                <br>
                <div wire:ignore.self class="accordion" id="accordionDatosdelpadre">
                  <div style="border-radius: 60px 60px 60px 60px;" class="accordion-item">
                    <h2 style="border-radius: 60px 60px 60px 60px;" class="accordion-header" id="panelsStayOpen-headingOnedatospadre">
-                     <button class="accordion-button" type="button" style="background-color:#d6e7a6; border:6px solid #a4cb39; border-radius: 60px 60px 60px 60px;" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-padre" aria-expanded="true" aria-controls="panelsStayOpen-padre">
+                     <button class="accordion-button collapsed" type="button" style="background-color:#d6e7a6; border:6px solid #a4cb39; border-radius: 60px 60px 60px 60px;" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-padre" aria-expanded="false" aria-controls="panelsStayOpen-padre">
                          <h4 class="font-weight-bolder">
                              Datos del Padre
                            </h4>
@@ -956,7 +957,7 @@
  
                  <div style="border-radius: 60px 60px 60px 60px;" class="accordion-item">
                    <h2 style="border-radius: 60px 60px 60px 60px;" class="accordion-header" id="panelsStayOpen-headingOneDatosdelamadre">
-                     <button class="accordion-button" type="button" style="background-color:#d6e7a6; border:6px solid #a4cb39; border-radius: 60px 60px 60px 60px;" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-madre" aria-expanded="true" aria-controls="panelsStayOpen-madre">
+                     <button class="accordion-button collapsed" type="button" style="background-color:#d6e7a6; border:6px solid #a4cb39; border-radius: 60px 60px 60px 60px;" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-madre" aria-expanded="false" aria-controls="panelsStayOpen-madre">
                          <h4 class="font-weight-bolder">
                              Datos de la Madre
                            </h4>
@@ -1545,12 +1546,13 @@
             </div>
           </div>
           </div>
+      </div> 
        <br>
  
    <div wire:ignore.self class="accordion" id="accordiondatosmedicos">
      <div style="border-radius: 60px 60px 60px 60px;" class="accordion-item">
        <h2 style="border-radius: 60px 60px 60px 60px;" class="accordion-header" id="panelsStayOpen-headingOnedatosmedicos  ">
-         <button class="accordion-button" type="button" style="background-color:#d6e7a6; border:6px solid #a4cb39; border-radius: 60px 60px 60px 60px;" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-medicos" aria-expanded="true" aria-controls="panelsStayOpen-medicos">
+         <button class="accordion-button collapsed" type="button" style="background-color:#d6e7a6; border:6px solid #a4cb39; border-radius: 60px 60px 60px 60px;" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-medicos" aria-expanded="false" aria-controls="panelsStayOpen-medicos">
            <h4 class="font-weight-bolder">
              Datos Médicos
            </h4>
@@ -1809,7 +1811,7 @@
           @endif
           
           
-          </div>
+          
   
           @if($retiro==2)
           <div class="tab">
@@ -1881,11 +1883,12 @@
          </center>
         @endif
       @endif
+    </div>
         </div>
         </div>
   </div>
   
-  </div>
+
  
  
  

@@ -266,4 +266,6 @@ class VistaAlumnoComponent extends Component
         
         
     }
+
+
 }

@@ -13,11 +13,16 @@ margin-top: 35px;
 margin-bottom: 35px;
 ">
     <div class="row">
-        <img align="left" src="imagen/actividades/img1651798574.png" height="80" weight="80" alt="...">
+        <img align="left" src="imagen/actividades/img1651798574.png" height="50" weight="50" alt="...">
+        <img align="right" src="imagen/actividades/casys.png" height="50" weight="50" alt="...">
+        <br>
         <center>
             <br>
-            <strong><p style="text-align: center; font-size: 20px; color:#a4cb39;">CREDENCIALES DE ACCESO PARA CASYS {{$datos_usuario[0]}}</p></strong></center>
+            <strong><p style="text-align: center; font-size: 20px; color:#a4cb39;">CREDENCIALES DE ACCESO PARA CASYS {{$datos_usuario[0]}}</p></strong>  
+            <br>
+        </center>
     </div>
+    <br>
     <p style="text-align: justify; font-size: 14px">Estimado encargado(a) por medio de la presente se le hace entrega
     de sus respectivas credenciales para el acceso a su perfil de CASYS: </p>
     <ul>

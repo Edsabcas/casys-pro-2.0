@@ -18,8 +18,7 @@ class ContenidosEstudianteComponent extends Component
     public $vista,$vista2;
     public $prueba, $op, $mensaje, $mensaje1, $file, $date, $dia2, $message, $file2, $arch, $vid, $pdf, $formato, $tipo, $id_act,$editt,$editp;
     public $titulo, $punteo, $fecha_e, $fecha_ext, $descripcion, $act,$tema_a,$descripciont,$tema,$unidad, $temasb, $archivo, $nota, $descripciona;
-    public $restriccion, $fecha_date, $sancion; 
-    public $titulo2, $punteo2, $fecha_e2, $descripcion2, $fecha_ext2, $temasb2, $grado2, $idsecc2, $arch2,$tema2, $unidad2, $descripciont2, $nombreu,$id_tem, $edita,$id_plan,$edita2;
+    public $restriccion, $fecha_date, $sancion, $mas_arch; 
     public $prueba2, $idas, $nombress,$opf, $estado_tarea;
     public $option1, $option2, $option3, $option4, $option5, $option6,$materia_revi;
     public $validation1, $validation2, $validation3, $validation4, $validation5,$validation6,$nombre_act, $descripact;
@@ -27,6 +26,7 @@ class ContenidosEstudianteComponent extends Component
     public $texto_advertencia, $prioridad_advertencia, $fecha_inicio, $fecha_fin, $invalido, $advertencia_adver, $advertenciass, $advertenciasss;
     public $blockadvertencia, $dia_exacto, $mensaje_eliminar, $mensaje_eliminar2,$editrevisar,$comentario_r,$comentario_d_r,$id_estado_act, $editaadv;
     public $DOCUMENTO1, $DOCUMENTO2, $DOCUMENTO3, $DOCUMENTO4, $DOCUMENTO5;  
+    public $archivo2, $formato2, $arch2, $archivo3, $formato3, $arch3,$archivo4, $formato4, $arch4, $archivo5, $formato5, $arch5;
     public function render()
     {
         
@@ -47,6 +47,78 @@ class ContenidosEstudianteComponent extends Component
             }
             elseif($this->archivo->getClientOriginalExtension()=="pdf"){
                 $this->formato=3;
+            }
+
+        }
+
+        if($this->archivo2!=null){
+            if($this->archivo2->getClientOriginalExtension()=="pdf"){
+                $archivo2 = "pdf".time().".".$this->archivo2->getClientOriginalExtension();
+                $this->arch2=$archivo2;
+                $this->archivo2->storeAS('imagen/temporalpdf/', $this->arch2,'public_up');
+            }
+            if($this->archivo2->getClientOriginalExtension()=="jpg" or $this->archivo2->getClientOriginalExtension()=="png" or $this->archivo2->getClientOriginalExtension()=="jpeg"){
+                $this->formato2=1;
+            }
+            elseif($this->archivo2->getClientOriginalExtension()=="mp4" or $this->archivo2->getClientOriginalExtension()=="mpeg"){
+                $this->formato2=2;
+            }
+            elseif($this->archivo2->getClientOriginalExtension()=="pdf"){
+                $this->formato2=3;
+            }
+
+        }
+
+        if($this->archivo3!=null){
+            if($this->archivo3->getClientOriginalExtension()=="pdf"){
+                $archivo3 = "pdf".time().".".$this->archivo3->getClientOriginalExtension();
+                $this->arch3=$archivo3;
+                $this->archivo3->storeAS('imagen/temporalpdf/', $this->arch3,'public_up');
+            }
+            if($this->archivo3->getClientOriginalExtension()=="jpg" or $this->archivo3->getClientOriginalExtension()=="png" or $this->archivo3->getClientOriginalExtension()=="jpeg"){
+                $this->formato3=1;
+            }
+            elseif($this->archivo3->getClientOriginalExtension()=="mp4" or $this->archivo3->getClientOriginalExtension()=="mpeg"){
+                $this->formato3=2;
+            }
+            elseif($this->archivo3->getClientOriginalExtension()=="pdf"){
+                $this->formato3=3;
+            }
+
+        }
+
+        if($this->archivo4!=null){
+            if($this->archivo4->getClientOriginalExtension()=="pdf"){
+                $archivo4 = "pdf".time().".".$this->archivo4->getClientOriginalExtension();
+                $this->arch4=$archivo4;
+                $this->archivo4->storeAS('imagen/temporalpdf/', $this->arch4,'public_up');
+            }
+            if($this->archivo4->getClientOriginalExtension()=="jpg" or $this->archivo4->getClientOriginalExtension()=="png" or $this->archivo4->getClientOriginalExtension()=="jpeg"){
+                $this->formato4=1;
+            }
+            elseif($this->archivo4->getClientOriginalExtension()=="mp4" or $this->archivo4->getClientOriginalExtension()=="mpeg"){
+                $this->formato4=2;
+            }
+            elseif($this->archivo3->getClientOriginalExtension()=="pdf"){
+                $this->formato4=3;
+            }
+
+        }
+
+        if($this->archivo5!=null){
+            if($this->archivo5->getClientOriginalExtension()=="pdf"){
+                $archivo5 = "pdf".time().".".$this->archivo5->getClientOriginalExtension();
+                $this->arch5=$archivo5;
+                $this->archivo5->storeAS('imagen/temporalpdf/', $this->arch5,'public_up');
+            }
+            if($this->archivo5->getClientOriginalExtension()=="jpg" or $this->archivo5->getClientOriginalExtension()=="png" or $this->archivo5->getClientOriginalExtension()=="jpeg"){
+                $this->formato5=1;
+            }
+            elseif($this->archivo5->getClientOriginalExtension()=="mp4" or $this->archivo5->getClientOriginalExtension()=="mpeg"){
+                $this->formato5=2;
+            }
+            elseif($this->archivo5->getClientOriginalExtension()=="pdf"){
+                $this->formato5=3;
             }
 
         }
@@ -217,7 +289,7 @@ class ContenidosEstudianteComponent extends Component
     
 
 
-    $archivo="";
+    $archivo=$this->archivo;
     if($this->archivo!=null){
         if($this->archivo->getClientOriginalExtension()=="jpg" or $this->archivo->getClientOriginalExtension()=="png" or $this->archivo->getClientOriginalExtension()=="jpeg"){
             $archivo = "img".time().".".$this->archivo->getClientOriginalExtension();
@@ -234,7 +306,7 @@ class ContenidosEstudianteComponent extends Component
         elseif($this->archivo->getClientOriginalExtension()=="pdf"){
             $archivo = "pdf".time().".".$this->archivo->getClientOriginalExtension();
             $this->arch=$archivo;
-            $this->archivo->storeAS('imagen/pdf_tareas/', $this->arch,'public_up');
+            $this->archivo->storeAS('imagen/tareas/', $this->arch,'public_up');
             $this->formato=3;
         }
     }
@@ -277,5 +349,566 @@ class ContenidosEstudianteComponent extends Component
     
 
     }
+
+    public function Subir_T2(){
+
+        $actib=$this->actib;
+        $grado=$this->grado;
+        $idsecc=$this->idsecc;
+        $unidad1=$this->unidad1;
+        $unidadfija=$this->unidadfija;
+        $nombre_alum=$this->nombre_alum;
+        $this->estado_tarea=1;
+    
+        $this->idusuario=auth()->user()->id;
+        
+    
+    
+        $archivo=$this->archivo;
+        if($this->archivo!=null){
+            if($this->archivo->getClientOriginalExtension()=="jpg" or $this->archivo->getClientOriginalExtension()=="png" or $this->archivo->getClientOriginalExtension()=="jpeg"){
+                $archivo = "img".time().".".$this->archivo->getClientOriginalExtension();
+                $this->arch=$archivo;
+                $this->archivo->storeAS('imagen/tareas/', $this->arch,'public_up');
+                $this->formato=1;
+            }
+            elseif($this->archivo->getClientOriginalExtension()=="mp4" or $this->archivo->getClientOriginalExtension()=="mpeg"){
+                $archivo = "vid".time().".".$this->archivo->getClientOriginalExtension();
+                $this->arch=$archivo;
+                $this->archivo->storeAS('imagen/tareas/', $this->arch,'public_up');
+                $this->formato=2;
+            }
+            elseif($this->archivo->getClientOriginalExtension()=="pdf"){
+                $archivo = "pdf".time().".".$this->archivo->getClientOriginalExtension();
+                $this->arch=$archivo;
+                $this->archivo->storeAS('imagen/tareas/', $this->arch,'public_up');
+                $this->formato=3;
+            }
+        }
+
+        $archivo2=$this->archivo2;
+        if($this->archivo2!=null){
+            if($this->archivo2->getClientOriginalExtension()=="jpg" or $this->archivo2->getClientOriginalExtension()=="png" or $this->archivo2->getClientOriginalExtension()=="jpeg"){
+                $archivo2 = "img".time().".".$this->archivo2->getClientOriginalExtension();
+                $this->arch2=$archivo2;
+                $this->archivo2->storeAS('imagen/tareas/', $this->arch2,'public_up');
+                $this->formato2=1;
+            }
+            elseif($this->archivo2->getClientOriginalExtension()=="mp4" or $this->archivo2->getClientOriginalExtension()=="mpeg"){
+                $archivo2 = "vid".time().".".$this->archivo2->getClientOriginalExtension();
+                $this->arch2=$archivo2;
+                $this->archivo2->storeAS('imagen/tareas/', $this->arch2,'public_up');
+                $this->formato2=2;
+            }
+            elseif($this->archivo2->getClientOriginalExtension()=="pdf"){
+                $archivo2 = "pdf".time().".".$this->archivo2->getClientOriginalExtension();
+                $this->arch2=$archivo2;
+                $this->archivo2->storeAS('imagen/tareas/', $this->arch2,'public_up');
+                $this->formato2=3;
+            }
+        }
+    
+        DB::begintransaction();
+    
+    
+        $tareas=DB::table('tb_tareas')->insert(
+            [
+                'DOCUMENTO1'=>$this->arch,
+                'DOCUMENTO2'=>$this->arch2,
+                'ID_ACTIVIDADES'=>$actib,
+                'ID_MATERIA'=>$unidad1,
+                'ID_GR'=>$grado,
+                'ID_SC'=>$idsecc,
+                'ID_UNIDADES_FIJAS'=>$unidadfija,
+                'ID_USER'=>$this->idusuario,
+                'ESTADO'=>$this->estado_tarea,
+    
+            ]);
+    
+    
+            if($tareas ){
+                DB::commit();
+                unset($this->mensaje);
+                unset($this->mensaje1);
+                unset($this->mensaje3);
+                unset($this->mensaje4);
+                $this->op='addcontenidos';
+                $this->mensaje='Insertado correctamente';
+                }
+                else {
+                DB::rollback();
+                unset($this->mensaje);
+                unset($this->mensaje1);
+                unset($this->mensaje4);
+                unset($this->mensaje3);
+                $this->op='addcontenidos';
+                $this->mensaje1='Datos no  insertados correctamente';
+                }        
+        
+    
+        }
+
+        public function Subir_T3(){
+
+            $actib=$this->actib;
+            $grado=$this->grado;
+            $idsecc=$this->idsecc;
+            $unidad1=$this->unidad1;
+            $unidadfija=$this->unidadfija;
+            $nombre_alum=$this->nombre_alum;
+            $this->estado_tarea=1;
+        
+            $this->idusuario=auth()->user()->id;
+            
+        
+        
+            $archivo=$this->archivo;
+            if($this->archivo!=null){
+                if($this->archivo->getClientOriginalExtension()=="jpg" or $this->archivo->getClientOriginalExtension()=="png" or $this->archivo->getClientOriginalExtension()=="jpeg"){
+                    $archivo = "img".time().".".$this->archivo->getClientOriginalExtension();
+                    $this->arch=$archivo;
+                    $this->archivo->storeAS('imagen/tareas/', $this->arch,'public_up');
+                    $this->formato=1;
+                }
+                elseif($this->archivo->getClientOriginalExtension()=="mp4" or $this->archivo->getClientOriginalExtension()=="mpeg"){
+                    $archivo = "vid".time().".".$this->archivo->getClientOriginalExtension();
+                    $this->arch=$archivo;
+                    $this->archivo->storeAS('imagen/tareas/', $this->arch,'public_up');
+                    $this->formato=2;
+                }
+                elseif($this->archivo->getClientOriginalExtension()=="pdf"){
+                    $archivo = "pdf".time().".".$this->archivo->getClientOriginalExtension();
+                    $this->arch=$archivo;
+                    $this->archivo->storeAS('imagen/tareas/', $this->arch,'public_up');
+                    $this->formato=3;
+                }
+            }
+    
+            
+
+            $archivo2=$this->archivo2;
+            if($this->archivo2!=null){
+                if($this->archivo2->getClientOriginalExtension()=="jpg" or $this->archivo2->getClientOriginalExtension()=="png" or $this->archivo2->getClientOriginalExtension()=="jpeg"){
+                    $archivo2 = "img".time().".".$this->archivo2->getClientOriginalExtension();
+                    $this->arch2=$archivo2;
+                    $this->archivo2->storeAS('imagen/tareas/', $this->arch2,'public_up');
+                    $this->formato2=1;
+                }
+                elseif($this->archivo2->getClientOriginalExtension()=="mp4" or $this->archivo2->getClientOriginalExtension()=="mpeg"){
+                    $archivo2 = "vid".time().".".$this->archivo2->getClientOriginalExtension();
+                    $this->arch2=$archivo2;
+                    $this->archivo2->storeAS('imagen/tareas/', $this->arch2,'public_up');
+                    $this->formato2=2;
+                }
+                elseif($this->archivo2->getClientOriginalExtension()=="pdf"){
+                    $archivo2 = "pdf".time().".".$this->archivo2->getClientOriginalExtension();
+                    $this->arch2=$archivo2;
+                    $this->archivo2->storeAS('imagen/tareas/', $this->arch2,'public_up');
+                    $this->formato2=3;
+                }
+            }
+
+
+            $archivo3=$this->archivo3;
+
+            if($this->archivo3!=null){
+                if($this->archivo3->getClientOriginalExtension()=="jpg" or $this->archivo3->getClientOriginalExtension()=="png" or $this->archivo3->getClientOriginalExtension()=="jpeg"){
+                    $archivo3 = "img".time().".".$this->archivo3->getClientOriginalExtension();
+                    $this->arch3=$archivo3;
+                    $this->archivo3->storeAS('imagen/tareas/', $this->arch3,'public_up');
+                    $this->formato3=1;
+                }
+                elseif($this->archivo3->getClientOriginalExtension()=="mp4" or $this->archivo3->getClientOriginalExtension()=="mpeg"){
+                    $archivo3 = "vid".time().".".$this->archivo2->getClientOriginalExtension();
+                    $this->arch3=$archivo3;
+                    $this->archivo3->storeAS('imagen/tareas/', $this->arch3,'public_up');
+                    $this->formato3=2;
+                }
+                elseif($this->archivo3->getClientOriginalExtension()=="pdf"){
+                    $archivo3 = "pdf".time().".".$this->archivo3->getClientOriginalExtension();
+                    $this->arch3=$archivo3;
+                    $this->archivo3->storeAS('imagen/tareas/', $this->arch3,'public_up');
+                    $this->formato3=3;                 
+                }
+            }
+        
+            DB::begintransaction();
+        
+        
+            $tareas=DB::table('tb_tareas')->insert(
+                [
+                    'DOCUMENTO1'=>$this->arch,
+                    'DOCUMENTO2'=>$this->arch2,
+                    'DOCUMENTO3'=>$this->arch3,
+                    'ID_ACTIVIDADES'=>$actib,
+                    'ID_MATERIA'=>$unidad1,
+                    'ID_GR'=>$grado,
+                    'ID_SC'=>$idsecc,
+                    'ID_UNIDADES_FIJAS'=>$unidadfija,
+                    'ID_USER'=>$this->idusuario,
+                    'ESTADO'=>$this->estado_tarea,
+        
+                ]);
+        
+        
+                if($tareas ){
+                    DB::commit();
+                    unset($this->mensaje);
+                    unset($this->mensaje1);
+                    unset($this->mensaje3);
+                    unset($this->mensaje4);
+                    $this->op='addcontenidos';
+                    $this->mensaje='Insertado correctamente';
+                    }
+                    else {
+                    DB::rollback();
+                    unset($this->mensaje);
+                    unset($this->mensaje1);
+                    unset($this->mensaje4);
+                    unset($this->mensaje3);
+                    $this->op='addcontenidos';
+                    $this->mensaje1='Datos no  insertados correctamente';
+                    }        
+            
+        
+            }
+            public function Subir_T4(){
+
+                $actib=$this->actib;
+                $grado=$this->grado;
+                $idsecc=$this->idsecc;
+                $unidad1=$this->unidad1;
+                $unidadfija=$this->unidadfija;
+                $nombre_alum=$this->nombre_alum;
+                $this->estado_tarea=1;
+            
+                $this->idusuario=auth()->user()->id;
+                
+            
+            
+                $archivo=$this->archivo;
+                if($this->archivo!=null){
+                    if($this->archivo->getClientOriginalExtension()=="jpg" or $this->archivo->getClientOriginalExtension()=="png" or $this->archivo->getClientOriginalExtension()=="jpeg"){
+                        $archivo = "img".time().".".$this->archivo->getClientOriginalExtension();
+                        $this->arch=$archivo;
+                        $this->archivo->storeAS('imagen/tareas/', $this->arch,'public_up');
+                        $this->formato=1;
+                    }
+                    elseif($this->archivo->getClientOriginalExtension()=="mp4" or $this->archivo->getClientOriginalExtension()=="mpeg"){
+                        $archivo = "vid".time().".".$this->archivo->getClientOriginalExtension();
+                        $this->arch=$archivo;
+                        $this->archivo->storeAS('imagen/tareas/', $this->arch,'public_up');
+                        $this->formato=2;
+                    }
+                    elseif($this->archivo->getClientOriginalExtension()=="pdf"){
+                        $archivo = "pdf".time().".".$this->archivo->getClientOriginalExtension();
+                        $this->arch=$archivo;
+                        $this->archivo->storeAS('imagen/tareas/', $this->arch,'public_up');
+                        $this->formato=3;
+                    }
+                }
+        
+                
+                $archivo2=$this->archivo2;
+                if($this->archivo2!=null){
+                    if($this->archivo2->getClientOriginalExtension()=="jpg" or $this->archivo2->getClientOriginalExtension()=="png" or $this->archivo2->getClientOriginalExtension()=="jpeg"){
+                        $archivo2 = "img".time().".".$this->archivo2->getClientOriginalExtension();
+                        $this->arch2=$archivo2;
+                        $this->archivo2->storeAS('imagen/tareas/', $this->arch2,'public_up');
+                        $this->formato2=1;
+                    }
+                    elseif($this->archivo2->getClientOriginalExtension()=="mp4" or $this->archivo2->getClientOriginalExtension()=="mpeg"){
+                        $archivo2 = "vid".time().".".$this->archivo2->getClientOriginalExtension();
+                        $this->arch2=$archivo2;
+                        $this->archivo2->storeAS('imagen/tareas/', $this->arch2,'public_up');
+                        $this->formato2=2;
+                    }
+                    elseif($this->archivo2->getClientOriginalExtension()=="pdf"){
+                        $archivo2 = "pdf".time().".".$this->archivo2->getClientOriginalExtension();
+                        $this->arch2=$archivo2;
+                        $this->archivo2->storeAS('imagen/tareas/', $this->arch2,'public_up');
+                        $this->formato2=3;
+                    }
+                }
+    
+                $archivo3=$this->archivo3;
+                if($this->archivo3!=null){
+                    if($this->archivo3->getClientOriginalExtension()=="jpg" or $this->archivo3->getClientOriginalExtension()=="png" or $this->archivo3->getClientOriginalExtension()=="jpeg"){
+                        $archivo3 = "img".time().".".$this->archivo3->getClientOriginalExtension();
+                        $this->arch3=$archivo3;
+                        $this->archivo3->storeAS('imagen/tareas/', $this->arch3,'public_up');
+                        $this->formato3=1;
+                    }
+                    elseif($this->archivo3->getClientOriginalExtension()=="mp4" or $this->archivo3->getClientOriginalExtension()=="mpeg"){
+                        $archivo3 = "vid".time().".".$this->archivo3->getClientOriginalExtension();
+                        $this->arch3=$archivo3;
+                        $this->archivo3->storeAS('imagen/tareas/', $this->arch3,'public_up');
+                        $this->formato3=2;
+                    }
+                    elseif($this->archivo3->getClientOriginalExtension()=="pdf"){
+                        $archivo3 = "pdf".time().".".$this->archivo3->getClientOriginalExtension();
+                        $this->arch3=$archivo3;
+                        $this->archivo3->storeAS('imagen/tareas/', $this->arch3,'public_up');
+                        $this->formato3=3;                 
+                    }
+                }
+
+                $archivo4=$this->archivo4;
+                if($this->archivo4!=null){
+                    if($this->archivo4->getClientOriginalExtension()=="jpg" or $this->archivo4->getClientOriginalExtension()=="png" or $this->archivo4->getClientOriginalExtension()=="jpeg"){
+                        $archivo4 = "img".time().".".$this->archivo4->getClientOriginalExtension();
+                        $this->arch4=$archivo4;
+                        $this->archivo4->storeAS('imagen/tareas/', $this->arch3,'public_up');
+                        $this->formato4=1;
+                    }
+                    elseif($this->archivo4->getClientOriginalExtension()=="mp4" or $this->archivo4->getClientOriginalExtension()=="mpeg"){
+                        $archivo4 = "vid".time().".".$this->archivo4->getClientOriginalExtension();
+                        $this->arch4=$archivo4;
+                        $this->archivo4->storeAS('imagen/tareas/', $this->arch4,'public_up');
+                        $this->formato4=2;
+                    }
+                    elseif($this->archivo4->getClientOriginalExtension()=="pdf"){
+                        $archivo4 = "pdf".time().".".$this->archivo4->getClientOriginalExtension();
+                        $this->arch4=$archivo4;
+                        $this->archivo4->storeAS('imagen/tareas/', $this->arch4,'public_up');
+                        $this->formato4=3;                 
+                    }
+                }
+            
+                DB::begintransaction();
+            
+            
+                $tareas=DB::table('tb_tareas')->insert(
+                    [
+                        'DOCUMENTO1'=>$this->arch,
+                        'DOCUMENTO2'=>$this->arch2,
+                        'DOCUMENTO3'=>$this->arch3,
+                        'DOCUMENTO4'=>$this->arch4,
+                        'ID_ACTIVIDADES'=>$actib,
+                        'ID_MATERIA'=>$unidad1,
+                        'ID_GR'=>$grado,
+                        'ID_SC'=>$idsecc,
+                        'ID_UNIDADES_FIJAS'=>$unidadfija,
+                        'ID_USER'=>$this->idusuario,
+                        'ESTADO'=>$this->estado_tarea,
+            
+                    ]);
+            
+            
+                    if($tareas ){
+                        DB::commit();
+                        unset($this->mensaje);
+                        unset($this->mensaje1);
+                        unset($this->mensaje3);
+                        unset($this->mensaje4);
+                        $this->op='addcontenidos';
+                        $this->mensaje='Insertado correctamente';
+                        }
+                        else {
+                        DB::rollback();
+                        unset($this->mensaje);
+                        unset($this->mensaje1);
+                        unset($this->mensaje4);
+                        unset($this->mensaje3);
+                        $this->op='addcontenidos';
+                        $this->mensaje1='Datos no  insertados correctamente';
+                        }        
+                
+            
+                }
+
+
+                public function Subir_T5(){
+
+                    $actib=$this->actib;
+                    $grado=$this->grado;
+                    $idsecc=$this->idsecc;
+                    $unidad1=$this->unidad1;
+                    $unidadfija=$this->unidadfija;
+                    $nombre_alum=$this->nombre_alum;
+                    $this->estado_tarea=1;
+                
+                    $this->idusuario=auth()->user()->id;
+                    
+                
+                
+                    $archivo=$this->archivo;
+                    if($this->archivo!=null){
+                        if($this->archivo->getClientOriginalExtension()=="jpg" or $this->archivo->getClientOriginalExtension()=="png" or $this->archivo->getClientOriginalExtension()=="jpeg"){
+                            $archivo = "img".time().".".$this->archivo->getClientOriginalExtension();
+                            $this->arch=$archivo;
+                            $this->archivo->storeAS('imagen/tareas/', $this->arch,'public_up');
+                            $this->formato=1;
+                        }
+                        elseif($this->archivo->getClientOriginalExtension()=="mp4" or $this->archivo->getClientOriginalExtension()=="mpeg"){
+                            $archivo = "vid".time().".".$this->archivo->getClientOriginalExtension();
+                            $this->arch=$archivo;
+                            $this->archivo->storeAS('imagen/tareas/', $this->arch,'public_up');
+                            $this->formato=2;
+                        }
+                        elseif($this->archivo->getClientOriginalExtension()=="pdf"){
+                            $archivo = "pdf".time().".".$this->archivo->getClientOriginalExtension();
+                            $this->arch=$archivo;
+                            $this->archivo->storeAS('imagen/tareas/', $this->arch,'public_up');
+                            $this->formato=3;
+                        }
+                    }
+            
+                    
+                    $archivo2=$this->archivo2;
+                    if($this->archivo2!=null){
+                        if($this->archivo2->getClientOriginalExtension()=="jpg" or $this->archivo2->getClientOriginalExtension()=="png" or $this->archivo2->getClientOriginalExtension()=="jpeg"){
+                            $archivo2 = "img".time().".".$this->archivo2->getClientOriginalExtension();
+                            $this->arch2=$archivo2;
+                            $this->archivo2->storeAS('imagen/tareas/', $this->arch2,'public_up');
+                            $this->formato2=1;
+                        }
+                        elseif($this->archivo2->getClientOriginalExtension()=="mp4" or $this->archivo2->getClientOriginalExtension()=="mpeg"){
+                            $archivo2 = "vid".time().".".$this->archivo2->getClientOriginalExtension();
+                            $this->arch2=$archivo2;
+                            $this->archivo2->storeAS('imagen/tareas/', $this->arch2,'public_up');
+                            $this->formato2=2;
+                        }
+                        elseif($this->archivo2->getClientOriginalExtension()=="pdf"){
+                            $archivo2 = "pdf".time().".".$this->archivo2->getClientOriginalExtension();
+                            $this->arch2=$archivo2;
+                            $this->archivo2->storeAS('imagen/tareas/', $this->arch2,'public_up');
+                            $this->formato2=3;
+                        }
+                    }
+        
+                    $archivo3=$this->archivo3;
+                    if($this->archivo3!=null){
+                        if($this->archivo3->getClientOriginalExtension()=="jpg" or $this->archivo3->getClientOriginalExtension()=="png" or $this->archivo3->getClientOriginalExtension()=="jpeg"){
+                            $archivo3 = "img".time().".".$this->archivo3->getClientOriginalExtension();
+                            $this->arch3=$archivo3;
+                            $this->archivo3->storeAS('imagen/tareas/', $this->arch3,'public_up');
+                            $this->formato3=1;
+                        }
+                        elseif($this->archivo3->getClientOriginalExtension()=="mp4" or $this->archivo3->getClientOriginalExtension()=="mpeg"){
+                            $archivo3 = "vid".time().".".$this->archivo3->getClientOriginalExtension();
+                            $this->arch3=$archivo3;
+                            $this->archivo3->storeAS('imagen/tareas/', $this->arch3,'public_up');
+                            $this->formato3=2;
+                        }
+                        elseif($this->archivo3->getClientOriginalExtension()=="pdf"){
+                            $archivo3 = "pdf".time().".".$this->archivo3->getClientOriginalExtension();
+                            $this->arch3=$archivo3;
+                            $this->archivo3->storeAS('imagen/tareas/', $this->arch3,'public_up');
+                            $this->formato3=3;                 
+                        }
+                    }
+    
+                    $archivo4=$this->archivo4;
+                    if($this->archivo4!=null){
+                        if($this->archivo4->getClientOriginalExtension()=="jpg" or $this->archivo4->getClientOriginalExtension()=="png" or $this->archivo4->getClientOriginalExtension()=="jpeg"){
+                            $archivo4 = "img".time().".".$this->archivo4->getClientOriginalExtension();
+                            $this->arch4=$archivo4;
+                            $this->archivo4->storeAS('imagen/tareas/', $this->arch4,'public_up');
+                            $this->formato4=1;
+                        }
+                        elseif($this->archivo4->getClientOriginalExtension()=="mp4" or $this->archivo4->getClientOriginalExtension()=="mpeg"){
+                            $archivo4 = "vid".time().".".$this->archivo4->getClientOriginalExtension();
+                            $this->arch4=$archivo4;
+                            $this->archivo4->storeAS('imagen/tareas/', $this->arch4,'public_up');
+                            $this->formato4=2;
+                        }
+                        elseif($this->archivo4->getClientOriginalExtension()=="pdf"){
+                            $archivo4 = "pdf".time().".".$this->archivo4->getClientOriginalExtension();
+                            $this->arch4=$archivo4;
+                            $this->archivo4->storeAS('imagen/tareas/', $this->arch4,'public_up');
+                            $this->formato4=3;                 
+                        }
+                    }
+
+                    $archivo5=$this->archivo5;
+                    if($this->archivo5!=null){
+                        if($this->archivo5->getClientOriginalExtension()=="jpg" or $this->archivo5->getClientOriginalExtension()=="png" or $this->archivo5->getClientOriginalExtension()=="jpeg"){
+                            $archivo5 = "img".time().".".$this->archivo5->getClientOriginalExtension();
+                            $this->arch5=$archivo5;
+                            $this->archivo5->storeAS('imagen/tareas/', $this->arch5,'public_up');
+                            $this->formato5=1;
+                        }
+                        elseif($this->archivo5->getClientOriginalExtension()=="mp4" or $this->archivo5->getClientOriginalExtension()=="mpeg"){
+                            $archivo5 = "vid".time().".".$this->archivo5->getClientOriginalExtension();
+                            $this->arch5=$archivo5;
+                            $this->archivo5->storeAS('imagen/tareas/', $this->arch5,'public_up');
+                            $this->formato5=2;
+                        }
+                        elseif($this->archivo5->getClientOriginalExtension()=="pdf"){
+                            $archivo5 = "pdf".time().".".$this->archivo5->getClientOriginalExtension();
+                            $this->arch5=$archivo5;
+                            $this->archivo5->storeAS('imagen/tareas/', $this->arch5,'public_up');
+                            $this->formato5=3;                 
+                        }
+                    }
+                
+                    DB::begintransaction();
+                
+                
+                    $tareas=DB::table('tb_tareas')->insert(
+                        [
+                            'DOCUMENTO1'=>$this->arch,
+                            'DOCUMENTO2'=>$this->arch2,
+                            'DOCUMENTO3'=>$this->arch3,
+                            'DOCUMENTO4'=>$this->arch4,
+                            'DOCUMENTO5'=>$this->arch5,
+                            'ID_ACTIVIDADES'=>$actib,
+                            'ID_MATERIA'=>$unidad1,
+                            'ID_GR'=>$grado,
+                            'ID_SC'=>$idsecc,
+                            'ID_UNIDADES_FIJAS'=>$unidadfija,
+                            'ID_USER'=>$this->idusuario,
+                            'ESTADO'=>$this->estado_tarea,
+                
+                        ]);
+                
+                
+                        if($tareas ){
+                            DB::commit();
+                            unset($this->mensaje);
+                            unset($this->mensaje1);
+                            unset($this->mensaje3);
+                            unset($this->mensaje4);
+                            $this->op='addcontenidos';
+                            $this->mensaje='Insertado correctamente';
+                            }
+                            else {
+                            DB::rollback();
+                            unset($this->mensaje);
+                            unset($this->mensaje1);
+                            unset($this->mensaje4);
+                            unset($this->mensaje3);
+                            $this->op='addcontenidos';
+                            $this->mensaje1='Datos no  insertados correctamente';
+                            }        
+                    
+                
+                    }
+
+
+
+    public function subir_mas_arch(){
+
+        $this->mas_arch=1;
+    }
+
+    public function subir_mas_arch2(){
+
+        $this->mas_arch=2;
+    }
+
+    public function subir_mas_arch3(){
+
+        $this->mas_arch=3;
+    }
+
+    public function subir_mas_arch4(){
+
+        $this->mas_arch=4;
+    }
+
+
+
 
 }
