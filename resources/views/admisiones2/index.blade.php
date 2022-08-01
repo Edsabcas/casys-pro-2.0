@@ -34,7 +34,7 @@
 <div class="accordion-item" style="border-radius: 60px 60px 60px 60px;" >
     <h2 class="accordion-header" style="border-radius: 60px 60px 60px 60px;"  style="color: #3a3e7b" id="estado1">
       <button class="accordion-button collapsed" style="border-radius: 60px 60px 60px 60px; color: #3a3e7b"  type="button" data-bs-toggle="collapse" data-bs-target="#estado1admisiones" aria-expanded="false" aria-controls="flush-collapseThree2">
-          Confirmación de información | Alumnos aspirantes  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;<span class="badge rounded-pill bg-warning text-dark">@php echo count($estudiantesaspirantes1);@endphp</span>
+        Admisiones | Etapa 1   &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;<span class="badge rounded-pill bg-warning text-dark">@php echo count($estudiantesaspirantes1);@endphp</span>
       </button>
     </h2>
     <div   wire:ignore.self id="estado1admisiones" class="accordion-collapse collapse" aria-labelledby="estado1admisiones" data-bs-parent="#accordionFlushExample">
@@ -102,7 +102,7 @@
 <div class="accordion-item" style="border-radius: 60px 60px 60px 60px;" >
     <h2 class="accordion-header" style="border-radius: 60px 60px 60px 60px;"  style="color: #3a3e7b" id="estado2">
       <button class="accordion-button collapsed" style="border-radius: 60px 60px 60px 60px; color: #3a3e7b"  type="button" data-bs-toggle="collapse" data-bs-target="#estado2admisiones" aria-expanded="false" aria-controls="flush-collapseThree2">
-          Confirmación de información etapa 2| Alumnos aspirantes  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;<span class="badge rounded-pill bg-warning text-dark">@php echo count($estudiantesaspirantes2);@endphp</span>
+        Admisiones | Etapa 2   &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;<span class="badge rounded-pill bg-warning text-dark">@php echo count($estudiantesaspirantes2);@endphp</span>
       </button>
     </h2>
     <div   wire:ignore.self id="estado2admisiones" class="accordion-collapse collapse" aria-labelledby="estado2admisiones" data-bs-parent="#accordionFlushExample">
@@ -169,7 +169,7 @@
 <div class="accordion-item" style="border-radius: 60px 60px 60px 60px;" >
     <h2 class="accordion-header" style="border-radius: 60px 60px 60px 60px;"  style="color: #3a3e7b" id="estado3">
       <button class="accordion-button collapsed" style="border-radius: 60px 60px 60px 60px; color: #3a3e7b"  type="button" data-bs-toggle="collapse" data-bs-target="#estado3admisiones" aria-expanded="false" aria-controls="flush-collapseThree2">
-          Listo para inscripción | Alumnos aspirantes  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;<span class="badge rounded-pill bg-warning text-dark">@php echo count($estudiantesaspirantes3);@endphp</span>
+        Admisiones | Etapa 3  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;<span class="badge rounded-pill bg-warning text-dark">@php echo count($estudiantesaspirantes3);@endphp</span>
       </button>
     </h2>
     <div   wire:ignore.self id="estado3admisiones" class="accordion-collapse collapse" aria-labelledby="estado3admisiones" data-bs-parent="#accordionFlushExample">
