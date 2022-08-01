@@ -13,7 +13,7 @@ margin-top: 35px;
 margin-bottom: 35px;
 ">
     <div class="row">
-        <img align="left" src="imagen/actividades/img1651798574.png" height="50" weight="5      0" alt="...">
+        <img align="left" src="imagen/actividades/img1651798574.png" height="50" weight="50" alt="...">
         <img align="right" src="imagen/actividades/casys.png" height="50" weight="50" alt="...">
         <br>
         <center>
