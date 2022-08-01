@@ -36,8 +36,13 @@ margin-bottom: 35px;
     </ul>
     <br>
     <br>
-
-    <p style="text-align: center; font-size: 15"><strong>"Formando Mentes Brillantes"</strong></p>
+    <div class="row">
+        <p style="text-align: center; font-size: 15"><strong>"Formando Mentes Brillantes"</strong></p>
+        <img align="left" src="imagen//casys logo.jpeg" height="80" weight="80" alt="...">
+        <center>
+            <br>
+            <strong><p style="text-align: center; font-size: 20px; color:#a4cb39;">CREDENCIALES DE ACCESO PARA CASYS {{$datos_usuario[0]}}</p></strong></center>
+    </div>
     
 
 </body>
