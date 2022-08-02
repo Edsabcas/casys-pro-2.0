@@ -370,6 +370,7 @@ class AdminisionesComponet extends Component
             $this->correo_en2=$pre->CORREO_EN_ES2;
             $this->profesion_en=$pre->PROFESION_EN_ES;
             $this->tipo_ins=$pre->TIPO_INS;
+            $this->archivo_comprobante=$pre->COMPROBANTE_PAGO;
 
         }
         $sql='SELECT * FROM TB_FORM_PAGOS WHERE ID_PRE=?';
