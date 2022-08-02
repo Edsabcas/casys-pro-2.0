@@ -450,8 +450,11 @@
                               </video>
                               @endif
                               @if($pdf==1)
+                              {{-- <iframe style="width: 43rem; text-align:center" width="350" height="350" src="././imagen/comprobantes2022/{{$archivo_comprobante}}" frameborder="0"></iframe>
+                               --}}
                               <iframe style="width: 43rem; text-align:center" width="350" height="350" src="imagen/comprobantes2022/{{$archivo_comprobante}}" frameborder="0"></iframe>
-                                @endif
+                                
+                              @endif
                                 {{-- <img class="img-profile rounded-circle" style="float: center;" width="80" height="80" src="imagen/comprobantes2022/{{$archivo_comprobante}}">
                                 --}}
                                 <button type="button" class="btn btn-editb" style="float:" data-bs-dismiss="modal"  id="updtatecompro">
@@ -531,6 +534,8 @@
                                   </video>
                                   @endif
                                   @if($pdf==1)
+                                  {{-- <iframe style="width: 43rem; text-align:center" width="350" height="350" src="././imagen/comprobantes2022/{{$archivo_comprobante}}" frameborder="0"></iframe>
+                               --}}
                                   <iframe style="width: 43rem; text-align:center" width="350" height="350" src="imagen/comprobantes2022/{{$archivo_comprobante}}" frameborder="0"></iframe>
                                     @endif
                                     {{-- <img class="img-profile rounded-circle" style="float: center;" width="80" height="80" src="imagen/comprobantes2022/{{$archivo_comprobante}}">
